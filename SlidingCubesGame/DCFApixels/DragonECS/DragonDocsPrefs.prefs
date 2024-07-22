@@ -1,0 +1,825 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 61
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 988ba077639ea4d42b79ff0605103c88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_docs:
+    _metas:
+    - _assemblyQualifiedName: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems.CreateGameFieldSystem,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      _name: CreateGameFieldSystem
+      _isCustomName: 0
+      _typeName: CreateGameFieldSystem
+      _color:
+        serializedVersion: 2
+        rgba: 4294836345
+      _isCustomColor: 0
+      _autor: 
+      _description: 
+      _group: 
+      _tags: []
+      _isHidden: 0
+    - _assemblyQualifiedName: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems.CreateGameSystem,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      _name: CreateGameSystem
+      _isCustomName: 0
+      _typeName: CreateGameSystem
+      _color:
+        serializedVersion: 2
+        rgba: 4289724160
+      _isCustomColor: 0
+      _autor: 
+      _description: 
+      _group: 
+      _tags: []
+      _isHidden: 0
+    - _assemblyQualifiedName: DCFApixels.DragonECS.DeleteOneFrameComponentSystem`1,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      _name: DeleteOneFrameComponentSystem<TComponent>
+      _isCustomName: 0
+      _typeName: DeleteOneFrameComponentSystem<TComponent>
+      _color:
+        serializedVersion: 2
+        rgba: 4286545791
+      _isCustomColor: 1
+      _autor: 
+      _description: 
+      _group: 
+      _tags:
+      - HiddenInDebagging
+      _isHidden: 1
+    - _assemblyQualifiedName: DCFApixels.DragonECS.DeleteOneFrameTagComponentSystem`1,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      _name: DeleteOneFrameTagComponentSystem<TComponent>
+      _isCustomName: 0
+      _typeName: DeleteOneFrameTagComponentSystem<TComponent>
+      _color:
+        serializedVersion: 2
+        rgba: 4286545791
+      _isCustomColor: 1
+      _autor: 
+      _description: 
+      _group: 
+      _tags:
+      - HiddenInDebagging
+      _isHidden: 1
+    - _assemblyQualifiedName: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components.GameField,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      _name: GameField
+      _isCustomName: 0
+      _typeName: GameField
+      _color:
+        serializedVersion: 2
+        rgba: 4278246655
+      _isCustomColor: 0
+      _autor: 
+      _description: 
+      _group: 
+      _tags: []
+      _isHidden: 0
+    - _assemblyQualifiedName: DCFApixels.DragonECS.EcsWorld+NullWorld, DCFApixels.DragonECS,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      _name: NullWorld
+      _isCustomName: 0
+      _typeName: NullWorld
+      _color:
+        serializedVersion: 2
+        rgba: 4291166463
+      _isCustomColor: 0
+      _autor: 
+      _description: 
+      _group: 
+      _tags: []
+      _isHidden: 0
+    - _assemblyQualifiedName: DCFApixels.DragonECS.EcsDebug, DCFApixels.DragonECS,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      _name: EcsDebug
+      _isCustomName: 0
+      _typeName: EcsDebug
+      _color:
+        serializedVersion: 2
+        rgba: 4286926591
+      _isCustomColor: 1
+      _autor: DCFApixels
+      _description: "Debugging utility. To modify or change the behavior, create
+        a new class inherited from DebugService and set this service using DebugService.Set<T>().\r\n 
+        - DCFApixels"
+      _group: _DragonECS/_Core/Debug/
+      _tags: []
+      _isHidden: 0
+    - _assemblyQualifiedName: DCFApixels.DragonECS.TypeMeta, DCFApixels.DragonECS,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      _name: TypeMeta
+      _isCustomName: 0
+      _typeName: TypeMeta
+      _color:
+        serializedVersion: 2
+        rgba: 4286926591
+      _isCustomColor: 1
+      _autor: DCFApixels
+      _description: "Intended for extending meta information of types, for customization
+        of type display in the editor. You can get it by using the object.GetMeta()
+        or Type.ToMeta() extension method. Meta information is collected from meta
+        attributes.\r\n  - DCFApixels"
+      _group: _DragonECS/_Core/Debug/
+      _tags: []
+      _isHidden: 0
+    - _assemblyQualifiedName: DCFApixels.DragonECS.IEcsInject`1, DCFApixels.DragonECS,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      _name: Inject<T>
+      _isCustomName: 1
+      _typeName: IEcsInject<T>
+      _color:
+        serializedVersion: 2
+        rgba: 4286926591
+      _isCustomColor: 1
+      _autor: DCFApixels
+      _description: "The interface of the dependency injection process.\r\n  - DCFApixels"
+      _group: _DragonECS/_Core/DI/
+      _tags: []
+      _isHidden: 0
+    - _assemblyQualifiedName: DCFApixels.DragonECS.IOnInitInjectionComplete, DCFApixels.DragonECS,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      _name: OnInitInjectionComplete
+      _isCustomName: 1
+      _typeName: IOnInitInjectionComplete
+      _color:
+        serializedVersion: 2
+        rgba: 4286926591
+      _isCustomColor: 1
+      _autor: DCFApixels
+      _description: "The process interface that signals the completion of injection
+        during pipeline initialization via the EcsPipeline.Init() method.\r\n  -
+        DCFApixels"
+      _group: _DragonECS/_Core/DI/
+      _tags: []
+      _isHidden: 0
+    - _assemblyQualifiedName: DCFApixels.DragonECS.EcsPipeline, DCFApixels.DragonECS,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      _name: EcsPipeline
+      _isCustomName: 0
+      _typeName: EcsPipeline
+      _color:
+        serializedVersion: 2
+        rgba: 4286926591
+      _isCustomColor: 1
+      _autor: DCFApixels
+      _description: "Container and engine for systems. Responsible for configuring
+        the execution order of systems, providing a mechanism for messaging between
+        systems, and a dependency injection mechanism.\r\n  - DCFApixels"
+      _group: _DragonECS/_Core/Other/
+      _tags: []
+      _isHidden: 0
+    - _assemblyQualifiedName: DCFApixels.DragonECS.RunnersCore.EcsRunner`1, DCFApixels.DragonECS,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      _name: EcsRunner<TProcess>
+      _isCustomName: 0
+      _typeName: EcsRunner<TProcess>
+      _color:
+        serializedVersion: 2
+        rgba: 4286926591
+      _isCustomColor: 1
+      _autor: DCFApixels
+      _description: "...\r\n  - DCFApixels"
+      _group: _DragonECS/_Core/Other/
+      _tags:
+      - HiddenInDebagging
+      _isHidden: 1
+    - _assemblyQualifiedName: DCFApixels.DragonECS.IEcsPipelineMember, DCFApixels.DragonECS,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      _name: IEcsPipelineMember
+      _isCustomName: 0
+      _typeName: IEcsPipelineMember
+      _color:
+        serializedVersion: 2
+        rgba: 4286926591
+      _isCustomColor: 1
+      _autor: DCFApixels
+      _description: "...\r\n  - DCFApixels"
+      _group: _DragonECS/_Core/Other/
+      _tags: []
+      _isHidden: 0
+    - _assemblyQualifiedName: DCFApixels.DragonECS.IEcsProcess, DCFApixels.DragonECS,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      _name: IEcsProcess
+      _isCustomName: 0
+      _typeName: IEcsProcess
+      _color:
+        serializedVersion: 2
+        rgba: 4286926591
+      _isCustomColor: 1
+      _autor: DCFApixels
+      _description: "...\r\n  - DCFApixels"
+      _group: _DragonECS/_Core/Other/
+      _tags:
+      - HiddenInDebagging
+      _isHidden: 1
+    - _assemblyQualifiedName: DCFApixels.DragonECS.RunnersCore.IEcsRunner, DCFApixels.DragonECS,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      _name: IEcsRunner
+      _isCustomName: 0
+      _typeName: IEcsRunner
+      _color:
+        serializedVersion: 2
+        rgba: 4286926591
+      _isCustomColor: 1
+      _autor: DCFApixels
+      _description: "...\r\n  - DCFApixels"
+      _group: _DragonECS/_Core/Other/
+      _tags:
+      - HiddenInDebagging
+      _isHidden: 1
+    - _assemblyQualifiedName: DCFApixels.DragonECS.IEcsSystemDefaultLayer, DCFApixels.DragonECS,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      _name: IEcsSystemDefaultLayer
+      _isCustomName: 0
+      _typeName: IEcsSystemDefaultLayer
+      _color:
+        serializedVersion: 2
+        rgba: 4286926591
+      _isCustomColor: 1
+      _autor: DCFApixels
+      _description: "...\r\n  - DCFApixels"
+      _group: _DragonECS/_Core/Other/
+      _tags: []
+      _isHidden: 0
+    - _assemblyQualifiedName: DCFApixels.DragonECS.SystemsLayerMarkerSystem, DCFApixels.DragonECS,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      _name: SystemsLayerMarkerSystem
+      _isCustomName: 0
+      _typeName: SystemsLayerMarkerSystem
+      _color:
+        serializedVersion: 2
+        rgba: 4278190080
+      _isCustomColor: 1
+      _autor: DCFApixels
+      _description: "An auxiliary type of system for dividing a pipeline into layers.
+        This system is automatically added to the EcsPipeline.\r\n  - DCFApixels"
+      _group: _DragonECS/_Core/Other/
+      _tags:
+      - HiddenInDebagging
+      _isHidden: 1
+    - _assemblyQualifiedName: DCFApixels.DragonECS.Internal.EcsNullPool, DCFApixels.DragonECS,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      _name: EcsNullPool
+      _isCustomName: 0
+      _typeName: EcsNullPool
+      _color:
+        serializedVersion: 2
+        rgba: 4286926591
+      _isCustomColor: 1
+      _autor: DCFApixels
+      _description: "A placeholder type, an instance of this type replaces the null
+        ref.\r\n  - DCFApixels"
+      _group: _DragonECS/_Core/Pools/
+      _tags:
+      - HiddenInDebagging
+      _isHidden: 1
+    - _assemblyQualifiedName: DCFApixels.DragonECS.EcsPool`1, DCFApixels.DragonECS,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      _name: EcsPool<T>
+      _isCustomName: 0
+      _typeName: EcsPool<T>
+      _color:
+        serializedVersion: 2
+        rgba: 4286926591
+      _isCustomColor: 1
+      _autor: DCFApixels
+      _description: "Pool for IEcsComponent components.\r\n  - DCFApixels"
+      _group: _DragonECS/_Core/Pools/
+      _tags: []
+      _isHidden: 0
+    - _assemblyQualifiedName: DCFApixels.DragonECS.EcsTagPool`1, DCFApixels.DragonECS,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      _name: EcsTagPool<T>
+      _isCustomName: 0
+      _typeName: EcsTagPool<T>
+      _color:
+        serializedVersion: 2
+        rgba: 4286926591
+      _isCustomColor: 1
+      _autor: DCFApixels
+      _description: "Pool for IEcsTagComponent components. EcsTagPool is optimized
+        for storing tag components or components without data.\r\n  - DCFApixels"
+      _group: _DragonECS/_Core/Pools/
+      _tags: []
+      _isHidden: 0
+    - _assemblyQualifiedName: DCFApixels.DragonECS.IEcsComponent, DCFApixels.DragonECS,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      _name: IEcsComponent
+      _isCustomName: 0
+      _typeName: IEcsComponent
+      _color:
+        serializedVersion: 2
+        rgba: 4286926591
+      _isCustomColor: 1
+      _autor: DCFApixels
+      _description: "Standard component.\r\n  - DCFApixels"
+      _group: _DragonECS/_Core/Pools/
+      _tags: []
+      _isHidden: 0
+    - _assemblyQualifiedName: DCFApixels.DragonECS.IEcsTagComponent, DCFApixels.DragonECS,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      _name: IEcsTagComponent
+      _isCustomName: 0
+      _typeName: IEcsTagComponent
+      _color:
+        serializedVersion: 2
+        rgba: 4286926591
+      _isCustomColor: 1
+      _autor: DCFApixels
+      _description: "Tag component or component without data.\r\n  - DCFApixels"
+      _group: _DragonECS/_Core/Pools/
+      _tags: []
+      _isHidden: 0
+    - _assemblyQualifiedName: DCFApixels.DragonECS.IEcsDestroy, DCFApixels.DragonECS,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      _name: Destroy
+      _isCustomName: 1
+      _typeName: IEcsDestroy
+      _color:
+        serializedVersion: 2
+        rgba: 4286926591
+      _isCustomColor: 1
+      _autor: DCFApixels
+      _description: "The process to run when EcsPipeline.Destroy() is called.\r\n 
+        - DCFApixels"
+      _group: _DragonECS/_Core/Processes/
+      _tags: []
+      _isHidden: 0
+    - _assemblyQualifiedName: DCFApixels.DragonECS.Internal.EcsDestroyRunner, DCFApixels.DragonECS,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      _name: EcsDestroyRunner
+      _isCustomName: 0
+      _typeName: EcsDestroyRunner
+      _color:
+        serializedVersion: 2
+        rgba: 4286926591
+      _isCustomColor: 1
+      _autor: DCFApixels
+      _description: "...\r\n  - DCFApixels"
+      _group: _DragonECS/_Core/Processes/
+      _tags:
+      - HiddenInDebagging
+      _isHidden: 1
+    - _assemblyQualifiedName: DCFApixels.DragonECS.Internal.EcsInitRunner, DCFApixels.DragonECS,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      _name: EcsInitRunner
+      _isCustomName: 0
+      _typeName: EcsInitRunner
+      _color:
+        serializedVersion: 2
+        rgba: 4286926591
+      _isCustomColor: 1
+      _autor: DCFApixels
+      _description: "...\r\n  - DCFApixels"
+      _group: _DragonECS/_Core/Processes/
+      _tags:
+      - HiddenInDebagging
+      _isHidden: 1
+    - _assemblyQualifiedName: DCFApixels.DragonECS.Internal.EcsPreInitRunner, DCFApixels.DragonECS,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      _name: EcsPreInitRunner
+      _isCustomName: 0
+      _typeName: EcsPreInitRunner
+      _color:
+        serializedVersion: 2
+        rgba: 4286926591
+      _isCustomColor: 1
+      _autor: DCFApixels
+      _description: "...\r\n  - DCFApixels"
+      _group: _DragonECS/_Core/Processes/
+      _tags:
+      - HiddenInDebagging
+      _isHidden: 1
+    - _assemblyQualifiedName: DCFApixels.DragonECS.Internal.EcsRunRunner, DCFApixels.DragonECS,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      _name: EcsRunRunner
+      _isCustomName: 0
+      _typeName: EcsRunRunner
+      _color:
+        serializedVersion: 2
+        rgba: 4286926591
+      _isCustomColor: 1
+      _autor: DCFApixels
+      _description: "...\r\n  - DCFApixels"
+      _group: _DragonECS/_Core/Processes/
+      _tags:
+      - HiddenInDebagging
+      _isHidden: 1
+    - _assemblyQualifiedName: DCFApixels.DragonECS.IEcsInit, DCFApixels.DragonECS,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      _name: Init
+      _isCustomName: 1
+      _typeName: IEcsInit
+      _color:
+        serializedVersion: 2
+        rgba: 4286926591
+      _isCustomColor: 1
+      _autor: DCFApixels
+      _description: "The process to run when EcsPipeline.Init() is called. After
+        PreInit\r\n  - DCFApixels"
+      _group: _DragonECS/_Core/Processes/
+      _tags: []
+      _isHidden: 0
+    - _assemblyQualifiedName: DCFApixels.DragonECS.IEcsPreInit, DCFApixels.DragonECS,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      _name: PreInit
+      _isCustomName: 1
+      _typeName: IEcsPreInit
+      _color:
+        serializedVersion: 2
+        rgba: 4286926591
+      _isCustomColor: 1
+      _autor: DCFApixels
+      _description: "The process to run when EcsPipeline.Init() is called. Before
+        Init\r\n  - DCFApixels"
+      _group: _DragonECS/_Core/Processes/
+      _tags: []
+      _isHidden: 0
+    - _assemblyQualifiedName: DCFApixels.DragonECS.IEcsRun, DCFApixels.DragonECS,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      _name: Run
+      _isCustomName: 1
+      _typeName: IEcsRun
+      _color:
+        serializedVersion: 2
+        rgba: 4286926591
+      _isCustomColor: 1
+      _autor: DCFApixels
+      _description: "The process to run when EcsPipeline.Run() is called.\r\n  -
+        DCFApixels"
+      _group: _DragonECS/_Core/Processes/
+      _tags: []
+      _isHidden: 0
+    - _assemblyQualifiedName: DCFApixels.DragonECS.EcsDefaultWorld, DCFApixels.DragonECS,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      _name: EcsDefaultWorld
+      _isCustomName: 0
+      _typeName: EcsDefaultWorld
+      _color:
+        serializedVersion: 2
+        rgba: 4286926591
+      _isCustomColor: 1
+      _autor: DCFApixels
+      _description: "Inherits EcsWorld without extending its functionality and is
+        used for specific injections. Can be used to store regular game entities,
+        can also be used as a single world in the game for all entities.\r\n  - DCFApixels"
+      _group: _DragonECS/_Core/Worlds/
+      _tags: []
+      _isHidden: 0
+    - _assemblyQualifiedName: DCFApixels.DragonECS.EcsEventWorld, DCFApixels.DragonECS,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      _name: EcsEventWorld
+      _isCustomName: 0
+      _typeName: EcsEventWorld
+      _color:
+        serializedVersion: 2
+        rgba: 4286926591
+      _isCustomColor: 1
+      _autor: DCFApixels
+      _description: "Inherits EcsWorld without extending its functionality and is
+        used for specific injections. Can be used to store event entities.\r\n  -
+        DCFApixels"
+      _group: _DragonECS/_Core/Worlds/
+      _tags: []
+      _isHidden: 0
+    - _assemblyQualifiedName: DCFApixels.DragonECS.EcsWorld, DCFApixels.DragonECS,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      _name: EcsWorld
+      _isCustomName: 0
+      _typeName: EcsWorld
+      _color:
+        serializedVersion: 2
+        rgba: 4286926591
+      _isCustomColor: 1
+      _autor: DCFApixels
+      _description: "It is a container for entities and components.\r\n  - DCFApixels"
+      _group: _DragonECS/_Core/Worlds/
+      _tags: []
+      _isHidden: 0
+    - _assemblyQualifiedName: DCFApixels.DragonECS.AutoInjectSystem, DCFApixels.DragonECS.AutoInjections,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      _name: AutoInjectSystem
+      _isCustomName: 0
+      _typeName: AutoInjectSystem
+      _color:
+        serializedVersion: 2
+        rgba: 4286545791
+      _isCustomColor: 1
+      _autor: DCFApixels
+      _description: "The system responsible for the processing of automatic injections.
+        The .AutoInject() method adds an AutoInjectSystem to the systems pipelines.\r\n 
+        - DCFApixels"
+      _group: _DragonECS/AutoInjections/DI/
+      _tags:
+      - HiddenInDebagging
+      _isHidden: 1
+    - _assemblyQualifiedName: DCFApixels.DragonECS.EcsHybridPool`1, DCFApixels.DragonECS.Hybrid,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      _name: EcsHybridPool<T>
+      _isCustomName: 0
+      _typeName: EcsHybridPool<T>
+      _color:
+        serializedVersion: 2
+        rgba: 4286926591
+      _isCustomColor: 1
+      _autor: DCFApixels
+      _description: "Pool for IEcsHybridComponent components.\r\n  - DCFApixels"
+      _group: _DragonECS/Hybrid/Pools/
+      _tags: []
+      _isHidden: 0
+    - _assemblyQualifiedName: DCFApixels.DragonECS.IEcsHybridComponent, DCFApixels.DragonECS.Hybrid,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      _name: IEcsHybridComponent
+      _isCustomName: 0
+      _typeName: IEcsHybridComponent
+      _color:
+        serializedVersion: 2
+        rgba: 4286926591
+      _isCustomColor: 1
+      _autor: DCFApixels
+      _description: "Hybrid component.\r\n  - DCFApixels"
+      _group: _DragonECS/Hybrid/Pools/
+      _tags: []
+      _isHidden: 0
+    - _assemblyQualifiedName: DCFApixels.DragonECS.GameObjectConnect, DCFApixels.DragonECS.Unity,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      _name: GameObjectConnect
+      _isCustomName: 0
+      _typeName: GameObjectConnect
+      _color:
+        serializedVersion: 2
+        rgba: 4294967040
+      _isCustomColor: 1
+      _autor: DCFApixels
+      _description: "This component is automatically added if an entity is connected
+        to one of the EcsEntityConnect. It also contains a reference to the connected
+        EcsEntityConnect.\r\n  - DCFApixels"
+      _group: _DragonECS/Unity/Components/
+      _tags: []
+      _isHidden: 0
+    - _assemblyQualifiedName: DCFApixels.DragonECS.UnityComponent`1, DCFApixels.DragonECS.Unity,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      _name: UnityComponent<T>
+      _isCustomName: 0
+      _typeName: UnityComponent<T>
+      _color:
+        serializedVersion: 2
+        rgba: 4294967040
+      _isCustomColor: 1
+      _autor: DCFApixels
+      _description: "Component-reference to Unity object for EcsPool.\r\n  - DCFApixels"
+      _group: _DragonECS/Unity/Components/
+      _tags: []
+      _isHidden: 0
+    - _assemblyQualifiedName: DCFApixels.DragonECS.Unity.Internal.EntityMonitor,
+        DCFApixels.DragonECS.Unity, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      _name: EntityMonitor
+      _isCustomName: 0
+      _typeName: EntityMonitor
+      _color:
+        serializedVersion: 2
+        rgba: 4286545791
+      _isCustomColor: 1
+      _autor: DCFApixels
+      _description: "...\r\n  - DCFApixels"
+      _group: _DragonECS/Unity/Debug/
+      _tags:
+      - HiddenInDebagging
+      _isHidden: 1
+    - _assemblyQualifiedName: DCFApixels.DragonECS.Unity.Internal.PipelineMonitor,
+        DCFApixels.DragonECS.Unity, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      _name: PipelineMonitor
+      _isCustomName: 0
+      _typeName: PipelineMonitor
+      _color:
+        serializedVersion: 2
+        rgba: 4286545791
+      _isCustomColor: 1
+      _autor: DCFApixels
+      _description: "...\r\n  - DCFApixels"
+      _group: _DragonECS/Unity/Debug/
+      _tags:
+      - HiddenInDebagging
+      _isHidden: 1
+    - _assemblyQualifiedName: DCFApixels.DragonECS.Unity.Internal.PipelineMonitorSystem,
+        DCFApixels.DragonECS.Unity, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      _name: PipelineMonitorSystem
+      _isCustomName: 0
+      _typeName: PipelineMonitorSystem
+      _color:
+        serializedVersion: 2
+        rgba: 4286545791
+      _isCustomColor: 1
+      _autor: DCFApixels
+      _description: "...\r\n  - DCFApixels"
+      _group: _DragonECS/Unity/Debug/
+      _tags:
+      - HiddenInDebagging
+      _isHidden: 1
+    - _assemblyQualifiedName: DCFApixels.DragonECS.Unity.Editors.PipelineProcessMonitor,
+        DCFApixels.DragonECS.Unity, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      _name: PipelineProcessMonitor
+      _isCustomName: 0
+      _typeName: PipelineProcessMonitor
+      _color:
+        serializedVersion: 2
+        rgba: 4286545791
+      _isCustomColor: 1
+      _autor: DCFApixels
+      _description: "...\r\n  - DCFApixels"
+      _group: _DragonECS/Unity/Debug/
+      _tags:
+      - HiddenInDebagging
+      _isHidden: 1
+    - _assemblyQualifiedName: DCFApixels.DragonECS.Unity.Internal.WorldMonitor, DCFApixels.DragonECS.Unity,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      _name: WorldMonitor
+      _isCustomName: 0
+      _typeName: WorldMonitor
+      _color:
+        serializedVersion: 2
+        rgba: 4286545791
+      _isCustomColor: 1
+      _autor: DCFApixels
+      _description: "...\r\n  - DCFApixels"
+      _group: _DragonECS/Unity/Debug/
+      _tags:
+      - HiddenInDebagging
+      _isHidden: 1
+    - _assemblyQualifiedName: DCFApixels.DragonECS.Unity.Internal.WorldMonitorSystem,
+        DCFApixels.DragonECS.Unity, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      _name: WorldMonitorSystem
+      _isCustomName: 0
+      _typeName: WorldMonitorSystem
+      _color:
+        serializedVersion: 2
+        rgba: 4286545791
+      _isCustomColor: 1
+      _autor: DCFApixels
+      _description: "...\r\n  - DCFApixels"
+      _group: _DragonECS/Unity/Debug/
+      _tags:
+      - HiddenInDebagging
+      _isHidden: 1
+    - _assemblyQualifiedName: DCFApixels.DragonECS.AutoEntityCreator, DCFApixels.DragonECS.Unity,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      _name: AutoEntityCreator
+      _isCustomName: 0
+      _typeName: AutoEntityCreator
+      _color:
+        serializedVersion: 2
+        rgba: 4294967040
+      _isCustomColor: 1
+      _autor: DCFApixels
+      _description: "MonoBehaviour. Automatically creates an entity in the selected
+        world and connects it to EcsEntityConnect.\r\n  - DCFApixels"
+      _group: _DragonECS/Unity/Entity Building/
+      _tags: []
+      _isHidden: 0
+    - _assemblyQualifiedName: DCFApixels.DragonECS.EcsEntityConnect, DCFApixels.DragonECS.Unity,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      _name: EcsEntityConnect
+      _isCustomName: 0
+      _typeName: EcsEntityConnect
+      _color:
+        serializedVersion: 2
+        rgba: 4294967040
+      _isCustomColor: 1
+      _autor: DCFApixels
+      _description: "MonoBehaviour. Responsible for connecting the entity and GameObject
+        using the EcsEntityConnect.ConnectWith method.\r\n  - DCFApixels"
+      _group: _DragonECS/Unity/Entity Building/
+      _tags: []
+      _isHidden: 0
+    - _assemblyQualifiedName: DCFApixels.DragonECS.MonoEntityTemplate, DCFApixels.DragonECS.Unity,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      _name: MonoEntityTemplate
+      _isCustomName: 0
+      _typeName: MonoEntityTemplate
+      _color:
+        serializedVersion: 2
+        rgba: 4294967040
+      _isCustomColor: 1
+      _autor: DCFApixels
+      _description: "MonoBehaviour implementation of an entity template. Templates
+        are a set of components that are applied to entities.\r\n  - DCFApixels"
+      _group: _DragonECS/Unity/Entity Building/
+      _tags: []
+      _isHidden: 0
+    - _assemblyQualifiedName: DCFApixels.DragonECS.ScriptableEntityTemplate, DCFApixels.DragonECS.Unity,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      _name: ScriptableEntityTemplate
+      _isCustomName: 0
+      _typeName: ScriptableEntityTemplate
+      _color:
+        serializedVersion: 2
+        rgba: 4294967040
+      _isCustomColor: 1
+      _autor: DCFApixels
+      _description: "ScriptableObject implementation of an entity template. Templates
+        are a set of components that are applied to entities.\r\n  - DCFApixels"
+      _group: _DragonECS/Unity/Entity Building/
+      _tags: []
+      _isHidden: 0
+    - _assemblyQualifiedName: DCFApixels.DragonECS.IEcsGizmosProcess, DCFApixels.DragonECS.Unity,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      _name: DrawGizmos
+      _isCustomName: 1
+      _typeName: IEcsGizmosProcess
+      _color:
+        serializedVersion: 2
+        rgba: 4286926591
+      _isCustomColor: 1
+      _autor: DCFApixels
+      _description: "The process to run when EcsPipeline.DrawGizmos() is called.\r\n 
+        - DCFApixels"
+      _group: _DragonECS/Unity/Processes/
+      _tags: []
+      _isHidden: 0
+    - _assemblyQualifiedName: DCFApixels.DragonECS.Unity.Internal.EcsFixedRunRunner,
+        DCFApixels.DragonECS.Unity, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      _name: EcsFixedRunRunner
+      _isCustomName: 0
+      _typeName: EcsFixedRunRunner
+      _color:
+        serializedVersion: 2
+        rgba: 4286926591
+      _isCustomColor: 1
+      _autor: DCFApixels
+      _description: "...\r\n  - DCFApixels"
+      _group: _DragonECS/Unity/Processes/
+      _tags:
+      - HiddenInDebagging
+      _isHidden: 1
+    - _assemblyQualifiedName: DCFApixels.DragonECS.Unity.Internal.EcsLateGizmosRunner,
+        DCFApixels.DragonECS.Unity, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      _name: EcsLateGizmosRunner
+      _isCustomName: 0
+      _typeName: EcsLateGizmosRunner
+      _color:
+        serializedVersion: 2
+        rgba: 4286926591
+      _isCustomColor: 1
+      _autor: DCFApixels
+      _description: "...\r\n  - DCFApixels"
+      _group: _DragonECS/Unity/Processes/
+      _tags:
+      - HiddenInDebagging
+      _isHidden: 1
+    - _assemblyQualifiedName: DCFApixels.DragonECS.Unity.Internal.EcsLateRunRunner,
+        DCFApixels.DragonECS.Unity, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      _name: EcsLateRunRunner
+      _isCustomName: 0
+      _typeName: EcsLateRunRunner
+      _color:
+        serializedVersion: 2
+        rgba: 4286926591
+      _isCustomColor: 1
+      _autor: DCFApixels
+      _description: "...\r\n  - DCFApixels"
+      _group: _DragonECS/Unity/Processes/
+      _tags:
+      - HiddenInDebagging
+      _isHidden: 1
+    - _assemblyQualifiedName: DCFApixels.DragonECS.IEcsFixedRunProcess, DCFApixels.DragonECS.Unity,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      _name: FixedRun
+      _isCustomName: 1
+      _typeName: IEcsFixedRunProcess
+      _color:
+        serializedVersion: 2
+        rgba: 4286926591
+      _isCustomColor: 1
+      _autor: DCFApixels
+      _description: "The process to run when EcsPipeline.FixedRun() is called.\r\n 
+        - DCFApixels"
+      _group: _DragonECS/Unity/Processes/
+      _tags: []
+      _isHidden: 0
+    - _assemblyQualifiedName: DCFApixels.DragonECS.IEcsLateRunProcess, DCFApixels.DragonECS.Unity,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      _name: LateRun
+      _isCustomName: 1
+      _typeName: IEcsLateRunProcess
+      _color:
+        serializedVersion: 2
+        rgba: 4286926591
+      _isCustomColor: 1
+      _autor: DCFApixels
+      _description: "The process to run when EcsPipeline.LateRun() is called.\r\n 
+        - DCFApixels"
+      _group: _DragonECS/Unity/Processes/
+      _tags: []
+      _isHidden: 0
+  m_isExpands: 010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
