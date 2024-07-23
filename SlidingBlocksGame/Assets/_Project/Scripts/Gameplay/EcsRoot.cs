@@ -1,12 +1,14 @@
-﻿using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems;
+﻿using System.Collections.Generic;
+using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems;
 using DCFApixels.DragonECS;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace _Project.Scripts.Gameplay
 {
     public class EcsRoot : MonoBehaviour
     {
-        [SerializeField] private ScriptableEntityTemplate gameCfg;
+        [SerializeField] private ScriptableEntityTemplate _gameCfg;
 
         private EcsPipeline _pipeline;
         private EcsDefaultWorld _world;
@@ -18,7 +20,7 @@ namespace _Project.Scripts.Gameplay
             provider.Set(_world = new EcsDefaultWorld());
 
             _pipeline = EcsPipeline.New()
-                .Add(new CreateGameSystem(gameCfg))
+                .Add(new CreateGameSystem(_gameCfg))
                 .Add(new CreateGameFieldSystem())
                 .AddUnityDebug(_world)
                 .Inject(_world)
