@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
+using _Project.Scripts.Gameplay.Features.CooldownFeature.Systems;
+using _Project.Scripts.Gameplay.Features.EasingFeature.Systems;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems;
+using _Project.Scripts.Gameplay.Features.MovementFeautre.Systems;
 using DCFApixels.DragonECS;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -9,7 +12,9 @@ namespace _Project.Scripts.Gameplay
     public class EcsRoot : MonoBehaviour
     {
         [SerializeField] private ScriptableEntityTemplate _gameCfg;
+        [SerializeField] private EcsEntityConnect _blockPrefab;
 
+        public AnimationCurve curve;
         private EcsPipeline _pipeline;
         private EcsDefaultWorld _world;
 
@@ -20,8 +25,21 @@ namespace _Project.Scripts.Gameplay
             provider.Set(_world = new EcsDefaultWorld());
 
             _pipeline = EcsPipeline.New()
-                .Add(new CreateGameSystem(_gameCfg))
-                .Add(new CreateGameFieldSystem())
+
+                // creation game world feature
+                .AddUnique(new CreateGameSystem(_gameCfg))
+                .AddUnique(new CreateGameFieldSystem(_blockPrefab))
+                .AddUnique(new DetermineClickSystem())
+
+                // easing feature
+                .AddUnique(new AnimationCurveSystem())
+                .AddUnique(new LinerEasingSystem())
+
+                // movement feature
+                .AddUnique(new DestinationMovementSystem())
+
+                // cooldown feature
+                .AddUnique(new CooldownSystem())
                 .AddUnityDebug(_world)
                 .Inject(_world)
                 .AutoInject()

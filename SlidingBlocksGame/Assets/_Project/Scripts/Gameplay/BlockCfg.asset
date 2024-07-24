@@ -1,0 +1,88 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d2b62f9703592042befb46ac1fee09c, type: 3}
+  m_Name: BlockCfg
+  m_EditorClassIdentifier: 
+  _components:
+  - rid: 499105167245050245
+  - rid: 499105167245050246
+  - rid: 499105167245050247
+  - rid: 499105167245050248
+  - rid: 499105167245050251
+  references:
+    version: 2
+    RefIds:
+    - rid: 499105167245050245
+      type: {class: MovementSpeedFactor/Wrapper, ns: _Project.Scripts.Gameplay.Features.MovementFeautre.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: 1
+    - rid: 499105167245050246
+      type: {class: EasingDestination/Wrapper, ns: _Project.Scripts.Gameplay.Features.EasingFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Original:
+            x: 0
+            y: 0
+            z: 0
+          Destination:
+            x: 0
+            y: 0
+            z: 0
+          Interpolation:
+            x: 0
+            y: 0
+            z: 0
+    - rid: 499105167245050247
+      type: {class: AnimationCurveRef/Wrapper, ns: _Project.Scripts.Gameplay.Features.EasingFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value:
+            serializedVersion: 2
+            m_Curve:
+            - serializedVersion: 3
+              time: 0
+              value: 0
+              inSlope: 0
+              outSlope: 0.031243885
+              tangentMode: 0
+              weightedMode: 3
+              inWeight: 0
+              outWeight: 0.636963
+            - serializedVersion: 3
+              time: 1
+              value: 1
+              inSlope: 6.815432
+              outSlope: 0
+              tangentMode: 0
+              weightedMode: 3
+              inWeight: 0.155667
+              outWeight: 0
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+    - rid: 499105167245050248
+      type: {class: EasingSpeed/Wrapper, ns: _Project.Scripts.Gameplay.Features.EasingFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: 0
+    - rid: 499105167245050251
+      type: {class: Cooldown/Wrapper, ns: _Project.Scripts.Gameplay.Features.CooldownFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: 5
+          Duration: 5

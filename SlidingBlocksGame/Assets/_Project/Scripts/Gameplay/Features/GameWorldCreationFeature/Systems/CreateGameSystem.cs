@@ -14,8 +14,6 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
         public void Init()
         {
-            Debug.Log(_world);
-
             _world.NewEntity(_gameCfg);
         }
     }
