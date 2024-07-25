@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
-using _Project.Scripts.Gameplay.Features.CooldownFeature.Systems;
+﻿using _Project.Scripts.Gameplay.Features.CooldownFeature.Systems;
 using _Project.Scripts.Gameplay.Features.EasingFeature.Systems;
+using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems;
 using _Project.Scripts.Gameplay.Features.MovementFeautre.Systems;
 using DCFApixels.DragonECS;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace _Project.Scripts.Gameplay
 {
@@ -28,8 +27,16 @@ namespace _Project.Scripts.Gameplay
 
                 // creation game world feature
                 .AddUnique(new CreateGameSystem(_gameCfg))
-                .AddUnique(new CreateGameFieldSystem(_blockPrefab))
+                .AddUnique(new CalculateGameFieldSystem())
+                .AddUnique(new SelectionGenerationGameFieldSystem())
+                .AddUnique(new GenerateGameFieldSystem())
+                .AddUnique(new GenerateWaveGameFieldSystem())
+                .AddUnique(new GenerateSmoothnessWaveGameFieldSystem())
                 .AddUnique(new DetermineClickSystem())
+                
+                .AutoDel<GenerateGameFieldRequest>()
+                .AutoDel<GenerateWaveGameFieldRequest>()
+                .AutoDel<GenerateSmoothnessWaveGameFieldRequest>()
 
                 // easing feature
                 .AddUnique(new AnimationCurveSystem())
@@ -61,4 +68,5 @@ namespace _Project.Scripts.Gameplay
             _world = null;
         }
     }
+
 }

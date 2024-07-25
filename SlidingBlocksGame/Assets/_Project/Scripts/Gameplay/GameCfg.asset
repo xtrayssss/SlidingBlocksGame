@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _components:
   - rid: 499105128608694272
+  - rid: 499105185158136147
+  - rid: 499105185158136191
+  - rid: 499105185158136200
   references:
     version: 2
     RefIds:
@@ -22,7 +25,7 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data:
         component:
-          BlockPrefab: {fileID: 5678163285392456267, guid: e5378788f6301a2428eb21e32a7e779b,
+          TilePrefab: {fileID: 5678163285392456267, guid: e5378788f6301a2428eb21e32a7e779b,
             type: 3}
           OriginPosition: {x: 1, y: 0, z: 0}
           Size: 6
@@ -30,3 +33,21 @@ MonoBehaviour:
           CellSize: 1
           CenterSize: 0
           EdgeSize: 0
+    - rid: 499105185158136147
+      type: {class: WaveAlgorithm/Wrapper, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Speed: 0.01
+    - rid: 499105185158136191
+      type: {class: WaveSmoothnessAlgorithm/Wrapper, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          GrowthDuration: 0.1
+    - rid: 499105185158136200
+      type: {class: AlgorithmGenerationGameField/Wrapper, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: 1
