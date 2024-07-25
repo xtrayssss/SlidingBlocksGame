@@ -42,7 +42,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
                         GameObject tile = Object.Instantiate(field.TilePrefab, position, Quaternion.identity);
 
-                        tile.transform.localScale = Vector3.zero;
+                        tile.transform.localScale = float3.zero;
 
                         GrowTile(tile, wave);
 
@@ -54,14 +54,15 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
         private async void GrowTile(GameObject tile, WaveSmoothnessAlgorithm wave)
         {
-            Vector3 initialScale = tile.transform.localScale;
-            Vector3 targetScale = Vector3.one;
+            float3 initialScale = tile.transform.localScale;
+            float3 targetScale = new float3(1);
+
             float elapsedTime = 0;
 
             while (elapsedTime < wave.GrowthDuration)
             {
                 elapsedTime += Time.deltaTime;
-                tile.transform.localScale = Vector3.Lerp(initialScale, targetScale, elapsedTime / wave.GrowthDuration);
+                tile.transform.localScale = math.lerp(initialScale, targetScale, elapsedTime / wave.GrowthDuration);
 
                 await Task.Yield();
             }
