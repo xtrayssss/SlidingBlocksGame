@@ -1,6 +1,9 @@
 ﻿using System;
+using System.ComponentModel.Design.Serialization;
 using DCFApixels.DragonECS;
+using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components
 {
@@ -14,6 +17,16 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components
         public int CellSize;
         public int CenterSize;
         public int EdgeSize;
+
+        public Unit[] Units;
+
+        [Serializable]
+        public struct Unit
+        {
+            public float3 Position;
+            public EcsEntityConnect Prefab;
+            public float3 Rotation;
+        }
 
         public class Template : ComponentTemplate<GameField>
         {

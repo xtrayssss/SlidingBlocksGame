@@ -82,7 +82,7 @@ namespace DCFApixels.DragonECS
     }
     public static class DeleteOneFrameTagComponentSystemExtensions
     {
-        public static EcsPipeline.Builder AutoDel<TComponent>(this EcsPipeline.Builder b, string layerName = null)
+        public static EcsPipeline.Builder AutoDelTag<TComponent>(this EcsPipeline.Builder b, string layerName = null)
             where TComponent : struct, IEcsTagComponent
         {
             if (AUTO_DEL_LAYER == layerName)
@@ -92,7 +92,7 @@ namespace DCFApixels.DragonECS
             b.AddUnique(new DeleteOneFrameTagComponentSystem<TComponent>(), layerName);
             return b;
         }
-        public static EcsPipeline.Builder AutoDelToEnd<TComponent>(this EcsPipeline.Builder b)
+        public static EcsPipeline.Builder AutoDelTagToEnd<TComponent>(this EcsPipeline.Builder b)
             where TComponent : struct, IEcsTagComponent
         {
             b.Layers.InsertAfter(EcsConsts.POST_END_LAYER, AUTO_DEL_LAYER);

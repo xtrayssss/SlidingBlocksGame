@@ -1,5 +1,5 @@
-﻿using DCFApixels.DragonECS;
-using UnityEngine;
+﻿using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
+using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 {
@@ -14,7 +14,9 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
         public void Init()
         {
-            _world.NewEntity(_gameCfg);
+            int entity = _world.NewEntity(_gameCfg);
+            
+            _world.GetTagPool<CreateGameRequest>().Add(entity);
         }
     }
 }

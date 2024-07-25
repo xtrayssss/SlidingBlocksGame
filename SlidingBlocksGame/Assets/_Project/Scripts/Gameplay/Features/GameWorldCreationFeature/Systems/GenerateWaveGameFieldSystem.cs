@@ -15,8 +15,9 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
         private class Aspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(GenerateWaveGameFieldRequest))]
-            [Inc] public readonly EcsPool<WaveAlgorithm> Waves;
+            [IncImplicit(typeof(GenerateWaveGameFieldRequest))] [Inc]
+            public readonly EcsPool<WaveAlgorithm> Waves;
+
             [Inc] public readonly EcsPool<GameField> Fields;
         }
 
@@ -43,11 +44,11 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                         float3 position = new float3(
                             x * (field.CellSize + field.Offset) + field.OriginPosition.x, 0,
                             z * (field.CellSize + field.Offset) + field.OriginPosition.z);
-                        
+
                         float delay = math.distance(position, waveOrigin) * wave.Speed;
 
                         await Task.Delay(TimeSpan.FromSeconds(delay));
-                        
+
                         Object.Instantiate(field.TilePrefab, position, Quaternion.identity);
                     }
                 }

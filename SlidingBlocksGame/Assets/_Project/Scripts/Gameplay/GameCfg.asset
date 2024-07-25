@@ -17,6 +17,7 @@ MonoBehaviour:
   - rid: 499105185158136147
   - rid: 499105185158136191
   - rid: 499105185158136200
+  - rid: 499105185158136231
   references:
     version: 2
     RefIds:
@@ -33,6 +34,19 @@ MonoBehaviour:
           CellSize: 1
           CenterSize: 0
           EdgeSize: 0
+          Units:
+          - Position:
+              x: 1
+              y: 0
+              z: 2.2
+            Prefab: {fileID: 6997423007682641646, guid: 851b84b3d3622cd48a8df6387b7d22f6,
+              type: 3}
+            Rotation:
+              value:
+                x: 0
+                y: 0
+                z: 0
+                w: 1
     - rid: 499105185158136147
       type: {class: WaveAlgorithm/Wrapper, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
         asm: Assembly-CSharp}
@@ -50,4 +64,8 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data:
         component:
-          Value: 1
+          Value: 0
+    - rid: 499105185158136231
+      type: {class: GameTag/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
+        asm: Assembly-CSharp}
+      data: {}

@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _components:
   - rid: 499105167245050245
-  - rid: 499105167245050246
   - rid: 499105167245050247
   - rid: 499105167245050248
   - rid: 499105167245050251
@@ -27,23 +26,6 @@ MonoBehaviour:
       data:
         component:
           Value: 1
-    - rid: 499105167245050246
-      type: {class: EasingDestination/Wrapper, ns: _Project.Scripts.Gameplay.Features.EasingFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Original:
-            x: 0
-            y: 0
-            z: 0
-          Destination:
-            x: 0
-            y: 0
-            z: 0
-          Interpolation:
-            x: 0
-            y: 0
-            z: 0
     - rid: 499105167245050247
       type: {class: AnimationCurveRef/Wrapper, ns: _Project.Scripts.Gameplay.Features.EasingFeature.Components,
         asm: Assembly-CSharp}

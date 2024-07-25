@@ -32,11 +32,15 @@ namespace _Project.Scripts.Gameplay
                 .AddUnique(new GenerateGameFieldSystem())
                 .AddUnique(new GenerateWaveGameFieldSystem())
                 .AddUnique(new GenerateSmoothnessWaveGameFieldSystem())
+                .AddUnique(new CreateBlocksRequestingSystem())
+                .AddUnique(new CreateBlocksSystem())
                 .AddUnique(new DetermineClickSystem())
                 
-                .AutoDel<GenerateGameFieldRequest>()
-                .AutoDel<GenerateWaveGameFieldRequest>()
-                .AutoDel<GenerateSmoothnessWaveGameFieldRequest>()
+                .AutoDelTag<CreateGameRequest>()
+                .AutoDelTag<CreateBlocksRequest>()
+                .AutoDelTag<GenerateGameFieldRequest>()
+                .AutoDelTag<GenerateWaveGameFieldRequest>()
+                .AutoDelTag<GenerateSmoothnessWaveGameFieldRequest>()
 
                 // easing feature
                 .AddUnique(new AnimationCurveSystem())
@@ -68,5 +72,4 @@ namespace _Project.Scripts.Gameplay
             _world = null;
         }
     }
-
 }

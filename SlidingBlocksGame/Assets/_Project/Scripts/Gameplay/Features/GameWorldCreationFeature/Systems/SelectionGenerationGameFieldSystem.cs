@@ -21,13 +21,13 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                 switch (algorithm.Value)
                 {
                     case AlgorithmGenerationGameField.ID.None:
-                        _world.GetPool<GenerateGameFieldRequest>().Add(entity);
+                        _world.GetTagPool<GenerateGameFieldRequest>().Add(entity);
                         break;
                     case AlgorithmGenerationGameField.ID.Wave:
-                        _world.GetPool<GenerateWaveGameFieldRequest>().Add(entity);
+                        _world.GetTagPool<GenerateWaveGameFieldRequest>().Add(entity);
                         break;
                     case AlgorithmGenerationGameField.ID.SmoothnessWave:
-                        _world.GetPool<GenerateSmoothnessWaveGameFieldRequest>().Add(entity);
+                        _world.GetTagPool<GenerateSmoothnessWaveGameFieldRequest>().Add(entity);
                         break;
                     case AlgorithmGenerationGameField.ID.Random:
                         break;
