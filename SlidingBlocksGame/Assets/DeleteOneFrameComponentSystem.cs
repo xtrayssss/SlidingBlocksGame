@@ -12,34 +12,10 @@ namespace DCFApixels.DragonECS
         {
             public EcsPool<TComponent> pool = Inc;
         }
+
         private readonly List<EcsWorld> _worlds = new List<EcsWorld>();
         public void Inject(EcsWorld obj) => _worlds.Add(obj);
-        public void Run()
-        {
-            for (int i = 0, iMax = _worlds.Count; i < iMax; i++)
-            {
-                EcsWorld world = _worlds[i];
-                if (world.IsComponentTypeDeclared<TComponent>())
-                {
-                    foreach (var e in world.Where(out Aspect a))
-                    {
-                        a.pool.Del(e);
-                    }
-                }
-            }
-        }
-    }
-    [MetaTags(MetaTags.HIDDEN)]
-    [MetaColor(MetaColor.Grey)]
-    public class DeleteOneFrameTagComponentSystem<TComponent> : IEcsRun, IEcsInject<EcsWorld>
-    where TComponent : struct, IEcsTagComponent
-    {
-        private sealed class Aspect : EcsAspect
-        {
-            public EcsTagPool<TComponent> pool = Inc;
-        }
-        private readonly List<EcsWorld> _worlds = new List<EcsWorld>();
-        public void Inject(EcsWorld obj) => _worlds.Add(obj);
+
         public void Run()
         {
             for (int i = 0, iMax = _worlds.Count; i < iMax; i++)
@@ -56,10 +32,97 @@ namespace DCFApixels.DragonECS
         }
     }
 
+    [MetaTags(MetaTags.HIDDEN)]
+    [MetaColor(MetaColor.Grey)]
+    public class DeleteOneFrameTagComponentSystem<TComponent> : IEcsRun, IEcsInject<EcsWorld>
+        where TComponent : struct, IEcsTagComponent
+    {
+        private sealed class Aspect : EcsAspect
+        {
+            public EcsTagPool<TComponent> pool = Inc;
+        }
+
+        private readonly List<EcsWorld> _worlds = new List<EcsWorld>();
+        public void Inject(EcsWorld obj) => _worlds.Add(obj);
+
+        public void Run()
+        {
+            for (int i = 0, iMax = _worlds.Count; i < iMax; i++)
+            {
+                EcsWorld world = _worlds[i];
+                if (world.IsComponentTypeDeclared<TComponent>())
+                {
+                    foreach (var e in world.Where(out Aspect a))
+                    {
+                        a.pool.Del(e);
+                    }
+                }
+            }
+        }
+    }
+
+    [MetaTags(MetaTags.HIDDEN)]
+    [MetaColor(MetaColor.Grey)]
+    public class DeleteOneFrameEntityTagSystem<TComponent> : IEcsRun, IEcsInject<EcsWorld>
+        where TComponent : struct, IEcsTagComponent
+    {
+        private sealed class Aspect : EcsAspect
+        {
+            public EcsTagPool<TComponent> pool = Inc;
+        }
+
+        private readonly List<EcsWorld> _worlds = new List<EcsWorld>();
+        public void Inject(EcsWorld obj) => _worlds.Add(obj);
+
+        public void Run()
+        {
+            for (int i = 0, iMax = _worlds.Count; i < iMax; i++)
+            {
+                EcsWorld world = _worlds[i];
+                if (world.IsComponentTypeDeclared<TComponent>())
+                {
+                    foreach (var e in world.Where(out Aspect a))
+                    {
+                        world.DelEntity(e);
+                    }
+                }
+            }
+        }
+    }
+    [MetaTags(MetaTags.HIDDEN)]
+    [MetaColor(MetaColor.Grey)]
+    public class DeleteOneFrameEntityComponentSystem<TComponent> : IEcsRun, IEcsInject<EcsWorld>
+        where TComponent : struct, IEcsComponent
+    {
+        private sealed class Aspect : EcsAspect
+        {
+            public EcsPool<TComponent> pool = Inc;
+        }
+
+        private readonly List<EcsWorld> _worlds = new List<EcsWorld>();
+        public void Inject(EcsWorld obj) => _worlds.Add(obj);
+
+        public void Run()
+        {
+            for (int i = 0, iMax = _worlds.Count; i < iMax; i++)
+            {
+                EcsWorld world = _worlds[i];
+                if (world.IsComponentTypeDeclared<TComponent>())
+                {
+                    foreach (var e in world.Where(out Aspect a))
+                    {
+                        world.DelEntity(e);
+                    }
+                }
+            }
+        }
+    }
+
     public static class EcsOneFrameComponentConsts
     {
         public const string AUTO_DEL_LAYER = nameof(AUTO_DEL_LAYER);
     }
+
     public static class DeleteOneFrameComponentSystemExtensions
     {
         public static EcsPipeline.Builder AutoDel<TComponent>(this EcsPipeline.Builder b, string layerName = null)
@@ -69,9 +132,11 @@ namespace DCFApixels.DragonECS
             {
                 b.Layers.InsertAfter(EcsConsts.POST_END_LAYER, AUTO_DEL_LAYER);
             }
+
             b.AddUnique(new DeleteOneFrameComponentSystem<TComponent>(), layerName);
             return b;
         }
+
         public static EcsPipeline.Builder AutoDelToEnd<TComponent>(this EcsPipeline.Builder b)
             where TComponent : struct, IEcsComponent
         {
@@ -80,6 +145,52 @@ namespace DCFApixels.DragonECS
             return b;
         }
     }
+
+    public static class DeleteOneFrameEntityComponentSystemExtensions
+    {
+        public static EcsPipeline.Builder AutoDelEntityComponent<TComponent>(this EcsPipeline.Builder b, string layerName = null)
+            where TComponent : struct, IEcsComponent
+        {
+            if (AUTO_DEL_LAYER == layerName)
+            {
+                b.Layers.InsertAfter(EcsConsts.POST_END_LAYER, AUTO_DEL_LAYER);
+            }
+
+            b.AddUnique(new DeleteOneFrameEntityComponentSystem<TComponent>(), layerName);
+            return b;
+        }
+
+        public static EcsPipeline.Builder AutoDelToEndEntityComponent<TComponent>(this EcsPipeline.Builder b)
+            where TComponent : struct, IEcsComponent
+        {
+            b.Layers.InsertAfter(EcsConsts.POST_END_LAYER, AUTO_DEL_LAYER);
+            b.AddUnique(new DeleteOneFrameEntityComponentSystem<TComponent>(), AUTO_DEL_LAYER);
+            return b;
+        }
+    }
+    public static class DeleteOneFrameEntityTagSystemExtensions
+    {
+        public static EcsPipeline.Builder AutoDelEntityTag<TComponent>(this EcsPipeline.Builder b, string layerName = null)
+            where TComponent : struct, IEcsTagComponent
+        {
+            if (AUTO_DEL_LAYER == layerName)
+            {
+                b.Layers.InsertAfter(EcsConsts.POST_END_LAYER, AUTO_DEL_LAYER);
+            }
+
+            b.AddUnique(new DeleteOneFrameEntityTagSystem<TComponent>(), layerName);
+            return b;
+        }
+
+        public static EcsPipeline.Builder AutoDelEntityTagToEnd<TComponent>(this EcsPipeline.Builder b)
+            where TComponent : struct, IEcsTagComponent
+        {
+            b.Layers.InsertAfter(EcsConsts.POST_END_LAYER, AUTO_DEL_LAYER);
+            b.AddUnique(new DeleteOneFrameEntityTagSystem<TComponent>(), AUTO_DEL_LAYER);
+            return b;
+        }
+    }
+
     public static class DeleteOneFrameTagComponentSystemExtensions
     {
         public static EcsPipeline.Builder AutoDelTag<TComponent>(this EcsPipeline.Builder b, string layerName = null)
@@ -89,9 +200,11 @@ namespace DCFApixels.DragonECS
             {
                 b.Layers.InsertAfter(EcsConsts.POST_END_LAYER, AUTO_DEL_LAYER);
             }
+
             b.AddUnique(new DeleteOneFrameTagComponentSystem<TComponent>(), layerName);
             return b;
         }
+
         public static EcsPipeline.Builder AutoDelTagToEnd<TComponent>(this EcsPipeline.Builder b)
             where TComponent : struct, IEcsTagComponent
         {

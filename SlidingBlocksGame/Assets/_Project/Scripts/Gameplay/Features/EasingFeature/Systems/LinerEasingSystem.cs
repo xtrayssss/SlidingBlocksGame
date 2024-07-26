@@ -1,6 +1,8 @@
-﻿using _Project.Scripts.Gameplay.Features.EasingFeature.Components;
+﻿using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
+using _Project.Scripts.Gameplay.Features.EasingFeature.Components;
 using DCFApixels.DragonECS;
 using Unity.Mathematics;
+using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.EasingFeature.Systems
 {
@@ -10,7 +12,9 @@ namespace _Project.Scripts.Gameplay.Features.EasingFeature.Systems
 
         private class Aspect : EcsAspectAuto
         {
+            [ExcImplicit(typeof(CooldownExpiredMarker))]
             [Inc] public readonly EcsPool<EasingDestination> Destinations;
+
             [Inc] public readonly EcsPool<EasingSpeed> Speeds;
         }
 
@@ -20,7 +24,7 @@ namespace _Project.Scripts.Gameplay.Features.EasingFeature.Systems
             {
                 ref EasingDestination destination = ref aspect.Destinations.Get(entity);
 
-                destination.Interpolation = math.lerp(destination.Original, destination.Destination,
+                destination.Interpolation = Vector3.LerpUnclamped(destination.Original, destination.Destination,
                     aspect.Speeds.Read(entity).Value);
             }
         }

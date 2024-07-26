@@ -1,7 +1,7 @@
 ﻿using System;
 using DCFApixels.DragonECS;
 
-namespace _Project.Scripts.Gameplay.Features.MovementFeautre.Components
+namespace _Project.Scripts.Gameplay.Features.MovementFeature.Components
 {
     [Serializable]
     public struct MovementSpeedFactor : IEcsComponent

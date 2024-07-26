@@ -18,6 +18,7 @@ MonoBehaviour:
   - rid: 499105185158136191
   - rid: 499105185158136200
   - rid: 499105185158136231
+  - rid: 499105190922682561
   references:
     version: 2
     RefIds:
@@ -28,7 +29,10 @@ MonoBehaviour:
         component:
           TilePrefab: {fileID: 5678163285392456267, guid: e5378788f6301a2428eb21e32a7e779b,
             type: 3}
-          OriginPosition: {x: 1, y: 0, z: 0}
+          OriginPosition:
+            x: 1
+            y: 0
+            z: 0
           Size: 6
           Offset: 0.1
           CellSize: 1
@@ -39,14 +43,54 @@ MonoBehaviour:
               x: 1
               y: 0
               z: 2.2
+            CellPosition:
+              x: 0
+              y: 2
             Prefab: {fileID: 6997423007682641646, guid: 851b84b3d3622cd48a8df6387b7d22f6,
               type: 3}
             Rotation:
-              value:
-                x: 0
-                y: 0
-                z: 0
-                w: 1
+              x: 0
+              y: 90
+              z: 0
+          - Position:
+              x: 3.2
+              y: 0
+              z: 0
+            CellPosition:
+              x: 2
+              y: 0
+            Prefab: {fileID: 6997423007682641646, guid: 851b84b3d3622cd48a8df6387b7d22f6,
+              type: 3}
+            Rotation:
+              x: 0
+              y: 90
+              z: 0
+          - Position:
+              x: 4.3
+              y: 0
+              z: 1.1
+            CellPosition:
+              x: 3
+              y: 1
+            Prefab: {fileID: 6997423007682641646, guid: 851b84b3d3622cd48a8df6387b7d22f6,
+              type: 3}
+            Rotation:
+              x: 0
+              y: 90
+              z: 0
+          - Position:
+              x: 4.3
+              y: 0
+              z: 5.5
+            CellPosition:
+              x: 3
+              y: 5
+            Prefab: {fileID: 6997423007682641646, guid: 851b84b3d3622cd48a8df6387b7d22f6,
+              type: 3}
+            Rotation:
+              x: 0
+              y: 90
+              z: 0
     - rid: 499105185158136147
       type: {class: WaveAlgorithm/Wrapper, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
         asm: Assembly-CSharp}
@@ -64,8 +108,278 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data:
         component:
-          Value: 0
+          Value: 1
     - rid: 499105185158136231
       type: {class: GameTag/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
         asm: Assembly-CSharp}
       data: {}
+    - rid: 499105190922682561
+      type: {class: Levels/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value:
+          - Scene: {fileID: 102900000, guid: c850ee8c3b14cc8459e7e186857cf567, type: 3}
+            Field:
+              TilePrefab: {fileID: 5678163285392456267, guid: e5378788f6301a2428eb21e32a7e779b,
+                type: 3}
+              OriginPosition:
+                x: 1
+                y: 0
+                z: 0
+              Size: 6
+              Offset: 0.1
+              CellSize: 1
+              CenterSize: 0
+              EdgeSize: 0
+              Units:
+              - Position:
+                  x: 1
+                  y: 0
+                  z: 2.2
+                CellPosition:
+                  x: 0
+                  y: 2
+                Prefab: {fileID: 6997423007682641646, guid: 851b84b3d3622cd48a8df6387b7d22f6,
+                  type: 3}
+                Rotation:
+                  x: 0
+                  y: 90
+                  z: 0
+              - Position:
+                  x: 3.2
+                  y: 0
+                  z: 0
+                CellPosition:
+                  x: 2
+                  y: 0
+                Prefab: {fileID: 6997423007682641646, guid: 851b84b3d3622cd48a8df6387b7d22f6,
+                  type: 3}
+                Rotation:
+                  x: 0
+                  y: 90
+                  z: 0
+              - Position:
+                  x: 4.3
+                  y: 0
+                  z: 1.1
+                CellPosition:
+                  x: 3
+                  y: 1
+                Prefab: {fileID: 6997423007682641646, guid: 851b84b3d3622cd48a8df6387b7d22f6,
+                  type: 3}
+                Rotation:
+                  x: 0
+                  y: 90
+                  z: 0
+              - Position:
+                  x: 4.3
+                  y: 0
+                  z: 5.5
+                CellPosition:
+                  x: 3
+                  y: 5
+                Prefab: {fileID: 6997423007682641646, guid: 851b84b3d3622cd48a8df6387b7d22f6,
+                  type: 3}
+                Rotation:
+                  x: 0
+                  y: 90
+                  z: 0
+          - Scene: {fileID: 102900000, guid: c850ee8c3b14cc8459e7e186857cf567, type: 3}
+            Field:
+              TilePrefab: {fileID: 5678163285392456267, guid: e5378788f6301a2428eb21e32a7e779b,
+                type: 3}
+              OriginPosition:
+                x: 1
+                y: 0
+                z: 0
+              Size: 6
+              Offset: 0.1
+              CellSize: 1
+              CenterSize: 0
+              EdgeSize: 0
+              Units:
+              - Position:
+                  x: 1
+                  y: 0
+                  z: 2.2
+                CellPosition:
+                  x: 0
+                  y: 2
+                Prefab: {fileID: 6997423007682641646, guid: 851b84b3d3622cd48a8df6387b7d22f6,
+                  type: 3}
+                Rotation:
+                  x: 0
+                  y: 90
+                  z: 0
+              - Position:
+                  x: 3.2
+                  y: 0
+                  z: 0
+                CellPosition:
+                  x: 1
+                  y: 3
+                Prefab: {fileID: 6997423007682641646, guid: 851b84b3d3622cd48a8df6387b7d22f6,
+                  type: 3}
+                Rotation:
+                  x: 0
+                  y: 90
+                  z: 0
+              - Position:
+                  x: 4.3
+                  y: 0
+                  z: 1.1
+                CellPosition:
+                  x: 2
+                  y: 5
+                Prefab: {fileID: 6997423007682641646, guid: 851b84b3d3622cd48a8df6387b7d22f6,
+                  type: 3}
+                Rotation:
+                  x: 0
+                  y: 90
+                  z: 0
+              - Position:
+                  x: 4.3
+                  y: 0
+                  z: 5.5
+                CellPosition:
+                  x: 3
+                  y: 0
+                Prefab: {fileID: 6997423007682641646, guid: 851b84b3d3622cd48a8df6387b7d22f6,
+                  type: 3}
+                Rotation:
+                  x: 0
+                  y: 90
+                  z: 0
+          - Scene: {fileID: 102900000, guid: c850ee8c3b14cc8459e7e186857cf567, type: 3}
+            Field:
+              TilePrefab: {fileID: 5678163285392456267, guid: e5378788f6301a2428eb21e32a7e779b,
+                type: 3}
+              OriginPosition:
+                x: 1
+                y: 0
+                z: 0
+              Size: 6
+              Offset: 0.1
+              CellSize: 1
+              CenterSize: 0
+              EdgeSize: 0
+              Units:
+              - Position:
+                  x: 0
+                  y: 0
+                  z: 2.2
+                CellPosition:
+                  x: 0
+                  y: 3
+                Prefab: {fileID: 6997423007682641646, guid: 851b84b3d3622cd48a8df6387b7d22f6,
+                  type: 3}
+                Rotation:
+                  x: 0
+                  y: 90
+                  z: 0
+              - Position:
+                  x: 3.2
+                  y: 0
+                  z: 0
+                CellPosition:
+                  x: 1
+                  y: 3
+                Prefab: {fileID: 6997423007682641646, guid: 851b84b3d3622cd48a8df6387b7d22f6,
+                  type: 3}
+                Rotation:
+                  x: 0
+                  y: 90
+                  z: 0
+              - Position:
+                  x: 4.3
+                  y: 0
+                  z: 1.1
+                CellPosition:
+                  x: 3
+                  y: 4
+                Prefab: {fileID: 6997423007682641646, guid: 851b84b3d3622cd48a8df6387b7d22f6,
+                  type: 3}
+                Rotation:
+                  x: 0
+                  y: 90
+                  z: 0
+              - Position:
+                  x: 4.3
+                  y: 0
+                  z: 5.5
+                CellPosition:
+                  x: 4
+                  y: 2
+                Prefab: {fileID: 6997423007682641646, guid: 851b84b3d3622cd48a8df6387b7d22f6,
+                  type: 3}
+                Rotation:
+                  x: 0
+                  y: 90
+                  z: 0
+          - Scene: {fileID: 102900000, guid: c850ee8c3b14cc8459e7e186857cf567, type: 3}
+            Field:
+              TilePrefab: {fileID: 5678163285392456267, guid: e5378788f6301a2428eb21e32a7e779b,
+                type: 3}
+              OriginPosition:
+                x: 1
+                y: 0
+                z: 0
+              Size: 6
+              Offset: 0.1
+              CellSize: 1
+              CenterSize: 0
+              EdgeSize: 0
+              Units:
+              - Position:
+                  x: 0
+                  y: 0
+                  z: 2.2
+                CellPosition:
+                  x: 3
+                  y: 5
+                Prefab: {fileID: 6997423007682641646, guid: 851b84b3d3622cd48a8df6387b7d22f6,
+                  type: 3}
+                Rotation:
+                  x: 0
+                  y: 90
+                  z: 0
+              - Position:
+                  x: 3.2
+                  y: 0
+                  z: 0
+                CellPosition:
+                  x: 4
+                  y: 2
+                Prefab: {fileID: 6997423007682641646, guid: 851b84b3d3622cd48a8df6387b7d22f6,
+                  type: 3}
+                Rotation:
+                  x: 0
+                  y: 90
+                  z: 0
+              - Position:
+                  x: 4.3
+                  y: 0
+                  z: 1.1
+                CellPosition:
+                  x: 5
+                  y: 2
+                Prefab: {fileID: 6997423007682641646, guid: 851b84b3d3622cd48a8df6387b7d22f6,
+                  type: 3}
+                Rotation:
+                  x: 0
+                  y: 90
+                  z: 0
+              - Position:
+                  x: 4.3
+                  y: 0
+                  z: 5.5
+                CellPosition:
+                  x: 4
+                  y: 3
+                Prefab: {fileID: 6997423007682641646, guid: 851b84b3d3622cd48a8df6387b7d22f6,
+                  type: 3}
+                Rotation:
+                  x: 0
+                  y: 90
+                  z: 0

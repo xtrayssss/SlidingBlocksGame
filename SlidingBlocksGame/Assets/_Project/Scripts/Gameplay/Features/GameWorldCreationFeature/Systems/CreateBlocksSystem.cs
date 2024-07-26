@@ -1,8 +1,9 @@
 ﻿using System;
+using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
+using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
 using DCFApixels.DragonECS;
 using Unity.Mathematics;
-using UnityEngine;
 using Object = UnityEngine.Object;
 
 namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
@@ -15,6 +16,8 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
         {
             [IncImplicit(typeof(CreateBlocksRequest))] [Inc]
             public readonly EcsPool<GameField> Fields;
+
+            [Opt] public readonly EcsPool<MovementDirection> Directions;
         }
 
         public void Run()
@@ -34,7 +37,29 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                         position: unit.Position,
                         rotation: quaternion.Euler(math.radians(unit.Rotation)));
 
+                    _world.GetPool<CellPosition>().Add(block.ID).Value = unit.CellPosition;
+
                     view.ConnectWith(block, applyTemplates: true);
+
+                    if (unit.CellPosition.x < field.EdgeSize)
+                    {
+                        aspect.Directions.Add(block.ID).Value = new float3(1, 0, 0);
+                    }
+                    else if (unit.CellPosition.x >= field.EdgeSize + field.CenterSize)
+                    {
+                        aspect.Directions.Add(block.ID).Value = new float3(-1, 0, 0);
+                    }
+                    else if (unit.CellPosition.y < field.EdgeSize)
+                    {
+                        aspect.Directions.Add(block.ID).Value = new float3(0, 0, 1);
+                    }
+                    else if (unit.CellPosition.y >= field.EdgeSize + field.CenterSize)
+                    {
+                        aspect.Directions.Add(block.ID).Value = new float3(0, 0, -1);
+                    }
+
+                    _world.GetPool<CalculateDestinationCellRequest>().Add(block.ID);
+                    _world.GetPool<ActiveGameField>().Add(block.ID).Value = entity.ToEntityLong(_world);
                 }
             }
         }

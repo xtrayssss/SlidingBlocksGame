@@ -1,8 +1,12 @@
-﻿using _Project.Scripts.Gameplay.Features.CooldownFeature.Systems;
+﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+using _Project.Scripts.Gameplay.Features.CommonFeature.Systems;
+using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
+using _Project.Scripts.Gameplay.Features.CooldownFeature.Systems;
 using _Project.Scripts.Gameplay.Features.EasingFeature.Systems;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems;
-using _Project.Scripts.Gameplay.Features.MovementFeautre.Systems;
+using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
+using _Project.Scripts.Gameplay.Features.MovementFeature.Systems;
 using DCFApixels.DragonECS;
 using UnityEngine;
 
@@ -35,22 +39,35 @@ namespace _Project.Scripts.Gameplay
                 .AddUnique(new CreateBlocksRequestingSystem())
                 .AddUnique(new CreateBlocksSystem())
                 .AddUnique(new DetermineClickSystem())
-                
                 .AutoDelTag<CreateGameRequest>()
                 .AutoDelTag<CreateBlocksRequest>()
                 .AutoDelTag<GenerateGameFieldRequest>()
                 .AutoDelTag<GenerateWaveGameFieldRequest>()
                 .AutoDelTag<GenerateSmoothnessWaveGameFieldRequest>()
 
+                // movement feature
+                .AddUnique(new TransformSystem())
+                .AutoDelTag<UpdateViewRequest>()
+                .AddUnique(new WorldPositionSystem())
+                .AddUnique(new ChainingBlocksSystem())
+                .AddUnique(new ChainMovementSystem())
+                .AddUnique(new ChainMovementCommandSystem())
+                .AddUnique(new CalculateDestinationCellSystem())
+                .AddUnique(new MovementEasingCommandSystem())
+                .AddUnique(new DestinationMovementSystem())
+                .AutoDelTag<CalculateDestinationCellRequest>()
+
                 // easing feature
                 .AddUnique(new AnimationCurveSystem())
                 .AddUnique(new LinerEasingSystem())
 
-                // movement feature
-                .AddUnique(new DestinationMovementSystem())
-
                 // cooldown feature
+                .AddUnique(new RefreshCooldownSystem())
+                .AddUnique(new DeleteEntityCommandOnExpiredSystem())
+                .AddUnique(new CountdownSystem())
                 .AddUnique(new CooldownSystem())
+                .AutoDelTag<RefreshCooldownRequest>()
+                .AutoDelEntityTag<DeleteEntityCommand>()
                 .AddUnityDebug(_world)
                 .Inject(_world)
                 .AutoInject()

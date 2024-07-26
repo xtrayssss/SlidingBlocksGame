@@ -13,67 +13,35 @@ MonoBehaviour:
   m_Name: BlockCfg
   m_EditorClassIdentifier: 
   _components:
-  - rid: 499105167245050245
-  - rid: 499105167245050247
-  - rid: 499105167245050248
-  - rid: 499105167245050251
+  - rid: 499105206452093177
+  - rid: 499105211061633552
+  - rid: 499105211061633554
+  - rid: 499105211061633557
   references:
     version: 2
     RefIds:
-    - rid: 499105167245050245
-      type: {class: MovementSpeedFactor/Wrapper, ns: _Project.Scripts.Gameplay.Features.MovementFeautre.Components,
+    - rid: 499105206452093177
+      type: {class: BlockTag/Wrapper, ns: _Project.Scripts.Gameplay.Features.CommonFeature.Components,
+        asm: Assembly-CSharp}
+      data: {}
+    - rid: 499105211061633552
+      type: {class: MovementSpeedFactor/Wrapper, ns: _Project.Scripts.Gameplay.Features.MovementFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
-          Value: 1
-    - rid: 499105167245050247
-      type: {class: AnimationCurveRef/Wrapper, ns: _Project.Scripts.Gameplay.Features.EasingFeature.Components,
+          Value: 2
+    - rid: 499105211061633554
+      type: {class: MovementEasingCfg/Wrapper, ns: _Project.Scripts.Gameplay.Features.MovementFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: {fileID: 11400000, guid: d55202cee31e22649b7804fe3d4888f7, type: 2}
+    - rid: 499105211061633557
+      type: {class: WorldPosition/Wrapper, ns: _Project.Scripts.Gameplay.Features.CommonFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
           Value:
-            serializedVersion: 2
-            m_Curve:
-            - serializedVersion: 3
-              time: 0
-              value: 0
-              inSlope: 0
-              outSlope: 0.0021623534
-              tangentMode: 0
-              weightedMode: 3
-              inWeight: 0
-              outWeight: 0.554026
-            - serializedVersion: 3
-              time: 0.5
-              value: 0.5
-              inSlope: 461.77032
-              outSlope: 461.74738
-              tangentMode: 0
-              weightedMode: 3
-              inWeight: 0.0011979938
-              outWeight: 0.0011980534
-            - serializedVersion: 3
-              time: 1
-              value: 1
-              inSlope: 0.0021624498
-              outSlope: 0
-              tangentMode: 0
-              weightedMode: 3
-              inWeight: 0.554026
-              outWeight: 0
-            m_PreInfinity: 2
-            m_PostInfinity: 2
-            m_RotationOrder: 4
-    - rid: 499105167245050248
-      type: {class: EasingSpeed/Wrapper, ns: _Project.Scripts.Gameplay.Features.EasingFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: 0
-    - rid: 499105167245050251
-      type: {class: Cooldown/Wrapper, ns: _Project.Scripts.Gameplay.Features.CooldownFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: 0
-          Duration: 5
+            x: 0
+            y: 0
+            z: 0

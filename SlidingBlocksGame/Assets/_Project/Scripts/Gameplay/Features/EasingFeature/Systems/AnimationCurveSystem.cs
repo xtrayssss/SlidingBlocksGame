@@ -22,7 +22,7 @@ namespace _Project.Scripts.Gameplay.Features.EasingFeature.Systems
                 ref readonly AnimationCurveRef animationCurve = ref aspect.AnimationCurves.Get(entity);
                 ref readonly Cooldown cooldown = ref aspect.Cooldowns.Get(entity);
 
-                aspect.Easings.Get(entity).Value = animationCurve.Value.Evaluate(cooldown.Value / cooldown.Duration);
+                aspect.Easings.Get(entity).Value = animationCurve.Value.Evaluate(cooldown.Elapsed / cooldown.Duration);
             }
         }
     }

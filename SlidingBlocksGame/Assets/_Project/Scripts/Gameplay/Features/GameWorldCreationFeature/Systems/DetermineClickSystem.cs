@@ -1,5 +1,7 @@
-﻿using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
+﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
 using DCFApixels.DragonECS;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
@@ -13,29 +15,14 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
             [Inc] public readonly EcsPool<GameField> Fields;
         }
 
-        public Plane plane = new Plane(Vector3.up, Vector3.zero); // Плоскость на уровне y = 0
-
-        private Vector3 GetMouseClickPosition()
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (plane.Raycast(ray, out float enter))
-            {
-                return ray.GetPoint(enter);
-            }
-
-            return Vector3.positiveInfinity; // Возвращает бесконечность, если пересечения нет
-        }
+        private Plane _plane = new Plane(Vector3.up, Vector3.zero);
 
         public void Run()
         {
-            Update();
-        }
-
-        public void Update()
-        {
-            if (Input.GetMouseButtonDown(0)) // Left mouse click
+            if (Input.GetMouseButtonDown(0))
             {
-                Vector3 clickPosition = GetMouseClickPosition();
+                float3 clickPosition = GetMouseClickPosition();
+
                 foreach (int entity in _world.Where(out Aspect aspect))
                 {
                     ref GameField field = ref aspect.Fields.Get(entity);
@@ -43,17 +30,30 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
                     if (IsWithinGrid(gridPosition, field.Size) && !IsCentralTile(gridPosition, field))
                     {
-                        Vector2Int direction = GetClickDirection(gridPosition, field);
-                        Debug.Log("Click direction: " + direction);
+                        entlong click = _world.NewEntityLong();
+
+                        _world.GetPool<WorldPosition>().Add(click.ID).Value = clickPosition;
+                        _world.GetTagPool<ClickTag>().Add(click.ID);
+                        _world.GetTagPool<DeleteEntityCommand>().Add(click.ID);
                     }
                 }
             }
+        }
+
+        private Vector3 GetMouseClickPosition()
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            return _plane.Raycast(ray, out float enter)
+                ? ray.GetPoint(enter)
+                : Vector3.positiveInfinity;
         }
 
         private Vector2Int WorldToGridPosition(Vector3 worldPosition, GameField field)
         {
             int x = Mathf.FloorToInt((worldPosition.x - field.OriginPosition.x) / (field.CellSize + field.Offset));
             int z = Mathf.FloorToInt((worldPosition.z - field.OriginPosition.z) / (field.CellSize + field.Offset));
+
             return new Vector2Int(x, z);
         }
 
@@ -68,12 +68,6 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
             int gridCenter = field.Size / 2;
             return gridPosition.x >= gridCenter - 1 && gridPosition.x <= gridCenter &&
                    gridPosition.y >= gridCenter - 1 && gridPosition.y <= gridCenter;
-        }
-
-        private Vector2Int GetClickDirection(Vector2Int gridPosition, GameField field)
-        {
-            Vector2Int gridCenter = new Vector2Int(field.Size / 2, field.Size / 2);
-            return new Vector2Int(gridPosition.x - gridCenter.x, gridPosition.y - gridCenter.y);
         }
     }
 }

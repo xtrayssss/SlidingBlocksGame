@@ -1,12 +1,13 @@
 ﻿using System;
 using DCFApixels.DragonECS;
+using UnityEngine.Serialization;
 
 namespace _Project.Scripts.Gameplay.Features.CooldownFeature.Components
 {
     [Serializable]
     public struct Cooldown : IEcsComponent
     {
-        public float Value;
+        [FormerlySerializedAs("Value")] public float Elapsed;
         public float Duration;
 
         [Serializable]

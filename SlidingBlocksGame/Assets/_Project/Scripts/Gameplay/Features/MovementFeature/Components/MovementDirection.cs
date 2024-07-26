@@ -2,7 +2,7 @@
 using DCFApixels.DragonECS;
 using Unity.Mathematics;
 
-namespace _Project.Scripts.Gameplay.Features.MovementFeautre.Components
+namespace _Project.Scripts.Gameplay.Features.MovementFeature.Components
 {
     [Serializable]
     public struct MovementDirection : IEcsComponent
