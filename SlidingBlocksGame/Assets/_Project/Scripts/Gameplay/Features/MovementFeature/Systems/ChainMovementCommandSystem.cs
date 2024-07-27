@@ -26,7 +26,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
             {
                 Debug.Log("Block movement command");
 
-                if (aspect.Targets.Read(entity).Value.TryUnpack(out int id, out short _))
+                if (aspect.Targets.Read(entity).Value.TryGetID(out int id))
                     aspect.Commands.Add(id);
             }
         }

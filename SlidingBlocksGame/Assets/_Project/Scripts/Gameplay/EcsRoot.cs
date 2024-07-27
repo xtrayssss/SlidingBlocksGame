@@ -45,6 +45,10 @@ namespace _Project.Scripts.Gameplay
                 .AutoDelTag<GenerateWaveGameFieldRequest>()
                 .AutoDelTag<GenerateSmoothnessWaveGameFieldRequest>()
 
+                // easing feature
+                .AddUnique(new AnimationCurveSystem())
+                .AddUnique(new LinerEasingSystem())
+
                 // movement feature
                 .AddUnique(new TransformSystem())
                 .AutoDelTag<UpdateViewRequest>()
@@ -56,10 +60,6 @@ namespace _Project.Scripts.Gameplay
                 .AddUnique(new MovementEasingCommandSystem())
                 .AddUnique(new DestinationMovementSystem())
                 .AutoDelTag<CalculateDestinationCellRequest>()
-
-                // easing feature
-                .AddUnique(new AnimationCurveSystem())
-                .AddUnique(new LinerEasingSystem())
 
                 // cooldown feature
                 .AddUnique(new RefreshCooldownSystem())

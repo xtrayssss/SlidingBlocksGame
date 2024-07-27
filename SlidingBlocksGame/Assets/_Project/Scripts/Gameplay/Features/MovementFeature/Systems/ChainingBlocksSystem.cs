@@ -82,7 +82,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                     
                     _world.GetPool<Chain>().Add(chain).Value = blocks;
                     _world.GetPool<ChainMovementMarker>().Add(chain);
-                    _world.GetPool<ChainMovementCooldown>().Add(chain).Duration = 0.5f;
+                    _world.GetPool<ChainMovementCooldown>().Add(chain).Duration = 0.1f;
                     _world.GetPool<DeleteEntityCommand>().Add(chain);
                 }
             }

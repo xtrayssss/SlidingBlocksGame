@@ -17,10 +17,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
             [Inc] public readonly EcsPool<Destination> Destinations;
 
             [Inc] public readonly EcsPool<WorldPosition> WorldPositions;
-
             [Inc] public readonly EcsPool<MovementEasingCfg> Easings;
-
-            [Opt] public readonly EcsTagPool<MovementCommand> Commands;
         }
 
         private class EasingAspect : EcsAspectAuto
@@ -29,6 +26,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
             [Opt] public readonly EcsTagPool<RefreshCooldownRequest> Refresh;
             [Opt] public readonly EcsPool<TargetEntity> Targets;
             [Opt] public readonly EcsTagPool<MovementCommand> MovementCommands;
+            [Opt] public readonly EcsTagPool<DeleteOnExpiredMarker> DeleteOnExpired;
         }
 
         public void Run()
@@ -43,11 +41,13 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 
                 destination.Destination = aspect.Destinations.Read(entity).Value;
                 destination.Original = aspect.WorldPositions.Read(entity).Value;
+                destination.Interpolation = aspect.WorldPositions.Read(entity).Value;
 
                 easingAspect.Targets.Add(easing).Value = entity.ToEntityLong(aspect.World);
                 easingAspect.Refresh.Add(easing);
                 easingAspect.MovementCommands.Add(easing);
-                
+                easingAspect.DeleteOnExpired.Add(easing);
+
                 _world.GetPool<MovementCommand>().Del(entity);
             }
         }
