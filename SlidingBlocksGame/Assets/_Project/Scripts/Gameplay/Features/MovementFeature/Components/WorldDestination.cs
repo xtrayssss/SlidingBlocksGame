@@ -5,11 +5,11 @@ using Unity.Mathematics;
 namespace _Project.Scripts.Gameplay.Features.MovementFeature.Components
 {
     [Serializable]
-    public struct Destination : IEcsComponent
+    public struct WorldDestination : IEcsComponent
     {
         public float3 Value;
 
-        private sealed class Template : ComponentTemplate<Destination>
+        private sealed class Template : ComponentTemplate<WorldDestination>
         {
         }
     }

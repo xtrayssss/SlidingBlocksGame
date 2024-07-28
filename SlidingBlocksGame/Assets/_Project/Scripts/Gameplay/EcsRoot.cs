@@ -1,4 +1,9 @@
-﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+﻿using System;
+using System.Collections.Generic;
+using System.Reflection;
+using _Project.Scripts.Gameplay;
+using _Project.Scripts.Gameplay.Features;
+using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Systems;
 using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
 using _Project.Scripts.Gameplay.Features.CooldownFeature.Systems;
@@ -8,6 +13,9 @@ using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Systems;
 using DCFApixels.DragonECS;
+using Sirenix.OdinInspector;
+using Sirenix.OdinInspector.Editor;
+using UnityEditor.Timeline;
 using UnityEngine;
 
 namespace _Project.Scripts.Gameplay
@@ -20,6 +28,23 @@ namespace _Project.Scripts.Gameplay
         public AnimationCurve curve;
         private EcsPipeline _pipeline;
         private EcsDefaultWorld _world;
+
+        [Button]
+        private void FixLinks(ScriptableEntityTemplate template)
+        {
+            var fields = template.GetType().GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+
+            foreach (var field in fields)
+            {
+                Debug.Log(field.Name);
+
+                foreach (var VARIABLE in (IComponentTemplate[])field.GetValue(template))
+                {
+                    Debug.Log(VARIABLE);
+                    //Debug.Log(VARIABLE.GetType().GetField("Value").GetValue(VARIABLE));
+                }
+            }
+        }
 
         public void Start()
         {
@@ -53,13 +78,21 @@ namespace _Project.Scripts.Gameplay
                 .AddUnique(new TransformSystem())
                 .AutoDelTag<UpdateViewRequest>()
                 .AddUnique(new WorldPositionSystem())
+                //.AddUnique(new CalculateDestinationCellIntersectionSystem())
                 .AddUnique(new ChainingBlocksSystem())
                 .AddUnique(new ChainMovementSystem())
-                .AddUnique(new ChainMovementCommandSystem())
+                .AddUnique(new BlockMovementChainCommandSystem())
                 .AddUnique(new CalculateDestinationCellSystem())
                 .AddUnique(new MovementEasingCommandSystem())
                 .AddUnique(new DestinationMovementSystem())
                 .AutoDelTag<CalculateDestinationCellRequest>()
+                
+                // occupancy feature
+                .AddUnique(new DestinationUnavailabilityCheckRequestSystem())
+                .AutoDelTag<DestinationUnavailableMarker>()
+                .AddUnique(new DestinationUnavailabilityCheckSystem())
+                .AutoDelTag<DestinationUnavailabilityCheckRequest>()
+                .Add(new CellOccupancySystem())
 
                 // cooldown feature
                 .AddUnique(new RefreshCooldownSystem())

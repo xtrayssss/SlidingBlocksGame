@@ -28,7 +28,8 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                     ref GameField field = ref aspect.Fields.Get(entity);
                     Vector2Int gridPosition = WorldToGridPosition(clickPosition, field);
 
-                    if (IsWithinGrid(gridPosition, field.Size) && !IsCentralTile(gridPosition, field))
+                    if (IsWithinGrid(gridPosition, field.Size) && !IsCentralTile(gridPosition, field) &&
+                        IsInCross(field, gridPosition.x, gridPosition.y))
                     {
                         entlong click = _world.NewEntityLong();
 
@@ -51,9 +52,15 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
         private Vector2Int WorldToGridPosition(Vector3 worldPosition, GameField field)
         {
-            int x = Mathf.FloorToInt((worldPosition.x - field.OriginPosition.x) / (field.CellSize + field.Offset));
-            int z = Mathf.FloorToInt((worldPosition.z - field.OriginPosition.z) / (field.CellSize + field.Offset));
+            int x = Mathf.FloorToInt(
+                (worldPosition.x - field.OriginPosition.x + field.CellSize * 0.5f + field.Offset * 0.5f) /
+                (field.CellSize + field.Offset));
+    
+            int z = Mathf.FloorToInt(
+                (worldPosition.z - field.OriginPosition.z + field.CellSize * 0.5f + field.Offset * 0.5f) /
+                (field.CellSize + field.Offset));
 
+            Debug.Log(x + " " + z);
             return new Vector2Int(x, z);
         }
 
@@ -61,6 +68,12 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
         {
             return gridPosition.x >= 0 && gridPosition.x < fieldSize &&
                    gridPosition.y >= 0 && gridPosition.y < fieldSize;
+        }
+
+        bool IsInCross(GameField field, int x, int z)
+        {
+            return (x >= field.EdgeSize && x < field.EdgeSize + field.CenterSize) ||
+                   (z >= field.EdgeSize && z < field.EdgeSize + field.CenterSize);
         }
 
         private bool IsCentralTile(Vector2Int gridPosition, GameField field)

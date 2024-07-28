@@ -8,8 +8,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Components
     {
         public float Value;
 
-        [Serializable]
-        public sealed class Wrapper : ComponentTemplate<MovementSpeedFactor>
+        private sealed class Template : ComponentTemplate<MovementSpeedFactor>
         {
         }
     }

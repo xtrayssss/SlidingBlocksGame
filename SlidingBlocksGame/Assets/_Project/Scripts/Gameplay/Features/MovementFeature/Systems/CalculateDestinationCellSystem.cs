@@ -14,9 +14,12 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
         {
             [IncImplicit(typeof(CalculateDestinationCellRequest))]
             [Inc] public readonly EcsPool<WorldPosition> WorldPositions;
-            [Inc] public readonly EcsPool<MovementDirection> Directions;
-            [Opt] public readonly EcsPool<Destination> Destinations;
 
+            [Inc] public readonly EcsPool<CellPosition> CellPositions;
+            [Inc] public readonly EcsPool<MovementDirection> Directions;
+
+            [Opt] public readonly EcsPool<WorldDestination> WorldDestination;
+            [Opt] public readonly EcsPool<CellDestination> CellDestination;
             [Opt] public readonly EcsPool<ActiveGameField> GameFields;
         }
 
@@ -37,8 +40,17 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                     {
                         ref readonly GameField gameField = ref gameFieldAspect.GameFields.Read(id);
 
-                        aspect.Destinations.TryAddOrGet(entity).Value = aspect.WorldPositions.Get(entity).Value +
-                                                                        aspect.Directions.Read(entity).Value * (gameField.EdgeSize * (gameField.CellSize + gameField.Offset));
+                        float3 direction = new float3(aspect.Directions.Read(entity).Value.x, 0,
+                            aspect.Directions.Read(entity).Value.y);
+
+                        aspect.WorldDestination.TryAddOrGet(entity).Value = aspect.WorldPositions.Get(entity).Value +
+                                                                            direction * (gameField.EdgeSize *
+                                                                                (gameField.CellSize +
+                                                                                    gameField.Offset));
+
+                        aspect.CellDestination.TryAddOrGet(entity).Value = aspect.CellPositions.Get(entity).Value +
+                                                                           aspect.Directions.Read(entity).Value *
+                                                                           gameField.EdgeSize;
                     }
                 }
             }

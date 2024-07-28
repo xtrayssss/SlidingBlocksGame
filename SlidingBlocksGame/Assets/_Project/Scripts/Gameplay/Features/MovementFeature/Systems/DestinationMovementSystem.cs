@@ -2,7 +2,6 @@
 using _Project.Scripts.Gameplay.Features.EasingFeature.Components;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
 using DCFApixels.DragonECS;
-using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 {
@@ -34,7 +33,8 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 
                     if (movementAspect.IsMatches(id))
                     {
-                        movementAspect.WorldPositions.Get(id).Value = easingAspect.Destinations.Read(entity).Interpolation;
+                        movementAspect.WorldPositions.Get(id).Value =
+                            easingAspect.Destinations.Read(entity).Interpolation;
                         movementAspect.UpdateView.Add(id);
                     }
                 }

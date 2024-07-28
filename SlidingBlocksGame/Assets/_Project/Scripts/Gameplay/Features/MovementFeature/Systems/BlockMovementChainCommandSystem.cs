@@ -1,13 +1,11 @@
-﻿using System.Runtime.InteropServices;
-using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
 using DCFApixels.DragonECS;
-using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 {
-    public class ChainMovementCommandSystem : IEcsRun
+    public class BlockMovementChainCommandSystem : IEcsRun
     {
         [EcsInject] private readonly EcsDefaultWorld _world;
 
@@ -17,17 +15,21 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
             [IncImplicit(typeof(ChainMovementMarker))]
             [Inc] public readonly EcsPool<TargetEntity> Targets;
 
-            [Opt] public readonly EcsTagPool<MovementCommand> Commands;
+            [Opt] public readonly EcsTagPool<MovementCommand> MovementCommand;
+            [Opt] public readonly EcsTagPool<DestinationUnavailabilityCheckRequest> DestinationUnavailabilityCheckRequest;
+            [Opt] public readonly EcsTagPool<CalculateDestinationCellRequest> CalculateDestinationCellRequest;
         }
 
         public void Run()
         {
             foreach (int entity in _world.Where(out Aspect aspect))
             {
-                Debug.Log("Block movement command");
-
                 if (aspect.Targets.Read(entity).Value.TryGetID(out int id))
-                    aspect.Commands.Add(id);
+                {
+                    aspect.MovementCommand.Add(id);
+                    aspect.CalculateDestinationCellRequest.Add(id);
+                    aspect.DestinationUnavailabilityCheckRequest.Add(id);
+                }
             }
         }
     }

@@ -42,33 +42,33 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                     float2 cellPosition = WorldToGridPosition(clickPosition.Value, gameField);
 
                     EcsGroup blocks = EcsGroup.New(_world);
-                    
+
                     foreach (int block in _world.Where(out BlockAspect blockAspect))
                     {
                         ref readonly MovementDirection direction = ref blockAspect.Directions.Read(block);
 
                         bool val = false;
 
-                        if (cellPosition.x < gameField.EdgeSize && math.all(direction.Value == new float3(1, 0, 0)))
+                        if (cellPosition.x < gameField.EdgeSize && math.all(direction.Value == new float2(1, 0)))
                         {
                             val = true;
                         }
                         else if (cellPosition.x >= gameField.EdgeSize + gameField.CenterSize &&
-                                 math.all(direction.Value == new float3(-1, 0, 0)))
+                                 math.all(direction.Value == new float2(-1, 0)))
                         {
                             val = true;
                         }
                         else if (cellPosition.y < gameField.EdgeSize &&
-                                 math.all(direction.Value == new float3(0, 0, 1)))
+                                 math.all(direction.Value == new float2(0, 1)))
                         {
                             val = true;
                         }
                         else if (cellPosition.y >= gameField.EdgeSize + gameField.CenterSize &&
-                                 math.all(direction.Value == new float3(0, 0, -1)))
+                                 math.all(direction.Value == new float2(0, -1)))
                         {
                             val = true;
                         }
-                        
+
                         if (val)
                         {
                             Debug.Log("chained");
@@ -77,9 +77,9 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                     }
 
                     Debug.Log(blocks.Count);
-                    
+
                     int chain = _world.NewEntity();
-                    
+
                     _world.GetPool<Chain>().Add(chain).Value = blocks;
                     _world.GetPool<ChainMovementMarker>().Add(chain);
                     _world.GetPool<ChainMovementCooldown>().Add(chain).Duration = 0.1f;
@@ -90,8 +90,13 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 
         private float2 WorldToGridPosition(float3 worldPosition, GameField field)
         {
-            int x = Mathf.FloorToInt((worldPosition.x - field.OriginPosition.x) / (field.CellSize + field.Offset));
-            int z = Mathf.FloorToInt((worldPosition.z - field.OriginPosition.z) / (field.CellSize + field.Offset));
+            int x = Mathf.FloorToInt(
+                (worldPosition.x - field.OriginPosition.x + field.CellSize * 0.5f + field.Offset * 0.5f) /
+                (field.CellSize + field.Offset));
+
+            int z = Mathf.FloorToInt(
+                (worldPosition.z - field.OriginPosition.z + field.CellSize * 0.5f + field.Offset * 0.5f) /
+                (field.CellSize + field.Offset));
 
             return new float2(x, z);
         }

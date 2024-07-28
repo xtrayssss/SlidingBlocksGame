@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _components:
   - rid: 499105206452093177
-  - rid: 499105211061633552
   - rid: 499105211061633554
   - rid: 499105211061633557
+  - rid: 499105255487700992
   references:
     version: 2
     RefIds:
@@ -24,12 +24,6 @@ MonoBehaviour:
       type: {class: BlockTag/Wrapper, ns: _Project.Scripts.Gameplay.Features.CommonFeature.Components,
         asm: Assembly-CSharp}
       data: {}
-    - rid: 499105211061633552
-      type: {class: MovementSpeedFactor/Wrapper, ns: _Project.Scripts.Gameplay.Features.MovementFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: 2
     - rid: 499105211061633554
       type: {class: MovementEasingCfg/Wrapper, ns: _Project.Scripts.Gameplay.Features.MovementFeature.Components,
         asm: Assembly-CSharp}
@@ -45,3 +39,9 @@ MonoBehaviour:
             x: 0
             y: 0
             z: 0
+    - rid: 499105255487700992
+      type: {class: MovementSpeedFactor/Template, ns: _Project.Scripts.Gameplay.Features.MovementFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: 2

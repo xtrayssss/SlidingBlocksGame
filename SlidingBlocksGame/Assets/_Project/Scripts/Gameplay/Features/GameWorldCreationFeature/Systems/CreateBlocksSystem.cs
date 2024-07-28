@@ -43,22 +43,21 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
                     if (unit.CellPosition.x < field.EdgeSize)
                     {
-                        aspect.Directions.Add(block.ID).Value = new float3(1, 0, 0);
+                        aspect.Directions.Add(block.ID).Value = new float2(1, 0);
                     }
                     else if (unit.CellPosition.x >= field.EdgeSize + field.CenterSize)
                     {
-                        aspect.Directions.Add(block.ID).Value = new float3(-1, 0, 0);
+                        aspect.Directions.Add(block.ID).Value = new float2(-1, 0);
                     }
                     else if (unit.CellPosition.y < field.EdgeSize)
                     {
-                        aspect.Directions.Add(block.ID).Value = new float3(0, 0, 1);
+                        aspect.Directions.Add(block.ID).Value = new float2(0, 1);
                     }
                     else if (unit.CellPosition.y >= field.EdgeSize + field.CenterSize)
                     {
-                        aspect.Directions.Add(block.ID).Value = new float3(0, 0, -1);
+                        aspect.Directions.Add(block.ID).Value = new float2(0, -1);
                     }
 
-                    _world.GetPool<CalculateDestinationCellRequest>().Add(block.ID);
                     _world.GetPool<ActiveGameField>().Add(block.ID).Value = entity.ToEntityLong(_world);
                 }
             }

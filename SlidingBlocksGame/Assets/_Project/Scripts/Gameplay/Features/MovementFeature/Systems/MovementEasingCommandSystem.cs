@@ -3,7 +3,6 @@ using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
 using _Project.Scripts.Gameplay.Features.EasingFeature.Components;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
 using DCFApixels.DragonECS;
-using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 {
@@ -14,7 +13,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
         private class Aspect : EcsAspectAuto
         {
             [IncImplicit(typeof(MovementCommand))]
-            [Inc] public readonly EcsPool<Destination> Destinations;
+            [Inc] public readonly EcsPool<WorldDestination> Destinations;
 
             [Inc] public readonly EcsPool<WorldPosition> WorldPositions;
             [Inc] public readonly EcsPool<MovementEasingCfg> Easings;
@@ -23,6 +22,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
         private class EasingAspect : EcsAspectAuto
         {
             [Inc] public readonly EcsPool<EasingDestination> Destinations;
+            
             [Opt] public readonly EcsTagPool<RefreshCooldownRequest> Refresh;
             [Opt] public readonly EcsPool<TargetEntity> Targets;
             [Opt] public readonly EcsTagPool<MovementCommand> MovementCommands;

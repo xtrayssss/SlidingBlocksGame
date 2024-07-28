@@ -30,7 +30,7 @@ MonoBehaviour:
           TilePrefab: {fileID: 5678163285392456267, guid: e5378788f6301a2428eb21e32a7e779b,
             type: 3}
           OriginPosition:
-            x: 1
+            x: 0
             y: 0
             z: 0
           Size: 6
@@ -40,11 +40,24 @@ MonoBehaviour:
           EdgeSize: 0
           Units:
           - Position:
+              x: 1.1
+              y: 0
+              z: 3.3
+            CellPosition:
               x: 1
+              y: 3
+            Prefab: {fileID: 6997423007682641646, guid: 851b84b3d3622cd48a8df6387b7d22f6,
+              type: 3}
+            Rotation:
+              x: 0
+              y: 90
+              z: 0
+          - Position:
+              x: 1.1
               y: 0
               z: 2.2
             CellPosition:
-              x: 0
+              x: 1
               y: 2
             Prefab: {fileID: 6997423007682641646, guid: 851b84b3d3622cd48a8df6387b7d22f6,
               type: 3}
@@ -53,24 +66,11 @@ MonoBehaviour:
               y: 90
               z: 0
           - Position:
-              x: 3.2
-              y: 0
-              z: 0
-            CellPosition:
-              x: 2
-              y: 0
-            Prefab: {fileID: 6997423007682641646, guid: 851b84b3d3622cd48a8df6387b7d22f6,
-              type: 3}
-            Rotation:
-              x: 0
-              y: 90
-              z: 0
-          - Position:
-              x: 4.3
+              x: 2.2
               y: 0
               z: 1.1
             CellPosition:
-              x: 3
+              x: 2
               y: 1
             Prefab: {fileID: 6997423007682641646, guid: 851b84b3d3622cd48a8df6387b7d22f6,
               type: 3}
@@ -79,12 +79,12 @@ MonoBehaviour:
               y: 90
               z: 0
           - Position:
-              x: 4.3
+              x: 2.2
               y: 0
-              z: 5.5
+              z: 0
             CellPosition:
-              x: 3
-              y: 5
+              x: 2
+              y: 0
             Prefab: {fileID: 6997423007682641646, guid: 851b84b3d3622cd48a8df6387b7d22f6,
               type: 3}
             Rotation:
