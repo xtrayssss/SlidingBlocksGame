@@ -6,6 +6,28 @@ using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 {
+    public class CrossGrid
+    {
+        public static Vector2Int WorldToGridPosition(Vector3 worldPosition, GameField field)
+        {
+            int x = Mathf.FloorToInt(
+                (worldPosition.x - field.OriginPosition.x + field.CellSize * 0.5f + field.Offset * 0.5f) /
+                (field.CellSize + field.Offset));
+    
+            int z = Mathf.FloorToInt(
+                (worldPosition.z - field.OriginPosition.z + field.CellSize * 0.5f + field.Offset * 0.5f) /
+                (field.CellSize + field.Offset));
+
+            Debug.Log(x + " " + z);
+            return new Vector2Int(x, z);
+        }
+        
+        public static float3 GetWorldPosition(float2 coordinates, GameField field) =>
+            new float3(coordinates.x * (field.CellSize + field.Offset) + field.OriginPosition.x, 0,
+                coordinates.y * (field.CellSize + field.Offset) + field.OriginPosition.z);
+
+    }
+
     public class DetermineClickSystem : IEcsRun
     {
         [EcsInject] private EcsDefaultWorld _world;
@@ -16,6 +38,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
         }
 
         private Plane _plane = new Plane(Vector3.up, Vector3.zero);
+        private readonly CrossGrid _crossGrid = new CrossGrid();
 
         public void Run()
         {
@@ -23,10 +46,10 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
             {
                 float3 clickPosition = GetMouseClickPosition();
 
-                foreach (int entity in _world.Where(out Aspect aspect))
+                foreach (int entity in _world.Where(out DetermineClickSystem.Aspect aspect))
                 {
                     ref GameField field = ref aspect.Fields.Get(entity);
-                    Vector2Int gridPosition = WorldToGridPosition(clickPosition, field);
+                    Vector2Int gridPosition = CrossGrid.WorldToGridPosition(clickPosition, field);
 
                     if (IsWithinGrid(gridPosition, field.Size) && !IsCentralTile(gridPosition, field) &&
                         IsInCross(field, gridPosition.x, gridPosition.y))
@@ -48,20 +71,6 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
             return _plane.Raycast(ray, out float enter)
                 ? ray.GetPoint(enter)
                 : Vector3.positiveInfinity;
-        }
-
-        private Vector2Int WorldToGridPosition(Vector3 worldPosition, GameField field)
-        {
-            int x = Mathf.FloorToInt(
-                (worldPosition.x - field.OriginPosition.x + field.CellSize * 0.5f + field.Offset * 0.5f) /
-                (field.CellSize + field.Offset));
-    
-            int z = Mathf.FloorToInt(
-                (worldPosition.z - field.OriginPosition.z + field.CellSize * 0.5f + field.Offset * 0.5f) /
-                (field.CellSize + field.Offset));
-
-            Debug.Log(x + " " + z);
-            return new Vector2Int(x, z);
         }
 
         private bool IsWithinGrid(Vector2Int gridPosition, int fieldSize)

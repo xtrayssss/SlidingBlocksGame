@@ -1,8 +1,10 @@
 ﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
 using DCFApixels.DragonECS;
 using Unity.Mathematics;
+using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 {
@@ -42,15 +44,43 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 
                         float3 direction = new float3(aspect.Directions.Read(entity).Value.x, 0,
                             aspect.Directions.Read(entity).Value.y);
+                        
+                        ref CellDestination cellDestination = ref  aspect.CellDestination.TryAddOrGet(entity);
+                        ref CellPosition cellPosition = ref aspect.CellPositions.Get(entity);
+                        
+                        int centerX = gameField.EdgeSize + gameField.CenterSize / 2;
+                        int centerZ = gameField.EdgeSize + gameField.CenterSize / 2;
 
-                        aspect.WorldDestination.TryAddOrGet(entity).Value = aspect.WorldPositions.Get(entity).Value +
+                        int newX = (int)cellPosition.Value.x;
+                        int newZ = (int)cellPosition.Value.y;
+
+                        Debug.Log(centerX);
+                        if (cellPosition.Value.x < gameField.EdgeSize)
+                        {
+                            newX = centerX;
+                        }
+                        else if (cellPosition.Value.x >= gameField.EdgeSize + gameField.CenterSize)
+                        {
+                            newX = centerX - 1;
+                        }
+
+                        if (cellPosition.Value.y >= gameField.EdgeSize + gameField.CenterSize)
+                        {
+                            newZ = centerZ - 1;
+                        }
+                        else if (cellPosition.Value.y < gameField.EdgeSize)
+                        {
+                            newZ = centerZ;
+                        }
+
+                        aspect.WorldDestination.TryAddOrGet(entity).Value = CrossGrid.GetWorldPosition(new float2(newX, newZ), gameField)/*aspect.WorldPositions.Get(entity).Value +
                                                                             direction * (gameField.EdgeSize *
                                                                                 (gameField.CellSize +
-                                                                                    gameField.Offset));
+                                                                                    gameField.Offset))*/;
 
-                        aspect.CellDestination.TryAddOrGet(entity).Value = aspect.CellPositions.Get(entity).Value +
-                                                                           aspect.Directions.Read(entity).Value *
-                                                                           gameField.EdgeSize;
+                        cellDestination.Value = new float2(newX, newZ) /*cellPosition.Value +
+                                                aspect.Directions.Read(entity).Value *
+                                                gameField.EdgeSize*/;
                     }
                 }
             }
