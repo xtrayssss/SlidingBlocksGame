@@ -18,6 +18,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
             [Inc] public readonly EcsPool<TargetEntity> Targets;
 
             [Opt] public readonly EcsTagPool<DestinationUnavailableMarker> DestinationUnavailableMarker;
+            [Opt] public readonly EcsPool<Obstacle> Obstacles;
         }
 
         private class BlockAspect : EcsAspectAuto
@@ -33,16 +34,32 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
             {
                 ref readonly ObstacleCellPosition obstaclePosition = ref aspect.ObstaclePositions.Read(entity);
 
-                if (aspect.Targets.Read(entity).Value.TryGetID(out int id))
+                if (aspect.Targets.Read(entity).Value.TryGetID(out int targetID))
                 {
                     foreach (int block in _world.Where(out BlockAspect blockAspect))
                     {
                         ref readonly CellDestination blockDestination = ref blockAspect.CellDestinations.Read(block);
 
-                        if (block != id && math.all(blockDestination.Value == obstaclePosition.Value))
+                        if (block != targetID && math.all(blockDestination.Value == obstaclePosition.Value))
                         {
-                            aspect.DestinationUnavailableMarker.Add(id);
-                            
+                            if (aspect.Obstacles.TryAddOrGet(targetID).Value.TryGetID(out int obstacleID))
+                            {
+                                ref readonly MovementDirection movementDirection =
+                                    ref _world.GetPool<MovementDirection>().Read(obstacleID);
+
+                                if (math.any(_world.GetPool<CellDestination>().Read(obstacleID).Value *
+                                        movementDirection.Value < blockDestination.Value * movementDirection.Value))
+                                {
+                                    aspect.Obstacles.TryAddOrGet(targetID).Value = block.ToEntityLong(_world);
+                                }
+                            }
+                            else
+                            {
+                                aspect.Obstacles.TryAddOrGet(targetID).Value = block.ToEntityLong(_world);
+                            }
+
+                            aspect.DestinationUnavailableMarker.Add(targetID);
+
                             break;
                         }
                     }

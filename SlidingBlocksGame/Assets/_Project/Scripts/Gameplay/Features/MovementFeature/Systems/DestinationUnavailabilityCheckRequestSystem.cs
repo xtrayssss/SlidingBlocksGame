@@ -88,18 +88,18 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 
                     int i = 0;
 
-                    for (; !math.all(progress == end); i++)
-                    {
-                        progress = start + direction.Value * i;
-
-                        int request = _world.NewEntity();
-
-                        RequestAspect requestAspect = _world.GetAspect<RequestAspect>();
-                        
-                        requestAspect.OccupancyCheckRequest.Add(request);
-                        requestAspect.Target.Add(request).Value = entity.ToEntityLong(requestAspect.World);
-                        requestAspect.ObstaclePosition.Add(request).Value = progress;
-                    }
+                    // for (; !math.all(progress == end); i++)
+                    // {
+                    //     progress = start + direction.Value * i;
+                    //
+                    //     int request = _world.NewEntity();
+                    //
+                    //     RequestAspect requestAspect = _world.GetAspect<RequestAspect>();
+                    //     
+                    //     requestAspect.OccupancyCheckRequest.Add(request);
+                    //     requestAspect.Target.Add(request).Value = entity.ToEntityLong(requestAspect.World);
+                    //     requestAspect.ObstaclePosition.Add(request).Value = progress;
+                    // }
                 }
             }
         }

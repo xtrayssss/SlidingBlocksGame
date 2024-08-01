@@ -17,21 +17,36 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
             [Inc] public readonly EcsPool<TargetEntity> Targets;
 
             [Opt] public readonly EcsTagPool<MovementCommand> MovementCommand;
-            [Opt] public readonly EcsTagPool<DestinationUnavailabilityCheckRequest> DestinationUnavailabilityCheckRequest;
+
+            [Opt] public readonly EcsTagPool<DestinationUnavailabilityCheckRequest>
+                DestinationUnavailabilityCheckRequest;
+
             [Opt] public readonly EcsTagPool<CalculateDestinationCellRequest> CalculateDestinationCellRequest;
+        }
+
+        private class BlockAspect : EcsAspectAuto
+        {
+            [Inc] public readonly EcsPool<ActiveGameField> ActiveGameFields;
+            [Inc] public readonly EcsPool<MovementDirection> Directions;
+            [Exc] public readonly EcsPool<Obstacle> Obstacles;
         }
 
         public void Run()
         {
             foreach (int entity in _world.Where(out Aspect aspect))
             {
-                if (aspect.Targets.Read(entity).Value.TryGetID(out int id))
+                if (aspect.Targets.Read(entity).Value.TryGetID(out int blockID))
                 {
-                    Debug.Log("123");
+                    BlockAspect blockAspect = _world.GetAspect<BlockAspect>();
                     
-                    aspect.MovementCommand.Add(id);
-                    aspect.CalculateDestinationCellRequest.Add(id);
-                    aspect.DestinationUnavailabilityCheckRequest.Add(id);
+                    if (blockAspect.IsMatches(blockID))
+                    {   
+                        Debug.Log("Movement command: " + blockID);
+
+                        aspect.MovementCommand.Add(blockID);
+                        aspect.CalculateDestinationCellRequest.Add(blockID);
+                        aspect.DestinationUnavailabilityCheckRequest.Add(blockID);
+                    }
                 }
             }
         }

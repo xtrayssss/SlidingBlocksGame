@@ -87,7 +87,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 
                 ref readonly ActiveGameField activeGameField = ref aspect.ActiveGameFields.Read(entity);
 
-                if (aspect.Obstacles.Get(entity).Value.Count == 0)
+                if (aspect.Obstacles.Get(entity).Value.Count != 0)
                 {
                     foreach (entlong unit in aspect.Units.Read(entity).Value.Longs)
                     {
