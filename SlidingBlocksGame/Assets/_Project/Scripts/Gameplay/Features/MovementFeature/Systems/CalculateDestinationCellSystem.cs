@@ -42,12 +42,11 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                     {
                         ref readonly GameField gameField = ref gameFieldAspect.GameFields.Read(id);
 
-                        float3 direction = new float3(aspect.Directions.Read(entity).Value.x, 0,
-                            aspect.Directions.Read(entity).Value.y);
-                        
-                        ref CellDestination cellDestination = ref  aspect.CellDestination.TryAddOrGet(entity);
+                        float2 direction = aspect.Directions.Read(entity).Value;
+
+                        ref CellDestination cellDestination = ref aspect.CellDestination.TryAddOrGet(entity);
                         ref CellPosition cellPosition = ref aspect.CellPositions.Get(entity);
-                        
+
                         int centerX = gameField.EdgeSize + gameField.CenterSize / 2;
                         int centerZ = gameField.EdgeSize + gameField.CenterSize / 2;
 
@@ -55,6 +54,9 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                         int newZ = (int)cellPosition.Value.y;
 
                         Debug.Log(centerX);
+
+                        var center = 0;
+                        
                         if (cellPosition.Value.x < gameField.EdgeSize)
                         {
                             newX = centerX;
@@ -72,15 +74,24 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                         {
                             newZ = centerZ;
                         }
-
-                        aspect.WorldDestination.TryAddOrGet(entity).Value = CrossGrid.GetWorldPosition(new float2(newX, newZ), gameField)/*aspect.WorldPositions.Get(entity).Value +
-                                                                            direction * (gameField.EdgeSize *
-                                                                                (gameField.CellSize +
-                                                                                    gameField.Offset))*/;
-
-                        cellDestination.Value = new float2(newX, newZ) /*cellPosition.Value +
-                                                aspect.Directions.Read(entity).Value *
-                                                gameField.EdgeSize*/;
+                        //
+                        // float2 newPosition = new float2(newX, newZ);
+                        //
+                        // newPosition = (newPosition - cellPosition.Value) * direction;
+                        //
+                        // Debug.Log(newPosition);
+                        //
+                        //
+                        // aspect.WorldDestination.TryAddOrGet(entity).Value =
+                        //     CrossGrid.GetWorldPosition(newPosition,
+                        //         gameField) /*aspect.WorldPositions.Get(entity).Value +
+                        //                                                             direction * (gameField.EdgeSize *
+                        //                                                                 (gameField.CellSize +
+                        //                                                                     gameField.Offset))*/;
+                        //
+                        // cellDestination.Value = newPosition /*cellPosition.Value +
+                        //                         aspect.Directions.Read(entity).Value *
+                        //                         gameField.EdgeSize*/;
                     }
                 }
             }

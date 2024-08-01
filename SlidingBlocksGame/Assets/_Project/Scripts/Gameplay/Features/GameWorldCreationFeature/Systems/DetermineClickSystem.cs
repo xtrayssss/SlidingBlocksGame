@@ -18,14 +18,12 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                 (worldPosition.z - field.OriginPosition.z + field.CellSize * 0.5f + field.Offset * 0.5f) /
                 (field.CellSize + field.Offset));
 
-            Debug.Log(x + " " + z);
             return new Vector2Int(x, z);
         }
         
         public static float3 GetWorldPosition(float2 coordinates, GameField field) =>
             new float3(coordinates.x * (field.CellSize + field.Offset) + field.OriginPosition.x, 0,
                 coordinates.y * (field.CellSize + field.Offset) + field.OriginPosition.z);
-
     }
 
     public class DetermineClickSystem : IEcsRun

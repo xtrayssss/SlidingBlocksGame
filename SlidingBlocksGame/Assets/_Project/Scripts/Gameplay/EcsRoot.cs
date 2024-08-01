@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Reflection;
 using _Project.Scripts.Gameplay;
 using _Project.Scripts.Gameplay.Features;
@@ -91,6 +90,8 @@ namespace _Project.Scripts.Gameplay
                 .AddUnique(new DestinationUnavailabilityCheckRequestSystem())
                 .AutoDelTag<DestinationUnavailableMarker>()
                 .AddUnique(new DestinationUnavailabilityCheckSystem())
+                .AddUnique(new ObstaclePositionAdditionSystem())
+                .AddUnique(new NearObstacleCalculationSystem())
                 .AutoDelTag<DestinationUnavailabilityCheckRequest>()
                 .Add(new CellOccupancySystem())
 

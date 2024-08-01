@@ -25,11 +25,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
             {
                 ref CellDestination cellDestination = ref aspect.CellDestinations.Get(entity);
 
-                Debug.Log(cellDestination.Value);
-
                 cellDestination.Value -= aspect.Directions.Read(entity).Value;
-
-                Debug.Log("calculate cell intersection " + cellDestination.Value);
             }
         }
     }

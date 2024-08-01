@@ -15,14 +15,18 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
         {
             [IncImplicit(typeof(DestinationUnavailabilityCheckRequest))]
             [ExcImplicit(typeof(DestinationUnavailableMarker))]
-            [Inc] public readonly EcsPool<MovementDirection> Directions;
-
-            [Inc] public readonly EcsPool<CellDestination> CellDestinations;
             [Inc] public readonly EcsPool<ActiveGameField> ActiveGameFields;
+            [Inc] public readonly EcsPool<CellDestination> CellDestinations;
 
             [Inc] public readonly EcsPool<CellPosition> CellPositions;
+            [Inc] public readonly EcsPool<MovementDirection> Directions;
+        }
+
+        private class RequestAspect : EcsAspectAuto
+        {
             [Opt] public readonly EcsTagPool<DestinationUnavailabilityCheckRequest> OccupancyCheckRequest;
-            [Opt] public readonly EcsPool<TargetEntity> Targets;
+            [Opt] public readonly EcsPool<TargetEntity> Target;
+            [Opt] public readonly EcsPool<ObstacleCellPosition> ObstaclePosition;
         }
 
         private class GameFieldAspect : EcsAspectAuto
@@ -35,18 +39,16 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
             foreach (int entity in _world.Where(out Aspect aspect))
             {
                 ref readonly var direction = ref aspect.Directions.Read(entity);
-                ref readonly var destination = ref aspect.CellDestinations.Read(entity);
 
                 GameFieldAspect gameFieldAspect = _world.GetAspect<GameFieldAspect>();
 
-                if (aspect.ActiveGameFields.Read(entity).Value.TryGetID(out int id) &&
-                    gameFieldAspect.IsMatches(id))
+                if (aspect.ActiveGameFields.Read(entity).Value.TryGetID(out int gameFieldID))
                 {
-                    ref readonly GameField gameField = ref gameFieldAspect.GameFields.Read(id);
+                    ref readonly GameField gameField = ref gameFieldAspect.GameFields.Read(gameFieldID);
 
                     CellPosition cellPosition = aspect.CellPositions.Read(entity);
 
-                    float2 end = destination.Value;
+                    float2 end = aspect.CellDestinations.Read(entity).Value;
 
                     float2 start;
 
@@ -86,16 +88,17 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 
                     int i = 0;
 
-                    
                     for (; !math.all(progress == end); i++)
                     {
                         progress = start + direction.Value * i;
 
                         int request = _world.NewEntity();
 
-                        aspect.OccupancyCheckRequest.Add(request);
-                        aspect.Targets.Add(request).Value = entity.ToEntityLong(aspect.World);
-                        aspect.CellDestinations.Add(request).Value = progress;
+                        RequestAspect requestAspect = _world.GetAspect<RequestAspect>();
+                        
+                        requestAspect.OccupancyCheckRequest.Add(request);
+                        requestAspect.Target.Add(request).Value = entity.ToEntityLong(requestAspect.World);
+                        requestAspect.ObstaclePosition.Add(request).Value = progress;
                     }
                 }
             }

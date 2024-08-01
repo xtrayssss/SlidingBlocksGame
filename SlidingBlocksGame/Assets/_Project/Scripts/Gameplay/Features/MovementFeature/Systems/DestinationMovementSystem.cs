@@ -2,6 +2,7 @@
 using _Project.Scripts.Gameplay.Features.EasingFeature.Components;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
 using DCFApixels.DragonECS;
+using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 {
@@ -30,6 +31,8 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                 if (easingAspect.Targets.Read(entity).Value.TryGetID(out int id))
                 {
                     MovementAspect movementAspect = _world.GetAspect<MovementAspect>();
+
+                    Debug.Log("123");
 
                     if (movementAspect.IsMatches(id))
                     {

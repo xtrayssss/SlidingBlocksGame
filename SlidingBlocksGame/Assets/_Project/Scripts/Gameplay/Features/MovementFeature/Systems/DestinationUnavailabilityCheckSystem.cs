@@ -1,4 +1,5 @@
 ﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
 using DCFApixels.DragonECS;
 using Unity.Mathematics;
 using UnityEngine;
@@ -12,7 +13,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
         private class SectionAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(DestinationUnavailabilityCheckRequest))]
-            [Inc] public readonly EcsPool<CellDestination> Destinations;
+            [Inc] public readonly EcsPool<ObstacleCellPosition> ObstaclePositions;
 
             [Inc] public readonly EcsPool<TargetEntity> Targets;
 
@@ -30,7 +31,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
         {
             foreach (int entity in _world.Where(out SectionAspect aspect))
             {
-                ref readonly CellDestination destination = ref aspect.Destinations.Read(entity);
+                ref readonly ObstacleCellPosition obstaclePosition = ref aspect.ObstaclePositions.Read(entity);
 
                 if (aspect.Targets.Read(entity).Value.TryGetID(out int id))
                 {
@@ -38,10 +39,8 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                     {
                         ref readonly CellDestination blockDestination = ref blockAspect.CellDestinations.Read(block);
 
-                        if (block != id && math.all(blockDestination.Value == destination.Value))
+                        if (block != id && math.all(blockDestination.Value == obstaclePosition.Value))
                         {
-                            Debug.Log("intersected!" + destination.Value + id + " " + blockDestination.Value + block);
-
                             aspect.DestinationUnavailableMarker.Add(id);
                             
                             break;
