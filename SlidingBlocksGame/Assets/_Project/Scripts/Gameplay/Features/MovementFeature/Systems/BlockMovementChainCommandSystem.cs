@@ -18,9 +18,6 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 
             [Opt] public readonly EcsTagPool<MovementCommand> MovementCommand;
 
-            [Opt] public readonly EcsTagPool<DestinationUnavailabilityCheckRequest>
-                DestinationUnavailabilityCheckRequest;
-
             [Opt] public readonly EcsTagPool<CalculateDestinationCellRequest> CalculateDestinationCellRequest;
         }
 
@@ -38,14 +35,15 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                 if (aspect.Targets.Read(entity).Value.TryGetID(out int blockID))
                 {
                     BlockAspect blockAspect = _world.GetAspect<BlockAspect>();
+
+                    Debug.Log(_world.GetPool<Obstacle>().Has(blockID));
                     
                     if (blockAspect.IsMatches(blockID))
-                    {   
+                    {
                         Debug.Log("Movement command: " + blockID);
 
                         aspect.MovementCommand.Add(blockID);
                         aspect.CalculateDestinationCellRequest.Add(blockID);
-                        aspect.DestinationUnavailabilityCheckRequest.Add(blockID);
                     }
                 }
             }

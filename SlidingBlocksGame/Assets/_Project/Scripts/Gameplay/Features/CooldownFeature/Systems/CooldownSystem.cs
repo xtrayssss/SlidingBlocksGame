@@ -21,7 +21,6 @@ namespace _Project.Scripts.Gameplay.Features.CooldownFeature.Systems
             {
                 ref Cooldown cooldown = ref aspect.Cooldowns.Get(entity);
 
-                Debug.Log("cooldown ");
                 if ((cooldown.Elapsed -= Time.deltaTime) <= 0f)
                     _world.GetTagPool<CooldownExpiredMarker>().Add(entity);
             }

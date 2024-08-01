@@ -2,7 +2,6 @@
 using _Project.Scripts.Gameplay.Features.EasingFeature.Components;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
 using DCFApixels.DragonECS;
-using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 {
@@ -21,7 +20,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
         private class MovementAspect : EcsAspectAuto
         {
             [Inc] public readonly EcsPool<WorldPosition> WorldPositions;
-            [Inc] public readonly EcsTagPool<UpdateViewRequest> UpdateView;
+            [Exc] public readonly EcsTagPool<UpdateViewRequest> UpdateView;
         }
 
         public void Run()
@@ -32,12 +31,9 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                 {
                     MovementAspect movementAspect = _world.GetAspect<MovementAspect>();
 
-                    Debug.Log("123");
-
                     if (movementAspect.IsMatches(id))
-                    {
-                        movementAspect.WorldPositions.Get(id).Value =
-                            easingAspect.Destinations.Read(entity).Interpolation;
+                    {   
+                        movementAspect.WorldPositions.Get(id).Value = easingAspect.Destinations.Read(entity).Interpolation;
                         movementAspect.UpdateView.Add(id);
                     }
                 }

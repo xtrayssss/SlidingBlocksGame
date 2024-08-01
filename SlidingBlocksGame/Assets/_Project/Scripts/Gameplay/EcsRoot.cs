@@ -31,7 +31,8 @@ namespace _Project.Scripts.Gameplay
         [Button]
         private void FixLinks(ScriptableEntityTemplate template)
         {
-            var fields = template.GetType().GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+            var fields = template.GetType()
+                .GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
 
             foreach (var field in fields)
             {
@@ -73,11 +74,19 @@ namespace _Project.Scripts.Gameplay
                 .AddUnique(new AnimationCurveSystem())
                 .AddUnique(new LinerEasingSystem())
 
+                //occupancy feature
+                .AddUnique(new DestinationUnavailabilityCheckRequestSystem())
+                .AutoDelTag<DestinationUnavailableMarker>()
+                .AddUnique(new DestinationUnavailabilityCheckSystem())
+                .AddUnique(new ObstaclePositionAdditionSystem())
+                .AddUnique(new NearObstacleCalculationSystem())
+                .AutoDelTag<DestinationUnavailabilityCheckRequest>()
+                // /.Add(new CellOccupancySystem())
+
                 // movement feature
                 .AddUnique(new TransformSystem())
                 .AutoDelTag<UpdateViewRequest>()
                 .AddUnique(new WorldPositionSystem())
-                //.AddUnique(new CalculateDestinationCellIntersectionSystem())
                 .AddUnique(new ChainingBlocksSystem())
                 .AddUnique(new ChainMovementSystem())
                 .AddUnique(new BlockMovementChainCommandSystem())
@@ -85,15 +94,6 @@ namespace _Project.Scripts.Gameplay
                 .AddUnique(new MovementEasingCommandSystem())
                 .AddUnique(new DestinationMovementSystem())
                 .AutoDelTag<CalculateDestinationCellRequest>()
-                
-                // occupancy feature
-                .AddUnique(new DestinationUnavailabilityCheckRequestSystem())
-                .AutoDelTag<DestinationUnavailableMarker>()
-                .AddUnique(new DestinationUnavailabilityCheckSystem())
-                .AddUnique(new ObstaclePositionAdditionSystem())
-                .AddUnique(new NearObstacleCalculationSystem())
-                .AutoDelTag<DestinationUnavailabilityCheckRequest>()
-                .Add(new CellOccupancySystem())
 
                 // cooldown feature
                 .AddUnique(new RefreshCooldownSystem())

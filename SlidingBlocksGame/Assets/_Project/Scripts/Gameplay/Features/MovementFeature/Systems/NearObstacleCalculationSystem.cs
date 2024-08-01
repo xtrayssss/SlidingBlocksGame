@@ -35,6 +35,8 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 
                 AssignedGroupAspect assignedGroupAspect = _world.GetAspect<AssignedGroupAspect>();
 
+                Debug.Log("adding");
+                
                 if (aspect.Targets.Read(entity).Value.TryGetID(out int blockID))
                 {
                     if (assignedGroupAspect.Groups.Read(blockID).Value.TryGetID(out int groupID))
@@ -93,15 +95,15 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                     {
                         if (unit.TryGetID(out int unitID))
                         {
-                            ref CellDestination cellDestination =
-                                ref _world.GetPool<CellDestination>().TryAddOrGet(unitID);
-
-                            cellDestination.Value =
-                                _world.GetPool<CellPosition>().Read(unitID).Value + 2 * direction.Value;
-
-                            _world.GetPool<WorldDestination>().TryAddOrGet(unitID).Value = CrossGrid.GetWorldPosition(
-                                cellDestination.Value, _world.GetPool<GameField>().Read(activeGameField.Value.ID)
-                            );
+                            // ref CellDestination cellDestination =
+                            //     ref _world.GetPool<CellDestination>().TryAddOrGet(unitID);
+                            //
+                            // cellDestination.Value =
+                            //     _world.GetPool<CellPosition>().Read(unitID).Value + 2 * direction.Value;
+                            //
+                            // _world.GetPool<WorldDestination>().TryAddOrGet(unitID).Value = CrossGrid.GetWorldPosition(
+                            //     cellDestination.Value, _world.GetPool<GameField>().Read(activeGameField.Value.ID)
+                            // );
                         }
                     }
                 }

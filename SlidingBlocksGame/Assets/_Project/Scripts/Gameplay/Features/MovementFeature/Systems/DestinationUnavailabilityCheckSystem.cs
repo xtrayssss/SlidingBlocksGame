@@ -32,10 +32,14 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
         {
             foreach (int entity in _world.Where(out SectionAspect aspect))
             {
+                Debug.Log("Check");
+
                 ref readonly ObstacleCellPosition obstaclePosition = ref aspect.ObstaclePositions.Read(entity);
 
                 if (aspect.Targets.Read(entity).Value.TryGetID(out int targetID))
                 {
+                    Debug.Log(targetID);
+
                     foreach (int block in _world.Where(out BlockAspect blockAspect))
                     {
                         ref readonly CellDestination blockDestination = ref blockAspect.CellDestinations.Read(block);

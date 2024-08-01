@@ -16,7 +16,6 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
             [IncImplicit(typeof(DestinationUnavailabilityCheckRequest))]
             [ExcImplicit(typeof(DestinationUnavailableMarker))]
             [Inc] public readonly EcsPool<ActiveGameField> ActiveGameFields;
-            [Inc] public readonly EcsPool<CellDestination> CellDestinations;
 
             [Inc] public readonly EcsPool<CellPosition> CellPositions;
             [Inc] public readonly EcsPool<MovementDirection> Directions;
@@ -46,9 +45,9 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                 {
                     ref readonly GameField gameField = ref gameFieldAspect.GameFields.Read(gameFieldID);
 
-                    CellPosition cellPosition = aspect.CellPositions.Read(entity);
+                    ref readonly CellPosition cellPosition = ref aspect.CellPositions.Read(entity);
 
-                    float2 end = aspect.CellDestinations.Read(entity).Value;
+                    float2 end = cellPosition.Value + direction.Value * gameField.EdgeSize;
 
                     float2 start;
 
@@ -84,22 +83,30 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                                 cellPosition.Value;
                     }
 
-                    float2 progress = default;
+                    float2 progress = start;
+
+                    Debug.Log(start);
+                    Debug.Log(end);
 
                     int i = 0;
+                    Debug.Log(entity);
 
-                    // for (; !math.all(progress == end); i++)
-                    // {
-                    //     progress = start + direction.Value * i;
-                    //
-                    //     int request = _world.NewEntity();
-                    //
-                    //     RequestAspect requestAspect = _world.GetAspect<RequestAspect>();
-                    //     
-                    //     requestAspect.OccupancyCheckRequest.Add(request);
-                    //     requestAspect.Target.Add(request).Value = entity.ToEntityLong(requestAspect.World);
-                    //     requestAspect.ObstaclePosition.Add(request).Value = progress;
-                    // }
+                    do
+                    {
+                        progress += direction.Value * i;
+
+                        Debug.Log(progress);
+
+                        int request = _world.NewEntity();
+
+                        RequestAspect requestAspect = _world.GetAspect<RequestAspect>();
+
+                        requestAspect.OccupancyCheckRequest.Add(request);
+                        requestAspect.Target.Add(request).Value = entity.ToEntityLong(requestAspect.World);
+                        requestAspect.ObstaclePosition.Add(request).Value = progress;
+
+                        i++;
+                    } while ((Vector2)progress != (Vector2)end);
                 }
             }
         }
