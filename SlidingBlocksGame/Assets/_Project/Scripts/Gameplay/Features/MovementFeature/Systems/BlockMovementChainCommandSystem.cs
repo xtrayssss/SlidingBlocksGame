@@ -36,8 +36,6 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                 {
                     BlockAspect blockAspect = _world.GetAspect<BlockAspect>();
 
-                    Debug.Log(_world.GetPool<Obstacle>().Has(blockID));
-                    
                     if (blockAspect.IsMatches(blockID))
                     {
                         Debug.Log("Movement command: " + blockID);

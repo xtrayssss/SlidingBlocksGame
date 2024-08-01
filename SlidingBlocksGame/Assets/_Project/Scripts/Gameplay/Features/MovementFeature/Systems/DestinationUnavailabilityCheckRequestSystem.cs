@@ -85,17 +85,11 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 
                     float2 progress = start;
 
-                    Debug.Log(start);
-                    Debug.Log(end);
-
                     int i = 0;
-                    Debug.Log(entity);
 
                     do
                     {
                         progress += direction.Value * i;
-
-                        Debug.Log(progress);
 
                         int request = _world.NewEntity();
 

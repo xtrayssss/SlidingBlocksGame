@@ -1,7 +1,5 @@
 ﻿using System.Linq;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
-using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
-using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
 using DCFApixels.DragonECS;
 using Unity.Mathematics;
@@ -21,9 +19,14 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
             [Inc] public readonly EcsPool<TargetEntity> Targets;
         }
 
+        private class TargetAspect : EcsAspectAuto
+        {
+            [Inc] private readonly EcsTagPool<DestinationUnavailableMarker> _;
+            [Inc] public readonly EcsPool<AssignedGroup> AssignedGroups;
+        }
+
         private class AssignedGroupAspect : EcsAspectAuto
         {
-            [Inc] public readonly EcsPool<AssignedGroup> Groups;
             [Inc] public readonly EcsPool<ObstacleCellPositions> Obstacles;
         }
 
@@ -31,16 +34,24 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
         {
             foreach (int entity in _world.Where(out SectionAspect aspect))
             {
+                Debug.Log("Near");
                 ref ObstacleCellPosition obstaclePosition = ref aspect.ObstaclePositions.Get(entity);
 
                 AssignedGroupAspect assignedGroupAspect = _world.GetAspect<AssignedGroupAspect>();
 
-                Debug.Log("adding");
-                
-                if (aspect.Targets.Read(entity).Value.TryGetID(out int blockID))
+                TargetAspect targetAspect = _world.GetAspect<TargetAspect>();
+
+                if (aspect.Targets.Read(entity).Value.TryGetID(out int targetID) &&
+                    _world.GetTagPool<DestinationUnavailableMarker>().Has(targetID))
                 {
-                    if (assignedGroupAspect.Groups.Read(blockID).Value.TryGetID(out int groupID))
+                    if (targetAspect.AssignedGroups.Read(targetID).Value.TryGetID(out int groupID))
                     {
+                        if (assignedGroupAspect.Obstacles.Get(groupID).Value.Contains(obstaclePosition.Value))
+                            continue;
+                        
+                        Debug.Log(targetID);
+                        Debug.Log("adding");
+
                         assignedGroupAspect.Obstacles.Get(groupID).Value.Add(obstaclePosition.Value);
                     }
                 }
