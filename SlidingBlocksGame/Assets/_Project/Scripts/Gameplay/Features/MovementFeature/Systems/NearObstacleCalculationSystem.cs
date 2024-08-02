@@ -24,11 +24,8 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
             [Inc] private readonly EcsTagPool<DestinationUnavailableMarker> _;
 
             [Inc] public readonly EcsPool<AssignedGroup> AssignedGroups;
-                <<<<<<< HEAD
 
             [Inc] public readonly EcsPool<Obstacle> Obstacles;
-                ====== =
-                >>>>>>> 25c3ed72df93b2ec85f268cd4e5d613a240e466b
         }
 
         private class AssignedGroupAspect : EcsAspectAuto
