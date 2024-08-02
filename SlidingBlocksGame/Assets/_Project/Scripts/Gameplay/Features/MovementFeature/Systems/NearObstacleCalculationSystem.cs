@@ -94,6 +94,8 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
             [Inc] public readonly EcsPool<AssignedGroup> AssignedGroups;
             [Inc] public readonly EcsPool<Obstacle> Obstacles;
             [Inc] public readonly EcsPool<CellPosition> CellPositions;
+
+            [Opt] public readonly EcsTagPool<CalculateDestinationCellRequest> CalculationCellDestinationRequest;
         }
 
         private class AssignedGroupAspect : EcsAspectAuto
@@ -103,6 +105,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
             [Inc] public readonly EcsPool<MovementDirection> Directions;
             [Inc] public readonly EcsPool<ActiveGameField> ActiveGameFields;
             [Inc] public readonly EcsPool<NearDistance> NearDistances;
+            [Opt] public readonly EcsTagPool<DetectionDistanceRequest> DetectionDistanceRequest;
         }
 
         private class ObstacleAspect : EcsAspectAuto
@@ -116,6 +119,14 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
             {
                 TargetAspect targetAspect = _world.GetAspect<TargetAspect>();
 
+                if (sectionAspect.Targets.Read(entity).Value.TryGetID(out int targetID2))
+                {
+                    if (targetAspect.AssignedGroups.Read(targetID2).Value.TryGetID(out int groupID2))
+                    {
+                        _world.GetAspect<AssignedGroupAspect>().DetectionDistanceRequest.TryAdd(groupID2);   
+                    }
+                }
+                
                 if (sectionAspect.Targets.Read(entity).Value.TryGetID(out int targetID) &&
                     _world.GetTagPool<DestinationUnavailableMarker>().Has(targetID))
                 {
@@ -168,7 +179,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                             {
                                 Debug.Log(obstacle);
                             }
-
+                            
                             if (obstacleCellPositions.Value.Count != 0)
                             {
                                 foreach (var unit in assignedGroupAspect.Units.Read(groupID).Value.Longs)
@@ -184,12 +195,17 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 
                                         Debug.Log(distance);
 
-                                        bool any = math.any(direction.Value * assignedGroupAspect.NearDistances.Get(groupID).Value > direction.Value * distance);
-                                        
-                                        if (any || math.all(assignedGroupAspect.NearDistances.Get(groupID).Value == new float2(-1,- 1)))
+                                        bool any = math.any(
+                                            direction.Value * assignedGroupAspect.NearDistances.Get(groupID).Value >
+                                            direction.Value * distance);
+
+                                        if (any || math.all(assignedGroupAspect.NearDistances.Get(groupID).Value ==
+                                                            new float2(-1, -1)))
                                         {
                                             Debug.Log("12");
                                             assignedGroupAspect.NearDistances.Get(groupID).Value = distance;
+
+                                            targetAspect.CalculationCellDestinationRequest.Add(targetID);
                                         }
                                     }
                                 }

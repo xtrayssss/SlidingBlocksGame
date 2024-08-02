@@ -80,7 +80,9 @@ namespace _Project.Scripts.Gameplay
                 .AddUnique(new DestinationUnavailabilityCheckSystem())
                 .AddUnique(new ObstaclePositionAdditionSystem())
                 .AddUnique(new NearObstacleCalculationSystem())
+                .AddUnique(new DetectionDestinationDistanceSystem())
                 .AutoDelTag<DestinationUnavailabilityCheckRequest>()
+                .AutoDelTag<DetectionDistanceRequest>()
                 // /.Add(new CellOccupancySystem())
 
                 // movement feature
