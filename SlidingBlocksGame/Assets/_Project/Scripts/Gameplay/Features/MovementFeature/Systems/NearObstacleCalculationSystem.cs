@@ -22,8 +22,13 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
         private class TargetAspect : EcsAspectAuto
         {
             [Inc] private readonly EcsTagPool<DestinationUnavailableMarker> _;
+
             [Inc] public readonly EcsPool<AssignedGroup> AssignedGroups;
+                <<<<<<< HEAD
+
             [Inc] public readonly EcsPool<Obstacle> Obstacles;
+                ====== =
+                >>>>>>> 25c3ed72df93b2ec85f268cd4e5d613a240e466b
         }
 
         private class AssignedGroupAspect : EcsAspectAuto
@@ -40,8 +45,6 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
         {
             foreach (int entity in _world.Where(out SectionAspect aspect))
             {
-                Debug.Log("Near");
-
                 AssignedGroupAspect assignedGroupAspect = _world.GetAspect<AssignedGroupAspect>();
 
                 TargetAspect targetAspect = _world.GetAspect<TargetAspect>();
@@ -62,7 +65,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                                 continue;
 
                             Debug.Log(obstaclePosition.Value);
-                            
+
                             Debug.Log(targetID);
                             Debug.Log("adding");
 

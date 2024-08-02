@@ -58,8 +58,6 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                                 aspect.Obstacles.TryAddOrGet(targetID).Value = block.ToEntityLong(_world);
                             }
                             
-                            Debug.Log(targetID + "is unavailable");
-
                             aspect.DestinationUnavailableMarker.Add(targetID);
 
                             break;
