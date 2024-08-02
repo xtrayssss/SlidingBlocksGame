@@ -33,6 +33,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
             [Opt] public readonly EcsPool<ObstacleCellPositions> Obstacles;
             [Opt] public readonly EcsPool<Units> Units;
             [Opt] public readonly EcsPool<ActiveGameField> ActiveGameFields;
+            [Opt] public readonly EcsPool<NearDistance> NearDistance;
         }
 
         public void Run()
@@ -112,6 +113,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
             assignedGroupAspect.Obstacles.Add(group).Value = new List<float2>();
             groupAspect.Units.Add(group).Value = EcsGroup.New(_world);
             assignedGroupAspect.ActiveGameFields.Add(group).Value = gameField;
+            assignedGroupAspect.NearDistance.Add(group).Value = new float2(-1,- 1);
 
             return group;
         }
