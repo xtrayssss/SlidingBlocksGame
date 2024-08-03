@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
@@ -15,8 +16,8 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 
         private class SectionAspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(DestinationUnavailabilityCheckRequest))]
-            [Inc] public readonly EcsPool<ObstacleCellPosition> ObstaclePositions;
+            [IncImplicit(typeof(DestinationUnavailabilityCheckRequest))] [Inc]
+            public readonly EcsPool<ObstacleCellPosition> ObstaclePositions;
 
             [Inc] public readonly EcsPool<TargetEntity> Targets;
         }
@@ -82,8 +83,8 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 
         private class SectionAspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(DestinationUnavailabilityCheckRequest))]
-            [Inc] public readonly EcsPool<ObstacleCellPosition> ObstaclePositions;
+            [IncImplicit(typeof(DestinationUnavailabilityCheckRequest))] [Inc]
+            public readonly EcsPool<ObstacleCellPosition> ObstaclePositions;
 
             [Inc] public readonly EcsPool<TargetEntity> Targets;
         }
@@ -123,10 +124,10 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                 {
                     if (targetAspect.AssignedGroups.Read(targetID2).Value.TryGetID(out int groupID2))
                     {
-                        _world.GetAspect<AssignedGroupAspect>().DetectionDistanceRequest.TryAdd(groupID2);   
+                        _world.GetAspect<AssignedGroupAspect>().DetectionDistanceRequest.TryAdd(groupID2);
                     }
                 }
-                
+
                 if (sectionAspect.Targets.Read(entity).Value.TryGetID(out int targetID) &&
                     _world.GetTagPool<DestinationUnavailableMarker>().Has(targetID))
                 {
@@ -150,39 +151,84 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 
                             ref readonly var direction = ref assignedGroupAspect.Directions.Read(groupID);
 
+                            ref  Units units = ref assignedGroupAspect.Units.Get(groupID);
+
                             if (math.all(direction.Value == new float2(1, 0)))
                             {
+                                Debug.Log("123")
+                                    ;
                                 obstacleCellPositions.Value =
                                     assignedGroupAspect.Obstacles.Read(groupID).Value.OrderBy(position => position.x)
                                         .ToList();
+
+                                units.Value = units.Value.OrderBy(unit =>
+                                {
+                                    if (_world.GetEntityLong(unit).TryGetID(out int unitID))
+                                    {
+                                        return -_world.GetPool<CellPosition>().Read(unitID).Value.x;
+                                    }
+
+                                    return new float2(0, 0);
+                                }).Select(x => x) as EcsGroup;
                             }
                             else if (math.all(direction.Value == new float2(-1, 0)))
                             {
                                 obstacleCellPositions.Value =
                                     assignedGroupAspect.Obstacles.Read(groupID).Value.OrderBy(position => -position.x)
                                         .ToList();
+
+                                units.Value = units.Value.OrderBy(unit =>
+                                {
+                                    if (_world.GetEntityLong(unit).TryGetID(out int unitID))
+                                    {
+                                        return -_world.GetPool<CellPosition>().Read(unitID).Value.x;
+                                    }
+
+                                    return new float2(0, 0);
+                                }).Select(x => x) as EcsGroup;
+                                
                             }
                             else if (math.all(direction.Value == new float2(0, 1)))
                             {
                                 obstacleCellPositions.Value =
                                     assignedGroupAspect.Obstacles.Read(groupID).Value.OrderBy(position => -position.y)
                                         .ToList();
+                                
+                                units.Value = units.Value.OrderBy(unit =>
+                                {
+                                    if (_world.GetEntityLong(unit).TryGetID(out int unitID))
+                                    {
+                                        return -_world.GetPool<CellPosition>().Read(unitID).Value.y;
+                                    }
+
+                                    return new float2(0, 0);
+                                }).Select(x => x) as EcsGroup;
                             }
                             else if (math.all(direction.Value == new float2(0, -1)))
                             {
                                 obstacleCellPositions.Value =
                                     assignedGroupAspect.Obstacles.Read(groupID).Value.OrderBy(position => position.y)
                                         .ToList();
+                                
+                                units.Value = units.Value.OrderBy(unit =>
+                                {
+                                    if (_world.GetEntityLong(unit).TryGetID(out int unitID))
+                                    {
+                                        return -_world.GetPool<CellPosition>().Read(unitID).Value.y;
+                                    }
+
+                                    return new float2(0, 0);
+                                }).Select(x => x) as EcsGroup;
                             }
 
                             foreach (var obstacle in assignedGroupAspect.Obstacles.Read(groupID).Value)
                             {
                                 Debug.Log(obstacle);
                             }
-                            
+
                             if (obstacleCellPositions.Value.Count != 0)
                             {
-                                foreach (var unit in assignedGroupAspect.Units.Read(groupID).Value.Longs)
+                                foreach (var unit in units.Value.Longs)
                                 {
                                     if (unit.TryGetID(out int unitID))
                                     {
