@@ -32,26 +32,6 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                 {
                     MovementAspect movementAspect = _world.GetAspect<MovementAspect>();
 
-                    if(_world.GetPool<UpdateViewRequest>().Has(id) == false && movementAspect.IsMatches(id))
-                    {
-                        EcsDebug.Print("====================================");
-                        EcsDebug.Print(_world.GetEntityLong(id));
-
-                        EcsAspect aspect = _world.GetAspect<MovementAspect>();
-                        EcsDebug.Print(aspect.Mask.ToString());
-                        EcsDebug.Print("Inc " + aspect.Mask.Inc.ToArray());
-                        EcsDebug.Print("Exc " + aspect.Mask.Exc.ToArray());
-
-                        List<object> list = new List<object>();
-                        _world.GetComponentsFor(id, list);
-                        EcsDebug.Print(string.Join(',', list));
-
-                        var ids = _world.GetComponentTypeIDsFor(id);
-                        EcsDebug.Print(string.Join(',', ids.ToArray()));
-
-                        EcsDebug.Print("====================================");
-                    }
-                    
                     if (movementAspect.IsMatches(id))
                     {   
                         movementAspect.WorldPositions.Get(id).Value = easingAspect.Destinations.Read(entity).Interpolation;

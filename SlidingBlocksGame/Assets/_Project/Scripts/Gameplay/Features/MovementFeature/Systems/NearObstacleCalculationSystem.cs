@@ -97,6 +97,12 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
             [Inc] public readonly EcsPool<CellPosition> CellPositions;
 
             [Opt] public readonly EcsTagPool<CalculateDestinationCellRequest> CalculationCellDestinationRequest;
+
+            public bool CustomIsMatches(int entity) =>
+                AssignedGroups.Has(entity) &&
+                Obstacles.Has(entity) &&
+                CellPositions.Has(entity) &&
+                World.GetPool<DestinationUnavailableMarker>().Has(entity);
         }
 
         private class AssignedGroupAspect : EcsAspectAuto
@@ -201,7 +207,8 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                                 {
                                     targetAspect.CalculationCellDestinationRequest.TryAdd(unitID);
 
-                                    if (targetAspect.Obstacles.Read(unitID).Value.TryGetID(out int obstacleID))
+                                    if (targetAspect.CustomIsMatches(unitID) && targetAspect.Obstacles.Read(unitID)
+                                            .Value.TryGetID(out int obstacleID))
                                     {
                                         return obstacleAspect.CellDestinations.Read(obstacleID).Value.x;
                                     }
@@ -227,7 +234,30 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                                 {
                                     targetAspect.CalculationCellDestinationRequest.TryAdd(unitID);
 
-                                    if (targetAspect.Obstacles.Read(unitID).Value.TryGetID(out int obstacleID))
+                                    // if (_world.GetPool<Obstacle>().Has(unitID) == false &&
+                                    //     targetAspect.IsMatches(unitID))
+                                    // {
+                                    //     EcsDebug.Print("====================================");
+                                    //     EcsDebug.Print(_world.GetEntityLong(unitID));
+                                    //
+                                    //     TargetAspect aspect = _world.GetAspect<TargetAspect>();
+                                    //     EcsDebug.Print(aspect.Mask.ToString());
+                                    //     EcsDebug.Print("Inc " + aspect.Mask.Inc.ToArray());
+                                    //     EcsDebug.Print("Exc " + aspect.Mask.Exc.ToArray());
+                                    //
+                                    //     List<object> list = new List<object>();
+                                    //     _world.GetComponentsFor(unitID, list);
+                                    //     EcsDebug.Print(string.Join(',', list));
+                                    //
+                                    //     var ids = _world.GetComponentTypeIDsFor(unitID);
+                                    //     EcsDebug.Print(string.Join(',', ids.ToArray()));
+                                    //
+                                    //     EcsDebug.Print("====================================");
+                                    // }
+
+                                    if (targetAspect.CustomIsMatches(unitID) && targetAspect.Obstacles.Read(unitID)
+                                            .Value
+                                            .TryGetID(out int obstacleID))
                                     {
                                         Debug.Log(obstacleID);
                                         return -obstacleAspect.CellDestinations.Read(obstacleID).Value.x;
@@ -255,7 +285,8 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                                 if (_world.GetEntityLong(x).TryGetID(out int unitID))
                                 {
                                     targetAspect.CalculationCellDestinationRequest.TryAdd(unitID);
-                                    if (targetAspect.Obstacles.Read(unitID).Value.TryGetID(out int obstacleID))
+                                    if (targetAspect.CustomIsMatches(unitID) && targetAspect.Obstacles.Read(unitID)
+                                            .Value.TryGetID(out int obstacleID))
                                     {
                                         return obstacleAspect.CellDestinations.Read(obstacleID).Value.y;
                                     }
@@ -281,7 +312,8 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                                 if (_world.GetEntityLong(x).TryGetID(out int unitID))
                                 {
                                     targetAspect.CalculationCellDestinationRequest.TryAdd(unitID);
-                                    if (targetAspect.Obstacles.Read(unitID).Value.TryGetID(out int obstacleID))
+                                    if (targetAspect.CustomIsMatches(unitID) && targetAspect.Obstacles.Read(unitID)
+                                            .Value.TryGetID(out int obstacleID))
                                     {
                                         return -obstacleAspect.CellDestinations.Read(obstacleID).Value.y;
                                     }

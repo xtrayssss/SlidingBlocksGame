@@ -25,7 +25,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
         {
             [Inc] public readonly EcsPool<ActiveGameField> ActiveGameFields;
             [Inc] public readonly EcsPool<MovementDirection> Directions;
-            [Exc] public readonly EcsPool<Obstacle> Obstacles;
+            //[Exc] public readonly EcsPool<Obstacle> Obstacles;
         }
 
         public void Run()
@@ -41,7 +41,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                         Debug.Log("Movement command: " + blockID);
 
                         aspect.MovementCommand.Add(blockID);
-                        aspect.CalculateDestinationCellRequest.Add(blockID);
+                        aspect.CalculateDestinationCellRequest.TryAdd(blockID);
                     }
                 }
             }

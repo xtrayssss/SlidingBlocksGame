@@ -253,9 +253,14 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                         cellPosition.Value + nearDistance.Value *
                         assignedGroupAspect.Directions.Read(assignedGroupID).Value;
 
-                    cellDestination.Value -=
-                        assignedGroupAspect.Directions.Read(assignedGroupID).Value * new float2(1, 1);
+                    Debug.Log(cellDestination.Value);
+                    //
+                    // cellDestination.Value +=
+                    //     assignedGroupAspect.Directions.Read(assignedGroupID).Value * new float2(1, 1);
+                    //
+                    // Debug.Log(cellDestination.Value);
 
+                    
                     aspect.WorldDestination.Add(entity).Value =
                         CrossGrid.GetWorldPosition(
                             coordinates: cellDestination.Value,
