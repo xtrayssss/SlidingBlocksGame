@@ -15,7 +15,8 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
         {
             [IncImplicit(typeof(DestinationUnavailabilityCheckRequest))]
             [ExcImplicit(typeof(DestinationUnavailableMarker))]
-            [Inc] public readonly EcsPool<ActiveGameField> ActiveGameFields;
+            [Inc]
+            public readonly EcsPool<ActiveGameField> ActiveGameFields;
 
             [Inc] public readonly EcsPool<CellPosition> CellPositions;
             [Inc] public readonly EcsPool<MovementDirection> Directions;
@@ -47,7 +48,28 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 
                     ref readonly CellPosition cellPosition = ref aspect.CellPositions.Read(entity);
 
-                    float2 end = cellPosition.Value + direction.Value * gameField.EdgeSize;
+                    float2 end = default;
+
+                    if (cellPosition.Value.x < gameField.EdgeSize)
+                    {
+                        end = new float2(3, cellPosition.Value.y);
+                    }
+                    else if (cellPosition.Value.x >= gameField.EdgeSize + gameField.CenterSize)
+                    {
+                        end = new float2(2, cellPosition.Value.y);
+                    }
+                    else if (cellPosition.Value.y < gameField.EdgeSize)
+                    {
+                        end = new float2(cellPosition.Value.x, 3);
+                    }
+                    else if (cellPosition.Value.y >= gameField.EdgeSize + gameField.CenterSize)
+                    {
+                        end = new float2(cellPosition.Value.x, 2);
+                    }
+                    else if (cellPosition.Value.y >= gameField.EdgeSize + gameField.CenterSize)
+                    {
+                        end = new float2(cellPosition.Value.x, 2);
+                    }
 
                     float2 start;
 

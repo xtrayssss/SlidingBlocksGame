@@ -57,8 +57,10 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                             {
                                 aspect.Obstacles.TryAddOrGet(targetID).Value = block.ToEntityLong(_world);
                             }
+
+                            Debug.Log(targetID + "OOOOOOOOOOOOOOOOOOOOOOOOOO");
                             
-                            aspect.DestinationUnavailableMarker.Add(targetID);
+                            aspect.DestinationUnavailableMarker.TryAdd(targetID);
 
                             break;
                         }

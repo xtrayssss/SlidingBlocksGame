@@ -25,6 +25,8 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                 ref readonly Units units = ref aspect.Units.Read(entity);
                 ref readonly ObstacleCellPositions obstacleCellPositions = ref aspect.ObstacleCellPositions.Read(entity);
 
+                Debug.Log("123");
+                
                 if (obstacleCellPositions.Value.Count != 0)
                 {
                     Debug.Log("123");
