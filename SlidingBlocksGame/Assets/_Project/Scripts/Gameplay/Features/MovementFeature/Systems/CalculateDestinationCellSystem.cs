@@ -183,35 +183,21 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                             ref CellDestination cellDestination = ref aspect.CellDestination.TryAddOrGet(entity);
                             ref readonly CellPosition cellPosition = ref aspect.CellPositions.Read(entity);
 
-                            float distance;
-
                             if (cellPosition.Value.x < gameField.EdgeSize)
                             {
-                                cellDestination.Value = new float2(3, cellPosition.Value.y);
-
-                                distance = gameField.EdgeSize - 1 - cellPosition.Value.x;
+                                cellDestination.Value = new float2(gameField.EdgeSize + gameField.CenterSize - 1, cellPosition.Value.y);
                             }
                             else if (cellPosition.Value.x >= gameField.EdgeSize + gameField.CenterSize)
                             {
-                                cellDestination.Value = new float2(2, cellPosition.Value.y);
-
-                                distance = (gameField.EdgeSize + gameField.CenterSize - 1) - cellPosition.Value.x;
+                                cellDestination.Value = new float2(gameField.EdgeSize, cellPosition.Value.y);
                             }
                             else if (cellPosition.Value.y < gameField.EdgeSize)
                             {
-                                cellDestination.Value = new float2(cellPosition.Value.x, 3);
-
-                                distance = gameField.EdgeSize - 1 - cellPosition.Value.y;
+                                cellDestination.Value = new float2(cellPosition.Value.x, gameField.CenterSize + gameField.EdgeSize - 1);
                             }
                             else if (cellPosition.Value.y >= gameField.EdgeSize + gameField.CenterSize)
                             {
-                                cellDestination.Value = new float2(cellPosition.Value.x, 2);
-
-                                distance = (gameField.EdgeSize + gameField.CenterSize - 1) - cellPosition.Value.y;
-                            }
-                            else if (cellPosition.Value.y >= gameField.EdgeSize + gameField.CenterSize)
-                            {
-                                cellDestination.Value = new float2(cellPosition.Value.x, 2);
+                                cellDestination.Value = new float2(cellPosition.Value.x, gameField.EdgeSize);
                             }
 
                             //cellDestination.Value -= distance * aspect.Directions.Read(entity).Value;
@@ -283,31 +269,19 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 
             if (cellPosition.Value.x < gameField.EdgeSize)
             {
-                cellDestination.Value = new float2(3, cellPosition.Value.y);
-
-                distance = gameField.EdgeSize - 1 - cellPosition.Value.x;
+                cellDestination.Value = new float2(gameField.CenterSize + gameField.EdgeSize - 1, cellPosition.Value.y);
             }
             else if (cellPosition.Value.x >= gameField.EdgeSize + gameField.CenterSize)
             {
-                cellDestination.Value = new float2(2, cellPosition.Value.y);
-
-                distance = (gameField.EdgeSize + gameField.CenterSize - 1) - cellPosition.Value.x;
+                cellDestination.Value = new float2(gameField.EdgeSize, cellPosition.Value.y);
             }
             else if (cellPosition.Value.y < gameField.EdgeSize)
             {
-                cellDestination.Value = new float2(cellPosition.Value.x, 3);
-
-                distance = gameField.EdgeSize - 1 - cellPosition.Value.y;
+                cellDestination.Value = new float2(cellPosition.Value.x, gameField.CenterSize + gameField.EdgeSize - 1);
             }
             else if (cellPosition.Value.y >= gameField.EdgeSize + gameField.CenterSize)
             {
-                cellDestination.Value = new float2(cellPosition.Value.x, 2);
-
-                distance = (gameField.EdgeSize + gameField.CenterSize - 1) - cellPosition.Value.y;
-            }
-            else if (cellPosition.Value.y >= gameField.EdgeSize + gameField.CenterSize)
-            {
-                cellDestination.Value = new float2(cellPosition.Value.x, 2);
+                cellDestination.Value = new float2(cellPosition.Value.x, gameField.EdgeSize);
             }
 
             aspect.WorldDestination.TryAddOrGet(first).Value =
