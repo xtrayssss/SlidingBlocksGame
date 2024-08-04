@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
 using DCFApixels.DragonECS;
+using Unity.Collections.LowLevel.Unsafe;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -140,64 +141,17 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                 if (sectionAspect.Targets.Read(entity).Value.TryGetID(out int targetID) &&
                     _world.GetTagPool<DestinationUnavailableMarker>().Has(targetID))
                 {
-                    Debug.Log(123);
                     if (targetAspect.AssignedGroups.Read(targetID).Value.TryGetID(out int groupID))
                     {
-                        // if (targetAspect.Obstacles.Read(targetID).Value.TryGetID(out int obstacleID))
-                        // {
-                        Debug.Log("123");
-
                         ObstacleAspect obstacleAspect = _world.GetAspect<ObstacleAspect>();
 
                         AssignedGroupAspect assignedGroupAspect = _world.GetAspect<AssignedGroupAspect>();
-
-                        // ref readonly var obstaclePosition = ref obstacleAspect.CellDestinations.Read(obstacleID);
-                        //
-                        // ref ObstacleCellPositions obstacleCellPositions =
-                        //     ref assignedGroupAspect.Obstacles.Get(groupID);
-                        //
-                        // if (!obstacleCellPositions.Value.Contains(obstaclePosition.Value))
-                        //     continue;
 
                         Debug.Log("'Near'");
 
                         ref readonly var direction = ref assignedGroupAspect.Directions.Read(groupID);
 
                         ref Units units = ref assignedGroupAspect.Units.Get(groupID);
-
-                        // if (math.all(direction.Value == new float2(1, 0)))
-                        // {
-                        //     obstacleCellPositions.Value =
-                        //         assignedGroupAspect.Obstacles.Read(groupID).Value.OrderBy(position => position.x)
-                        //             .ToList();
-                        // }
-                        // else if (math.all(direction.Value == new float2(-1, 0)))
-                        // {
-                        //     obstacleCellPositions.Value =
-                        //         assignedGroupAspect.Obstacles.Read(groupID).Value.OrderBy(position => -position.x)
-                        //             .ToList();
-                        //     
-                        // }
-                        // else if (math.all(direction.Value == new float2(0, 1)))
-                        // {
-                        //     obstacleCellPositions.Value =
-                        //         assignedGroupAspect.Obstacles.Read(groupID).Value.OrderBy(position => -position.y)
-                        //             .ToList();
-                        // }
-                        // else if (math.all(direction.Value == new float2(0, -1)))
-                        // {
-                        //     obstacleCellPositions.Value =
-                        //         assignedGroupAspect.Obstacles.Read(groupID).Value.OrderBy(position => position.y)
-                        //             .ToList();
-                        // }
-                        //
-                        // foreach (var obstacle in assignedGroupAspect.Obstacles.Read(groupID).Value)
-                        // {
-                        //     Debug.Log(obstacle);
-                        // }
-
-                        // if (obstacleCellPositions.Value.Count != 0)
-                        // {
 
                         if (math.all(direction.Value == new float2(1, 0)))
                         {
@@ -206,7 +160,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                                 if (_world.GetEntityLong(x).TryGetID(out int unitID))
                                 {
                                     targetAspect.CalculationCellDestinationRequest.TryAdd(unitID);
-
+                                    
                                     if (targetAspect.CustomIsMatches(unitID) && targetAspect.Obstacles.Read(unitID)
                                             .Value.TryGetID(out int obstacleID))
                                     {
@@ -222,7 +176,8 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                                 if (targetAspect.Obstacles.Read(unitObstacleID).Value.TryGetID(out int obstacleID))
                                 {
                                     assignedGroupAspect.NearDistances.Get(groupID).Value =
-                                        _world.GetPool<CellDestination>().Read(obstacleID).Value;
+                                        math.abs(_world.GetPool<CellDestination>().Read(obstacleID).Value -
+                                                 _world.GetPool<CellPosition>().Read(unitObstacleID).Value);
                                 }
                             }
                         }
@@ -233,27 +188,6 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                                 if (_world.GetEntityLong(x).TryGetID(out int unitID))
                                 {
                                     targetAspect.CalculationCellDestinationRequest.TryAdd(unitID);
-
-                                    // if (_world.GetPool<Obstacle>().Has(unitID) == false &&
-                                    //     targetAspect.IsMatches(unitID))
-                                    // {
-                                    //     EcsDebug.Print("====================================");
-                                    //     EcsDebug.Print(_world.GetEntityLong(unitID));
-                                    //
-                                    //     TargetAspect aspect = _world.GetAspect<TargetAspect>();
-                                    //     EcsDebug.Print(aspect.Mask.ToString());
-                                    //     EcsDebug.Print("Inc " + aspect.Mask.Inc.ToArray());
-                                    //     EcsDebug.Print("Exc " + aspect.Mask.Exc.ToArray());
-                                    //
-                                    //     List<object> list = new List<object>();
-                                    //     _world.GetComponentsFor(unitID, list);
-                                    //     EcsDebug.Print(string.Join(',', list));
-                                    //
-                                    //     var ids = _world.GetComponentTypeIDsFor(unitID);
-                                    //     EcsDebug.Print(string.Join(',', ids.ToArray()));
-                                    //
-                                    //     EcsDebug.Print("====================================");
-                                    // }
 
                                     if (targetAspect.CustomIsMatches(unitID) && targetAspect.Obstacles.Read(unitID)
                                             .Value
@@ -273,7 +207,8 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                                 if (targetAspect.Obstacles.Read(unitObstacleID).Value.TryGetID(out int obstacleID))
                                 {
                                     assignedGroupAspect.NearDistances.Get(groupID).Value =
-                                        _world.GetPool<CellDestination>().Read(obstacleID).Value;
+                                        math.abs(_world.GetPool<CellDestination>().Read(obstacleID).Value -
+                                                 _world.GetPool<CellPosition>().Read(unitObstacleID).Value);
                                 }
                             }
                         }
@@ -301,7 +236,8 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                                 if (targetAspect.Obstacles.Read(unitObstacleID).Value.TryGetID(out int obstacleID))
                                 {
                                     assignedGroupAspect.NearDistances.Get(groupID).Value =
-                                        _world.GetPool<CellDestination>().Read(obstacleID).Value;
+                                        math.abs(_world.GetPool<CellDestination>().Read(obstacleID).Value -
+                                                 _world.GetPool<CellPosition>().Read(unitObstacleID).Value);
                                 }
                             }
                         }
@@ -328,7 +264,8 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                                 if (targetAspect.Obstacles.Read(unitObstacleID).Value.TryGetID(out int obstacleID))
                                 {
                                     assignedGroupAspect.NearDistances.Get(groupID).Value =
-                                        _world.GetPool<CellDestination>().Read(obstacleID).Value;
+                                        math.abs(_world.GetPool<CellDestination>().Read(obstacleID).Value -
+                                                 _world.GetPool<CellPosition>().Read(unitObstacleID).Value);
                                 }
                             }
                         }

@@ -85,7 +85,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 
                             units.Filtered = units.Value.OrderByDescending(unit =>
                                 _world.GetPool<CellPosition>().Read(unit).Value.x).Select(x =>
-                                    _world.GetEntityLong(x));
+                                _world.GetEntityLong(x));
                         }
                         else if (math.all(groupDir.Value == new float2(-1, 0)))
                         {
@@ -249,10 +249,13 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                     ref readonly NearDistance nearDistance =
                         ref assignedGroupAspect.NearDistances.Read(assignedGroupID);
 
-                    cellDestination.Value =
-                        cellPosition.Value + nearDistance.Value *
-                        assignedGroupAspect.Directions.Read(assignedGroupID).Value;
+                    cellDestination.Value = cellPosition.Value +
+                                            (assignedGroupAspect.Directions.Read(assignedGroupID).Value *
+                                             nearDistance.Value) - new float2(1, 1) * assignedGroupAspect.Directions
+                                                .Read(assignedGroupID).Value;
 
+                    Debug.Log(cellPosition.Value);
+                    Debug.Log(nearDistance.Value);
                     Debug.Log(cellDestination.Value);
                     //
                     // cellDestination.Value +=
@@ -260,7 +263,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                     //
                     // Debug.Log(cellDestination.Value);
 
-                    
+
                     aspect.WorldDestination.Add(entity).Value =
                         CrossGrid.GetWorldPosition(
                             coordinates: cellDestination.Value,
