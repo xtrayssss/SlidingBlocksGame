@@ -1,6 +1,7 @@
 ﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using DCFApixels.DragonECS;
 using UnityEngine;
+using UnityEngine.Playables;
 
 namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 {
@@ -12,7 +13,9 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
         {
             [Inc] public readonly EcsPool<Obstacle> Obstacles;
             [Inc] public readonly EcsTagPool<CellOccupancyMarker> OccupancyMarker;
+            [Inc] public readonly EcsPool<GameObjectConnect> GameObjectConnects;
         }
+
         private class ObstacleAspect : EcsAspectAuto
         {
             [Inc] public readonly EcsTagPool<CellOccupancyMarker> OccupancyMarker;
@@ -22,7 +25,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
         {
             foreach (int entity in _world.Where(out Aspect aspect))
             {
-                ref readonly Obstacle obstacle = ref aspect.Obstacles.Read(entity);
+                ref readonly Obstacle obstacle = ref aspect.Obstacles.Get(entity);
 
                 if (obstacle.Value.TryGetID(out int obstacleID))
                 {
@@ -30,7 +33,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 
                     if (obstacleAspect.IsMatches(obstacleID))
                     {
-                        Debug.Log("destroy " + entity); 
+                        Object.Destroy(aspect.GameObjectConnects.Read(entity).Connect.gameObject);
                     }
                 }
             }

@@ -83,7 +83,6 @@ namespace _Project.Scripts.Gameplay
                 .AddUnique(new DetectionDestinationDistanceSystem())
                 .AutoDelTag<DestinationUnavailabilityCheckRequest>()
                 .AutoDelTag<DetectionDistanceRequest>()
-                // /.Add(new CellOccupancySystem())
 
                 // movement feature
                 .AddUnique(new TransformSystem())
@@ -97,12 +96,18 @@ namespace _Project.Scripts.Gameplay
                 .AddUnique(new DestinationMovementSystem())
                 .AutoDelTag<CalculateDestinationCellRequest>()
 
+                // end level feature
+                .AddUnique(new CellOccupancySystem())
+                .AddUnique(new DestroySystem())
+                
                 // cooldown feature
                 .AddUnique(new RefreshCooldownSystem())
                 .AddUnique(new DeleteEntityCommandOnExpiredSystem())
                 .AddUnique(new CountdownSystem())
                 .AddUnique(new CooldownSystem())
                 .AutoDelTag<RefreshCooldownRequest>()
+
+                // cleanup feature
                 .AutoDelEntityTag<DeleteEntityCommand>()
                 .AddUnityDebug(_world)
                 .Inject(_world)
