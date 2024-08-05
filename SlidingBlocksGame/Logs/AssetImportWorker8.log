@@ -1,0 +1,1211 @@
+Using pre-set license
+Built from 'trunk' branch; Version is '6000.0.11f1 (fa01dd6b76d5) revision 16384477'; Using compiler version '193933523'; Build Type 'Release'
+OS: 'Windows 10  (10.0.19044) 64bit Professional' Language: 'ru' Physical Memory: 7561 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
+
+COMMAND LINE ARGUMENTS:
+D:\games\Unity\Unity Files (Dont Touch)\2021.3.9f1\6000.0.11f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker8
+-projectPath
+D:/games/SlidingCubesGame/SlidingBlocksGame
+-logFile
+Logs/AssetImportWorker8.log
+-srvPort
+63846
+-job-worker-count
+5
+-background-job-worker-count
+8
+-asset-garbage-collectors
+1
+Successfully changed project path to: D:/games/SlidingCubesGame/SlidingBlocksGame
+D:/games/SlidingCubesGame/SlidingBlocksGame
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Player connection [14412]  Target information:
+
+Player connection [14412]  * "[IP] 192.168.170.120 [Port] 0 [Flags] 2 [Guid] 3624125194 [EditorId] 3624125194 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-J7U7MAN) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [14412] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [14412] Host joined alternative multi-casting on [225.0.0.222:34997]...
+JobSystem: Creating JobQueue using job-worker-count value 5
+Library Redirect Path: Library/
+[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+Refreshing native plugins compatible for Editor in 1.80 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 6000.0.11f1 (fa01dd6b76d5)
+[Subsystems] Discovering subsystems at path D:/games/Unity/Unity Files (Dont Touch)/2021.3.9f1/6000.0.11f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path D:/games/SlidingCubesGame/SlidingBlocksGame/Assets
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: AMD Radeon (TM) Graphics (ID=0x15e7)
+    Vendor:   ATI
+    VRAM:     3780 MB
+    Driver:   31.0.12018.5
+Initialize mono
+Mono path[0] = 'D:/games/Unity/Unity Files (Dont Touch)/2021.3.9f1/6000.0.11f1/Editor/Data/Managed'
+Mono path[1] = 'D:/games/Unity/Unity Files (Dont Touch)/2021.3.9f1/6000.0.11f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'D:/games/Unity/Unity Files (Dont Touch)/2021.3.9f1/6000.0.11f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56988
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: D:/games/Unity/Unity Files (Dont Touch)/2021.3.9f1/6000.0.11f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.002308 seconds.
+- Loaded All Assemblies, in  0.436 seconds
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.401 seconds
+Domain Reload Profiling: 837ms
+	BeginReloadAssembly (157ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (0ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (1ms)
+	RebuildCommonClasses (49ms)
+	RebuildNativeTypeToScriptingClass (14ms)
+	initialDomainReloadingComplete (56ms)
+	LoadAllAssembliesAndSetupDomain (158ms)
+		LoadAssemblies (155ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (155ms)
+			TypeCache.Refresh (153ms)
+				TypeCache.ScanAssembly (139ms)
+			BuildScriptInfoCaches (0ms)
+			ResolveRequiredComponents (0ms)
+	FinalizeReload (402ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (363ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (25ms)
+			SetLoadedEditorAssemblies (4ms)
+			BeforeProcessingInitializeOnLoad (6ms)
+			ProcessInitializeOnLoadAttributes (164ms)
+			ProcessInitializeOnLoadMethodAttributes (163ms)
+			AfterProcessingInitializeOnLoad (0ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (0ms)
+========================================================================
+Worker process is ready to serve import requests
+Import Worker Mode flag is 0x00
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  1.902 seconds
+'Packages/com.dcfa_pixels.dragonecs-unity/src/Connectors/EcsWorldProvider.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.dcfa_pixels.dragonecs-unity/src/Buildin/EcsWorldProvider.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+Refreshing native plugins compatible for Editor in 5.22 ms, found 3 plugins.
+Native extension for WindowsStandalone target not found
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.02 seconds
+Mono: successfully reloaded assembly
+Package Manager log level set to [2]
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+- Finished resetting the current domain, in  1.096 seconds
+Domain Reload Profiling: 2999ms
+	BeginReloadAssembly (593ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (7ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (35ms)
+	RebuildCommonClasses (31ms)
+	RebuildNativeTypeToScriptingClass (11ms)
+	initialDomainReloadingComplete (33ms)
+	LoadAllAssembliesAndSetupDomain (1232ms)
+		LoadAssemblies (553ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (765ms)
+			TypeCache.Refresh (687ms)
+				TypeCache.ScanAssembly (574ms)
+			BuildScriptInfoCaches (63ms)
+			ResolveRequiredComponents (8ms)
+	FinalizeReload (1098ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (854ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (3ms)
+			SetLoadedEditorAssemblies (6ms)
+			BeforeProcessingInitializeOnLoad (46ms)
+			ProcessInitializeOnLoadAttributes (524ms)
+			ProcessInitializeOnLoadMethodAttributes (272ms)
+			AfterProcessingInitializeOnLoad (2ms)
+			EditorAssembliesLoaded (1ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (6ms)
+Refreshing native plugins compatible for Editor in 1.43 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 10 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 3669 unused Assets / (1.0 MB). Loaded Objects now: 4315.
+Memory consumption went from 122.7 MB to 121.7 MB.
+Total: 20.604100 ms (FindLiveObjects: 0.411300 ms CreateObjectMapping: 0.469100 ms MarkObjects: 18.583000 ms  DeleteObjects: 1.138000 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 9734.159301 seconds.
+  path: Assets/_Project/Lowpoly Cube Animals 3D/Models/Environment
+  artifactKey: Guid(b19ac0cafe954944d9bcbd126ea141f2) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Lowpoly Cube Animals 3D/Models/Environment using Guid(b19ac0cafe954944d9bcbd126ea141f2) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '6723679bda2a49818a4fc94900f66f7f') in 0.0800308 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000060 seconds.
+  path: Assets/_Project/Lowpoly Cube Animals 3D/Textures/Floor.png
+  artifactKey: Guid(722b62f2b9fd0bc4fac579665e3a4a81) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Lowpoly Cube Animals 3D/Textures/Floor.png using Guid(722b62f2b9fd0bc4fac579665e3a4a81) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '58cd049c90da5f38e1a144b0635f19e0') in 0.0874799 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/_Project/Lowpoly Cube Animals 3D/Materials/Grass_Material.mat
+  artifactKey: Guid(fdd827e562d3ef24db28636e4b0eb273) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Lowpoly Cube Animals 3D/Materials/Grass_Material.mat using Guid(fdd827e562d3ef24db28636e4b0eb273) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '2e1849e0ad5902cdf8147b3212aebf94') in 0.0270991 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000046 seconds.
+  path: Assets/_Project/Lowpoly Cube Animals 3D/Textures/palette-cubes.png
+  artifactKey: Guid(9ea5ba44e82fef7428a13c6b6c08bc05) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Lowpoly Cube Animals 3D/Textures/palette-cubes.png using Guid(9ea5ba44e82fef7428a13c6b6c08bc05) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '4eb5e16c0a8d9875db3e03592f740be4') in 0.0107751 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/_Project/Lowpoly Cube Animals 3D/Texture2D/png_icon.png
+  artifactKey: Guid(5ff06ae9de03f3749929a9908a284594) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Lowpoly Cube Animals 3D/Texture2D/png_icon.png using Guid(5ff06ae9de03f3749929a9908a284594) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '10848485ffe5f4dd8d1ce8d690ec6b06') in 0.0364842 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/_Project/Lowpoly Cube Animals 3D/Models
+  artifactKey: Guid(b53dcd829040eb54ab4b9fc31c765318) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Lowpoly Cube Animals 3D/Models using Guid(b53dcd829040eb54ab4b9fc31c765318) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: 'fb3ed1adeb8412be582de33634ec1a30') in 0.0043251 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000042 seconds.
+  path: Assets/_Project/Lowpoly Cube Animals 3D/Models/Environment/Fir.asset
+  artifactKey: Guid(1866afe65da865445b27de094ce0cf3d) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Lowpoly Cube Animals 3D/Models/Environment/Fir.asset using Guid(1866afe65da865445b27de094ce0cf3d) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '83838dcaf9d8ee65c059dedd9ef6e888') in 0.0084079 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/_Project/Lowpoly Cube Animals 3D/Texture2D/TreeYellow.png
+  artifactKey: Guid(878883cabf51cb248900b9040e81ba7d) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Lowpoly Cube Animals 3D/Texture2D/TreeYellow.png using Guid(878883cabf51cb248900b9040e81ba7d) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '88b6b4b3d2d3f93725dabbbe7d6f2a90') in 0.0306679 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/_Project/Lowpoly Cube Animals 3D/Texture2D/unlock.png
+  artifactKey: Guid(4b6366a3b2d25fe4485cb7f7815b883d) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Lowpoly Cube Animals 3D/Texture2D/unlock.png using Guid(4b6366a3b2d25fe4485cb7f7815b883d) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '5e984445c44c032f5f7f285199900e6a') in 0.0126571 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/_Project/Lowpoly Cube Animals 3D/Texture2D/Tut04.png
+  artifactKey: Guid(c97f1976460032247b52bceab31b63f1) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Lowpoly Cube Animals 3D/Texture2D/Tut04.png using Guid(c97f1976460032247b52bceab31b63f1) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '4825070bf982a8d95abbdfe964f5f402') in 0.0133395 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/_Project/Lowpoly Cube Animals 3D/Texture2D/lock.png
+  artifactKey: Guid(3f49e87d6e0d45b4b906b69f9feadd53) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Lowpoly Cube Animals 3D/Texture2D/lock.png using Guid(3f49e87d6e0d45b4b906b69f9feadd53) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '6ed0bf6f46c560cbd328324487f0f169') in 0.0149176 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/_Project/Lowpoly Cube Animals 3D/Materials/Cube_Stone.mat
+  artifactKey: Guid(ed771cb329404cc4d84d68d56303c8b7) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Lowpoly Cube Animals 3D/Materials/Cube_Stone.mat using Guid(ed771cb329404cc4d84d68d56303c8b7) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: 'f65114822dcfdd8bc8132e0705b53d46') in 0.0059364 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/_Project/Lowpoly Cube Animals 3D/Texture2D/shop.png
+  artifactKey: Guid(0bd175397a552a84cb69553b43b4aa21) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Lowpoly Cube Animals 3D/Texture2D/shop.png using Guid(0bd175397a552a84cb69553b43b4aa21) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '9ee92996795c2031d9d2c138335bac2b') in 0.0114719 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/_Project/Lowpoly Cube Animals 3D/Materials
+  artifactKey: Guid(217d34db2dfc753488682f31090ace46) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Lowpoly Cube Animals 3D/Materials using Guid(217d34db2dfc753488682f31090ace46) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '09265231f01bf5d3ff463ed67dd4b798') in 0.0034355 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/_Project/Lowpoly Cube Animals 3D/Models/Environment/Tile_0.asset
+  artifactKey: Guid(14375bc67f132ce40bd3454de4428873) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Lowpoly Cube Animals 3D/Models/Environment/Tile_0.asset using Guid(14375bc67f132ce40bd3454de4428873) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '451df8f0f67d9132510677209e6ea8f5') in 0.0040374 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000040 seconds.
+  path: Assets/_Project/Lowpoly Cube Animals 3D/Prefabs/Coin.prefab
+  artifactKey: Guid(d19eb0a3287b1904d90b47b592422bd2) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Lowpoly Cube Animals 3D/Prefabs/Coin.prefab using Guid(d19eb0a3287b1904d90b47b592422bd2) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '002ca0e66779c6a958fc398ec3e85fdc') in 0.0274526 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 7
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/_Project/Lowpoly Cube Animals 3D/Texture2D/settings.png
+  artifactKey: Guid(cf6809339826f7148b2cd42ea1a8c720) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Lowpoly Cube Animals 3D/Texture2D/settings.png using Guid(cf6809339826f7148b2cd42ea1a8c720) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '9e6da77ab5a8642eb6787b1a5885dcb7') in 0.0127153 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/_Project/Lowpoly Cube Animals 3D/Materials/Tree2_Map2_material.mat
+  artifactKey: Guid(d313e2218ad4c8847aabce4ffb01bbe5) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Lowpoly Cube Animals 3D/Materials/Tree2_Map2_material.mat using Guid(d313e2218ad4c8847aabce4ffb01bbe5) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '72221491833791ca1b5e5ee63b410f55') in 0.0073248 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000038 seconds.
+  path: Assets/_Project/Lowpoly Cube Animals 3D/Materials/TileMaterial_0.mat
+  artifactKey: Guid(806080bfc8cd32c49bdf18ab3c04402f) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Lowpoly Cube Animals 3D/Materials/TileMaterial_0.mat using Guid(806080bfc8cd32c49bdf18ab3c04402f) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '3aba984c58f8d545e3dfb8eb3acb0d85') in 0.0066485 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000038 seconds.
+  path: Assets/_Project/Lowpoly Cube Animals 3D/Texture2D/CoinCube.png
+  artifactKey: Guid(310b748f13288e54d8ed94e286c16fc5) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Lowpoly Cube Animals 3D/Texture2D/CoinCube.png using Guid(310b748f13288e54d8ed94e286c16fc5) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: 'f0bea3d63f382972df98c6b84fed1198') in 0.0125434 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/_Project/Lowpoly Cube Animals 3D/Texture2D/sound_on.png
+  artifactKey: Guid(2e505634add7091439b8205dc091df20) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Lowpoly Cube Animals 3D/Texture2D/sound_on.png using Guid(2e505634add7091439b8205dc091df20) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: 'a07d9eca024e396796ab5c0ffe38acf7') in 0.0141991 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/_Project/Lowpoly Cube Animals 3D/Texture2D/sunburst.png
+  artifactKey: Guid(27c0003af9277c84c9bb8b043f40f064) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Lowpoly Cube Animals 3D/Texture2D/sunburst.png using Guid(27c0003af9277c84c9bb8b043f40f064) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: 'd6c66035091a72e7c26c30ad616eaff3') in 0.0130401 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/_Project/Lowpoly Cube Animals 3D/Textures/cloud_2x2_hard.png
+  artifactKey: Guid(fd601fd09c034c8418d22cb4f487ae7e) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Lowpoly Cube Animals 3D/Textures/cloud_2x2_hard.png using Guid(fd601fd09c034c8418d22cb4f487ae7e) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: 'fa1494ee61b2dea9000c82179d206a9e') in 0.0103318 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000046 seconds.
+  path: Assets/_Project/Lowpoly Cube Animals 3D/Prefabs/Bull.prefab
+  artifactKey: Guid(82b32c306a1326440b03fe84da8526c6) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Lowpoly Cube Animals 3D/Prefabs/Bull.prefab using Guid(82b32c306a1326440b03fe84da8526c6) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: 'a456c848cdccbfdf922239186dd614a7') in 0.0065945 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/_Project/Lowpoly Cube Animals 3D/Models/Environment/Tree_0.asset
+  artifactKey: Guid(af07b8d600b9df24aaf8781caca730ed) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Lowpoly Cube Animals 3D/Models/Environment/Tree_0.asset using Guid(af07b8d600b9df24aaf8781caca730ed) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '53f3c79c2fc68a920b62b0d49f188b19') in 0.0046953 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/_Project/Lowpoly Cube Animals 3D/Texture2D/arrow.png
+  artifactKey: Guid(8ceb7460413dc854a96527623d0613b2) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Lowpoly Cube Animals 3D/Texture2D/arrow.png using Guid(8ceb7460413dc854a96527623d0613b2) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: 'adb8675233b1629f9bf64a422d789dfd') in 0.0115426 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/_Project/Lowpoly Cube Animals 3D/Materials/TileMaterial_1.mat
+  artifactKey: Guid(b12b4baebf4f98949a33e5c238411fc2) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Lowpoly Cube Animals 3D/Materials/TileMaterial_1.mat using Guid(b12b4baebf4f98949a33e5c238411fc2) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '074fb4df876bd07e6e631df21ed9622f') in 0.0057084 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/_Project/Lowpoly Cube Animals 3D/Texture2D/Tut03.png
+  artifactKey: Guid(68934a6f5bad3e444bf6eedb91e7bc58) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Lowpoly Cube Animals 3D/Texture2D/Tut03.png using Guid(68934a6f5bad3e444bf6eedb91e7bc58) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: 'd635414554628f048fcad5e71589026d') in 0.0264745 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000069 seconds.
+  path: Assets/_Project/Lowpoly Cube Animals 3D/Texture2D/Tut02.png
+  artifactKey: Guid(c10a1f40ebe2cc74caa85513ea7ae623) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Lowpoly Cube Animals 3D/Texture2D/Tut02.png using Guid(c10a1f40ebe2cc74caa85513ea7ae623) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: 'bc7424332787f6f80feee78536096613') in 0.0196163 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000038 seconds.
+  path: Assets/_Project/Lowpoly Cube Animals 3D/MovementTrailFX.prefab
+  artifactKey: Guid(fee3b9b6521d21c4cb0e7f3dfa6d67fb) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Lowpoly Cube Animals 3D/MovementTrailFX.prefab using Guid(fee3b9b6521d21c4cb0e7f3dfa6d67fb) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '1a59e487926f772b36226428e342d426') in 0.0756953 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 6
+
+========================================================================
+Received Import Request.
+  Time since last request: 5.830695 seconds.
+  path: Assets/_Project/GameCamera.prefab
+  artifactKey: Guid(9fd2fdba5f2932249b75c19358a4d5a3) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/GameCamera.prefab using Guid(9fd2fdba5f2932249b75c19358a4d5a3) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: 'cecb7102aefda2560a3a368121226340') in 0.0128386 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 7
+
+========================================================================
+Received Import Request.
+  Time since last request: 10.113351 seconds.
+  path: Assets/_Project/Scenes/SampleScene.unity
+  artifactKey: Guid(c850ee8c3b14cc8459e7e186857cf567) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scenes/SampleScene.unity using Guid(c850ee8c3b14cc8459e7e186857cf567) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '89d42abf33c2421680d57f739c72463d') in 0.0026807 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 22.922207 seconds.
+  path: Assets/_Project/Audio/AudioMixerController/Mix.mixer
+  artifactKey: Guid(5a0509d7541639549b3816a97324582b) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Audio/AudioMixerController/Mix.mixer using Guid(5a0509d7541639549b3816a97324582b) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+Refreshing native plugins compatible for Editor in 1.51 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+ -> (artifact id: '51575610ac3c5121f67be15dbe2dcbcb') in 0.0240318 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 19
+
+========================================================================
+Received Import Request.
+  Time since last request: 690.192222 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Models/Environment
+  artifactKey: Guid(b19ac0cafe954944d9bcbd126ea141f2) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Models/Environment using Guid(b19ac0cafe954944d9bcbd126ea141f2) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '17ce29141874663b81105233ad001dd5') in 0.0119191 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000038 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Texture2D/play.png
+  artifactKey: Guid(635a3cc2da0272541bcc83a2b66e7a79) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Texture2D/play.png using Guid(635a3cc2da0272541bcc83a2b66e7a79) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: 'bdbe9d0d603d1af77a0104208028e0b9') in 0.1532462 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Texture2D/square_0.png
+  artifactKey: Guid(1532648721b441f439f5896d26d32ca5) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Texture2D/square_0.png using Guid(1532648721b441f439f5896d26d32ca5) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '0cb1dff25fd924ff941c49e9fc64fe4c') in 0.0128934 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Models/Environment/TreeTall.asset
+  artifactKey: Guid(f8ef073dad4107446bdd705518cf1fac) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Models/Environment/TreeTall.asset using Guid(f8ef073dad4107446bdd705518cf1fac) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '209e1abe07b096a7c0bc2b7be5c452d9') in 0.0065487 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Texture2D/Tree2_Map2.png
+  artifactKey: Guid(44c475b5541160a42bad38caad2ebdb2) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Texture2D/Tree2_Map2.png using Guid(44c475b5541160a42bad38caad2ebdb2) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: 'ca25b97b6ad6e13d195a320f4adf5b2d') in 0.017449 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Textures/Floor.png
+  artifactKey: Guid(722b62f2b9fd0bc4fac579665e3a4a81) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Textures/Floor.png using Guid(722b62f2b9fd0bc4fac579665e3a4a81) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '2177a4a55b68ca9e252d70062fe10625') in 0.0119318 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Models/Animals/Lion.mesh
+  artifactKey: Guid(62c7e16ee84a0ed4b9ae589717e5f384) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Models/Animals/Lion.mesh using Guid(62c7e16ee84a0ed4b9ae589717e5f384) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: 'bb424da153e8f2775e654a5340af62b0') in 0.0064682 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Models/Environment/GrassStems_1.asset
+  artifactKey: Guid(39411464b945e12469efb0c87c659c0e) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Models/Environment/GrassStems_1.asset using Guid(39411464b945e12469efb0c87c659c0e) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '7dd7b58478dd75ed5e4c6201b2a00168') in 0.0038823 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Texture2D/music_on.png
+  artifactKey: Guid(8b8e2bb654fb2a740a86444b288b9b17) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Texture2D/music_on.png using Guid(8b8e2bb654fb2a740a86444b288b9b17) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '158485d4139ceba393e84e7783431711') in 0.0126217 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000043 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Models/Animals/Horse.asset
+  artifactKey: Guid(cd45bb45205d3b84da87da997cd56be0) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Models/Animals/Horse.asset using Guid(cd45bb45205d3b84da87da997cd56be0) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: 'c3f6e9baf17070337e4964036afef600') in 0.0054783 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Models/Animals
+  artifactKey: Guid(fe74bd3d58eaa1a4e94033566b4e1de1) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Models/Animals using Guid(fe74bd3d58eaa1a4e94033566b4e1de1) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '5319925bcf60bb1aa20ce4e0e94ba918') in 0.0036849 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Texture2D/remove-ads.png
+  artifactKey: Guid(9cdad3a5f82e89441a7c201f2a59b65a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Texture2D/remove-ads.png using Guid(9cdad3a5f82e89441a7c201f2a59b65a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: 'a68beb1e37593b82674a4c55dfbbf36f') in 0.0113682 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Materials/Grass_Material.mat
+  artifactKey: Guid(fdd827e562d3ef24db28636e4b0eb273) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Materials/Grass_Material.mat using Guid(fdd827e562d3ef24db28636e4b0eb273) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '0547f23a1966add2c3934ff55ce113db') in 0.0092282 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Texture2D/ButtonCircle.png
+  artifactKey: Guid(60cc23fa03c357f49a961b7a04b7ef78) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Texture2D/ButtonCircle.png using Guid(60cc23fa03c357f49a961b7a04b7ef78) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '2ec06eb93177cefc347c6a24391c89b6') in 0.0136223 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Models/Environment/GrassStems_0.asset
+  artifactKey: Guid(06bed5847a7bc494189415a8c2d85911) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Models/Environment/GrassStems_0.asset using Guid(06bed5847a7bc494189415a8c2d85911) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: 'ab904c9372ba4afdb8dbc27f18b2a9ff') in 0.003853 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Models/Animals/Pig.asset
+  artifactKey: Guid(9b69eb101571009479a5fd3dd5cf25a3) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Models/Animals/Pig.asset using Guid(9b69eb101571009479a5fd3dd5cf25a3) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: 'cadf00a28f353462765a48a25db139fb') in 0.0070802 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Models/Animals/Cube.asset
+  artifactKey: Guid(93d5788b12225264da2b55e40e3ee9f7) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Models/Animals/Cube.asset using Guid(93d5788b12225264da2b55e40e3ee9f7) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '6082f8702b30e63cedaee07b3ea08da4') in 0.0059625 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Texture2D/Poweredby_640px-White_HorizLogo.png
+  artifactKey: Guid(866f4ca6ffdfee04a8b65987b4b81c6a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Texture2D/Poweredby_640px-White_HorizLogo.png using Guid(866f4ca6ffdfee04a8b65987b4b81c6a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: 'ecb1f67ea497a8b332da31d252be2db8') in 0.012438 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Texture2D/sound_off.png
+  artifactKey: Guid(1c9d22656b7d1eb4bb6b31d721b8405a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Texture2D/sound_off.png using Guid(1c9d22656b7d1eb4bb6b31d721b8405a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: 'bff967632daa3e94ed5753bff80d7eef') in 0.0105615 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Texture2D/TreeYellow.png
+  artifactKey: Guid(878883cabf51cb248900b9040e81ba7d) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Texture2D/TreeYellow.png using Guid(878883cabf51cb248900b9040e81ba7d) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: 'd252947ffa76f51444899d3af4e28ebc') in 0.0207356 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Prefabs/Pig.prefab
+  artifactKey: Guid(c261ac2de84915042b720b25b9888203) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Prefabs/Pig.prefab using Guid(c261ac2de84915042b720b25b9888203) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '785e6ce027b93e0a05354d5af424b5f5') in 0.0072127 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Texture2D/unlock.png
+  artifactKey: Guid(4b6366a3b2d25fe4485cb7f7815b883d) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Texture2D/unlock.png using Guid(4b6366a3b2d25fe4485cb7f7815b883d) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '858f4bd9d429f234b6d32fd6d27ebb15') in 0.0115055 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Textures
+  artifactKey: Guid(3fc7b53ee37b5fd4b8210c5435df0cb2) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Textures using Guid(3fc7b53ee37b5fd4b8210c5435df0cb2) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '8f82f19208084c82656a2a8331b9d96d') in 0.0045549 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Texture2D/lock.png
+  artifactKey: Guid(3f49e87d6e0d45b4b906b69f9feadd53) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Texture2D/lock.png using Guid(3f49e87d6e0d45b4b906b69f9feadd53) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '23585272b614ea211f1347de819a1255') in 0.0108092 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Models/Environment/Tile_1.asset
+  artifactKey: Guid(abbf58ace82efc84f9a50105ecfa0877) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Models/Environment/Tile_1.asset using Guid(abbf58ace82efc84f9a50105ecfa0877) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '1e1e6896bf14c993974f75a816100912') in 0.0050092 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000101 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Prefabs/Panda.prefab
+  artifactKey: Guid(f6486c20d58ef1e49aa08975011e1926) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Prefabs/Panda.prefab using Guid(f6486c20d58ef1e49aa08975011e1926) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '27c25a871b4ad102424f111277af6a23') in 0.0072882 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Prefabs/Lion.prefab
+  artifactKey: Guid(c3b332594781a584d869682713bc1e4d) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Prefabs/Lion.prefab using Guid(c3b332594781a584d869682713bc1e4d) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: 'be942866b63891f5587ef3eec52227c4') in 0.0074962 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Materials
+  artifactKey: Guid(217d34db2dfc753488682f31090ace46) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Materials using Guid(217d34db2dfc753488682f31090ace46) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '6f01ee490874a80d954a680758b06856') in 0.0026739 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Texture2D/cancel.png
+  artifactKey: Guid(c0f844149bb79344289f4ef078a4c212) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Texture2D/cancel.png using Guid(c0f844149bb79344289f4ef078a4c212) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '22c4154fe14bd67f0445ac2f1d584ceb') in 0.00971 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Models/Animals/Cow.asset
+  artifactKey: Guid(41c98cfca6dd1cc45ab6cd0f365b67ba) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Models/Animals/Cow.asset using Guid(41c98cfca6dd1cc45ab6cd0f365b67ba) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '0729e9975c64d03c26df3e230f86fc54') in 0.0043957 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Texture2D/restart.png
+  artifactKey: Guid(30cc2aaec6089b8458f56f4ca5b83465) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Texture2D/restart.png using Guid(30cc2aaec6089b8458f56f4ca5b83465) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: 'eb1c08c443d927c03eb9ecd59b861492') in 0.0120488 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Texture2D/leaderboard.png
+  artifactKey: Guid(64db40c59f2fa5f42bf59836bbb7b342) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Texture2D/leaderboard.png using Guid(64db40c59f2fa5f42bf59836bbb7b342) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: 'da5b8af5cb9e068e06ccc3adb54fa6a7') in 0.0108728 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Materials/Tree2_Map2_material.mat
+  artifactKey: Guid(d313e2218ad4c8847aabce4ffb01bbe5) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Materials/Tree2_Map2_material.mat using Guid(d313e2218ad4c8847aabce4ffb01bbe5) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '4e0c9d4f14e3f0751dffe9bf46cc2972') in 0.006108 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Texture2D/CoinCube.png
+  artifactKey: Guid(310b748f13288e54d8ed94e286c16fc5) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Texture2D/CoinCube.png using Guid(310b748f13288e54d8ed94e286c16fc5) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '9a9da7f6350c4eb2c67fbc5ea178a260') in 0.0113154 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000045 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Models/Environment/Stone_1.asset
+  artifactKey: Guid(5107e95a25c55a348bf1d3d138304bed) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Models/Environment/Stone_1.asset using Guid(5107e95a25c55a348bf1d3d138304bed) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: 'f8e9891e388d5b92d386e9e690b09a1f') in 0.0098938 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Texture2D/sunburst.png
+  artifactKey: Guid(27c0003af9277c84c9bb8b043f40f064) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Texture2D/sunburst.png using Guid(27c0003af9277c84c9bb8b043f40f064) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '64ad79b7ca41750b15c88cc880202e4e') in 0.0119982 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Textures/cloud_2x2_hard.png
+  artifactKey: Guid(fd601fd09c034c8418d22cb4f487ae7e) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Textures/cloud_2x2_hard.png using Guid(fd601fd09c034c8418d22cb4f487ae7e) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '2081581196172f53ad213efa90a9519f') in 0.0111669 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Models/Environment/Tree_0.asset
+  artifactKey: Guid(af07b8d600b9df24aaf8781caca730ed) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Models/Environment/Tree_0.asset using Guid(af07b8d600b9df24aaf8781caca730ed) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '4b014574abea1ec8abf28a4087e25b03') in 0.0040877 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Models/Environment/Flower_0.asset
+  artifactKey: Guid(bd24ec988fd0423479d217411b1f6b40) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Models/Environment/Flower_0.asset using Guid(bd24ec988fd0423479d217411b1f6b40) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: 'f4efa4c8ee7d0fd246ead026f0e3c81e') in 0.0037823 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Models/Animals/Panda.asset
+  artifactKey: Guid(07162ba1712b26a4ca8dfb1cf86e9bc0) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Models/Animals/Panda.asset using Guid(07162ba1712b26a4ca8dfb1cf86e9bc0) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '7167a9bb73a991fd062b6700dc7fe2cf') in 0.005843 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Texture2D/Square.png
+  artifactKey: Guid(a804adbdc5ebc314c94974baa688b982) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Texture2D/Square.png using Guid(a804adbdc5ebc314c94974baa688b982) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: 'bf537c62fc9e02694e67e1f21cc16f0d') in 0.0100999 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Materials/Cloud_Material.mat
+  artifactKey: Guid(5dad5f80188250444b6a0d2315704967) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Materials/Cloud_Material.mat using Guid(5dad5f80188250444b6a0d2315704967) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '38fb9a3dcaf01278071d08578d4b999d') in 0.0175915 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Texture2D/Tut02.png
+  artifactKey: Guid(c10a1f40ebe2cc74caa85513ea7ae623) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Texture2D/Tut02.png using Guid(c10a1f40ebe2cc74caa85513ea7ae623) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '1c95c3dfa141974c7b838c82a777835c') in 0.0112479 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Materials/Floor_0.mat
+  artifactKey: Guid(fd7c3e33e5897c4429d8191a51bc3ec0) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Materials/Floor_0.mat using Guid(fd7c3e33e5897c4429d8191a51bc3ec0) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: 'e34e76905813b02be0516cc2bbc8e3c0') in 0.0044776 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/_Project/LowpollyGameAssets/MovementTrailFX.prefab
+  artifactKey: Guid(fee3b9b6521d21c4cb0e7f3dfa6d67fb) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/MovementTrailFX.prefab using Guid(fee3b9b6521d21c4cb0e7f3dfa6d67fb) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: 'bc14f56197d50122ff45757a344f2b3c') in 0.0308233 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 6
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Texture2D/cube.png
+  artifactKey: Guid(4bd447fca9f9301408965b5f8a38290e) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Texture2D/cube.png using Guid(4bd447fca9f9301408965b5f8a38290e) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '63aba1fa611faf80e444fad69f81c11d') in 0.0096004 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 7.496724 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Audio/AudioMixerController
+  artifactKey: Guid(780a9f8c9db8dc94095f3075622981a0) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Audio/AudioMixerController using Guid(780a9f8c9db8dc94095f3075622981a0) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: 'ad287523aaa30732cb40a40be666c7e3') in 0.003567 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Audio/AudioMixerController/Mix.mixer
+  artifactKey: Guid(5a0509d7541639549b3816a97324582b) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Audio/AudioMixerController/Mix.mixer using Guid(5a0509d7541639549b3816a97324582b) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+Refreshing native plugins compatible for Editor in 2.65 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+ -> (artifact id: '2df62c226d01c29cbf8faeaf412aca39') in 0.0221232 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 19
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Audio/oaklawn-dreams.ogg
+  artifactKey: Guid(dd5ef66239f3c3c4fb1ff5a3561d04c7) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Audio/oaklawn-dreams.ogg using Guid(dd5ef66239f3c3c4fb1ff5a3561d04c7) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '5c7a1ca8ff673928779ba1c4d3b2e063') in 0.2757085 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 34.506365 seconds.
+  path: Assets/_Project/LowpollyGameAssets/FX/ExplosionFX.prefab
+  artifactKey: Guid(6cb8d13d2038d504a82630f29e139e88) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/FX/ExplosionFX.prefab using Guid(6cb8d13d2038d504a82630f29e139e88) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: 'be8add19ad26ece05508ca381bbaf7aa') in 0.027878 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 6
+
+========================================================================
+Received Import Request.
+  Time since last request: 896.907691 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Texture2D/Floor.png
+  artifactKey: Guid(722b62f2b9fd0bc4fac579665e3a4a81) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Texture2D/Floor.png using Guid(722b62f2b9fd0bc4fac579665e3a4a81) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '212ef36173bb43f97ca1454945296401') in 0.02087 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 339.061424 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Cow.png
+  artifactKey: Guid(c5a3e84a971019b45980aefeb68fb23d) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Cow.png using Guid(c5a3e84a971019b45980aefeb68fb23d) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: 'e30b4c2bce42f504390e66e33c5d95fe') in 0.0254386 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.094332 seconds.
+  path: Assets/_Project/LowpollyGameAssets/T_Cow.png
+  artifactKey: Guid(b7ce7d9aa01fe084eae2a169bc85b8dc) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/T_Cow.png using Guid(b7ce7d9aa01fe084eae2a169bc85b8dc) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '41b10963b7df80f01951450d32112384') in 0.0189879 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 54.435165 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Prefabs/Cow.prefab
+  artifactKey: Guid(45a25154eb5e9bc48a78f55f1faf819e) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Prefabs/Cow.prefab using Guid(45a25154eb5e9bc48a78f55f1faf819e) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '823a21ee449f8e5d4fc9356a8a5972d3') in 0.0139168 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
+
+========================================================================
+Received Import Request.
+  Time since last request: 376.356542 seconds.
+  path: Assets/_Project/Environment.prefab
+  artifactKey: Guid(d6113a87ba3a00f4c8ee263fb77506d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/Environment.prefab using Guid(d6113a87ba3a00f4c8ee263fb77506d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: 'aedd6f0f1de92ba627f6903024263946') in 1.7249307 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 195
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.869657 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Materials/Tile_0.mat
+  artifactKey: Guid(806080bfc8cd32c49bdf18ab3c04402f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/LowpollyGameAssets/Materials/Tile_0.mat using Guid(806080bfc8cd32c49bdf18ab3c04402f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '9a309044c4b24113f03ad9ee1f666d2d') in 0.2235937 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.621905 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/CommonFeature/Components/WorldPosition.cs
+  artifactKey: Guid(2c08a3cbb46940088f4035d1418c3c0a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/Scripts/Gameplay/Features/CommonFeature/Components/WorldPosition.cs using Guid(2c08a3cbb46940088f4035d1418c3c0a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '6ae77c9a74e9d586b7f6068bf4a64be7') in 0.0030622 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 67.732714 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Texture2D/rate.png
+  artifactKey: Guid(f7532b1658cd0f444868012aa8811685) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/LowpollyGameAssets/Texture2D/rate.png using Guid(f7532b1658cd0f444868012aa8811685) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '873058703b31b7be141dd295bf76837f') in 0.0747485 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.485776 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Texture2D/sound_on.png
+  artifactKey: Guid(2e505634add7091439b8205dc091df20) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/LowpollyGameAssets/Texture2D/sound_on.png using Guid(2e505634add7091439b8205dc091df20) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: 'ec67b03bf893551f3d21c0463ee0741e') in 0.0116274 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Texture2D/share.png
+  artifactKey: Guid(fe03b2dae35babf499944105ad4be01d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/LowpollyGameAssets/Texture2D/share.png using Guid(fe03b2dae35babf499944105ad4be01d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: 'd14fb4aa2a4b20a0e29b107c92f5a18b') in 0.0120211 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 99.828601 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Sprites/arrow.png
+  artifactKey: Guid(8ceb7460413dc854a96527623d0613b2) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Sprites/arrow.png using Guid(8ceb7460413dc854a96527623d0613b2) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: 'c884f9fa7c2aa7e2ecf8c8cb530aa28f') in 0.0183725 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Sprites/play.png
+  artifactKey: Guid(635a3cc2da0272541bcc83a2b66e7a79) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Sprites/play.png using Guid(635a3cc2da0272541bcc83a2b66e7a79) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '5a7f89d10ae55766ada5115d0807ea9e') in 0.0622978 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Sprites/video.png
+  artifactKey: Guid(4caf63eab6cb4d744ba7390edbbc6dad) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Sprites/video.png using Guid(4caf63eab6cb4d744ba7390edbbc6dad) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '014222e6192c82a131e6f41d4356f3ff') in 0.0136221 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000045 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Sprites/remove-ads.png
+  artifactKey: Guid(9cdad3a5f82e89441a7c201f2a59b65a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Sprites/remove-ads.png using Guid(9cdad3a5f82e89441a7c201f2a59b65a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '1b64107f31089dbd604e412a5917c296') in 0.0090496 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Sprites/rate.png
+  artifactKey: Guid(f7532b1658cd0f444868012aa8811685) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Sprites/rate.png using Guid(f7532b1658cd0f444868012aa8811685) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: 'd6b5052ac6ab9bf2269b9f3bf977c238') in 0.0146155 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Sprites/Tut05.png
+  artifactKey: Guid(76ce0add900607849a6ceb5b442570b6) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Sprites/Tut05.png using Guid(76ce0add900607849a6ceb5b442570b6) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: 'a9a1b2264ad31cee774e0679c08c596e') in 0.0129992 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Sprites/sound_off.png
+  artifactKey: Guid(1c9d22656b7d1eb4bb6b31d721b8405a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Sprites/sound_off.png using Guid(1c9d22656b7d1eb4bb6b31d721b8405a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '15c8e9b54c8489ea7b4f07bdaaa41b27') in 0.0087616 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Sprites/twitter.png
+  artifactKey: Guid(c0d5985cd724f0d45953a2e23b18d928) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Sprites/twitter.png using Guid(c0d5985cd724f0d45953a2e23b18d928) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: 'c45ecea06511b71eae3d75c3105d670f') in 0.0108269 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Sprites/Tut04.png
+  artifactKey: Guid(c97f1976460032247b52bceab31b63f1) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Sprites/Tut04.png using Guid(c97f1976460032247b52bceab31b63f1) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: 'f7c0b57befed564f2493ce5eb7fce324') in 0.0130224 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Sprites/cancel.png
+  artifactKey: Guid(c0f844149bb79344289f4ef078a4c212) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Sprites/cancel.png using Guid(c0f844149bb79344289f4ef078a4c212) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '2f74b21b29cc6bcdd43493edcb75f4ff') in 0.0115166 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Sprites/restart.png
+  artifactKey: Guid(30cc2aaec6089b8458f56f4ca5b83465) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Sprites/restart.png using Guid(30cc2aaec6089b8458f56f4ca5b83465) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: 'c316fb30dcc86ff557ea902558065713') in 0.0082236 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Sprites/settings.png
+  artifactKey: Guid(cf6809339826f7148b2cd42ea1a8c720) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Sprites/settings.png using Guid(cf6809339826f7148b2cd42ea1a8c720) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: 'e47584cc23bbcc8cf010ebcd9940084f') in 0.0101661 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000036 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Sprites/CoinCube.png
+  artifactKey: Guid(310b748f13288e54d8ed94e286c16fc5) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Sprites/CoinCube.png using Guid(310b748f13288e54d8ed94e286c16fc5) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: 'd24bf286d5cb456dc307a33ab36e2d56') in 0.011333 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Sprites/gif_icon.png
+  artifactKey: Guid(809ea2fd2b0e9d143b606055d7f11188) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Sprites/gif_icon.png using Guid(809ea2fd2b0e9d143b606055d7f11188) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '38b4d4f5b5add5f6b05235551c4f6a3f') in 0.012804 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Sprites/share.png
+  artifactKey: Guid(fe03b2dae35babf499944105ad4be01d) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Sprites/share.png using Guid(fe03b2dae35babf499944105ad4be01d) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: 'b845c77ebdf7abde63f2518f2d334bb4') in 0.0101424 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Sprites/music_off.png
+  artifactKey: Guid(73c226ced0bb9264b950fe6547a459b5) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Sprites/music_off.png using Guid(73c226ced0bb9264b950fe6547a459b5) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: 'fb12b080f6ba1fdbedcd84efb3026e41') in 0.009559 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Sprites/cube.png
+  artifactKey: Guid(4bd447fca9f9301408965b5f8a38290e) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Sprites/cube.png using Guid(4bd447fca9f9301408965b5f8a38290e) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '0962b4f334fea788bcd02a7d6e12dba9') in 0.0084887 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Sprites/rounded.png
+  artifactKey: Guid(a5343608bff5b9848887a87f791b8723) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Sprites/rounded.png using Guid(a5343608bff5b9848887a87f791b8723) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: 'f3a89419bf3fea05bbc3acc8adc734b6') in 0.010796 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 12.268192 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Textures/Grass.png
+  artifactKey: Guid(2802ec51f13ce0e44b666de1db1be8fb) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Textures/Grass.png using Guid(2802ec51f13ce0e44b666de1db1be8fb) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: 'e37a3e18be4d9f347d9f34b335e07416') in 0.0583699 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Textures/Square.png
+  artifactKey: Guid(a804adbdc5ebc314c94974baa688b982) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Textures/Square.png using Guid(a804adbdc5ebc314c94974baa688b982) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) (ScriptedImporter)[PhysX] Initialized MultithreadedTaskDispatcher with 6 workers.
+ -> (artifact id: '42f475e90614d25096c14bf01cdba1cd') in 0.0720692 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
