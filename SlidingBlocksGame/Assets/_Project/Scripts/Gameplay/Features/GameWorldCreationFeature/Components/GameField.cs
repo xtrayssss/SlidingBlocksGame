@@ -2,6 +2,7 @@
 using DCFApixels.DragonECS;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Object = UnityEngine.Object;
 
 namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components
@@ -13,11 +14,16 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components
         public float3 OriginPosition;
         public int Size;
         public float Offset;
-        public int CellSize;
+        public float CellSize;
         public int CenterSize;
         public int EdgeSize;
 
+        public Cell[] Cells;
         public Unit[] Units;
+
+        public int BaseSize;
+        public float BaseCellSize;
+        public int CellsCount;
 
         [Serializable]
         public struct Unit
@@ -26,6 +32,14 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components
             public float2 CellPosition;
             public EcsEntityConnect Prefab;
             public float3 Rotation;
+        }
+        
+        [Serializable]
+        public struct Cell
+        {
+            public float2 CellPosition;
+            public float3 WorldPosition;
+            public GameObject View;
         }
 
         public class Template : ComponentTemplate<GameField>

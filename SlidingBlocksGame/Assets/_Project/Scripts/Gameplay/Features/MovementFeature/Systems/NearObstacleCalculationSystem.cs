@@ -160,7 +160,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                                 if (_world.GetEntityLong(x).TryGetID(out int unitID))
                                 {
                                     targetAspect.CalculationCellDestinationRequest.TryAdd(unitID);
-                                    
+
                                     if (targetAspect.CustomIsMatches(unitID) && targetAspect.Obstacles.Read(unitID)
                                             .Value.TryGetID(out int obstacleID))
                                     {
