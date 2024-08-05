@@ -19,22 +19,29 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
         {
             foreach (int entity in _world.Where(out Aspect aspect))
             {
-                ref GameField field = ref aspect.Fields.Get(entity);
+                ref GameField gameField = ref aspect.Fields.Get(entity);
 
                 GameObject container = new GameObject(name: "GameField");
 
-                for (int x = 0; x < field.Size; x++)
+                int counter = 0;
+                
+                for (int x = 0; x < gameField.Size; x++)
                 {
-                    for (int z = 0; z < field.Size; z++)
+                    for (int z = 0; z < gameField.Size; z++)
                     {
-                        if (x >= field.EdgeSize && x < field.EdgeSize + field.CenterSize ||
-                            z >= field.EdgeSize && z < field.EdgeSize + field.CenterSize)
+                        if (x >= gameField.EdgeSize && x < gameField.EdgeSize + gameField.CenterSize ||
+                            z >= gameField.EdgeSize && z < gameField.EdgeSize + gameField.CenterSize)
                         {
-                            Object.Instantiate(field.TilePrefab, new Vector3(
-                                    x * (field.CellSize + field.Offset) + field.OriginPosition.x, 0,
-                                    z * (field.CellSize + field.Offset) + field.OriginPosition.z),
+                            GameObject cell = Object.Instantiate(gameField.TilePrefab,  new Vector3(
+                                    x * (gameField.CellSize + gameField.Offset) + gameField.OriginPosition.x, 0,
+                                    z * (gameField.CellSize + gameField.Offset) + gameField.OriginPosition.z),
                                 Quaternion.identity,
                                 container.transform);
+                            
+                            gameField.Cells[counter++] = new GameField.Cell
+                            {
+                                View = cell
+                            };
                         }
                     }
                 }
