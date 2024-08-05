@@ -30,19 +30,20 @@ MonoBehaviour:
           TilePrefab: {fileID: 5678163285392456267, guid: e5378788f6301a2428eb21e32a7e779b,
             type: 3}
           OriginPosition:
-            x: -3
+            x: -2.5
             y: 0
-            z: -2
+            z: -1.8
           Size: 6
           Offset: 0.1
           CellSize: 0.7
           CenterSize: 0
           EdgeSize: 0
+          Cells: []
           Units:
           - Position:
-              x: -3
+              x: -2.5
               y: 0
-              z: 0.39999998
+              z: 0.6
             CellPosition:
               x: 0
               y: 3
@@ -53,9 +54,9 @@ MonoBehaviour:
               y: 90
               z: 0
           - Position:
-              x: -2.2
+              x: -1.7
               y: 0
-              z: 0.39999998
+              z: 0.6
             CellPosition:
               x: 1
               y: 3
@@ -66,9 +67,9 @@ MonoBehaviour:
               y: 90
               z: 0
           - Position:
-              x: -3
+              x: -2.5
               y: 0
-              z: 1.1999999
+              z: 1.4
             CellPosition:
               x: 0
               y: 4
@@ -79,9 +80,9 @@ MonoBehaviour:
               y: 90
               z: 0
           - Position:
-              x: 3.3999999
+              x: 3.8999999
               y: 0
-              z: 1.1999999
+              z: 1.4
             CellPosition:
               x: 8
               y: 4
@@ -92,9 +93,9 @@ MonoBehaviour:
               y: 90
               z: 0
           - Position:
-              x: 3.3999999
+              x: 3.8999999
               y: 0
-              z: 0.39999998
+              z: 0.6
             CellPosition:
               x: 8
               y: 3
@@ -106,6 +107,7 @@ MonoBehaviour:
               z: 0
           BaseSize: 6
           BaseCellSize: 0.7
+          CellsCount: 20
     - rid: 499105185158136147
       type: {class: WaveAlgorithm/Wrapper, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
         asm: Assembly-CSharp}
@@ -123,7 +125,7 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data:
         component:
-          Value: 1
+          Value: 0
     - rid: 499105185158136231
       type: {class: GameTag/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
         asm: Assembly-CSharp}
@@ -147,6 +149,7 @@ MonoBehaviour:
               CellSize: 1
               CenterSize: 0
               EdgeSize: 0
+              Cells: []
               Units:
               - Position:
                   x: 1
@@ -202,6 +205,7 @@ MonoBehaviour:
                   z: 0
               BaseSize: 0
               BaseCellSize: 0
+              CellsCount: 0
           - Scene: {fileID: 102900000, guid: c850ee8c3b14cc8459e7e186857cf567, type: 3}
             Field:
               TilePrefab: {fileID: 5678163285392456267, guid: e5378788f6301a2428eb21e32a7e779b,
@@ -215,6 +219,7 @@ MonoBehaviour:
               CellSize: 1
               CenterSize: 0
               EdgeSize: 0
+              Cells: []
               Units:
               - Position:
                   x: 1
@@ -270,6 +275,7 @@ MonoBehaviour:
                   z: 0
               BaseSize: 0
               BaseCellSize: 0
+              CellsCount: 0
           - Scene: {fileID: 102900000, guid: c850ee8c3b14cc8459e7e186857cf567, type: 3}
             Field:
               TilePrefab: {fileID: 5678163285392456267, guid: e5378788f6301a2428eb21e32a7e779b,
@@ -283,6 +289,7 @@ MonoBehaviour:
               CellSize: 1
               CenterSize: 0
               EdgeSize: 0
+              Cells: []
               Units:
               - Position:
                   x: 0
@@ -338,6 +345,7 @@ MonoBehaviour:
                   z: 0
               BaseSize: 0
               BaseCellSize: 0
+              CellsCount: 0
           - Scene: {fileID: 102900000, guid: c850ee8c3b14cc8459e7e186857cf567, type: 3}
             Field:
               TilePrefab: {fileID: 5678163285392456267, guid: e5378788f6301a2428eb21e32a7e779b,
@@ -351,6 +359,7 @@ MonoBehaviour:
               CellSize: 1
               CenterSize: 0
               EdgeSize: 0
+              Cells: []
               Units:
               - Position:
                   x: 0
@@ -406,3 +415,4 @@ MonoBehaviour:
                   z: 0
               BaseSize: 0
               BaseCellSize: 0
+              CellsCount: 0
