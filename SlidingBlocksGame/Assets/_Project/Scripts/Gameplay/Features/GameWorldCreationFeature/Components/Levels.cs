@@ -7,8 +7,6 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components
     [Serializable]
     public struct Levels : IEcsComponent
     {
-        public Level[] Value;
-
         [Serializable]
         public struct Level : ITemplate
         {

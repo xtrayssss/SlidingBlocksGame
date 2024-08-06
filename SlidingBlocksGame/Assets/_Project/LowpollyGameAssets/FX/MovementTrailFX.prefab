@@ -47,7 +47,7 @@ ParticleSystem:
   cullingMode: 3
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  emitterVelocityMode: 1
+  emitterVelocityMode: 0
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -179,8 +179,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 1.72
-      minScalar: 1.58
+      scalar: 0.86
+      minScalar: 0.79
       maxCurve:
         serializedVersion: 2
         m_Curve: []
