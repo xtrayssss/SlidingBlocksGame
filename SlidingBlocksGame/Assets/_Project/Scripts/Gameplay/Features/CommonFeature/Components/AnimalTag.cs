@@ -4,10 +4,9 @@ using DCFApixels.DragonECS;
 namespace _Project.Scripts.Gameplay.Features.CommonFeature.Components
 {
     [Serializable]
-    public struct BlockTag : IEcsComponent
+    public struct AnimalTag : IEcsComponent
     {
-        [Serializable]
-        public sealed class Wrapper : ComponentTemplate<BlockTag>
+        public sealed class Wrapper : ComponentTemplate<AnimalTag>
         {
         }
     }

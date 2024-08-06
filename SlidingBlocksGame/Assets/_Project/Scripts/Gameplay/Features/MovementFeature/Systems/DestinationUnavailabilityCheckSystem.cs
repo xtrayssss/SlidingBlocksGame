@@ -23,7 +23,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 
         private class BlockAspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(BlockTag))]
+            [IncImplicit(typeof(AnimalTag))]
             [ExcImplicit(typeof(DestinationUnavailableMarker))]
             [Inc] public readonly EcsPool<CellDestination> CellDestinations;
         }

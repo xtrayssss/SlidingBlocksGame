@@ -10,20 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d2b62f9703592042befb46ac1fee09c, type: 3}
-  m_Name: BlockCfg
+  m_Name: AnimalCfg
   m_EditorClassIdentifier: 
   _components:
-  - rid: 499105206452093177
   - rid: 499105211061633554
   - rid: 499105211061633557
   - rid: 499105255487700992
+  - rid: 8499802275569205505
+  - rid: 8499802275569205510
   references:
     version: 2
     RefIds:
-    - rid: 499105206452093177
-      type: {class: BlockTag/Wrapper, ns: _Project.Scripts.Gameplay.Features.CommonFeature.Components,
-        asm: Assembly-CSharp}
-      data: {}
     - rid: 499105211061633554
       type: {class: MovementEasingCfg/Wrapper, ns: _Project.Scripts.Gameplay.Features.MovementFeature.Components,
         asm: Assembly-CSharp}
@@ -45,3 +42,13 @@ MonoBehaviour:
       data:
         component:
           Value: 2
+    - rid: 8499802275569205505
+      type: {class: AnimalTag/Wrapper, ns: _Project.Scripts.Gameplay.Features.CommonFeature.Components,
+        asm: Assembly-CSharp}
+      data: {}
+    - rid: 8499802275569205510
+      type: {class: DestructionFxCfg/Template, ns: _Project.Scripts.Gameplay.Features.MovementFeature.Systems,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: {fileID: 11400000, guid: a54653134afb31346a77908bf62f2316, type: 2}

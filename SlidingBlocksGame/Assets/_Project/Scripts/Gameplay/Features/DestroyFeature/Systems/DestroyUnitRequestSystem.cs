@@ -1,19 +1,18 @@
 ﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using DCFApixels.DragonECS;
-using UnityEngine;
-using UnityEngine.Playables;
 
-namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
+namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
 {
-    public class DestroySystem : IEcsRun
+    public class DestroyUnitRequestSystem : IEcsRun
     {
         [EcsInject] private readonly EcsDefaultWorld _world;
 
-        private class Aspect : EcsAspectAuto
+        private class AnimalAspect : EcsAspectAuto
         {
             [Inc] public readonly EcsPool<Obstacle> Obstacles;
             [Inc] public readonly EcsTagPool<CellOccupancyMarker> OccupancyMarker;
             [Inc] public readonly EcsPool<GameObjectConnect> GameObjectConnects;
+            [Opt] public readonly EcsTagPool<DestroyUnitRequest> DestroyUnitRequest;
         }
 
         private class ObstacleAspect : EcsAspectAuto
@@ -23,9 +22,9 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 
         public void Run()
         {
-            foreach (int entity in _world.Where(out Aspect aspect))
+            foreach (int entity in _world.Where(out AnimalAspect animalAspect))
             {
-                ref readonly Obstacle obstacle = ref aspect.Obstacles.Get(entity);
+                ref readonly Obstacle obstacle = ref animalAspect.Obstacles.Get(entity);
 
                 if (obstacle.Value.TryGetID(out int obstacleID))
                 {
@@ -33,7 +32,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 
                     if (obstacleAspect.IsMatches(obstacleID))
                     {
-                        Object.Destroy(aspect.GameObjectConnects.Read(entity).Connect.gameObject);
+                        animalAspect.DestroyUnitRequest.Add(entity);
                     }
                 }
             }

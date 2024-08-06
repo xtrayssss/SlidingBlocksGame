@@ -3,11 +3,13 @@ using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Systems;
 using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
 using _Project.Scripts.Gameplay.Features.CooldownFeature.Systems;
+using _Project.Scripts.Gameplay.Features.DestroyFeature.Systems;
 using _Project.Scripts.Gameplay.Features.EasingFeature.Systems;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Systems;
+using _Project.Scripts.Gameplay.Features.VisualFeature.Systems;
 using DCFApixels.DragonECS;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -78,7 +80,14 @@ namespace _Project.Scripts.Gameplay
 
                 // end level feature
                 .AddUnique(new CellOccupancySystem())
-                .AddUnique(new DestroySystem())
+                
+                // destroy feature
+                .AddUnique(new DestroyUnitRequestSystem())
+                .AddUnique(new DestroyAnimalSystem())
+                .AddUnique(new DestructionFxSystem())
+                
+                // visual feature
+                .AddUnique(new PlayFxSystem())
 
                 // cooldown feature
                 .AddUnique(new RefreshCooldownSystem())
@@ -87,8 +96,10 @@ namespace _Project.Scripts.Gameplay
                 .AddUnique(new CooldownSystem())
                 .AutoDelTag<RefreshCooldownRequest>()
 
-                // cleanup feature
+                // destroy feature
+                .AddUnique(new DestroyViewSystem())
                 .AutoDelEntityTag<DeleteEntityCommand>()
+                
                 .AddUnityDebug(_world)
                 .Inject(_world)
                 .AutoInject()

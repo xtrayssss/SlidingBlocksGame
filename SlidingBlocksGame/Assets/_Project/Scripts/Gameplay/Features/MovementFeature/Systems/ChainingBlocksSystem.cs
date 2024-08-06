@@ -13,7 +13,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 
         private class BlockAspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(BlockTag))]
+            [IncImplicit(typeof(AnimalTag))]
             [Inc] public readonly EcsPool<MovementDirection> Directions;
 
             [Opt] public readonly EcsTagPool<MovementCommand> Commands;
