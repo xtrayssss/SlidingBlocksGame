@@ -40,7 +40,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                             x * (field.CellSize + field.Offset) + field.OriginPosition.x, 0,
                             z * (field.CellSize + field.Offset) + field.OriginPosition.z);
 
-                        GameObject tile = Object.Instantiate(field.TilePrefab, position, Quaternion.identity);
+                        GameObject tile = Object.Instantiate(field.CellPrefab, position, Quaternion.identity);
 
                         tile.transform.localScale = float3.zero;
 

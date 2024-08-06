@@ -1,7 +1,4 @@
-﻿using System;
-using System.Reflection;
-using _Project.Scripts.Gameplay;
-using _Project.Scripts.Gameplay.Features;
+﻿using _Project.Scripts.Gameplay.Features;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Systems;
 using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
@@ -13,8 +10,6 @@ using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Systems;
 using DCFApixels.DragonECS;
 using Sirenix.OdinInspector;
-using Sirenix.OdinInspector.Editor;
-using UnityEditor.Timeline;
 using UnityEngine;
 
 namespace _Project.Scripts.Gameplay
@@ -29,23 +24,6 @@ namespace _Project.Scripts.Gameplay
         private EcsDefaultWorld _world;
 
         [Button]
-        private void FixLinks(ScriptableEntityTemplate template)
-        {
-            var fields = template.GetType()
-                .GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-
-            foreach (var field in fields)
-            {
-                Debug.Log(field.Name);
-
-                foreach (var VARIABLE in (IComponentTemplate[])field.GetValue(template))
-                {
-                    Debug.Log(VARIABLE);
-                    //Debug.Log(VARIABLE.GetType().GetField("Value").GetValue(VARIABLE));
-                }
-            }
-        }
-
         public void Start()
         {
             EcsDefaultWorldSingletonProvider provider = EcsDefaultWorldSingletonProvider.Instance;
@@ -101,7 +79,7 @@ namespace _Project.Scripts.Gameplay
                 // end level feature
                 .AddUnique(new CellOccupancySystem())
                 .AddUnique(new DestroySystem())
-                
+
                 // cooldown feature
                 .AddUnique(new RefreshCooldownSystem())
                 .AddUnique(new DeleteEntityCommandOnExpiredSystem())

@@ -10,7 +10,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components
     [Serializable]
     public struct GameField : IEcsComponent
     {
-        public GameObject TilePrefab;
+        [FormerlySerializedAs("TilePrefab")] public GameObject CellPrefab;
         public float3 OriginPosition;
         public int Size;
         public float Offset;
@@ -24,6 +24,8 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components
         public int BaseSize;
         public float BaseCellSize;
         public int CellsCount;
+        public float CellTop;
+        [FormerlySerializedAs("CellTopOffset")] public float UnitCellTopOffset;
 
         [Serializable]
         public struct Unit
@@ -50,9 +52,18 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components
             {
                 Span<Unit> units = new Span<Unit>(component.Units);
 
+                component.CellTop = GetUpperSurfaceY(component.CellPrefab.GetComponentInChildren<MeshRenderer>());
+
+                float GetUpperSurfaceY(MeshRenderer renderer)
+                {
+                    float lowerY = renderer.bounds.center.y - renderer.bounds.extents.y;
+                    float upperY = lowerY + renderer.bounds.size.y;
+                    return upperY;
+                }
+                
                 foreach (ref var unit in units)
                 {
-                    unit.Position = CellToWorld(unit.CellPosition, component);
+                    unit.Position = CellToWorld(unit.CellPosition, component) + new float3(0, component.CellTop + component.UnitCellTopOffset, 0);
                 }
             }
 

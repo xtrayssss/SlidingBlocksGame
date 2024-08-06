@@ -32,7 +32,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                         if (x >= gameField.EdgeSize && x < gameField.EdgeSize + gameField.CenterSize ||
                             z >= gameField.EdgeSize && z < gameField.EdgeSize + gameField.CenterSize)
                         {
-                            GameObject cell = Object.Instantiate(gameField.TilePrefab,  new Vector3(
+                            GameObject cell = Object.Instantiate(gameField.CellPrefab,  new Vector3(
                                     x * (gameField.CellSize + gameField.Offset) + gameField.OriginPosition.x, 0,
                                     z * (gameField.CellSize + gameField.Offset) + gameField.OriginPosition.z),
                                 Quaternion.identity,

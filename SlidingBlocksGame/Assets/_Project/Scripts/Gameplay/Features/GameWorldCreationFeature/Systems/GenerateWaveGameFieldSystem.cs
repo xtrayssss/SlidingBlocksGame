@@ -49,7 +49,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
                         await Task.Delay(TimeSpan.FromSeconds(delay));
 
-                        Object.Instantiate(field.TilePrefab, position, Quaternion.identity);
+                        Object.Instantiate(field.CellPrefab, position, Quaternion.identity);
                     }
                 }
             }

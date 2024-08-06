@@ -29,8 +29,8 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                 
                 foreach (ref GameField.Unit unit in gameField.Units.AsSpan())
                 {
-                    unit.View.transform.localScale = new Vector3(gameField.CellSize, gameField.CellSize,
-                        gameField.CellSize);
+                    unit.View.transform.localScale = new Vector3(gameField.CellSize + 0.1f, gameField.CellSize + 0.1f,
+                        gameField.CellSize + 0.1f);
                 }
             }
         }

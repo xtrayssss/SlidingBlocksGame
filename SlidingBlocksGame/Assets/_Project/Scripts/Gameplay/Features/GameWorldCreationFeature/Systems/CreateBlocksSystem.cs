@@ -62,7 +62,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
                     EcsEntityConnect view = Object.Instantiate(
                         original: unit.Prefab,
-                        position: unit.Position,
+                        position: unit.Position + new float3(gameField.UnitCellTopOffset),
                         rotation: quaternion.Euler(math.radians(unit.Rotation)));
 
                     unit.View = view.gameObject;
@@ -73,41 +73,47 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
                     _world.GetPool<CellPosition>().Add(animal.ID).Value = unit.CellPosition;
 
-                    if (unit.CellPosition.x < gameField.EdgeSize)
-                    {
-                        animalAspect.Direction.Add(animal.ID).Value = new float2(1, 0);
-
-                        animalAspect.AssignedGroup.Add(animal.ID).Value = rightGroup.ToEntityLong(_world);
-                        
-                        assignedGroupAspect.Units.Get(rightGroup).Value.Add(animal.ID);
-                    }
-                    else if (unit.CellPosition.x >= gameField.EdgeSize + gameField.CenterSize)
-                    {
-                        animalAspect.Direction.Add(animal.ID).Value = new float2(-1, 0);
-
-                        animalAspect.AssignedGroup.Add(animal.ID).Value = leftGroup.ToEntityLong(_world);
-
-                        assignedGroupAspect.Units.Get(leftGroup).Value.Add(animal.ID);
-                    }
-                    else if (unit.CellPosition.y < gameField.EdgeSize)
-                    {
-                        animalAspect.Direction.Add(animal.ID).Value = new float2(0, 1);
-
-                        animalAspect.AssignedGroup.Add(animal.ID).Value = upGroup.ToEntityLong(_world);
-                        
-                        assignedGroupAspect.Units.Get(upGroup).Value.Add(animal.ID);
-                    }
-                    else if (unit.CellPosition.y >= gameField.EdgeSize + gameField.CenterSize)
-                    {
-                        animalAspect.Direction.Add(animal.ID).Value = new float2(0, -1);
-
-                        animalAspect.AssignedGroup.Add(animal.ID).Value = downGroup.ToEntityLong(_world);
-                        
-                        assignedGroupAspect.Units.Get(downGroup).Value.Add(animal.ID);
-                    }
+                    HandleDirection(unit, gameField, animalAspect, animal, rightGroup, assignedGroupAspect, leftGroup, upGroup, downGroup);
 
                     animalAspect.ActiveGameField.Add(animal.ID).Value = entity.ToEntityLong(_world);
                 }
+            }
+        }
+
+        private void HandleDirection(GameField.Unit unit, GameField gameField, AnimalAspect animalAspect, entlong animal, int rightGroup,
+            AssignedGroupAspect assignedGroupAspect, int leftGroup, int upGroup, int downGroup)
+        {
+            if (unit.CellPosition.x < gameField.EdgeSize)
+            {
+                animalAspect.Direction.Add(animal.ID).Value = new float2(1, 0);
+
+                animalAspect.AssignedGroup.Add(animal.ID).Value = rightGroup.ToEntityLong(_world);
+                        
+                assignedGroupAspect.Units.Get(rightGroup).Value.Add(animal.ID);
+            }
+            else if (unit.CellPosition.x >= gameField.EdgeSize + gameField.CenterSize)
+            {
+                animalAspect.Direction.Add(animal.ID).Value = new float2(-1, 0);
+
+                animalAspect.AssignedGroup.Add(animal.ID).Value = leftGroup.ToEntityLong(_world);
+
+                assignedGroupAspect.Units.Get(leftGroup).Value.Add(animal.ID);
+            }
+            else if (unit.CellPosition.y < gameField.EdgeSize)
+            {
+                animalAspect.Direction.Add(animal.ID).Value = new float2(0, 1);
+
+                animalAspect.AssignedGroup.Add(animal.ID).Value = upGroup.ToEntityLong(_world);
+                        
+                assignedGroupAspect.Units.Get(upGroup).Value.Add(animal.ID);
+            }
+            else if (unit.CellPosition.y >= gameField.EdgeSize + gameField.CenterSize)
+            {
+                animalAspect.Direction.Add(animal.ID).Value = new float2(0, -1);
+
+                animalAspect.AssignedGroup.Add(animal.ID).Value = downGroup.ToEntityLong(_world);
+                        
+                assignedGroupAspect.Units.Get(downGroup).Value.Add(animal.ID);
             }
         }
 
