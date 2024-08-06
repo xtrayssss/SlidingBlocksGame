@@ -50,7 +50,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                 AnimalAspect animalAspect = _world.GetAspect<AnimalAspect>();
 
                 AssignedGroupAspect assignedGroupAspect = _world.GetAspect<AssignedGroupAspect>();
-                
+
                 int rightGroup = CreateGroup(new float2(1, 0), assignedGroupAspect, entity.ToEntityLong(_world));
                 int leftGroup = CreateGroup(new float2(-1, 0), assignedGroupAspect, entity.ToEntityLong(_world));
                 int upGroup = CreateGroup(new float2(0, 1), assignedGroupAspect, entity.ToEntityLong(_world));
@@ -73,14 +73,21 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
                     _world.GetPool<CellPosition>().Add(animal.ID).Value = unit.CellPosition;
 
-                    HandleDirection(unit, gameField, animalAspect, animal, rightGroup, assignedGroupAspect, leftGroup, upGroup, downGroup);
+                    float2 direction = HandleDirection(unit, gameField, animalAspect, animal, rightGroup,
+                        assignedGroupAspect, leftGroup,
+                        upGroup, downGroup);
+
+                    view.transform.rotation = quaternion.LookRotation(
+                        forward: new float3(direction.x, 0, direction.y), 
+                        up: new float3(0, 1, 0));
 
                     animalAspect.ActiveGameField.Add(animal.ID).Value = entity.ToEntityLong(_world);
                 }
             }
         }
 
-        private void HandleDirection(GameField.Unit unit, GameField gameField, AnimalAspect animalAspect, entlong animal, int rightGroup,
+        private float2 HandleDirection(GameField.Unit unit, GameField gameField, AnimalAspect animalAspect,
+            entlong animal, int rightGroup,
             AssignedGroupAspect assignedGroupAspect, int leftGroup, int upGroup, int downGroup)
         {
             if (unit.CellPosition.x < gameField.EdgeSize)
@@ -88,7 +95,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                 animalAspect.Direction.Add(animal.ID).Value = new float2(1, 0);
 
                 animalAspect.AssignedGroup.Add(animal.ID).Value = rightGroup.ToEntityLong(_world);
-                        
+
                 assignedGroupAspect.Units.Get(rightGroup).Value.Add(animal.ID);
             }
             else if (unit.CellPosition.x >= gameField.EdgeSize + gameField.CenterSize)
@@ -104,7 +111,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                 animalAspect.Direction.Add(animal.ID).Value = new float2(0, 1);
 
                 animalAspect.AssignedGroup.Add(animal.ID).Value = upGroup.ToEntityLong(_world);
-                        
+
                 assignedGroupAspect.Units.Get(upGroup).Value.Add(animal.ID);
             }
             else if (unit.CellPosition.y >= gameField.EdgeSize + gameField.CenterSize)
@@ -112,17 +119,19 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                 animalAspect.Direction.Add(animal.ID).Value = new float2(0, -1);
 
                 animalAspect.AssignedGroup.Add(animal.ID).Value = downGroup.ToEntityLong(_world);
-                        
+
                 assignedGroupAspect.Units.Get(downGroup).Value.Add(animal.ID);
             }
+
+            return animalAspect.Direction.Read(animal.ID).Value;
         }
 
         private void ScaleRenderer(entlong animal)
         {
             ref RendererRef renderer = ref _world.GetPool<RendererRef>().Get(animal.ID);
-            
-            var meshFilter =  renderer.Value.GetComponent<MeshFilter>();
-            
+
+            var meshFilter = renderer.Value.GetComponent<MeshFilter>();
+
             float size = 1 / meshFilter.mesh.bounds.size.x;
 
             renderer.Value.transform.localScale = new Vector3(size, size, size);
@@ -137,11 +146,11 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
             assignedGroupAspect.Obstacles.Add(group).Value = new List<float2>();
             groupAspect.Units.Add(group).Value = EcsGroup.New(_world);
             assignedGroupAspect.ActiveGameFields.Add(group).Value = gameField;
-            assignedGroupAspect.NearDistance.Add(group).Value = new float2(-1,- 1);
+            assignedGroupAspect.NearDistance.Add(group).Value = new float2(-1, -1);
 
             return group;
         }
-        
+
         Bounds TransformBounds(Transform transform, Bounds localBounds)
         {
             Vector3 center = transform.TransformPoint(localBounds.center);
