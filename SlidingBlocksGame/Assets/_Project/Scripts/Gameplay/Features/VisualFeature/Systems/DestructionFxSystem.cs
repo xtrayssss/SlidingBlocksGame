@@ -1,10 +1,11 @@
 ﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.DestroyFeature.Components;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Systems;
+using _Project.Scripts.Gameplay.Features.VisualFeature.Components;
 using DCFApixels.DragonECS;
 using UnityEngine;
 
-namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
+namespace _Project.Scripts.Gameplay.Features.VisualFeature.Systems
 {
     public class DestructionFxSystem : IEcsRun
     {
@@ -16,6 +17,8 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
             [Inc] public readonly EcsPool<DestructionFxCfg> DestructionFxs;
 
             [Inc] public readonly EcsPool<GameObjectConnect> GameObjectConnects;
+
+            [Opt] public readonly EcsTagPool<PlayFxRequest> PlayFxRequest;
         }
 
         private class FxAspect : EcsAspectAuto
@@ -35,6 +38,8 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
 
                 if (fxAspect.IsMatches(fx.ID))
                 {
+                    aspect.PlayFxRequest.Add(fx.ID);
+
                     EcsEntityConnect connect = Object.Instantiate(fxAspect.Prefabs.Read(fx.ID).Value,
                         aspect.GameObjectConnects.Read(entity).Connect.transform.position, Quaternion.identity);
 

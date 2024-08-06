@@ -1,4 +1,5 @@
 ﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+using _Project.Scripts.Gameplay.Features.VisualFeature.Components;
 using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.VisualFeature.Systems
@@ -9,6 +10,7 @@ namespace _Project.Scripts.Gameplay.Features.VisualFeature.Systems
 
         private class Aspect : EcsAspectAuto
         {
+            [IncImplicit(typeof(PlayFxRequest))]
             [Inc] public readonly EcsPool<ParticleSystemRef> Particles;
         }
 

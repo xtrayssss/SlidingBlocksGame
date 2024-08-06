@@ -9,6 +9,7 @@ using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Systems;
+using _Project.Scripts.Gameplay.Features.VisualFeature.Components;
 using _Project.Scripts.Gameplay.Features.VisualFeature.Systems;
 using DCFApixels.DragonECS;
 using Sirenix.OdinInspector;
@@ -84,10 +85,12 @@ namespace _Project.Scripts.Gameplay
                 // destroy feature
                 .AddUnique(new DestroyUnitRequestSystem())
                 .AddUnique(new DestroyAnimalSystem())
-                .AddUnique(new DestructionFxSystem())
                 
                 // visual feature
                 .AddUnique(new PlayFxSystem())
+                .AutoDelTag<PlayFxRequest>()
+                .AddUnique(new DestructionFxSystem())
+                .AddUnique(new DestroyFxRequestSystem())
 
                 // cooldown feature
                 .AddUnique(new RefreshCooldownSystem())
