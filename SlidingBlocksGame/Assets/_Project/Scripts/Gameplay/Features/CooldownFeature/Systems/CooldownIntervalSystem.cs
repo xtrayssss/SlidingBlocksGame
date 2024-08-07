@@ -1,5 +1,7 @@
-﻿using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
+﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
 using DCFApixels.DragonECS;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.CooldownFeature.Systems
@@ -20,10 +22,9 @@ namespace _Project.Scripts.Gameplay.Features.CooldownFeature.Systems
             {
                 ref CooldownInterval cooldownInterval = ref aspect.CooldownInterval.Get(entity);
 
-                cooldownInterval.Elapsed = Mathf.CeilToInt(aspect.Cooldowns.Get(entity).Elapsed / cooldownInterval.Interval) * cooldownInterval.Interval;
-
-                Debug.Log(cooldownInterval.Elapsed);
-                Debug.Log(aspect.Cooldowns.Get(entity).Elapsed);
+                cooldownInterval.Elapsed =
+                    math.ceil(aspect.Cooldowns.Get(entity).Elapsed / cooldownInterval.Interval) *
+                    cooldownInterval.Interval;
             }
         }
     }
