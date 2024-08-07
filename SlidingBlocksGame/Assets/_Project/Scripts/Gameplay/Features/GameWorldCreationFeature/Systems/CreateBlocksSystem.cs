@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
 using DCFApixels.DragonECS;
 using Unity.Mathematics;
-using Unity.VisualScripting.Antlr3.Runtime;
-using UnityEditor;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -149,19 +146,6 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
             assignedGroupAspect.NearDistance.Add(group).Value = new float2(-1, -1);
 
             return group;
-        }
-
-        Bounds TransformBounds(Transform transform, Bounds localBounds)
-        {
-            Vector3 center = transform.TransformPoint(localBounds.center);
-            Vector3 extents = localBounds.extents;
-            Vector3 worldExtents = transform.TransformVector(extents);
-
-            Bounds worldBounds = new Bounds(center, Vector3.zero);
-            worldBounds.Encapsulate(center + worldExtents);
-            worldBounds.Encapsulate(center - worldExtents);
-
-            return worldBounds;
         }
     }
 }

@@ -1,29 +1,29 @@
 ﻿using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
 using DCFApixels.DragonECS;
-using Unity.Mathematics;
 using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.CooldownFeature.Systems
 {
-    public class CooldownSystem : IEcsRun
+    public class CooldownIntervalSystem : IEcsRun
     {
         [EcsInject] private EcsDefaultWorld _world;
 
         private class Aspect : EcsAspectAuto
         {
-            [ExcImplicit(typeof(CooldownExpiredMarker))]
-            [ExcImplicit(typeof(CountdownMarker))]
             [Inc] public readonly EcsPool<Cooldown> Cooldowns;
+            [Inc] public readonly EcsPool<CooldownInterval> CooldownInterval;
         }
 
         public void Run()
         {
             foreach (int entity in _world.Where(out Aspect aspect))
             {
-                ref Cooldown cooldown = ref aspect.Cooldowns.Get(entity);
+                ref CooldownInterval cooldownInterval = ref aspect.CooldownInterval.Get(entity);
 
-                if ((cooldown.Elapsed -= Time.deltaTime) <= 0f)
-                    _world.GetTagPool<CooldownExpiredMarker>().Add(entity);
+                cooldownInterval.Elapsed = Mathf.CeilToInt(aspect.Cooldowns.Get(entity).Elapsed / cooldownInterval.Interval) * cooldownInterval.Interval;
+
+                Debug.Log(cooldownInterval.Elapsed);
+                Debug.Log(aspect.Cooldowns.Get(entity).Elapsed);
             }
         }
     }

@@ -11,20 +11,20 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
         private class Aspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(GenerateGameFieldRequest))] [Inc]
-            public readonly EcsPool<GameField> Fields;
+            [IncImplicit(typeof(GenerateGameFieldRequest))]
+            [Inc] public readonly EcsPool<GameField> GameFields;
         }
 
         public void Run()
         {
             foreach (int entity in _world.Where(out Aspect aspect))
             {
-                ref GameField gameField = ref aspect.Fields.Get(entity);
+                ref GameField gameField = ref aspect.GameFields.Get(entity);
 
                 GameObject container = new GameObject(name: "GameField");
 
                 int counter = 0;
-                
+
                 for (int x = 0; x < gameField.Size; x++)
                 {
                     for (int z = 0; z < gameField.Size; z++)
@@ -32,12 +32,12 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                         if (x >= gameField.EdgeSize && x < gameField.EdgeSize + gameField.CenterSize ||
                             z >= gameField.EdgeSize && z < gameField.EdgeSize + gameField.CenterSize)
                         {
-                            GameObject cell = Object.Instantiate(gameField.CellPrefab,  new Vector3(
+                            GameObject cell = Object.Instantiate(gameField.CellPrefab, new Vector3(
                                     x * (gameField.CellSize + gameField.Offset) + gameField.OriginPosition.x, 0,
                                     z * (gameField.CellSize + gameField.Offset) + gameField.OriginPosition.z),
                                 Quaternion.identity,
                                 container.transform);
-                            
+
                             gameField.Cells[counter++] = new GameField.Cell
                             {
                                 View = cell

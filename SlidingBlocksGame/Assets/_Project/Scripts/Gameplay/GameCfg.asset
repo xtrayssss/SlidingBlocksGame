@@ -19,6 +19,8 @@ MonoBehaviour:
   - rid: 499105185158136200
   - rid: 499105185158136231
   - rid: 499105190922682561
+  - rid: 8499802292475658342
+  - rid: 8499802292475658364
   references:
     version: 2
     RefIds:
@@ -99,3 +101,15 @@ MonoBehaviour:
       type: {class: Levels/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
         asm: Assembly-CSharp}
       data: {}
+    - rid: 8499802292475658342
+      type: {class: GameLossTimerCfg/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: {fileID: 11400000, guid: d29ec3324f74793488058f6a180bcfa0, type: 2}
+    - rid: 8499802292475658364
+      type: {class: HUDCfg/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: {fileID: 11400000, guid: 56e1f0a71bf6fa9439581ababd1d1894, type: 2}

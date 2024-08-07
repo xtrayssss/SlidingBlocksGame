@@ -46,12 +46,16 @@ namespace _Project.Scripts.Gameplay
                 .AddUnique(new CreateBlocksRequestingSystem())
                 .AddUnique(new CreateBlocksSystem())
                 .AddUnique(new ScaleGameFieldSystem())
+                .AddUnique(new LevelGeneratedMarkerSystem())
+                .AddUnique(new HUDSystem())
+                .AddUnique(new GameLossTimerSystem())
                 .AddUnique(new DetermineClickSystem())
                 .AutoDelTag<CreateGameRequest>()
                 .AutoDelTag<CreateBlocksRequest>()
                 .AutoDelTag<GenerateGameFieldRequest>()
                 .AutoDelTag<GenerateWaveGameFieldRequest>()
                 .AutoDelTag<GenerateSmoothnessWaveGameFieldRequest>()
+                .AutoDelTag<LevelGenerateMarker>()
 
                 // easing feature
                 .AddUnique(new AnimationCurveSystem())
@@ -81,28 +85,29 @@ namespace _Project.Scripts.Gameplay
 
                 // end level feature
                 .AddUnique(new CellOccupancySystem())
-                
+
                 // destroy feature
                 .AddUnique(new DestroyUnitRequestSystem())
                 .AddUnique(new DestroyAnimalSystem())
-                
+
                 // visual feature
                 .AddUnique(new PlayFxSystem())
                 .AutoDelTag<PlayFxRequest>()
                 .AddUnique(new DestructionFxSystem())
                 .AddUnique(new DestroyFxRequestSystem())
+                .AddUnique(new VisualizeGameLossTimerSystem())
 
                 // cooldown feature
                 .AddUnique(new RefreshCooldownSystem())
                 .AddUnique(new DeleteEntityCommandOnExpiredSystem())
                 .AddUnique(new CountdownSystem())
                 .AddUnique(new CooldownSystem())
+                .AddUnique(new CooldownIntervalSystem())
                 .AutoDelTag<RefreshCooldownRequest>()
 
                 // destroy feature
                 .AddUnique(new DestroyViewSystem())
                 .AutoDelEntityTag<DeleteEntityCommand>()
-                
                 .AddUnityDebug(_world)
                 .Inject(_world)
                 .AutoInject()
