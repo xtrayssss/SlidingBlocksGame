@@ -15,10 +15,8 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
         }
         public void Run()
         {
-            foreach (var entity in _world.Where(out Aspect aspect))
-            {
+            foreach (int entity in _world.Where(out Aspect aspect)) 
                 Object.Destroy(aspect.GameObjectConnects.Read(entity).Connect.gameObject);
-            }
         }
     }
 }

@@ -23,7 +23,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 
             [Inc] public readonly EcsPool<Chain> Chains;
 
-            [Opt] public readonly EcsTagPool<ChainMovementMarker> ChainMarkers;
+            [Opt] public readonly EcsTagPool<ChainMovementMarker> ChainMovementMarker;
         }
 
         public void Run()
@@ -32,7 +32,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
             {
                 EcsLongsSpan value = chainAspect.Chains.Read(entity).Value.Longs;
 
-                for (var index = 0; index < value.Count; index++)
+                for (int index = 0; index < value.Count; index++)
                 {
                     entlong segment = value[index];
 
@@ -46,7 +46,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                             chainAspect.Cooldowns.Read(entity).Duration * index;
                         cooldownAspect.Refresh.Add(cooldown);
 
-                        chainAspect.ChainMarkers.Add(cooldown);
+                        chainAspect.ChainMovementMarker.Add(cooldown);
 
                         _world.GetPool<DeleteOnExpiredMarker>().Add(cooldown);
                         _world.GetPool<TargetEntity>().Add(cooldown).Value = segment;

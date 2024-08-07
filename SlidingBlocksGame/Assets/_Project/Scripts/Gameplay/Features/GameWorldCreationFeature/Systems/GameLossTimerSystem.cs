@@ -16,13 +16,14 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
             [Inc] public readonly EcsPool<GameLossTimerCfg> TimerConfigs;
 
             [Inc] public readonly EcsPool<HUD> HUD;
+            [Opt] public readonly EcsTagPool<DeleteOnExpiredMarker> DeleteOnExpired;
         }
 
         private class TimerAspect : EcsAspectAuto
         {
             [Inc] public readonly EcsPool<Prefab> Prefabs;
 
-            [Opt] public readonly EcsTagPool<RefreshCooldownRequest> RefreshCooldownRequest;
+            [Opt] public readonly EcsTagPool<RefreshCooldownRequest> Refresh;
         }
 
         private class HUDAspect : EcsAspectAuto
@@ -51,12 +52,14 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                                 parent: hudAspect.GameObjectConnects.Read(hudID).Connect.transform,
                                 worldPositionStays: false);
 
+                            aspect.DeleteOnExpired.Add(timer.ID);
+                            
                             connect.Connect(timer, false);
                             
                             foreach (MonoEntityTemplateBase template in connect.MonoTemplates)
                                 template.Apply(_world.id, timer.ID);
 
-                            timerAspect.RefreshCooldownRequest.Add(timer.ID);
+                            timerAspect.Refresh.Add(timer.ID);
                         }
                     }
                 }

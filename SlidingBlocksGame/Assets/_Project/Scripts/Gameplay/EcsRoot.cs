@@ -3,6 +3,7 @@ using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Systems;
 using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
 using _Project.Scripts.Gameplay.Features.CooldownFeature.Systems;
+using _Project.Scripts.Gameplay.Features.DestroyFeature.Components;
 using _Project.Scripts.Gameplay.Features.DestroyFeature.Systems;
 using _Project.Scripts.Gameplay.Features.EasingFeature.Systems;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
@@ -89,14 +90,24 @@ namespace _Project.Scripts.Gameplay
                 // destroy feature
                 .AddUnique(new DestroyUnitRequestSystem())
                 .AddUnique(new DestroyAnimalSystem())
+                
+                // destroy feature
+                .AddUnique(new GameLossSystem())
+                .AddUnique(new DestructionStrategySystem())
 
+                // chain algorithm
+                .AddUnique(new AnimalDestructionChainStrategySystem())
+                .AddUnique(new DestructionChainStrategySystem())
+                .AddUnique(new ChainDestructionRequestSystem())
+                .AutoDelTag<DestructionStrategyRequest>()
+                
                 // visual feature
                 .AddUnique(new PlayFxSystem())
                 .AutoDelTag<PlayFxRequest>()
                 .AddUnique(new DestructionFxSystem())
                 .AddUnique(new DestroyFxRequestSystem())
                 .AddUnique(new VisualizeGameLossTimerSystem())
-
+                
                 // cooldown feature
                 .AddUnique(new RefreshCooldownSystem())
                 .AddUnique(new DeleteEntityCommandOnExpiredSystem())
@@ -105,7 +116,7 @@ namespace _Project.Scripts.Gameplay
                 .AddUnique(new CooldownIntervalSystem())
                 .AutoDelTag<RefreshCooldownRequest>()
 
-                // destroy feature
+                // other
                 .AddUnique(new DestroyViewSystem())
                 .AutoDelEntityTag<DeleteEntityCommand>()
                 .AddUnityDebug(_world)

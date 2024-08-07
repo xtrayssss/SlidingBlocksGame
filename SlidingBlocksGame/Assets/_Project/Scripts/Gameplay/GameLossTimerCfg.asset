@@ -16,6 +16,7 @@ MonoBehaviour:
   - rid: 8499802292475658343
   - rid: 8499802292475658366
   - rid: 8499802296451858795
+  - rid: 8499802296898552009
   references:
     version: 2
     RefIds:
@@ -25,7 +26,7 @@ MonoBehaviour:
       data:
         component:
           Elapsed: 0
-          Duration: 6
+          Duration: 2.5
     - rid: 8499802292475658366
       type: {class: Prefab/Template, ns: _Project.Scripts.Gameplay.Features.CommonFeature.Components,
         asm: Assembly-CSharp}
@@ -40,3 +41,7 @@ MonoBehaviour:
         component:
           Elapsed: 0
           Interval: 0.5
+    - rid: 8499802296898552009
+      type: {class: GameLossTimerTag/Template, ns: _Project.Scripts.Gameplay.Features.CommonFeature.Components,
+        asm: Assembly-CSharp}
+      data: {}

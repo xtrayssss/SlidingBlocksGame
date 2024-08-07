@@ -1,8 +1,7 @@
-﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
-using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
+﻿using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
 using DCFApixels.DragonECS;
 using Unity.Mathematics;
-using UnityEngine;
+using UnityEngine.UI;
 
 namespace _Project.Scripts.Gameplay.Features.CooldownFeature.Systems
 {
