@@ -13,57 +13,10 @@ MonoBehaviour:
   m_Name: GameCfg
   m_EditorClassIdentifier: 
   _components:
-  - rid: 499105185158136147
-  - rid: 499105185158136191
-  - rid: 499105185158136200
-  - rid: 499105185158136231
-  - rid: 8499802292475658342
-  - rid: 8499802292475658364
-  - rid: 8499802296898551899
   - rid: 8499802323967542113
   references:
     version: 2
     RefIds:
-    - rid: 499105185158136147
-      type: {class: WaveAlgorithm/Wrapper, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Speed: 0.01
-    - rid: 499105185158136191
-      type: {class: WaveSmoothnessAlgorithm/Wrapper, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          GrowthDuration: 0.1
-    - rid: 499105185158136200
-      type: {class: AlgorithmGenerationGameField/Wrapper, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: 0
-    - rid: 499105185158136231
-      type: {class: GameTag/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
-        asm: Assembly-CSharp}
-      data: {}
-    - rid: 8499802292475658342
-      type: {class: GameLossTimerCfg/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: {fileID: 11400000, guid: d29ec3324f74793488058f6a180bcfa0, type: 2}
-    - rid: 8499802292475658364
-      type: {class: HUDCfg/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: {fileID: 11400000, guid: 56e1f0a71bf6fa9439581ababd1d1894, type: 2}
-    - rid: 8499802296898551899
-      type: {class: DestructionAnimalStrategyCfg/Template, ns: _Project.Scripts.Gameplay.Features.DestroyFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: {fileID: 11400000, guid: 4f8fd26f9934ef849be79007e676bf1a, type: 2}
     - rid: 8499802323967542113
       type: {class: Levels/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
         asm: Assembly-CSharp}
