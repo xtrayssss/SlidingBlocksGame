@@ -88,7 +88,7 @@ namespace _Project.Scripts.Gameplay
                 .AddUnique(new CellOccupancySystem())
 
                 // destroy feature
-                .AddUnique(new DestroyUnitRequestSystem())
+                //.AddUnique(new DestroyUnitRequestSystem())
                 .AddUnique(new DestroyAnimalSystem())
                 
                 // destroy feature
@@ -100,6 +100,9 @@ namespace _Project.Scripts.Gameplay
                 .AddUnique(new DestructionChainStrategySystem())
                 .AddUnique(new ChainDestructionRequestSystem())
                 .AutoDelTag<DestructionStrategyRequest>()
+                
+                .AddUnique(new CheckAnimalWithinCenterSystem())
+                .AddUnique(new WinSystem())
                 
                 // visual feature
                 .AddUnique(new PlayFxSystem())

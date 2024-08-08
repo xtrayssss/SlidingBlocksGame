@@ -25,7 +25,7 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
             foreach (int entity in _world.Where(out Aspect aspect))
             {
                 Debug.Log(entity);
-                
+
                 if (aspect.Targets.Read(entity).Value.TryGetID(out int targetID))
                 {
                     aspect.CellOccupancyMarker.Add(targetID);

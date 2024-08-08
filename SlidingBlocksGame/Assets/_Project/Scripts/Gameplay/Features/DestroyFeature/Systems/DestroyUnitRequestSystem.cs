@@ -1,5 +1,6 @@
 ﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using DCFApixels.DragonECS;
+using UnityEditor;
 
 namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
 {
@@ -12,6 +13,7 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
             [Inc] public readonly EcsPool<Obstacle> Obstacles;
             [Inc] public readonly EcsTagPool<CellOccupancyMarker> OccupancyMarker;
             [Inc] public readonly EcsPool<GameObjectConnect> GameObjectConnects;
+
             [Opt] public readonly EcsTagPool<DestroyUnitRequest> DestroyUnitRequest;
         }
 

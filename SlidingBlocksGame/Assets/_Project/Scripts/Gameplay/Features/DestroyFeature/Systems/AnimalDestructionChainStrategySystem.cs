@@ -12,7 +12,7 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
         private class AnimalAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(AnimalTag))]
-            [ExcImplicit(typeof(CellOccupancyMarker))]
+            [IncImplicit(typeof(CellOccupancyMarker))]
             [ExcImplicit(typeof(Obstacle))]
             private int _;
         }
@@ -34,6 +34,25 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
 
                 foreach (int animal in _world.Where(out AnimalAspect _))
                     chain.Value.Add(animal);
+            }
+        }
+    }
+
+    public class WinSystem : IEcsRun
+    {
+        [EcsInject] private readonly EcsDefaultWorld _world;
+
+        private class Aspect : EcsAspectAuto
+        {
+            [Inc] public readonly EcsTagPool<CellOccupancyMarker> Obstacles1;
+            [Inc] public readonly EcsTagPool<WithinCenterMarker> Obstacles2;
+        }
+
+        public void Run()
+        {
+            if (_world.Where(out Aspect _).Count == 4)
+            {
+                Debug.Log("WINNER");
             }
         }
     }

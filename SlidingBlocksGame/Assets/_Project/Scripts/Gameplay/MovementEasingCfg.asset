@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _components:
   - rid: 499105211061633555
-  - rid: 499105211061633556
   - rid: 499105211061633567
   - rid: 499105217379828021
+  - rid: 8499802314698915840
   references:
     version: 2
     RefIds:
@@ -49,13 +49,6 @@ MonoBehaviour:
             m_PreInfinity: 2
             m_PostInfinity: 2
             m_RotationOrder: 4
-    - rid: 499105211061633556
-      type: {class: Cooldown/Wrapper, ns: _Project.Scripts.Gameplay.Features.CooldownFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Elapsed: 0
-          Duration: 0.5
     - rid: 499105211061633567
       type: {class: EasingSpeed/Wrapper, ns: _Project.Scripts.Gameplay.Features.EasingFeature.Components,
         asm: Assembly-CSharp}
@@ -66,3 +59,10 @@ MonoBehaviour:
       type: {class: CountdownMarker/Template, ns: _Project.Scripts.Gameplay.Features.CooldownFeature.Components,
         asm: Assembly-CSharp}
       data: {}
+    - rid: 8499802314698915840
+      type: {class: Cooldown/Template, ns: _Project.Scripts.Gameplay.Features.CooldownFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Elapsed: 0
+          Duration: 0.5
