@@ -1,12 +1,17 @@
 ﻿using System;
 using DCFApixels.DragonECS;
+using DCFApixels.DragonECS.Unity.Internal;
 using UnityEditor;
+using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components
 {
     [Serializable]
     public struct Levels : IEcsComponent
     {
+        [SerializeReference]
+        public TemporaryEntityTemplate[] Templates;
+        
         [Serializable]
         public struct Level : ITemplate
         {

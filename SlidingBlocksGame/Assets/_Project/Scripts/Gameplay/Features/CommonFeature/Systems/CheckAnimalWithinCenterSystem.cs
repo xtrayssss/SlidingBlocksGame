@@ -38,9 +38,9 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
                     {
                         ref readonly GameField gameField = ref gameFieldAspect.GameFields.Read(gameFieldID);
 
-                        if (cellDestination.Value.x > gameField.EdgeSize &&
-                            cellDestination.Value.x < gameField.EdgeSize + gameField.CenterSize ||
-                            cellDestination.Value.y > gameField.EdgeSize &&
+                        if (cellDestination.Value.x >= gameField.EdgeSize &&
+                            cellDestination.Value.x < gameField.EdgeSize + gameField.CenterSize &&
+                            cellDestination.Value.y >= gameField.EdgeSize &&
                             cellDestination.Value.y < gameField.EdgeSize + gameField.CenterSize)
                         {
                             aspect.WithinCenterMarker.Add(entity);
