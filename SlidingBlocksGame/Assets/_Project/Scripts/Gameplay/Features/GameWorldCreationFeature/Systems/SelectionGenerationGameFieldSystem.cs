@@ -3,16 +3,17 @@ using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 {
-    public class SelectionGenerationGameFieldSystem : IEcsInit
+    public class SelectionGenerationGameFieldSystem : IEcsRun
     {
         [EcsInject] private EcsDefaultWorld _world;
 
         private class Aspect : EcsAspectAuto
         {
+            [IncImplicit(typeof(CreateGameRequest))]
             [Inc] public readonly EcsPool<AlgorithmGenerationGameField> Algorithms;
         }
 
-        public void Init()
+        public void Run()
         {
             foreach (int entity in _world.Where(out Aspect aspect))
             {

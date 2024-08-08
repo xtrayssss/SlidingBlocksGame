@@ -1,4 +1,5 @@
-﻿using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
+﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
 using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
@@ -16,7 +17,8 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
         {
             int entity = _world.NewEntity(_gameCfg);
             
-            _world.GetTagPool<CreateGameRequest>().Add(entity);
+            _world.GetTagPool<NextLeveRequest>().Add(entity);
+            _world.GetPool<LevelIndex>().Add(entity);
         }
     }
 }

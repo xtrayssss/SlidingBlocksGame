@@ -103,6 +103,10 @@ namespace _Project.Scripts.Gameplay
                 
                 .AddUnique(new CheckAnimalWithinCenterSystem())
                 .AddUnique(new WinSystem())
+                //.AddUnique(new NextLevelRequestSystem())
+                .AddUnique(new NextLevelSystem())
+                .AutoDelTag<NextLeveRequest>()
+                //.AutoDelTag<LevelWinMarker>()
                 
                 // visual feature
                 .AddUnique(new PlayFxSystem())

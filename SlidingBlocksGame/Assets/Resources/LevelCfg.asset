@@ -1,0 +1,153 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d2b62f9703592042befb46ac1fee09c, type: 3}
+  m_Name: LevelCfg
+  m_EditorClassIdentifier: 
+  _components:
+  - rid: 499105128608694272
+  - rid: 499105185158136147
+  - rid: 499105185158136191
+  - rid: 499105185158136200
+  - rid: 8499802292475658342
+  - rid: 8499802292475658364
+  - rid: 8499802296898551899
+  - rid: 8499802323967542113
+  references:
+    version: 2
+    RefIds:
+    - rid: 499105128608694272
+      type: {class: GameField/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          CellPrefab: {fileID: 5678163285392456267, guid: e5378788f6301a2428eb21e32a7e779b,
+            type: 3}
+          OriginPosition:
+            x: -2.5
+            y: 0
+            z: -1.8
+          Size: 6
+          Offset: 0.1
+          CellSize: 0.7
+          CenterSize: 0
+          EdgeSize: 0
+          Cells: []
+          Units:
+          - Position:
+              x: -2.5
+              y: 0.20437674
+              z: 0.6
+            CellPosition:
+              x: 0
+              y: 3
+            Prefab: {fileID: 2694570318576642635, guid: bcb8c70410414a246922c356f4b52f69,
+              type: 3}
+            View: {fileID: 0}
+            Rotation:
+              x: 0
+              y: 0
+              z: 0
+          - Position:
+              x: -2.5
+              y: 0.20437674
+              z: -0.19999997
+            CellPosition:
+              x: 0
+              y: 2
+            Prefab: {fileID: 3037289528619008433, guid: ed9ce83c2744d864b983134d287ec369,
+              type: 3}
+            View: {fileID: 0}
+            Rotation:
+              x: 0
+              y: 0
+              z: 0
+          - Position:
+              x: -0.90000004
+              y: 0.20437674
+              z: -1.8
+            CellPosition:
+              x: 2
+              y: 0
+            Prefab: {fileID: 3037289528619008433, guid: ed9ce83c2744d864b983134d287ec369,
+              type: 3}
+            View: {fileID: 0}
+            Rotation:
+              x: 0
+              y: 0
+              z: 0
+          - Position:
+              x: -0.90000004
+              y: 0.20437674
+              z: -0.99999994
+            CellPosition:
+              x: 2
+              y: 1
+            Prefab: {fileID: 3037289528619008433, guid: ed9ce83c2744d864b983134d287ec369,
+              type: 3}
+            View: {fileID: 0}
+            Rotation:
+              x: 0
+              y: 0
+              z: 0
+          BaseSize: 6
+          BaseCellSize: 0.7
+          CellsCount: 20
+          CellTop: 0.18437675
+          UnitCellTopOffset: 0.02
+    - rid: 499105185158136147
+      type: {class: WaveAlgorithm/Wrapper, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Speed: 0.01
+    - rid: 499105185158136191
+      type: {class: WaveSmoothnessAlgorithm/Wrapper, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          GrowthDuration: 0.1
+    - rid: 499105185158136200
+      type: {class: AlgorithmGenerationGameField/Wrapper, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: 0
+    - rid: 8499802292475658342
+      type: {class: GameLossTimerCfg/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: {fileID: 11400000, guid: d29ec3324f74793488058f6a180bcfa0, type: 2}
+    - rid: 8499802292475658364
+      type: {class: HUDCfg/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: {fileID: 11400000, guid: 56e1f0a71bf6fa9439581ababd1d1894, type: 2}
+    - rid: 8499802296898551899
+      type: {class: DestructionAnimalStrategyCfg/Template, ns: _Project.Scripts.Gameplay.Features.DestroyFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: {fileID: 11400000, guid: 4f8fd26f9934ef849be79007e676bf1a, type: 2}
+    - rid: 8499802323967542113
+      type: {class: Levels/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value:
+          - Levels:
+            - {fileID: 11400000, guid: d47ea16fcef3c6249b98939b2a632bd0, type: 2}
+            - {fileID: 11400000, guid: 60a1f27ced4ca5942b93ec9a0301c7b6, type: 2}
+            - {fileID: 11400000, guid: 8690aed8717ce22469ae86634ca6f310, type: 2}
+            - {fileID: 11400000, guid: 8a5237393a8a5d44d900e4ad6ae6da62, type: 2}
+            - {fileID: 11400000, guid: f68e0774a7a5b6d4ab758e9ca94ec7b6, type: 2}

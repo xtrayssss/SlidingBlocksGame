@@ -3,13 +3,18 @@ using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 {
-    public class CreateBlocksRequestingSystem : IEcsInit
+    public class CreateBlocksRequestingSystem : IEcsRun
     {
         [EcsInject] private EcsDefaultWorld _world;
 
-        public void Init()
+        private class Aspect : EcsAspectAuto
         {
-            foreach (int entity in _world.Where(out SingleAspect<EcsTagPool<GameTag>> _))
+            [Inc] private EcsTagPool<CreateGameRequest> _; 
+            //[Inc] private EcsTagPool<GameTag> _1; 
+        }
+        public void Run()
+        {
+            foreach (int entity in _world.Where(out Aspect _))
             {
                 _world.GetTagPool<CreateBlocksRequest>().Add(entity);
             }
