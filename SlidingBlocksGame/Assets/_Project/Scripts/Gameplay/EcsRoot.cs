@@ -104,7 +104,7 @@ namespace _Project.Scripts.Gameplay
                 .AddUnique(new DestructionStrategySystem())
 
                 // chain algorithm
-                .AddUnique(new AnimalDestructionChainStrategySystem())
+                //.AddUnique(new AnimalDestructionChainStrategySystem())
                 .AddUnique(new DestructionChainStrategySystem())
                 .AddUnique(new ChainDestructionRequestSystem())
                 .AutoDelTag<DestructionStrategyRequest>()

@@ -3,7 +3,6 @@ using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
 using DCFApixels.DragonECS;
 using UnityEngine;
-using NotImplementedException = System.NotImplementedException;
 
 namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
 {
@@ -18,6 +17,7 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
             [Inc] public readonly EcsPool<TargetEntity> Targets;
 
             [Opt] public readonly EcsTagPool<CellOccupancyMarker> CellOccupancyMarker;
+            [Opt] public readonly EcsTagPool<MovingMarker> Moving;
         }
 
         public void Run()
@@ -29,6 +29,8 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
                 if (aspect.Targets.Read(entity).Value.TryGetID(out int targetID))
                 {
                     aspect.CellOccupancyMarker.Add(targetID);
+                    // TODO: rework
+                    aspect.Moving.Del(targetID);
                 }
             }
         }

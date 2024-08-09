@@ -1,4 +1,5 @@
 ﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+using _Project.Scripts.Gameplay.Features.DestroyFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
 using DCFApixels.DragonECS;
 using UnityEngine;
@@ -41,13 +42,13 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
 
             [Inc] public readonly EcsPool<LevelIndex> LevelIndices;
         }
-
+        
         public void Run()
         {
             foreach (int entity in _world.Where(out Aspect aspect))
             {
                 Debug.Log("Next level system");
-                
+
                 ref readonly Levels levels = ref aspect.Levels.Read(entity);
 
                 ref LevelIndex levelIndex = ref aspect.LevelIndices.Get(entity);
@@ -65,7 +66,7 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
                 ScriptableEntityTemplate nextLevelCfg = levelsPack[levelIndex.Value];
 
                 entlong nextLevel = _world.NewEntityLong(nextLevelCfg);
-                
+
                 _world.GetTagPool<CreateLevelRequest>().Add(nextLevel.ID);
             }
         }

@@ -16,7 +16,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
             [IncImplicit(typeof(GenerateWaveGameFieldRequest))]
             [Inc] public readonly EcsPool<WaveAlgorithm> Waves;
 
-            [Inc] public readonly EcsPool<GameField> Fields;
+            [Inc] public readonly EcsPool<GameField> GameFields;
 
             [Opt] public readonly EcsTagPool<GameFieldGeneratedEvent> GameFieldGenerated;
         }
@@ -28,7 +28,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                 Object.FindAnyObjectByType<MonoBehaviour>()
                     .StartCoroutine(
                         CreateFieldWithWaveEffect(
-                            field: aspect.Fields.Read(entity),
+                            field: aspect.GameFields.Read(entity),
                             wave: aspect.Waves.Read(entity),
                             aspect: aspect,
                             entity: entity));
@@ -41,6 +41,8 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                 0, field.Size / 2f * (field.CellSize + field.Offset) + field.OriginPosition.z);
             Debug.Log("123");
 
+            int counter = 0;
+            
             for (int x = 0; x < field.Size; x++)
             {
                 for (int z = 0; z < field.Size; z++)
@@ -56,7 +58,12 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
                         yield return new WaitForSeconds(delay);
 
-                        Object.Instantiate(field.CellPrefab, position, Quaternion.identity);
+                        GameObject view = Object.Instantiate(field.CellPrefab, position, Quaternion.identity);
+
+                        aspect.GameFields.Get(entity).Cells[counter++] = new GameField.Cell
+                        {
+                            View = view
+                        };
                     }
                 }
             }

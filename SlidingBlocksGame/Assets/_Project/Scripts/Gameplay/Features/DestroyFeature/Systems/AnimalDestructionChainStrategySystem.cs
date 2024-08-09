@@ -1,5 +1,6 @@
 ﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.DestroyFeature.Components;
+using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
 using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
@@ -11,11 +12,10 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
         private class AnimalAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(AnimalTag))]
-            [IncImplicit(typeof(CellOccupancyMarker))]
-            [ExcImplicit(typeof(Obstacle))]
+            [ExcImplicit(typeof(MovingMarker))]
             private int _;
         }
-
+    
         private class ChainAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(DestructionChainTag))]

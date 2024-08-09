@@ -7,8 +7,8 @@ namespace _Project.Scripts.Gameplay
     [Serializable]
     public class TemporaryEntityTemplate : ITemplate
     {
-        [SerializeReference]
-        private ComponentTemplateBase[] _components;
+        [SerializeReference] [ComponentTemplateReference]
+        private IComponentTemplate[] _components;
 
         public void Apply(short worldID, int entityID)
         {

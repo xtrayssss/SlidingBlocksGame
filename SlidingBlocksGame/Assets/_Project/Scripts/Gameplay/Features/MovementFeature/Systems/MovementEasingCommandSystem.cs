@@ -48,7 +48,10 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                 easingAspect.MovementCommands.Add(easing);
                 easingAspect.DeleteOnExpired.Add(easing);
 
+                // TODO: rework
+                
                 _world.GetPool<MovementCommand>().Del(entity);
+                _world.GetPool<MovingMarker>().Add(entity);
             }
         }
     }

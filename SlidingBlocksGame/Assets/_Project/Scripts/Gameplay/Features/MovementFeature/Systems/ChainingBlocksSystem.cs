@@ -15,8 +15,6 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
         {
             [IncImplicit(typeof(AnimalTag))]
             [Inc] public readonly EcsPool<MovementDirection> Directions;
-
-            [Opt] public readonly EcsTagPool<MovementCommand> Commands;
         }
 
         private class ClickAspect : EcsAspectAuto

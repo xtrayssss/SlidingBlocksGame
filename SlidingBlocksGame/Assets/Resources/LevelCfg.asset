@@ -26,6 +26,8 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 499105128608694272
       type: {class: GameField/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
         asm: Assembly-CSharp}
@@ -146,6 +148,9 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data:
         component:
+          Templat2e:
+            _components:
+            - rid: -2
           Value:
           - Levels:
             - {fileID: 11400000, guid: d47ea16fcef3c6249b98939b2a632bd0, type: 2}

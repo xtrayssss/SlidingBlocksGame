@@ -11,7 +11,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
         private class Aspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(GenerateGameFieldRequest))]
+            [IncImplicit(typeof(GameFieldGeneratedEvent))]
             [Inc] public readonly EcsPool<GameField> GameFields;
         }
 
@@ -19,6 +19,8 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
         {
             foreach (int entity in _world.Where(out Aspect aspect))
             {
+                Debug.Log("Scale");
+                
                 ref readonly GameField gameField = ref aspect.GameFields.Read(entity);
 
                 foreach (ref GameField.Cell cell in gameField.Cells.AsSpan())
@@ -26,6 +28,8 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                     cell.View.transform.localScale = new Vector3(gameField.CellSize, cell.View.transform.localScale.y,
                         gameField.CellSize);
                 }
+
+                Debug.Log("Sca;e");
                 
                 foreach (ref GameField.Unit unit in gameField.Units.AsSpan())
                 {
