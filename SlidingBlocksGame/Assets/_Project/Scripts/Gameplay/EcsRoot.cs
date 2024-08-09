@@ -41,18 +41,22 @@ namespace _Project.Scripts.Gameplay
                 .AddUnique(new CalculateGameFieldSystem())
                 .AddUnique(new SelectionGenerationGameFieldSystem())
                 .AddUnique(new CalculationScaleGameFieldSystem())
+                
+                // game field algorithm feature
                 .AddUnique(new GenerateGameFieldSystem())
                 .AddUnique(new GenerateWaveGameFieldSystem())
                 .AddUnique(new GenerateSmoothnessWaveGameFieldSystem())
-                .AddUnique(new CreateBlocksRequestingSystem())
-                .AddUnique(new CreateBlocksSystem())
+                
+                // other
+                .AddUnique(new CreateAnimalsRequestSystem())
+                .AddUnique(new CreateAnimalsSystem())
                 .AddUnique(new ScaleGameFieldSystem())
                 .AddUnique(new LevelGeneratedMarkerSystem())
                 .AddUnique(new HUDSystem())
                 .AddUnique(new GameLossTimerSystem())
                 .AddUnique(new DetermineClickSystem())
-                .AutoDelTag<CreateGameRequest>()
-                .AutoDelTag<CreateBlocksRequest>()
+                .AutoDelTag<CreateLevelRequest>()
+                .AutoDelTag<CreateAnimalsRequest>()
                 .AutoDelTag<GenerateGameFieldRequest>()
                 .AutoDelTag<GenerateWaveGameFieldRequest>()
                 .AutoDelTag<GenerateSmoothnessWaveGameFieldRequest>()

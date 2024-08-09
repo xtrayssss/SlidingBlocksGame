@@ -66,7 +66,7 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
 
                 entlong nextLevel = _world.NewEntityLong(nextLevelCfg);
                 
-                _world.GetTagPool<CreateGameRequest>().Add(nextLevel.ID);
+                _world.GetTagPool<CreateLevelRequest>().Add(nextLevel.ID);
             }
         }
 

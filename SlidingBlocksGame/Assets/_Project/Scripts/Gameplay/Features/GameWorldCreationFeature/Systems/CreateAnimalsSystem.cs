@@ -10,13 +10,13 @@ using Object = UnityEngine.Object;
 
 namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 {
-    public class CreateBlocksSystem : IEcsRun
+    public class CreateAnimalsSystem : IEcsRun
     {
         [EcsInject] private EcsWorld _world;
 
         private class Aspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(CreateBlocksRequest))] [Inc]
+            [IncImplicit(typeof(Components.CreateAnimalsRequest))] [Inc]
             public readonly EcsPool<GameField> Fields;
         }
 

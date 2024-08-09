@@ -2,7 +2,7 @@
 
 namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components
 {
-    public struct CreateGameRequest : IEcsTagComponent
+    public struct CreateLevelRequest : IEcsTagComponent
     {
     }
 }

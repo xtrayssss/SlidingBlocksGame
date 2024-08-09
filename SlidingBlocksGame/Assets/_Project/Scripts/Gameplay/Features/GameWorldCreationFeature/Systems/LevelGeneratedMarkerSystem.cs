@@ -11,7 +11,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
         private class Aspect : EcsAspectAuto
         {
             [IncImplicit(typeof(GameField))]
-            [IncImplicit(typeof(CreateGameRequest))]
+            [IncImplicit(typeof(CreateLevelRequest))]
             [Opt] public readonly EcsTagPool<LevelGenerateMarker> Marker;
         }
 
