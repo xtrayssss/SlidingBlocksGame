@@ -47,11 +47,14 @@ namespace _Project.Scripts.Gameplay
                 .AddUnique(new GenerateWaveGameFieldSystem())
                 .AddUnique(new GenerateSmoothnessWaveGameFieldSystem())
                 
-                // other
+                // create animals feature
                 .AddUnique(new CreateAnimalsRequestSystem())
                 .AddUnique(new CreateAnimalsSystem())
+                .AddUnique(new AnimalCreationChainStrategySystem())
+                .AddUnique(new ChainCreationRequestSystem())
+
+                // other
                 .AddUnique(new ScaleGameFieldSystem())
-                .AddUnique(new LevelGeneratedMarkerSystem())
                 .AddUnique(new HUDSystem())
                 .AddUnique(new GameLossTimerSystem())
                 .AddUnique(new DetermineClickSystem())
@@ -60,7 +63,8 @@ namespace _Project.Scripts.Gameplay
                 .AutoDelTag<GenerateGameFieldRequest>()
                 .AutoDelTag<GenerateWaveGameFieldRequest>()
                 .AutoDelTag<GenerateSmoothnessWaveGameFieldRequest>()
-                .AutoDelTag<LevelGenerateMarker>()
+                .AutoDelTag<GameFieldGeneratedEvent>()
+                .AutoDelTag<AnimalPositionedEvent>()
 
                 // easing feature
                 .AddUnique(new AnimationCurveSystem())

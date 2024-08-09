@@ -11,7 +11,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
         private class Aspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(LevelGenerateMarker))]
+            [IncImplicit(typeof(AnimalPositionedEvent))]
             [Inc] public readonly EcsPool<HUDCfg> HUDConfigs;
 
             [Opt] public readonly EcsPool<HUD> HUD;

@@ -7,12 +7,15 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
     {
         [EcsInject] private EcsDefaultWorld _world;
 
+        private class Aspect : EcsAspectAuto
+        {
+            [Inc] private readonly EcsTagPool<GameFieldGeneratedEvent> _gameFieldGeneratedMarker;
+        }
+
         public void Run()
         {
-            foreach (int entity in _world.Where(out SingleAspect<EcsTagPool<CreateLevelRequest>> _))
-            {
-                _world.GetTagPool<Components.CreateAnimalsRequest>().Add(entity);
-            }
+            foreach (int entity in _world.Where(out Aspect _)) 
+                _world.GetTagPool<CreateAnimalsRequest>().Add(entity);
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
 using DCFApixels.DragonECS;
-using Unity.Mathematics;
 using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.CooldownFeature.Systems
@@ -13,6 +12,7 @@ namespace _Project.Scripts.Gameplay.Features.CooldownFeature.Systems
         {
             [ExcImplicit(typeof(CooldownExpiredMarker))]
             [ExcImplicit(typeof(CountdownMarker))]
+            [ExcImplicit(typeof(CooldownLockMarker))]
             [Inc] public readonly EcsPool<Cooldown> Cooldowns;
         }
 

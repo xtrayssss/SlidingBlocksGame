@@ -13,6 +13,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
         {
             [IncImplicit(typeof(GenerateGameFieldRequest))]
             [Inc] public readonly EcsPool<GameField> GameFields;
+            [Opt] public readonly EcsTagPool<GameFieldGeneratedEvent> GameFieldGenerated;
         }
 
         public void Run()
@@ -45,6 +46,8 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                         }
                     }
                 }
+                
+                aspect.GameFieldGenerated.Add(entity);
             }
         }
     }

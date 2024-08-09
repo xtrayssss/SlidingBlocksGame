@@ -21,6 +21,8 @@ MonoBehaviour:
   - rid: 8499802292475658364
   - rid: 8499802296898551899
   - rid: 8499802323967542113
+  - rid: 8499802340583015395
+  - rid: 8499802343622050639
   references:
     version: 2
     RefIds:
@@ -120,7 +122,7 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data:
         component:
-          Value: 0
+          Value: 1
     - rid: 8499802292475658342
       type: {class: GameLossTimerCfg/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
         asm: Assembly-CSharp}
@@ -151,3 +153,13 @@ MonoBehaviour:
             - {fileID: 11400000, guid: 8690aed8717ce22469ae86634ca6f310, type: 2}
             - {fileID: 11400000, guid: 8a5237393a8a5d44d900e4ad6ae6da62, type: 2}
             - {fileID: 11400000, guid: f68e0774a7a5b6d4ab758e9ca94ec7b6, type: 2}
+    - rid: 8499802340583015395
+      type: {class: CreationAnimalStrategyCfg/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: {fileID: 11400000, guid: ae77d2d66bba6934ea24d0fe74b8d979, type: 2}
+    - rid: 8499802343622050639
+      type: {class: LevelTag/Template, ns: _Project.Scripts.Gameplay.Features.CommonFeature.Components,
+        asm: Assembly-CSharp}
+      data: {}

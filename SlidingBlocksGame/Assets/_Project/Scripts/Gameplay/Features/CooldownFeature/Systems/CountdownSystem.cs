@@ -11,6 +11,7 @@ namespace _Project.Scripts.Gameplay.Features.CooldownFeature.Systems
         private class Aspect : EcsAspectAuto
         {
             [ExcImplicit(typeof(CooldownExpiredMarker))]
+            [ExcImplicit(typeof(CooldownLockMarker))]
             [IncImplicit(typeof(CountdownMarker))]
             [Inc] public readonly EcsPool<Cooldown> Cooldowns;
         }

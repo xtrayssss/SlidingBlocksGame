@@ -35,7 +35,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components
             public float3 Position;
             public float2 CellPosition;
             public EcsEntityConnect Prefab;
-            public GameObject View;
+            public EcsEntityConnect View;
             public float3 Rotation;
         }
 
