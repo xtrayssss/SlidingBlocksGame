@@ -1,4 +1,5 @@
 ﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+using _Project.Scripts.Gameplay.Features.DestroyFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
 using DCFApixels.DragonECS;
@@ -117,6 +118,9 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 
                         RequestAspect requestAspect = _world.GetAspect<RequestAspect>();
 
+                        // TODO: rework
+                        
+                        _world.GetPool<LevelLifeTimeMarker>().Add(request);
                         requestAspect.OccupancyCheckRequest.Add(request);
                         requestAspect.Target.Add(request).Value = entity.ToEntityLong(requestAspect.World);
                         requestAspect.ObstaclePosition.Add(request).Value = progress;

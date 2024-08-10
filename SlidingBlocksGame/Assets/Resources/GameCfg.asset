@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _components:
   - rid: 8499802323967542113
+  - rid: 8499802364150546640
   references:
     version: 2
     RefIds:
@@ -22,11 +23,13 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data:
         component:
+          Templat2e:
+            _components: []
           Value:
           - Levels:
             - {fileID: 11400000, guid: 418599750d9f9df4b8a1a40a2992dd92, type: 2}
-            - {fileID: 11400000, guid: d47ea16fcef3c6249b98939b2a632bd0, type: 2}
-            - {fileID: 11400000, guid: 60a1f27ced4ca5942b93ec9a0301c7b6, type: 2}
-            - {fileID: 11400000, guid: 8690aed8717ce22469ae86634ca6f310, type: 2}
-            - {fileID: 11400000, guid: 8a5237393a8a5d44d900e4ad6ae6da62, type: 2}
-            - {fileID: 11400000, guid: f68e0774a7a5b6d4ab758e9ca94ec7b6, type: 2}
+            - {fileID: 11400000, guid: 418599750d9f9df4b8a1a40a2992dd92, type: 2}
+    - rid: 8499802364150546640
+      type: {class: GameTag/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
+        asm: Assembly-CSharp}
+      data: {}

@@ -1,5 +1,7 @@
 ﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
 using _Project.Scripts.Gameplay.Features.DestroyFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
 using DCFApixels.DragonECS;
 using UnityEngine;
 
@@ -15,40 +17,85 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
             [Inc] public readonly EcsTagPool<WithinCenterMarker> Obstacles2;
         }
 
+        private class TimerAspect2 : EcsAspectAuto
+        {
+            [Inc] public readonly EcsTagPool<GameLossTimerTag> Obstacles1;
+            [Inc] public readonly EcsPool<GameObjectConnect> GameObjectConnects;
+        }
+
         private class LevelAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(LevelTag))]
-            [Exc] public readonly EcsTagPool<LevelWinMarker> LevelWin;
+            [Opt] public readonly EcsPool<DestructionAnimalStrategyCfg> DestructionAnimalStrategyConfigs;
+
+            [Opt] public readonly EcsPool<DestructionStrategy> DestructionStrategy;
+            [Opt] public readonly EcsTagPool<DestructionGameFieldRequest> DestructionGameFieldRequest;
         }
 
-        private class AnimalAspect : EcsAspectAuto
+        private class DestructionStrategyAnimalsAspect : EcsAspectAuto
         {
-            [Inc] public readonly EcsPool<AnimalTag> Levels;
+            [IncImplicit(typeof(CooldownExpiredEvent))]
+            [IncImplicit(typeof(DestructionStrategyTag))]
+            private int _;
         }
 
-        private class ChainAspect : EcsAspectAuto
+        private class DestructionGameFieldAspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(DestructionChainTag))]
-            [ExcImplicit(typeof(TargetEntity))]
-            [Opt] public readonly EcsPool<Chain> Chains;
+            [IncImplicit(typeof(LevelTag))]
+            [Inc] public readonly EcsTagPool<GameFieldDestructedEvent> _;
         }
+
+        private class GameAspect : EcsAspectAuto
+        {
+            [IncImplicit(typeof(GameTag))]
+            [Opt] public readonly EcsTagPool<NextLeveRequest> NextLeveRequest;
+        }
+
+        private bool init = false;
 
         public void Run()
         {
             foreach (int entity in _world.Where(out LevelAspect levelAspect))
             {
-                if (_world.Where(out Aspect _).Count == 4)
+                if (_world.Where(out Aspect _).Count == 4 && !init)
                 {
+                    init = true;
                     Debug.Log("WINNER");
-                    levelAspect.LevelWin.Add(entity);
-                    //_world.GetPool<NextLeveRequest>().Add(entity);
 
                     // TODO: rework
-                    
-                    ref readonly DestructionAnimalStrategyCfg destructionAnimalStrategyCfg =
-                        ref _world.GetPool<DestructionAnimalStrategyCfg>().Read(entity);
 
-                    _world.NewEntity(destructionAnimalStrategyCfg.Value);
+                    entlong strategy =
+                        _world.NewEntityLong(levelAspect.DestructionAnimalStrategyConfigs.Read(entity).Value);
+
+                    _world.GetPool<ApplyDestructionStrategyRequest>().Add(strategy.ID);
+
+                    levelAspect.DestructionStrategy.Add(entity).Value = strategy;
+                }
+            }
+
+            foreach (int _ in _world.Where(out DestructionStrategyAnimalsAspect _))
+            {
+                foreach (int level in _world.Where(out LevelAspect levelAspect))
+                {
+                    levelAspect.DestructionGameFieldRequest.Add(level);
+
+                    Debug.Log("Game field destruction request");
+                }
+            }
+
+            foreach (int _ in _world.Where(out DestructionGameFieldAspect _))
+            {
+                Debug.Log(1);
+                foreach (int timer in _world.Where(out TimerAspect2 timerAspect))
+                {
+                    Debug.Log("Disable game loss timer");
+                    timerAspect.GameObjectConnects.Read(timer).Connect.gameObject.SetActive(false);
+
+                    foreach (int game in _world.Where(out GameAspect gameAspect))
+                    {
+                        //gameAspect.NextLeveRequest.Add(game);
+                        _world.GetPool<CleanupLevelRequest>().Add(game);
+                    }
                 }
             }
         }

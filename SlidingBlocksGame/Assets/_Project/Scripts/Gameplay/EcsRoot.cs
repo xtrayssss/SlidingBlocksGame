@@ -102,7 +102,10 @@ namespace _Project.Scripts.Gameplay
                 .AddUnique(new DestroyAnimalSystem())
                 
                 // destroy feature
-                .AddUnique(new LevelLossSystem())
+                .AddUnique(new LevelWinSystem())
+                //.AddUnique(new LevelLossSystem())
+                .AddUnique(new CleanupLevelSystem())
+                .AutoDelTag<CleanupLevelRequest>()
 
                 // chain algorithm
                 .AddUnique(new DestructionChainStrategySystem())
@@ -110,7 +113,6 @@ namespace _Project.Scripts.Gameplay
                 .AutoDelTag<ApplyDestructionStrategyRequest>()
                 
                 .AddUnique(new CheckAnimalWithinCenterSystem())
-                .AddUnique(new LevelWinSystem())
                 //.AddUnique(new NextLevelRequestSystem())
                 .AddUnique(new NextLevelSystem())
                 .AutoDelTag<NextLeveRequest>()

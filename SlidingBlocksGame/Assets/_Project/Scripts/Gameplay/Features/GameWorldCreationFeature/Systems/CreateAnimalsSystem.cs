@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+using _Project.Scripts.Gameplay.Features.DestroyFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
 using DCFApixels.DragonECS;
@@ -18,6 +19,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
         {
             [IncImplicit(typeof(CreateAnimalsRequest))]
             [Inc] public readonly EcsPool<CreationAnimalStrategyCfg> StrategyConfigs;
+
             [Inc] public readonly EcsPool<GameField> Fields;
         }
 
@@ -35,6 +37,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
             [Opt] public readonly EcsPool<Units> Units;
             [Opt] public readonly EcsPool<ActiveGameField> ActiveGameFields;
             [Opt] public readonly EcsPool<NearDistance> NearDistance;
+            [Opt] public readonly EcsTagPool<LevelLifeTimeMarker> LevelLifeTime;
         }
 
         public void Run()
@@ -59,28 +62,28 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                 foreach (ref GameField.Unit unit in units)
                 {
                     entlong animal = _world.NewEntityLong();
-                
+
                     EcsEntityConnect view = Object.Instantiate(
                         original: unit.Prefab,
                         position: unit.Position + new float3(gameField.UnitCellTopOffset),
                         rotation: quaternion.Euler(math.radians(unit.Rotation)));
-                
+
                     unit.View = view;
-                
+
                     view.ConnectWith(animal, applyTemplates: true);
-                
+
                     ScaleRenderer(animal);
-                
+
                     _world.GetPool<CellPosition>().Add(animal.ID).Value = unit.CellPosition;
-                
+
                     float2 direction = HandleDirection(unit, gameField, animalAspect, animal, rightGroup,
                         assignedGroupAspect, leftGroup,
                         upGroup, downGroup);
-                
+
                     view.transform.rotation = quaternion.LookRotation(
                         forward: new float3(direction.x, 0, direction.y),
                         up: new float3(0, 1, 0));
-                
+
                     animalAspect.ActiveGameField.Add(animal.ID).Value = entity.ToEntityLong(_world);
                 }
             }
@@ -93,36 +96,36 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
             if (unit.CellPosition.x < gameField.EdgeSize)
             {
                 animalAspect.Direction.Add(animal.ID).Value = new float2(1, 0);
-        
+
                 animalAspect.AssignedGroup.Add(animal.ID).Value = rightGroup.ToEntityLong(_world);
-        
+
                 assignedGroupAspect.Units.Get(rightGroup).Value.Add(animal.ID);
             }
             else if (unit.CellPosition.x >= gameField.EdgeSize + gameField.CenterSize)
             {
                 animalAspect.Direction.Add(animal.ID).Value = new float2(-1, 0);
-        
+
                 animalAspect.AssignedGroup.Add(animal.ID).Value = leftGroup.ToEntityLong(_world);
-        
+
                 assignedGroupAspect.Units.Get(leftGroup).Value.Add(animal.ID);
             }
             else if (unit.CellPosition.y < gameField.EdgeSize)
             {
                 animalAspect.Direction.Add(animal.ID).Value = new float2(0, 1);
-        
+
                 animalAspect.AssignedGroup.Add(animal.ID).Value = upGroup.ToEntityLong(_world);
-        
+
                 assignedGroupAspect.Units.Get(upGroup).Value.Add(animal.ID);
             }
             else if (unit.CellPosition.y >= gameField.EdgeSize + gameField.CenterSize)
             {
                 animalAspect.Direction.Add(animal.ID).Value = new float2(0, -1);
-        
+
                 animalAspect.AssignedGroup.Add(animal.ID).Value = downGroup.ToEntityLong(_world);
-        
+
                 assignedGroupAspect.Units.Get(downGroup).Value.Add(animal.ID);
             }
-        
+
             return animalAspect.Direction.Read(animal.ID).Value;
         }
 
@@ -147,6 +150,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
             groupAspect.Units.Add(group).Value = EcsGroup.New(_world);
             assignedGroupAspect.ActiveGameFields.Add(group).Value = gameField;
             assignedGroupAspect.NearDistance.Add(group).Value = new float2(-1, -1);
+            assignedGroupAspect.LevelLifeTime.Add(group);
 
             return group;
         }

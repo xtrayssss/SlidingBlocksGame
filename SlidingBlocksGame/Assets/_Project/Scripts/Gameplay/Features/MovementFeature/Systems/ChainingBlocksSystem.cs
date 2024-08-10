@@ -69,6 +69,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 
                         if (val)
                         {
+                            Debug.Log(block);
                             _world.GetPool<DestinationUnavailabilityCheckRequest>().Add(block);
                             Debug.Log("chained");
                             blocks.Add(block);

@@ -6,31 +6,6 @@ using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
 {
-    public class NextLevelRequestSystem : IEcsRun
-    {
-        [EcsInject] private readonly EcsDefaultWorld _world;
-
-        private class Aspect : EcsAspectAuto
-        {
-            [Inc] public readonly EcsTagPool<LevelWinMarker> Obstacles;
-        }
-
-        private class GameAspect : EcsAspectAuto
-        {
-            [IncImplicit(typeof(Levels))]
-            [Opt] public readonly EcsTagPool<NextLeveRequest> NextLevelRequest;
-        }
-
-        public void Run()
-        {
-            foreach (int _ in _world.Where(out Aspect _))
-            {
-                foreach (int game in _world.Where(out GameAspect gameAspect))
-                    gameAspect.NextLevelRequest.Add(game);
-            }
-        }
-    }
-
     public class NextLevelSystem : IEcsRun
     {
         [EcsInject] private readonly EcsDefaultWorld _world;
@@ -57,11 +32,11 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
 
                 ScriptableEntityTemplate[] levelsPack = GetLevelsPack(levels, levelIndex);
 
-                if (aspect.LevelIndices.Get(entity).Value >= levelsPack.Length - 1)
-                {
-                    levelIndex.Value = 0;
-                    levelIndex.Pack++;
-                }
+                // if (aspect.LevelIndices.Get(entity).Value >= levelsPack.Length - 1)
+                // {
+                //     levelIndex.Value = 0;
+                //     levelIndex.Pack++;
+                // }
 
                 ScriptableEntityTemplate nextLevelCfg = levelsPack[levelIndex.Value];
 
@@ -72,6 +47,6 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
         }
 
         private ScriptableEntityTemplate[] GetLevelsPack(Levels levels, LevelIndex levelIndex) =>
-            levels.Value[levelIndex.Value].Levels;
+            levels.Value[levelIndex.Pack].Levels;
     }
 }

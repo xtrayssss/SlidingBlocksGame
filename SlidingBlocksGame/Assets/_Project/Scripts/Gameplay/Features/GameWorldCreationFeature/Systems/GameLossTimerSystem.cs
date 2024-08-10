@@ -1,5 +1,6 @@
 ﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
+using _Project.Scripts.Gameplay.Features.DestroyFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
 using DCFApixels.DragonECS;
 using UnityEngine;
@@ -23,6 +24,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
             [Inc] public readonly EcsPool<Prefab> Prefabs;
 
             [Opt] public readonly EcsTagPool<RefreshCooldownRequest> Refresh;
+            [Opt] public readonly EcsTagPool<LevelLifeTimeMarker> LevelLifeTime;
         }
 
         private class HUDAspect : EcsAspectAuto
@@ -50,6 +52,8 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                                 original: timerAspect.Prefabs.Read(timer.ID).Value,
                                 parent: hudAspect.GameObjectConnects.Read(hudID).Connect.transform,
                                 worldPositionStays: false);
+
+                            timerAspect.LevelLifeTime.Add(timer.ID);
 
                             connect.Connect(timer, false);
                             
