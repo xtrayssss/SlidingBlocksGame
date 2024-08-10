@@ -66,13 +66,10 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                         cooldownAspect.Target.Add(cooldown).Value = _world.GetEntityLong(animals[index]);
                     }
 
-                    Debug.Log(entity);
-
                     aspect.Cooldowns.Get(entity).Duration *= 4;
                     cooldownAspect.Refresh.Add(entity);
                     aspect.DeleteOnExpired.Add(entity);
                     aspect.Target.Add(entity).Value = _world.GetEntityLong(level);
-                    //_world.GetPool<CooldownLockMarker>().Del(entity);
                 }
             }
         }

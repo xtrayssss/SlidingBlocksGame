@@ -2,7 +2,6 @@
 using DCFApixels.DragonECS;
 using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Object = UnityEngine.Object;
 
 namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components

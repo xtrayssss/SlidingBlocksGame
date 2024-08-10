@@ -43,9 +43,11 @@ namespace _Project.Scripts.Gameplay
                 .AddUnique(new CalculationScaleGameFieldSystem())
                 
                 // game field algorithm feature
-                .AddUnique(new GenerateGameFieldSystem())
-                .AddUnique(new GenerateWaveGameFieldSystem())
+                .AddUnique(new GameFieldSystem())
+                .AddUnique(new WaveGameFieldSystem())
                 .AddUnique(new GenerateSmoothnessWaveGameFieldSystem())
+                .AutoDelTag<GameFieldDestructedEvent>()
+                .AutoDelTag<DestructionGameFieldRequest>()
                 
                 // create animals feature
                 .AddUnique(new CreateAnimalsRequestSystem())
@@ -100,17 +102,15 @@ namespace _Project.Scripts.Gameplay
                 .AddUnique(new DestroyAnimalSystem())
                 
                 // destroy feature
-                .AddUnique(new GameLossSystem())
-                .AddUnique(new DestructionStrategySystem())
+                .AddUnique(new LevelLossSystem())
 
                 // chain algorithm
-                //.AddUnique(new AnimalDestructionChainStrategySystem())
                 .AddUnique(new DestructionChainStrategySystem())
                 .AddUnique(new ChainDestructionRequestSystem())
-                .AutoDelTag<DestructionStrategyRequest>()
+                .AutoDelTag<ApplyDestructionStrategyRequest>()
                 
                 .AddUnique(new CheckAnimalWithinCenterSystem())
-                .AddUnique(new WinSystem())
+                .AddUnique(new LevelWinSystem())
                 //.AddUnique(new NextLevelRequestSystem())
                 .AddUnique(new NextLevelSystem())
                 .AutoDelTag<NextLeveRequest>()

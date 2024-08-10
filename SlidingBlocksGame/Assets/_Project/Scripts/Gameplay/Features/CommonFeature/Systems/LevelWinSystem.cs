@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
 {
-    public class WinSystem : IEcsRun
+    public class LevelWinSystem : IEcsRun
     {
         [EcsInject] private readonly EcsDefaultWorld _world;
 
@@ -48,16 +48,7 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
                     ref readonly DestructionAnimalStrategyCfg destructionAnimalStrategyCfg =
                         ref _world.GetPool<DestructionAnimalStrategyCfg>().Read(entity);
 
-                    int chainID = _world.NewEntity(destructionAnimalStrategyCfg.Value);
-
-                    ChainAspect chainAspect = _world.GetAspect<ChainAspect>();
-
-                    ref Chain chain = ref chainAspect.Chains.Add(chainID);
-
-                    chain.Value = EcsGroup.New(_world);
-
-                    foreach (int animal in _world.Where(out AnimalAspect _))
-                        chain.Value.Add(animal);
+                    _world.NewEntity(destructionAnimalStrategyCfg.Value);
                 }
             }
         }

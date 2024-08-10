@@ -2,7 +2,8 @@
 
 namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Components
 {
-    public struct DestructionStrategyRequest : IEcsTagComponent
+    public struct DestructionStrategy : IEcsComponent
     {
+        public entlong Value;
     }
 }
