@@ -16,7 +16,6 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
             [Inc] public readonly EcsPool<GameLossTimerCfg> TimerConfigs;
 
             [Inc] public readonly EcsPool<HUD> HUD;
-            [Opt] public readonly EcsTagPool<DeleteOnExpiredMarker> DeleteOnExpired;
         }
 
         private class TimerAspect : EcsAspectAuto
@@ -52,8 +51,6 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                                 parent: hudAspect.GameObjectConnects.Read(hudID).Connect.transform,
                                 worldPositionStays: false);
 
-                            aspect.DeleteOnExpired.Add(timer.ID);
-                            
                             connect.Connect(timer, false);
                             
                             foreach (MonoEntityTemplateBase template in connect.MonoTemplates)

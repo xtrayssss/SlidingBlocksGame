@@ -10,10 +10,12 @@ namespace _Project.Scripts.Gameplay.Features.CooldownFeature.Systems
 
         private class Aspect : EcsAspectAuto
         {
-            [ExcImplicit(typeof(CooldownExpiredMarker))]
             [ExcImplicit(typeof(CooldownLockMarker))]
             [IncImplicit(typeof(CountdownMarker))]
             [Inc] public readonly EcsPool<Cooldown> Cooldowns;
+            
+            [Exc] public readonly EcsTagPool<CooldownExpiredMarker> CooldownExpiredMarker;
+            [Exc] public readonly EcsTagPool<CooldownExpiredEvent> CooldownExpiredEvent;
         }
 
         public void Run()
@@ -23,7 +25,10 @@ namespace _Project.Scripts.Gameplay.Features.CooldownFeature.Systems
                 ref Cooldown cooldown = ref aspect.Cooldowns.Get(entity);
 
                 if ((cooldown.Elapsed += Time.deltaTime) >= cooldown.Duration)
-                    _world.GetTagPool<CooldownExpiredMarker>().Add(entity);
+                {
+                    aspect.CooldownExpiredEvent.Add(entity);
+                    aspect.CooldownExpiredMarker.Add(entity);
+                }
             }
         }
     }

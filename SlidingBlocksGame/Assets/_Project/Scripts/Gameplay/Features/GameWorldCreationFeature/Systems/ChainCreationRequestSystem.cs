@@ -11,7 +11,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
         private class Aspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(CooldownExpiredMarker))]
+            [IncImplicit(typeof(CooldownExpiredEvent))]
             [IncImplicit(typeof(CreationChainTag))]
             [Inc] public readonly EcsPool<TargetEntity> Targets;
         }        

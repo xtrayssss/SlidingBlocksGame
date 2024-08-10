@@ -12,8 +12,16 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
 
         private class TimerAspect : EcsAspectAuto
         {
+            [Inc] public readonly EcsTagPool<CooldownExpiredEvent> Obstacles;
+            [Inc] public readonly EcsTagPool<GameLossTimerTag> Obstacles1;
+            [Inc] public readonly EcsPool<GameObjectConnect> GameObjectConnects;
+        }
+
+        private class TimerAspect2 : EcsAspectAuto
+        {
             [Inc] public readonly EcsTagPool<CooldownExpiredMarker> Obstacles;
             [Inc] public readonly EcsTagPool<GameLossTimerTag> Obstacles1;
+            [Inc] public readonly EcsPool<GameObjectConnect> GameObjectConnects;
         }
 
         private class LevelAspect : EcsAspectAuto
@@ -25,11 +33,17 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
             [Opt] public readonly EcsTagPool<DestructionGameFieldRequest> DestructionGameFieldRequest;
         }
 
-        private class DestructionStrategyAspect : EcsAspectAuto
+        private class DestructionStrategyAnimalsAspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(CooldownExpiredMarker))]
+            [IncImplicit(typeof(CooldownExpiredEvent))]
             [IncImplicit(typeof(DestructionStrategyTag))]
             private int _;
+        }
+
+        private class DestructionGameFieldAspect : EcsAspectAuto
+        {
+            [IncImplicit(typeof(LevelTag))]
+            [Inc] public readonly EcsTagPool<GameFieldDestructedEvent> _;
         }
 
         public void Run()
@@ -49,14 +63,22 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
                 }
             }
 
-            foreach (int s in _world.Where(out DestructionStrategyAspect _))
+            foreach (int _ in _world.Where(out DestructionStrategyAnimalsAspect _))
             {
-                Debug.Log(s);
                 foreach (int level in _world.Where(out LevelAspect levelAspect))
                 {
                     levelAspect.DestructionGameFieldRequest.Add(level);
-                    
+
                     Debug.Log("Game field destruction request");
+                }
+            }
+
+            foreach (int _ in _world.Where(out DestructionGameFieldAspect _))
+            {
+                foreach (int timer in _world.Where(out TimerAspect2 timerAspect))
+                {
+                    Debug.Log("Disable game loss timer");
+                    timerAspect.GameObjectConnects.Read(timer).Connect.gameObject.SetActive(false);
                 }
             }
         }

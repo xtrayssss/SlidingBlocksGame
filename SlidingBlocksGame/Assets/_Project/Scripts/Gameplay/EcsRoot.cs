@@ -43,10 +43,10 @@ namespace _Project.Scripts.Gameplay
                 .AddUnique(new CalculationScaleGameFieldSystem())
                 
                 // game field algorithm feature
+                .AutoDelTag<GameFieldDestructedEvent>()
                 .AddUnique(new GameFieldSystem())
                 .AddUnique(new WaveGameFieldSystem())
                 .AddUnique(new GenerateSmoothnessWaveGameFieldSystem())
-                .AutoDelTag<GameFieldDestructedEvent>()
                 .AutoDelTag<DestructionGameFieldRequest>()
                 
                 // create animals feature
@@ -126,6 +126,7 @@ namespace _Project.Scripts.Gameplay
                 // cooldown feature
                 .AddUnique(new RefreshCooldownSystem())
                 .AddUnique(new DeleteEntityCommandOnExpiredSystem())
+                .AutoDelTag<CooldownExpiredEvent>()
                 .AddUnique(new CountdownSystem())
                 .AddUnique(new CooldownSystem())
                 .AddUnique(new CooldownIntervalSystem())

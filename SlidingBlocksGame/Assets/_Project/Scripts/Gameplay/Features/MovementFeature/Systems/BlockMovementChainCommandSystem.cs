@@ -12,7 +12,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 
         private class Aspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(CooldownExpiredMarker))]
+            [IncImplicit(typeof(CooldownExpiredEvent))]
             [IncImplicit(typeof(ChainMovementMarker))]
             [Inc] public readonly EcsPool<TargetEntity> Targets;
 
