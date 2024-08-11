@@ -3,7 +3,6 @@ using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
 using _Project.Scripts.Gameplay.Features.DestroyFeature.Components;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
 using DCFApixels.DragonECS;
-using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
 {
@@ -57,8 +56,6 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
                     cooldownAspect.Target.Add(cooldown).Value = _world.GetEntityLong(animal);
                 }
 
-                Debug.Log(animals.Count);
-                
                 cooldownAspect.Cooldowns.Get(entity).Duration *= animals.Count;
                 cooldownAspect.Refresh.Add(entity);
                 cooldownAspect.DeleteOnExpired.Add(entity);

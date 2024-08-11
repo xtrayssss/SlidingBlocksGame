@@ -30,7 +30,6 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
             [IncImplicit(typeof(LevelTag))]
             [Opt] public readonly EcsPool<DestructionAnimalStrategyCfg> DestructionAnimalStrategyConfigs;
 
-            [Opt] public readonly EcsPool<DestructionStrategy> DestructionStrategy;
             [Opt] public readonly EcsTagPool<GameFieldDestructRequest> DestructGameFieldRequest;
         }
 
@@ -57,8 +56,6 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
                         _world.NewEntityLong(levelAspect.DestructionAnimalStrategyConfigs.Read(level).Value);
 
                     _world.GetPool<ApplyDestructionStrategyRequest>().Add(strategy.ID);
-
-                    levelAspect.DestructionStrategy.Add(level).Value = strategy;
 
                     Debug.Log("LOSS");
                 }

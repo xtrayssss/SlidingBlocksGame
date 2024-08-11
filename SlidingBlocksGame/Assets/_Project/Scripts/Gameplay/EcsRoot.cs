@@ -59,7 +59,6 @@ namespace _Project.Scripts.Gameplay
                 .AutoDelTag<CreateLevelRequest>()
                 .AutoDelTag<CreateAnimalsRequest>()
 
-                .AddModule(new GameFieldAlgorithmsFeature())
                 
                 // other                
                 .AutoDelTag<AnimalPositionedEvent>()
@@ -97,9 +96,11 @@ namespace _Project.Scripts.Gameplay
                 .AddUnique(new DestroyAnimalSystem())
 
                 // destroy feature
-                .AddUnique(new LevelWinSystem())
                 //.AddUnique(new LevelLossSystem())
+                .AddUnique(new LevelWinCheckSystem())
+                .AddUnique(new LevelWinSystem())
                 .AddUnique(new CleanupLevelSystem())
+                .AutoDelTag<LevelWonEvent>()
                 .AutoDelTag<CleanupLevelRequest>()
 
                 // chain algorithm
@@ -110,7 +111,6 @@ namespace _Project.Scripts.Gameplay
                 //.AddUnique(new NextLevelRequestSystem())
                 .AddUnique(new NextLevelSystem())
                 .AutoDelTag<NextLeveRequest>()
-                //.AutoDelTag<LevelWinMarker>()
 
                 // visual feature
                 .AddUnique(new PlayFxSystem())
@@ -119,6 +119,8 @@ namespace _Project.Scripts.Gameplay
                 .AddUnique(new DestroyFxRequestSystem())
                 .AddUnique(new VisualizeGameLossTimerSystem())
 
+                .AddModule(new GameFieldAlgorithmsFeature())
+                
                 // cooldown feature
                 .AddUnique(new RefreshCooldownSystem())
                 .AddUnique(new DeleteEntityCommandOnExpiredSystem())
