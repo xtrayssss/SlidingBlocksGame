@@ -17,7 +17,7 @@ namespace _Project.Scripts.Gameplay.Features.VisualFeature.Systems
         public void Run()
         {
             foreach (int entity in _world.Where(out Aspect aspect)) 
-                aspect.Particles.Read(entity).Value.Play();
+                aspect.Particles.Read(entity).Value?.Play();
         }
     }
 }

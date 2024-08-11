@@ -1,6 +1,7 @@
 ﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
 using _Project.Scripts.Gameplay.Features.DestroyFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Components;
 using DCFApixels.DragonECS;
 using UnityEngine;
 
@@ -30,7 +31,7 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
             [Opt] public readonly EcsPool<DestructionAnimalStrategyCfg> DestructionAnimalStrategyConfigs;
 
             [Opt] public readonly EcsPool<DestructionStrategy> DestructionStrategy;
-            [Opt] public readonly EcsTagPool<DestructionGameFieldRequest> DestructionGameFieldRequest;
+            [Opt] public readonly EcsTagPool<GameFieldDestructRequest> DestructGameFieldRequest;
         }
 
         private class DestructionStrategyAnimalsAspect : EcsAspectAuto
@@ -67,7 +68,7 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
             {
                 foreach (int level in _world.Where(out LevelAspect levelAspect))
                 {
-                    levelAspect.DestructionGameFieldRequest.Add(level);
+                    levelAspect.DestructGameFieldRequest.Add(level);
 
                     Debug.Log("Game field destruction request");
                 }

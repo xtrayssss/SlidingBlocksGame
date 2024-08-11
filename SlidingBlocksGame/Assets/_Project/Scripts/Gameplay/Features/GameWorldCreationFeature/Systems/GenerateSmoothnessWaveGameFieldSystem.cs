@@ -14,7 +14,6 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
         private class Aspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(GenerateSmoothnessWaveGameFieldRequest))]
             [Inc] public readonly EcsPool<WaveSmoothnessAlgorithm> Waves;
             [Inc] public readonly EcsPool<GameField> Fields;
         }

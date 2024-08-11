@@ -14,9 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _components:
   - rid: 499105128608694272
-  - rid: 499105185158136147
-  - rid: 499105185158136191
-  - rid: 499105185158136200
   - rid: 8499802292475658342
   - rid: 8499802292475658364
   - rid: 8499802296898551899
@@ -24,6 +21,7 @@ MonoBehaviour:
   - rid: 8499802340583015395
   - rid: 8499802343622050639
   - rid: 8499802367295750794
+  - rid: 8499802388792868923
   references:
     version: 2
     RefIds:
@@ -108,24 +106,6 @@ MonoBehaviour:
           CellsCount: 20
           CellTop: 0.18437675
           UnitCellTopOffset: 0.02
-    - rid: 499105185158136147
-      type: {class: WaveAlgorithm/Wrapper, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Speed: 0.01
-    - rid: 499105185158136191
-      type: {class: WaveSmoothnessAlgorithm/Wrapper, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          GrowthDuration: 0.1
-    - rid: 499105185158136200
-      type: {class: AlgorithmGenerationGameField/Wrapper, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: 1
     - rid: 8499802292475658342
       type: {class: GameLossTimerCfg/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
         asm: Assembly-CSharp}
@@ -173,3 +153,9 @@ MonoBehaviour:
       type: {class: LevelLifeTimeMarker/Template, ns: _Project.Scripts.Gameplay.Features.DestroyFeature.Components,
         asm: Assembly-CSharp}
       data: {}
+    - rid: 8499802388792868923
+      type: {class: GenerationGameFieldAlgorithmCfg/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: {fileID: 11400000, guid: b0f9f5dd4cdaf2149bb8206508b48f5a, type: 2}

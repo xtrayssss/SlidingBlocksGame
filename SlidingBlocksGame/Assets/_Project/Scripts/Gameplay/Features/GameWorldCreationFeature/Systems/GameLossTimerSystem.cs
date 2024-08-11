@@ -48,19 +48,40 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
                         if (hudAspect.IsMatches(hudID))
                         {
-                            EcsEntityConnect connect = Object.Instantiate(
-                                original: timerAspect.Prefabs.Read(timer.ID).Value,
-                                parent: hudAspect.GameObjectConnects.Read(hudID).Connect.transform,
-                                worldPositionStays: false);
+                            // TODO: rework
+                            Debug.Log("CREATE");
+                            if (!GameObject.Find("GameLossTimer(Clone)"))
+                            {
+                                EcsEntityConnect connect = Object.Instantiate(
+                                    original: timerAspect.Prefabs.Read(timer.ID).Value,
+                                    parent: hudAspect.GameObjectConnects.Read(hudID).Connect.transform,
+                                    worldPositionStays: false);
 
-                            timerAspect.LevelLifeTime.Add(timer.ID);
+                                timerAspect.LevelLifeTime.Add(timer.ID);
 
-                            connect.Connect(timer, false);
-                            
-                            foreach (MonoEntityTemplateBase template in connect.MonoTemplates)
-                                template.Apply(_world.id, timer.ID);
+                                connect.Connect(timer, false);
 
-                            timerAspect.Refresh.Add(timer.ID);
+                                foreach (MonoEntityTemplateBase template in connect.MonoTemplates)
+                                    template.Apply(_world.id, timer.ID);
+
+                                timerAspect.Refresh.Add(timer.ID);
+                            }
+                            else
+                            {
+                                timerAspect.LevelLifeTime.Add(timer.ID);
+
+                                EcsEntityConnect connect = GameObject.Find("GameLossTimer(Clone)")
+                                    .GetComponent<EcsEntityConnect>();
+                                
+                                //connect.gameObject.SetActive(true);
+
+                                connect.Connect(timer, false);
+
+                                foreach (MonoEntityTemplateBase template in connect.MonoTemplates)
+                                    template.Apply(_world.id, timer.ID);
+
+                                timerAspect.Refresh.Add(timer.ID);
+                            }
                         }
                     }
                 }

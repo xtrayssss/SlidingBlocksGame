@@ -6,6 +6,8 @@ using _Project.Scripts.Gameplay.Features.CooldownFeature.Systems;
 using _Project.Scripts.Gameplay.Features.DestroyFeature.Components;
 using _Project.Scripts.Gameplay.Features.DestroyFeature.Systems;
 using _Project.Scripts.Gameplay.Features.EasingFeature.Systems;
+using _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
@@ -41,14 +43,7 @@ namespace _Project.Scripts.Gameplay
                 .AddUnique(new CalculateGameFieldSystem())
                 .AddUnique(new SelectionGenerationGameFieldSystem())
                 .AddUnique(new CalculationScaleGameFieldSystem())
-                
-                // game field algorithm feature
-                .AutoDelTag<GameFieldDestructedEvent>()
-                .AddUnique(new GameFieldSystem())
-                .AddUnique(new WaveGameFieldSystem())
-                .AddUnique(new GenerateSmoothnessWaveGameFieldSystem())
-                .AutoDelTag<DestructionGameFieldRequest>()
-                
+
                 // create animals feature
                 .AddUnique(new CreateAnimalsRequestSystem())
                 .AddUnique(new CreateAnimalsSystem())
@@ -58,16 +53,16 @@ namespace _Project.Scripts.Gameplay
                 // other
                 .AddUnique(new ScaleGameFieldSystem())
                 .AddUnique(new HUDSystem())
+                //.AddUnique(new MainMenuSystem())
                 .AddUnique(new GameLossTimerSystem())
                 .AddUnique(new DetermineClickSystem())
                 .AutoDelTag<CreateLevelRequest>()
                 .AutoDelTag<CreateAnimalsRequest>()
-                .AutoDelTag<GenerateGameFieldRequest>()
-                .AutoDelTag<GenerateWaveGameFieldRequest>()
-                .AutoDelTag<GenerateSmoothnessWaveGameFieldRequest>()
-                .AutoDelTag<GameFieldGeneratedEvent>()
-                .AutoDelTag<AnimalPositionedEvent>()
 
+                .AddModule(new GameFieldAlgorithmsFeature())
+                
+                // other                
+                .AutoDelTag<AnimalPositionedEvent>()
                 // easing feature
                 .AddUnique(new AnimationCurveSystem())
                 .AddUnique(new LinerEasingSystem())
@@ -100,7 +95,7 @@ namespace _Project.Scripts.Gameplay
                 // destroy feature
                 //.AddUnique(new DestroyUnitRequestSystem())
                 .AddUnique(new DestroyAnimalSystem())
-                
+
                 // destroy feature
                 .AddUnique(new LevelWinSystem())
                 //.AddUnique(new LevelLossSystem())
@@ -111,20 +106,19 @@ namespace _Project.Scripts.Gameplay
                 .AddUnique(new DestructionChainStrategySystem())
                 .AddUnique(new ChainDestructionRequestSystem())
                 .AutoDelTag<ApplyDestructionStrategyRequest>()
-                
                 .AddUnique(new CheckAnimalWithinCenterSystem())
                 //.AddUnique(new NextLevelRequestSystem())
                 .AddUnique(new NextLevelSystem())
                 .AutoDelTag<NextLeveRequest>()
                 //.AutoDelTag<LevelWinMarker>()
-                
+
                 // visual feature
                 .AddUnique(new PlayFxSystem())
                 .AutoDelTag<PlayFxRequest>()
                 .AddUnique(new DestructionFxSystem())
                 .AddUnique(new DestroyFxRequestSystem())
                 .AddUnique(new VisualizeGameLossTimerSystem())
-                
+
                 // cooldown feature
                 .AddUnique(new RefreshCooldownSystem())
                 .AddUnique(new DeleteEntityCommandOnExpiredSystem())
@@ -156,6 +150,26 @@ namespace _Project.Scripts.Gameplay
 
             _world.Destroy();
             _world = null;
+        }
+
+        private class GameFieldAlgorithmsFeature : IEcsModule
+        {
+            public void Import(EcsPipeline.Builder builder)
+            {
+                builder
+                    // events
+                    .AutoDelTag<GameFieldGeneratedEvent>()
+                    .AutoDelTag<GameFieldDestructedEvent>()
+
+                    // core
+                    .AddUnique(new GameFieldPlaneAlgorithmSystem())
+                    .AddUnique(new GameFieldWaveAlgorithmSystem())
+                    //.AddUnique(new GenerateSmoothnessWaveGameFieldSystem())
+
+                    // requests
+                    .AutoDelTag<GameFieldGenerateRequest>()
+                    .AutoDelTag<GameFieldDestructRequest>();
+            }
         }
     }
 }

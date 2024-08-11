@@ -29,7 +29,7 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
             [Opt] public readonly EcsPool<DestructionAnimalStrategyCfg> DestructionAnimalStrategyConfigs;
 
             [Opt] public readonly EcsPool<DestructionStrategy> DestructionStrategy;
-            [Opt] public readonly EcsTagPool<DestructionGameFieldRequest> DestructionGameFieldRequest;
+            //[Opt] public readonly EcsTagPool<DestructionGameFieldRequest> DestructionGameFieldRequest;
         }
 
         private class DestructionStrategyAnimalsAspect : EcsAspectAuto
@@ -50,7 +50,8 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
             [IncImplicit(typeof(GameTag))]
             [Opt] public readonly EcsTagPool<NextLeveRequest> NextLeveRequest;
         }
-
+        
+        // TODO: rework
         private bool init = false;
 
         public void Run()
@@ -77,7 +78,7 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
             {
                 foreach (int level in _world.Where(out LevelAspect levelAspect))
                 {
-                    levelAspect.DestructionGameFieldRequest.Add(level);
+                    //levelAspect.DestructionGameFieldRequest.Add(level);
 
                     Debug.Log("Game field destruction request");
                 }
@@ -93,7 +94,8 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
 
                     foreach (int game in _world.Where(out GameAspect gameAspect))
                     {
-                        //gameAspect.NextLeveRequest.Add(game);
+                        init = false;
+                        gameAspect.NextLeveRequest.Add(game);
                         _world.GetPool<CleanupLevelRequest>().Add(game);
                     }
                 }

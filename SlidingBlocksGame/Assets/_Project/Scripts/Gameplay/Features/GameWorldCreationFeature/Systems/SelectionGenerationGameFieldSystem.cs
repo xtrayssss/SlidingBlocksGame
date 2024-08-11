@@ -1,4 +1,6 @@
-﻿using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
+﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
 using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
@@ -10,29 +12,17 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
         private class Aspect : EcsAspectAuto
         {
             [IncImplicit(typeof(CreateLevelRequest))]
-            [Inc] public readonly EcsPool<AlgorithmGenerationGameField> Algorithms;
+            [Inc] public readonly EcsPool<GenerationGameFieldAlgorithmCfg> Algorithms;
         }
 
         public void Run()
         {
             foreach (int entity in _world.Where(out Aspect aspect))
             {
-                ref readonly AlgorithmGenerationGameField algorithm = ref aspect.Algorithms.Read(entity);
-
-                switch (algorithm.Value)
-                {
-                    case AlgorithmGenerationGameField.ID.None:
-                        _world.GetTagPool<GenerateGameFieldRequest>().Add(entity);
-                        break;
-                    case AlgorithmGenerationGameField.ID.Wave:
-                        _world.GetTagPool<GenerateWaveGameFieldRequest>().Add(entity);
-                        break;
-                    case AlgorithmGenerationGameField.ID.SmoothnessWave:
-                        _world.GetTagPool<GenerateSmoothnessWaveGameFieldRequest>().Add(entity);
-                        break;
-                    case AlgorithmGenerationGameField.ID.Random:
-                        break;
-                }
+                int algorithm = _world.NewEntity(aspect.Algorithms.Get(entity).Value);
+                
+                _world.GetPool<GameFieldGenerateRequest>().Add(algorithm);
+                _world.GetPool<TargetEntity>().Add(algorithm).Value = _world.GetEntityLong(entity);
             }
         }
     }
