@@ -1,82 +1,126 @@
 ﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
+using _Project.Scripts.Gameplay.Features.DestroyFeature.c;
 using _Project.Scripts.Gameplay.Features.DestroyFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
 using DCFApixels.DragonECS;
 using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
 {
-    public class LevelLossSystem : IEcsRun
+    public class LevelLostCheckSystem : IEcsRun
     {
         [EcsInject] private readonly EcsDefaultWorld _world;
-
-        private class TimerAspect : EcsAspectAuto
-        {
-            [Inc] public readonly EcsTagPool<CooldownExpiredEvent> Obstacles;
-            [Inc] public readonly EcsTagPool<GameLossTimerTag> Obstacles1;
-            [Inc] public readonly EcsPool<GameObjectConnect> GameObjectConnects;
-        }
-
-        private class TimerAspect2 : EcsAspectAuto
-        {
-            [Inc] public readonly EcsTagPool<CooldownExpiredMarker> Obstacles;
-            [Inc] public readonly EcsTagPool<GameLossTimerTag> Obstacles1;
-            [Inc] public readonly EcsPool<GameObjectConnect> GameObjectConnects;
-        }
 
         private class LevelAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(LevelTag))]
-            [Opt] public readonly EcsPool<DestructionAnimalStrategyCfg> DestructionAnimalStrategyConfigs;
+            [ExcImplicit(typeof(LevelWonMarker))]
+            [Inc] public readonly EcsPool<GameField> GameFields;
 
-            [Opt] public readonly EcsTagPool<GameFieldDestructRequest> DestructGameFieldRequest;
+            [Exc] public readonly EcsTagPool<LevelLostEvent> LevelLostEvent;
+            [Exc] public readonly EcsTagPool<LevelLostMarker> LevelLostMarker;
         }
 
-        private class DestructionStrategyAnimalsAspect : EcsAspectAuto
+        private class GameLossTimerAspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(CooldownExpiredEvent))]
-            [IncImplicit(typeof(DestructionStrategyTag))]
-            private int _;
-        }
-
-        private class DestructionGameFieldAspect : EcsAspectAuto
-        {
-            [IncImplicit(typeof(LevelTag))]
-            [Inc] public readonly EcsTagPool<GameFieldDestructedEvent> _;
+            [Inc] public readonly EcsTagPool<CooldownExpiredEvent> Obstacles;
+            [Inc] public readonly EcsTagPool<GameLossTimerTag> Obstacles1;
         }
 
         public void Run()
         {
-            foreach (int _ in _world.Where(out TimerAspect _))
+            foreach (int _ in _world.Where(out GameLossTimerAspect _))
             {
-                foreach (int level in _world.Where(out LevelAspect levelAspect))
+                foreach (int entity in _world.Where(out LevelAspect aspect))
                 {
-                    entlong strategy =
-                        _world.NewEntityLong(levelAspect.DestructionAnimalStrategyConfigs.Read(level).Value);
-
-                    _world.GetPool<ApplyDestructionStrategyRequest>().Add(strategy.ID);
-
-                    Debug.Log("LOSS");
+                    aspect.LevelLostEvent.Add(entity);
+                    aspect.LevelLostMarker.Add(entity);
                 }
             }
+        }
+    }
 
-            foreach (int _ in _world.Where(out DestructionStrategyAnimalsAspect _))
+    public class LevelLossSystem : IEcsRun
+    {
+        [EcsInject] private readonly EcsDefaultWorld _world;
+
+        private class LevelLostStateAspect : EcsAspectAuto
+        {
+            [IncImplicit(typeof(LevelLostEvent))]
+            [Inc] public readonly EcsPool<GenerationGameFieldAlgorithmCfg> GameFieldAlgorithmConfigs;
+
+            [Inc] public readonly EcsPool<DestructionAnimalStrategyCfg> DestructionAnimalStrategyConfigs;
+        }
+
+        private class LevelDestructionAnimalsStateAspect : EcsAspectAuto
+        {
+            [IncImplicit(typeof(LevelLostMarker))]
+            [IncImplicit(typeof(AnimalDestructedEvent))]
+            [Inc] public readonly EcsPool<GenerationGameFieldAlgorithmCfg> GameFieldAlgorithmConfigs;
+        }
+
+        private class LevelDestructionGameFieldStateAspect : EcsAspectAuto
+        {
+            [IncImplicit(typeof(GameFieldDestructedEvent))]
+            [Inc] public readonly EcsTagPool<LevelLostMarker> LevelLost;
+
+            [Inc] public readonly EcsPool<GameScreen> GameScreens;
+        }
+
+        private class GameAspect : EcsAspectAuto
+        {
+            [IncImplicit(typeof(GameTag))]
+            [Opt] public readonly EcsTagPool<NextLeveRequest> NextLeveRequest;
+
+            [Inc] public readonly EcsPool<LevelIndex> LevelIndices;
+        }
+
+        public void Run()
+        {
+            foreach (int level in _world.Where(out LevelLostStateAspect levelAspect))
             {
-                foreach (int level in _world.Where(out LevelAspect levelAspect))
-                {
-                    levelAspect.DestructGameFieldRequest.Add(level);
+                entlong strategy =
+                    _world.NewEntityLong(levelAspect.DestructionAnimalStrategyConfigs.Read(level).Value);
 
-                    Debug.Log("Game field destruction request");
-                }
+                _world.GetPool<TargetEntity>().Add(strategy.ID).Value = _world.GetEntityLong(level);
+
+                _world.GetPool<ApplyDestructionStrategyRequest>().Add(strategy.ID);
+
+                Debug.Log("LOSS");
             }
 
-            foreach (int _ in _world.Where(out DestructionGameFieldAspect _))
+            foreach (int level in _world.Where(out LevelDestructionAnimalsStateAspect aspect))
             {
-                foreach (int timer in _world.Where(out TimerAspect2 timerAspect))
+                int algorithm = _world.NewEntity(aspect.GameFieldAlgorithmConfigs.Get(level).Value);
+
+                _world.GetPool<GameFieldDestructRequest>().Add(algorithm);
+                _world.GetPool<TargetEntity>().Add(algorithm).Value = _world.GetEntityLong(level);
+
+                Debug.Log("Game field destruction request");
+            }
+
+            foreach (int level in _world.Where(out LevelDestructionGameFieldStateAspect levelAspect))
+            {
+                if (levelAspect.GameScreens.Read(level).Value.TryGetID(out int gameScreenID))
                 {
                     Debug.Log("Disable game loss timer");
-                    timerAspect.GameObjectConnects.Read(timer).Connect.gameObject.SetActive(false);
+
+                    _world.GetPool<GameLossTimerConnect>().Read(gameScreenID).Value.gameObject.SetActive(false);
+
+                    levelAspect.LevelLost.Del(level);
+
+                    foreach (int game in _world.Where(out GameAspect _))
+                        _world.GetPool<CleanupLevelRequest>().Add(game);
+
+                    foreach (GameObject ui in _world.GetPool<HideUI>().Read(gameScreenID).Value)
+                        ui.SetActive(true);
+
+                    foreach (int game in _world.Where(out GameAspect gameAspect))
+                    {
+                        gameAspect.LevelIndices.Get(game).Value = -1;
+                    }
                 }
             }
         }

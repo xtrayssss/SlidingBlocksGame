@@ -2,8 +2,7 @@
 
 namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components
 {
-    public struct HUD : IEcsComponent
+    public struct GameCreatedEvent : IEcsTagComponent
     {
-        public entlong Value;
     }
 }

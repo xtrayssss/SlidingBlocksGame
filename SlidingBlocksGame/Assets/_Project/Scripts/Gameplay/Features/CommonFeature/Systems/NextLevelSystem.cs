@@ -16,6 +16,7 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
             [Inc] public readonly EcsPool<Levels> Levels;
 
             [Inc] public readonly EcsPool<LevelIndex> LevelIndices;
+            [Inc] public readonly EcsPool<GameScreen> GameScreens;
         }
         
         public void Run()
@@ -43,6 +44,8 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
                 entlong nextLevel = _world.NewEntityLong(nextLevelCfg);
 
                 _world.GetTagPool<CreateLevelRequest>().Add(nextLevel.ID);
+                
+                aspect.GameScreens.Add(nextLevel.ID).Value = aspect.GameScreens.Read(entity).Value;
             }
         }
 

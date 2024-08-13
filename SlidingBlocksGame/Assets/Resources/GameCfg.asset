@@ -15,6 +15,7 @@ MonoBehaviour:
   _components:
   - rid: 8499802323967542113
   - rid: 8499802364150546640
+  - rid: 8499802432192380987
   references:
     version: 2
     RefIds:
@@ -29,9 +30,13 @@ MonoBehaviour:
           - Levels:
             - {fileID: 11400000, guid: 418599750d9f9df4b8a1a40a2992dd92, type: 2}
             - {fileID: 11400000, guid: 418599750d9f9df4b8a1a40a2992dd92, type: 2}
-            - {fileID: 11400000, guid: 418599750d9f9df4b8a1a40a2992dd92, type: 2}
-            - {fileID: 11400000, guid: 418599750d9f9df4b8a1a40a2992dd92, type: 2}
     - rid: 8499802364150546640
       type: {class: GameTag/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
         asm: Assembly-CSharp}
       data: {}
+    - rid: 8499802432192380987
+      type: {class: GameScreenCfg/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: {fileID: 11400000, guid: 56e1f0a71bf6fa9439581ababd1d1894, type: 2}

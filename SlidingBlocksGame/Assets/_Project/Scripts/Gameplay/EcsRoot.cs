@@ -3,6 +3,7 @@ using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Systems;
 using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
 using _Project.Scripts.Gameplay.Features.CooldownFeature.Systems;
+using _Project.Scripts.Gameplay.Features.DestroyFeature.c;
 using _Project.Scripts.Gameplay.Features.DestroyFeature.Components;
 using _Project.Scripts.Gameplay.Features.DestroyFeature.Systems;
 using _Project.Scripts.Gameplay.Features.EasingFeature.Systems;
@@ -12,6 +13,7 @@ using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Systems;
+using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.VisualFeature.Components;
 using _Project.Scripts.Gameplay.Features.VisualFeature.Systems;
 using DCFApixels.DragonECS;
@@ -40,28 +42,30 @@ namespace _Project.Scripts.Gameplay
 
                 // creation game world feature
                 .AddUnique(new CreateGameSystem(_gameCfg))
+                .AddUnique(new GameScreenSystem())
+                .AutoDelTag<GameCreatedEvent>()
+                
+                // level creation feature
+                .AddUnique(new LevelStartRequestSystem())
+                .AddUnique(new LevelStartUIHideSystem())
                 .AddUnique(new CalculateGameFieldSystem())
                 .AddUnique(new SelectionGenerationGameFieldSystem())
                 .AddUnique(new CalculationScaleGameFieldSystem())
+                .AutoDelEntityTag<ButtonClickedEvent>()
 
-                // create animals feature
                 .AddUnique(new CreateAnimalsRequestSystem())
                 .AddUnique(new CreateAnimalsSystem())
                 .AddUnique(new AnimalCreationChainStrategySystem())
                 .AddUnique(new ChainCreationRequestSystem())
-
-                // other
-                .AddUnique(new ScaleGameFieldSystem())
-                .AddUnique(new HUDSystem())
-                //.AddUnique(new MainMenuSystem())
                 .AddUnique(new GameLossTimerSystem())
-                .AddUnique(new DetermineClickSystem())
+                .AddUnique(new ScaleGameFieldSystem())
                 .AutoDelTag<CreateLevelRequest>()
                 .AutoDelTag<CreateAnimalsRequest>()
-
-                // other                
                 .AutoDelTag<AnimalPositionedEvent>()
 
+                // click feature
+                .AddUnique(new DetermineClickSystem())
+                
                 // easing feature
                 .AddUnique(new AnimationCurveSystem())
                 .AddUnique(new LinerEasingSystem())
@@ -96,12 +100,14 @@ namespace _Project.Scripts.Gameplay
                 .AddUnique(new DestroyAnimalSystem())
 
                 // destroy feature
-                //.AddUnique(new LevelLossSystem())
                 .AddUnique(new LevelWinCheckSystem())
+                .AddUnique(new LevelLostCheckSystem())
                 .AddUnique(new LevelWinSystem())
+                .AddUnique(new LevelLossSystem())
                 .AutoDelTag<AnimalDestructedEvent>()
                 .AddUnique(new CleanupLevelSystem())
                 .AutoDelTag<LevelWonEvent>()
+                .AutoDelTag<LevelLostEvent>()
                 .AutoDelTag<CleanupLevelRequest>()
 
                 // chain algorithm

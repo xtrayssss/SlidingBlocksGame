@@ -15,10 +15,10 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
         public void Init()
         {
-            int entity = _world.NewEntity(_gameCfg);
-            
-            _world.GetTagPool<NextLeveRequest>().Add(entity);
-            _world.GetPool<LevelIndex>().Add(entity);
+            int game = _world.NewEntity(_gameCfg);
+
+            _world.GetPool<LevelIndex>().Add(game);
+            _world.GetPool<GameCreatedEvent>().Add(game);
         }
     }
 }

@@ -16,74 +16,45 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
             [IncImplicit(typeof(AnimalPositionedEvent))]
             [Inc] public readonly EcsPool<GameLossTimerCfg> TimerConfigs;
 
-            [Inc] public readonly EcsPool<HUD> HUD;
+            [Inc] public readonly EcsPool<GameScreen> GameScreen;
         }
 
         private class TimerAspect : EcsAspectAuto
         {
-            [Inc] public readonly EcsPool<Prefab> Prefabs;
-
             [Opt] public readonly EcsTagPool<RefreshCooldownRequest> Refresh;
             [Opt] public readonly EcsTagPool<LevelLifeTimeMarker> LevelLifeTime;
         }
 
-        private class HUDAspect : EcsAspectAuto
+        private class GameScreenAspect : EcsAspectAuto
         {
-            [Inc] public readonly EcsPool<GameObjectConnect> GameObjectConnects;
+            [Inc] public readonly EcsPool<GameLossTimerConnect> GameLossTimerConnect;
         }
 
         public void Run()
         {
-            foreach (int entity in _world.Where(out Aspect aspect))
+            foreach (int level in _world.Where(out Aspect aspect))
             {
-                entlong timer = _world.NewEntityLong(aspect.TimerConfigs.Read(entity).Value);
+                GameScreenAspect gameScreenAspect = _world.GetAspect<GameScreenAspect>();
 
-                TimerAspect timerAspect = _world.GetAspect<TimerAspect>();
-
-                if (timerAspect.IsMatches(timer.ID))
+                if (aspect.GameScreen.Read(level).Value.TryGetID(out int gameScreenID))
                 {
-                    if (aspect.HUD.Read(entity).Value.TryGetID(out int hudID))
-                    {
-                        HUDAspect hudAspect = _world.GetAspect<HUDAspect>();
+                    ref readonly GameLossTimerConnect connect =
+                        ref gameScreenAspect.GameLossTimerConnect.Read(gameScreenID);
 
-                        if (hudAspect.IsMatches(hudID))
-                        {
-                            // TODO: rework
-                            Debug.Log("CREATE");
-                            if (!GameObject.Find("GameLossTimer(Clone)"))
-                            {
-                                EcsEntityConnect connect = Object.Instantiate(
-                                    original: timerAspect.Prefabs.Read(timer.ID).Value,
-                                    parent: hudAspect.GameObjectConnects.Read(hudID).Connect.transform,
-                                    worldPositionStays: false);
+                    entlong timer = _world.NewEntityLong(aspect.TimerConfigs.Read(level).Value);
 
-                                timerAspect.LevelLifeTime.Add(timer.ID);
+                    connect.Value.Connect(timer, false);
 
-                                connect.Connect(timer, false);
+                    foreach (MonoEntityTemplateBase template in connect.Value.MonoTemplates)
+                        template.Apply(_world.id, timer.ID);
 
-                                foreach (MonoEntityTemplateBase template in connect.MonoTemplates)
-                                    template.Apply(_world.id, timer.ID);
+                    TimerAspect timerAspect = _world.GetAspect<TimerAspect>();
 
-                                timerAspect.Refresh.Add(timer.ID);
-                            }
-                            else
-                            {
-                                timerAspect.LevelLifeTime.Add(timer.ID);
+                    timerAspect.Refresh.Add(timer.ID);
 
-                                EcsEntityConnect connect = GameObject.Find("GameLossTimer(Clone)")
-                                    .GetComponent<EcsEntityConnect>();
-                                
-                                //connect.gameObject.SetActive(true);
+                    timerAspect.LevelLifeTime.Add(timer.ID);
 
-                                connect.Connect(timer, false);
-
-                                foreach (MonoEntityTemplateBase template in connect.MonoTemplates)
-                                    template.Apply(_world.id, timer.ID);
-
-                                timerAspect.Refresh.Add(timer.ID);
-                            }
-                        }
-                    }
+                    connect.Value.gameObject.SetActive(true);
                 }
             }
         }

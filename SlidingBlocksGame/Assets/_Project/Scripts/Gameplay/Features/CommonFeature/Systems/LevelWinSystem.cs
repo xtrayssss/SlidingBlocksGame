@@ -15,6 +15,7 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
         private class LevelAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(LevelTag))]
+            [ExcImplicit(typeof(LevelLostMarker))]
             [Inc] public readonly EcsPool<GameField> GameFields;
 
             [Exc] public readonly EcsTagPool<LevelWonEvent> LevelWonEvent;
