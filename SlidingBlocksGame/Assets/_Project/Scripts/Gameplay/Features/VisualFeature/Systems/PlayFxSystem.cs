@@ -1,6 +1,7 @@
 ﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.VisualFeature.Components;
 using DCFApixels.DragonECS;
+using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.VisualFeature.Systems
 {
@@ -16,8 +17,11 @@ namespace _Project.Scripts.Gameplay.Features.VisualFeature.Systems
 
         public void Run()
         {
-            foreach (int entity in _world.Where(out Aspect aspect)) 
-                aspect.Particles.Read(entity).Value?.Play();
+            foreach (int entity in _world.Where(out Aspect aspect))
+            {
+                Debug.Log("Play");
+                aspect.Particles.Read(entity).Value.Play();
+            }
         }
     }
 }

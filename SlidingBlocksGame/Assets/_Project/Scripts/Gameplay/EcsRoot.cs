@@ -122,8 +122,8 @@ namespace _Project.Scripts.Gameplay
                 // visual feature
                 .AddUnique(new PlayFxSystem())
                 .AutoDelTag<PlayFxRequest>()
-                .AddUnique(new DestructionFxSystem())
                 .AddUnique(new DestroyFxRequestSystem())
+                .AddUnique(new DestructionFxSystem())
                 .AddUnique(new VisualizeGameLossTimerSystem())
 
                 .AddModule(new GameFieldAlgorithmsFeature())
