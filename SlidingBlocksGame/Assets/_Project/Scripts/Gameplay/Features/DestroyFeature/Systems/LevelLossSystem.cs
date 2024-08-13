@@ -74,7 +74,7 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
             [IncImplicit(typeof(GameTag))]
             [Opt] public readonly EcsTagPool<NextLeveRequest> NextLeveRequest;
 
-            [Inc] public readonly EcsPool<LevelIndex> LevelIndices;
+            [Inc] public readonly EcsPool<LevelCounter> LevelCounters;
         }
 
         public void Run()
@@ -119,7 +119,7 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
 
                     foreach (int game in _world.Where(out GameAspect gameAspect))
                     {
-                        gameAspect.LevelIndices.Get(game).Value = -1;
+                        gameAspect.LevelCounters.Get(game).Value = 0;
                     }
                 }
             }

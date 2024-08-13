@@ -17,7 +17,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
         {
             int game = _world.NewEntity(_gameCfg);
 
-            _world.GetPool<LevelIndex>().Add(game);
+            _world.GetPool<LevelCounter>().Add(game);
             _world.GetPool<GameCreatedEvent>().Add(game);
         }
     }

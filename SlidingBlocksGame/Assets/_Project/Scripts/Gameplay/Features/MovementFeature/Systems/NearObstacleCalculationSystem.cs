@@ -228,7 +228,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                                 }
 
 
-                                return 0;
+                                return int.MaxValue;
                             }).First();
 
                             if (_world.GetEntityLong(unitWithObstacle).TryGetID(out int unitObstacleID))
