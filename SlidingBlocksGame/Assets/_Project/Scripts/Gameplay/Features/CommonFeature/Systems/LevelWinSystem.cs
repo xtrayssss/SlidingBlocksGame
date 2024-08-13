@@ -54,31 +54,23 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
             [Opt] public readonly EcsPool<DestructionAnimalStrategyCfg> DestructionAnimalStrategyConfigs;
         }
 
+        private class LevelDestructionAnimalsStateAspect : EcsAspectAuto
+        {
+            [IncImplicit(typeof(LevelWonMarker))]
+            [IncImplicit(typeof(AnimalDestructedEvent))]
+            [Inc] public readonly EcsPool<GenerationGameFieldAlgorithmCfg> GameFieldAlgorithmConfigs;
+        }
+
         private class LevelDestructionGameFieldStateAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(GameFieldDestructedEvent))]
             [Inc] public readonly EcsTagPool<LevelWonMarker> LevelWon;
-
-            [Inc] public readonly EcsPool<GenerationGameFieldAlgorithmCfg> GameFieldAlgorithmConfigs;
-        }
-
-        private class LevelDestructionAnimalsStateAspect : EcsAspectAuto
-        {
-            [IncImplicit(typeof(LevelWonMarker))]
-            [Inc] public readonly EcsPool<GenerationGameFieldAlgorithmCfg> GameFieldAlgorithmConfigs;
         }
 
         private class GameLossTimerAspect : EcsAspectAuto
         {
             [Inc] public readonly EcsTagPool<GameLossTimerTag> Obstacles1;
             [Inc] public readonly EcsPool<GameObjectConnect> GameObjectConnects;
-        }
-
-        private class DestructionStrategyAnimalsAspect : EcsAspectAuto
-        {
-            [IncImplicit(typeof(CooldownExpiredEvent))]
-            [IncImplicit(typeof(DestructionStrategyTag))]
-            private int _;
         }
 
         private class GameAspect : EcsAspectAuto
@@ -89,31 +81,30 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
 
         public void Run()
         {
-            foreach (int entity in _world.Where(out LevelWinStateAspect levelAspect))
+            foreach (int level in _world.Where(out LevelWinStateAspect levelAspect))
             {
                 Debug.Log("WINNER");
 
                 // animal destruction
                 entlong strategy =
-                    _world.NewEntityLong(levelAspect.DestructionAnimalStrategyConfigs.Read(entity).Value);
+                    _world.NewEntityLong(levelAspect.DestructionAnimalStrategyConfigs.Read(level).Value);
+
+                _world.GetPool<TargetEntity>().Add(strategy.ID).Value = _world.GetEntityLong(level);
 
                 _world.GetPool<ApplyDestructionStrategyRequest>().Add(strategy.ID);
             }
 
             // TODO: rework
-            
-            foreach (int _ in _world.Where(out DestructionStrategyAnimalsAspect _))
+
+            foreach (int level in _world.Where(out LevelDestructionAnimalsStateAspect levelAspect))
             {
-                foreach (int level in _world.Where(out LevelDestructionAnimalsStateAspect levelAspect))
-                {
-                    // game field destruction
-                    int algorithm = _world.NewEntity(levelAspect.GameFieldAlgorithmConfigs.Get(level).Value);
+                // game field destruction
+                int algorithm = _world.NewEntity(levelAspect.GameFieldAlgorithmConfigs.Get(level).Value);
 
-                    _world.GetPool<GameFieldDestructRequest>().Add(algorithm);
-                    _world.GetPool<TargetEntity>().Add(algorithm).Value = _world.GetEntityLong(level);
+                _world.GetPool<GameFieldDestructRequest>().Add(algorithm);
+                _world.GetPool<TargetEntity>().Add(algorithm).Value = _world.GetEntityLong(level);
 
-                    Debug.Log("Game field destruction request");
-                }
+                Debug.Log("Game field destruction request");
             }
 
             foreach (int level in _world.Where(out LevelDestructionGameFieldStateAspect levelAspect))

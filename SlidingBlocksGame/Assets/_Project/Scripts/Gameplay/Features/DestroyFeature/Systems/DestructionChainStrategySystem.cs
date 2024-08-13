@@ -55,7 +55,7 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
                     chainAspect.DestructionChainTag.Add(cooldown);
                     cooldownAspect.Target.Add(cooldown).Value = _world.GetEntityLong(animal);
                 }
-
+                
                 cooldownAspect.Cooldowns.Get(entity).Duration *= animals.Count;
                 cooldownAspect.Refresh.Add(entity);
                 cooldownAspect.DeleteOnExpired.Add(entity);

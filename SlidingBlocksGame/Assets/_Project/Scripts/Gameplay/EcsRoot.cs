@@ -59,9 +59,9 @@ namespace _Project.Scripts.Gameplay
                 .AutoDelTag<CreateLevelRequest>()
                 .AutoDelTag<CreateAnimalsRequest>()
 
-                
                 // other                
                 .AutoDelTag<AnimalPositionedEvent>()
+
                 // easing feature
                 .AddUnique(new AnimationCurveSystem())
                 .AddUnique(new LinerEasingSystem())
@@ -99,6 +99,7 @@ namespace _Project.Scripts.Gameplay
                 //.AddUnique(new LevelLossSystem())
                 .AddUnique(new LevelWinCheckSystem())
                 .AddUnique(new LevelWinSystem())
+                .AutoDelTag<AnimalDestructedEvent>()
                 .AddUnique(new CleanupLevelSystem())
                 .AutoDelTag<LevelWonEvent>()
                 .AutoDelTag<CleanupLevelRequest>()
