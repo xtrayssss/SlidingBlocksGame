@@ -1,4 +1,5 @@
-﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+﻿using System.Linq;
+using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
 using DCFApixels.DragonECS;
 using Object = UnityEngine.Object;
@@ -40,8 +41,19 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                         template.Apply(_world.id, screen.ID);
 
                     aspect.GameScreen.TryAddOrGet(entity).Value = screen;
+
+                    CreateBest(connect);
                 }
             }
+        }
+
+        private void CreateBest(EcsEntityConnect connect)
+        {
+            entlong screen = _world.NewEntityLong();
+
+            EcsEntityConnect bestConnect = connect.transform.Find("Best").GetComponent<EcsEntityConnect>();
+
+            bestConnect.Connect(screen, true);
         }
     }
 }

@@ -19,7 +19,7 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
             [Inc] public readonly EcsPool<LevelCounter> LevelCounter;
             [Inc] public readonly EcsPool<GameScreen> GameScreens;
         }
-        
+
         private Random random = new Random((uint)Environment.TickCount);
 
         public void Run()
@@ -39,7 +39,7 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
                     levelCounter.Value = 0;
                     levelCounter.Pack++;
                 }
-                
+
                 ScriptableEntityTemplate nextLevelCfg = levelsPack[levelCounter.Value];
 
                 entlong nextLevel = _world.NewEntityLong(nextLevelCfg);
@@ -47,7 +47,7 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
                 _world.GetTagPool<CreateLevelRequest>().Add(nextLevel.ID);
 
                 aspect.GameScreens.Add(nextLevel.ID).Value = aspect.GameScreens.Read(entity).Value;
-                
+
                 aspect.LevelCounter.Get(entity).Value = random.NextInt(0, levelsPack.Length - 1);
 
                 levelCounter.Value++;

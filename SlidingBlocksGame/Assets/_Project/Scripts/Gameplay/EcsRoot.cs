@@ -14,6 +14,7 @@ using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Systems;
 using _Project.Scripts.Gameplay.Features.UIFeature.Components;
+using _Project.Scripts.Gameplay.Features.UIFeature.Systems;
 using _Project.Scripts.Gameplay.Features.VisualFeature.Components;
 using _Project.Scripts.Gameplay.Features.VisualFeature.Systems;
 using DCFApixels.DragonECS;
@@ -119,6 +120,7 @@ namespace _Project.Scripts.Gameplay
                 .AddUnique(new CheckAnimalWithinCenterSystem())
                 //.AddUnique(new NextLevelRequestSystem())
                 .AddUnique(new NextLevelSystem())
+                .AddUnique(new BestVisualizeSystem())
                 .AutoDelTag<NextLeveRequest>()
 
                 // visual feature
