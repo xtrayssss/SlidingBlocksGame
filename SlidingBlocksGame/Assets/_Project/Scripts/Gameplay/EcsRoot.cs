@@ -31,6 +31,8 @@ namespace _Project.Scripts.Gameplay
         private EcsPipeline _pipeline;
         private EcsDefaultWorld _world;
 
+         public ITemplateNode node;
+
         [Button]
         public void Start()
         {
