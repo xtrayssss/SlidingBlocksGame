@@ -473,6 +473,7 @@ GameObject:
   - component: {fileID: 5945319170248783132}
   - component: {fileID: 418845053124391789}
   - component: {fileID: 975687402033141117}
+  - component: {fileID: 6740902263111972190}
   m_Layer: 5
   m_Name: SoundOff
   m_TagString: Untagged
@@ -581,7 +582,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5945319170248783132}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6740902263111972190}
+        m_TargetAssemblyTypeName: _Project.Scripts.Gameplay.Observesr.ButtonObserver,
+          Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &975687402033141117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -597,6 +611,28 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
+--- !u!114 &6740902263111972190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723642273095723508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0305e91b2274b5cb192747d4fec8439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EntityCfg:
+    _components:
+    - rid: 8499802478223294522
+  references:
+    version: 2
+    RefIds:
+    - rid: 8499802478223294522
+      type: {class: SoundButtonTag/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
+        asm: Assembly-CSharp}
+      data: {}
 --- !u!1 &731694080385688662
 GameObject:
   m_ObjectHideFlags: 0
@@ -983,6 +1019,8 @@ MonoBehaviour:
   _components:
   - rid: 8499802432192380999
   - rid: 8499802432192381429
+  - rid: 8499802477987889216
+  - rid: 8499802478223294521
   references:
     version: 2
     RefIds:
@@ -1004,6 +1042,23 @@ MonoBehaviour:
       data:
         component:
           Value: {fileID: 2896753263720342533}
+    - rid: 8499802477987889216
+      type: {class: SettingsMenuView/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: {fileID: 4230186693107390616}
+    - rid: 8499802478223294521
+      type: {class: AudioButtonsViews/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          MusicOff: {fileID: 4286157937248913798}
+          MusicOn: {fileID: 2810242714688903494}
+          SoundOff: {fileID: 723642273095723508}
+          SoundOn: {fileID: 8242890240439063237}
+          MusicIsOn: 0
+          SoundIsOn: 0
 --- !u!1 &1707698252179334739
 GameObject:
   m_ObjectHideFlags: 0
@@ -1404,6 +1459,7 @@ GameObject:
   - component: {fileID: 7448323186448220022}
   - component: {fileID: 4474137084188934948}
   - component: {fileID: 1314070571088576390}
+  - component: {fileID: 2937612645963963559}
   m_Layer: 5
   m_Name: MusicOn
   m_TagString: Untagged
@@ -1512,7 +1568,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7448323186448220022}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2937612645963963559}
+        m_TargetAssemblyTypeName: _Project.Scripts.Gameplay.Observesr.ButtonObserver,
+          Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1314070571088576390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1528,6 +1597,28 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
+--- !u!114 &2937612645963963559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2810242714688903494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0305e91b2274b5cb192747d4fec8439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EntityCfg:
+    _components:
+    - rid: 8499802478223294523
+  references:
+    version: 2
+    RefIds:
+    - rid: 8499802478223294523
+      type: {class: MusicButtonTag/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
+        asm: Assembly-CSharp}
+      data: {}
 --- !u!1 &2854619771603066517
 GameObject:
   m_ObjectHideFlags: 0
@@ -2300,6 +2391,7 @@ GameObject:
   - component: {fileID: 8793279135690968678}
   - component: {fileID: 328145733211671125}
   - component: {fileID: 8939658496205269011}
+  - component: {fileID: 4230186693107390616}
   m_Layer: 5
   m_Name: SettingsUI
   m_TagString: Untagged
@@ -2365,6 +2457,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4230186693107390616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4280747601026930549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 495156623a7b1e94087f916ba42745e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _deleteEntiityWithDestroy: 0
+  _scriptableTemplates: []
+  _monoTemplates: []
 --- !u!1 &4286157937248913798
 GameObject:
   m_ObjectHideFlags: 0
@@ -2378,6 +2485,7 @@ GameObject:
   - component: {fileID: 1829834017031129698}
   - component: {fileID: 6734206999612529067}
   - component: {fileID: 685287524699994135}
+  - component: {fileID: 7745281903903874639}
   m_Layer: 5
   m_Name: MusicOff
   m_TagString: Untagged
@@ -2486,7 +2594,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1829834017031129698}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7745281903903874639}
+        m_TargetAssemblyTypeName: _Project.Scripts.Gameplay.Observesr.ButtonObserver,
+          Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &685287524699994135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2502,6 +2623,28 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
+--- !u!114 &7745281903903874639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4286157937248913798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0305e91b2274b5cb192747d4fec8439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EntityCfg:
+    _components:
+    - rid: 8499802478223294523
+  references:
+    version: 2
+    RefIds:
+    - rid: 8499802478223294523
+      type: {class: MusicButtonTag/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
+        asm: Assembly-CSharp}
+      data: {}
 --- !u!1 &4534419527316658414
 GameObject:
   m_ObjectHideFlags: 0
@@ -2652,6 +2795,7 @@ GameObject:
   - component: {fileID: 4004871096340366917}
   - component: {fileID: 2114974922771395474}
   - component: {fileID: 211471806603659402}
+  - component: {fileID: 6514504498279829911}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -2760,7 +2904,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4004871096340366917}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6514504498279829911}
+        m_TargetAssemblyTypeName: _Project.Scripts.Gameplay.Observesr.ButtonObserver,
+          Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &211471806603659402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2776,6 +2933,28 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.7058824}
   m_EffectDistance: {x: 10, y: -10}
   m_UseGraphicAlpha: 1
+--- !u!114 &6514504498279829911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4552092448067883863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0305e91b2274b5cb192747d4fec8439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EntityCfg:
+    _components:
+    - rid: 8499802477987889218
+  references:
+    version: 2
+    RefIds:
+    - rid: 8499802477987889218
+      type: {class: SettingsButtonTag/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
+        asm: Assembly-CSharp}
+      data: {}
 --- !u!1 &4838284195642586474
 GameObject:
   m_ObjectHideFlags: 0
@@ -5107,6 +5286,7 @@ GameObject:
   - component: {fileID: 5436580862434815999}
   - component: {fileID: 4794372653954779078}
   - component: {fileID: 3464594348411524382}
+  - component: {fileID: 4935219532042946864}
   m_Layer: 5
   m_Name: SoundOn
   m_TagString: Untagged
@@ -5215,7 +5395,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5436580862434815999}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4935219532042946864}
+        m_TargetAssemblyTypeName: _Project.Scripts.Gameplay.Observesr.ButtonObserver,
+          Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &3464594348411524382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5231,6 +5424,28 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
+--- !u!114 &4935219532042946864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8242890240439063237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0305e91b2274b5cb192747d4fec8439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EntityCfg:
+    _components:
+    - rid: 8499802478223294522
+  references:
+    version: 2
+    RefIds:
+    - rid: 8499802478223294522
+      type: {class: SoundButtonTag/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
+        asm: Assembly-CSharp}
+      data: {}
 --- !u!1 &8466431728972394244
 GameObject:
   m_ObjectHideFlags: 0

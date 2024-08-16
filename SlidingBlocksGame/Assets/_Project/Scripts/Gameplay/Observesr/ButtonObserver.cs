@@ -10,6 +10,7 @@ namespace _Project.Scripts.Gameplay.Observesr
 
         public void OnClick()
         {
+            Debug.Log("Click");
             int @event = EcsDefaultWorldSingletonProvider.Instance.Get().NewEntity(EntityCfg);
             EcsDefaultWorldSingletonProvider.Instance.Get().GetPool<ButtonClickedEvent>().Add(@event);
         }

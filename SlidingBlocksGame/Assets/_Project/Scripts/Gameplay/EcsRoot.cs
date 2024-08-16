@@ -54,7 +54,6 @@ namespace _Project.Scripts.Gameplay
                 .AddUnique(new CalculateGameFieldSystem())
                 .AddUnique(new SelectionGenerationGameFieldSystem())
                 .AddUnique(new CalculationScaleGameFieldSystem())
-                .AutoDelEntityTag<ButtonClickedEvent>()
 
                 .AddUnique(new CreateAnimalsRequestSystem())
                 .AddUnique(new CreateAnimalsSystem())
@@ -129,6 +128,8 @@ namespace _Project.Scripts.Gameplay
                 .AddUnique(new DestroyFxRequestSystem())
                 .AddUnique(new DestructionFxSystem())
                 .AddUnique(new VisualizeGameLossTimerSystem())
+                .AddUnique(new OpenSettingsMenuSystem())
+                .AddUnique(new AudioButtonsSystem())
 
                 .AddModule(new GameFieldAlgorithmsFeature())
                 
@@ -140,6 +141,8 @@ namespace _Project.Scripts.Gameplay
                 .AddUnique(new CooldownSystem())
                 .AddUnique(new CooldownIntervalSystem())
                 .AutoDelTag<RefreshCooldownRequest>()
+
+                .AutoDelEntityTag<ButtonClickedEvent>()
 
                 // other
                 .AddUnique(new DestroyViewSystem())
