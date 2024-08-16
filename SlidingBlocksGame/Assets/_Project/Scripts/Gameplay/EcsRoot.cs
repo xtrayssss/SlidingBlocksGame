@@ -128,7 +128,7 @@ namespace _Project.Scripts.Gameplay
                 .AddUnique(new DestroyFxRequestSystem())
                 .AddUnique(new DestructionFxSystem())
                 .AddUnique(new VisualizeGameLossTimerSystem())
-                .AddUnique(new OpenSettingsMenuSystem())
+                .AddUnique(new SettingsMenuSystem())
                 .AddUnique(new AudioButtonsSystem())
 
                 .AddModule(new GameFieldAlgorithmsFeature())
