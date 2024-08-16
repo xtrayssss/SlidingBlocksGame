@@ -51,7 +51,9 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
         {
             entlong screen = _world.NewEntityLong();
 
-            EcsEntityConnect bestConnect = connect.transform.Find("Best").GetComponent<EcsEntityConnect>();
+            // TODO: 
+            EcsEntityConnect bestConnect = connect.transform.GetChild(0).Find("Best").
+                GetComponent<EcsEntityConnect>();
 
             bestConnect.Connect(screen, true);
         }

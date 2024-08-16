@@ -39,7 +39,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 
                     settingsMenuView.Value.gameObject.SetActive(true);
 
-                    Sequence.Create(cycleMode: CycleMode.Yoyo)
+                    Sequence.Create()
                         .Chain(Tween.Scale(settingsMenuView.Value.transform, Vector3.one * 1.2f, 0.1f, Ease.OutQuad)
                             .Chain(Tween.Scale(settingsMenuView.Value.transform, Vector3.one * 1f, 0.05f,
                                 Ease.InQuad)));
@@ -53,7 +53,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                     ref readonly var settingsMenuView = ref gameScreenAspect.SettingsMenuViews.Read(gameScreen);
 
                     SettingsMenuView view = settingsMenuView;
-                    
+
                     Sequence.Create(cycleMode: CycleMode.Yoyo)
                         .Chain(Tween.Scale(settingsMenuView.Value.transform, Vector3.one * 1.2f, 0.1f, Ease.OutQuad)
                             .Chain(Tween.Scale(settingsMenuView.Value.transform, Vector3.zero, 0.05f,

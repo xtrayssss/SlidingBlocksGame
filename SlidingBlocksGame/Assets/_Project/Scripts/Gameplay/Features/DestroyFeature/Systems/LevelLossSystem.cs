@@ -5,6 +5,7 @@ using _Project.Scripts.Gameplay.Features.DestroyFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
 using DCFApixels.DragonECS;
+using PrimeTween;
 using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
@@ -115,7 +116,15 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
                         _world.GetPool<CleanupLevelRequest>().Add(game);
 
                     foreach (GameObject ui in _world.GetPool<HideUI>().Read(gameScreenID).Value)
+                    {
+                        ui.transform.localScale = Vector3.zero;
+
+                        Sequence.Create()
+                            .Chain(Tween.Scale(ui.transform.transform, Vector3.one * 1.2f, 0.2f, Ease.OutQuad)
+                                .Chain(Tween.Scale(ui.transform.transform, Vector3.one * 1f, 0.1f, Ease.InQuad)));
+
                         ui.SetActive(true);
+                    }
 
                     foreach (int game in _world.Where(out GameAspect gameAspect))
                     {

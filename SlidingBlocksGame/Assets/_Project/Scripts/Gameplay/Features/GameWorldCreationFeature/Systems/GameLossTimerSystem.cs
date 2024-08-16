@@ -3,6 +3,7 @@ using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
 using _Project.Scripts.Gameplay.Features.DestroyFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
 using DCFApixels.DragonECS;
+using PrimeTween;
 using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
@@ -53,6 +54,12 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                     timerAspect.Refresh.Add(timer.ID);
 
                     timerAspect.LevelLifeTime.Add(timer.ID);
+                    
+                    connect.Value.transform.localScale = Vector3.zero;
+
+                    Sequence.Create()
+                        .Chain(Tween.Scale(connect.Value.transform, Vector3.one * 1.2f, 0.2f, Ease.OutQuad)
+                            .Chain(Tween.Scale(connect.Value.transform, Vector3.one * 1f, 0.1f, Ease.InQuad)));
 
                     connect.Value.gameObject.SetActive(true);
                 }
