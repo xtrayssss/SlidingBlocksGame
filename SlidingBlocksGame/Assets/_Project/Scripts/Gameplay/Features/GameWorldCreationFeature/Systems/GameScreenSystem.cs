@@ -1,7 +1,10 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
+using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using DCFApixels.DragonECS;
+using UnityEngine;
 using Object = UnityEngine.Object;
 
 namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
@@ -43,7 +46,25 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                     aspect.GameScreen.TryAddOrGet(entity).Value = screen;
 
                     CreateBest(connect);
+                    CreateInAppPurchases(connect);
                 }
+            }
+        }
+
+        private void CreateInAppPurchases(EcsEntityConnect connect)
+        {
+            entlong screen = connect.Entity;
+
+            Transform shop = connect.transform.GetChild(0).Find("InAppShop").Find("Products");
+
+            Debug.Log(shop, shop);
+            InAppPurchases inAppPurchases = _world.GetPool<InAppPurchases>().Read(screen.ID);
+            
+            
+            foreach (ref readonly InAppPurchases.Purchase purchase in inAppPurchases.Value.AsSpan())
+            {
+                Debug.Log("123");
+                Object.Instantiate(purchase.Prefab, shop.transform, false);
             }
         }
 
