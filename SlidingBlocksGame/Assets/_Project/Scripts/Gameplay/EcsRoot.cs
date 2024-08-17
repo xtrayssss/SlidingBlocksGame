@@ -130,6 +130,12 @@ namespace _Project.Scripts.Gameplay
                 .AddUnique(new VisualizeGameLossTimerSystem())
                 .AddUnique(new SettingsMenuSystem())
                 .AddUnique(new AudioButtonsSystem())
+                .AddUnique(new InAppPopupSystem())
+                .AddUnique(new AnimalsStoreSystem())
+                .AddUnique(new RotationSystem())
+                // .AddUnique(new ScrollSystem())
+                // .AddUnique(new NearestSystem())
+                // .AddUnique(new EffectSystem())
 
                 .AddModule(new GameFieldAlgorithmsFeature())
                 

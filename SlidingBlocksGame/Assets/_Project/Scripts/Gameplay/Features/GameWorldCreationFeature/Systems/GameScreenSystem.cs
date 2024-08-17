@@ -3,8 +3,10 @@ using System.Linq;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
 using _Project.Scripts.Gameplay.Features.UIFeature.Components;
+using _Project.Scripts.Gameplay.Features.UIFeature.Systems;
 using DCFApixels.DragonECS;
 using UnityEngine;
+using UnityEngine.UI;
 using Object = UnityEngine.Object;
 
 namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
@@ -47,7 +49,38 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
                     CreateBest(connect);
                     CreateInAppPurchases(connect);
+                    CreateAnimalsShop(connect);
                 }
+            }
+        }
+        
+        private void CreateAnimalsShop(EcsEntityConnect connect)
+        {
+            entlong screen = connect.Entity;
+
+            int shop = _world.NewEntity();
+
+            _world.GetPool<AnimalStoreView>().Read(screen.ID).Value.Connect(shop.ToEntityLong(_world), true);
+
+            ref InGamePurchaseAnimals inGamePurchaseAnimals =
+                ref _world.GetPool<InGamePurchaseAnimals>().Get(shop);
+
+            ref ScrollSnapRef scrollSnap = ref _world.GetPool<ScrollSnapRef>().Get(shop);
+
+            inGamePurchaseAnimals.Value = EcsGroup.New(_world);
+
+            RectTransform content = scrollSnap.Value.GetComponent<ScrollRect>().content;
+
+            foreach (GameObject animalPrefab in inGamePurchaseAnimals.Proto)
+            {
+                GameObject animalView = Object.Instantiate(animalPrefab, content.transform, false);
+                EcsEntityConnect animalConnect = animalView.GetComponent<EcsEntityConnect>();
+
+                entlong animal = _world.NewEntityLong();
+                
+                animalConnect.Connect(animal, true);
+                
+                inGamePurchaseAnimals.Value.Add(animal.ID);
             }
         }
 
@@ -57,15 +90,10 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
             Transform shop = connect.transform.GetChild(0).Find("InAppShop").Find("Products");
 
-            Debug.Log(shop, shop);
-            InAppPurchases inAppPurchases = _world.GetPool<InAppPurchases>().Read(screen.ID);
-            
-            
+            ref readonly InAppPurchases inAppPurchases = ref _world.GetPool<InAppPurchases>().Read(screen.ID);
+
             foreach (ref readonly InAppPurchases.Purchase purchase in inAppPurchases.Value.AsSpan())
-            {
-                Debug.Log("123");
                 Object.Instantiate(purchase.Prefab, shop.transform, false);
-            }
         }
 
         private void CreateBest(EcsEntityConnect connect)
@@ -73,8 +101,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
             entlong screen = _world.NewEntityLong();
 
             // TODO: 
-            EcsEntityConnect bestConnect = connect.transform.GetChild(0).Find("Best").
-                GetComponent<EcsEntityConnect>();
+            EcsEntityConnect bestConnect = connect.transform.GetChild(0).Find("Best").GetComponent<EcsEntityConnect>();
 
             bestConnect.Connect(screen, true);
         }
