@@ -15,7 +15,7 @@ PrefabInstance:
       objectReference: {fileID: 4300000, guid: 41c98cfca6dd1cc45ab6cd0f365b67ba, type: 2}
     - target: {fileID: 2936143895052326442, guid: 851b84b3d3622cd48a8df6387b7d22f6,
         type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
+      propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 6d99910571d62224587d8b91bfab1c46, type: 2}
     - target: {fileID: 4313864258705815891, guid: 851b84b3d3622cd48a8df6387b7d22f6,
@@ -70,7 +70,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6997423007682641646, guid: 851b84b3d3622cd48a8df6387b7d22f6,
         type: 3}
-      propertyPath: '_scriptableTemplates.Array.data[0]'
+      propertyPath: _scriptableTemplates.Array.data[0]
       value: 
       objectReference: {fileID: 11400000, guid: aa2bde947e137ed42ba32d4ade3894de,
         type: 2}
@@ -78,6 +78,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cow
+      objectReference: {fileID: 0}
+    - target: {fileID: 8752353630464874805, guid: 851b84b3d3622cd48a8df6387b7d22f6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
