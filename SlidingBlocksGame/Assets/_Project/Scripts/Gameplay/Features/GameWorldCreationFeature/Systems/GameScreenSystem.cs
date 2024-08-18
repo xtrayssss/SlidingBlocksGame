@@ -5,6 +5,7 @@ using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
 using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.UIFeature.Systems;
 using DCFApixels.DragonECS;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
@@ -53,7 +54,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                 }
             }
         }
-        
+
         private void CreateAnimalsShop(EcsEntityConnect connect)
         {
             entlong screen = connect.Entity;
@@ -68,19 +69,40 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
             ref ScrollSnapRef scrollSnap = ref _world.GetPool<ScrollSnapRef>().Get(shop);
 
             inGamePurchaseAnimals.Value = EcsGroup.New(_world);
-
+            
             RectTransform content = scrollSnap.Value.GetComponent<ScrollRect>().content;
 
+            TextMeshProUGUI priceText = scrollSnap.Value.transform.Find("Viewport/Price/Price").GetComponent<TextMeshProUGUI>();
+
+            Debug.Log(priceText);
+            
             foreach (GameObject animalPrefab in inGamePurchaseAnimals.Proto)
             {
-                GameObject animalView = Object.Instantiate(animalPrefab, content.transform, false);
-                EcsEntityConnect animalConnect = animalView.GetComponent<EcsEntityConnect>();
+                ModelToUIRenderer purchaseRenderer = Object
+                    .Instantiate(inGamePurchaseAnimals.Purchase, content.transform, false)
+                    .GetComponent<ModelToUIRenderer>();
 
-                entlong animal = _world.NewEntityLong();
+                Transform renderer = animalPrefab.transform.Find("Renderer");
+
+                purchaseRenderer.modelPrefab = renderer.gameObject;
+
+                EcsEntityConnect animalConnect = purchaseRenderer.GetComponent<EcsEntityConnect>();
+
+                entlong purchase = _world.NewEntityLong();
+
+                animalConnect.Connect(purchase, true);
+
+                inGamePurchaseAnimals.Value.Add(purchase.ID);
                 
-                animalConnect.Connect(animal, true);
+                var view = purchaseRenderer.Create();
+
+                _world.GetPool<PhysicView>().Add(purchase.ID).Value = view;
                 
-                inGamePurchaseAnimals.Value.Add(animal.ID);
+                _world.GetPool<CreatedEvent>().Add(purchase.ID);
+                
+                _world.GetPool<TextMeshProUGUIRef>().Get(purchase.ID).Value = priceText;
+                
+                _world.GetPool<Purchase>().Get(purchase.ID).Price += inGamePurchaseAnimals.Proto.ToList().IndexOf(animalPrefab);
             }
         }
 

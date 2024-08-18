@@ -40,7 +40,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                         ref animalShopWindowAspect.Animals.Read(animalShopWindow);
 
                     animalShopWindowAspect.ScrollStarted.TryDel(animals.Value[aspect.Indices.Read(entity).Value]);
-                    animalShopWindowAspect.Snapped.Add(animals.Value[aspect.Indices.Read(entity).Value]);
+                    animalShopWindowAspect.Snapped.TryAdd(animals.Value[aspect.Indices.Read(entity).Value]);
                 }
             }
 
@@ -53,7 +53,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 
                     Debug.Log(aspect.Indices.Read(entity).Value);
                     
-                    animalShopWindowAspect.ScrollStarted.Add(animals.Value[aspect.Indices.Read(entity).Value]);
+                    animalShopWindowAspect.ScrollStarted.TryAdd(animals.Value[aspect.Indices.Read(entity).Value]);
                     animalShopWindowAspect.Snapped.TryDel(animals.Value[aspect.Indices.Read(entity).Value]);
                 }
             }

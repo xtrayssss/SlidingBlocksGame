@@ -19,6 +19,11 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
             _world.GetPool<LevelCounter>().Add(game);
             _world.GetPool<GameCreatedEvent>().Add(game);
+
+            int player = _world.NewEntity();
+            
+            _world.GetPool<PlayerTag>().Add(player);
+            _world.GetPool<Balance>().Add(player).Value = 152;
         }
     }
 }

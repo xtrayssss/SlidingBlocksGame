@@ -1,96 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &605829482398932917
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3135950797299924699}
-  - component: {fileID: 5781785041840004633}
-  - component: {fileID: 7843371872140315277}
-  m_Layer: 0
-  m_Name: UIObject3D
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &3135950797299924699
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 605829482398932917}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4541698119196968763}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &5781785041840004633
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 605829482398932917}
-  m_CullTransparentMesh: 0
---- !u!114 &7843371872140315277
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 605829482398932917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aec0e9d816769504697d3e737238ae87, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_worldObjects: []
-  m_resolutionWidth: 512
-  m_resolutionHeight: 512
-  m_cameraOrthographic: 0
-  m_cameraOrthographicSize: 5
-  m_cameraLookAtPosition: {x: 0, y: 0.63, z: -1.85}
-  m_cameraOffset: {x: 0, y: 0, z: -0.62}
-  m_cameraOffsetAndPositionMultiplier: 1.33
-  m_cameraRoll: 0
-  m_CameraFollowTransform: 0
-  m_cameraOrigin: {fileID: 0}
-  m_cameraUseBoundsToClip: 1
-  m_cameraFollowBoundsCenter: 0
-  m_cameraAutoUpdateBounds: 0
-  m_useRenderTexture: 1
-  m_CameraNearClipPlane: 0.3
-  m_CameraFarClipPlane: 1000
-  m_cameraFieldOfView: 60
-  m_cameraClearType: 0
-  m_cameraBackgroundColor: {r: 0.5, g: 0.5, b: 0.5, a: 0}
-  m_cameraDepth: 0
-  m_cameraCullingMask:
-    serializedVersion: 2
-    m_Bits: 64
-  CameraOverride: {fileID: 0}
-  RenderTextureOverride: {fileID: 0}
 --- !u!1 &3827629519308819275
 GameObject:
   m_ObjectHideFlags: 0
@@ -103,6 +12,9 @@ GameObject:
   - component: {fileID: 6133406430698375171}
   - component: {fileID: 5562611802489966428}
   - component: {fileID: 6839187176666118470}
+  - component: {fileID: 1581673594327866416}
+  - component: {fileID: 5988588591332326582}
+  - component: {fileID: 3049009980293482999}
   m_Layer: 5
   m_Name: PurchasableAnimal
   m_TagString: Untagged
@@ -121,14 +33,13 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 3135950797299924699}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 245, y: -218.00002}
-  m_SizeDelta: {x: 270, y: 270}
+  m_SizeDelta: {x: 850, y: 850}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6133406430698375171
 CanvasRenderer:
@@ -178,7 +89,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 5988588591332326582}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
@@ -197,4 +108,80 @@ MonoBehaviour:
   _deleteEntiityWithDestroy: 0
   _scriptableTemplates:
   - {fileID: 11400000, guid: 6781bc80d30aac041ad083c3684da6a6, type: 2}
-  _monoTemplates: []
+  _monoTemplates:
+  - {fileID: 3049009980293482999}
+--- !u!114 &1581673594327866416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3827629519308819275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 292eed0f4dd34e9196278d205a5d2e30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  modelPrefab: {fileID: 8029777792800688676, guid: 6837cb7328d775949ba228083fd08696,
+    type: 3}
+  targetRawImage: {fileID: 5988588591332326582}
+  modelOffset: {x: 0, y: -1.8, z: 0}
+  cameraPadding: 1.3
+  objectSpacing: 30
+--- !u!114 &5988588591332326582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3827629519308819275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Texture: {fileID: 0}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+--- !u!114 &3049009980293482999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3827629519308819275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 351338ca92ace49499f450172d857af6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _components:
+  - rid: 8499802549516500992
+  - rid: 8499802549516500993
+  references:
+    version: 2
+    RefIds:
+    - rid: 8499802549516500992
+      type: {class: Purchase/Template, ns: _Project.Scripts.Gameplay.Features.CommonFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Price: 150
+    - rid: 8499802549516500993
+      type: {class: TextMeshProUGUIRef/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: {fileID: 0}

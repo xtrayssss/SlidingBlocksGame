@@ -1,6 +1,7 @@
 ﻿using System;
 using DCFApixels.DragonECS;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace _Project.Scripts.Gameplay.Features.UIFeature.Components
 {
@@ -9,6 +10,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Components
     {
         public EcsGroup Value;
         public GameObject[] Proto;
+        public GameObject Purchase;
 
         private sealed class Template : ComponentTemplate<InGamePurchaseAnimals>
         {
