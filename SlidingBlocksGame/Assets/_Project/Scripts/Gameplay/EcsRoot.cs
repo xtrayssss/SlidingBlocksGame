@@ -1,4 +1,6 @@
 ﻿using _Project.Scripts.Gameplay.Features;
+using _Project.Scripts.Gameplay.Features.AudioFeature.Components;
+using _Project.Scripts.Gameplay.Features.AudioFeature.Systems;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Systems;
 using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
@@ -139,6 +141,13 @@ namespace _Project.Scripts.Gameplay
                 .AddUnique(new PlayWithSelectedAnimalSystem())
                 .AddUnique(new DisplayAnimalPurchaseWindowSystem())
                 .AddUnique(new CloseAnimalPurchaseWindowSystem())
+                
+                // audio feature
+                .AddUnique(new ButtonPlayAudioRequestSystem())
+                .AddUnique(new PlayAudioSystem())
+                .AutoDelTag<PlayAudioRequest>()
+                
+                // other
                 .AutoDelTag<CreatedEvent>()
                 // .AddUnique(new ScrollSystem())
                 // .AddUnique(new NearestSystem())

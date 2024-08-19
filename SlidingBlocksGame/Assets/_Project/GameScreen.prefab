@@ -5992,6 +5992,7 @@ MonoBehaviour:
   EntityCfg:
     _components:
     - rid: 8499802477987889218
+    - rid: 8499802562692645427
   references:
     version: 2
     RefIds:
@@ -5999,6 +6000,12 @@ MonoBehaviour:
       type: {class: SettingsButtonTag/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
         asm: Assembly-CSharp}
       data: {}
+    - rid: 8499802562692645427
+      type: {class: AudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: {fileID: 11400000, guid: c7ba15024db7d8340a8665925333d92e, type: 2}
 --- !u!1 &4563529656774209198
 GameObject:
   m_ObjectHideFlags: 0
