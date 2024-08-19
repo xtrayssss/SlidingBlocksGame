@@ -194,6 +194,7 @@ GameObject:
   - component: {fileID: 6322022008388058491}
   - component: {fileID: 822700015916037070}
   - component: {fileID: 5919116166914905618}
+  - component: {fileID: 3735865803022251396}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -302,7 +303,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6322022008388058491}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3735865803022251396}
+        m_TargetAssemblyTypeName: _Project.Scripts.Gameplay.Observesr.ButtonObserver,
+          Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &5919116166914905618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -318,6 +332,28 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.7058824}
   m_EffectDistance: {x: 10, y: -10}
   m_UseGraphicAlpha: 1
+--- !u!114 &3735865803022251396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 111646482023472818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0305e91b2274b5cb192747d4fec8439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EntityCfg:
+    _components:
+    - rid: 8499802562412675324
+  references:
+    version: 2
+    RefIds:
+    - rid: 8499802562412675324
+      type: {class: AnimalPurchaseWindowButtonTag/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
+        asm: Assembly-CSharp}
+      data: {}
 --- !u!1 &162560936532669266
 GameObject:
   m_ObjectHideFlags: 0
@@ -512,13 +548,14 @@ GameObject:
   - component: {fileID: 6429701158572272287}
   - component: {fileID: 7679739957960411926}
   - component: {fileID: 2709513295284806967}
+  - component: {fileID: 8702142318966623342}
   m_Layer: 5
   m_Name: ScrollSnap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2287053894430683086
 RectTransform:
   m_ObjectHideFlags: 0
@@ -537,9 +574,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -0.000061035156, y: 0}
+  m_AnchoredPosition: {x: 959.9999, y: 0}
   m_SizeDelta: {x: 1920, y: 3414}
-  m_Pivot: {x: 0, y: 0.5}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &676313603945312274
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -672,6 +709,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  IsOffEffects: 0
 --- !u!114 &6429701158572272287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -733,6 +771,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5efe2096a0a54267bcc26292324961ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!225 &8702142318966623342
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 344608180997007011}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &468256845731935269
 GameObject:
   m_ObjectHideFlags: 0
@@ -1568,7 +1618,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 0.00012207031, y: 0}
-  m_SizeDelta: {x: 0, y: 3414}
+  m_SizeDelta: {x: 1530, y: 3414}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &5045728294421335285
 MonoBehaviour:
@@ -1597,12 +1647,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 705
+    m_Left: 825
     m_Right: 825
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 3
-  m_Spacing: 550
+  m_Spacing: 0
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
@@ -2747,6 +2797,7 @@ GameObject:
   - component: {fileID: 6754621306547243748}
   - component: {fileID: 3817967448404192468}
   - component: {fileID: 4776578911660354609}
+  - component: {fileID: 903301972880352589}
   m_Layer: 5
   m_Name: Play
   m_TagString: Untagged
@@ -2855,7 +2906,42 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3817967448404192468}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 903301972880352589}
+        m_TargetAssemblyTypeName: _Project.Scripts.Gameplay.Observesr.ButtonObserver,
+          Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &903301972880352589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2203917814425509037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0305e91b2274b5cb192747d4fec8439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EntityCfg:
+    _components:
+    - rid: 8499802562412675174
+  references:
+    version: 2
+    RefIds:
+    - rid: 8499802562412675174
+      type: {class: PlayButtonTag/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
+        asm: Assembly-CSharp}
+      data: {}
 --- !u!1 &2383701267012842555
 GameObject:
   m_ObjectHideFlags: 0
@@ -3930,7 +4016,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &579280571767297522
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4384,7 +4470,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2922525183088953383
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4554,7 +4640,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3990697725427688723
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6738,7 +6824,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2555965213760843451
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8029,7 +8115,7 @@ RectTransform:
   m_Father: {fileID: 2287053894430683086}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.50000006, y: 0.5}
@@ -8422,7 +8508,7 @@ RectTransform:
   m_Father: {fileID: 8425655251773842830}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -3.699829, y: 0}
   m_SizeDelta: {x: 12.630554, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -9590,6 +9676,7 @@ GameObject:
   - component: {fileID: 1644153775896224851}
   - component: {fileID: 2563914076113049450}
   - component: {fileID: 157874442793928209}
+  - component: {fileID: 9180822505597514768}
   m_Layer: 5
   m_Name: Unlock
   m_TagString: Untagged
@@ -9698,7 +9785,42 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2563914076113049450}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 9180822505597514768}
+        m_TargetAssemblyTypeName: _Project.Scripts.Gameplay.Observesr.ButtonObserver,
+          Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &9180822505597514768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7329551674218892585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0305e91b2274b5cb192747d4fec8439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EntityCfg:
+    _components:
+    - rid: 8499802562412675072
+  references:
+    version: 2
+    RefIds:
+    - rid: 8499802562412675072
+      type: {class: UnlockButtonTag/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
+        asm: Assembly-CSharp}
+      data: {}
 --- !u!1 &7448216692467500618
 GameObject:
   m_ObjectHideFlags: 0
@@ -11173,7 +11295,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7064912006888154770
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11453,7 +11575,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &612523609044365707
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11704,7 +11826,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4740099195960992524
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12045,7 +12167,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1629382783938055547
 RectTransform:
   m_ObjectHideFlags: 0

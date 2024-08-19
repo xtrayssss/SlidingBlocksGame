@@ -65,6 +65,7 @@ namespace _Project.Scripts.Gameplay.Features.ScrollFeature
 
         public UnityEvent<int, RectTransform> OnScrollStarted;
         public UnityEvent<int, RectTransform> OnItemSnapped;
+        public bool IsOffEffects;
 
         #endregion
 
@@ -164,7 +165,9 @@ namespace _Project.Scripts.Gameplay.Features.ScrollFeature
                 SnapToNearest();
 
             HandleItemsStates();
-            ApplyEffects();
+
+            if (!IsOffEffects) 
+                ApplyEffects();
         }
 
         private void UpdateItemsIfChanged()

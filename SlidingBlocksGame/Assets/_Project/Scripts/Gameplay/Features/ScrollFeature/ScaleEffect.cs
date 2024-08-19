@@ -16,8 +16,9 @@ namespace LightScrollSnap
         private void Scale(RectTransform transform, float displacement)
         {
             var ratio = GetEffectRatioAbs(displacement);
-            var diff = selectedItemScale - unselectedItemScale;
-            transform.localScale = unselectedItemScale + diff * ratio;
+            var targetScale = unselectedItemScale + (selectedItemScale - unselectedItemScale) * ratio;
+
+            transform.localScale = Vector2.Lerp(transform.localScale, targetScale, 0.1f); // 0.1f - плавный коэффициент для изменения
         }
     }
 }
