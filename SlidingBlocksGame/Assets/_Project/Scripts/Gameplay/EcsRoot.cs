@@ -138,6 +138,7 @@ namespace _Project.Scripts.Gameplay
                 .AddUnique(new DisplayPurchaseStatusSystem())
                 .AddUnique(new PlayWithSelectedAnimalSystem())
                 .AddUnique(new DisplayAnimalPurchaseWindowSystem())
+                .AddUnique(new CloseAnimalPurchaseWindowSystem())
                 .AutoDelTag<CreatedEvent>()
                 // .AddUnique(new ScrollSystem())
                 // .AddUnique(new NearestSystem())

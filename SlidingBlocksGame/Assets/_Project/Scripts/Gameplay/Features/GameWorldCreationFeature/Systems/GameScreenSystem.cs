@@ -61,21 +61,26 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
             int shop = _world.NewEntity();
 
+            _world.GetPool<ClosedMarker>().Add(shop);
+
             _world.GetPool<AnimalStoreView>().Read(screen.ID).Value.Connect(shop.ToEntityLong(_world), true);
 
             ref InGamePurchaseAnimals inGamePurchaseAnimals =
                 ref _world.GetPool<InGamePurchaseAnimals>().Get(shop);
 
             ref ScrollSnapRef scrollSnap = ref _world.GetPool<ScrollSnapRef>().Get(shop);
+            
+            scrollSnap.Value.Setup();
 
             inGamePurchaseAnimals.Value = EcsGroup.New(_world);
-            
+
             RectTransform content = scrollSnap.Value.GetComponent<ScrollRect>().content;
 
-            TextMeshProUGUI priceText = scrollSnap.Value.transform.Find("Viewport/Price/Price").GetComponent<TextMeshProUGUI>();
+            TextMeshProUGUI priceText =
+                scrollSnap.Value.transform.Find("Viewport/Price/Price").GetComponent<TextMeshProUGUI>();
 
             Debug.Log(priceText);
-            
+
             foreach (GameObject animalPrefab in inGamePurchaseAnimals.Proto)
             {
                 ModelToUIRenderer purchaseRenderer = Object
@@ -93,16 +98,17 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                 animalConnect.Connect(purchase, true);
 
                 inGamePurchaseAnimals.Value.Add(purchase.ID);
-                
+
                 var view = purchaseRenderer.Create();
 
                 _world.GetPool<PhysicView>().Add(purchase.ID).Value = view;
-                
+
                 _world.GetPool<CreatedEvent>().Add(purchase.ID);
-                
+
                 _world.GetPool<TextMeshProUGUIRef>().Get(purchase.ID).Value = priceText;
-                
-                _world.GetPool<Purchase>().Get(purchase.ID).Price += inGamePurchaseAnimals.Proto.ToList().IndexOf(animalPrefab);
+
+                _world.GetPool<Purchase>().Get(purchase.ID).Price +=
+                    inGamePurchaseAnimals.Proto.ToList().IndexOf(animalPrefab);
             }
         }
 

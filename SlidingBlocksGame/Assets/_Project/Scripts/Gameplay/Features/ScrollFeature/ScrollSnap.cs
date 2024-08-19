@@ -82,7 +82,11 @@ namespace _Project.Scripts.Gameplay.Features.ScrollFeature
 
         #region UNITY METHODS
 
-        protected virtual void Awake() => Setup();
+        protected virtual void Awake()
+        {
+            if (_items == null)
+                Setup();
+        }
 
         protected virtual void Update() => UpdateAll();
 
@@ -98,7 +102,7 @@ namespace _Project.Scripts.Gameplay.Features.ScrollFeature
 
         #region PRIVATE METHODS
 
-        private void Setup()
+        public void Setup()
         {
             _scrollRect = GetComponent<ScrollRect>();
             SetupItems();
@@ -127,6 +131,10 @@ namespace _Project.Scripts.Gameplay.Features.ScrollFeature
         private void UpdateNearest()
         {
             var nearest = GetNearestIndex();
+
+            Debug.Log($"Nearest Index: {nearest}");
+            Debug.Log($"Pos: {_scrollPos}");
+
             if (nearest != -1)
                 _nearestIndex = nearest;
 
@@ -141,6 +149,9 @@ namespace _Project.Scripts.Gameplay.Features.ScrollFeature
                 return;
 
             _scrollPos = scrollbar.value;
+
+            Debug.Log(_scrollPos);
+
             UpdateNearest();
 
             if (Input.GetMouseButtonDown(0))
@@ -162,11 +173,14 @@ namespace _Project.Scripts.Gameplay.Features.ScrollFeature
                 _snapping = false;
             }
             else if (!_smoothScrolling && !_snapping && !Snapped)
+            {
+                Debug.Log("TO nearest");
                 SnapToNearest();
+            }
 
             HandleItemsStates();
 
-            if (!IsOffEffects) 
+            if (!IsOffEffects)
                 ApplyEffects();
         }
 
@@ -235,6 +249,9 @@ namespace _Project.Scripts.Gameplay.Features.ScrollFeature
             {
                 t += DeltaTime / seconds;
                 scrollbar.value = Mathf.Lerp(scrollbar.value, ratio, Mathf.SmoothStep(0f, 1f, t));
+
+                Debug.Log($"_scrollPos during SmoothScroll: {scrollbar.value}");
+
                 yield return null;
             }
 
@@ -245,6 +262,7 @@ namespace _Project.Scripts.Gameplay.Features.ScrollFeature
 
         private void OnSmoothScrollEnded()
         {
+            Debug.Log("OnSmoothScrollEnded");
             _snapping = false;
 
             OnItemSnapped?.Invoke(_nearestIndex, _items[_nearestIndex]); // Вызов события после завершения привязки
@@ -308,6 +326,8 @@ namespace _Project.Scripts.Gameplay.Features.ScrollFeature
 
         private void ClearSnapping()
         {
+            Debug.Log("ClearSnapping");
+
             _snapping = false;
             if (_snapToNearestCoroutine != null)
                 StopCoroutine(_snapToNearestCoroutine);

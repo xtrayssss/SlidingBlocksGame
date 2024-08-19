@@ -2,6 +2,7 @@
 using _Project.Scripts.Gameplay.Features.ScrollFeature;
 using _Project.Scripts.Gameplay.Features.UIFeature.Systems;
 using DCFApixels.DragonECS;
+using PrimeTween;
 
 namespace _Project.Scripts.Gameplay.Features.UIFeature.Components
 {
@@ -9,6 +10,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Components
     public struct ScrollSnapRef : IEcsComponent
     {
         public ScrollSnap Value;
+        public Sequence Sequence;
 
         private sealed class Template : ComponentTemplate<ScrollSnapRef>
         {

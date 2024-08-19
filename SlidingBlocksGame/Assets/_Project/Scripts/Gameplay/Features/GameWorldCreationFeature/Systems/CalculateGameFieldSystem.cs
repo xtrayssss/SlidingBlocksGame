@@ -1,5 +1,9 @@
-﻿using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
+﻿using System;
+using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
+using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using DCFApixels.DragonECS;
+using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 {
@@ -7,20 +11,45 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
     {
         [EcsInject] private EcsDefaultWorld _world;
 
-        private class Aspect : EcsAspectAuto
+        private class LevelAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(CreateLevelRequest))]
-            [Inc] public readonly EcsPool<GameField> Fields;
+            [Inc] public readonly EcsPool<GameField> GameFields;
+        }
+
+        private class PlayerAspect : EcsAspectAuto
+        {
+            [IncImplicit(typeof(PlayerTag))]
+            [Inc] public readonly EcsPool<SelectionAnimalID> SelectionAnimalIndicies;
+        }
+
+        private class AnimalShopWindowAspect : EcsAspectAuto
+        {
+            [IncImplicit(typeof(AnimalsShopWindowTag))]
+            [Inc] public readonly EcsPool<InGamePurchaseAnimals> PurchaseAnimals;
         }
 
         public void Run()
         {
-            foreach (int entity in _world.Where(out Aspect aspect))
+            foreach (int level in _world.Where(out LevelAspect levelAspect))
             {
-                ref GameField field = ref aspect.Fields.Get(entity);
+                ref GameField field = ref levelAspect.GameFields.Get(level);
 
                 field.EdgeSize = field.Size / 3;
                 field.CenterSize = field.Size - 2 * field.EdgeSize;
+
+                // TODO: move to another system
+                foreach (int player in _world.Where(out PlayerAspect playerAspect))
+                {
+                    foreach (int window in _world.Where(out AnimalShopWindowAspect animalShopWindowAspect))
+                    {
+                        GameObject animalPrefab = animalShopWindowAspect.PurchaseAnimals.Read(window)
+                            .Proto[playerAspect.SelectionAnimalIndicies.Read(player).Value];
+
+                        foreach (ref GameField.Unit unit in levelAspect.GameFields.Get(level).Units.AsSpan())
+                            unit.Prefab = animalPrefab.GetComponent<EcsEntityConnect>();
+                    }
+                }
             }
         }
     }

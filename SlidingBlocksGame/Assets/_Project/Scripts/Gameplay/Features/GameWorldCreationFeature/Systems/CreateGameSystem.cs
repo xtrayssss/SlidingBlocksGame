@@ -1,6 +1,7 @@
 ﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
 using DCFApixels.DragonECS;
+using UnityEditor;
 
 namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 {
@@ -20,10 +21,12 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
             _world.GetPool<LevelCounter>().Add(game);
             _world.GetPool<GameCreatedEvent>().Add(game);
 
+            // TODO: move to config
             int player = _world.NewEntity();
             
             _world.GetPool<PlayerTag>().Add(player);
             _world.GetPool<Balance>().Add(player).Value = 152;
+            _world.GetPool<SelectionAnimalID>().Add(player);
         }
     }
 }

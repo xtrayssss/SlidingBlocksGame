@@ -15,6 +15,7 @@ MonoBehaviour:
   _components:
   - rid: 8499802522004751006
   - rid: 8499802524237955074
+  - rid: 8499802562692645426
   references:
     version: 2
     RefIds:
@@ -31,3 +32,9 @@ MonoBehaviour:
           Original: {x: 0, y: 0, z: 0, w: 0}
           SnapBackFactor: 10
           IsSnapBack: 1
+    - rid: 8499802562692645426
+      type: {class: SelectionAnimalID/Template, ns: _Project.Scripts.Gameplay.Features.CommonFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: 2
