@@ -18,7 +18,7 @@ namespace LightScrollSnap
             var ratio = GetEffectRatioAbs(displacement);
             var targetScale = unselectedItemScale + (selectedItemScale - unselectedItemScale) * ratio;
 
-            transform.localScale = Vector2.Lerp(transform.localScale, targetScale, 0.1f); // 0.1f - плавный коэффициент для изменения
+            transform.localScale = Vector2.Lerp(transform.localScale, targetScale, 0.04f); // 0.1f - плавный коэффициент для изменения
         }
     }
 }

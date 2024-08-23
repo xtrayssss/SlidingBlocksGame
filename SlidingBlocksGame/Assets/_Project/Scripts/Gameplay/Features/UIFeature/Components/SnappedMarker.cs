@@ -2,7 +2,7 @@
 
 namespace _Project.Scripts.Gameplay.Features.UIFeature.Components
 {
-    public struct ScrollSnappedMarker : IEcsTagComponent
+    public struct SnappedMarker : IEcsTagComponent
     {
     }
 }

@@ -14,7 +14,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
         private class AnimalAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(AnimalTag))]
-            [IncImplicit(typeof(ScrollSnappedMarker))]
+            [IncImplicit(typeof(SnappedMarker))]
             [Inc] public readonly EcsPool<PhysicView> PhysicViews;
 
             [Inc] public readonly EcsPool<RotationSpeedFactor> Factors;

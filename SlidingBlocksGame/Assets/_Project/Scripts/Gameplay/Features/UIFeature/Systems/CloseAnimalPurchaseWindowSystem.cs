@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using _Project.Scripts.Gameplay.Features.ScrollFeature;
 using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using DCFApixels.DragonECS;
 using PrimeTween;
@@ -29,6 +30,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
             [Inc] public readonly EcsPool<ScrollSnapRef> ScrollSnap;
 
             [Inc] public readonly EcsPool<AnimalPurchases> PurchaseAnimals;
+            [Inc] public readonly EcsPool<PurchaseButtonStatus> PurchaseButtonStatus;
         }
 
         public void Run()
@@ -57,18 +59,14 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                         .Chain(AnimateScrollElements(animalsShopWindowAspect.PurchaseAnimals.Read(window).Entities))
                         .Insert(0.3f,
                             Tween.Scale(gameObjectConnect.Connect.transform, Vector3.zero, 0.15f, Ease.InOutSine))
+                        .Insert(0.2f,
+                            Tween.Scale(animalsShopWindowAspect.PurchaseButtonStatus.Get(window).Current.transform,
+                                Vector3.zero, 0.15f, Ease.InOutSine))
+                        .Insert(0.2f,
+                            Tween.Scale(animalsShopWindowAspect.PurchaseButtonStatus.Get(window).Price.transform,
+                                Vector3.zero, 0.15f, Ease.InOutSine))
                         .ChainCallback(
                             () => { scrollSnapCopy.Value.gameObject.SetActive(false); });
-
-                        // foreach (int ent in _world.Where(out SingleAspect<EcsTagPool<ScrollSnappedMarker>> _))
-                        // {
-                        //     _world.GetPool<ScrollSnappedMarker>().Del(ent);
-                        // }
-                        //
-                        // foreach (int ent in _world.Where(out SingleAspect<EcsTagPool<ScrollStartedMarker>> _))
-                        // {
-                        //     _world.GetPool<ScrollStartedMarker>().Del(ent);
-                        // }
                 }
             }
         }
@@ -79,51 +77,46 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 
             for (int i = 0; i < value.Count; i++)
             {
-                if (_world.GetPool<ScrollSnappedMarker>().Has(value[i]) && i > 0)
+                EcsSpan visibleAnimals = default;
+
+                if (!_world.GetPool<SnappedMarker>().Has(value[i]))
+                    continue;
+
+                if (i > 0 && i < value.Count - 1)
                 {
-                    EcsSpan afterSnapped = value.ToSpan().Slice(i - 1);
-                    EcsSpan beforeSnapped = value.ToSpan().Slice(0, i- 1);
-
-                    for (int index = 0; index < afterSnapped.Count; index++)
-                    {
-                        var animal = afterSnapped[index];
-                        Debug.Log(animal);
-                        ref GameObjectConnect gameObjectConnect = ref _world.GetPool<GameObjectConnect>().Get(animal);
-
-                        sequence.Group(Sequence.Create()
-                            .Group(Tween.Scale(target: gameObjectConnect.Connect.transform, endValue: Vector3.zero,
-                                duration: 0.5f,
-                                Ease.OutQuint, startDelay: 0.1f * index)));
-                    }
-
-                    for (int index = 0; index < beforeSnapped.Count; index++)
-                    {
-                        var animal = beforeSnapped[index];
-                        ref GameObjectConnect gameObjectConnect = ref _world.GetPool<GameObjectConnect>().Get(animal);
-
-                        sequence.Group(Sequence.Create()
-                            .Group(Tween.Scale(target: gameObjectConnect.Connect.transform, endValue: Vector3.zero,
-                                duration: 0.5f,
-                                Ease.OutQuint, startDelay: 0.1f * index)));
-                    }
-
-                    Debug.Log(afterSnapped.Count + " " + beforeSnapped.Count);
-                    Debug.Log(beforeSnapped.Count + " " + afterSnapped.Count);
-
-                    return sequence;
+                    visibleAnimals = value.ToSpan().Slice(i - 1, 3);
                 }
-            }
+                else if (i == 0)
+                {
+                    visibleAnimals = value.ToSpan().Slice(i, 2);
+                }
+                else if (i == value.Count - 1)
+                {
+                    visibleAnimals = value.ToSpan().Slice(i - 1, 2);
+                }
 
-            for (int index = 0; index < value.Count; index++)
-            {
-                int animal = value[index];
+                for (int index = 0; index < visibleAnimals.Count; index++)
+                {
+                    int animal = visibleAnimals[index];
 
-                ref GameObjectConnect gameObjectConnect = ref _world.GetPool<GameObjectConnect>().Get(animal);
+                    ref GameObjectConnect gameObjectConnect = ref _world.GetPool<GameObjectConnect>().Get(animal);
 
-                sequence.Group(Sequence.Create()
-                    .Group(Tween.Scale(target: gameObjectConnect.Connect.transform, endValue: Vector3.zero,
-                        duration: 0.5f,
-                        Ease.OutQuint, startDelay: 0.1f * index)));
+                    sequence.Group(Tween.Scale(target: gameObjectConnect.Connect.transform, endValue: Vector3.zero,
+                        duration: 0.08f, Ease.Linear, startDelay: 0.08f * index));
+                }
+
+                EcsGroup buffer = value.Clone();
+
+                buffer.ExceptWith(visibleAnimals);
+
+                for (int index = 0; index < buffer.Count; index++)
+                {
+                    int animal = buffer[index];
+
+                    ref GameObjectConnect gameObjectConnect = ref _world.GetPool<GameObjectConnect>().Get(animal);
+
+                    gameObjectConnect.Connect.transform.localScale = Vector3.zero;
+                }
             }
 
             return sequence;

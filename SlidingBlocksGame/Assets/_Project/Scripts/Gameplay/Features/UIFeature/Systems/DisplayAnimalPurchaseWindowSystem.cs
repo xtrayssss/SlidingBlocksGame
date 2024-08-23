@@ -1,13 +1,8 @@
-﻿using System.Linq;
-using System.Linq.Expressions;
-using System.Threading.Tasks;
-using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
-using _Project.Scripts.Gameplay.Features.ScrollFeature;
+﻿using _Project.Scripts.Gameplay.Features.ScrollFeature;
 using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using DCFApixels.DragonECS;
 using PrimeTween;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 {
@@ -29,6 +24,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 
             [Inc] public readonly EcsPool<AnimalPurchases> PurchaseAnimals;
             [Inc] public readonly EcsPool<ScrollSnapRef> ScrollSnap;
+            [Inc] public readonly EcsPool<PurchaseButtonStatus> PurchaseButtonStatus;
         }
 
         public void Run()
@@ -56,14 +52,17 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                         .Group(Tween.Scale(gameObjectConnect.Connect.transform, Vector3.one, 0.2f, Ease.InOutSine))
                         .ChainCallback(() => { Debug.Log("Result"); })
                         .Chain(AnimateScrollElements(animalsShopWindowAspect.PurchaseAnimals.Read(window).Entities,
-                            scrollSnap.Value)).ChainCallback(() => { Debug.Log("Result"); });
+                            scrollSnap.Value, animalsShopWindowAspect.PurchaseButtonStatus.Get(window).Current,
+                            animalsShopWindowAspect.PurchaseButtonStatus.Get(window).Price))
+                        .ChainCallback(() => { Debug.Log("Result"); });
 
                     scrollSnapCopy.Value.gameObject.SetActive(true);
                 }
             }
         }
 
-        private Sequence AnimateScrollElements(EcsGroup value, ScrollSnap scrollSnap)
+        private Sequence AnimateScrollElements(EcsGroup value, ScrollSnap scrollSnap, GameObject purchaseButton,
+            GameObject price)
         {
             Sequence sequence = Sequence.Create();
 
@@ -71,7 +70,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
             {
                 EcsSpan visibleAnimals = default;
 
-                if (!_world.GetPool<ScrollSnappedMarker>().Has(value[i]))
+                if (!_world.GetPool<SnappedMarker>().Has(value[i]))
                     continue;
 
                 if (i > 0 && i < value.Count - 1)
@@ -88,25 +87,40 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                 }
 
                 Sequence visibleSequence = Sequence.Create();
-                
-                for (int index = 0; index < visibleAnimals.Count; index++)
+
+                int visibleIndex;
+
+                for (visibleIndex = 0; visibleIndex < visibleAnimals.Count; visibleIndex++)
                 {
-                    int animal = visibleAnimals[index];
+                    int animal = visibleAnimals[visibleIndex];
 
                     ref GameObjectConnect gameObjectConnect = ref _world.GetPool<GameObjectConnect>().Get(animal);
 
                     gameObjectConnect.Connect.transform.localScale = Vector3.zero;
 
-                    visibleSequence.Group(Tween.Scale(target: gameObjectConnect.Connect.transform, endValue: Vector3.one,
-                        duration: 0.08f, Ease.Linear, startDelay: 0.08f * index));
+                    visibleSequence.Group(Tween.Scale(target: gameObjectConnect.Connect.transform,
+                        endValue: Vector3.one,
+                        duration: 0.08f, Ease.Linear, startDelay: 0.08f * visibleIndex));
                 }
 
+                purchaseButton.transform.localScale = Vector3.zero;
+                price.transform.localScale = Vector3.zero;
+
+                Tween.Scale(target: purchaseButton.transform,
+                    endValue: Vector3.one,
+                    duration: 0.08f, Ease.Linear, startDelay: 0.08f * visibleIndex);
+
+                Tween.Scale(target: price.transform,
+                    endValue: Vector3.one,
+                    duration: 0.08f, Ease.Linear, startDelay: 0.08f * visibleIndex);
+
+                //EcsDebug.Break();
                 visibleSequence.ChainCallback(() =>
                 {
                     scrollSnap.ScrollRect.enabled = true;
                     scrollSnap.IsApplyEffects = true;
                 });
-                
+
                 sequence.Group(visibleSequence);
 
                 EcsGroup buffer = value.Clone();

@@ -24,7 +24,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
         private class PurchasesAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(AnimalTag))]
-            [IncImplicit(typeof(ScrollSnappedMarker))]
+            [IncImplicit(typeof(SnappedMarker))]
             [Inc] public readonly EcsPool<PhysicView> PhysicViews;
 
             [Inc] public readonly EcsPool<Purchase> Purchases;
@@ -56,7 +56,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
         private class PurchasesAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(AnimalTag))]
-            [IncImplicit(typeof(ScrollSnappedMarker))]
+            [IncImplicit(typeof(SnappedMarker))]
             [Inc] public readonly EcsPool<PhysicView> PhysicViews;
 
             [Inc] public readonly EcsPool<Purchase> Purchases;
@@ -88,6 +88,8 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                     {
                         if (aspect.Purchased.Has(entity))
                         {
+                            animalsShopWindowAspect.Status.Get(window).Current = animalsShopWindowAspect.Status.Read(window).Play;
+                            
                             animalsShopWindowAspect.Status.Read(window).Play.SetActive(true);
 
                             animalsShopWindowAspect.Status.Read(window).Unlock.SetActive(false);
@@ -97,6 +99,8 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                         {
                             if (balance.Value >= aspect.Purchases.Get(entity).Price)
                             {
+                                animalsShopWindowAspect.Status.Get(window).Current = animalsShopWindowAspect.Status.Read(window).Unlock;
+
                                 animalsShopWindowAspect.Status.Read(window).Unlock.SetActive(true);
 
                                 animalsShopWindowAspect.Status.Read(window).Play.SetActive(false);
@@ -104,6 +108,8 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                             }
                             else
                             {
+                                animalsShopWindowAspect.Status.Get(window).Current = animalsShopWindowAspect.Status.Read(window).Lock;
+
                                 animalsShopWindowAspect.Status.Read(window).Lock.SetActive(true);
 
                                 animalsShopWindowAspect.Status.Read(window).Play.SetActive(false);

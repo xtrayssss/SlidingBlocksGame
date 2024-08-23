@@ -110,6 +110,8 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
             }
             
             scrollSnap.Value.Setup(list.ToArray());
+            
+            _world.GetPool<SnappedMarker>().Add(animalPurchases.Entities[0]);
         }
 
         private void UI3D(AnimalPrefabs animalPrefabs, entlong purchase, EcsEntityConnect purchaseView)

@@ -24,7 +24,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
             [IncImplicit(typeof(AnimalsShopWindowTag))]
             [Inc] public readonly EcsPool<AnimalPurchases> Animals;
 
-            [Opt] public readonly EcsTagPool<ScrollSnappedMarker> SnappedMarker;
+            [Opt] public readonly EcsTagPool<SnappedMarker> SnappedMarker;
             [Opt] public readonly EcsTagPool<ScrollStartedMarker> StartedMarker;            
             
             [Opt] public readonly EcsTagPool<ScrollSnappedEvent> SnappedEvent;
