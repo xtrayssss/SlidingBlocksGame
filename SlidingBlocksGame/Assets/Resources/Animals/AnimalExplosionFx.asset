@@ -13,18 +13,10 @@ MonoBehaviour:
   m_Name: AnimalExplosionFx
   m_EditorClassIdentifier: 
   _components:
-  - rid: 8499802275569205654
   - rid: 8499802275569205849
   references:
     version: 2
     RefIds:
-    - rid: 8499802275569205654
-      type: {class: Prefab/Template, ns: _Project.Scripts.Gameplay.Features.CommonFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: {fileID: 672778816691588787, guid: 6cb8d13d2038d504a82630f29e139e88,
-            type: 3}
     - rid: 8499802275569205849
       type: {class: DestroyAfterPlaybackMarker/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.Components,
         asm: Assembly-CSharp}

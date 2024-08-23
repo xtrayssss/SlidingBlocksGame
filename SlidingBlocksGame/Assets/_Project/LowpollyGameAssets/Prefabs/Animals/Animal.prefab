@@ -58,9 +58,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -95,7 +92,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4313864258705815891}
-  - component: {fileID: 6997423007682641646}
+  - component: {fileID: 6885083199704041411}
   - component: {fileID: 299863596686586096}
   - component: {fileID: 8202392226933218612}
   m_Layer: 0
@@ -104,7 +101,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4313864258705815891
 Transform:
   m_ObjectHideFlags: 0
@@ -122,7 +119,7 @@ Transform:
   - {fileID: 5085033323972112699}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6997423007682641646
+--- !u!114 &6885083199704041411
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -131,7 +128,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8752353630464874805}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 495156623a7b1e94087f916ba42745e6, type: 3}
+  m_Script: {fileID: 11500000, guid: ba79d9b35144449789bc2273062bb694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _deleteEntiityWithDestroy: 1
@@ -139,6 +136,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5bc022f7814f7564ca22c0875b9c214d, type: 2}
   _monoTemplates:
   - {fileID: 299863596686586096}
+  _renderer: {fileID: 8479443584960617139}
 --- !u!114 &299863596686586096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,6 +152,8 @@ MonoBehaviour:
   _components:
   - rid: 499105167245050209
   - rid: 8499802272422691542
+  - rid: 8499802589122789376
+  - rid: 8499802611131088910
   references:
     version: 2
     RefIds:
@@ -169,6 +169,18 @@ MonoBehaviour:
       data:
         component:
           Value: {fileID: 8479443584960617139}
+    - rid: 8499802589122789376
+      type: {class: SpawningAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: {fileID: 11400000, guid: 7f8a393c9d3181b4d8fca37f7c0f1925, type: 2}
+    - rid: 8499802611131088910
+      type: {class: DestructionFxPrefab/Template, ns: _Project.Scripts.Gameplay.Features.MovementFeature.Systems,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: {fileID: 0}
 --- !u!54 &8202392226933218612
 Rigidbody:
   m_ObjectHideFlags: 0

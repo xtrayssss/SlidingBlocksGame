@@ -1,6 +1,8 @@
-﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+﻿using _Project.Scripts.Gameplay.Features.AudioFeature.Components;
+using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
+using _Project.Scripts.Gameplay.Features.UIFeature.Systems;
 using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
@@ -20,11 +22,17 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
         {
             [IncImplicit(typeof(AnimalTag))]
             [Inc] public readonly EcsPool<GameObjectConnect> GameObjectConnects;
+            [Inc] public readonly EcsPool<SpawningAudioConfig> SpawningAudioConfigs;
         }
         private class LevelAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(LevelTag))]
             [Opt] public readonly EcsTagPool<AnimalPositionedEvent> AnimalPositioned;
+        }
+        private class AudioAspect : EcsAspectAuto
+        {
+            [Opt] public readonly EcsTagPool<PlayAudioRequest> PlayAudio;
+            [Opt] public readonly EcsPool<AudioSourceRef> AudioSource;
         }
         
         public void Run()
@@ -34,9 +42,18 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                 if (aspect.Targets.Read(entity).Value.TryGetID(out int targetID))
                 {
                     AnimalAspect animalAspect = _world.GetAspect<AnimalAspect>();
+
+                    if (!animalAspect.IsMatches(targetID)) 
+                        continue;
                     
-                    if (animalAspect.IsMatches(targetID)) 
-                        animalAspect.GameObjectConnects.Read(targetID).Connect.gameObject.SetActive(true);
+                    animalAspect.GameObjectConnects.Read(targetID).Connect.gameObject.SetActive(true);
+
+                    int audio = _world.NewEntity(animalAspect.SpawningAudioConfigs.Read(targetID).Value);
+
+                    AudioAspect audioAspect = _world.GetAspect<AudioAspect>();
+                    
+                    audioAspect.AudioSource.Add(audio).Value = AudioSingleton.Instance.SfxSource;
+                    audioAspect.PlayAudio.Add(audio);
                 }
             }
             

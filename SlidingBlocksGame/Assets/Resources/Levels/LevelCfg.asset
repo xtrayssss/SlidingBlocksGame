@@ -16,16 +16,14 @@ MonoBehaviour:
   - rid: 499105128608694272
   - rid: 8499802292475658342
   - rid: 8499802296898551899
-  - rid: 8499802323967542113
   - rid: 8499802340583015395
   - rid: 8499802343622050639
   - rid: 8499802367295750794
-  - rid: 8499802388792868923
+  - rid: 8499802589516268506
+  - rid: 8499802589516268507
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
     - rid: 499105128608694272
       type: {class: GameField/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
         asm: Assembly-CSharp}
@@ -51,7 +49,7 @@ MonoBehaviour:
             CellPosition:
               x: 0
               y: 3
-            Prefab: {fileID: 1871120000574056528, guid: fdf867e4f78396d4893b9e39fbd9a5b3,
+            Prefab: {fileID: 6229462689440456259, guid: bd6f74b8d916ffa4eb9ab1a34e4b5a3d,
               type: 3}
             View: {fileID: 0}
             Rotation:
@@ -65,7 +63,7 @@ MonoBehaviour:
             CellPosition:
               x: 0
               y: 2
-            Prefab: {fileID: 3037289528619008433, guid: ed9ce83c2744d864b983134d287ec369,
+            Prefab: {fileID: 6229462689440456259, guid: bd6f74b8d916ffa4eb9ab1a34e4b5a3d,
               type: 3}
             View: {fileID: 0}
             Rotation:
@@ -79,7 +77,7 @@ MonoBehaviour:
             CellPosition:
               x: 2
               y: 0
-            Prefab: {fileID: 3037289528619008433, guid: ed9ce83c2744d864b983134d287ec369,
+            Prefab: {fileID: 6229462689440456259, guid: bd6f74b8d916ffa4eb9ab1a34e4b5a3d,
               type: 3}
             View: {fileID: 0}
             Rotation:
@@ -93,7 +91,7 @@ MonoBehaviour:
             CellPosition:
               x: 2
               y: 1
-            Prefab: {fileID: 3037289528619008433, guid: ed9ce83c2744d864b983134d287ec369,
+            Prefab: {fileID: 6229462689440456259, guid: bd6f74b8d916ffa4eb9ab1a34e4b5a3d,
               type: 3}
             View: {fileID: 0}
             Rotation:
@@ -117,21 +115,6 @@ MonoBehaviour:
       data:
         component:
           Value: {fileID: 11400000, guid: 4f8fd26f9934ef849be79007e676bf1a, type: 2}
-    - rid: 8499802323967542113
-      type: {class: Levels/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Templat2e:
-            _components:
-            - rid: -2
-          Value:
-          - Levels:
-            - {fileID: 11400000, guid: d47ea16fcef3c6249b98939b2a632bd0, type: 2}
-            - {fileID: 11400000, guid: 60a1f27ced4ca5942b93ec9a0301c7b6, type: 2}
-            - {fileID: 11400000, guid: 8690aed8717ce22469ae86634ca6f310, type: 2}
-            - {fileID: 11400000, guid: 8a5237393a8a5d44d900e4ad6ae6da62, type: 2}
-            - {fileID: 11400000, guid: f68e0774a7a5b6d4ab758e9ca94ec7b6, type: 2}
     - rid: 8499802340583015395
       type: {class: CreationAnimalStrategyCfg/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
         asm: Assembly-CSharp}
@@ -146,9 +129,15 @@ MonoBehaviour:
       type: {class: LevelLifeTimeMarker/Template, ns: _Project.Scripts.Gameplay.Features.DestroyFeature.Components,
         asm: Assembly-CSharp}
       data: {}
-    - rid: 8499802388792868923
+    - rid: 8499802589516268506
       type: {class: GenerationGameFieldAlgorithmCfg/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
-          Value: {fileID: 11400000, guid: e121341429e90b94980e88bd020fcc5c, type: 2}
+          Value: {fileID: 11400000, guid: b0f9f5dd4cdaf2149bb8206508b48f5a, type: 2}
+    - rid: 8499802589516268507
+      type: {class: TileGeneratedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: {fileID: 11400000, guid: 9e7d2bc0efe5f544392d1a9544a560f5, type: 2}

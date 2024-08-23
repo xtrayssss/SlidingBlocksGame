@@ -8,6 +8,38 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 299863596686586096, guid: 851b84b3d3622cd48a8df6387b7d22f6,
+        type: 3}
+      propertyPath: _components.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 299863596686586096, guid: 851b84b3d3622cd48a8df6387b7d22f6,
+        type: 3}
+      propertyPath: _components.Array.data[3]
+      value: 8499802611131088911
+      objectReference: {fileID: 0}
+    - target: {fileID: 299863596686586096, guid: 851b84b3d3622cd48a8df6387b7d22f6,
+        type: 3}
+      propertyPath: managedReferences[8499802611131088908]
+      value: Assembly-CSharp _Project.Scripts.Gameplay.Features.MovementFeature.Systems.DestructionFxCfg/Template
+      objectReference: {fileID: 0}
+    - target: {fileID: 299863596686586096, guid: 851b84b3d3622cd48a8df6387b7d22f6,
+        type: 3}
+      propertyPath: managedReferences[8499802611131088911]
+      value: Assembly-CSharp _Project.Scripts.Gameplay.Features.MovementFeature.Systems.DestructionFxPrefab/Template
+      objectReference: {fileID: 0}
+    - target: {fileID: 299863596686586096, guid: 851b84b3d3622cd48a8df6387b7d22f6,
+        type: 3}
+      propertyPath: managedReferences[8499802611131088908].component.Value
+      value: 
+      objectReference: {fileID: 11400000, guid: 5f1d5aca5d2f3074aad6b34f17599580,
+        type: 2}
+    - target: {fileID: 299863596686586096, guid: 851b84b3d3622cd48a8df6387b7d22f6,
+        type: 3}
+      propertyPath: managedReferences[8499802611131088911].component.Value
+      value: 
+      objectReference: {fileID: 2271965466237198477, guid: 1f1b6bb1734d1824584e975de47575db,
+        type: 3}
     - target: {fileID: 910168524626763030, guid: 851b84b3d3622cd48a8df6387b7d22f6,
         type: 3}
       propertyPath: m_Mesh
@@ -63,9 +95,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6885083199704041411, guid: 851b84b3d3622cd48a8df6387b7d22f6,
+        type: 3}
+      propertyPath: _scriptableTemplates.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 5bc022f7814f7564ca22c0875b9c214d,
+        type: 2}
     - target: {fileID: 6997423007682641646, guid: 851b84b3d3622cd48a8df6387b7d22f6,
         type: 3}
-      propertyPath: '_scriptableTemplates.Array.data[0]'
+      propertyPath: _scriptableTemplates.Array.data[0]
       value: 
       objectReference: {fileID: 11400000, guid: 77c6eb55fa8291f499f1186034990eeb,
         type: 2}

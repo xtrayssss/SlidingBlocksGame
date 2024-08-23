@@ -8,6 +8,38 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 299863596686586096, guid: 851b84b3d3622cd48a8df6387b7d22f6,
+        type: 3}
+      propertyPath: _components.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 299863596686586096, guid: 851b84b3d3622cd48a8df6387b7d22f6,
+        type: 3}
+      propertyPath: _components.Array.data[3]
+      value: 8499802611131088912
+      objectReference: {fileID: 0}
+    - target: {fileID: 299863596686586096, guid: 851b84b3d3622cd48a8df6387b7d22f6,
+        type: 3}
+      propertyPath: managedReferences[8499802611131088909]
+      value: Assembly-CSharp _Project.Scripts.Gameplay.Features.MovementFeature.Systems.DestructionFxCfg/Template
+      objectReference: {fileID: 0}
+    - target: {fileID: 299863596686586096, guid: 851b84b3d3622cd48a8df6387b7d22f6,
+        type: 3}
+      propertyPath: managedReferences[8499802611131088912]
+      value: Assembly-CSharp _Project.Scripts.Gameplay.Features.MovementFeature.Systems.DestructionFxPrefab/Template
+      objectReference: {fileID: 0}
+    - target: {fileID: 299863596686586096, guid: 851b84b3d3622cd48a8df6387b7d22f6,
+        type: 3}
+      propertyPath: managedReferences[8499802611131088909].component.Value
+      value: 
+      objectReference: {fileID: 11400000, guid: 228704dc69aed6648aa05202cf05e944,
+        type: 2}
+    - target: {fileID: 299863596686586096, guid: 851b84b3d3622cd48a8df6387b7d22f6,
+        type: 3}
+      propertyPath: managedReferences[8499802611131088912].component.Value
+      value: 
+      objectReference: {fileID: 1126467337722621263, guid: 35ce2cca60dc6e842856447c633d1436,
+        type: 3}
     - target: {fileID: 910168524626763030, guid: 851b84b3d3622cd48a8df6387b7d22f6,
         type: 3}
       propertyPath: m_Mesh
@@ -65,7 +97,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6997423007682641646, guid: 851b84b3d3622cd48a8df6387b7d22f6,
         type: 3}
-      propertyPath: '_scriptableTemplates.Array.data[0]'
+      propertyPath: _scriptableTemplates.Array.data[0]
       value: 
       objectReference: {fileID: 11400000, guid: 96a1a30f30fa2234fa5a0011d3c17d7f,
         type: 2}

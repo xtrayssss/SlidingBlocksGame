@@ -544,18 +544,17 @@ GameObject:
   - component: {fileID: 676313603945312274}
   - component: {fileID: 4709902672238260476}
   - component: {fileID: 2733579238015879002}
-  - component: {fileID: 9057970443485773623}
+  - component: {fileID: 9209233408934077931}
   - component: {fileID: 6429701158572272287}
   - component: {fileID: 7679739957960411926}
   - component: {fileID: 2709513295284806967}
-  - component: {fileID: 8702142318966623342}
   m_Layer: 5
   m_Name: ScrollSnap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2287053894430683086
 RectTransform:
   m_ObjectHideFlags: 0
@@ -647,7 +646,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &9057970443485773623
+--- !u!114 &9209233408934077931
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -662,7 +661,7 @@ MonoBehaviour:
   deltaTimeMode: 1
   scrollbar: {fileID: 6192098667332677957}
   initialPos: 0
-  autoScrollToClickedItem: 0
+  autoScrollToClickedItem: 1
   smoothScrollDuration: 0.35
   smoothSnapDuration: 0.25
   snapDelayDuration: 0.15
@@ -670,6 +669,8 @@ MonoBehaviour:
   effects:
   - {fileID: 11400000, guid: 8cdba31f80860df49be88211626747d8, type: 2}
   - {fileID: 11400000, guid: b268c0aa45916ef43b345eddbf33a07a, type: 2}
+  ScrollRect: {fileID: 0}
+  IsApplyEffects: 1
   OnItemSelected:
     m_PersistentCalls:
       m_Calls: []
@@ -711,7 +712,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  IsOffEffects: 0
 --- !u!114 &6429701158572272287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -752,7 +752,7 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data:
         component:
-          Value: {fileID: 9057970443485773623}
+          Value: {fileID: 9209233408934077931}
     - rid: 8499802549844443670
       type: {class: PurchaseButtonStatus/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
         asm: Assembly-CSharp}
@@ -773,18 +773,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5efe2096a0a54267bcc26292324961ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!225 &8702142318966623342
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 344608180997007011}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!1 &468256845731935269
 GameObject:
   m_ObjectHideFlags: 0
@@ -1660,7 +1648,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 0.000061035156, y: 0}
-  m_SizeDelta: {x: 0, y: 3414}
+  m_SizeDelta: {x: 1020, y: 3414}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &5045728294421335285
 MonoBehaviour:
@@ -8243,7 +8231,7 @@ RectTransform:
   m_Father: {fileID: 2287053894430683086}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.50000006, y: 0.5}

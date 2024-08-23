@@ -133,8 +133,12 @@ namespace _Project.Scripts.Gameplay
                 .AddUnique(new SettingsMenuSystem())
                 .AddUnique(new AudioButtonsSystem())
                 .AddUnique(new InAppPopupSystem())
-                .AddUnique(new AnimalsStoreSystem())
+                .AddUnique(new ScrollSystem())
+                
                 .AddUnique(new RotationSystem())
+                .AddUnique(new CameraRenderSystem())
+                .AutoDelTag<ViewUpdatedEvent>()
+                
                 .AddUnique(new DisplayPriceAnimalSystem())
                 .AddUnique(new PurchaseAnimalSystem())
                 .AddUnique(new DisplayPurchaseStatusSystem())
@@ -142,13 +146,19 @@ namespace _Project.Scripts.Gameplay
                 .AddUnique(new DisplayAnimalPurchaseWindowSystem())
                 .AddUnique(new CloseAnimalPurchaseWindowSystem())
                 
+                
+                .AutoDelTag<ScrollStartedEvent>()
+                .AutoDelTag<ScrollSnappedEvent>()
+                
                 // audio feature
-                .AddUnique(new ButtonPlayAudioRequestSystem())
+                // .AddUnique(new ButtonAudioRequestSystem())
+                // .AddUnique(new AudioSystem())
+                // .AddUnique(new TileAudioRequestSystem())
                 .AddUnique(new PlayAudioSystem())
                 .AutoDelTag<PlayAudioRequest>()
                 
                 // other
-                .AutoDelTag<CreatedEvent>()
+                .AutoDelTag<SpawnedEvent>()
                 // .AddUnique(new ScrollSystem())
                 // .AddUnique(new NearestSystem())
                 // .AddUnique(new EffectSystem())
@@ -198,6 +208,7 @@ namespace _Project.Scripts.Gameplay
                     // events
                     .AutoDelTag<GameFieldGeneratedEvent>()
                     .AutoDelTag<GameFieldDestructedEvent>()
+                    .AutoDelTag<TileGeneratedEvent>()
 
                     // core
                     .AddUnique(new GameFieldPlaneAlgorithmSystem())

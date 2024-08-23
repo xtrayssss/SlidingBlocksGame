@@ -1,9 +1,5 @@
 ﻿using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using DCFApixels.DragonECS;
-using PrimeTween;
-using Unity.VisualScripting;
-using UnityEngine;
-using Sequence = PrimeTween.Sequence;
 
 namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 {

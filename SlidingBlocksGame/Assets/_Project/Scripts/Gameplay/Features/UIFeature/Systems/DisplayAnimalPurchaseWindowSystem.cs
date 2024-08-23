@@ -1,7 +1,10 @@
-﻿using _Project.Scripts.Gameplay.Features.UIFeature.Components;
+﻿using System.Linq.Expressions;
+using System.Threading.Tasks;
+using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using DCFApixels.DragonECS;
 using PrimeTween;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 {
@@ -21,7 +24,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
             [IncImplicit(typeof(ClosedMarker))]
             [Inc] public readonly EcsPool<GameObjectConnect> GameObjectConnects;
 
-            [Inc] public readonly EcsPool<InGamePurchaseAnimals> PurchaseAnimals;
+            [Inc] public readonly EcsPool<AnimalPurchases> PurchaseAnimals;
             [Inc] public readonly EcsPool<ScrollSnapRef> ScrollSnap;
         }
 
@@ -35,26 +38,26 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                         ref animalsShopWindowAspect.GameObjectConnects.Get(window);
                     ref ScrollSnapRef scrollSnap = ref animalsShopWindowAspect.ScrollSnap.Get(window);
 
-                    Debug.Log("Open");
-                    
-                    //scrollSnap.Value.ScrollToItem(0);
-                    
                     _world.GetPool<ClosedMarker>().Del(window);
-                    
-                    scrollSnap.Value.IsOffEffects = true;
 
                     scrollSnap.Sequence.Stop();
 
                     gameObjectConnect.Connect.transform.localScale = Vector3.zero;
 
                     // TODO: remove closure allocation
-                    scrollSnap.Sequence = Sequence.Create()
-                        .Group(Tween.Scale(gameObjectConnect.Connect.transform, Vector3.one, 0.15f, Ease.InOutSine))
-                        .Chain(AnimateScrollElements(animalsShopWindowAspect.PurchaseAnimals.Read(window).Value)
-                            .ChainCallback(
-                                () => { _world.GetPool<ScrollSnapRef>().Get(window).Value.IsOffEffects = false; }));
+                    
+                    ScrollSnapRef scrollSnapCopy = scrollSnap;
 
-                    gameObjectConnect.Connect.gameObject.SetActive(true);
+                    scrollSnap.Sequence = Sequence.Create()
+                        .Group(Tween.Scale(gameObjectConnect.Connect.transform, Vector3.one, 0.2f, Ease.InOutSine))
+                        .ChainCallback(() =>
+                        {
+                            scrollSnapCopy.Value.ScrollRect.enabled = true;
+                            scrollSnapCopy.Value.IsApplyEffects = true;
+                        })
+                        .Chain(AnimateScrollElements(animalsShopWindowAspect.PurchaseAnimals.Read(window).Entities));
+
+                    scrollSnapCopy.Value.gameObject.SetActive(true);
                 }
             }
         }

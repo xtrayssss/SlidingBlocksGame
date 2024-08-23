@@ -1,4 +1,5 @@
-﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+﻿using System;
+using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using DCFApixels.DragonECS;
 using Unity.Mathematics;
@@ -13,7 +14,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
         private class AnimalAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(AnimalTag))]
-            [IncImplicit(typeof(SnappedMarker))]
+            [IncImplicit(typeof(ScrollSnappedMarker))]
             [Inc] public readonly EcsPool<PhysicView> PhysicViews;
 
             [Inc] public readonly EcsPool<RotationSpeedFactor> Factors;
@@ -38,9 +39,9 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 
                 factor.IsSnapBack = true;
 
-                Debug.Log("123");
-                
                 factor.Original = aspect.PhysicViews.Get(entity).Value.transform.rotation;
+                
+                _world.GetPool<ViewUpdatedEvent>().Add(entity);
             }
 
             foreach (int entity in _world.Where(out SnapBackAnimalAspect aspect))
@@ -60,7 +61,41 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                         factor.IsSnapBack = false;
                     }
                 }
+
+                _world.GetPool<ViewUpdatedEvent>().Add(entity);
             }
         }
+    }
+
+    public class CameraRenderSystem : IEcsRun
+    {
+        [EcsInject] private readonly EcsDefaultWorld _world;
+
+        private class Aspect : EcsAspectAuto
+        {
+            [IncImplicit(typeof(ViewUpdatedEvent))]
+            [Inc] public readonly EcsPool<RenderCamera> RenderCameras;
+        }
+
+        public void Run()
+        {
+            foreach (int entity in _world.Where(out Aspect aspect))
+            {
+                ref readonly RenderCamera renderCamera = ref aspect.RenderCameras.Read(entity);
+                
+                renderCamera.Value.Render();
+            }
+        }
+    }
+
+    [Serializable]
+    public struct ViewUpdatedEvent : IEcsTagComponent
+    {
+    }
+
+    [Serializable]
+    public struct RenderCamera : IEcsComponent
+    {
+        public Camera Value;
     }
 }

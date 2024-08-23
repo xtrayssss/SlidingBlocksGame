@@ -25,7 +25,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
             int player = _world.NewEntity();
             
             _world.GetPool<PlayerTag>().Add(player);
-            _world.GetPool<Balance>().Add(player).Value = 152;
+            _world.GetPool<Balance>().Add(player).Value = 1000;
             _world.GetPool<SelectionAnimalID>().Add(player);
         }
     }

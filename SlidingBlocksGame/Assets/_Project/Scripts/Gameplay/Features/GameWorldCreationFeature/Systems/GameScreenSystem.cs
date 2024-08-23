@@ -1,12 +1,13 @@
 ﻿using System;
-using System.Linq;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
+using _Project.Scripts.Gameplay.Features.ScrollFeature;
 using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.UIFeature.Systems;
 using DCFApixels.DragonECS;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
 
@@ -27,6 +28,11 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
         private class GameScreenAspect : EcsAspectAuto
         {
             [Inc] public readonly EcsPool<Prefab> Prefabs;
+        }
+
+        private class GameAspect : EcsAspectAuto
+        {
+            [Inc] public readonly EcsPool<AnimalPrefabs> AnimalPrefabs;
         }
 
         public void Run()
@@ -65,51 +71,59 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
             _world.GetPool<AnimalStoreView>().Read(screen.ID).Value.Connect(shop.ToEntityLong(_world), true);
 
-            ref InGamePurchaseAnimals inGamePurchaseAnimals =
-                ref _world.GetPool<InGamePurchaseAnimals>().Get(shop);
+            ref AnimalPurchases animalPurchases =
+                ref _world.GetPool<AnimalPurchases>().Get(shop);
 
             ref ScrollSnapRef scrollSnap = ref _world.GetPool<ScrollSnapRef>().Get(shop);
             
             scrollSnap.Value.Setup();
 
-            inGamePurchaseAnimals.Value = EcsGroup.New(_world);
+            animalPurchases.Entities = EcsGroup.New(_world);
 
             RectTransform content = scrollSnap.Value.GetComponent<ScrollRect>().content;
-
+            
             TextMeshProUGUI priceText =
                 scrollSnap.Value.transform.Find("Viewport/Price/Price").GetComponent<TextMeshProUGUI>();
 
-            Debug.Log(priceText);
-
-            foreach (GameObject animalPrefab in inGamePurchaseAnimals.Proto)
+            foreach (int game in _world.Where(out GameAspect gameAspect))
             {
-                ModelToUIRenderer purchaseRenderer = Object
-                    .Instantiate(inGamePurchaseAnimals.Purchase, content.transform, false)
-                    .GetComponent<ModelToUIRenderer>();
-
-                Transform renderer = animalPrefab.transform.Find("Renderer");
-
-                purchaseRenderer.modelPrefab = renderer.gameObject;
-
-                EcsEntityConnect animalConnect = purchaseRenderer.GetComponent<EcsEntityConnect>();
-
-                entlong purchase = _world.NewEntityLong();
-
-                animalConnect.Connect(purchase, true);
-
-                inGamePurchaseAnimals.Value.Add(purchase.ID);
-
-                var view = purchaseRenderer.Create();
-
-                _world.GetPool<PhysicView>().Add(purchase.ID).Value = view;
-
-                _world.GetPool<CreatedEvent>().Add(purchase.ID);
-
-                _world.GetPool<TextMeshProUGUIRef>().Get(purchase.ID).Value = priceText;
-
-                _world.GetPool<Purchase>().Get(purchase.ID).Price +=
-                    inGamePurchaseAnimals.Proto.ToList().IndexOf(animalPrefab);
+                ref readonly AnimalPrefabs animalPrefabs = ref gameAspect.AnimalPrefabs.Read(game);
+            
+                foreach (EcsEntityConnect purchasePrefab in animalPurchases.Prefabs)
+                {
+                    EcsEntityConnect purchaseView = Object
+                        .Instantiate(purchasePrefab, content.transform, false);
+            
+                    entlong purchase = _world.NewEntityLong();
+            
+                    purchaseView.Connect(purchase, true);
+            
+                    animalPurchases.Entities.Add(purchase.ID);
+            
+                    UI3D(animalPrefabs, purchase, purchaseView);
+            
+                    _world.GetPool<TextMeshProUGUIRef>().Get(purchase.ID).Value = priceText;
+                }
             }
+        }
+
+        private void UI3D(AnimalPrefabs animalPrefabs, entlong purchase, EcsEntityConnect purchaseView)
+        {
+            FitObjectToOrthographicCamera fitObjectToOrthographicCamera =
+                purchaseView.GetComponent<FitObjectToOrthographicCamera>();
+
+            GameObject animalRenderer = animalPrefabs.Animals[_world.GetPool<Purchase>().Read(purchase.ID).ProductIndex]
+                .Renderer;
+
+            GameObject animalRendererView = Object.Instantiate(animalRenderer);
+
+            _world.GetPool<PhysicView>().Add(purchase.ID).Value = animalRendererView;
+
+            _world.GetPool<SpawnedEvent>().Add(purchase.ID);
+
+            var cam = fitObjectToOrthographicCamera.Create(animalRendererView);
+
+            _world.GetPool<RenderCamera>().Add(purchase.ID).Value = cam;
         }
 
         private void CreateInAppPurchases(EcsEntityConnect connect)

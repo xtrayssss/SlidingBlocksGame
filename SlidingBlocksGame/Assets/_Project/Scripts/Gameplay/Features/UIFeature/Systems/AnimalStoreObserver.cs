@@ -1,6 +1,8 @@
-﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+﻿using System;
+using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using DCFApixels.DragonECS;
+using PrimeTween;
 using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
@@ -38,7 +40,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 
             int @event = world.NewEntity();
 
-            world.GetPool<AnimalSnappedEvent>().Add(@event);
+            world.GetPool<ScrollSnappedEvent>().Add(@event);
             world.GetPool<AnimalSelectedIndex>().Add(@event).Value = index;
             world.GetPool<DeleteEntityCommand>().Add(@event);
         }

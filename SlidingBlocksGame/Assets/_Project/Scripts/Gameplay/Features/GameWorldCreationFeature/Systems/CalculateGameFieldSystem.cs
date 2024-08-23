@@ -23,10 +23,9 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
             [Inc] public readonly EcsPool<SelectionAnimalID> SelectionAnimalIndicies;
         }
 
-        private class AnimalShopWindowAspect : EcsAspectAuto
+        private class GameAspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(AnimalsShopWindowTag))]
-            [Inc] public readonly EcsPool<InGamePurchaseAnimals> PurchaseAnimals;
+            [Inc] public readonly EcsPool<AnimalPrefabs> AnimalPrefabs;
         }
 
         public void Run()
@@ -41,13 +40,12 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                 // TODO: move to another system
                 foreach (int player in _world.Where(out PlayerAspect playerAspect))
                 {
-                    foreach (int window in _world.Where(out AnimalShopWindowAspect animalShopWindowAspect))
+                    foreach (int game in _world.Where(out GameAspect gameAspect))
                     {
-                        GameObject animalPrefab = animalShopWindowAspect.PurchaseAnimals.Read(window)
-                            .Proto[playerAspect.SelectionAnimalIndicies.Read(player).Value];
+                        AnimalEntityConnect animalPrefab = gameAspect.AnimalPrefabs.Read(game).Animals[playerAspect.SelectionAnimalIndicies.Read(player).Value];
 
                         foreach (ref GameField.Unit unit in levelAspect.GameFields.Get(level).Units.AsSpan())
-                            unit.Prefab = animalPrefab.GetComponent<EcsEntityConnect>();
+                            unit.Prefab = animalPrefab;
                     }
                 }
             }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Runtime.CompilerServices;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.DestroyFeature.Components;
@@ -103,6 +104,11 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
                             CellPosition = new float2(x, z),
                             WorldPosition = position
                         };
+
+                        int @event = _world.NewEntity();
+                        
+                        _world.GetPool<TileGeneratedEvent>().Add(@event);
+                        _world.GetPool<TargetEntity>().Add(@event).Value = _world.GetEntityLong(levelID);
                     }
                 }
             }

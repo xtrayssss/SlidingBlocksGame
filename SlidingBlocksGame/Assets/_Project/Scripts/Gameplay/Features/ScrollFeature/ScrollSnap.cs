@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using LightScrollSnap;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace _Project.Scripts.Gameplay.Features.ScrollFeature
@@ -44,7 +45,7 @@ namespace _Project.Scripts.Gameplay.Features.ScrollFeature
         private bool _smoothScrolling;
         private int _selectedItemIndex;
         private float DeltaTime => deltaTimeMode == DeltaTimeMode.Scaled ? Time.deltaTime : Time.unscaledDeltaTime;
-        private ScrollRect _scrollRect;
+        public ScrollRect ScrollRect;
         private bool _snapping;
         private bool Snapped => Mathf.Abs(_nearestPos - scrollbar.value) <= snapDistanceThreshold;
         private List<RectTransform> _items;
@@ -54,6 +55,8 @@ namespace _Project.Scripts.Gameplay.Features.ScrollFeature
         private float _lastScrollPos;
 
         private bool _hasStartedScrolling;
+
+        public bool IsApplyEffects = true;
 
         #endregion
 
@@ -65,7 +68,7 @@ namespace _Project.Scripts.Gameplay.Features.ScrollFeature
 
         public UnityEvent<int, RectTransform> OnScrollStarted;
         public UnityEvent<int, RectTransform> OnItemSnapped;
-        public bool IsOffEffects;
+        private bool _wasDisabled;
 
         #endregion
 
@@ -73,7 +76,7 @@ namespace _Project.Scripts.Gameplay.Features.ScrollFeature
 
         public int SelectedItemIndex => _selectedItemIndex;
         public int NearestItemIndex => _nearestIndex;
-        public RectTransform Content => _scrollRect.content;
+        public RectTransform Content => ScrollRect.content;
         public RectTransform NearestItem => _items[_nearestIndex];
         public RectTransform SelectedItem => _items[_selectedItemIndex];
         public List<RectTransform> Items => _items;
@@ -102,9 +105,36 @@ namespace _Project.Scripts.Gameplay.Features.ScrollFeature
 
         #region PRIVATE METHODS
 
+        private void OnEnable()
+        {
+            //scrollbar.onValueChanged.AddListener(OnValueChanged());
+            
+            //_wasDisabled = true;
+        }
+
+        private void OnDisable()
+        {
+            //scrollbar.value = _lastScrollPos;
+            
+            //scrollbar.onValueChanged.RemoveListener(OnValueChanged());
+        }
+
+        private UnityAction<float> OnValueChanged()
+        {
+            return value =>
+            {
+                if (value == 0 && _wasDisabled)
+                {
+                    Debug.Log("Changed");
+                    _wasDisabled = false;
+                    scrollbar.value = _lastScrollPos;
+                }
+            };
+        }
+
         public void Setup()
         {
-            _scrollRect = GetComponent<ScrollRect>();
+            ScrollRect = GetComponent<ScrollRect>();
             SetupItems();
         }
 
@@ -132,9 +162,6 @@ namespace _Project.Scripts.Gameplay.Features.ScrollFeature
         {
             var nearest = GetNearestIndex();
 
-            Debug.Log($"Nearest Index: {nearest}");
-            Debug.Log($"Pos: {_scrollPos}");
-
             if (nearest != -1)
                 _nearestIndex = nearest;
 
@@ -149,8 +176,6 @@ namespace _Project.Scripts.Gameplay.Features.ScrollFeature
                 return;
 
             _scrollPos = scrollbar.value;
-
-            Debug.Log(_scrollPos);
 
             UpdateNearest();
 
@@ -172,15 +197,14 @@ namespace _Project.Scripts.Gameplay.Features.ScrollFeature
                 ClearSmoothScrolling();
                 _snapping = false;
             }
-            else if (!_smoothScrolling && !_snapping && !Snapped)
+            else if (!_smoothScrolling && !_snapping)
             {
-                Debug.Log("TO nearest");
                 SnapToNearest();
             }
 
             HandleItemsStates();
 
-            if (!IsOffEffects)
+            if (IsApplyEffects)
                 ApplyEffects();
         }
 
@@ -243,14 +267,12 @@ namespace _Project.Scripts.Gameplay.Features.ScrollFeature
         {
             _smoothScrolling = true;
             ratio = Mathf.Clamp01(ratio);
-
+            
             float t = 0.0f;
             while (t <= 1.0f)
             {
                 t += DeltaTime / seconds;
                 scrollbar.value = Mathf.Lerp(scrollbar.value, ratio, Mathf.SmoothStep(0f, 1f, t));
-
-                Debug.Log($"_scrollPos during SmoothScroll: {scrollbar.value}");
 
                 yield return null;
             }
@@ -262,7 +284,6 @@ namespace _Project.Scripts.Gameplay.Features.ScrollFeature
 
         private void OnSmoothScrollEnded()
         {
-            Debug.Log("OnSmoothScrollEnded");
             _snapping = false;
 
             OnItemSnapped?.Invoke(_nearestIndex, _items[_nearestIndex]); // Вызов события после завершения привязки
@@ -326,8 +347,6 @@ namespace _Project.Scripts.Gameplay.Features.ScrollFeature
 
         private void ClearSnapping()
         {
-            Debug.Log("ClearSnapping");
-
             _snapping = false;
             if (_snapToNearestCoroutine != null)
                 StopCoroutine(_snapToNearestCoroutine);

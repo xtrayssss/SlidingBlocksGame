@@ -53,6 +53,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
 
         private void Generate(GenerationAlgorithmAspect generationAspect, int algorithm, TargetLevelAspect levelAspect)
         {
+            Debug.Log($"Generate {algorithm}");
             if (!generationAspect.Targets.Read(algorithm).Value.TryGetID(out int levelID) || !levelAspect.IsMatches(levelID))
                 return;
             

@@ -12,7 +12,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
         private class Aspect : EcsAspectAuto
         {
             [IncImplicit(typeof(AnimalTag))]
-            [IncImplicit(typeof(SnappedMarker))]
+            [IncImplicit(typeof(ScrollSnappedEvent))]
             [Inc] public readonly EcsPool<TextMeshProUGUIRef> PriceTexts;
 
             [Inc] public readonly EcsPool<Purchase> Purchases;
@@ -22,8 +22,6 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
         {
             foreach (int entity in _world.Where(out Aspect aspect))
             {
-                Debug.Log(entity);
-                
                 ref TextMeshProUGUIRef price = ref aspect.PriceTexts.Get(entity);
 
                 price.Value.text = aspect.Purchases.Get(entity).Price.ToString();
