@@ -38,7 +38,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
         private class AnimalAspect : EcsAspectAuto
         {
-            [Inc] private readonly EcsPool<AnimalTag> _animalTag;
+            [Inc] private readonly EcsTagPool<AnimalTag> _animalTag;
         }
 
         public void Run()

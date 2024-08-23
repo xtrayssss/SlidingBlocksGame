@@ -56,7 +56,7 @@ namespace _Project.Scripts.Gameplay.Features.ScrollFeature
 
         private bool _hasStartedScrolling;
 
-        public bool IsApplyEffects = true;
+        public bool IsApplyEffects = false;
 
         #endregion
 
@@ -85,12 +85,6 @@ namespace _Project.Scripts.Gameplay.Features.ScrollFeature
 
         #region UNITY METHODS
 
-        protected virtual void Awake()
-        {
-            if (_items == null)
-                Setup();
-        }
-
         protected virtual void Update() => UpdateAll();
 
 #if UNITY_EDITOR
@@ -108,46 +102,34 @@ namespace _Project.Scripts.Gameplay.Features.ScrollFeature
         private void OnEnable()
         {
             //scrollbar.onValueChanged.AddListener(OnValueChanged());
-            
+
             //_wasDisabled = true;
         }
 
         private void OnDisable()
         {
             //scrollbar.value = _lastScrollPos;
-            
+
             //scrollbar.onValueChanged.RemoveListener(OnValueChanged());
         }
 
-        private UnityAction<float> OnValueChanged()
-        {
-            return value =>
-            {
-                if (value == 0 && _wasDisabled)
-                {
-                    Debug.Log("Changed");
-                    _wasDisabled = false;
-                    scrollbar.value = _lastScrollPos;
-                }
-            };
-        }
-
-        public void Setup()
+        public void Setup(GameObject[] items)
         {
             ScrollRect = GetComponent<ScrollRect>();
-            SetupItems();
+            SetupItems(items);
         }
 
-        private void SetupItems()
+        private void SetupItems(GameObject[] items)
         {
-            _itemCount = Content.childCount;
+            _itemCount = items.Length;
             _posses = new float[_itemCount];
 
             _distance = _itemCount > 1 ? 1f / (_itemCount - 1f) : 1;
             _items = new List<RectTransform>(_itemCount);
+
             for (int i = 0; i < _itemCount; i++)
             {
-                _items.Add(Content.GetChild(i).GetComponent<RectTransform>());
+                _items.Add(items[i].GetComponent<RectTransform>());
                 _posses[i] = _distance * i;
             }
         }
@@ -170,7 +152,7 @@ namespace _Project.Scripts.Gameplay.Features.ScrollFeature
 
         private void UpdateAll()
         {
-            UpdateItemsIfChanged();
+            //UpdateItemsIfChanged();
 
             if (!HasItem)
                 return;
@@ -208,30 +190,30 @@ namespace _Project.Scripts.Gameplay.Features.ScrollFeature
                 ApplyEffects();
         }
 
-        private void UpdateItemsIfChanged()
-        {
-            var childCount = Content.childCount;
-            var childCountChanged = _itemCount != childCount;
-            var contentChanged = childCountChanged;
-            if (!childCountChanged && HasItem)
-            {
-                for (int i = 0; i < _itemCount; i++)
-                {
-                    var item = _items[i];
-                    var child = Content.GetChild(i);
-                    if (item != child)
-                    {
-                        contentChanged = true;
-                        break;
-                    }
-                }
-            }
-
-            if (contentChanged)
-            {
-                SetupItems();
-            }
-        }
+        // private void UpdateItemsIfChanged()
+        // {
+        //     var childCount = Content.childCount;
+        //     var childCountChanged = _itemCount != childCount;
+        //     var contentChanged = childCountChanged;
+        //     if (!childCountChanged && HasItem)
+        //     {
+        //         for (int i = 0; i < _itemCount; i++)
+        //         {
+        //             var item = _items[i];
+        //             var child = Content.GetChild(i);
+        //             if (item != child)
+        //             {
+        //                 contentChanged = true;
+        //                 break;
+        //             }
+        //         }
+        //     }
+        //
+        //     if (contentChanged)
+        //     {
+        //         SetupItems();
+        //     }
+        // }
 
         private IEnumerator SnapToNearestCoroutine()
         {
@@ -267,7 +249,7 @@ namespace _Project.Scripts.Gameplay.Features.ScrollFeature
         {
             _smoothScrolling = true;
             ratio = Mathf.Clamp01(ratio);
-            
+
             float t = 0.0f;
             while (t <= 1.0f)
             {

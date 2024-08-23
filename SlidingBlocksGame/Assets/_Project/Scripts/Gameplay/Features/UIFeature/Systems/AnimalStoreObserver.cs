@@ -1,5 +1,6 @@
 ﻿using System;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+using _Project.Scripts.Gameplay.Features.ScrollFeature;
 using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using DCFApixels.DragonECS;
 using PrimeTween;
@@ -9,6 +10,28 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 {
     public class AnimalStoreObserver : MonoBehaviour
     {
+        public void Tween()
+        {
+            ScrollSnap scrollSnap = GetComponentInParent<ScrollSnap>();
+
+            var sequence = Sequence.Create();
+            
+            for (var index = 0; index < scrollSnap.Items.Count / 2 ; index++)
+            {
+                var item = scrollSnap.Items[index];
+
+                item.localScale = Vector3.zero;
+                sequence.Group(PrimeTween.Tween.Scale(item, Vector3.one, 0.3f));
+            }
+            
+            for (int index = scrollSnap.Items.Count / 2; index < scrollSnap.Items.Count ; index++)
+            {
+                var item = scrollSnap.Items[index];
+                item.localScale = Vector3.zero;
+
+                sequence.Chain(PrimeTween.Tween.Scale(item, Vector3.one, 0.3f));
+            }
+        }
         // public void OnSelected(RectTransform rect, int index)
         // {
         //     Debug.Log("Selected");

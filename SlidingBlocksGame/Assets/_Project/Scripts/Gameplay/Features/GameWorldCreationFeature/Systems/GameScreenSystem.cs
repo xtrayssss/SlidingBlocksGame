@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
 using _Project.Scripts.Gameplay.Features.ScrollFeature;
@@ -76,8 +77,6 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
             ref ScrollSnapRef scrollSnap = ref _world.GetPool<ScrollSnapRef>().Get(shop);
             
-            scrollSnap.Value.Setup();
-
             animalPurchases.Entities = EcsGroup.New(_world);
 
             RectTransform content = scrollSnap.Value.GetComponent<ScrollRect>().content;
@@ -85,6 +84,8 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
             TextMeshProUGUI priceText =
                 scrollSnap.Value.transform.Find("Viewport/Price/Price").GetComponent<TextMeshProUGUI>();
 
+            List<GameObject> list = new List<GameObject>();
+            
             foreach (int game in _world.Where(out GameAspect gameAspect))
             {
                 ref readonly AnimalPrefabs animalPrefabs = ref gameAspect.AnimalPrefabs.Read(game);
@@ -93,6 +94,8 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                 {
                     EcsEntityConnect purchaseView = Object
                         .Instantiate(purchasePrefab, content.transform, false);
+                    
+                    list.Add(purchaseView.gameObject);
             
                     entlong purchase = _world.NewEntityLong();
             
@@ -105,6 +108,8 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                     _world.GetPool<TextMeshProUGUIRef>().Get(purchase.ID).Value = priceText;
                 }
             }
+            
+            scrollSnap.Value.Setup(list.ToArray());
         }
 
         private void UI3D(AnimalPrefabs animalPrefabs, entlong purchase, EcsEntityConnect purchaseView)

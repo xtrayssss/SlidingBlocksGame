@@ -60,15 +60,15 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                         .ChainCallback(
                             () => { scrollSnapCopy.Value.gameObject.SetActive(false); });
 
-                    foreach (int ent in _world.Where(out SingleAspect<EcsTagPool<ScrollSnappedMarker>> _))
-                    {
-                        _world.GetPool<ScrollSnappedMarker>().Del(ent);
-                    }
-
-                    foreach (int ent in _world.Where(out SingleAspect<EcsTagPool<ScrollStartedMarker>> _))
-                    {
-                        _world.GetPool<ScrollStartedMarker>().Del(ent);
-                    }
+                        // foreach (int ent in _world.Where(out SingleAspect<EcsTagPool<ScrollSnappedMarker>> _))
+                        // {
+                        //     _world.GetPool<ScrollSnappedMarker>().Del(ent);
+                        // }
+                        //
+                        // foreach (int ent in _world.Where(out SingleAspect<EcsTagPool<ScrollStartedMarker>> _))
+                        // {
+                        //     _world.GetPool<ScrollStartedMarker>().Del(ent);
+                        // }
                 }
             }
         }
