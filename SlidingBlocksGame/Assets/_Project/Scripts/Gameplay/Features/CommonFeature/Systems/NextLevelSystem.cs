@@ -16,7 +16,6 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
             [IncImplicit(typeof(NextLeveRequest))]
             [Inc] public readonly EcsPool<Levels> Levels;
 
-            [Inc] public readonly EcsPool<LevelCounter> LevelCounter;
             [Inc] public readonly EcsPool<GameScreen> GameScreens;
         }
 
@@ -28,33 +27,31 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
             {
                 Debug.Log("Next level system");
 
-                ref readonly Levels levels = ref aspect.Levels.Read(entity);
+                ref Levels levels = ref aspect.Levels.Get(entity);
 
-                ref LevelCounter levelCounter = ref aspect.LevelCounter.Get(entity);
+                ScriptableEntityTemplate[] levelsPack = GetLevelsPack(in levels);
 
-                ScriptableEntityTemplate[] levelsPack = GetLevelsPack(levels, levelCounter);
-
-                if (aspect.LevelCounter.Get(entity).Value >= levelsPack.Length)
+                if (levels.LevelIndex >= levelsPack.Length)
                 {
-                    levelCounter.Value = 0;
-                    levelCounter.Pack++;
+                    levels.LevelIndex = 0;
+                    levels.PackIndex++;
                 }
 
-                ScriptableEntityTemplate nextLevelCfg = levelsPack[levelCounter.Value];
+                ScriptableEntityTemplate nextLevelCfg = levelsPack[levels.LevelIndex];
 
                 entlong nextLevel = _world.NewEntityLong(nextLevelCfg);
 
-                _world.GetTagPool<CreateLevelRequest>().Add(nextLevel.ID);
+                _world.GetTagPool<SpawnedEvent>().Add(nextLevel.ID);
 
                 aspect.GameScreens.Add(nextLevel.ID).Value = aspect.GameScreens.Read(entity).Value;
 
-                aspect.LevelCounter.Get(entity).Value = random.NextInt(0, levelsPack.Length - 1);
+                levels.LevelIndex = random.NextInt(0, levelsPack.Length - 1);
 
-                levelCounter.Value++;
+                levels.LevelIndex++;
             }
         }
 
-        private ScriptableEntityTemplate[] GetLevelsPack(Levels levels, LevelCounter levelCounter) =>
-            levels.Value[levelCounter.Pack].Levels;
+        private ScriptableEntityTemplate[] GetLevelsPack(in Levels levels) =>
+            levels.Value[levels.PackIndex].Levels;
     }
 }

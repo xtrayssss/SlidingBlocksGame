@@ -4,6 +4,7 @@ using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
 using _Project.Scripts.Gameplay.Features.UIFeature.Systems;
 using DCFApixels.DragonECS;
+using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 {
@@ -27,7 +28,8 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
         private class LevelAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(LevelTag))]
-            [Opt] public readonly EcsTagPool<AnimalPositionedEvent> AnimalPositioned;
+            [Opt] public readonly EcsTagPool<AnimalPositionedEvent> AnimalPositionedEvent;
+            [Opt] public readonly EcsTagPool<AnimalPositionedMarker> AnimalPositionedMarker;
         }
         private class AudioAspect : EcsAspectAuto
         {
@@ -63,8 +65,12 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                 {
                     LevelAspect levelAspect = _world.GetAspect<LevelAspect>();
                     
-                    if (levelAspect.IsMatches(targetID)) 
-                        levelAspect.AnimalPositioned.Add(targetID);
+                    if (levelAspect.IsMatches(targetID))
+                    {
+                        Debug.Log("Animal positioned");
+                        levelAspect.AnimalPositionedEvent.Add(targetID);
+                        levelAspect.AnimalPositionedMarker.Add(targetID);
+                    }
                 }
             }
         }

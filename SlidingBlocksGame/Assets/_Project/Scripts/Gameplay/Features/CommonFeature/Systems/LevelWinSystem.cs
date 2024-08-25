@@ -1,53 +1,18 @@
 ﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
-using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
 using _Project.Scripts.Gameplay.Features.DestroyFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
 using DCFApixels.DragonECS;
+using PrimeTween;
 using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
 {
-    public class LevelWinCheckSystem : IEcsRun
-    {
-        [EcsInject] private readonly EcsDefaultWorld _world;
-
-        private class LevelAspect : EcsAspectAuto
-        {
-            [IncImplicit(typeof(LevelTag))]
-            [ExcImplicit(typeof(LevelLostMarker))]
-            [Inc] public readonly EcsPool<GameField> GameFields;
-
-            [Exc] public readonly EcsTagPool<LevelWonEvent> LevelWonEvent;
-            [Exc] public readonly EcsTagPool<LevelWonMarker> LevelWonMarker;
-        }
-
-        private class AnimalAspect : EcsAspectAuto
-        {
-            [Inc] public readonly EcsTagPool<CellOccupancyMarker> Obstacles1;
-            [Inc] public readonly EcsTagPool<WithinCenterMarker> Obstacles2;
-        }
-
-        public void Run()
-        {
-            foreach (int entity in _world.Where(out LevelAspect aspect))
-            {
-                ref readonly GameField gameField = ref aspect.GameFields.Read(entity);
-
-                if (_world.Where(out AnimalAspect _).Count == gameField.EdgeSize * gameField.EdgeSize)
-                {
-                    aspect.LevelWonEvent.Add(entity);
-                    aspect.LevelWonMarker.Add(entity);
-                }
-            }
-        }
-    }
-
     public class LevelWinSystem : IEcsRun
     {
         [EcsInject] private readonly EcsDefaultWorld _world;
 
-        private class LevelWinStateAspect : EcsAspectAuto
+        private class WinStateAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(LevelWonEvent))]
             [Inc] public readonly EcsPool<GenerationGameFieldAlgorithmCfg> GameFieldAlgorithmConfigs;
@@ -55,14 +20,14 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
             [Opt] public readonly EcsPool<DestructionAnimalStrategyCfg> DestructionAnimalStrategyConfigs;
         }
 
-        private class LevelDestructionAnimalsStateAspect : EcsAspectAuto
+        private class AnimalDestructedStateAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(LevelWonMarker))]
             [IncImplicit(typeof(AnimalDestructedEvent))]
             [Inc] public readonly EcsPool<GenerationGameFieldAlgorithmCfg> GameFieldAlgorithmConfigs;
         }
 
-        private class LevelDestructionGameFieldStateAspect : EcsAspectAuto
+        private class GameFieldDestructedStateAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(GameFieldDestructedEvent))]
             [Inc] public readonly EcsTagPool<LevelWonMarker> LevelWon;
@@ -82,25 +47,21 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
 
         public void Run()
         {
-            foreach (int level in _world.Where(out LevelWinStateAspect levelAspect))
+            foreach (int level in _world.Where(out WinStateAspect aspect))
             {
                 Debug.Log("WINNER");
 
-                // animal destruction
                 entlong strategy =
-                    _world.NewEntityLong(levelAspect.DestructionAnimalStrategyConfigs.Read(level).Value);
+                    _world.NewEntityLong(aspect.DestructionAnimalStrategyConfigs.Read(level).Value);
 
                 _world.GetPool<TargetEntity>().Add(strategy.ID).Value = _world.GetEntityLong(level);
 
                 _world.GetPool<ApplyDestructionStrategyRequest>().Add(strategy.ID);
             }
 
-            // TODO: rework
-
-            foreach (int level in _world.Where(out LevelDestructionAnimalsStateAspect levelAspect))
+            foreach (int level in _world.Where(out AnimalDestructedStateAspect aspect))
             {
-                // game field destruction
-                int algorithm = _world.NewEntity(levelAspect.GameFieldAlgorithmConfigs.Get(level).Value);
+                int algorithm = _world.NewEntity(aspect.GameFieldAlgorithmConfigs.Get(level).Value);
 
                 _world.GetPool<GameFieldDestructRequest>().Add(algorithm);
                 _world.GetPool<TargetEntity>().Add(algorithm).Value = _world.GetEntityLong(level);
@@ -108,21 +69,27 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
                 Debug.Log("Game field destruction request");
             }
 
-            foreach (int level in _world.Where(out LevelDestructionGameFieldStateAspect levelAspect))
+            foreach (int level in _world.Where(out GameFieldDestructedStateAspect levelAspect))
             {
                 foreach (int timer in _world.Where(out GameLossTimerAspect timerAspect))
                 {
                     Debug.Log("Disable game loss timer");
 
-                    timerAspect.GameObjectConnects.Read(timer).Connect.gameObject.SetActive(false);
+                    GameObjectConnect connect = timerAspect.GameObjectConnects.Read(timer);
 
-                    foreach (int game in _world.Where(out GameAspect gameAspect))
-                    {
-                        gameAspect.NextLeveRequest.Add(game);
-                        _world.GetPool<CleanupLevelRequest>().Add(game);
+                    Tween.Scale(connect.Connect.transform, Vector3.zero, 0.2f, Ease.OutQuad)
+                        .OnComplete(connect.Connect, target =>
+                        {
+                            target.gameObject.SetActive(false);
+                        });
+                }
 
-                        levelAspect.LevelWon.Del(level);
-                    }
+                foreach (int game in _world.Where(out GameAspect gameAspect))
+                {
+                    gameAspect.NextLeveRequest.Add(game);
+                    _world.GetPool<CleanupLevelRequest>().Add(game);
+
+                    levelAspect.LevelWon.Del(level);
                 }
             }
         }

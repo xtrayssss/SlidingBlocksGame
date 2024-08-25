@@ -8,7 +8,6 @@ using _Project.Scripts.Gameplay.Features.UIFeature.Systems;
 using DCFApixels.DragonECS;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
 
@@ -21,14 +20,9 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
         private class Aspect : EcsAspectAuto
         {
             [IncImplicit(typeof(GameCreatedEvent))]
-            [Inc] public readonly EcsPool<GameScreenCfg> GameScreenConfigs;
+            [Inc] public readonly EcsPool<GameScreenPrefab> GameScreenPrefabs;
 
             [Opt] public readonly EcsPool<GameScreen> GameScreen;
-        }
-
-        private class GameScreenAspect : EcsAspectAuto
-        {
-            [Inc] public readonly EcsPool<Prefab> Prefabs;
         }
 
         private class GameAspect : EcsAspectAuto
@@ -38,27 +32,18 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
         public void Run()
         {
-            foreach (int entity in _world.Where(out Aspect aspect))
+            foreach (int entity in _world.Where(out Aspect gameAspect))
             {
-                entlong screen = _world.NewEntityLong(aspect.GameScreenConfigs.Read(entity).Value);
+                entlong gameScreen = _world.NewEntityLong();
+                
+                EcsEntityConnect connect = Object.Instantiate(gameAspect.GameScreenPrefabs.Read(entity).Value);
 
-                GameScreenAspect screenAspect = _world.GetAspect<GameScreenAspect>();
+                connect.Connect(gameScreen, applyTemplates: true);
 
-                if (screenAspect.IsMatches(screen.ID))
-                {
-                    EcsEntityConnect connect = Object.Instantiate(screenAspect.Prefabs.Read(screen.ID).Value);
+                gameAspect.GameScreen.Add(entity).Value = gameScreen;
 
-                    connect.Connect(screen, false);
-
-                    foreach (MonoEntityTemplateBase template in connect.MonoTemplates)
-                        template.Apply(_world.id, screen.ID);
-
-                    aspect.GameScreen.TryAddOrGet(entity).Value = screen;
-
-                    CreateBest(connect);
-                    CreateInAppPurchases(connect);
-                    CreateAnimalsShop(connect);
-                }
+                CreateInAppPurchases(connect);
+                CreateAnimalsShop(connect);
             }
         }
 
@@ -76,41 +61,41 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                 ref _world.GetPool<AnimalPurchases>().Get(shop);
 
             ref ScrollSnapRef scrollSnap = ref _world.GetPool<ScrollSnapRef>().Get(shop);
-            
+
             animalPurchases.Entities = EcsGroup.New(_world);
 
             RectTransform content = scrollSnap.Value.GetComponent<ScrollRect>().content;
-            
+
             TextMeshProUGUI priceText =
                 scrollSnap.Value.transform.Find("Viewport/Price/Price").GetComponent<TextMeshProUGUI>();
 
             List<GameObject> list = new List<GameObject>();
-            
+
             foreach (int game in _world.Where(out GameAspect gameAspect))
             {
                 ref readonly AnimalPrefabs animalPrefabs = ref gameAspect.AnimalPrefabs.Read(game);
-            
+
                 foreach (EcsEntityConnect purchasePrefab in animalPurchases.Prefabs)
                 {
                     EcsEntityConnect purchaseView = Object
                         .Instantiate(purchasePrefab, content.transform, false);
-                    
+
                     list.Add(purchaseView.gameObject);
-            
+
                     entlong purchase = _world.NewEntityLong();
-            
+
                     purchaseView.Connect(purchase, true);
-            
+
                     animalPurchases.Entities.Add(purchase.ID);
-            
+
                     UI3D(animalPrefabs, purchase, purchaseView);
-            
+
                     _world.GetPool<TextMeshProUGUIRef>().Get(purchase.ID).Value = priceText;
                 }
             }
-            
+
             scrollSnap.Value.Setup(list.ToArray());
-            
+
             _world.GetPool<SnappedMarker>().Add(animalPurchases.Entities[0]);
         }
 
@@ -143,16 +128,6 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
             foreach (ref readonly InAppPurchases.Purchase purchase in inAppPurchases.Value.AsSpan())
                 Object.Instantiate(purchase.Prefab, shop.transform, false);
-        }
-
-        private void CreateBest(EcsEntityConnect connect)
-        {
-            entlong screen = _world.NewEntityLong();
-
-            // TODO: 
-            EcsEntityConnect bestConnect = connect.transform.GetChild(0).Find("Best").GetComponent<EcsEntityConnect>();
-
-            bestConnect.Connect(screen, true);
         }
     }
 }

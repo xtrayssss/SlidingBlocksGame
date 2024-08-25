@@ -1,7 +1,5 @@
-﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
-using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
+﻿using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
 using DCFApixels.DragonECS;
-using UnityEditor;
 
 namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 {
@@ -11,22 +9,25 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
         private readonly ITemplate _gameCfg;
 
-        public CreateGameSystem(ITemplate gameCfg) =>
+        private class GameAspect : EcsAspectAuto
+        {
+            [Inc] public readonly EcsPool<PlayerCfgRef> PlayerCfg;
+
+            [Opt] public readonly EcsTagPool<GameCreatedEvent> GameCreatedEvent;
+        }
+
+        public CreateGameSystem(ScriptableEntityTemplate gameCfg) =>
             _gameCfg = gameCfg;
 
         public void Init()
         {
             int game = _world.NewEntity(_gameCfg);
 
-            _world.GetPool<LevelCounter>().Add(game);
-            _world.GetPool<GameCreatedEvent>().Add(game);
+            GameAspect gameAspect = _world.GetAspect<GameAspect>();
 
-            // TODO: move to config
-            int player = _world.NewEntity();
-            
-            _world.GetPool<PlayerTag>().Add(player);
-            _world.GetPool<Balance>().Add(player).Value = 1000;
-            _world.GetPool<SelectionAnimalID>().Add(player);
+            gameAspect.GameCreatedEvent.Add(game);
+
+            _world.NewEntity(gameAspect.PlayerCfg.Read(game).Value);
         }
     }
 }

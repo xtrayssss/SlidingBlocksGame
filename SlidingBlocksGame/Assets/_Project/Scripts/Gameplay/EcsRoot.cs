@@ -5,12 +5,11 @@ using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Systems;
 using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
 using _Project.Scripts.Gameplay.Features.CooldownFeature.Systems;
-using _Project.Scripts.Gameplay.Features.DestroyFeature.c;
 using _Project.Scripts.Gameplay.Features.DestroyFeature.Components;
 using _Project.Scripts.Gameplay.Features.DestroyFeature.Systems;
 using _Project.Scripts.Gameplay.Features.EasingFeature.Systems;
-using _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Components;
-using _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems;
+using _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature;
+using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
@@ -20,7 +19,6 @@ using _Project.Scripts.Gameplay.Features.UIFeature.Systems;
 using _Project.Scripts.Gameplay.Features.VisualFeature.Components;
 using _Project.Scripts.Gameplay.Features.VisualFeature.Systems;
 using DCFApixels.DragonECS;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace _Project.Scripts.Gameplay
@@ -30,13 +28,9 @@ namespace _Project.Scripts.Gameplay
         [SerializeField] private ScriptableEntityTemplate _gameCfg;
         [SerializeField] private EcsEntityConnect _blockPrefab;
 
-        public AnimationCurve curve;
         private EcsPipeline _pipeline;
         private EcsDefaultWorld _world;
 
-         public ITemplateNode node;
-
-        [Button]
         public void Start()
         {
             EcsDefaultWorldSingletonProvider provider = EcsDefaultWorldSingletonProvider.Instance;
@@ -46,30 +40,23 @@ namespace _Project.Scripts.Gameplay
             _pipeline = EcsPipeline.New()
 
                 // creation game world feature
-                .AddUnique(new CreateGameSystem(_gameCfg))
-                .AddUnique(new GameScreenSystem())
-                .AutoDelTag<GameCreatedEvent>()
-                
-                // level creation feature
-                .AddUnique(new LevelStartRequestSystem())
-                .AddUnique(new LevelStartUIHideSystem())
+                .AddModule(new GameFlowFeature(_gameCfg))
                 .AddUnique(new CalculateGameFieldSystem())
                 .AddUnique(new SelectionGenerationGameFieldSystem())
                 .AddUnique(new CalculationScaleGameFieldSystem())
-
-                .AddUnique(new CreateAnimalsRequestSystem())
                 .AddUnique(new CreateAnimalsSystem())
+                .AutoDelTag<AnimalPositionedEvent>()
                 .AddUnique(new AnimalCreationChainStrategySystem())
                 .AddUnique(new ChainCreationRequestSystem())
                 .AddUnique(new GameLossTimerSystem())
-                .AddUnique(new ScaleGameFieldSystem())
-                .AutoDelTag<CreateLevelRequest>()
+                .AddUnique(new ScaleGameFieldEnvironmentSystem())
+                .AutoDelTag<CreateGameLossTimerRequest>()
                 .AutoDelTag<CreateAnimalsRequest>()
-                .AutoDelTag<AnimalPositionedEvent>()
+                //.AutoDelTag<CreateHUDRequest>()
 
                 // click feature
                 .AddUnique(new DetermineClickSystem())
-                
+
                 // easing feature
                 .AddUnique(new AnimationCurveSystem())
                 .AddUnique(new LinerEasingSystem())
@@ -104,25 +91,14 @@ namespace _Project.Scripts.Gameplay
                 .AddUnique(new DestroyAnimalSystem())
 
                 // destroy feature
-                .AddUnique(new LevelWinCheckSystem())
-                .AddUnique(new LevelLostCheckSystem())
-                .AddUnique(new LevelWinSystem())
-                .AddUnique(new LevelLossSystem())
                 .AutoDelTag<AnimalDestructedEvent>()
-                .AddUnique(new CleanupLevelSystem())
-                .AutoDelTag<LevelWonEvent>()
-                .AutoDelTag<LevelLostEvent>()
-                .AutoDelTag<CleanupLevelRequest>()
-
+              
                 // chain algorithm
                 .AddUnique(new DestructionChainStrategySystem())
                 .AddUnique(new ChainDestructionRequestSystem())
                 .AutoDelTag<ApplyDestructionStrategyRequest>()
                 .AddUnique(new CheckAnimalWithinCenterSystem())
-                //.AddUnique(new NextLevelRequestSystem())
-                .AddUnique(new NextLevelSystem())
                 .AddUnique(new BestVisualizeSystem())
-                .AutoDelTag<NextLeveRequest>()
 
                 // visual feature
                 .AddUnique(new PlayFxSystem())
@@ -134,37 +110,31 @@ namespace _Project.Scripts.Gameplay
                 .AddUnique(new AudioButtonsSystem())
                 .AddUnique(new InAppPopupSystem())
                 .AddUnique(new ScrollSystem())
-                
                 .AddUnique(new RotationSystem())
                 .AddUnique(new CameraRenderSystem())
                 .AutoDelTag<ViewUpdatedEvent>()
-                
                 .AddUnique(new DisplayPriceAnimalSystem())
                 .AddUnique(new PurchaseAnimalSystem())
                 .AddUnique(new DisplayPurchaseStatusSystem())
                 .AddUnique(new PlayWithSelectedAnimalSystem())
                 .AddUnique(new DisplayAnimalPurchaseWindowSystem())
                 .AddUnique(new CloseAnimalPurchaseWindowSystem())
-                
-                
                 .AutoDelTag<ScrollStartedEvent>()
                 .AutoDelTag<ScrollSnappedEvent>()
-                
+
                 // audio feature
                 // .AddUnique(new ButtonAudioRequestSystem())
                 // .AddUnique(new AudioSystem())
                 // .AddUnique(new TileAudioRequestSystem())
                 .AddUnique(new PlayAudioSystem())
                 .AutoDelTag<PlayAudioRequest>()
-                
+
                 // other
-                .AutoDelTag<SpawnedEvent>()
                 // .AddUnique(new ScrollSystem())
                 // .AddUnique(new NearestSystem())
                 // .AddUnique(new EffectSystem())
-
                 .AddModule(new GameFieldAlgorithmsFeature())
-                
+
                 // cooldown feature
                 .AddUnique(new RefreshCooldownSystem())
                 .AddUnique(new DeleteEntityCommandOnExpiredSystem())
@@ -173,8 +143,9 @@ namespace _Project.Scripts.Gameplay
                 .AddUnique(new CooldownSystem())
                 .AddUnique(new CooldownIntervalSystem())
                 .AutoDelTag<RefreshCooldownRequest>()
-
                 .AutoDelEntityTag<ButtonClickedEvent>()
+                
+                .AutoDelTag<SpawnedEvent>()
 
                 // other
                 .AddUnique(new DestroyViewSystem())
@@ -198,27 +169,6 @@ namespace _Project.Scripts.Gameplay
 
             _world.Destroy();
             _world = null;
-        }
-
-        private class GameFieldAlgorithmsFeature : IEcsModule
-        {
-            public void Import(EcsPipeline.Builder builder)
-            {
-                builder
-                    // events
-                    .AutoDelTag<GameFieldGeneratedEvent>()
-                    .AutoDelTag<GameFieldDestructedEvent>()
-                    .AutoDelTag<TileGeneratedEvent>()
-
-                    // core
-                    .AddUnique(new GameFieldPlaneAlgorithmSystem())
-                    .AddUnique(new GameFieldWaveAlgorithmSystem())
-                    //.AddUnique(new GenerateSmoothnessWaveGameFieldSystem())
-
-                    // requests
-                    .AutoDelTag<GameFieldGenerateRequest>()
-                    .AutoDelTag<GameFieldDestructRequest>();
-            }
         }
     }
 }

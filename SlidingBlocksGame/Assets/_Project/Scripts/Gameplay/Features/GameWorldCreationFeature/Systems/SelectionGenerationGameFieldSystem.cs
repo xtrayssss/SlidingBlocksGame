@@ -11,7 +11,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
         private class Aspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(CreateLevelRequest))]
+            [IncImplicit(typeof(GameFieldGenerateRequest))]
             [Inc] public readonly EcsPool<GenerationGameFieldAlgorithmCfg> Algorithms;
         }
 

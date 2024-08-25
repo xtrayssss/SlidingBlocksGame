@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 {
-    public class ScaleGameFieldSystem : IEcsRun
+    public class ScaleGameFieldEnvironmentSystem : IEcsRun
     {
         [EcsInject] private EcsDefaultWorld _world;
 
@@ -19,8 +19,6 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
         {
             foreach (int entity in _world.Where(out Aspect aspect))
             {
-                Debug.Log("Scale");
-                
                 ref readonly GameField gameField = ref aspect.GameFields.Read(entity);
 
                 foreach (ref GameField.Cell cell in gameField.Cells.AsSpan())
@@ -29,8 +27,6 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                         gameField.CellSize);
                 }
 
-                Debug.Log("Sca;e");
-                
                 foreach (ref GameField.Unit unit in gameField.Units.AsSpan())
                 {
                     unit.View.transform.localScale = new Vector3(gameField.CellSize + 0.1f, gameField.CellSize + 0.1f,

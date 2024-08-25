@@ -1,15 +1,14 @@
 ﻿using System;
 using DCFApixels.DragonECS;
-using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components
 {
     [Serializable]
-    public struct HideUI : IEcsComponent
+    public struct GameScreenPrefab : IEcsComponent
     {
-        public GameObject[] Value;
+        public EcsEntityConnect Value;
 
-        private sealed class Template : ComponentTemplate<HideUI>
+        private sealed class Template : ComponentTemplate<GameScreenPrefab>
         {
         }
     }

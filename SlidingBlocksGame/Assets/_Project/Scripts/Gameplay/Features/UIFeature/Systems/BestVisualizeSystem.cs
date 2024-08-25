@@ -1,4 +1,5 @@
-﻿using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
+﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
 using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using DCFApixels.DragonECS;
 
@@ -8,7 +9,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
     {
         [EcsInject] private readonly EcsDefaultWorld _world;
 
-        private class Aspect : EcsAspectAuto
+        private class BestAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(BestTag))]
             [Inc] public readonly EcsPool<TextMeshProUGUIRef> Texts;
@@ -18,14 +19,15 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 
         private class LevelAspect : EcsAspectAuto
         {
-            [Inc] public readonly EcsTagPool<CreateLevelRequest> _;
+            [Inc] private readonly EcsTagPool<LevelTag> _createLevelRequests;
+            [Inc] private readonly EcsTagPool<SpawnedEvent> _spawnedEvents;
         }
 
         public void Run()
         {
             foreach (int _ in _world.Where(out LevelAspect _))
             {
-                foreach (int entity in _world.Where(out Aspect aspect))
+                foreach (int entity in _world.Where(out BestAspect aspect))
                 {
                     aspect.Texts.Get(entity).Value.text = (++aspect.BestCounters.Get(entity).Value).ToString();
                 }

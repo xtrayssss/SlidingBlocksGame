@@ -1,5 +1,6 @@
 ﻿using System;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
 using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using DCFApixels.DragonECS;
@@ -13,7 +14,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
         private class LevelAspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(CreateLevelRequest))]
+            [IncImplicit(typeof(GameFieldGenerateRequest))]
             [Inc] public readonly EcsPool<GameField> GameFields;
         }
 

@@ -13,8 +13,6 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Components
         
         public Dictionary<uint, AnimalEntityConnect> Animals;
 
-        public int value;
-
         private sealed class Template : ComponentTemplate<AnimalPrefabs>
         {
             public override void Apply(short worldID, int entityID)

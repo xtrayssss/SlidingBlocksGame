@@ -6,7 +6,8 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components
     [Serializable]
     public struct Levels : IEcsComponent
     {
-        public TemporaryEntityTemplate Templat2e;
+        public int LevelIndex;
+        public int PackIndex;
         
         public LevelsPack[] Value;
 

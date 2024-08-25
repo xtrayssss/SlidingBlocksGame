@@ -4,6 +4,7 @@ using _Project.Scripts.Gameplay.Features.DestroyFeature.c;
 using _Project.Scripts.Gameplay.Features.DestroyFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
+using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using DCFApixels.DragonECS;
 using PrimeTween;
 using UnityEngine;
@@ -47,7 +48,7 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
     {
         [EcsInject] private readonly EcsDefaultWorld _world;
 
-        private class LevelLostStateAspect : EcsAspectAuto
+        private class LostStateAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(LevelLostEvent))]
             [Inc] public readonly EcsPool<GenerationGameFieldAlgorithmCfg> GameFieldAlgorithmConfigs;
@@ -55,14 +56,14 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
             [Inc] public readonly EcsPool<DestructionAnimalStrategyCfg> DestructionAnimalStrategyConfigs;
         }
 
-        private class LevelDestructionAnimalsStateAspect : EcsAspectAuto
+        private class AnimalDestructedStateAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(LevelLostMarker))]
             [IncImplicit(typeof(AnimalDestructedEvent))]
             [Inc] public readonly EcsPool<GenerationGameFieldAlgorithmCfg> GameFieldAlgorithmConfigs;
         }
 
-        private class LevelDestructionGameFieldStateAspect : EcsAspectAuto
+        private class GameFieldDestructedStateAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(GameFieldDestructedEvent))]
             [Inc] public readonly EcsTagPool<LevelLostMarker> LevelLost;
@@ -73,14 +74,24 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
         private class GameAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(GameTag))]
-            [Opt] public readonly EcsTagPool<NextLeveRequest> NextLeveRequest;
-
-            [Inc] public readonly EcsPool<LevelCounter> LevelCounters;
+            [Inc] public readonly EcsPool<Levels> Levels;
+        }
+        
+        private class GameLossTimerAspect : EcsAspectAuto
+        {
+            [Inc] public readonly EcsTagPool<GameLossTimerTag> Obstacles1;
+            [Inc] public readonly EcsPool<GameObjectConnect> GameObjectConnects;
+        }
+        
+        private class GameScreenAspect : EcsAspectAuto
+        {
+            [IncImplicit(typeof(GameScreenTag))]
+            [Opt] public readonly EcsTagPool<ShowMetaGameUIRequest> ShowMetaGameUI;
         }
 
         public void Run()
         {
-            foreach (int level in _world.Where(out LevelLostStateAspect levelAspect))
+            foreach (int level in _world.Where(out LostStateAspect levelAspect))
             {
                 entlong strategy =
                     _world.NewEntityLong(levelAspect.DestructionAnimalStrategyConfigs.Read(level).Value);
@@ -92,7 +103,7 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
                 Debug.Log("LOSS");
             }
 
-            foreach (int level in _world.Where(out LevelDestructionAnimalsStateAspect aspect))
+            foreach (int level in _world.Where(out AnimalDestructedStateAspect aspect))
             {
                 int algorithm = _world.NewEntity(aspect.GameFieldAlgorithmConfigs.Get(level).Value);
 
@@ -102,35 +113,31 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
                 Debug.Log("Game field destruction request");
             }
 
-            foreach (int level in _world.Where(out LevelDestructionGameFieldStateAspect levelAspect))
+            foreach (int level in _world.Where(out GameFieldDestructedStateAspect levelAspect))
             {
-                if (levelAspect.GameScreens.Read(level).Value.TryGetID(out int gameScreenID))
+                Debug.Log("Disable game loss timer");
+
+                foreach (int timer in _world.Where(out GameLossTimerAspect timerAspect))
                 {
-                    Debug.Log("Disable game loss timer");
+                    GameObjectConnect connect = timerAspect.GameObjectConnects.Read(timer);
 
-                    _world.GetPool<GameLossTimerConnect>().Read(gameScreenID).Value.gameObject.SetActive(false);
-
+                    Tween.Scale(connect.Connect.transform, Vector3.zero, 0.2f, Ease.OutQuad)
+                        .OnComplete(connect.Connect, target =>
+                        {
+                            target.gameObject.SetActive(false);
+                        });
+                
                     levelAspect.LevelLost.Del(level);
-
-                    foreach (int game in _world.Where(out GameAspect _))
-                        _world.GetPool<CleanupLevelRequest>().Add(game);
-
-                    foreach (GameObject ui in _world.GetPool<HideUI>().Read(gameScreenID).Value)
-                    {
-                        ui.transform.localScale = Vector3.zero;
-
-                        Sequence.Create()
-                            .Chain(Tween.Scale(ui.transform.transform, Vector3.one * 1.2f, 0.2f, Ease.OutQuad)
-                                .Chain(Tween.Scale(ui.transform.transform, Vector3.one * 1f, 0.1f, Ease.InQuad)));
-
-                        ui.SetActive(true);
-                    }
-
-                    foreach (int game in _world.Where(out GameAspect gameAspect))
-                    {
-                        gameAspect.LevelCounters.Get(game).Value = 0;
-                    }
                 }
+
+                foreach (int game in _world.Where(out GameAspect gameAspect))
+                {
+                    _world.GetPool<CleanupLevelRequest>().Add(game);
+                    gameAspect.Levels.Get(game).LevelIndex = 0;
+                }
+                
+                foreach (int gameScreen in _world.Where(out GameScreenAspect gameScreenAspect)) 
+                    gameScreenAspect.ShowMetaGameUI.Add(gameScreen);
             }
         }
     }

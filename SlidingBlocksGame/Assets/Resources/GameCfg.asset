@@ -15,8 +15,10 @@ MonoBehaviour:
   _components:
   - rid: 8499802323967542113
   - rid: 8499802364150546640
-  - rid: 8499802432192380987
   - rid: 8499802611131088914
+  - rid: 8499802700812648452
+  - rid: 8499802702287471245
+  - rid: 8499802702287471249
   references:
     version: 2
     RefIds:
@@ -25,8 +27,8 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data:
         component:
-          Templat2e:
-            _components: []
+          LevelIndex: 0
+          PackIndex: 0
           Value:
           - Levels:
             - {fileID: 11400000, guid: 418599750d9f9df4b8a1a40a2992dd92, type: 2}
@@ -35,12 +37,6 @@ MonoBehaviour:
       type: {class: GameTag/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
         asm: Assembly-CSharp}
       data: {}
-    - rid: 8499802432192380987
-      type: {class: GameScreenCfg/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: {fileID: 11400000, guid: 56e1f0a71bf6fa9439581ababd1d1894, type: 2}
     - rid: 8499802611131088914
       type: {class: AnimalPrefabs/Template, ns: _Project.Scripts.Gameplay.Features.CommonFeature.Components,
         asm: Assembly-CSharp}
@@ -54,4 +50,23 @@ MonoBehaviour:
           - {fileID: 7558186800719259502, guid: bd6f74b8d916ffa4eb9ab1a34e4b5a3d, type: 3}
           - {fileID: 1737809211169751524, guid: 60f569c8fef7bcb4aa6510ecdf2cc0b5, type: 3}
           - {fileID: 2837514245448880509, guid: fdf867e4f78396d4893b9e39fbd9a5b3, type: 3}
-          value: 0
+    - rid: 8499802700812648452
+      type: {class: PlayerCfgRef/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: {fileID: 11400000, guid: f74d12ddfe9dfd94db483e2805eafca2, type: 2}
+    - rid: 8499802702287471245
+      type: {class: GameScreenPrefab/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: {fileID: 3889562784997870761, guid: 414af5587425f08428ab122766844dad,
+            type: 3}
+    - rid: 8499802702287471249
+      type: {class: HUDPrefab/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: {fileID: 1498337169468322313, guid: 6b19eefb20a97ee46a9f55e015dd2b21,
+            type: 3}

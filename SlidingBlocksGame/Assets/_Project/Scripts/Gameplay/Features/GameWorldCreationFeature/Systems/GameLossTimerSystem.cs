@@ -1,5 +1,4 @@
-﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
-using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
+﻿using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
 using _Project.Scripts.Gameplay.Features.DestroyFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
 using DCFApixels.DragonECS;
@@ -12,9 +11,9 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
     {
         [EcsInject] private readonly EcsDefaultWorld _world;
 
-        private class Aspect : EcsAspectAuto
+        private class LevelAspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(AnimalPositionedEvent))]
+            [IncImplicit(typeof(CreateGameLossTimerRequest))]
             [Inc] public readonly EcsPool<GameLossTimerCfg> TimerConfigs;
 
             [Inc] public readonly EcsPool<GameScreen> GameScreen;
@@ -26,23 +25,22 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
             [Opt] public readonly EcsTagPool<LevelLifeTimeMarker> LevelLifeTime;
         }
 
-        private class GameScreenAspect : EcsAspectAuto
+
+        private class HUDAspect : EcsAspectAuto
         {
             [Inc] public readonly EcsPool<GameLossTimerConnect> GameLossTimerConnect;
         }
 
         public void Run()
         {
-            foreach (int level in _world.Where(out Aspect aspect))
+            foreach (int level in _world.Where(out LevelAspect levelAspect))
             {
-                GameScreenAspect gameScreenAspect = _world.GetAspect<GameScreenAspect>();
-
-                if (aspect.GameScreen.Read(level).Value.TryGetID(out int gameScreenID))
+                foreach (int hud in _world.Where(out HUDAspect hudAspect))
                 {
                     ref readonly GameLossTimerConnect connect =
-                        ref gameScreenAspect.GameLossTimerConnect.Read(gameScreenID);
+                        ref hudAspect.GameLossTimerConnect.Read(hud);
 
-                    entlong timer = _world.NewEntityLong(aspect.TimerConfigs.Read(level).Value);
+                    entlong timer = _world.NewEntityLong(levelAspect.TimerConfigs.Read(level).Value);
 
                     connect.Value.Connect(timer, false);
 
@@ -54,7 +52,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                     timerAspect.Refresh.Add(timer.ID);
 
                     timerAspect.LevelLifeTime.Add(timer.ID);
-                    
+
                     connect.Value.transform.localScale = Vector3.zero;
 
                     Sequence.Create()
