@@ -3,6 +3,7 @@ using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
 using _Project.Scripts.Gameplay.Features.EasingFeature.Components;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
 using DCFApixels.DragonECS;
+using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 {
@@ -51,6 +52,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                 // TODO: rework
                 
                 _world.GetPool<MovementCommand>().Del(entity);
+                Debug.Log(entity);
                 _world.GetPool<MovingMarker>().Add(entity);
             }
         }

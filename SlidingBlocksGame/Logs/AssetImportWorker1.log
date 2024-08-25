@@ -10902,3 +10902,508 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
   custom:scripting/precompiled-assembly-types:Assembly-CSharp: 26355e7eaf87a3ebde188b7b0adc61ba -> e650670f31974cd196399dcbacfbdcbc
   custom:scripting/monoscript/fileName/GameScreenSystem.cs: 5081e648b34b816f2e59d442dea2fdb2 -> 7494b1b857c76498f7848b71735b02d5
+========================================================================
+Received Prepare
+Caller must complete domain reload
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  2.509 seconds
+Native extension for WindowsStandalone target not found
+Native extension for Android target not found
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+- Finished resetting the current domain, in  2.615 seconds
+Domain Reload Profiling: 5126ms
+	BeginReloadAssembly (969ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (59ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (2ms)
+		CreateAndSetChildDomain (392ms)
+	RebuildCommonClasses (42ms)
+	RebuildNativeTypeToScriptingClass (10ms)
+	initialDomainReloadingComplete (51ms)
+	LoadAllAssembliesAndSetupDomain (1437ms)
+		LoadAssemblies (1680ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (68ms)
+			TypeCache.Refresh (29ms)
+				TypeCache.ScanAssembly (5ms)
+			ScanForSourceGeneratedMonoScriptInfo (26ms)
+			ResolveRequiredComponents (11ms)
+	FinalizeReload (2617ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (1266ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (56ms)
+			SetLoadedEditorAssemblies (5ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (87ms)
+			ProcessInitializeOnLoadAttributes (734ms)
+			ProcessInitializeOnLoadMethodAttributes (380ms)
+			AfterProcessingInitializeOnLoad (3ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (5ms)
+Refreshing native plugins compatible for Editor in 9.18 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3869 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 20 unused Assets / (61.4 KB). Loaded Objects now: 4569.
+Memory consumption went from 162.4 MB to 162.4 MB.
+Total: 24.104500 ms (FindLiveObjects: 0.726000 ms CreateObjectMapping: 0.117500 ms MarkObjects: 22.028000 ms  DeleteObjects: 1.231300 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:scripting/monoscript/fileName/HUDPrefab.cs: 544aac81135df65133ae2b2b92c66b18 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:scripting/monoscript/fileName/GameFlowFeature.cs: 9c807db85091b196830960ff8da209ed -> 
+  custom:scripting/monoscript/fileName/GameFieldAlgorithmsFeature.cs: 090dbbef0c974534353edffd32aec410 -> 
+  custom:scripting/monoscript/fileName/GameScreenPrefab.cs: 21323b0504129ff7b439bc418dab2d91 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:scripting/monoscript/fileName/HideUIOnLevelStartRequest.cs: 336e428c0617dfabe312308a71400c1c -> 
+  custom:scripting/monoscript/fileName/UIOnLevelStart.cs: 0c3c89aac9d0735d01fc558298a5bac4 -> 
+  custom:scripting/monoscript/fileName/HideMetaGameUIRequest.cs: 8680d0deeddd811adab64c3c23aef703 -> 
+  custom:scripting/monoscript/fileName/GameFlowSystem.cs: 8a08e8c8ae760aa9a809dcfe6a48fe7a -> 
+  custom:CustomObjectIndexerAttribute: 9a22284fe3817be447336de3de66b15e -> 
+  custom:scripting/monoscript/fileName/UIOnLevelStartSystem.cs: 008aceeeb3cb9691e3f1d1a4fde6e3c2 -> 
+  custom:scripting/monoscript/fileName/MetaGameUISystem.cs: 2f4ee20aa005e40745582896be6c893a -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:scripting/monoscript/fileName/LevelWinCheckSystem.cs: 16a73b8ab1852dd956b1e82401fd76be -> 
+  custom:scripting/monoscript/fileName/LevelLossSystem.cs: 3077c03caf5cc981797446ca4e520658 -> 82cd8e302222f7d07b5e7ab9e5598c9d
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:scripting/monoscript/fileName/UIHideOnLevelStart.cs: 5ab73915dc36290c95f2d04d16071d3c -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:scripting/monoscript/fileName/ShowUIOnLevelStartRequest.cs: 364599e7908f0700ddc553032d8ef686 -> 
+  custom:scripting/monoscript/fileName/LevelWinSystem.cs: 2b81c3547e74d34b73fba15edcbb525c -> fa4a31285a16533c069b6ccf81c62d53
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:scripting/monoscript/fileName/ScaleGameFieldEnvironmentSystem.cs: 3f93881224963ead4388f5c0cda04b3c -> 
+  custom:scripting/monoscript/fileName/PlayerCfgRef.cs: d0cc3a1ed37651690c6c1816fb8bf260 -> 
+  custom:scripting/monoscript/fileName/ScaleGameFieldEnvrionmentSystem.cs: 8c6fc3d4fa708468de036a57b8353e3c -> 
+  custom:scripting/monoscript/fileName/CreateBestRequest.cs: fe5a2d5ae4f60a86352d127043626b92 -> 
+  custom:scripting/monoscript/fileName/AnimalPositionedMarker.cs: 38d23a8c56ed85b26801132b9f8c6c31 -> 
+  custom:scripting/monoscript/fileName/ShowMetaGameUIRequest.cs: e158e42ad8ebe6fbf09721e8439a5f9f -> 
+  custom:scripting/monoscript/fileName/MetaGameUI.cs: 18b50d5f8eaabe34de66f6b9e5f9b7c7 -> 
+  custom:scripting/monoscript/fileName/CreateHUDSystem.cs: 3e0c125321bee9ca69239fbc545c89fd -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:scripting/monoscript/fileName/BestConnect.cs: 63ef2e62017e412428cf739e805210f4 -> 
+  custom:scripting/monoscript/fileName/CreateHUDRequest.cs: 98395a25b4f125252b0e361a4de04af5 -> 
+  custom:scripting/monoscript/fileName/CreateGameLossTimerRequest.cs: eb58c08ef41e20481525486824d59f74 -> 
+  custom:scripting/monoscript/fileName/EcsRoot.cs: 169f3f19354b6afa1a5d25d086074c2f -> 8c7b162ce505efbb2c6633eaebc0f4c6
+  custom:scripting/monoscript/fileName/CreateGameSystem.cs: ed111e5cd245beab7f5737fde9c0be0b -> aea51e943c329e44b89093771f3c6c60
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:scripting/precompiled-assembly-types:Assembly-CSharp: 26355e7eaf87a3ebde188b7b0adc61ba -> e650670f31974cd196399dcbacfbdcbc
+  custom:scripting/monoscript/fileName/GameScreenSystem.cs: 5081e648b34b816f2e59d442dea2fdb2 -> 7494b1b857c76498f7848b71735b02d5
+========================================================================
+Received Prepare
+Caller must complete domain reload
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  2.565 seconds
+Native extension for WindowsStandalone target not found
+Native extension for Android target not found
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+- Finished resetting the current domain, in  1.682 seconds
+Domain Reload Profiling: 4253ms
+	BeginReloadAssembly (272ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (7ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (1ms)
+		CreateAndSetChildDomain (93ms)
+	RebuildCommonClasses (38ms)
+	RebuildNativeTypeToScriptingClass (12ms)
+	initialDomainReloadingComplete (39ms)
+	LoadAllAssembliesAndSetupDomain (2208ms)
+		LoadAssemblies (2227ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (90ms)
+			TypeCache.Refresh (43ms)
+				TypeCache.ScanAssembly (8ms)
+			ScanForSourceGeneratedMonoScriptInfo (26ms)
+			ResolveRequiredComponents (18ms)
+	FinalizeReload (1685ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (932ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (63ms)
+			SetLoadedEditorAssemblies (6ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (106ms)
+			ProcessInitializeOnLoadAttributes (515ms)
+			ProcessInitializeOnLoadMethodAttributes (240ms)
+			AfterProcessingInitializeOnLoad (3ms)
+			EditorAssembliesLoaded (1ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (5ms)
+Refreshing native plugins compatible for Editor in 8.08 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3870 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 20 unused Assets / (61.4 KB). Loaded Objects now: 4571.
+Memory consumption went from 162.4 MB to 162.4 MB.
+Total: 18.799200 ms (FindLiveObjects: 1.053000 ms CreateObjectMapping: 0.098300 ms MarkObjects: 16.792000 ms  DeleteObjects: 0.855000 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:scripting/monoscript/fileName/HUDPrefab.cs: 544aac81135df65133ae2b2b92c66b18 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:scripting/monoscript/fileName/GameFlowFeature.cs: 9c807db85091b196830960ff8da209ed -> 
+  custom:scripting/monoscript/fileName/GameFieldAlgorithmsFeature.cs: 090dbbef0c974534353edffd32aec410 -> 
+  custom:scripting/monoscript/fileName/GameScreenPrefab.cs: 21323b0504129ff7b439bc418dab2d91 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:scripting/monoscript/fileName/HideUIOnLevelStartRequest.cs: 336e428c0617dfabe312308a71400c1c -> 
+  custom:scripting/monoscript/fileName/UIOnLevelStart.cs: 0c3c89aac9d0735d01fc558298a5bac4 -> 
+  custom:scripting/monoscript/fileName/HideMetaGameUIRequest.cs: 8680d0deeddd811adab64c3c23aef703 -> 
+  custom:scripting/monoscript/fileName/GameFlowSystem.cs: 8a08e8c8ae760aa9a809dcfe6a48fe7a -> 
+  custom:scripting/monoscript/fileName/LevelLostCheckSystem.cs: 927b4ad8f80b4ad579189b7af1efb077 -> 
+  custom:CustomObjectIndexerAttribute: 9a22284fe3817be447336de3de66b15e -> 
+  custom:scripting/monoscript/fileName/UIOnLevelStartSystem.cs: 008aceeeb3cb9691e3f1d1a4fde6e3c2 -> 
+  custom:scripting/monoscript/fileName/MetaGameUISystem.cs: 2f4ee20aa005e40745582896be6c893a -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:scripting/monoscript/fileName/LevelWinCheckSystem.cs: 16a73b8ab1852dd956b1e82401fd76be -> 
+  custom:scripting/monoscript/fileName/LevelLossSystem.cs: 493fdea020fb54ba599644ff2ad9a1b5 -> 82cd8e302222f7d07b5e7ab9e5598c9d
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:scripting/monoscript/fileName/UIHideOnLevelStart.cs: 5ab73915dc36290c95f2d04d16071d3c -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:scripting/monoscript/fileName/ShowUIOnLevelStartRequest.cs: 364599e7908f0700ddc553032d8ef686 -> 
+  custom:scripting/monoscript/fileName/LevelWinSystem.cs: 2b81c3547e74d34b73fba15edcbb525c -> fa4a31285a16533c069b6ccf81c62d53
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:scripting/monoscript/fileName/ScaleGameFieldEnvironmentSystem.cs: 3f93881224963ead4388f5c0cda04b3c -> 
+  custom:scripting/monoscript/fileName/PlayerCfgRef.cs: d0cc3a1ed37651690c6c1816fb8bf260 -> 
+  custom:scripting/monoscript/fileName/ScaleGameFieldEnvrionmentSystem.cs: 8c6fc3d4fa708468de036a57b8353e3c -> 
+  custom:scripting/monoscript/fileName/CreateBestRequest.cs: fe5a2d5ae4f60a86352d127043626b92 -> 
+  custom:scripting/monoscript/fileName/AnimalPositionedMarker.cs: 38d23a8c56ed85b26801132b9f8c6c31 -> 
+  custom:scripting/monoscript/fileName/ShowMetaGameUIRequest.cs: e158e42ad8ebe6fbf09721e8439a5f9f -> 
+  custom:scripting/monoscript/fileName/MetaGameUI.cs: 18b50d5f8eaabe34de66f6b9e5f9b7c7 -> 
+  custom:scripting/monoscript/fileName/CreateHUDSystem.cs: 3e0c125321bee9ca69239fbc545c89fd -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:scripting/monoscript/fileName/BestConnect.cs: 63ef2e62017e412428cf739e805210f4 -> 
+  custom:scripting/monoscript/fileName/CreateHUDRequest.cs: 98395a25b4f125252b0e361a4de04af5 -> 
+  custom:scripting/monoscript/fileName/CreateGameLossTimerRequest.cs: eb58c08ef41e20481525486824d59f74 -> 
+  custom:scripting/monoscript/fileName/EcsRoot.cs: 169f3f19354b6afa1a5d25d086074c2f -> 8c7b162ce505efbb2c6633eaebc0f4c6
+  custom:scripting/monoscript/fileName/CreateGameSystem.cs: ed111e5cd245beab7f5737fde9c0be0b -> aea51e943c329e44b89093771f3c6c60
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:scripting/precompiled-assembly-types:Assembly-CSharp: cc717f65754a045cbce510b67a62578e -> e650670f31974cd196399dcbacfbdcbc
+  custom:scripting/monoscript/fileName/GameScreenSystem.cs: 5081e648b34b816f2e59d442dea2fdb2 -> 7494b1b857c76498f7848b71735b02d5
+========================================================================
+Received Prepare
+Caller must complete domain reload
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  2.389 seconds
+Native extension for WindowsStandalone target not found
+Native extension for Android target not found
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+- Finished resetting the current domain, in  3.200 seconds
+Domain Reload Profiling: 5599ms
+	BeginReloadAssembly (595ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (16ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (2ms)
+		CreateAndSetChildDomain (300ms)
+	RebuildCommonClasses (51ms)
+	RebuildNativeTypeToScriptingClass (12ms)
+	initialDomainReloadingComplete (61ms)
+	LoadAllAssembliesAndSetupDomain (1675ms)
+		LoadAssemblies (1685ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (176ms)
+			TypeCache.Refresh (67ms)
+				TypeCache.ScanAssembly (8ms)
+			ScanForSourceGeneratedMonoScriptInfo (70ms)
+			ResolveRequiredComponents (36ms)
+	FinalizeReload (3203ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (1647ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (93ms)
+			SetLoadedEditorAssemblies (6ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (141ms)
+			ProcessInitializeOnLoadAttributes (1000ms)
+			ProcessInitializeOnLoadMethodAttributes (392ms)
+			AfterProcessingInitializeOnLoad (8ms)
+			EditorAssembliesLoaded (7ms)
+		ExecutionOrderSort2 (1ms)
+		AwakeInstancesAfterBackupRestoration (7ms)
+Refreshing native plugins compatible for Editor in 16.22 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3870 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 20 unused Assets / (61.3 KB). Loaded Objects now: 4572.
+Memory consumption went from 162.4 MB to 162.4 MB.
+Total: 36.146400 ms (FindLiveObjects: 0.855400 ms CreateObjectMapping: 0.117600 ms MarkObjects: 34.409900 ms  DeleteObjects: 0.761200 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:scripting/monoscript/fileName/HUDPrefab.cs: 544aac81135df65133ae2b2b92c66b18 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:scripting/monoscript/fileName/GameFlowFeature.cs: 9c807db85091b196830960ff8da209ed -> 
+  custom:scripting/monoscript/fileName/GameFieldAlgorithmsFeature.cs: 090dbbef0c974534353edffd32aec410 -> 
+  custom:scripting/monoscript/fileName/GameScreenPrefab.cs: 21323b0504129ff7b439bc418dab2d91 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:scripting/monoscript/fileName/HideUIOnLevelStartRequest.cs: 336e428c0617dfabe312308a71400c1c -> 
+  custom:scripting/monoscript/fileName/UIOnLevelStart.cs: 0c3c89aac9d0735d01fc558298a5bac4 -> 
+  custom:scripting/monoscript/fileName/HideMetaGameUIRequest.cs: 8680d0deeddd811adab64c3c23aef703 -> 
+  custom:scripting/monoscript/fileName/GameFlowSystem.cs: 8a08e8c8ae760aa9a809dcfe6a48fe7a -> 
+  custom:scripting/monoscript/fileName/LevelLostCheckSystem.cs: af6db9bcff20bd9094ce54cde75f9769 -> 
+  custom:CustomObjectIndexerAttribute: 9a22284fe3817be447336de3de66b15e -> 
+  custom:scripting/monoscript/fileName/UIOnLevelStartSystem.cs: 008aceeeb3cb9691e3f1d1a4fde6e3c2 -> 
+  custom:scripting/monoscript/fileName/MetaGameUISystem.cs: 2f4ee20aa005e40745582896be6c893a -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:scripting/monoscript/fileName/LevelWinCheckSystem.cs: 16a73b8ab1852dd956b1e82401fd76be -> 
+  custom:scripting/monoscript/fileName/LevelLossSystem.cs: 493fdea020fb54ba599644ff2ad9a1b5 -> 82cd8e302222f7d07b5e7ab9e5598c9d
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:scripting/monoscript/fileName/UIHideOnLevelStart.cs: 5ab73915dc36290c95f2d04d16071d3c -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:scripting/monoscript/fileName/ShowUIOnLevelStartRequest.cs: 364599e7908f0700ddc553032d8ef686 -> 
+  custom:scripting/monoscript/fileName/LevelWinSystem.cs: 2b81c3547e74d34b73fba15edcbb525c -> fa4a31285a16533c069b6ccf81c62d53
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:scripting/monoscript/fileName/ScaleGameFieldEnvironmentSystem.cs: 3f93881224963ead4388f5c0cda04b3c -> 
+  custom:scripting/monoscript/fileName/PlayerCfgRef.cs: d0cc3a1ed37651690c6c1816fb8bf260 -> 
+  custom:scripting/monoscript/fileName/ScaleGameFieldEnvrionmentSystem.cs: 8c6fc3d4fa708468de036a57b8353e3c -> 
+  custom:scripting/monoscript/fileName/CreateBestRequest.cs: fe5a2d5ae4f60a86352d127043626b92 -> 
+  custom:scripting/monoscript/fileName/AnimalPositionedMarker.cs: 38d23a8c56ed85b26801132b9f8c6c31 -> 
+  custom:scripting/monoscript/fileName/ShowMetaGameUIRequest.cs: e158e42ad8ebe6fbf09721e8439a5f9f -> 
+  custom:scripting/monoscript/fileName/MetaGameUI.cs: 18b50d5f8eaabe34de66f6b9e5f9b7c7 -> 
+  custom:scripting/monoscript/fileName/CreateHUDSystem.cs: 3e0c125321bee9ca69239fbc545c89fd -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:scripting/monoscript/fileName/BestConnect.cs: 63ef2e62017e412428cf739e805210f4 -> 
+  custom:scripting/monoscript/fileName/CreateHUDRequest.cs: 98395a25b4f125252b0e361a4de04af5 -> 
+  custom:scripting/monoscript/fileName/CreateGameLossTimerRequest.cs: eb58c08ef41e20481525486824d59f74 -> 
+  custom:scripting/monoscript/fileName/EcsRoot.cs: 169f3f19354b6afa1a5d25d086074c2f -> 8c7b162ce505efbb2c6633eaebc0f4c6
+  custom:scripting/monoscript/fileName/CreateGameSystem.cs: ed111e5cd245beab7f5737fde9c0be0b -> aea51e943c329e44b89093771f3c6c60
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:scripting/precompiled-assembly-types:Assembly-CSharp: 254cf172b1abcd2673bfc1ef2a9d43ca -> e650670f31974cd196399dcbacfbdcbc
+  custom:scripting/monoscript/fileName/GameScreenSystem.cs: 5081e648b34b816f2e59d442dea2fdb2 -> 7494b1b857c76498f7848b71735b02d5
+========================================================================
+Received Prepare
+Caller must complete domain reload
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  2.962 seconds
+Native extension for WindowsStandalone target not found
+Native extension for Android target not found
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+- Finished resetting the current domain, in  1.992 seconds
+Domain Reload Profiling: 4961ms
+	BeginReloadAssembly (1058ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (64ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (3ms)
+		CreateAndSetChildDomain (532ms)
+	RebuildCommonClasses (47ms)
+	RebuildNativeTypeToScriptingClass (17ms)
+	initialDomainReloadingComplete (61ms)
+	LoadAllAssembliesAndSetupDomain (1785ms)
+		LoadAssemblies (1884ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (130ms)
+			TypeCache.Refresh (54ms)
+				TypeCache.ScanAssembly (7ms)
+			ScanForSourceGeneratedMonoScriptInfo (53ms)
+			ResolveRequiredComponents (21ms)
+	FinalizeReload (1994ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (1015ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (57ms)
+			SetLoadedEditorAssemblies (6ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (87ms)
+			ProcessInitializeOnLoadAttributes (581ms)
+			ProcessInitializeOnLoadMethodAttributes (280ms)
+			AfterProcessingInitializeOnLoad (3ms)
+			EditorAssembliesLoaded (1ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (7ms)
+Callback registration failed. Increase kMaxCallback.
+Fatal Error! Callback registration failed. Increase kMaxCallback.
+Crash!!!
+SymInit: Symbol-SearchPath: 'D:/games/Unity/Unity Files (Dont Touch)/2021.3.9f1/2022.3.42f1/Editor/Data/Mono;.;D:\games\SlidingCubesGame\SlidingBlocksGame;D:\games\SlidingCubesGame\SlidingBlocksGame\Library\BurstCache\JIT;D:\games\Unity\Unity Files (Dont Touch)\2021.3.9f1\2022.3.42f1\Editor;C:\Windows;C:\Windows\system32;', symOptions: 534, UserName: 'stepa'
+OS-Version: 10.0.0
+D:\games\Unity\Unity Files (Dont Touch)\2021.3.9f1\2022.3.42f1\Editor\Unity.exe:Unity.exe (00007FF6C6CB0000), size: 82337792 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 2022.3.42.52074
+C:\Windows\SYSTEM32\ntdll.dll:ntdll.dll (00007FF990210000), size: 2064384 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.2130
+C:\Windows\System32\KERNEL32.DLL:KERNEL32.DLL (00007FF98E920000), size: 774144 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.1889
+C:\Windows\System32\KERNELBASE.dll:KERNELBASE.dll (00007FF98DDF0000), size: 2957312 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.2130
+C:\Windows\System32\CRYPT32.dll:CRYPT32.dll (00007FF98DAE0000), size: 1400832 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.1889
+C:\Windows\System32\ucrtbase.dll:ucrtbase.dll (00007FF98D950000), size: 1048576 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.789
+C:\Windows\System32\bcrypt.dll:bcrypt.dll (00007FF98D920000), size: 159744 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.1023
+D:\games\Unity\Unity Files (Dont Touch)\2021.3.9f1\2022.3.42f1\Editor\libfbxsdk.dll:libfbxsdk.dll (00007FF911A80000), size: 8019968 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 2020.3.7.0
+D:\games\Unity\Unity Files (Dont Touch)\2021.3.9f1\2022.3.42f1\Editor\s3tcompress.dll:s3tcompress.dll (00007FF911570000), size: 180224 (result: 0), SymType: '-deferred-', PDB: ''
+C:\Windows\System32\USER32.dll:USER32.dll (00007FF98F720000), size: 1691648 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.2130
+D:\games\Unity\Unity Files (Dont Touch)\2021.3.9f1\2022.3.42f1\Editor\etccompress.dll:etccompress.dll (00007FF9115A0000), size: 5066752 (result: 0), SymType: '-deferred-', PDB: ''
+C:\Windows\System32\ADVAPI32.dll:ADVAPI32.dll (00007FF98F8C0000), size: 712704 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.2130
+C:\Windows\System32\win32u.dll:win32u.dll (00007FF98E190000), size: 139264 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.2130
+D:\games\Unity\Unity Files (Dont Touch)\2021.3.9f1\2022.3.42f1\Editor\compress_bc7e.dll:compress_bc7e.dll (00007FF911250000), size: 1433600 (result: 0), SymType: '-deferred-', PDB: ''
+D:\games\Unity\Unity Files (Dont Touch)\2021.3.9f1\2022.3.42f1\Editor\ispc_texcomp.dll:ispc_texcomp.dll (00007FF9113B0000), size: 1826816 (result: 0), SymType: '-deferred-', PDB: ''
+C:\Windows\System32\msvcrt.dll:msvcrt.dll (00007FF98E820000), size: 647168 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 7.0.19041.546
+C:\Windows\System32\GDI32.dll:GDI32.dll (00007FF98FAD0000), size: 176128 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.2130
+C:\Windows\System32\gdi32full.dll:gdi32full.dll (00007FF98DC40000), size: 1110016 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.2130
+D:\games\Unity\Unity Files (Dont Touch)\2021.3.9f1\2022.3.42f1\Editor\FreeImage.dll:FreeImage.dll (0000000180000000), size: 5783552 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 3.18.0.0
+D:\games\Unity\Unity Files (Dont Touch)\2021.3.9f1\2022.3.42f1\Editor\WinPixEventRuntime.dll:WinPixEventRuntime.dll (00007FF911240000), size: 45056 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 1.0.1812.6001
+C:\Windows\System32\sechost.dll:sechost.dll (00007FF98F680000), size: 638976 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.1865
+C:\Windows\System32\msvcp_win.dll:msvcp_win.dll (00007FF98DD50000), size: 643072 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.789
+C:\Windows\System32\WS2_32.dll:WS2_32.dll (00007FF98F5A0000), size: 438272 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.546
+C:\Windows\System32\RPCRT4.dll:RPCRT4.dll (00007FF9900A0000), size: 1200128 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.1806
+C:\Windows\System32\SHELL32.dll:SHELL32.dll (00007FF98E9E0000), size: 7614464 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.2075
+D:\games\Unity\Unity Files (Dont Touch)\2021.3.9f1\2022.3.42f1\Editor\umbraoptimizer64.dll:umbraoptimizer64.dll (00007FF911110000), size: 1187840 (result: 0), SymType: '-deferred-', PDB: ''
+C:\Windows\System32\SHLWAPI.dll:SHLWAPI.dll (00007FF98E270000), size: 348160 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.2075
+C:\Windows\System32\ole32.dll:ole32.dll (00007FF98FD80000), size: 1220608 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.1202
+C:\Windows\System32\combase.dll:combase.dll (00007FF98E3F0000), size: 3489792 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.2130
+C:\Windows\System32\IMM32.dll:IMM32.dll (00007FF98FFF0000), size: 196608 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.546
+C:\Windows\SYSTEM32\MSVCP140.dll:MSVCP140.dll (00007FF910620000), size: 581632 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 14.34.31931.0
+C:\Windows\SYSTEM32\VCRUNTIME140_1.dll:VCRUNTIME140_1.dll (00007FF985A00000), size: 49152 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 14.34.31931.0
+C:\Windows\SYSTEM32\VCRUNTIME140.dll:VCRUNTIME140.dll (00007FF989310000), size: 110592 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 14.34.31931.0
+C:\Windows\SYSTEM32\IPHLPAPI.DLL:IPHLPAPI.DLL (00007FF98CD60000), size: 241664 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.1865
+C:\Windows\System32\SETUPAPI.dll:SETUPAPI.dll (00007FF98F130000), size: 4648960 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.1741
+C:\Windows\System32\cfgmgr32.dll:cfgmgr32.dll (00007FF98E0D0000), size: 319488 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.1620
+C:\Windows\System32\OLEAUT32.dll:OLEAUT32.dll (00007FF98E750000), size: 839680 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.985
+C:\Windows\SYSTEM32\GLU32.dll:GLU32.dll (00007FF97C7C0000), size: 180224 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.2075
+C:\Windows\SYSTEM32\OPENGL32.dll:OPENGL32.dll (00007FF9745A0000), size: 1208320 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.2075
+C:\Windows\System32\WINTRUST.dll:WINTRUST.dll (00007FF98E120000), size: 430080 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.2075
+C:\Windows\SYSTEM32\WINHTTP.dll:WINHTTP.dll (00007FF988380000), size: 1101824 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.2075
+C:\Windows\SYSTEM32\WINMM.dll:WINMM.dll (00007FF985BB0000), size: 159744 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.546
+D:\games\Unity\Unity Files (Dont Touch)\2021.3.9f1\2022.3.42f1\Editor\NativeProxyHelper.dll:NativeProxyHelper.dll (00007FF910F50000), size: 1789952 (result: 0), SymType: '-deferred-', PDB: ''
+C:\Windows\SYSTEM32\HID.DLL:HID.DLL (00007FF98C180000), size: 53248 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.546
+D:\games\Unity\Unity Files (Dont Touch)\2021.3.9f1\2022.3.42f1\Editor\SketchUpAPI.dll:SketchUpAPI.dll (00007FF9106B0000), size: 8990720 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 23.0.0.0
+C:\Windows\SYSTEM32\dwmapi.dll:dwmapi.dll (00007FF98B3F0000), size: 192512 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.746
+C:\Windows\SYSTEM32\VERSION.dll:VERSION.dll (00007FF986590000), size: 40960 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.546
+C:\Windows\SYSTEM32\WSOCK32.dll:WSOCK32.dll (00007FF9896D0000), size: 36864 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.1
+D:\games\Unity\Unity Files (Dont Touch)\2021.3.9f1\2022.3.42f1\Editor\SketchUpCommonPreferences.dll:SketchUpCommonPreferences.dll (00007FF9105A0000), size: 499712 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 23.0.0.0
+C:\Windows\SYSTEM32\Secur32.dll:Secur32.dll (00007FF977470000), size: 49152 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.546
+C:\Windows\SYSTEM32\SSPICLI.DLL:SSPICLI.DLL (00007FF98D810000), size: 204800 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.2130
+D:\games\Unity\Unity Files (Dont Touch)\2021.3.9f1\2022.3.42f1\Editor\OpenRL.dll:OpenRL.dll (000002489C180000), size: 12779520 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 1.5.0.2907
+D:\games\Unity\Unity Files (Dont Touch)\2021.3.9f1\2022.3.42f1\Editor\embree.dll:embree.dll (00007FF90F5B0000), size: 16711680 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 2.14.0.0
+C:\Windows\SYSTEM32\MSVCR100.dll:MSVCR100.dll (0000000074310000), size: 856064 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.30319.1
+C:\Windows\SYSTEM32\MSVCP100.dll:MSVCP100.dll (00000000743F0000), size: 622592 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.30319.1
+C:\Windows\SYSTEM32\MSWSOCK.DLL:MSWSOCK.DLL (00007FF98D0E0000), size: 434176 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.546
+D:\games\Unity\Unity Files (Dont Touch)\2021.3.9f1\2022.3.42f1\Editor\tbb.dll:tbb.dll (00007FF90F540000), size: 413696 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 2017.0.2016.1004
+C:\Windows\SYSTEM32\MSVCP120.dll:MSVCP120.dll (00007FF90F490000), size: 679936 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 12.0.40649.5
+C:\Windows\SYSTEM32\MSVCR120.dll:MSVCR120.dll (00007FF90F3A0000), size: 978944 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 12.0.40649.5
+D:\games\Unity\Unity Files (Dont Touch)\2021.3.9f1\2022.3.42f1\Editor\OpenRL_pthread.dll:OpenRL_pthread.dll (000002489CDD0000), size: 61440 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 2.9.0.0
+C:\Windows\SYSTEM32\MSASN1.dll:MSASN1.dll (00007FF98D510000), size: 73728 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.546
+C:\Windows\System32\bcryptprimitives.dll:bcryptprimitives.dll (00007FF98DA50000), size: 532480 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.1415
+C:\Windows\SYSTEM32\kernel.appcore.dll:kernel.appcore.dll (00007FF98B7C0000), size: 73728 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.546
+C:\Windows\system32\uxtheme.dll:uxtheme.dll (00007FF98B2E0000), size: 647168 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.2130
+C:\Windows\SYSTEM32\windows.storage.dll:windows.storage.dll (00007FF98B9E0000), size: 7933952 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.2130
+C:\Windows\SYSTEM32\Wldp.dll:Wldp.dll (00007FF98D380000), size: 196608 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.2075
+C:\Windows\System32\SHCORE.dll:SHCORE.dll (00007FF98F970000), size: 708608 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.1865
+C:\Windows\SYSTEM32\profapi.dll:profapi.dll (00007FF98D860000), size: 126976 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.844
+C:\Windows\system32\IconCodecService.dll:IconCodecService.dll (00007FF985970000), size: 36864 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.1
+C:\Windows\SYSTEM32\WindowsCodecs.dll:WindowsCodecs.dll (00007FF988BC0000), size: 1785856 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.1706
+C:\Windows\System32\clbcatq.dll:clbcatq.dll (00007FF98FA20000), size: 716800 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 2001.12.10941.16384
+C:\Windows\System32\netprofm.dll:netprofm.dll (00007FF9891D0000), size: 253952 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.906
+C:\Windows\System32\npmproxy.dll:npmproxy.dll (00007FF9870C0000), size: 65536 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.906
+C:\Windows\System32\NSI.dll:NSI.dll (00007FF98F610000), size: 32768 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.610
+C:\Windows\SYSTEM32\dhcpcsvc6.DLL:dhcpcsvc6.DLL (00007FF987100000), size: 94208 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.2130
+C:\Windows\SYSTEM32\dhcpcsvc.DLL:dhcpcsvc.DLL (00007FF9871B0000), size: 118784 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.2130
+C:\Windows\SYSTEM32\DNSAPI.dll:DNSAPI.dll (00007FF98CDA0000), size: 827392 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.1865
+C:\Windows\system32\napinsp.dll:napinsp.dll (00007FF9892C0000), size: 94208 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.546
+C:\Windows\system32\pnrpnsp.dll:pnrpnsp.dll (00007FF9892A0000), size: 110592 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.546
+C:\Windows\system32\wshbth.dll:wshbth.dll (00007FF9772D0000), size: 86016 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.546
+C:\Windows\system32\NLAapi.dll:NLAapi.dll (00007FF989220000), size: 118784 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.1151
+C:\Windows\System32\winrnr.dll:winrnr.dll (00007FF989280000), size: 73728 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.546
+C:\Windows\System32\fwpuclnt.dll:fwpuclnt.dll (00007FF983320000), size: 524288 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.2006
+C:\Windows\System32\rasadhlp.dll:rasadhlp.dll (00007FF987E80000), size: 40960 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.546
+D:\games\Unity\Unity Files (Dont Touch)\2021.3.9f1\2022.3.42f1\Editor\NVUnityPlugin.DLL:NVUnityPlugin.DLL (00007FF90A4E0000), size: 1519616 (result: 0), SymType: '-deferred-', PDB: ''
+D:\games\Unity\Unity Files (Dont Touch)\2021.3.9f1\2022.3.42f1\Editor\Data\Tools\astcenc-avx2.dll:astcenc-avx2.dll (00007FF90A820000), size: 540672 (result: 0), SymType: '-deferred-', PDB: ''
+C:\Windows\System32\MMDevApi.dll:MMDevApi.dll (00007FF982F60000), size: 544768 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.1503
+C:\Windows\System32\DEVOBJ.dll:DEVOBJ.dll (00007FF98D6D0000), size: 180224 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.1620
+C:\Windows\SYSTEM32\d3d11.dll:d3d11.dll (00007FF989E10000), size: 2502656 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.2075
+C:\Windows\SYSTEM32\dxgi.dll:dxgi.dll (00007FF98C1E0000), size: 995328 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.2075
+C:\Windows\System32\DriverStore\FileRepository\u0382307.inf_amd64_186ddabffbbb414f\B382066\aticfx64.dll:aticfx64.dll (00007FF9854B0000), size: 1814528 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 31.0.12018.5
+C:\Windows\System32\DriverStore\FileRepository\u0382307.inf_amd64_186ddabffbbb414f\B382066\atiuxp64.dll:atiuxp64.dll (00007FF985B70000), size: 233472 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 31.0.12018.5
+C:\Windows\System32\DriverStore\FileRepository\u0382307.inf_amd64_186ddabffbbb414f\B382066\atidxx64.dll:atidxx64.dll (00007FF9834E0000), size: 32673792 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 31.0.12018.5
+C:\Windows\SYSTEM32\apphelp.dll:apphelp.dll (00007FF98B220000), size: 593920 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.2075
+C:\Windows\SYSTEM32\amdihk64.dll:amdihk64.dll (00007FF985B30000), size: 217088 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 2.0.0.1788
+C:\Windows\SYSTEM32\dxcore.dll:dxcore.dll (00007FF987340000), size: 241664 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.546
+C:\Windows\system32\wbem\wbemprox.dll:wbemprox.dll (00007FF976230000), size: 69632 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.1320
+C:\Windows\SYSTEM32\wbemcomn.dll:wbemcomn.dll (00007FF97CB00000), size: 589824 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.1566
+C:\Windows\system32\wbem\wbemsvc.dll:wbemsvc.dll (00007FF976A50000), size: 81920 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.1320
+C:\Windows\system32\wbem\fastprox.dll:fastprox.dll (00007FF9764B0000), size: 1093632 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.546
+C:\Windows\SYSTEM32\amsi.dll:amsi.dll (00007FF976460000), size: 126976 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.2075
+C:\Windows\SYSTEM32\USERENV.dll:USERENV.dll (00007FF98D7E0000), size: 188416 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.572
+C:\Windows\SYSTEM32\opencl.dll:opencl.dll (00007FF90A690000), size: 507904 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 3.0.0.0
+D:\games\Unity\Unity Files (Dont Touch)\2021.3.9f1\2022.3.42f1\Editor\radeonrays.dll:radeonrays.dll (00007FF90A450000), size: 557056 (result: 0), SymType: '-deferred-', PDB: ''
+D:\games\Unity\Unity Files (Dont Touch)\2021.3.9f1\2022.3.42f1\Editor\Data\MonoBleedingEdge\EmbedRuntime\mono-2.0-bdwgc.dll:mono-2.0-bdwgc.dll (00007FF9099F0000), size: 10825728 (result: 0), SymType: '-deferred-', PDB: ''
+C:\Windows\SYSTEM32\PROPSYS.dll:PROPSYS.dll (00007FF989580000), size: 1007616 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 7.0.19041.1741
+C:\Windows\System32\OldNewExplorer64.dll:OldNewExplorer64.dll (00007FF9797A0000), size: 278528 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 1.1.9.0
+C:\Windows\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.19041.1110_none_60b5254171f9507e\COMCTL32.dll:COMCTL32.dll (00007FF979CB0000), size: 2727936 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 6.10.19041.1110
+C:\Windows\System32\Windows.FileExplorer.Common.dll:Windows.FileExplorer.Common.dll (00007FF974E40000), size: 397312 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.1741
+C:\Windows\System32\iertutil.dll:iertutil.dll (00007FF981DE0000), size: 2822144 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 11.0.19041.2130
+C:\Windows\SYSTEM32\edputil.dll:edputil.dll (00007FF977260000), size: 147456 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.546
+C:\Windows\System32\Windows.StateRepositoryPS.dll:Windows.StateRepositoryPS.dll (00007FF97D650000), size: 1335296 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.1466
+C:\Windows\SYSTEM32\urlmon.dll:urlmon.dll (00007FF9820A0000), size: 2019328 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 11.0.19041.2075
+C:\Windows\SYSTEM32\srvcli.dll:srvcli.dll (00007FF981DB0000), size: 163840 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.1645
+C:\Windows\SYSTEM32\netutils.dll:netutils.dll (00007FF98CE70000), size: 49152 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.546
+C:\Windows\System32\cldapi.dll:cldapi.dll (00007FF977480000), size: 139264 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.1682
+C:\Windows\System32\FLTLIB.DLL:FLTLIB.DLL (00007FF97E770000), size: 45056 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.546
+C:\Windows\System32\wintypes.dll:wintypes.dll (00007FF989850000), size: 1392640 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.2130
+C:\Windows\System32\appresolver.dll:appresolver.dll (00007FF9799A0000), size: 589824 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.1620
+C:\Windows\System32\Bcp47Langs.dll:Bcp47Langs.dll (00007FF97C2F0000), size: 372736 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.1566
+C:\Windows\System32\SLC.dll:SLC.dll (00007FF98C460000), size: 167936 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.1682
+C:\Windows\System32\sppc.dll:sppc.dll (00007FF98C430000), size: 151552 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.1682
+C:\Windows\System32\OneCoreCommonProxyStub.dll:OneCoreCommonProxyStub.dll (00007FF97FEC0000), size: 520192 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.1949
+C:\Windows\System32\OneCoreUAPCommonProxyStub.dll:OneCoreUAPCommonProxyStub.dll (00007FF986780000), size: 8171520 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.2075
+C:\Windows\SYSTEM32\dbghelp.dll:dbghelp.dll (00007FF985D10000), size: 1982464 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.867
+
+========== OUTPUTTING STACK TRACE ==================
+
+0x00007FF98DE1CD29 (KERNELBASE) RaiseException
+0x00007FF6C8887450 (Unity) EditorMonoConsole::LogToConsoleImplementation
+0x00007FF6C8887ECD (Unity) EditorMonoConsole::LogToConsoleImplementation
+0x00007FF6C954A98F (Unity) DebugStringToFilePostprocessedStacktrace
+0x00007FF6C954A0EA (Unity) DebugStringToFile
+0x00007FF6C8D2DC19 (Unity) LoadDomainAndUserAssemblies
+0x00007FF6C9213484 (Unity) WorkerDomainReloadV2
+0x00007FF6C9234695 (Unity) <lambda_b37b41f03089e3cb3f55061bbc93253d>::operator()
+0x00007FF6C926FEA2 (Unity) asio::detail::completion_handler<core::mutable_function<void __cdecl(void)>,asio::io_context::basic_executor_type<std::allocator<void>,0> >::do_complete
+0x00007FF6C925BE4E (Unity) asio::detail::win_iocp_io_context::do_one
+0x00007FF6C925DAB4 (Unity) asio::detail::win_iocp_io_context::run
+0x00007FF6C926E24C (Unity) IOService::Run
+0x00007FF6C92416CF (Unity) AssetImportWorkerClient::Run
+0x00007FF6C920D037 (Unity) RunAssetImportWorkerClientV2
+0x00007FF6C920D0BB (Unity) RunAssetImporterV2
+0x00007FF6C8A076FE (Unity) Application::InitializeProject
+0x00007FF6C8E99ED5 (Unity) WinMain
+0x00007FF6CA24B7BE (Unity) __scrt_common_main_seh
+0x00007FF98E937034 (KERNEL32) BaseThreadInitThunk
+0x00007FF9902626A1 (ntdll) RtlUserThreadStart
+
+========== END OF STACKTRACE ===========
+
+A crash has been intercepted by the crash handler. For call stack and other details, see the latest crash report generated in:
+ * C:/Users/stepa/AppData/Local/Temp/Unity/Editor/Crashes

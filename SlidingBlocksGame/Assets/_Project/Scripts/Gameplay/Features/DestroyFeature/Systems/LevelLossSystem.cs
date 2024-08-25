@@ -1,5 +1,4 @@
 ﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
-using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
 using _Project.Scripts.Gameplay.Features.DestroyFeature.c;
 using _Project.Scripts.Gameplay.Features.DestroyFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Components;
@@ -11,39 +10,6 @@ using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
 {
-    public class LevelLostCheckSystem : IEcsRun
-    {
-        [EcsInject] private readonly EcsDefaultWorld _world;
-
-        private class LevelAspect : EcsAspectAuto
-        {
-            [IncImplicit(typeof(LevelTag))]
-            [ExcImplicit(typeof(LevelWonMarker))]
-            [Inc] public readonly EcsPool<GameField> GameFields;
-
-            [Exc] public readonly EcsTagPool<LevelLostEvent> LevelLostEvent;
-            [Exc] public readonly EcsTagPool<LevelLostMarker> LevelLostMarker;
-        }
-
-        private class GameLossTimerAspect : EcsAspectAuto
-        {
-            [Inc] public readonly EcsTagPool<CooldownExpiredEvent> Obstacles;
-            [Inc] public readonly EcsTagPool<GameLossTimerTag> Obstacles1;
-        }
-
-        public void Run()
-        {
-            foreach (int _ in _world.Where(out GameLossTimerAspect _))
-            {
-                foreach (int entity in _world.Where(out LevelAspect aspect))
-                {
-                    aspect.LevelLostEvent.Add(entity);
-                    aspect.LevelLostMarker.Add(entity);
-                }
-            }
-        }
-    }
-
     public class LevelLossSystem : IEcsRun
     {
         [EcsInject] private readonly EcsDefaultWorld _world;

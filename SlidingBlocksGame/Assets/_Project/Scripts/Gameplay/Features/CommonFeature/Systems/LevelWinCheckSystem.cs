@@ -22,8 +22,8 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
 
         private class AnimalAspect : EcsAspectAuto
         {
-            [Inc] public readonly EcsTagPool<CellOccupancyMarker> Obstacles1;
-            [Inc] public readonly EcsTagPool<WithinCenterMarker> Obstacles2;
+            [Inc] private readonly EcsTagPool<CellOccupancyMarker> _cellOccupancyMarkers;
+            [Inc] private readonly EcsTagPool<WithinCenterMarker> _withinCenterMarkers;
         }
 
         public void Run()
