@@ -19,13 +19,23 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
         private class GameAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(GameTag))]
+            [Inc] public readonly EcsPool<AnimalPrefabs> AnimalPrefabs;
+
             [Opt] public readonly EcsTagPool<NextLeveRequest> NextLevel;
+        }
+
+        private class GameCreatedAspect : EcsAspectAuto
+        {
+            [IncImplicit(typeof(GameCreatedEvent))]
+            [Opt] public readonly EcsTagPool<CreateHUDRequest> CreateHud;
         }
 
         private class LevelCreationStateAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(LevelTag))]
             [IncImplicit(typeof(SpawnedEvent))]
+            [Inc] public readonly EcsPool<GameField> GameFields;
+
             [Opt] public readonly EcsTagPool<GameFieldGenerateRequest> GameFieldGenerate;
         }
 
@@ -49,16 +59,38 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
             [Opt] public readonly EcsTagPool<HideMetaGameUIRequest> HideMetaGameUI;
         }
 
+        private class PlayerAspect : EcsAspectAuto
+        {
+            [IncImplicit(typeof(PlayerTag))]
+            [Inc] public readonly EcsPool<SelectionAnimalID> SelectionAnimalIndicies;
+        }
+
         public void Run()
         {
+            foreach (int game in _world.Where(out GameCreatedAspect aspect))
+                aspect.CreateHud.Add(game);
+
             foreach (int _ in _world.Where(out PlayButtonClickedAspect _))
             {
                 foreach (int game in _world.Where(out GameAspect gameAspect))
                     gameAspect.NextLevel.Add(game);
             }
 
-            foreach (int level in _world.Where(out LevelCreationStateAspect aspect))
-                aspect.GameFieldGenerate.Add(level);
+            foreach (int level in _world.Where(out LevelCreationStateAspect levelAspect))
+            {
+                levelAspect.GameFieldGenerate.Add(level);
+
+                foreach (int player in _world.Where(out PlayerAspect playerAspect))
+                {
+                    foreach (int game in _world.Where(out GameAspect gameAspect))
+                    {
+                        AnimalEntityConnect animalPrefab = gameAspect.AnimalPrefabs.Read(game)
+                            .Animals[playerAspect.SelectionAnimalIndicies.Read(player).Value];
+
+                        levelAspect.GameFields.Get(level).AnimalPrefab = animalPrefab;
+                    }
+                }
+            }
 
             foreach (int level in _world.Where(out GeneratedGameFieldStateAspect aspect))
                 aspect.CreateAnimals.Add(level);
@@ -67,7 +99,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
             {
                 aspect.CreateGameLossTimer.Add(level);
 
-                foreach (int gameScreen in _world.Where(out GameScreenAspect gameScreenAspect)) 
+                foreach (int gameScreen in _world.Where(out GameScreenAspect gameScreenAspect))
                     gameScreenAspect.HideMetaGameUI.Add(gameScreen);
             }
         }

@@ -22,11 +22,13 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature
                 //events api
                 .AutoDelTag<LevelWonEvent>()
                 .AutoDelTag<LevelLostEvent>()
-
+                
                 // core
                 .AddUnique(new CreateGameSystem(_gameCfg))
                 .AddUnique(new GameScreenSystem())
                 .AddUnique(new CreateHUDSystem())
+                .AutoDelTag<CreateHUDRequest>()
+                .AutoDelTag<CreateBestRequest>()
                 //
                 .AddUnique(new MetaGameUISystem())
                 .AutoDelTag<ShowMetaGameUIRequest>()

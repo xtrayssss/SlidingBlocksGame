@@ -27,7 +27,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                         gameField.CellSize);
                 }
 
-                foreach (ref GameField.Unit unit in gameField.Units.AsSpan())
+                foreach (ref GameField.AnimalsData unit in gameField.Animals.AsSpan())
                 {
                     unit.View.transform.localScale = new Vector3(gameField.CellSize + 0.1f, gameField.CellSize + 0.1f,
                         gameField.CellSize + 0.1f);

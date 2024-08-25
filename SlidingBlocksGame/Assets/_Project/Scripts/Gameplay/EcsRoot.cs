@@ -41,9 +41,6 @@ namespace _Project.Scripts.Gameplay
 
                 // creation game world feature
                 .AddModule(new GameFlowFeature(_gameCfg))
-                .AddUnique(new CalculateGameFieldSystem())
-                .AddUnique(new SelectionGenerationGameFieldSystem())
-                .AddUnique(new CalculationScaleGameFieldSystem())
                 .AddUnique(new CreateAnimalsSystem())
                 .AutoDelTag<AnimalPositionedEvent>()
                 .AddUnique(new AnimalCreationChainStrategySystem())

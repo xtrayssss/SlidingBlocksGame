@@ -2,6 +2,7 @@
 using DCFApixels.DragonECS;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Object = UnityEngine.Object;
 
 namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components
@@ -10,6 +11,8 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components
     public struct GameField : IEcsComponent
     {
         public GameObject CellPrefab;
+        public EcsEntityConnect AnimalPrefab;
+
         public float3 OriginPosition;
         public int Size;
         public float Offset;
@@ -18,7 +21,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components
         public int EdgeSize;
 
         public Cell[] Cells;
-        public Unit[] Units;
+        public AnimalsData[] Animals;
 
         public int BaseSize;
         public float BaseCellSize;
@@ -26,16 +29,17 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components
 
         [HideInInspector]
         public float CellTop;
+
         public float UnitCellTopOffset;
 
         [Serializable]
-        public struct Unit
+        public struct AnimalsData
         {
             public float3 Position;
             public float2 CellPosition;
-            public EcsEntityConnect Prefab;
             public EcsEntityConnect View;
-            public float3 Rotation;
+            public quaternion Rotation;
+            public float2 Direction;
         }
 
         [Serializable]
@@ -49,11 +53,28 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components
         public class Template : ComponentTemplate<GameField>
         {
 #if UNITY_EDITOR
+            private static readonly float3 Upward = new float3(0, 1, 0);
+            private static readonly float2 Up = new float2(0, 1);
+            private static readonly float2 Down = new float2(0, -1);
+            private static readonly float2 Left = new float2(-1, 0);
+            private static readonly float2 Right = new float2(1, 0);
+
             public override void OnValidate(Object obj)
             {
-                Span<Unit> units = new Span<Unit>(component.Units);
+                Span<AnimalsData> units = new Span<AnimalsData>(component.Animals);
 
                 component.CellTop = GetUpperSurfaceY(component.CellPrefab.GetComponentInChildren<MeshRenderer>());
+
+                component.EdgeSize = component.Size / 3;
+                component.CenterSize = component.Size - 2 * component.EdgeSize;
+
+                component.Cells = new Cell[component.CellsCount];
+
+                float initialZoneSize = component.BaseSize * component.BaseCellSize;
+
+                float newTileSize = initialZoneSize / component.Size;
+
+                component.CellSize = newTileSize;
 
                 float GetUpperSurfaceY(MeshRenderer renderer)
                 {
@@ -62,10 +83,23 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components
                     return upperY;
                 }
 
-                foreach (ref var unit in units)
+                foreach (ref AnimalsData animal in units)
                 {
-                    unit.Position = CellToWorld(unit.CellPosition, component) +
-                                    new float3(0, component.CellTop + component.UnitCellTopOffset, 0);
+                    animal.Position = CellToWorld(animal.CellPosition, component) +
+                                      new float3(0, component.CellTop + component.UnitCellTopOffset, 0);
+
+                    if (animal.CellPosition.x < component.EdgeSize)
+                        animal.Direction = Right;
+                    else if (animal.CellPosition.x >= component.EdgeSize + component.CenterSize)
+                        animal.Direction = Left;
+                    else if (animal.CellPosition.y < component.EdgeSize)
+                        animal.Direction = Up;
+                    else if (animal.CellPosition.y >= component.EdgeSize + component.CenterSize)
+                        animal.Direction = Down;
+
+                    animal.Rotation = quaternion.LookRotation(
+                        forward: new float3(animal.Direction.x, 0, animal.Direction.y),
+                        up: Upward);
                 }
             }
 

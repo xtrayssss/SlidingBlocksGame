@@ -1,6 +1,6 @@
 ﻿using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
 using DCFApixels.DragonECS;
-using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 {
@@ -8,15 +8,22 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
     {
         [EcsInject] private readonly EcsDefaultWorld _world;
 
-        private class Aspect : EcsAspectAuto
+        private class HUDAspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(GameCreatedEvent))]
+            [IncImplicit(typeof(CreateHUDRequest))]
             [Inc] public readonly EcsPool<HUDPrefab> HUDPrefabs;
+            [Opt] public readonly EcsTagPool<CreateBestRequest> CreateBest;
+        }
+
+        private class BestAspect : EcsAspectAuto
+        {
+            [IncImplicit(typeof(CreateBestRequest))]
+            [Inc] public readonly EcsPool<BestConnect> BestConnects;
         }
 
         public void Run()
         {
-            foreach (int entity in _world.Where(out Aspect aspect))
+            foreach (int entity in _world.Where(out HUDAspect aspect))
             {
                 EcsEntityConnect connect = Object.Instantiate(aspect.HUDPrefabs.Read(entity).Value);
 
@@ -24,18 +31,17 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
                 connect.Connect(hud, applyTemplates: true);
 
-                CreateBest(connect);
+                aspect.CreateBest.Add(entity);
             }
-        }
 
-        private void CreateBest(EcsEntityConnect connect)
-        {
-            entlong screen = _world.NewEntityLong();
+            foreach (int entity in _world.Where(out BestAspect aspect))
+            {
+                ref readonly BestConnect connect = ref aspect.BestConnects.Read(entity);
 
-            // TODO: 
-            EcsEntityConnect bestConnect = connect.transform.Find("Best").GetComponent<EcsEntityConnect>();
+                entlong best = _world.NewEntityLong();
 
-            bestConnect.Connect(screen, true);
+                connect.Value.Connect(best, applyTemplates: true);
+            }
         }
     }
 }
