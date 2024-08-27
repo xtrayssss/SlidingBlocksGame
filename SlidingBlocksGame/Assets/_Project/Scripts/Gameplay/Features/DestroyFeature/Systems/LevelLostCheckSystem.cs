@@ -53,6 +53,7 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
             {
                 if (_world.Where(out AnimalAspect _).Count != 0 && _world.Where(out MovingAnimals _).Count == 0)
                 {
+                    EcsDebug.Break();
                     aspect.LevelLostEvent.Add(entity);
                     aspect.LevelLostMarker.Add(entity);
                 }

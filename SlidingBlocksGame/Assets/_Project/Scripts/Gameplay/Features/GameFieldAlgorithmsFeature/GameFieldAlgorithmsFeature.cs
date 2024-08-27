@@ -13,14 +13,14 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature
         {
             builder
                 // events
-                .AutoDelTag<GameFieldGeneratedEvent>()
-                .AutoDelTag<GameFieldDestructedEvent>()
                 .AutoDelTag<TileGeneratedEvent>()
 
                 // core
                 .AddUnique(new SelectionGenerationGameFieldSystem())
 
                 //
+                .AutoDelTag<GameFieldGeneratedEvent>()
+                .AutoDelTag<GameFieldDestructedEvent>()
                 .AddUnique(new GameFieldPlaneAlgorithmSystem())
                 .AddUnique(new GameFieldWaveAlgorithmSystem())
                 .AutoDelTag<GameFieldGenerateRequest>()

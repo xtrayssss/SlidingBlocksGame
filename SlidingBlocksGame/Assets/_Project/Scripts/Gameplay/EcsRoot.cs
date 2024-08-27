@@ -7,7 +7,6 @@ using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
 using _Project.Scripts.Gameplay.Features.CooldownFeature.Systems;
 using _Project.Scripts.Gameplay.Features.DestroyFeature.Components;
 using _Project.Scripts.Gameplay.Features.DestroyFeature.Systems;
-using _Project.Scripts.Gameplay.Features.EasingFeature.Systems;
 using _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
@@ -54,34 +53,15 @@ namespace _Project.Scripts.Gameplay
                 // click feature
                 .AddUnique(new DetermineClickSystem())
 
-                // easing feature
-                .AddUnique(new AnimationCurveSystem())
-                .AddUnique(new LinerEasingSystem())
-
                 //occupancy feature
-                .AddUnique(new DestinationUnavailabilityCheckRequestSystem())
-                .AutoDelTag<DestinationUnavailableMarker>()
-                .AddUnique(new DestinationUnavailabilityCheckSystem())
-                .AddUnique(new ObstaclePositionAdditionSystem())
-                .AddUnique(new NearObstacleCalculationSystem())
-                .AddUnique(new DetectionDestinationDistanceSystem())
                 .AutoDelTag<DestinationUnavailabilityCheckRequest>()
-                .AutoDelTag<DetectionDistanceRequest>()
 
                 // movement feature
                 .AddUnique(new TransformSystem())
                 .AutoDelTag<UpdateViewRequest>()
                 .AddUnique(new WorldPositionSystem())
-                .AddUnique(new ChainingBlocksSystem())
-                .AddUnique(new ChainMovementSystem())
-                .AddUnique(new BlockMovementChainCommandSystem())
-                .AddUnique(new CalculateDestinationCellSystem())
-                .AddUnique(new MovementEasingCommandSystem())
-                .AddUnique(new DestinationMovementSystem())
-                .AutoDelTag<CalculateDestinationCellRequest>()
-
-                // end level feature
-                .AddUnique(new CellOccupancySystem())
+                .AddUnique(new DestinationCellSystem())
+                .AddUnique(new ChainMovementAnimalStrategySystem())
 
                 // destroy feature
                 //.AddUnique(new DestroyUnitRequestSystem())
@@ -94,7 +74,7 @@ namespace _Project.Scripts.Gameplay
                 .AddUnique(new DestructionChainStrategySystem())
                 .AddUnique(new ChainDestructionRequestSystem())
                 .AutoDelTag<ApplyDestructionStrategyRequest>()
-                .AddUnique(new CheckAnimalWithinCenterSystem())
+                .AddUnique(new WithinCenterSystem())
                 .AddUnique(new BestVisualizeSystem())
 
                 // visual feature
@@ -131,6 +111,8 @@ namespace _Project.Scripts.Gameplay
                 // .AddUnique(new NearestSystem())
                 // .AddUnique(new EffectSystem())
                 .AddModule(new GameFieldAlgorithmsFeature())
+                
+                .AutoDelTag<ApplyStrategyRequest>()
 
                 // cooldown feature
                 .AddUnique(new RefreshCooldownSystem())

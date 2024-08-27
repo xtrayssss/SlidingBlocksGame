@@ -114,6 +114,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
             }
 
             levelAspect.GameFieldGenerated.Add(levelID);
+            levelAspect.GameFieldGenerated.Add(algorithm);
         }
 
         private IEnumerator Destruct(DestructionAspect destructionAspect, TargetLevelAspect levelAspect, int algorithm)
@@ -144,6 +145,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
             }
 
             levelAspect.GameFieldDestructed.Add(levelID);
+            levelAspect.GameFieldDestructed.Add(algorithm);
         }
     }
 }

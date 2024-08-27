@@ -12,6 +12,5 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components
         public sealed class Wrapper : ComponentTemplate<WaveAlgorithm>
         {
         }
-
     }
 }

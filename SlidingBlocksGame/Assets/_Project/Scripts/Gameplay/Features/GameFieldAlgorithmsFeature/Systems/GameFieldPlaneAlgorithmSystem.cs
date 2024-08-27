@@ -101,6 +101,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
             }
             
             levelAspect.GameFieldGenerated.Add(levelID);
+            levelAspect.GameFieldGenerated.Add(algorithm);
         }
 
         private void Destruct(DestructionAlgorithmAspect destructionAspect, int algorithm, TargetLevelAspect levelAspect)
@@ -114,6 +115,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
                 Object.Destroy(cell.View);
 
             levelAspect.GameFieldDestructed.Add(levelID);
+            levelAspect.GameFieldDestructed.Add(algorithm);
         }
     }
 }

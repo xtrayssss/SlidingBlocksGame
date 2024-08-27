@@ -10,26 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d2b62f9703592042befb46ac1fee09c, type: 3}
-  m_Name: GameFieldWaveCfg
+  m_Name: GameFieldPlaneCfg
   m_EditorClassIdentifier: 
   _components:
-  - rid: 8499802388792868924
-  - rid: 8499802388792868925
-  - rid: 8499802755217490839
+  - rid: 8499802388792868926
+  - rid: 8499802755217490838
   references:
     version: 2
     RefIds:
-    - rid: 8499802388792868924
-      type: {class: WaveAlgorithm/Wrapper, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Speed: 0.03
-    - rid: 8499802388792868925
-      type: {class: GameFieldWaveAlgorithmTag/Template, ns: _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Components,
+    - rid: 8499802388792868926
+      type: {class: GameFieldPlaneAlgorithmTag/Template, ns: _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Components,
         asm: Assembly-CSharp}
       data: {}
-    - rid: 8499802755217490839
+    - rid: 8499802755217490838
       type: {class: GameFieldAlgorithmTag/Template, ns: _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Components,
         asm: Assembly-CSharp}
       data: {}

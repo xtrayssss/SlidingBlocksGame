@@ -1,32 +1,13 @@
 ﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
+using _Project.Scripts.Gameplay.Utils;
 using DCFApixels.DragonECS;
 using Unity.Mathematics;
 using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 {
-    public class CrossGrid
-    {
-        public static Vector2Int WorldToGridPosition(Vector3 worldPosition, GameField field)
-        {
-            int x = Mathf.FloorToInt(
-                (worldPosition.x - field.OriginPosition.x + field.CellSize * 0.5f + field.Offset * 0.5f) /
-                (field.CellSize + field.Offset));
-    
-            int z = Mathf.FloorToInt(
-                (worldPosition.z - field.OriginPosition.z + field.CellSize * 0.5f + field.Offset * 0.5f) /
-                (field.CellSize + field.Offset));
-
-            return new Vector2Int(x, z);
-        }
-        
-        public static float3 GetWorldPosition(float2 coordinates, GameField field) =>
-            new float3(coordinates.x * (field.CellSize + field.Offset) + field.OriginPosition.x, 0,
-                coordinates.y * (field.CellSize + field.Offset) + field.OriginPosition.z);
-    }
-
-    public class DetermineClickSystem : IEcsRun
+   public class DetermineClickSystem : IEcsRun
     {
         [EcsInject] private EcsDefaultWorld _world;
 
@@ -36,7 +17,6 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
         }
 
         private Plane _plane = new Plane(Vector3.up, Vector3.zero);
-        private readonly CrossGrid _crossGrid = new CrossGrid();
 
         public void Run()
         {
@@ -44,19 +24,21 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
             {
                 float3 clickPosition = GetMouseClickPosition();
 
-                foreach (int entity in _world.Where(out DetermineClickSystem.Aspect aspect))
+                foreach (int entity in _world.Where(out Aspect aspect))
                 {
                     ref GameField field = ref aspect.Fields.Get(entity);
-                    Vector2Int gridPosition = CrossGrid.WorldToGridPosition(clickPosition, field);
+                    float2 gridPosition = GameFieldUtils.WorldToGridPosition(clickPosition, field);
 
                     if (IsWithinGrid(gridPosition, field.Size) && !IsCentralTile(gridPosition, field) &&
-                        IsInCross(field, gridPosition.x, gridPosition.y))
+                        IsInCross(field, gridPosition))
                     {
                         entlong click = _world.NewEntityLong();
 
                         _world.GetPool<WorldPosition>().Add(click.ID).Value = clickPosition;
                         _world.GetTagPool<ClickTag>().Add(click.ID);
+                        UnityEngine.Debug.Log( _world.GetPool<DeleteEntityCommand>().Has(click.ID));
                         _world.GetTagPool<DeleteEntityCommand>().Add(click.ID);
+                        _world.GetPool<ActiveGameField>().Add(click.ID).Value = entity.ToEntityLong(_world);
                     }
                 }
             }
@@ -71,23 +53,24 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                 : Vector3.positiveInfinity;
         }
 
-        private bool IsWithinGrid(Vector2Int gridPosition, int fieldSize)
+        private bool IsWithinGrid(float2 gridPosition, int fieldSize)
         {
             return gridPosition.x >= 0 && gridPosition.x < fieldSize &&
                    gridPosition.y >= 0 && gridPosition.y < fieldSize;
         }
 
-        bool IsInCross(GameField field, int x, int z)
+        bool IsInCross(GameField field, float2 coordinates)
         {
-            return (x >= field.EdgeSize && x < field.EdgeSize + field.CenterSize) ||
-                   (z >= field.EdgeSize && z < field.EdgeSize + field.CenterSize);
+            return (coordinates.x >= field.EdgeSize && coordinates.x < field.EdgeSize + field.CenterSize) ||
+                   (coordinates.y >= field.EdgeSize && coordinates.y < field.EdgeSize + field.CenterSize);
         }
 
-        private bool IsCentralTile(Vector2Int gridPosition, GameField field)
+        private bool IsCentralTile(float2 coordinates, GameField field)
         {
             int gridCenter = field.Size / 2;
-            return gridPosition.x >= gridCenter - 1 && gridPosition.x <= gridCenter &&
-                   gridPosition.y >= gridCenter - 1 && gridPosition.y <= gridCenter;
+            
+            return coordinates.x >= gridCenter - 1 && coordinates.x <= gridCenter &&
+                   coordinates.y >= gridCenter - 1 && coordinates.y <= gridCenter;
         }
     }
 }

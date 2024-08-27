@@ -11,7 +11,6 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Components
 
         private class Template : ComponentTemplate<ParticleSystemRef>
         {
-
         }
     }
 }

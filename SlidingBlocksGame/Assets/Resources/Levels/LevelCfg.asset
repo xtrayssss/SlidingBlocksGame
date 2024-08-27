@@ -217,7 +217,7 @@ MonoBehaviour:
                 y: 0.70710677
                 z: 0
                 w: 0.70710677
-            Direction:
+            InvertedSide:
               x: 1
               y: 0
           - Position:
@@ -234,7 +234,7 @@ MonoBehaviour:
                 y: -0.70710677
                 z: -0
                 w: 0.70710677
-            Direction:
+            InvertedSide:
               x: -1
               y: 0
           - Position:
@@ -251,7 +251,7 @@ MonoBehaviour:
                 y: 0
                 z: 0
                 w: 1
-            Direction:
+            InvertedSide:
               x: 0
               y: 1
           - Position:
@@ -268,7 +268,7 @@ MonoBehaviour:
                 y: 0
                 z: 0
                 w: 1
-            Direction:
+            InvertedSide:
               x: 0
               y: 1
           BaseSize: 6
@@ -276,6 +276,8 @@ MonoBehaviour:
           CellsCount: 20
           CellTop: 0.18437675
           UnitCellTopOffset: 0.02
+          CenterStart: 2
+          CenterEnd: 3
     - rid: 8499802292475658342
       type: {class: GameLossTimerCfg/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
         asm: Assembly-CSharp}

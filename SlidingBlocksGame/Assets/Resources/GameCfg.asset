@@ -19,6 +19,7 @@ MonoBehaviour:
   - rid: 8499802700812648452
   - rid: 8499802702287471245
   - rid: 8499802702287471249
+  - rid: 8499802753235157229
   references:
     version: 2
     RefIds:
@@ -70,3 +71,9 @@ MonoBehaviour:
         component:
           Value: {fileID: 1498337169468322313, guid: 6b19eefb20a97ee46a9f55e015dd2b21,
             type: 3}
+    - rid: 8499802753235157229
+      type: {class: MovementStrategyCfg/Template, ns: _Project.Scripts.Gameplay.Features.MovementFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: {fileID: 11400000, guid: 90168ae685b97c24bbee3d5e26132782, type: 2}

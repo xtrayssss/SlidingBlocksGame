@@ -13,19 +13,12 @@ MonoBehaviour:
   m_Name: AnimalCfg
   m_EditorClassIdentifier: 
   _components:
-  - rid: 499105211061633554
   - rid: 499105211061633557
   - rid: 499105255487700992
   - rid: 8499802275569205505
   references:
     version: 2
     RefIds:
-    - rid: 499105211061633554
-      type: {class: MovementEasingCfg/Wrapper, ns: _Project.Scripts.Gameplay.Features.MovementFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: {fileID: 11400000, guid: d55202cee31e22649b7804fe3d4888f7, type: 2}
     - rid: 499105211061633557
       type: {class: WorldPosition/Wrapper, ns: _Project.Scripts.Gameplay.Features.CommonFeature.Components,
         asm: Assembly-CSharp}
@@ -40,7 +33,7 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data:
         component:
-          Value: 2
+          Value: 1.5
     - rid: 8499802275569205505
       type: {class: AnimalTag/Wrapper, ns: _Project.Scripts.Gameplay.Features.CommonFeature.Components,
         asm: Assembly-CSharp}
