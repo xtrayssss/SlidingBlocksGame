@@ -16,10 +16,8 @@ namespace _Project.Scripts.Gameplay.Features.AudioFeature.Systems
 
         public void Run()
         {
-            foreach (int entity in _world.Where(out Aspect aspect))
-            {
+            foreach (int entity in _world.Where(out Aspect aspect)) 
                 aspect.AudioSources.Read(entity).Value.PlayOneShot(aspect.Audios.Read(entity).Value);
-            }
         }
     }
 }

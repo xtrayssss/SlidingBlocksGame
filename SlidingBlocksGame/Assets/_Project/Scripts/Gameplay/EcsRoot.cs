@@ -1,31 +1,46 @@
-﻿using _Project.Scripts.Gameplay.Features;
-using _Project.Scripts.Gameplay.Features.AudioFeature.Components;
-using _Project.Scripts.Gameplay.Features.AudioFeature.Systems;
+﻿using _Project.Scripts.Gameplay.Features.AudioFeature.Systems;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Systems;
-using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
-using _Project.Scripts.Gameplay.Features.CooldownFeature.Systems;
+using _Project.Scripts.Gameplay.Features.CooldownFeature;
 using _Project.Scripts.Gameplay.Features.DestroyFeature.Components;
 using _Project.Scripts.Gameplay.Features.DestroyFeature.Systems;
 using _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature;
-using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
-using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems;
+using _Project.Scripts.Gameplay.Features.MovementFeature;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
-using _Project.Scripts.Gameplay.Features.MovementFeature.Systems;
 using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.UIFeature.Systems;
-using _Project.Scripts.Gameplay.Features.VisualFeature.Components;
-using _Project.Scripts.Gameplay.Features.VisualFeature.Systems;
+using _Project.Scripts.Gameplay.Features.VisualFeature;
+using _Project.Scripts.Gameplay.Utils;
 using DCFApixels.DragonECS;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace _Project.Scripts.Gameplay
 {
+    public class AudioFeature : IEcsModule
+    {
+        public void Import(EcsPipeline.Builder builder)
+        {
+        }
+    }
+
+    public class DestructionFeature : IEcsModule
+    {
+        public void Import(EcsPipeline.Builder builder)
+        {
+            builder
+                //
+                .AddUnique(new DestructionChainStrategySystem())
+                .AutoDelTag<AnimalDestructedEvent>()
+                .AddUnique(new ChainDestructionRequestSystem())
+                .AutoDelTag<ApplyDestructionStrategyRequest>();
+        }
+    }
+
     public class EcsRoot : MonoBehaviour
     {
         [SerializeField] private ScriptableEntityTemplate _gameCfg;
-        [SerializeField] private EcsEntityConnect _blockPrefab;
 
         private EcsPipeline _pipeline;
         private EcsDefaultWorld _world;
@@ -36,99 +51,35 @@ namespace _Project.Scripts.Gameplay
 
             provider.Set(_world = new EcsDefaultWorld());
 
+            AudioUtils audioUtils = new AudioUtils();
+            
             _pipeline = EcsPipeline.New()
 
-                // creation game world feature
+                //
                 .AddModule(new GameFlowFeature(_gameCfg))
-                .AddUnique(new CreateAnimalsSystem())
-                .AutoDelTag<AnimalPositionedEvent>()
-                .AddUnique(new AnimalCreationChainStrategySystem())
-                .AddUnique(new ChainCreationRequestSystem())
-                .AddUnique(new GameLossTimerSystem())
-                .AddUnique(new ScaleGameFieldEnvironmentSystem())
-                .AutoDelTag<CreateGameLossTimerRequest>()
-                .AutoDelTag<CreateAnimalsRequest>()
-                //.AutoDelTag<CreateHUDRequest>()
-
-                // click feature
-                .AddUnique(new DetermineClickSystem())
-
-                //occupancy feature
-                .AutoDelTag<DestinationUnavailabilityCheckRequest>()
-
-                // movement feature
-                .AddUnique(new TransformSystem())
-                .AutoDelTag<UpdateViewRequest>()
-                .AddUnique(new WorldPositionSystem())
-                .AddUnique(new DestinationCellSystem())
-                .AddUnique(new ChainMovementAnimalStrategySystem())
-
-                // destroy feature
-                //.AddUnique(new DestroyUnitRequestSystem())
-                .AddUnique(new DestroyAnimalSystem())
-
-                // destroy feature
-                .AutoDelTag<AnimalDestructedEvent>()
-              
-                // chain algorithm
-                .AddUnique(new DestructionChainStrategySystem())
-                .AddUnique(new ChainDestructionRequestSystem())
-                .AutoDelTag<ApplyDestructionStrategyRequest>()
-                .AddUnique(new WithinCenterSystem())
-                .AddUnique(new BestVisualizeSystem())
-
-                // visual feature
-                .AddUnique(new PlayFxSystem())
-                .AutoDelTag<PlayFxRequest>()
-                .AddUnique(new DestroyFxRequestSystem())
-                .AddUnique(new DestructionFxSystem())
-                .AddUnique(new VisualizeGameLossTimerSystem())
-                .AddUnique(new SettingsMenuSystem())
-                .AddUnique(new AudioButtonsSystem())
-                .AddUnique(new InAppPopupSystem())
-                .AddUnique(new ScrollSystem())
-                .AddUnique(new RotationSystem())
-                .AddUnique(new CameraRenderSystem())
-                .AutoDelTag<ViewUpdatedEvent>()
-                .AddUnique(new DisplayPriceAnimalSystem())
-                .AddUnique(new PurchaseAnimalSystem())
-                .AddUnique(new DisplayPurchaseStatusSystem())
-                .AddUnique(new PlayWithSelectedAnimalSystem())
-                .AddUnique(new DisplayAnimalPurchaseWindowSystem())
-                .AddUnique(new CloseAnimalPurchaseWindowSystem())
-                .AutoDelTag<ScrollStartedEvent>()
-                .AutoDelTag<ScrollSnappedEvent>()
+                .AddModule(new GameFieldFeature())
+                .AddModule(new MovementFeature())
+                .AddModule(new VisualFeature())
+                .AddModule(new DestructionFeature())
+                .AddModule(new CooldownFeature())
 
                 // audio feature
-                // .AddUnique(new ButtonAudioRequestSystem())
+                .AddUnique(audioUtils)
+                .AddUnique(new ClickedAudioRequestSystem(audioUtils))
                 // .AddUnique(new AudioSystem())
                 // .AddUnique(new TileAudioRequestSystem())
                 .AddUnique(new PlayAudioSystem())
-                .AutoDelTag<PlayAudioRequest>()
-
-                // other
-                // .AddUnique(new ScrollSystem())
-                // .AddUnique(new NearestSystem())
-                // .AddUnique(new EffectSystem())
-                .AddModule(new GameFieldAlgorithmsFeature())
+                // .AutoDelTag<PlayAudioRequest>()
                 
+                // 
                 .AutoDelTag<ApplyStrategyRequest>()
-
-                // cooldown feature
-                .AddUnique(new RefreshCooldownSystem())
-                .AddUnique(new DeleteEntityCommandOnExpiredSystem())
-                .AutoDelTag<CooldownExpiredEvent>()
-                .AddUnique(new CountdownSystem())
-                .AddUnique(new CooldownSystem())
-                .AddUnique(new CooldownIntervalSystem())
-                .AutoDelTag<RefreshCooldownRequest>()
                 .AutoDelEntityTag<ButtonClickedEvent>()
-                
-                .AutoDelTag<SpawnedEvent>()
+                // spawned
 
                 // other
                 .AddUnique(new DestroyViewSystem())
                 .AutoDelEntityTag<DeleteEntityCommand>()
+                //
                 .AddUnityDebug(_world)
                 .Inject(_world)
                 .AutoInject()

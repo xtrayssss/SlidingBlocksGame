@@ -7,22 +7,20 @@ using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature
 {
-    public class GameFieldAlgorithmsFeature : IEcsModule
+    public class GameFieldFeature : IEcsModule
     {
         public void Import(EcsPipeline.Builder builder)
         {
             builder
-                // events
                 .AutoDelTag<TileGeneratedEvent>()
-
-                // core
+                //
                 .AddUnique(new SelectionGenerationGameFieldSystem())
-
                 //
                 .AutoDelTag<GameFieldGeneratedEvent>()
                 .AutoDelTag<GameFieldDestructedEvent>()
                 .AddUnique(new GameFieldPlaneAlgorithmSystem())
                 .AddUnique(new GameFieldWaveAlgorithmSystem())
+                //
                 .AutoDelTag<GameFieldGenerateRequest>()
                 .AutoDelTag<GameFieldDestructRequest>();
         }

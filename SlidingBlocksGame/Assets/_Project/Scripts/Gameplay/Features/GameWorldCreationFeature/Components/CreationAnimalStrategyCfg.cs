@@ -11,6 +11,5 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components
         private sealed class Template : ComponentTemplate<CreationAnimalStrategyCfg>
         {
         }
-
     }
 }

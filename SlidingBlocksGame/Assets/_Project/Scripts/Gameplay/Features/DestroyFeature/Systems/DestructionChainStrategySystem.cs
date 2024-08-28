@@ -30,7 +30,6 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
         private class AnimalAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(AnimalTag))]
-            [IncImplicit(typeof(WorldPosition))]
             [ExcImplicit(typeof(MovingMarker))]
             private int _;
         }

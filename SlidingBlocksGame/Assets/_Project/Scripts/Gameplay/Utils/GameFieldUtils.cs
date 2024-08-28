@@ -1,9 +1,37 @@
-﻿using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
+﻿using _Project.Scripts.Gameplay.Features.AudioFeature.Components;
+using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
+using _Project.Scripts.Gameplay.Features.UIFeature.Systems;
+using DCFApixels.DragonECS;
 using Unity.Mathematics;
-using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Utils
 {
+    public class AudioUtils : IEcsProcess
+    {
+        [EcsInject] private EcsDefaultWorld _world;
+
+        private class AudioAspect : EcsAspectAuto
+        {
+            [Opt] public EcsTagPool<PlayAudioRequest> PlayAudio;
+            [Opt] public EcsTagPool<DeleteEntityCommand> DeleteEntity;
+            [Opt] public EcsPool<AudioSourceRef> AudioSource;
+        }
+
+        public int Create(ScriptableEntityTemplate audioCfg)
+        {
+            AudioAspect audioAspect = _world.GetAspect<AudioAspect>();
+
+            int request = _world.NewEntity(audioCfg);
+
+            audioAspect.PlayAudio.Add(request);
+            audioAspect.DeleteEntity.Add(request);
+            audioAspect.AudioSource.Add(request).Value = AudioSingleton.Instance.SfxSource;
+
+            return request;
+        }
+    }
+
     public static class GameFieldUtils
     {
         private static readonly int2 Up = new int2(0, 1);
@@ -37,7 +65,7 @@ namespace _Project.Scripts.Gameplay.Utils
 
             return new float2(x, z);
         }
-        
+
         public static float3 GetWorldPosition(float2 coordinates, in GameField field) =>
             new float3(coordinates.x * (field.CellSize + field.Offset) + field.OriginPosition.x, 0,
                 coordinates.y * (field.CellSize + field.Offset) + field.OriginPosition.z);

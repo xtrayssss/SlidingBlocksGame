@@ -22,13 +22,24 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature
                 //events api
                 .AutoDelTag<LevelWonEvent>()
                 .AutoDelTag<LevelLostEvent>()
-                
+
                 // core
                 .AddUnique(new CreateGameSystem(_gameCfg))
                 .AddUnique(new GameScreenSystem())
                 .AddUnique(new CreateHUDSystem())
                 .AutoDelTag<CreateHUDRequest>()
                 .AutoDelTag<CreateBestRequest>()
+                //
+                .AddUnique(new GameFlowSystem())
+                //
+                .AddUnique(new GameLossTimerSystem())
+                .AutoDelTag<CreateGameLossTimerRequest>()
+                //
+                .AddUnique(new CreateAnimalsSystem())
+                .AddUnique(new AnimalCreationChainStrategySystem())
+                .AutoDelTag<AnimalPositionedEvent>()
+                .AddUnique(new ChainCreationRequestSystem())
+                .AutoDelTag<CreateAnimalsRequest>()
                 //
                 .AddUnique(new MetaGameUISystem())
                 .AutoDelTag<ShowMetaGameUIRequest>()
@@ -42,10 +53,10 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature
                 .AddUnique(new CleanupLevelSystem())
                 .AutoDelTag<CleanupLevelRequest>()
                 //
+                .AutoDelTag<SpawnedEvent>()
                 .AddUnique(new NextLevelSystem())
                 .AutoDelTag<NextLeveRequest>()
                 //
-                .AddUnique(new GameFlowSystem())
                 //
                 .AutoDelTag<GameCreatedEvent>();
         }

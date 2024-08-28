@@ -1841,7 +1841,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 1
-  m_AdditionalShaderChannelsFlag: 1
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 1
@@ -5769,7 +5769,7 @@ MonoBehaviour:
   EntityCfg:
     _components:
     - rid: 8499802477987889218
-    - rid: 8499802562692645427
+    - rid: 8499802776494932275
   references:
     version: 2
     RefIds:
@@ -5777,8 +5777,8 @@ MonoBehaviour:
       type: {class: SettingsButtonTag/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
         asm: Assembly-CSharp}
       data: {}
-    - rid: 8499802562692645427
-      type: {class: AudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+    - rid: 8499802776494932275
+      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:

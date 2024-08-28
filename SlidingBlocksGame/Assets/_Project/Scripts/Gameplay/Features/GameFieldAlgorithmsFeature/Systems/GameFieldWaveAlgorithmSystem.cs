@@ -98,6 +98,9 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
 
                         GameObject view = Object.Instantiate(GameField().CellPrefab, position, Quaternion.identity);
 
+                        view.transform.localScale  = new Vector3(GameField().CellSize, view.transform.localScale.y,
+                            GameField().CellSize);
+                        
                         GameField().Cells[counter++] = new GameField.Cell
                         {
                             View = view,

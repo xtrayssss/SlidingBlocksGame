@@ -52,7 +52,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
                     view.ConnectWith(animal, applyTemplates: true);
 
-                    ScaleRenderer(animal);
+                    Scale( view, in gameField);
 
                     _world.GetPool<CellPosition>().Add(animal.ID).Value = animalData.CellPosition;
                     
@@ -63,15 +63,18 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
             }
         }
 
-        private void ScaleRenderer(entlong animal)
+        private void Scale(EcsEntityConnect connect, in GameField gameField)
         {
-            ref RendererRef renderer = ref _world.GetPool<RendererRef>().Get(animal.ID);
+            ref RendererRef renderer = ref _world.GetPool<RendererRef>().Get(connect.Entity.ID);
 
             var meshFilter = renderer.Value.GetComponent<MeshFilter>();
 
             float size = 1 / meshFilter.mesh.bounds.size.x;
 
             renderer.Value.transform.localScale = new Vector3(size, size, size);
+
+            connect.transform.localScale = new Vector3(gameField.CellSize + 0.1f, gameField.CellSize + 0.1f,
+                gameField.CellSize + 0.1f);
         }
     }
 }

@@ -5,7 +5,7 @@ using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 {
-    public class BestVisualizeSystem : IEcsRun
+    public class DispalyBestSystem : IEcsRun
     {
         [EcsInject] private readonly EcsDefaultWorld _world;
 

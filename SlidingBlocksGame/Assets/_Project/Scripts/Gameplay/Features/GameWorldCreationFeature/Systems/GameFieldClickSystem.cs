@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 {
-   public class DetermineClickSystem : IEcsRun
+   public class GameFieldClickSystem : IEcsRun
     {
         [EcsInject] private EcsDefaultWorld _world;
 
@@ -36,7 +36,6 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
                         _world.GetPool<WorldPosition>().Add(click.ID).Value = clickPosition;
                         _world.GetTagPool<ClickTag>().Add(click.ID);
-                        UnityEngine.Debug.Log( _world.GetPool<DeleteEntityCommand>().Has(click.ID));
                         _world.GetTagPool<DeleteEntityCommand>().Add(click.ID);
                         _world.GetPool<ActiveGameField>().Add(click.ID).Value = entity.ToEntityLong(_world);
                     }
