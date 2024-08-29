@@ -7,9 +7,11 @@ using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.UIFeature.Systems;
 using DCFApixels.DragonECS;
 using TMPro;
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
+using ScrollSnap = _Project.Scripts.Gameplay.Features.UIFeature.Components.ScrollSnap;
 
 namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 {
@@ -43,11 +45,11 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                 gameAspect.GameScreen.Add(entity).Value = gameScreen;
 
                 CreateInAppPurchases(connect);
-                CreateAnimalsShop(connect);
+                CreateAnimalsPurchaseWindow(connect);
             }
         }
 
-        private void CreateAnimalsShop(EcsEntityConnect connect)
+        private void CreateAnimalsPurchaseWindow(EcsEntityConnect connect)
         {
             entlong screen = connect.Entity;
 
@@ -55,19 +57,22 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
             _world.GetPool<ClosedMarker>().Add(shop);
 
-            _world.GetPool<AnimalStoreView>().Read(screen.ID).Value.Connect(shop.ToEntityLong(_world), true);
+            AnimalStoreView animalStoreView = _world.GetPool<AnimalStoreView>().Read(screen.ID);
+            animalStoreView.Value.Connect(shop.ToEntityLong(_world), true);
 
             ref AnimalPurchases animalPurchases =
                 ref _world.GetPool<AnimalPurchases>().Get(shop);
 
-            ref ScrollSnapRef scrollSnap = ref _world.GetPool<ScrollSnapRef>().Get(shop);
-
             animalPurchases.Entities = EcsGroup.New(_world);
 
-            RectTransform content = scrollSnap.Value.GetComponent<ScrollRect>().content;
+            RectTransform content = animalStoreView.Value.GetComponent<ScrollRect>().content;
 
             TextMeshProUGUI priceText =
-                scrollSnap.Value.transform.Find("Viewport/Price/Price").GetComponent<TextMeshProUGUI>();
+                animalStoreView.Value.transform.Find("Viewport/Price/Price").GetComponent<TextMeshProUGUI>();
+            
+            _world.GetPool<ScrollSnap>().Get(animalStoreView.Value.Entity.ID).Items = animalPurchases.Entities;
+            _world.GetPool<ScrollSetupRequest>().Add(animalStoreView.Value.Entity.ID);
+            _world.GetPool<ApplyEffectsMarker>().Add(animalStoreView.Value.Entity.ID);
 
             List<GameObject> list = new List<GameObject>();
 
@@ -91,10 +96,10 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                     UI3D(animalPrefabs, purchase, purchaseView);
 
                     _world.GetPool<TextMeshProUGUIRef>().Get(purchase.ID).Value = priceText;
+
+                    _world.GetPool<ScrollPosition>().Add(purchase.ID);
                 }
             }
-
-            scrollSnap.Value.Setup(list.ToArray());
 
             _world.GetPool<SnappedMarker>().Add(animalPurchases.Entities[0]);
         }

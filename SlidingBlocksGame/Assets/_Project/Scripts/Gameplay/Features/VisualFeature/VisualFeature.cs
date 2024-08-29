@@ -20,11 +20,15 @@ namespace _Project.Scripts.Gameplay.Features.VisualFeature
             public void Import(EcsPipeline.Builder builder)
             {
                 builder
-                    .AddUnique(new VisualizeGameLossTimerSystem())
+                    .AddUnique(new DisplayProgressTimerSystem())
                     .AddUnique(new SettingsMenuSystem())
                     .AddUnique(new AudioButtonsSystem())
                     .AddUnique(new InAppPopupSystem())
+                    //
                     .AddUnique(new ScrollSystem())
+                    .AutoDelTag<ScrollSetupRequest>()
+                    .AutoDelTag<ApplyEffectRequest>()
+                    //
                     .AddUnique(new RotationSystem())
                     .AddUnique(new CameraRenderSystem())
                     .AutoDelTag<ViewUpdatedEvent>()
@@ -36,7 +40,8 @@ namespace _Project.Scripts.Gameplay.Features.VisualFeature
                     .AddUnique(new CloseAnimalPurchaseWindowSystem())
                     .AddUnique(new DispalyBestSystem())
                     .AutoDelTag<ScrollStartedEvent>()
-                    .AutoDelTag<ScrollSnappedEvent>();
+                    .AutoDelTag<ScrollSnappedEvent>()
+                    .AutoDelEntityTag<ButtonClickedEvent>();
             }
         }
 

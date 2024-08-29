@@ -52,7 +52,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                         .Group(Tween.Scale(gameObjectConnect.Connect.transform, Vector3.one, 0.2f, Ease.InOutSine))
                         .ChainCallback(() => { Debug.Log("Result"); })
                         .Chain(AnimateScrollElements(animalsShopWindowAspect.PurchaseAnimals.Read(window).Entities,
-                            scrollSnap.Value, animalsShopWindowAspect.PurchaseButtonStatus.Get(window).Current,
+                            /*scrollSnap.Value,*/ animalsShopWindowAspect.PurchaseButtonStatus.Get(window).Current,
                             animalsShopWindowAspect.PurchaseButtonStatus.Get(window).Price))
                         .ChainCallback(() => { Debug.Log("Result"); });
 
@@ -61,7 +61,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
             }
         }
 
-        private Sequence AnimateScrollElements(EcsGroup value, ScrollSnap scrollSnap, GameObject purchaseButton,
+        private Sequence AnimateScrollElements(EcsGroup value/*, ScrollSnap scrollSnap*/, GameObject purchaseButton,
             GameObject price)
         {
             Sequence sequence = Sequence.Create();
@@ -117,8 +117,8 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                 //EcsDebug.Break();
                 visibleSequence.ChainCallback(() =>
                 {
-                    scrollSnap.ScrollRect.enabled = true;
-                    scrollSnap.IsApplyEffects = true;
+                    // scrollSnap.ScrollRect.enabled = true;
+                    // scrollSnap.IsApplyEffects = true;
                 });
 
                 sequence.Group(visibleSequence);

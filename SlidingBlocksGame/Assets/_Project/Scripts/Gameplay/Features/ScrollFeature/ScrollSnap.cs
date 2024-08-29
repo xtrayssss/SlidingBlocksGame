@@ -99,20 +99,6 @@ namespace _Project.Scripts.Gameplay.Features.ScrollFeature
 
         #region PRIVATE METHODS
 
-        private void OnEnable()
-        {
-            //scrollbar.onValueChanged.AddListener(OnValueChanged());
-
-            //_wasDisabled = true;
-        }
-
-        private void OnDisable()
-        {
-            //scrollbar.value = _lastScrollPos;
-
-            //scrollbar.onValueChanged.RemoveListener(OnValueChanged());
-        }
-
         public void Setup(GameObject[] items)
         {
             ScrollRect = GetComponent<ScrollRect>();

@@ -4,10 +4,9 @@ using DCFApixels.DragonECS;
 namespace _Project.Scripts.Gameplay.Features.UIFeature.Components
 {
     [Serializable]
-    public struct AnimalStoreView : IEcsComponent
+    public struct ScaleEffectTag : IEcsTagComponent
     {
-        public EcsEntityConnect Value;
-        private sealed class Template : ComponentTemplate<AnimalStoreView>
+        private sealed class Template : TagComponentTemplate<ScaleEffectTag>
         {
         }
     }

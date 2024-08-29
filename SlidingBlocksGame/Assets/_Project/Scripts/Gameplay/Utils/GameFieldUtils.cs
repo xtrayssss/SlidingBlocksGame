@@ -1,9 +1,11 @@
 ﻿using _Project.Scripts.Gameplay.Features.AudioFeature.Components;
+using _Project.Scripts.Gameplay.Features.AudioFeature.Systems;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
 using _Project.Scripts.Gameplay.Features.UIFeature.Systems;
 using DCFApixels.DragonECS;
 using Unity.Mathematics;
+using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Utils
 {
@@ -26,7 +28,7 @@ namespace _Project.Scripts.Gameplay.Utils
 
             audioAspect.PlayAudio.Add(request);
             audioAspect.DeleteEntity.Add(request);
-            audioAspect.AudioSource.Add(request).Value = AudioSingleton.Instance.SfxSource;
+            audioAspect.AudioSource.Add(request).Value = GameAudio.Instance.SfxSource;
 
             return request;
         }

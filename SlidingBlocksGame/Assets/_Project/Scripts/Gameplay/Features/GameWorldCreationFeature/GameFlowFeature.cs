@@ -30,6 +30,9 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature
                 .AutoDelTag<CreateHUDRequest>()
                 .AutoDelTag<CreateBestRequest>()
                 //
+                .AddUnique(new NextLevelSystem())
+                .AutoDelTag<NextLeveRequest>()
+                //
                 .AddUnique(new GameFlowSystem())
                 //
                 .AddUnique(new GameLossTimerSystem())
@@ -52,10 +55,6 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature
                 //
                 .AddUnique(new CleanupLevelSystem())
                 .AutoDelTag<CleanupLevelRequest>()
-                //
-                .AutoDelTag<SpawnedEvent>()
-                .AddUnique(new NextLevelSystem())
-                .AutoDelTag<NextLeveRequest>()
                 //
                 //
                 .AutoDelTag<GameCreatedEvent>();

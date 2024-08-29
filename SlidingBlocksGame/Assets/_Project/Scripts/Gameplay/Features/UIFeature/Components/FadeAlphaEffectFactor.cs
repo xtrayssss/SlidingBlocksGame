@@ -4,10 +4,11 @@ using DCFApixels.DragonECS;
 namespace _Project.Scripts.Gameplay.Features.UIFeature.Components
 {
     [Serializable]
-    public struct AnimalStoreView : IEcsComponent
+    public struct FadeAlphaEffectFactor : IEcsComponent
     {
-        public EcsEntityConnect Value;
-        private sealed class Template : ComponentTemplate<AnimalStoreView>
+        public float Value;
+
+        private sealed class Template : ComponentTemplate<FadeAlphaEffectFactor>
         {
         }
     }

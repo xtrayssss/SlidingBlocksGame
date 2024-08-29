@@ -9,7 +9,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Components
     [Serializable]
     public struct ScrollSnapRef : IEcsComponent
     {
-        public ScrollSnap Value;
+        public EcsEntityConnect Value;
         public Sequence Sequence;
 
         private sealed class Template : ComponentTemplate<ScrollSnapRef>

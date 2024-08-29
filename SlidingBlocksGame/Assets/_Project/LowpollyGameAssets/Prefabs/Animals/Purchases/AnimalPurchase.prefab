@@ -80,6 +80,8 @@ MonoBehaviour:
   _components:
   - rid: 8499802549516500992
   - rid: 8499802549516500993
+  - rid: 8499802795803410432
+  - rid: 8499802795803410433
   references:
     version: 2
     RefIds:
@@ -96,6 +98,18 @@ MonoBehaviour:
       data:
         component:
           Value: {fileID: 0}
+    - rid: 8499802795803410432
+      type: {class: GraphicRef/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: {fileID: 3661291220808562233}
+    - rid: 8499802795803410433
+      type: {class: RectTransformRef/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: {fileID: 4541698119196968763}
 --- !u!114 &8199718817898193838
 MonoBehaviour:
   m_ObjectHideFlags: 0

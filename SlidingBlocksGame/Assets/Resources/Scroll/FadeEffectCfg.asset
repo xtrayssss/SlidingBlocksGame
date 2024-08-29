@@ -10,16 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d2b62f9703592042befb46ac1fee09c, type: 3}
-  m_Name: AnimalSpawningAudioCfg
+  m_Name: FadeEffectCfg
   m_EditorClassIdentifier: 
   _components:
-  - rid: 8499802562692645428
+  - rid: 8499802795803410434
+  - rid: 8499802795803410435
   references:
     version: 2
     RefIds:
-    - rid: 8499802562692645428
-      type: {class: Audio/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+    - rid: 8499802795803410434
+      type: {class: FadeEffectTag/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
+        asm: Assembly-CSharp}
+      data: {}
+    - rid: 8499802795803410435
+      type: {class: FadeAlphaEffectFactor/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
-          Value: {fileID: 8300000, guid: 29bde6326b4c34ad8a12da475f79b50a, type: 3}
+          Value: 0.45

@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 
-namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
+namespace _Project.Scripts.Gameplay.Features.AudioFeature.Systems
 {
-    public class AudioSingleton : MonoBehaviour
+    public class GameAudio : MonoBehaviour
     {
-        public static AudioSingleton Instance { get; private set; }
+        public static GameAudio Instance { get; private set; }
 
         public AudioSource SfxSource;
         public AudioSource MusicSource;

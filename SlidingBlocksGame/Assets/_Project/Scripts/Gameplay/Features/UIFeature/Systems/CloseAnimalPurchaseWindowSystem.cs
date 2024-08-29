@@ -49,9 +49,9 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 
                     // TODO: remove closure allocation
 
-                    scrollSnap.Value.ScrollRect.enabled = false;
-
-                    scrollSnap.Value.IsApplyEffects = false;
+                    // scrollSnap.Value.ScrollRect.enabled = false;
+                    //
+                    // scrollSnap.Value.IsApplyEffects = false;
 
                     ScrollSnapRef scrollSnapCopy = scrollSnap;
 

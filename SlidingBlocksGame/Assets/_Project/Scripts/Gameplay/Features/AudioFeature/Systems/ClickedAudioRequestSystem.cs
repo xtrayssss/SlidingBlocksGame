@@ -3,7 +3,7 @@ using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using _Project.Scripts.Gameplay.Utils;
 using DCFApixels.DragonECS;
 
-namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
+namespace _Project.Scripts.Gameplay.Features.AudioFeature.Systems
 {
     public class ClickedAudioRequestSystem : IEcsRun
     {

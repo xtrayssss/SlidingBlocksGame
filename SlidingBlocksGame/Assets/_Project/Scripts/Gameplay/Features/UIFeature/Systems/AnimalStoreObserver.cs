@@ -12,7 +12,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
     {
         public void Tween()
         {
-            ScrollSnap scrollSnap = GetComponentInParent<ScrollSnap>();
+            ScrollFeature.ScrollSnap scrollSnap = GetComponentInParent<ScrollFeature.ScrollSnap>();
 
             var sequence = Sequence.Create();
             

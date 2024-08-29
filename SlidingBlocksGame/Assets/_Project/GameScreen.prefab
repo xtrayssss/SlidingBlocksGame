@@ -409,7 +409,6 @@ GameObject:
   - component: {fileID: 676313603945312274}
   - component: {fileID: 4709902672238260476}
   - component: {fileID: 2733579238015879002}
-  - component: {fileID: 9209233408934077931}
   - component: {fileID: 6429701158572272287}
   - component: {fileID: 7679739957960411926}
   - component: {fileID: 2709513295284806967}
@@ -419,7 +418,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2287053894430683086
 RectTransform:
   m_ObjectHideFlags: 0
@@ -488,7 +487,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 344608180997007011}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1aa08ab6e0800fa44ae55d278d1423e3, type: 3}
   m_Name: 
@@ -511,72 +510,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &9209233408934077931
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 344608180997007011}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f3ce0b1649c46b0be7cf8b7dc924c54, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  deltaTimeMode: 1
-  scrollbar: {fileID: 6192098667332677957}
-  initialPos: 0
-  autoScrollToClickedItem: 1
-  smoothScrollDuration: 0.35
-  smoothSnapDuration: 0.25
-  snapDelayDuration: 0.15
-  snapDistanceThreshold: 0.001
-  effects:
-  - {fileID: 11400000, guid: 8cdba31f80860df49be88211626747d8, type: 2}
-  - {fileID: 11400000, guid: b268c0aa45916ef43b345eddbf33a07a, type: 2}
-  ScrollRect: {fileID: 0}
-  IsApplyEffects: 0
-  OnItemSelected:
-    m_PersistentCalls:
-      m_Calls: []
-  OnItemDeSelected:
-    m_PersistentCalls:
-      m_Calls: []
-  OnItemClicked:
-    m_PersistentCalls:
-      m_Calls: []
-  OnScrollStarted:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2709513295284806967}
-        m_TargetAssemblyTypeName: _Project.Scripts.Gameplay.Features.UIFeature.Systems.AnimalStoreObserver,
-          Assembly-CSharp
-        m_MethodName: OnStarted
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnItemSnapped:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2709513295284806967}
-        m_TargetAssemblyTypeName: _Project.Scripts.Gameplay.Features.UIFeature.Systems.AnimalStoreObserver,
-          Assembly-CSharp
-        m_MethodName: OnSnapped
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &6429701158572272287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -607,17 +540,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _components:
-  - rid: 8499802519328260099
   - rid: 8499802549844443670
+  - rid: 8499802790374932481
   references:
     version: 2
     RefIds:
-    - rid: 8499802519328260099
-      type: {class: ScrollSnapRef/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: {fileID: 9209233408934077931}
     - rid: 8499802549844443670
       type: {class: PurchaseButtonStatus/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
         asm: Assembly-CSharp}
@@ -628,6 +555,21 @@ MonoBehaviour:
           Play: {fileID: 2203917814425509037}
           Price: {fileID: 2165986824057982645}
           Current: {fileID: 0}
+    - rid: 8499802790374932481
+      type: {class: ScrollSnap/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          NearestIndex: 0
+          NearestPos: 0
+          Distance: 0
+          Position: 0
+          ScrollRect: {fileID: 2733579238015879002}
+          SnapDuration: 0.15
+          SnapEase: 4
+          EffectsConfigs:
+          - {fileID: 11400000, guid: 1fd1894c54cd2914e9c57d65bc50ef85, type: 2}
+          - {fileID: 11400000, guid: deb1be64955b3ae43848c77bdc946d6a, type: 2}
 --- !u!114 &2709513295284806967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1515,7 +1457,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 0.000061035156, y: 0}
-  m_SizeDelta: {x: 1020, y: 3414}
+  m_SizeDelta: {x: 0, y: 3414}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &5045728294421335285
 MonoBehaviour:
@@ -7307,7 +7249,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7029657085459421859}
   m_HandleRect: {fileID: 2759166429808707693}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -7881,7 +7823,7 @@ RectTransform:
   m_Father: {fileID: 2287053894430683086}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.50000006, y: 0.5}

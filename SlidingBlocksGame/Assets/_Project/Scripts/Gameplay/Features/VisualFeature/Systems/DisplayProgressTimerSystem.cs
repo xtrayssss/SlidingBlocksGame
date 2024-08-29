@@ -4,7 +4,7 @@ using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.VisualFeature.Systems
 {
-    public class VisualizeGameLossTimerSystem : IEcsRun
+    public class DisplayProgressTimerSystem : IEcsRun
     {
         [EcsInject] private EcsDefaultWorld _world;
 

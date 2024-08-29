@@ -1,8 +1,6 @@
-﻿using _Project.Scripts.Gameplay.Features.AudioFeature.Components;
-using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
-using _Project.Scripts.Gameplay.Features.UIFeature.Systems;
 using DCFApixels.DragonECS;
 using UnityEngine;
 
@@ -11,55 +9,44 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
     public class ChainCreationRequestSystem : IEcsRun
     {
         [EcsInject] private readonly EcsDefaultWorld _world;
-
-        private class Aspect : EcsAspectAuto
+        
+        private class CooldownCompletedAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(CooldownExpiredEvent))]
             [IncImplicit(typeof(CreationChainTag))]
             [Inc] public readonly EcsPool<TargetEntity> Targets;
         }        
         
-        private class AnimalAspect : EcsAspectAuto
+        private class TargetAspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(AnimalTag))]
             [Inc] public readonly EcsPool<GameObjectConnect> GameObjectConnects;
-            [Inc] public readonly EcsPool<SpawningAudioConfig> SpawningAudioConfigs;
+            [Opt] public readonly EcsTagPool<SpawnedEvent> Spawned;
         }
+        
         private class LevelAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(LevelTag))]
             [Opt] public readonly EcsTagPool<AnimalPositionedEvent> AnimalPositionedEvent;
             [Opt] public readonly EcsTagPool<AnimalPositionedMarker> AnimalPositionedMarker;
         }
-        private class AudioAspect : EcsAspectAuto
-        {
-            [Opt] public readonly EcsTagPool<PlayAudioRequest> PlayAudio;
-            [Opt] public readonly EcsPool<AudioSourceRef> AudioSource;
-        }
         
         public void Run()
         {
-            foreach (int entity in _world.Where(out Aspect aspect))
+            foreach (int entity in _world.Where(out CooldownCompletedAspect cooldownCompletedAspect))
             {
-                if (aspect.Targets.Read(entity).Value.TryGetID(out int targetID))
+                if (cooldownCompletedAspect.Targets.Read(entity).Value.TryGetID(out int targetID))
                 {
-                    AnimalAspect animalAspect = _world.GetAspect<AnimalAspect>();
+                    TargetAspect targetAspect = _world.GetAspect<TargetAspect>();
 
-                    if (!animalAspect.IsMatches(targetID)) 
+                    if (!targetAspect.IsMatches(targetID)) 
                         continue;
                     
-                    animalAspect.GameObjectConnects.Read(targetID).Connect.gameObject.SetActive(true);
-
-                    int audio = _world.NewEntity(animalAspect.SpawningAudioConfigs.Read(targetID).Value);
-
-                    AudioAspect audioAspect = _world.GetAspect<AudioAspect>();
-                    
-                    audioAspect.AudioSource.Add(audio).Value = AudioSingleton.Instance.SfxSource;
-                    audioAspect.PlayAudio.Add(audio);
+                    targetAspect.GameObjectConnects.Read(targetID).Connect.gameObject.SetActive(true);
+                    targetAspect.Spawned.Add(targetID);
                 }
             }
             
-            foreach (int entity in _world.Where(out Aspect aspect))
+            foreach (int entity in _world.Where(out CooldownCompletedAspect aspect))
             {
                 if (aspect.Targets.Read(entity).Value.TryGetID(out int targetID))
                 {

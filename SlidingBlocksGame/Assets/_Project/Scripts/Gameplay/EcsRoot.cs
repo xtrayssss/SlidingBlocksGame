@@ -1,6 +1,5 @@
 ﻿using _Project.Scripts.Gameplay.Features.AudioFeature.Systems;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
-using _Project.Scripts.Gameplay.Features.CommonFeature.Systems;
 using _Project.Scripts.Gameplay.Features.CooldownFeature;
 using _Project.Scripts.Gameplay.Features.DestroyFeature.Components;
 using _Project.Scripts.Gameplay.Features.DestroyFeature.Systems;
@@ -8,12 +7,10 @@ using _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature;
 using _Project.Scripts.Gameplay.Features.MovementFeature;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
-using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.UIFeature.Systems;
 using _Project.Scripts.Gameplay.Features.VisualFeature;
 using _Project.Scripts.Gameplay.Utils;
 using DCFApixels.DragonECS;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace _Project.Scripts.Gameplay
@@ -22,6 +19,14 @@ namespace _Project.Scripts.Gameplay
     {
         public void Import(EcsPipeline.Builder builder)
         {
+            AudioUtils audioUtils = new AudioUtils();
+
+            builder
+                .AddUnique(audioUtils)
+                .AddUnique(new ClickedAudioRequestSystem(audioUtils))
+                .AddUnique(new SpawnedAudioRequestSystem(audioUtils))
+                .AddUnique(new PlayAudioSystem());
+            // .AutoDelTag<PlayAudioRequest>()
         }
     }
 
@@ -50,35 +55,24 @@ namespace _Project.Scripts.Gameplay
             EcsDefaultWorldSingletonProvider provider = EcsDefaultWorldSingletonProvider.Instance;
 
             provider.Set(_world = new EcsDefaultWorld());
-
-            AudioUtils audioUtils = new AudioUtils();
             
             _pipeline = EcsPipeline.New()
-
-                //
+                .AutoDelTag<SpawnedEvent>()
                 .AddModule(new GameFlowFeature(_gameCfg))
                 .AddModule(new GameFieldFeature())
                 .AddModule(new MovementFeature())
                 .AddModule(new VisualFeature())
                 .AddModule(new DestructionFeature())
+                .AddModule(new AudioFeature())
                 .AddModule(new CooldownFeature())
 
-                // audio feature
-                .AddUnique(audioUtils)
-                .AddUnique(new ClickedAudioRequestSystem(audioUtils))
-                // .AddUnique(new AudioSystem())
-                // .AddUnique(new TileAudioRequestSystem())
-                .AddUnique(new PlayAudioSystem())
-                // .AutoDelTag<PlayAudioRequest>()
-                
                 // 
                 .AutoDelTag<ApplyStrategyRequest>()
-                .AutoDelEntityTag<ButtonClickedEvent>()
                 // spawned
 
+                .AutoDelEntityTag<DeleteEntityCommand>()
                 // other
                 .AddUnique(new DestroyViewSystem())
-                .AutoDelEntityTag<DeleteEntityCommand>()
                 //
                 .AddUnityDebug(_world)
                 .Inject(_world)

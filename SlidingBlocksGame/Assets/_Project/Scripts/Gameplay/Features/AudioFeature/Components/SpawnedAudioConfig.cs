@@ -4,11 +4,11 @@ using DCFApixels.DragonECS;
 namespace _Project.Scripts.Gameplay.Features.AudioFeature.Components
 {
     [Serializable]
-    public struct TileGeneratedAudioConfig : IEcsComponent
+    public struct SpawnedAudioConfig : IEcsComponent
     {
         public ScriptableEntityTemplate Value;
 
-        private sealed class Template : ComponentTemplate<TileGeneratedAudioConfig>
+        private sealed class Template : ComponentTemplate<SpawnedAudioConfig>
         {
         }
     }
