@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using _Project.Scripts.Gameplay.Features.ScrollFeature;
-using _Project.Scripts.Gameplay.Features.UIFeature.Components;
+﻿using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using DCFApixels.DragonECS;
 using PrimeTween;
 using UnityEngine;
-using UnityEngine.UI;
+using ScrollSnap = _Project.Scripts.Gameplay.Features.UIFeature.Components.ScrollSnap;
 
 namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 {
@@ -27,7 +22,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
             [ExcImplicit(typeof(ClosedMarker))]
             [Inc] public readonly EcsPool<GameObjectConnect> GameObjectConnects;
 
-            [Inc] public readonly EcsPool<ScrollSnapRef> ScrollSnap;
+            [Inc] public readonly EcsPool<ScrollSnap> ScrollSnap;
 
             [Inc] public readonly EcsPool<AnimalPurchases> PurchaseAnimals;
             [Inc] public readonly EcsPool<PurchaseButtonStatus> PurchaseButtonStatus;
@@ -41,21 +36,18 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                 {
                     ref GameObjectConnect gameObjectConnect =
                         ref animalsShopWindowAspect.GameObjectConnects.Get(window);
-                    ref ScrollSnapRef scrollSnap = ref animalsShopWindowAspect.ScrollSnap.Get(window);
+
+                    ref ScrollSnap scrollSnap = ref animalsShopWindowAspect.ScrollSnap.Get(window);
 
                     _world.GetPool<ClosedMarker>().Add(window);
 
-                    scrollSnap.Sequence.Stop();
+                    scrollSnap.OpenCloseTween.Stop();
 
-                    // TODO: remove closure allocation
+                    scrollSnap.ScrollRect.enabled = false;
 
-                    // scrollSnap.Value.ScrollRect.enabled = false;
-                    //
-                    // scrollSnap.Value.IsApplyEffects = false;
+                    _world.GetPool<ApplyEffectsMarker>().Del(window);
 
-                    ScrollSnapRef scrollSnapCopy = scrollSnap;
-
-                    scrollSnap.Sequence = Sequence.Create()
+                    scrollSnap.OpenCloseTween = Sequence.Create()
                         .Chain(AnimateScrollElements(animalsShopWindowAspect.PurchaseAnimals.Read(window).Entities))
                         .Insert(0.3f,
                             Tween.Scale(gameObjectConnect.Connect.transform, Vector3.zero, 0.15f, Ease.InOutSine))
@@ -66,7 +58,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                             Tween.Scale(animalsShopWindowAspect.PurchaseButtonStatus.Get(window).Price.transform,
                                 Vector3.zero, 0.15f, Ease.InOutSine))
                         .ChainCallback(
-                            () => { scrollSnapCopy.Value.gameObject.SetActive(false); });
+                            gameObjectConnect.Connect, target => { target.gameObject.SetActive(false); });
                 }
             }
         }
@@ -84,17 +76,17 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 
                 if (i > 0 && i < value.Count - 1)
                 {
-                    visibleAnimals = value.ToSpan().Slice(i - 1, 3);
+                    visibleAnimals = value.Slice(i - 1, 3);
                 }
                 else if (i == 0)
                 {
-                    visibleAnimals = value.ToSpan().Slice(i, 2);
+                    visibleAnimals = value.Slice(i, 2);
                 }
                 else if (i == value.Count - 1)
                 {
-                    visibleAnimals = value.ToSpan().Slice(i - 1, 2);
+                    visibleAnimals = value.Slice(i - 1, 2);
                 }
-
+                
                 for (int index = 0; index < visibleAnimals.Count; index++)
                 {
                     int animal = visibleAnimals[index];
@@ -109,14 +101,14 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 
                 buffer.ExceptWith(visibleAnimals);
 
-                for (int index = 0; index < buffer.Count; index++)
+                foreach (int animal in buffer)
                 {
-                    int animal = buffer[index];
-
                     ref GameObjectConnect gameObjectConnect = ref _world.GetPool<GameObjectConnect>().Get(animal);
 
                     gameObjectConnect.Connect.transform.localScale = Vector3.zero;
                 }
+
+                break;
             }
 
             return sequence;

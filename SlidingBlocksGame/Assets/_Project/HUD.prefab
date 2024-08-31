@@ -70,6 +70,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _components:
   - rid: 8499802450894258315
+  - rid: 8499802814705828379
   references:
     version: 2
     RefIds:
@@ -79,6 +80,12 @@ MonoBehaviour:
       data:
         component:
           Value: {fileID: 850438580137069479}
+    - rid: 8499802814705828379
+      type: {class: RectTransformRef/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: {fileID: 5021502723815977755}
 --- !u!1 &5468085991394625792
 GameObject:
   m_ObjectHideFlags: 0
@@ -312,7 +319,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 1
-  m_AdditionalShaderChannelsFlag: 1
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -387,7 +394,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _components:
   - rid: 8499802702287471248
-  - rid: 8499802707135562554
+  - rid: 8499802814705828115
   references:
     version: 2
     RefIds:
@@ -397,7 +404,7 @@ MonoBehaviour:
       data:
         component:
           Value: {fileID: 2267403923633711704}
-    - rid: 8499802707135562554
+    - rid: 8499802814705828115
       type: {class: BestConnect/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
         asm: Assembly-CSharp}
       data:

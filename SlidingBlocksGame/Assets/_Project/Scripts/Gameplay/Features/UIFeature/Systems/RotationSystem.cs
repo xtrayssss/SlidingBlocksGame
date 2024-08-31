@@ -13,7 +13,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 
         private class AnimalAspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(AnimalTag))]
+            [IncImplicit(typeof(PurchaseAnimalTag))]
             [IncImplicit(typeof(SnappedMarker))]
             [Inc] public readonly EcsPool<PhysicView> PhysicViews;
 
@@ -22,7 +22,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 
         private class SnapBackAnimalAspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(AnimalTag))]
+            [IncImplicit(typeof(PurchaseAnimalTag))]
             [IncImplicit(typeof(ScrollStartedMarker))]
             [Inc] public readonly EcsPool<PhysicView> PhysicViews;
 

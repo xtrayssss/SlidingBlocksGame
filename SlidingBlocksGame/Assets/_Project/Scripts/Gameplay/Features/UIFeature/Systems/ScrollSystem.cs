@@ -48,7 +48,6 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
             [Inc] public readonly EcsPool<TargetEntity> Targets;
         }
 
-
         private class FadeEffectAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(FadeEffectTag))]
@@ -159,6 +158,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 
                         foreach (ScriptableEntityTemplate effectCfg in scrollSnap.EffectsConfigs)
                         {
+                            Debug.Log(effectCfg);
                             int effect = _world.NewEntity(effectCfg);
 
                             scrollSnap.Effects.Add(effect);

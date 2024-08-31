@@ -1,7 +1,6 @@
 ﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using DCFApixels.DragonECS;
-using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 {
@@ -11,7 +10,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 
         private class Aspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(AnimalTag))]
+            [IncImplicit(typeof(PurchaseAnimalTag))]
             [IncImplicit(typeof(ScrollSnappedEvent))]
             [Inc] public readonly EcsPool<TextMeshProUGUIRef> PriceTexts;
 

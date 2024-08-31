@@ -38,10 +38,11 @@ namespace _Project.Scripts.Gameplay.Features.VisualFeature
                     .AddUnique(new PlayWithSelectedAnimalSystem())
                     .AddUnique(new DisplayAnimalPurchaseWindowSystem())
                     .AddUnique(new CloseAnimalPurchaseWindowSystem())
-                    .AddUnique(new DispalyBestSystem())
+                    .AddUnique(new DisplayBestSystem())
+                    .AddUnique(new RateUsSystem())
+                    .AddUnique(new TutorialSystem())
                     .AutoDelTag<ScrollStartedEvent>()
-                    .AutoDelTag<ScrollSnappedEvent>()
-                    .AutoDelEntityTag<ButtonClickedEvent>();
+                    .AutoDelTag<ScrollSnappedEvent>();
             }
         }
 

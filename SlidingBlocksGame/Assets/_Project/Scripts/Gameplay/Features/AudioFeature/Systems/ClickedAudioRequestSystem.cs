@@ -2,6 +2,7 @@
 using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using _Project.Scripts.Gameplay.Utils;
 using DCFApixels.DragonECS;
+using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.AudioFeature.Systems
 {
@@ -21,8 +22,11 @@ namespace _Project.Scripts.Gameplay.Features.AudioFeature.Systems
 
         public void Run()
         {
-            foreach (int entity in _world.Where(out Aspect aspect)) 
+            foreach (int entity in _world.Where(out Aspect aspect))
+            {
+                Debug.Log("Audio");
                 _audioUtils.Create(aspect.AudioConfigs.Read(entity).Value);
+            }
         }
     }
 }

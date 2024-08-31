@@ -12,6 +12,7 @@ namespace _Project.Scripts.Gameplay.Features.CooldownFeature.Systems
             [IncImplicit(typeof(RefreshCooldownRequest))]
             [ExcImplicit(typeof(CountdownMarker))]
             [Inc] public readonly EcsPool<Cooldown> Cooldowns;
+            [Opt] public readonly EcsTagPool<CooldownExpiredMarker> CooldownExpiredMarker;
         }
 
         private class CountdownAspect : EcsAspectAuto
@@ -19,6 +20,7 @@ namespace _Project.Scripts.Gameplay.Features.CooldownFeature.Systems
             [IncImplicit(typeof(RefreshCooldownRequest))]
             [IncImplicit(typeof(CountdownMarker))]
             [Inc] public readonly EcsPool<Cooldown> Cooldowns;
+            [Opt] public readonly EcsTagPool<CooldownExpiredMarker> CooldownExpiredMarker;
         }
 
         public void Run()
@@ -28,6 +30,9 @@ namespace _Project.Scripts.Gameplay.Features.CooldownFeature.Systems
                 ref Cooldown cooldown = ref aspect.Cooldowns.Get(entity);
 
                 cooldown.Elapsed = cooldown.Duration;
+                
+                if (aspect.CooldownExpiredMarker.Has(entity)) 
+                    aspect.CooldownExpiredMarker.Del(entity);
             }
 
             foreach (int entity in _world.Where(out CountdownAspect aspect))
@@ -35,6 +40,9 @@ namespace _Project.Scripts.Gameplay.Features.CooldownFeature.Systems
                 ref Cooldown cooldown = ref aspect.Cooldowns.Get(entity);
 
                 cooldown.Elapsed = 0;
+
+                if (aspect.CooldownExpiredMarker.Has(entity)) 
+                    aspect.CooldownExpiredMarker.Del(entity);
             }
         }
     }

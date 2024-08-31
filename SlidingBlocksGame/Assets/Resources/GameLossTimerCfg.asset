@@ -17,6 +17,7 @@ MonoBehaviour:
   - rid: 8499802292475658366
   - rid: 8499802296451858795
   - rid: 8499802296898552009
+  - rid: 8499802814705828381
   references:
     version: 2
     RefIds:
@@ -45,3 +46,9 @@ MonoBehaviour:
       type: {class: GameLossTimerTag/Template, ns: _Project.Scripts.Gameplay.Features.CommonFeature.Components,
         asm: Assembly-CSharp}
       data: {}
+    - rid: 8499802814705828381
+      type: {class: TickAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: {fileID: 11400000, guid: d2cef08de804b7d4d8257efb608b2097, type: 2}

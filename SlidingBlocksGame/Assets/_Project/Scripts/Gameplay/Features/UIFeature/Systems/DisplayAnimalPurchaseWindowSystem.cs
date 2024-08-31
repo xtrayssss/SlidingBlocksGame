@@ -1,5 +1,4 @@
-﻿using _Project.Scripts.Gameplay.Features.ScrollFeature;
-using _Project.Scripts.Gameplay.Features.UIFeature.Components;
+﻿using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using DCFApixels.DragonECS;
 using PrimeTween;
 using UnityEngine;
@@ -23,7 +22,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
             [Inc] public readonly EcsPool<GameObjectConnect> GameObjectConnects;
 
             [Inc] public readonly EcsPool<AnimalPurchases> PurchaseAnimals;
-            [Inc] public readonly EcsPool<ScrollSnapRef> ScrollSnap;
+            [Inc] public readonly EcsPool<ScrollSnap> ScrollSnap;
             [Inc] public readonly EcsPool<PurchaseButtonStatus> PurchaseButtonStatus;
         }
 
@@ -35,34 +34,35 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                 {
                     ref GameObjectConnect gameObjectConnect =
                         ref animalsShopWindowAspect.GameObjectConnects.Get(window);
-                    ref ScrollSnapRef scrollSnap = ref animalsShopWindowAspect.ScrollSnap.Get(window);
 
                     _world.GetPool<ClosedMarker>().Del(window);
 
+                    ref ScrollSnap scrollSnap = ref animalsShopWindowAspect.ScrollSnap.Get(window);
+
                     Debug.Log("123");
 
-                    scrollSnap.Sequence.Stop();
+                    scrollSnap.OpenCloseTween.Stop();
 
                     gameObjectConnect.Connect.transform.localScale = Vector3.zero;
 
-                    // TODO: remove closure allocation
-                    ScrollSnapRef scrollSnapCopy = scrollSnap;
-
-                    scrollSnap.Sequence = Sequence.Create()
+                    scrollSnap.OpenCloseTween = Sequence.Create()
                         .Group(Tween.Scale(gameObjectConnect.Connect.transform, Vector3.one, 0.2f, Ease.InOutSine))
-                        .ChainCallback(() => { Debug.Log("Result"); })
-                        .Chain(AnimateScrollElements(animalsShopWindowAspect.PurchaseAnimals.Read(window).Entities,
-                            /*scrollSnap.Value,*/ animalsShopWindowAspect.PurchaseButtonStatus.Get(window).Current,
-                            animalsShopWindowAspect.PurchaseButtonStatus.Get(window).Price))
-                        .ChainCallback(() => { Debug.Log("Result"); });
+                        .Chain(
+                            sequence: AnimateScrollElements(
+                                value: animalsShopWindowAspect.PurchaseAnimals.Read(window).Entities,
+                                purchaseButton: animalsShopWindowAspect.PurchaseButtonStatus.Get(window).Current,
+                                price: animalsShopWindowAspect.PurchaseButtonStatus.Get(window).Price,
+                                window: window));
 
-                    scrollSnapCopy.Value.gameObject.SetActive(true);
+                    gameObjectConnect.Connect.transform.gameObject.SetActive(true);
+                    
+                    EcsDebug.Break();
                 }
             }
         }
 
-        private Sequence AnimateScrollElements(EcsGroup value/*, ScrollSnap scrollSnap*/, GameObject purchaseButton,
-            GameObject price)
+        private Sequence AnimateScrollElements(EcsGroup value, GameObject purchaseButton,
+            GameObject price, int window)
         {
             Sequence sequence = Sequence.Create();
 
@@ -75,15 +75,15 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 
                 if (i > 0 && i < value.Count - 1)
                 {
-                    visibleAnimals = value.ToSpan().Slice(i - 1, 3);
+                    visibleAnimals = value.Slice(i - 1, 3);
                 }
                 else if (i == 0)
                 {
-                    visibleAnimals = value.ToSpan().Slice(i, 2);
+                    visibleAnimals = value.Slice(i, 2);
                 }
                 else if (i == value.Count - 1)
                 {
-                    visibleAnimals = value.ToSpan().Slice(i - 1, 2);
+                    visibleAnimals = value.Slice(i - 1, 2);
                 }
 
                 Sequence visibleSequence = Sequence.Create();
@@ -114,11 +114,10 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                     endValue: Vector3.one,
                     duration: 0.08f, Ease.Linear, startDelay: 0.08f * visibleIndex);
 
-                //EcsDebug.Break();
                 visibleSequence.ChainCallback(() =>
                 {
-                    // scrollSnap.ScrollRect.enabled = true;
-                    // scrollSnap.IsApplyEffects = true;
+                    _world.GetPool<ScrollSnap>().Get(window).ScrollRect.enabled = true;
+                    _world.GetPool<ApplyEffectsMarker>().Add(window);
                 });
 
                 sequence.Group(visibleSequence);
@@ -127,14 +126,14 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 
                 buffer.ExceptWith(visibleAnimals);
 
-                for (int index = 0; index < buffer.Count; index++)
+                foreach (int animal in buffer)
                 {
-                    int animal = buffer[index];
-
                     ref GameObjectConnect gameObjectConnect = ref _world.GetPool<GameObjectConnect>().Get(animal);
 
                     gameObjectConnect.Connect.transform.localScale = Vector3.one;
                 }
+
+                break;
             }
 
             return sequence;

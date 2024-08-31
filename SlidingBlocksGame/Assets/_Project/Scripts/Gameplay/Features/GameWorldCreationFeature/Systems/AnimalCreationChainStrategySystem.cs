@@ -28,17 +28,30 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
         private class CooldownAspect : EcsAspectAuto
         {
+            [IncImplicit(typeof(CooldownExpiredEvent))]
             [Inc] public readonly EcsPool<Cooldown> Cooldowns;
 
-            [Opt] public readonly EcsTagPool<RefreshCooldownRequest> Refresh;
+            [Inc] public readonly EcsTagPool<CreationChainTag> CreationChainTag;
+            [Inc] public readonly EcsPool<TargetEntity> Targets;
+
             [Opt] public readonly EcsTagPool<DeleteOnExpiredMarker> DeleteOnExpired;
-            [Opt] public readonly EcsTagPool<CreationChainTag> CreationChainTag;
-            [Opt] public readonly EcsPool<TargetEntity> Target;
+            [Opt] public readonly EcsTagPool<RefreshCooldownRequest> Refresh;
         }
 
         private class AnimalAspect : EcsAspectAuto
         {
-            [Inc] private readonly EcsTagPool<AnimalTag> _animalTag;
+            [IncImplicit(typeof(AnimalTag))]
+            [Inc] public readonly EcsPool<GameObjectConnect> GameObjectConnects;
+
+            [Opt] public readonly EcsTagPool<SpawnedEvent> Spawned;
+        }
+
+        private class TargetLevelAspect : EcsAspectAuto
+        {
+            [IncImplicit(typeof(LevelTag))]
+            [Opt] public readonly EcsTagPool<AnimalPositionedEvent> AnimalPositionedEvent;
+
+            [Opt] public readonly EcsTagPool<AnimalPositionedMarker> AnimalPositionedMarker;
         }
 
         public void Run()
@@ -63,13 +76,43 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                         aspect.CreationChain.Add(cooldown);
 
                         cooldownAspect.DeleteOnExpired.Add(cooldown);
-                        cooldownAspect.Target.Add(cooldown).Value = _world.GetEntityLong(animals[index]);
+                        cooldownAspect.Targets.Add(cooldown).Value = _world.GetEntityLong(animals[index]);
                     }
 
                     aspect.Cooldowns.Get(entity).Duration *= 4;
                     cooldownAspect.Refresh.Add(entity);
                     aspect.DeleteOnExpired.Add(entity);
                     aspect.Target.Add(entity).Value = _world.GetEntityLong(level);
+                }
+            }
+
+
+            foreach (int entity in _world.Where(out CooldownAspect cooldownAspect))
+            {
+                if (cooldownAspect.Targets.Read(entity).Value.TryGetID(out int animalID))
+                {
+                    AnimalAspect animalAspect = _world.GetAspect<AnimalAspect>();
+
+                    if (!animalAspect.IsMatches(animalID))
+                        continue;
+
+                    animalAspect.GameObjectConnects.Read(animalID).Connect.gameObject.SetActive(true);
+                    animalAspect.Spawned.Add(animalID);
+                }
+            }
+
+            foreach (int entity in _world.Where(out CooldownAspect cooldownAspect))
+            {
+                if (cooldownAspect.Targets.Read(entity).Value.TryGetID(out int levelID))
+                {
+                    TargetLevelAspect targetLevelAspect = _world.GetAspect<TargetLevelAspect>();
+
+                    if (targetLevelAspect.IsMatches(levelID))
+                    {
+                        Debug.Log("Animal positioned");
+                        targetLevelAspect.AnimalPositionedEvent.Add(levelID);
+                        targetLevelAspect.AnimalPositionedMarker.Add(levelID);
+                    }
                 }
             }
         }

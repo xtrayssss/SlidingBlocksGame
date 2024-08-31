@@ -39,7 +39,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 
         private class ClickAspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(ClickTag))]
+            [IncImplicit(typeof(ClickSideMarker))]
             [Inc] public readonly EcsPool<WorldPosition> WorldPositions;
 
             [Inc] public readonly EcsPool<ActiveGameField> ActiveGameFields;
@@ -69,9 +69,9 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 
                 ref readonly var gameField = ref gameFieldAspect.GameFields.Read(gameFieldID);
 
-                float2 worldToGridPosition = GameFieldUtils.WorldToGridPosition(clickPosition.Value, in gameField);
+                float2 worldToGridPosition = GridUtils.WorldToGridPosition(clickPosition.Value, in gameField);
 
-                int2 invertedSide = GameFieldUtils.GetInvertedSide(
+                int2 invertedSide = GridUtils.GetInvertedSide(
                     position: worldToGridPosition,
                     gameField: in gameField);
 
@@ -147,7 +147,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                                                 animalAspect.CellPositions.Read(animal).Value;
 
                         animalAspect.WorldDestination.Add(animal).Value =
-                            GameFieldUtils.GetWorldPosition(cellDestination.Value, in gameField);
+                            GridUtils.GetWorldPosition(cellDestination.Value, in gameField);
                         
                         _world.GetPool<CanMoveMarker>().Add(animal);
                     }
@@ -170,7 +170,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                             animalAspect.CellPositions.Read(animal).Value + distance * invertedSide;
 
                         animalAspect.WorldDestination.Add(animal).Value =
-                            GameFieldUtils.GetWorldPosition(cellDestination.Value, in gameField);
+                            GridUtils.GetWorldPosition(cellDestination.Value, in gameField);
 
                         _world.GetPool<CanMoveMarker>().Add(animal);
                     }

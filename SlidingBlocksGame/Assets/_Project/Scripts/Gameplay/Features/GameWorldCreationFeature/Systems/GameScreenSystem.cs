@@ -7,7 +7,6 @@ using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.UIFeature.Systems;
 using DCFApixels.DragonECS;
 using TMPro;
-using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
@@ -72,7 +71,6 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
             
             _world.GetPool<ScrollSnap>().Get(animalStoreView.Value.Entity.ID).Items = animalPurchases.Entities;
             _world.GetPool<ScrollSetupRequest>().Add(animalStoreView.Value.Entity.ID);
-            _world.GetPool<ApplyEffectsMarker>().Add(animalStoreView.Value.Entity.ID);
 
             List<GameObject> list = new List<GameObject>();
 

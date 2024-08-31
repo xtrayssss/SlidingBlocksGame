@@ -1,4 +1,5 @@
-﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+﻿using _Project.Scripts.Gameplay.Features.AudioFeature.Components;
+using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Systems;
 using _Project.Scripts.Gameplay.Features.DestroyFeature.c;
 using _Project.Scripts.Gameplay.Features.DestroyFeature.Components;
@@ -39,9 +40,8 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature
                 .AutoDelTag<CreateGameLossTimerRequest>()
                 //
                 .AddUnique(new CreateAnimalsSystem())
+                .AutoDelTag<AnimalPositionedEvent>()    
                 .AddUnique(new AnimalCreationChainStrategySystem())
-                .AutoDelTag<AnimalPositionedEvent>()
-                .AddUnique(new ChainCreationRequestSystem())
                 .AutoDelTag<CreateAnimalsRequest>()
                 //
                 .AddUnique(new MetaGameUISystem())

@@ -1,13 +1,15 @@
-﻿using _Project.Scripts.Gameplay.Features.AudioFeature.Systems;
+﻿using _Project.Scripts.Gameplay.Features.AudioFeature.Components;
+using _Project.Scripts.Gameplay.Features.AudioFeature.Systems;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.CooldownFeature;
 using _Project.Scripts.Gameplay.Features.DestroyFeature.Components;
 using _Project.Scripts.Gameplay.Features.DestroyFeature.Systems;
 using _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature;
+using _Project.Scripts.Gameplay.Features.InputFeature;
 using _Project.Scripts.Gameplay.Features.MovementFeature;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
-using _Project.Scripts.Gameplay.Features.UIFeature.Systems;
+using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.VisualFeature;
 using _Project.Scripts.Gameplay.Utils;
 using DCFApixels.DragonECS;
@@ -25,7 +27,11 @@ namespace _Project.Scripts.Gameplay
                 .AddUnique(audioUtils)
                 .AddUnique(new ClickedAudioRequestSystem(audioUtils))
                 .AddUnique(new SpawnedAudioRequestSystem(audioUtils))
-                .AddUnique(new PlayAudioSystem());
+                .AddUnique(new DeathAudioRequestSystem(audioUtils))
+                .AddUnique(new TickAudioRequestSystem(audioUtils))
+                .AddUnique(new GameFieldAudioRequestSystem(audioUtils))
+                .AddUnique(new PlayAudioSystem())
+                .AutoDelTag<PlayAudioRequest>();
             // .AutoDelTag<PlayAudioRequest>()
         }
     }
@@ -43,7 +49,7 @@ namespace _Project.Scripts.Gameplay
         }
     }
 
-    public class EcsRoot : MonoBehaviour
+    public class EcsRoot : MonoBehaviour, ICoroutineRunner
     {
         [SerializeField] private ScriptableEntityTemplate _gameCfg;
 
@@ -58,11 +64,13 @@ namespace _Project.Scripts.Gameplay
             
             _pipeline = EcsPipeline.New()
                 .AutoDelTag<SpawnedEvent>()
+                .AutoDelTag<DeathEvent>()
                 .AddModule(new GameFlowFeature(_gameCfg))
-                .AddModule(new GameFieldFeature())
+                .AddModule(new InputFeature())
+                .AddModule(new GameFieldFeature(coroutineRunner: this))
                 .AddModule(new MovementFeature())
-                .AddModule(new VisualFeature())
                 .AddModule(new DestructionFeature())
+                .AddModule(new VisualFeature())
                 .AddModule(new AudioFeature())
                 .AddModule(new CooldownFeature())
 
@@ -70,9 +78,10 @@ namespace _Project.Scripts.Gameplay
                 .AutoDelTag<ApplyStrategyRequest>()
                 // spawned
 
-                .AutoDelEntityTag<DeleteEntityCommand>()
-                // other
                 .AddUnique(new DestroyViewSystem())
+                .AutoDelEntityTag<DeleteEntityCommand>()
+                .AutoDelEntityTag<ButtonClickedEvent>()
+                // other
                 //
                 .AddUnityDebug(_world)
                 .Inject(_world)

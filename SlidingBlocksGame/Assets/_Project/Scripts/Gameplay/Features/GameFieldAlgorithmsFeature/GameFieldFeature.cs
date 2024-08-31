@@ -9,17 +9,20 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature
 {
     public class GameFieldFeature : IEcsModule
     {
+        private readonly ICoroutineRunner _coroutineRunner;
+
+        public GameFieldFeature(ICoroutineRunner coroutineRunner) => 
+            _coroutineRunner = coroutineRunner;
+
         public void Import(EcsPipeline.Builder builder)
         {
             builder
-                .AutoDelTag<TileGeneratedEvent>()
-                //
                 .AddUnique(new SelectionGenerationGameFieldSystem())
                 //
                 .AutoDelTag<GameFieldGeneratedEvent>()
                 .AutoDelTag<GameFieldDestructedEvent>()
                 .AddUnique(new GameFieldPlaneAlgorithmSystem())
-                .AddUnique(new GameFieldWaveAlgorithmSystem())
+                .AddUnique(new GameFieldWaveAlgorithmSystem(_coroutineRunner))
                 //
                 .AutoDelTag<GameFieldGenerateRequest>()
                 .AutoDelTag<GameFieldDestructRequest>();

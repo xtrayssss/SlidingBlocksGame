@@ -1,5 +1,6 @@
 ﻿using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
 using DCFApixels.DragonECS;
+using UnityEngine;
 using Object = UnityEngine.Object;
 
 namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
@@ -8,7 +9,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
     {
         [EcsInject] private readonly EcsDefaultWorld _world;
 
-        private class HUDAspect : EcsAspectAuto
+        private class GameAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(CreateHUDRequest))]
             [Inc] public readonly EcsPool<HUDPrefab> HUDPrefabs;
@@ -23,7 +24,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
         public void Run()
         {
-            foreach (int entity in _world.Where(out HUDAspect aspect))
+            foreach (int entity in _world.Where(out GameAspect aspect))
             {
                 EcsEntityConnect connect = Object.Instantiate(aspect.HUDPrefabs.Read(entity).Value);
 
@@ -31,15 +32,15 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
                 connect.Connect(hud, applyTemplates: true);
 
-                aspect.CreateBest.Add(entity);
+                aspect.CreateBest.Add(hud.ID);
             }
 
             foreach (int entity in _world.Where(out BestAspect aspect))
             {
                 ref readonly BestConnect connect = ref aspect.BestConnects.Read(entity);
-
+                
                 entlong best = _world.NewEntityLong();
-
+                
                 connect.Value.Connect(best, applyTemplates: true);
             }
         }

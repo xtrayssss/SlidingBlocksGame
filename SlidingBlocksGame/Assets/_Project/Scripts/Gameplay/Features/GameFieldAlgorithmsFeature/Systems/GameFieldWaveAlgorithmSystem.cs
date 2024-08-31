@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Runtime.CompilerServices;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.DestroyFeature.Components;
@@ -14,7 +13,11 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
 {
     public class GameFieldWaveAlgorithmSystem : IEcsRun
     {
+        private readonly ICoroutineRunner _coroutineRunner;
         [EcsInject] private EcsWorld _world;
+
+        public GameFieldWaveAlgorithmSystem(ICoroutineRunner coroutineRunner) => 
+            _coroutineRunner = coroutineRunner;
 
         private class GenerationAspect : EcsAspectAuto
         {
@@ -40,13 +43,14 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
 
             [Opt] public readonly EcsTagPool<GameFieldGeneratedEvent> GameFieldGenerated;
             [Opt] public readonly EcsTagPool<GameFieldDestructedEvent> GameFieldDestructed;
+            [Opt] public readonly EcsTagPool<GameFieldGeneratedWaveAlgorithmMarker> GameFieldGeneratedWaveAlgorithm;
         }
 
         public void Run()
         {
             foreach (int entity in _world.Where(out GenerationAspect aspect))
             {
-                Object.FindAnyObjectByType<MonoBehaviour>()
+                _coroutineRunner
                     .StartCoroutine(Generate(
                         generationAspect: aspect,
                         levelAspect: _world.GetAspect<TargetLevelAspect>(),
@@ -55,7 +59,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
 
             foreach (int entity in _world.Where(out DestructionAspect aspect))
             {
-                Object.FindAnyObjectByType<MonoBehaviour>()
+                _coroutineRunner
                     .StartCoroutine(Destruct(
                         destructionAspect: aspect,
                         levelAspect: _world.GetAspect<TargetLevelAspect>(),
@@ -69,6 +73,8 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
             if (!generationAspect.Targets.Read(algorithm).Value.TryGetID(out int levelID) ||
                 !levelAspect.IsMatches(levelID))
                 yield break;
+
+            levelAspect.GameFieldGeneratedWaveAlgorithm.Add(levelID);
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             ref GameField GameField() =>
@@ -87,6 +93,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
                     if (x >= GameField().EdgeSize && x < GameField().EdgeSize + GameField().CenterSize ||
                         z >= GameField().EdgeSize && z < GameField().EdgeSize + GameField().CenterSize)
                     {
+                        Debug.Log("123");
                         float3 position = new float3(
                             x * (GameField().CellSize + GameField().Offset) + GameField().OriginPosition.x, 0,
                             z * (GameField().CellSize + GameField().Offset) + GameField().OriginPosition.z);
@@ -107,15 +114,18 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
                             CellPosition = new float2(x, z),
                             WorldPosition = position
                         };
-
-                        int @event = _world.NewEntity();
                         
-                        _world.GetPool<TileGeneratedEvent>().Add(@event);
-                        _world.GetPool<TargetEntity>().Add(@event).Value = _world.GetEntityLong(levelID);
+                        int tile = _world.NewEntity();
+
+                        _world.GetPool<TileGeneratedEvent>().Add(tile);
+                        _world.GetPool<TargetEntity>().Add(tile).Value = _world.GetEntityLong(levelID);
+                        _world.GetPool<DeleteEntityCommand>().Add(tile);
                     }
                 }
             }
 
+            Debug.Log("End");
+            
             levelAspect.GameFieldGenerated.Add(levelID);
             levelAspect.GameFieldGenerated.Add(algorithm);
         }

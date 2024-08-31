@@ -20,6 +20,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Components
         public Tween SnapTween;
         public ScriptableEntityTemplate[] EffectsConfigs;
         public EcsGroup Effects;
+        public Sequence OpenCloseTween;
         public readonly EcsLongsSpan SafeItems => Items.Longs;
 
         private sealed class Template : ComponentTemplate<ScrollSnap>

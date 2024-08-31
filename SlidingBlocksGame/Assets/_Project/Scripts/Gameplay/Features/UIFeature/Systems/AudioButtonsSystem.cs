@@ -1,5 +1,8 @@
-﻿using _Project.Scripts.Gameplay.Features.UIFeature.Components;
+﻿using _Project.Scripts.Gameplay.Features.AudioFeature.Systems;
+using _Project.Scripts.Gameplay.Features.UIFeature.Components;
+using _Project.Scripts.Gameplay.Utils;
 using DCFApixels.DragonECS;
+using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 {
@@ -22,7 +25,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
         private class GameScreen : EcsAspectAuto
         {
             [Inc] public readonly EcsTagPool<GameScreenTag> Obstacles;
-            [Inc] public readonly EcsPool<AudioButtonsViews> SoundButtonViews;
+            [Inc] public readonly EcsPool<AudioButtonsStatus> SoundButtonViews;
         }
 
         public void Run()
@@ -31,19 +34,23 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
             {
                 foreach (var screen in _world.Where(out GameScreen gameScreenAspect))
                 {
-                    ref AudioButtonsViews audioButtonsViews = ref gameScreenAspect.SoundButtonViews.Get(screen);
+                    ref AudioButtonsStatus audioButtonsStatus = ref gameScreenAspect.SoundButtonViews.Get(screen);
 
-                    audioButtonsViews.SoundIsOn = !audioButtonsViews.SoundIsOn;
+                    audioButtonsStatus.SoundIsOn = !audioButtonsStatus.SoundIsOn;
                     
-                    if (audioButtonsViews.SoundIsOn)
+                    if (audioButtonsStatus.SoundIsOn)
                     {
-                        audioButtonsViews.SoundOff.gameObject.SetActive(false);
-                        audioButtonsViews.SoundOn.gameObject.SetActive(true);
+                        GameAudio.Instance.SfxSource.volume = 1;
+
+                        audioButtonsStatus.SoundOff.gameObject.SetActive(false);
+                        audioButtonsStatus.SoundOn.gameObject.SetActive(true);
                     }
                     else
                     {
-                        audioButtonsViews.SoundOn.gameObject.SetActive(false);
-                        audioButtonsViews.SoundOff.gameObject.SetActive(true);
+                        GameAudio.Instance.SfxSource.volume = 0;
+                        
+                        audioButtonsStatus.SoundOn.gameObject.SetActive(false);
+                        audioButtonsStatus.SoundOff.gameObject.SetActive(true);
                     }
                 }
             }
@@ -52,19 +59,23 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
             {
                 foreach (int screen in _world.Where(out GameScreen gameScreenAspect))
                 {
-                    ref AudioButtonsViews audioButtonsViews = ref gameScreenAspect.SoundButtonViews.Get(screen);
+                    ref AudioButtonsStatus audioButtonsStatus = ref gameScreenAspect.SoundButtonViews.Get(screen);
 
-                    audioButtonsViews.MusicIsOn = !audioButtonsViews.MusicIsOn;
+                    audioButtonsStatus.MusicIsOn = !audioButtonsStatus.MusicIsOn;
 
-                    if (audioButtonsViews.MusicIsOn)
+                    if (audioButtonsStatus.MusicIsOn)
                     {
-                        audioButtonsViews.MusicOff.gameObject.SetActive(false);
-                        audioButtonsViews.MusicOn.gameObject.SetActive(true);
+                        GameAudio.Instance.MusicSource.volume = 1;
+
+                        audioButtonsStatus.MusicOff.gameObject.SetActive(false);
+                        audioButtonsStatus.MusicOn.gameObject.SetActive(true);
                     }
                     else
                     {
-                        audioButtonsViews.MusicOn.gameObject.SetActive(false);
-                        audioButtonsViews.MusicOff.gameObject.SetActive(true);
+                        GameAudio.Instance.MusicSource.volume = 0;
+
+                        audioButtonsStatus.MusicOn.gameObject.SetActive(false);
+                        audioButtonsStatus.MusicOff.gameObject.SetActive(true);
                     }
                 }
             }

@@ -2,7 +2,6 @@
 using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
 using _Project.Scripts.Gameplay.Features.DestroyFeature.Components;
 using DCFApixels.DragonECS;
-using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
 {
@@ -18,6 +17,7 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
 
             [Opt] public readonly EcsTagPool<DeleteEntityCommand> DeleteEntityCommand;
             [Opt] public readonly EcsTagPool<DestroyViewRequest> DestroyViewRequest;
+            [Opt] public readonly EcsTagPool<DeathEvent> Death;
         }
 
         private class LevelAspect : EcsAspectAuto
@@ -31,33 +31,30 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
             [IncImplicit(typeof(AnimalTag))]
             [Inc] public readonly EcsPool<GameObjectConnect> GameObjectConnects;
         }
-        
+
         public void Run()
         {
             foreach (int entity in _world.Where(out Aspect aspect))
             {
-                if (aspect.Targets.Read(entity).Value.TryGetID(out int targetID) && _world.GetAspect<AnimalAspect>().IsMatches(targetID))
+                if (aspect.Targets.Read(entity).Value.TryGetID(out int targetID) &&
+                    _world.GetAspect<AnimalAspect>().IsMatches(targetID))
                 {
-                    if (_world.GetPool<GameObjectConnect>().Has(targetID))
+                    if (_world.GetPool<GameObjectConnect>().Has(targetID)) 
                         aspect.DestroyViewRequest.TryAdd(targetID);
 
                     aspect.DeleteEntityCommand.Add(targetID);
+                    aspect.Death.Add(targetID);
                 }
             }
 
             foreach (int entity in _world.Where(out Aspect aspect))
             {
-                    Debug.Log("123");
-                
                 if (aspect.Targets.Read(entity).Value.TryGetID(out int targetID))
                 {
-                    Debug.Log("123");
                     LevelAspect levelAspect = _world.GetAspect<LevelAspect>();
-            
+
                     if (levelAspect.IsMatches(targetID))
                     {
-                        Debug.Log("123");
-            
                         levelAspect.AnimalDestructed.Add(targetID);
                     }
                 }

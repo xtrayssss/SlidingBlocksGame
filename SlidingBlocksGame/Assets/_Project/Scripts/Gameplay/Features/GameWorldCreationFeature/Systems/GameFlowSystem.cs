@@ -90,18 +90,16 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                         levelAspect.GameFields.Get(level).AnimalPrefab = animalPrefab;
                     }
                 }
-            }
-
-            foreach (int level in _world.Where(out GeneratedGameFieldStateAspect aspect))
-                aspect.CreateAnimals.Add(level);
-
-            foreach (int level in _world.Where(out AnimalPositionedStateAspect aspect))
-            {
-                aspect.CreateGameLossTimer.Add(level);
-
+                                
                 foreach (int gameScreen in _world.Where(out GameScreenAspect gameScreenAspect))
                     gameScreenAspect.HideMetaGameUI.Add(gameScreen);
             }
+
+            foreach (int level in _world.Where(out GeneratedGameFieldStateAspect aspect)) 
+                aspect.CreateAnimals.Add(level);
+
+            foreach (int level in _world.Where(out AnimalPositionedStateAspect aspect)) 
+                aspect.CreateGameLossTimer.Add(level);
         }
     }
 }
