@@ -79,8 +79,8 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 
                 EcsGroup filteredAnimals = EcsGroup.New(_world);
 
-                List<(entlong animal, float2 obstacle)> obstacles =
-                    new List<(entlong animal, float2 obstacle)>(where.Count);
+                List<(entlong animal, int2 obstacle)> obstacles =
+                    new List<(entlong animal, int2 obstacle)>(where.Count);
 
                 foreach (int animal in where)
                 {
@@ -154,10 +154,10 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                 }
                 else
                 {
-                    (entlong animal, float2 obstacle) min = obstacles.ToArray().Min();
+                    (entlong animal, int2 obstacle) min = obstacles.ToArray().Min();
 
                     Debug.Log(min + "============");
-                    float2 distance =
+                    int2 distance =
                         (min.obstacle * math.abs(invertedSide) - animalAspect.CellPositions.Read(min.animal.ID).Value -
                          invertedSide) * invertedSide;
 

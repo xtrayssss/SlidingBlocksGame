@@ -1,8 +1,10 @@
-﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+﻿using System.Globalization;
+using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
 using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using DCFApixels.DragonECS;
+using Object = System.Object;
 
 namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 {
@@ -51,6 +53,8 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
             [IncImplicit(typeof(LevelTag))]
             [IncImplicit(typeof(AnimalPositionedEvent))]
             [Opt] public readonly EcsTagPool<CreateGameLossTimerRequest> CreateGameLossTimer;
+
+            [Opt] public readonly EcsTagPool<CreateCoinRequest> CreateCoin;
         }
 
         private class GameScreenAspect : EcsAspectAuto
@@ -90,16 +94,19 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                         levelAspect.GameFields.Get(level).AnimalPrefab = animalPrefab;
                     }
                 }
-                                
+
                 foreach (int gameScreen in _world.Where(out GameScreenAspect gameScreenAspect))
                     gameScreenAspect.HideMetaGameUI.Add(gameScreen);
             }
 
-            foreach (int level in _world.Where(out GeneratedGameFieldStateAspect aspect)) 
+            foreach (int level in _world.Where(out GeneratedGameFieldStateAspect aspect))
                 aspect.CreateAnimals.Add(level);
 
-            foreach (int level in _world.Where(out AnimalPositionedStateAspect aspect)) 
+            foreach (int level in _world.Where(out AnimalPositionedStateAspect aspect))
+            {
                 aspect.CreateGameLossTimer.Add(level);
+                aspect.CreateCoin.Add(level);
+            }
         }
     }
 }

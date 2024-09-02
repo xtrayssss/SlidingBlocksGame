@@ -45,7 +45,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
                     EcsEntityConnect view = Object.Instantiate(
                         original: gameField.AnimalPrefab,
-                        position: animalData.Position + new float3(gameField.UnitCellTopOffset),
+                        position: animalData.Position,
                         rotation: animalData.Rotation);
 
                     animalData.View = view;

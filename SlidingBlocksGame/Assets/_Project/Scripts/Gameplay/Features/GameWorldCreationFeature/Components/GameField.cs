@@ -41,7 +41,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components
         public struct AnimalsData
         {
             public float3 Position;
-            public float2 CellPosition;
+            public int2 CellPosition;
             public EcsEntityConnect View;
             public quaternion Rotation;
             public float2 InvertedSide;

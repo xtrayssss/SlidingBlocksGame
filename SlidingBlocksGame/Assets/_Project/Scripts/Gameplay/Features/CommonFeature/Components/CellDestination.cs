@@ -5,6 +5,6 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Components
 {
     public struct CellDestination : IEcsComponent
     {
-        public float2 Value;
+        public int2 Value;
     }
 }

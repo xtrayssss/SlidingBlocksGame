@@ -20,9 +20,17 @@ MonoBehaviour:
   - rid: 8499802702287471245
   - rid: 8499802702287471249
   - rid: 8499802753235157229
+  - rid: 6454805110041346048
   references:
     version: 2
     RefIds:
+    - rid: 6454805110041346048
+      type: {class: CoinPrefab/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Prefab: {fileID: 5735182481968669607, guid: 187a65e427b09c648af34d93f2a9eb18,
+            type: 3}
     - rid: 8499802323967542113
       type: {class: Levels/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
         asm: Assembly-CSharp}

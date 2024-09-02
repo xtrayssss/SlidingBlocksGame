@@ -58,6 +58,9 @@ namespace _Project.Scripts.Gameplay.Utils
                    position.y >= gameField.EdgeSize &&
                    position.y < gameField.EdgeSize + gameField.CenterSize;
         }
+        
+        public static int2 GetCenter(in GameField gameField) => 
+            new int2(gameField.EdgeSize, gameField.CenterSize + gameField.EdgeSize);
 
         public static int2 GetInvertedSide(float2 position, in GameField gameField)
         {
@@ -86,7 +89,7 @@ namespace _Project.Scripts.Gameplay.Utils
             return new float2(x, z);
         }
 
-        public static float3 GetWorldPosition(float2 coordinates, in GameField gameField) =>
+        public static float3 GetWorldPosition(int2 coordinates, in GameField gameField) =>
             new float3(coordinates.x * (gameField.CellSize + gameField.Offset) + gameField.OriginPosition.x, 0,
                 coordinates.y * (gameField.CellSize + gameField.Offset) + gameField.OriginPosition.z);
     }
