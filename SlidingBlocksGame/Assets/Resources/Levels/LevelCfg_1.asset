@@ -22,6 +22,7 @@ MonoBehaviour:
   - rid: 8499802589516268506
   - rid: 8499802837155577857
   - rid: 8499802837155577858
+  - rid: 6454805113458655410
   references:
     version: 2
     RefIds:
@@ -277,6 +278,12 @@ MonoBehaviour:
           CellsCount: 20
           CellTop: 0.18437675
           UnitCellTopOffset: 0.02
+    - rid: 6454805113458655410
+      type: {class: Scores/Template, ns: _Project.Scripts.Gameplay.Features.CollectFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: 1
     - rid: 8499802292475658342
       type: {class: GameLossTimerCfg/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
         asm: Assembly-CSharp}

@@ -8,6 +8,7 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Components
     public struct CellPosition : IEcsComponent
     {
         public int2 Value;
+        public int2 Fixed;
 
         [Serializable]
         public sealed class Wrapper : ComponentTemplate<CellPosition>

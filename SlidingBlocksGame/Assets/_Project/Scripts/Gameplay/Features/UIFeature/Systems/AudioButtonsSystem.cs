@@ -1,8 +1,6 @@
 ﻿using _Project.Scripts.Gameplay.Features.AudioFeature.Systems;
 using _Project.Scripts.Gameplay.Features.UIFeature.Components;
-using _Project.Scripts.Gameplay.Utils;
 using DCFApixels.DragonECS;
-using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 {

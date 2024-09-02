@@ -4,11 +4,9 @@ using DCFApixels.DragonECS;
 namespace _Project.Scripts.Gameplay.Features.UIFeature.Components
 {
     [Serializable]
-    public struct BestCounter : IEcsComponent
+    public struct CoinUITag  : IEcsTagComponent
     {
-        public int Value;
-
-        private sealed class Template : ComponentTemplate<BestCounter>
+        private sealed class Template : TagComponentTemplate<CoinUITag>
         {
         }
     }

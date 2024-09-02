@@ -30,9 +30,9 @@ namespace _Project.Scripts.Gameplay
                 .AddUnique(new DeathAudioRequestSystem(audioUtils))
                 .AddUnique(new TickAudioRequestSystem(audioUtils))
                 .AddUnique(new GameFieldAudioRequestSystem(audioUtils))
+                .AddUnique(new CollectedAudioSystem(audioUtils))
                 .AddUnique(new PlayAudioSystem())
                 .AutoDelTag<PlayAudioRequest>();
-            // .AutoDelTag<PlayAudioRequest>()
         }
     }
 
@@ -61,7 +61,7 @@ namespace _Project.Scripts.Gameplay
             EcsDefaultWorldSingletonProvider provider = EcsDefaultWorldSingletonProvider.Instance;
 
             provider.Set(_world = new EcsDefaultWorld());
-            
+
             _pipeline = EcsPipeline.New()
                 .AutoDelTag<SpawnedEvent>()
                 .AutoDelTag<DeathEvent>()
@@ -77,7 +77,6 @@ namespace _Project.Scripts.Gameplay
                 // 
                 .AutoDelTag<ApplyStrategyRequest>()
                 // spawned
-
                 .AddUnique(new DestroyViewSystem())
                 .AutoDelEntityTag<DeleteEntityCommand>()
                 .AutoDelEntityTag<ButtonClickedEvent>()

@@ -4,11 +4,11 @@ using DCFApixels.DragonECS;
 namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components
 {
     [Serializable]
-    public struct CoinPrefab : IEcsComponent
+    public struct CoinUIConnect : IEcsComponent
     {
-        public EcsEntityConnect Prefab;
+        public EcsEntityConnect Value;
 
-        private sealed class Template : ComponentTemplate<CoinPrefab>
+        private sealed class Template : ComponentTemplate<CoinUIConnect>
         {
         }
     }

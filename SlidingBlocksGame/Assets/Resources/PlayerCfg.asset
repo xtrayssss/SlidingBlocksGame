@@ -13,18 +13,25 @@ MonoBehaviour:
   m_Name: PlayerCfg
   m_EditorClassIdentifier: 
   _components:
-  - rid: 8499802700812648449
   - rid: 8499802700812648450
   - rid: 8499802700812648451
+  - rid: 6454805113458655407
+  - rid: 6454805113458655408
   references:
     version: 2
     RefIds:
-    - rid: 8499802700812648449
-      type: {class: Balance/Template, ns: _Project.Scripts.Gameplay.Features.CommonFeature.Components,
+    - rid: 6454805113458655407
+      type: {class: Scores/Template, ns: _Project.Scripts.Gameplay.Features.CollectFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
-          Value: 1000
+          Value: 0
+    - rid: 6454805113458655408
+      type: {class: Coins/Template, ns: _Project.Scripts.Gameplay.Features.CollectFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: 0
     - rid: 8499802700812648450
       type: {class: PlayerTag/Template, ns: _Project.Scripts.Gameplay.Features.CommonFeature.Components,
         asm: Assembly-CSharp}

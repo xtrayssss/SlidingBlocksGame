@@ -93,7 +93,6 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
                     if (x >= GameField().EdgeSize && x < GameField().EdgeSize + GameField().CenterSize ||
                         z >= GameField().EdgeSize && z < GameField().EdgeSize + GameField().CenterSize)
                     {
-                        Debug.Log("123");
                         float3 position = new float3(
                             x * (GameField().CellSize + GameField().Offset) + GameField().OriginPosition.x, 0,
                             z * (GameField().CellSize + GameField().Offset) + GameField().OriginPosition.z);

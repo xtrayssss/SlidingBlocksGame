@@ -1,4 +1,5 @@
-﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Systems;
+﻿using _Project.Scripts.Gameplay.Features.CollectFeature;
+using _Project.Scripts.Gameplay.Features.CommonFeature.Systems;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Systems;
 using DCFApixels.DragonECS;
@@ -13,6 +14,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature
                 .AddUnique(new GameFieldClickSystem())
                 .AddUnique(new DestinationCellSystem())
                 .AddUnique(new ChainMovementAnimalStrategySystem())
+                .AddUnique(new UpdatePositionsSystem())
                 .AddUnique(new WithinCenterSystem());
         }
     }

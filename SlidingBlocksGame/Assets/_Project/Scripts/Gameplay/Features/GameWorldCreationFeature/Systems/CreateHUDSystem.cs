@@ -1,6 +1,6 @@
 ﻿using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
+using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using DCFApixels.DragonECS;
-using UnityEngine;
 using Object = UnityEngine.Object;
 
 namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
@@ -13,13 +13,18 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
         {
             [IncImplicit(typeof(CreateHUDRequest))]
             [Inc] public readonly EcsPool<HUDPrefab> HUDPrefabs;
-            [Opt] public readonly EcsTagPool<CreateBestRequest> CreateBest;
+            [Opt] public readonly EcsTagPool<CreateControlsRequest> CreateControls;
         }
 
-        private class BestAspect : EcsAspectAuto
+        private class BestUIAspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(CreateBestRequest))]
-            [Inc] public readonly EcsPool<BestConnect> BestConnects;
+            [IncImplicit(typeof(CreateControlsRequest))]
+            [Inc] public readonly EcsPool<BestUIConnect> BestUIConnects;
+        }
+        private class CoinUIAspect : EcsAspectAuto
+        {
+            [IncImplicit(typeof(CreateControlsRequest))]
+            [Inc] public readonly EcsPool<CoinUIConnect> CoinUIConnects;
         }
 
         public void Run()
@@ -32,16 +37,25 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
                 connect.Connect(hud, applyTemplates: true);
 
-                aspect.CreateBest.Add(hud.ID);
+                aspect.CreateControls.Add(hud.ID);
             }
 
-            foreach (int entity in _world.Where(out BestAspect aspect))
+            foreach (int entity in _world.Where(out BestUIAspect aspect))
             {
-                ref readonly BestConnect connect = ref aspect.BestConnects.Read(entity);
+                ref readonly BestUIConnect connect = ref aspect.BestUIConnects.Read(entity);
                 
-                entlong best = _world.NewEntityLong();
+                entlong bestUI = _world.NewEntityLong();
                 
-                connect.Value.Connect(best, applyTemplates: true);
+                connect.Value.Connect(bestUI, applyTemplates: true);
+            }
+            
+            foreach (int entity in _world.Where(out CoinUIAspect aspect))
+            {
+                ref readonly CoinUIConnect connect = ref aspect.CoinUIConnects.Read(entity);
+                
+                entlong coinUI = _world.NewEntityLong();
+                
+                connect.Value.Connect(coinUI, applyTemplates: true);
             }
         }
     }

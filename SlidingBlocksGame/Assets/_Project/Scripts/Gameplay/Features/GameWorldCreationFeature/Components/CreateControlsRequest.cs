@@ -2,7 +2,7 @@
 
 namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components
 {
-    public struct CreateBestRequest : IEcsTagComponent
+    public struct CreateControlsRequest : IEcsTagComponent
     {
     }
 }

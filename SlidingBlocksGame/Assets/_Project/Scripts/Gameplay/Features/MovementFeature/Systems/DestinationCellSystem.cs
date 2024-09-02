@@ -34,7 +34,6 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 
             [Inc] public readonly EcsPool<ActiveGameField> ActiveGameFields;
             [Inc] public readonly EcsPool<CellDestination> CellDestinations;
-            [Inc] public readonly EcsPool<CellPosition> CellPositions;
         }
 
         private class ClickAspect : EcsAspectAuto
@@ -69,7 +68,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 
                 ref readonly var gameField = ref gameFieldAspect.GameFields.Read(gameFieldID);
 
-                float2 worldToGridPosition = GridUtils.WorldToGridPosition(clickPosition.Value, in gameField);
+                float2 worldToGridPosition = GridUtils.GetCellPosition(clickPosition.Value, in gameField);
 
                 int2 invertedSide = GridUtils.GetInvertedSide(
                     position: worldToGridPosition,
@@ -148,7 +147,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 
                         animalAspect.WorldDestination.Add(animal).Value =
                             GridUtils.GetWorldPosition(cellDestination.Value, in gameField);
-                        
+
                         _world.GetPool<CanMoveMarker>().Add(animal);
                     }
                 }

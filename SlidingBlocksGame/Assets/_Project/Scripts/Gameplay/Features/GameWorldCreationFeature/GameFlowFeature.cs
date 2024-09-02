@@ -1,4 +1,5 @@
 ﻿using _Project.Scripts.Gameplay.Features.AudioFeature.Components;
+using _Project.Scripts.Gameplay.Features.CollectFeature;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Systems;
 using _Project.Scripts.Gameplay.Features.DestroyFeature.c;
@@ -29,7 +30,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature
                 .AddUnique(new GameScreenSystem())
                 .AddUnique(new CreateHUDSystem())
                 .AutoDelTag<CreateHUDRequest>()
-                .AutoDelTag<CreateBestRequest>()
+                .AutoDelTag<CreateControlsRequest>()
                 //
                 .AddUnique(new NextLevelSystem())
                 .AutoDelTag<NextLeveRequest>()
@@ -40,7 +41,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature
                 .AutoDelTag<CreateGameLossTimerRequest>()
                 //
                 .AddUnique(new CreateAnimalsSystem())
-                .AutoDelTag<AnimalPositionedEvent>()    
+                .AutoDelTag<AnimalPositionedEvent>()
                 .AddUnique(new AnimalCreationChainStrategySystem())
                 .AutoDelTag<CreateAnimalsRequest>()
                 //
@@ -58,7 +59,9 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature
                 //
                 .AddUnique(new CleanupLevelSystem())
                 .AutoDelTag<CleanupLevelRequest>()
-                //
+                //             
+                .AddUnique(new CollectCoinSystem())
+                .AddUnique(new UpdatePlayerProgressSystem())
                 //
                 .AutoDelTag<GameCreatedEvent>();
         }

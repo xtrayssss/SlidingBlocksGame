@@ -1,7 +1,8 @@
-﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+﻿using _Project.Scripts.Gameplay.Features.CollectFeature;
+using _Project.Scripts.Gameplay.Features.CollectFeature.Components;
+using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using DCFApixels.DragonECS;
-using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 {
@@ -18,7 +19,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
         private class PlayerAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(PlayerTag))]
-            [Inc] public readonly EcsPool<Balance> Balances;
+            [Inc] public readonly EcsPool<Coins> Coins;
         }
 
         private class PurchasesAspect : EcsAspectAuto
@@ -40,7 +41,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                 {
                     foreach (int purchase in _world.Where(out PurchasesAspect purchasesAspect))
                     {
-                        playerAspect.Balances.Get(player).Value -= purchasesAspect.Purchases.Read(purchase).Price;
+                        playerAspect.Coins.Get(player).Value -= purchasesAspect.Purchases.Read(purchase).Price;
 
                         purchasesAspect.Purchased.Add(purchase);
                     }
@@ -67,7 +68,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
         private class PlayerAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(PlayerTag))]
-            [Inc] public readonly EcsPool<Balance> Balances;
+            [Inc] public readonly EcsPool<Coins> Balances;
         }
 
         private class AnimalsShopWindowAspect : EcsAspectAuto
@@ -82,7 +83,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
             {
                 foreach (int player in _world.Where(out PlayerAspect playerAspect))
                 {
-                    ref readonly Balance balance = ref playerAspect.Balances.Get(player);
+                    ref readonly var coins = ref playerAspect.Balances.Get(player);
 
                     foreach (int window in _world.Where(out AnimalsShopWindowAspect animalsShopWindowAspect))
                     {
@@ -97,7 +98,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                         }
                         else
                         {
-                            if (balance.Value >= aspect.Purchases.Get(entity).Price)
+                            if (coins.Value >= aspect.Purchases.Get(entity).Price)
                             {
                                 animalsShopWindowAspect.Status.Get(window).Current = animalsShopWindowAspect.Status.Read(window).Unlock;
 

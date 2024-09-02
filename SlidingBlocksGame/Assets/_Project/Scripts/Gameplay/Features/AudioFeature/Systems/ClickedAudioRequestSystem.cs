@@ -8,8 +8,9 @@ namespace _Project.Scripts.Gameplay.Features.AudioFeature.Systems
 {
     public class ClickedAudioRequestSystem : IEcsRun
     {
-        private readonly AudioUtils _audioUtils;
         [EcsInject] private readonly EcsDefaultWorld _world;
+
+        private readonly AudioUtils _audioUtils;
 
         public ClickedAudioRequestSystem(AudioUtils audioUtils) => 
             _audioUtils = audioUtils;
