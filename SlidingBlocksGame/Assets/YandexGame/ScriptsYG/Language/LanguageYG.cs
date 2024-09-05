@@ -132,7 +132,7 @@ namespace YG
         {
             for (int i = 0; i < languages.Length; i++)
             {
-                if (YandexGame.savesData.language == LangMethods.LangName(i)) // YandexGame.savesData.language заменить для 2.0
+                if (YandexGame.savesData.Language == LangMethods.LangName(i)) // YandexGame.savesData.language заменить для 2.0
                 {
                     AssignTranslate(languages[i]);
                     break;

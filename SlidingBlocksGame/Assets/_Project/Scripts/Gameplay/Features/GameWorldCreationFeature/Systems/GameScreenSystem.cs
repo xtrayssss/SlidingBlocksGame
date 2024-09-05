@@ -36,7 +36,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
             foreach (int entity in _world.Where(out Aspect gameAspect))
             {
                 entlong gameScreen = _world.NewEntityLong();
-                
+
                 EcsEntityConnect connect = Object.Instantiate(gameAspect.GameScreenPrefabs.Read(entity).Value);
 
                 connect.Connect(gameScreen, applyTemplates: true);
@@ -45,7 +45,17 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
                 CreateInAppPurchases(connect);
                 CreateAnimalsPurchaseWindow(connect);
+                CreateReward(connect);
             }
+        }
+
+        private void CreateReward(EcsEntityConnect connect)
+        {
+            entlong screen = connect.Entity;
+
+            entlong reward = _world.NewEntityLong();
+
+            _world.GetPool<RewardConnect>().Get(screen.ID).Value.Connect(reward, applyTemplates: true);
         }
 
         private void CreateAnimalsPurchaseWindow(EcsEntityConnect connect)
@@ -68,9 +78,10 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
             TextMeshProUGUI priceText =
                 animalStoreView.Value.transform.Find("Viewport/Price/Price").GetComponent<TextMeshProUGUI>();
-            
+
             _world.GetPool<ScrollSnap>().Get(animalStoreView.Value.Entity.ID).Items = animalPurchases.Entities;
             _world.GetPool<ScrollSetupRequest>().Add(animalStoreView.Value.Entity.ID);
+            _world.GetPool<SpawnedEvent>().Add(animalStoreView.Value.Entity.ID);
 
             List<GameObject> list = new List<GameObject>();
 
@@ -98,8 +109,6 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                     _world.GetPool<ScrollPosition>().Add(purchase.ID);
                 }
             }
-
-            _world.GetPool<SnappedMarker>().Add(animalPurchases.Entities[0]);
         }
 
         private void UI3D(AnimalPrefabs animalPrefabs, entlong purchase, EcsEntityConnect purchaseView)

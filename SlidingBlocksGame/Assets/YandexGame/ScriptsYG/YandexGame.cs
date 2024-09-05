@@ -337,7 +337,7 @@ namespace YG
             if (EnvironmentData.promptCanShow)
                 PromptShowInternal();
 #else
-            savesData.promptDone = true;
+            savesData.PromptDone = true;
             SaveProgress();
 
             Instance.PromptDo?.Invoke();
@@ -641,7 +641,7 @@ namespace YG
         public static Action PromptFailEvent;
         public void OnPromptSuccess()
         {
-            savesData.promptDone = true;
+            savesData.PromptDone = true;
             SaveProgress();
 
             PromptDo?.Invoke();

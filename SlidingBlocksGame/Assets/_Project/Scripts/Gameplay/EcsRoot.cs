@@ -6,6 +6,7 @@ using _Project.Scripts.Gameplay.Features.DestroyFeature.Components;
 using _Project.Scripts.Gameplay.Features.DestroyFeature.Systems;
 using _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature;
+using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
 using _Project.Scripts.Gameplay.Features.InputFeature;
 using _Project.Scripts.Gameplay.Features.MovementFeature;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
@@ -13,7 +14,9 @@ using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.VisualFeature;
 using _Project.Scripts.Gameplay.Utils;
 using DCFApixels.DragonECS;
+using Sirenix.OdinInspector;
 using UnityEngine;
+using YG;
 
 namespace _Project.Scripts.Gameplay
 {
@@ -56,6 +59,13 @@ namespace _Project.Scripts.Gameplay
         private EcsPipeline _pipeline;
         private EcsDefaultWorld _world;
 
+        [Button]
+        private void ResetProgress()
+        {
+            YandexGame.ResetSaveProgress();
+            YandexGame.SaveProgress();
+        }
+
         public void Start()
         {
             EcsDefaultWorldSingletonProvider provider = EcsDefaultWorldSingletonProvider.Instance;
@@ -75,6 +85,8 @@ namespace _Project.Scripts.Gameplay
                 .AddModule(new CooldownFeature())
 
                 // 
+                .AutoDelTag<GameCreatedEvent>()
+                //
                 .AutoDelTag<ApplyStrategyRequest>()
                 // spawned
                 .AddUnique(new DestroyViewSystem())

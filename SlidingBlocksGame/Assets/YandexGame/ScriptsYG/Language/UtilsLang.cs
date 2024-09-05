@@ -176,7 +176,7 @@ namespace YG.Utils.Lang
         {
             string lang = YandexGame.EnvironmentData.language;
             if (inf.LocalizationEnable)
-                lang = YandexGame.savesData.language;
+                lang = YandexGame.savesData.Language;
 
             return UnauthorizedTextTranslate(lang);
         }
@@ -280,7 +280,7 @@ namespace YG.Utils.Lang
         {
             string lang = YandexGame.EnvironmentData.language;
             if (inf.LocalizationEnable)
-                lang = YandexGame.savesData.language;
+                lang = YandexGame.savesData.Language;
 
             return IsHiddenTextTranslate(lang);
         }

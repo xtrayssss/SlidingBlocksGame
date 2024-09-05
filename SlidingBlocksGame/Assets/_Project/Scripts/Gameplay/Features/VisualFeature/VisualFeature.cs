@@ -33,7 +33,6 @@ namespace _Project.Scripts.Gameplay.Features.VisualFeature
                     .AddUnique(new CameraRenderSystem())
                     .AutoDelTag<ViewUpdatedEvent>()
                     .AddUnique(new DisplayPriceAnimalSystem())
-                    .AddUnique(new PurchaseAnimalSystem())
                     .AddUnique(new DisplayPurchaseStatusSystem())
                     .AddUnique(new PlayWithSelectedAnimalSystem())
                     .AddUnique(new DisplayAnimalPurchaseWindowSystem())
@@ -41,6 +40,8 @@ namespace _Project.Scripts.Gameplay.Features.VisualFeature
                     .AddUnique(new DisplayProgressSystem())
                     .AddUnique(new RateUsSystem())
                     .AddUnique(new TutorialSystem())
+                    .AddUnique(new DisplayRewardSystem())
+                    .AddUnique(new CanRewardSystem())
                     .AutoDelTag<ScrollStartedEvent>()
                     .AutoDelTag<ScrollSnappedEvent>();
             }

@@ -7,7 +7,7 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Components
     public struct Purchase : IEcsComponent
     {
         public int Price;
-        public uint ProductIndex;
+        public ushort ProductIndex;
 
         private sealed class Template : ComponentTemplate<Purchase>
         {

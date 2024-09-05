@@ -8,9 +8,9 @@ namespace YG
     [HelpURL("https://www.notion.so/PluginYG-d457b23eee604b7aa6076116aab647ed#4968547185c2460fb70fd6eceaf101d4")]
     public class DebuggingModeYG : MonoBehaviour
     {
-        [Tooltip("?payload=\nЭто значение, которое Вы будете передавать с помощью Deep Linking. Можете написать слово, например, debug и добавить свой пароль, например, 123. Получится debug123.")]
+        [Tooltip("?payload=\nР­С‚Рѕ Р·РЅР°С‡РµРЅРёРµ, РєРѕС‚РѕСЂРѕРµ Р’С‹ Р±СѓРґРµС‚Рµ РїРµСЂРµРґР°РІР°С‚СЊ СЃ РїРѕРјРѕС‰СЊСЋ Deep Linking. РњРѕР¶РµС‚Рµ РЅР°РїРёСЃР°С‚СЊ СЃР»РѕРІРѕ, РЅР°РїСЂРёРјРµСЂ, debug Рё РґРѕР±Р°РІРёС‚СЊ СЃРІРѕР№ РїР°СЂРѕР»СЊ, РЅР°РїСЂРёРјРµСЂ, 123. РџРѕР»СѓС‡РёС‚СЃСЏ debug123.")]
         public string payloadPassword = "debug123";
-        [Tooltip("Отображение панели управления в Unity Editor")]
+        [Tooltip("РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РїР°РЅРµР»Рё СѓРїСЂР°РІР»РµРЅРёСЏ РІ Unity Editor")]
         public bool debuggingInEditor;
 
         [Serializable]
@@ -60,7 +60,7 @@ namespace YG
 
                 if (!tr) tr = transform;
 
-                tr.Find("Panel").Find("LanguageDebug").GetChild(0).GetComponent<Text>().text = YandexGame.savesData.language;
+                tr.Find("Panel").Find("LanguageDebug").GetChild(0).GetComponent<Text>().text = YandexGame.savesData.Language;
 
                 string playerId = YandexGame.playerId;
                 if (playerId.Length > 10)

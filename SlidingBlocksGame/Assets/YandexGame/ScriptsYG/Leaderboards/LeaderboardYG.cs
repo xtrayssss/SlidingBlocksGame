@@ -100,7 +100,7 @@ namespace YG
 
                 if (lbData.entries == "no data")
                 {
-                    noData = YandexGame.savesData.language switch
+                    noData = YandexGame.savesData.Language switch
                     {
                         "ru" => "Нет данных",
                         "en" => "No data",

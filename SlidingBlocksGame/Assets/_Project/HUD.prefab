@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3878361284543174929}
   - component: {fileID: 682240893758478756}
   m_Layer: 5
-  m_Name: Best
+  m_Name: Scores
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -447,23 +447,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _components:
   - rid: 8499802702287471248
-  - rid: 6454805113458655402
   - rid: 6454805113458655404
+  - rid: 6454805130946281472
   references:
     version: 2
     RefIds:
-    - rid: 6454805113458655402
-      type: {class: BestUIConnect/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: {fileID: 3878361284543174929}
     - rid: 6454805113458655404
       type: {class: CoinUIConnect/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
           Value: {fileID: 2068119482240933733}
+    - rid: 6454805130946281472
+      type: {class: ScoreUIConnect/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: {fileID: 3878361284543174929}
     - rid: 8499802702287471248
       type: {class: GameLossTimerConnect/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
         asm: Assembly-CSharp}

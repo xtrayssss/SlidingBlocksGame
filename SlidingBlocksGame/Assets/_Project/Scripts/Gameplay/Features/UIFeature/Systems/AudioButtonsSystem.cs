@@ -35,7 +35,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                     ref AudioButtonsStatus audioButtonsStatus = ref gameScreenAspect.SoundButtonViews.Get(screen);
 
                     audioButtonsStatus.SoundIsOn = !audioButtonsStatus.SoundIsOn;
-                    
+
                     if (audioButtonsStatus.SoundIsOn)
                     {
                         GameAudio.Instance.SfxSource.volume = 1;
@@ -46,7 +46,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                     else
                     {
                         GameAudio.Instance.SfxSource.volume = 0;
-                        
+
                         audioButtonsStatus.SoundOn.gameObject.SetActive(false);
                         audioButtonsStatus.SoundOff.gameObject.SetActive(true);
                     }

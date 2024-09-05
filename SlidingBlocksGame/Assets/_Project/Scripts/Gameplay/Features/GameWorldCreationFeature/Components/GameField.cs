@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using _Project.Scripts.Gameplay.Utils;
 using DCFApixels.DragonECS;
 using Unity.Mathematics;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Object = UnityEngine.Object;
 
 namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components
@@ -34,8 +32,6 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components
         public float CellTop;
 
         public float UnitCellTopOffset;
-
-        public Dictionary<float2, (float2 start, float2 end)> CenterMap;
 
         [Serializable]
         public struct AnimalsData
@@ -67,17 +63,6 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components
 
                 component.EdgeSize = component.Size / 3;
                 component.CenterSize = component.Size - 2 * component.EdgeSize;
-
-                int centerStart = component.EdgeSize;
-                int centerEnd = component.EdgeSize + component.CenterSize - 1;
-
-                component.CenterMap ??= new Dictionary<float2, (float2 start, float2 end)>
-                {
-                    { new float2(1, 0), (new float2(centerStart), new float2(centerEnd)) },
-                    { new float2(-1, 0), (new float2(centerEnd), new float2(centerStart)) },
-                    { new float2(0, 1), (new float2(centerStart), new float2(centerEnd)) },
-                    { new float2(0, -1), (new float2(centerEnd), new float2(centerStart)) }
-                };
 
                 component.Cells = new Cell[component.CellsCount];
 

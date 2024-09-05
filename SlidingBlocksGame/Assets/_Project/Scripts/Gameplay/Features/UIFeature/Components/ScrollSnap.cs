@@ -1,7 +1,6 @@
 ﻿using System;
 using DCFApixels.DragonECS;
 using PrimeTween;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace _Project.Scripts.Gameplay.Features.UIFeature.Components
@@ -21,6 +20,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Components
         public ScriptableEntityTemplate[] EffectsConfigs;
         public EcsGroup Effects;
         public Sequence OpenCloseTween;
+        public float LastScrollPosition;
         public readonly EcsLongsSpan SafeItems => Items.Longs;
 
         private sealed class Template : ComponentTemplate<ScrollSnap>

@@ -1,5 +1,6 @@
 ﻿using _Project.Scripts.Gameplay.Features.CollectFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
 using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using DCFApixels.DragonECS;
 using PrimeTween;
@@ -46,6 +47,11 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
             [Inc] public readonly EcsPool<Scores> Scores;
         }
 
+        private class GameCreatedAspect : EcsAspectAuto
+        {
+            [Inc] private readonly EcsTagPool<GameCreatedEvent> _gameCreatedEvents;
+        }
+
         public void Run()
         {
             foreach (int _ in _world.Where(out CoinCollectedAspect _))
@@ -70,6 +76,30 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                         aspect.Texts.Get(entity).Value.text = playerAspect.Scores.Get(player).Value.ToString();
 
                         Tween.PunchScale(aspect.RectTransforms.Read(entity).Value, new Vector3(0.5f, 0.5f), 0.2f);
+                    }
+                }
+            }
+
+            // primary
+            foreach (int _ in _world.Where(out GameCreatedAspect _))
+            {
+                foreach (int entity in _world.Where(out ScoreUIAspect aspect))
+                {
+                    foreach (int player in _world.Where(out PlayerAspect playerAspect))
+                    {
+                        aspect.Texts.Get(entity).Value.text = playerAspect.Scores.Get(player).Value.ToString();
+
+                        Tween.PunchScale(aspect.RectTransforms.Read(entity).Value, new Vector3(0.5f, 0.5f), 0.2f);
+                    }
+                }
+
+                foreach (int entity in _world.Where(out CoinUIAspect coinUIAspect))
+                {
+                    foreach (int player in _world.Where(out PlayerAspect playerAspect))
+                    {
+                        coinUIAspect.Texts.Get(entity).Value.text = playerAspect.Coins.Read(player).Value.ToString();
+
+                        Tween.PunchScale(coinUIAspect.RectTransforms.Read(entity).Value, new Vector3(0.5f, 0.5f), 0.2f);
                     }
                 }
             }

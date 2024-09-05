@@ -17,7 +17,7 @@ namespace YG.Example
                 $"\nPlayer - {YandexGame.playerName}" +
                 $"\nDevice - {YandexGame.EnvironmentData.deviceType}" +
                 $"\nLanguage - {YandexGame.EnvironmentData.language}" +
-                $"\nID Save - {YandexGame.savesData.idSave}";
+                $"\nID Save - {YandexGame.savesData.IDSave}";
 
             ShowText();
         }
@@ -33,7 +33,7 @@ namespace YG.Example
                 $"\nPlayer - {YandexGame.playerName}" +
                 $"\nDevice - {YandexGame.EnvironmentData.deviceType}" +
                 $"\nLanguage - {YandexGame.EnvironmentData.language}" +
-                $"\nID Save - {YandexGame.savesData.idSave}";
+                $"\nID Save - {YandexGame.savesData.IDSave}";
 
             ShowText();
         }

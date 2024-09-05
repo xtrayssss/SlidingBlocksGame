@@ -14,7 +14,7 @@ namespace YG.Example
 		private void Awake()
 		{
 			textObj = GetComponent<Text>();
-			SwitchLanguage(YandexGame.savesData.language);
+			SwitchLanguage(YandexGame.savesData.Language);
 		}
 
 		private void OnEnable() => YandexGame.SwitchLangEvent += SwitchLanguage;

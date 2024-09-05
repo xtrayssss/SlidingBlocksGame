@@ -27,15 +27,17 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature
 
                 // core
                 .AddUnique(new CreateGameSystem(_gameCfg))
-                .AddUnique(new GameScreenSystem())
-                .AddUnique(new CreateHUDSystem())
-                .AutoDelTag<CreateHUDRequest>()
-                .AutoDelTag<CreateControlsRequest>()
                 //
                 .AddUnique(new NextLevelSystem())
                 .AutoDelTag<NextLeveRequest>()
                 //
                 .AddUnique(new GameFlowSystem())
+                //
+                .AddUnique(new GameScreenSystem())
+                //
+                .AddUnique(new CreateHUDSystem())
+                .AutoDelTag<CreateHUDRequest>()
+                .AutoDelTag<CreateControlsRequest>()
                 //
                 .AddUnique(new GameLossTimerSystem())
                 .AutoDelTag<CreateGameLossTimerRequest>()
@@ -61,9 +63,8 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature
                 .AutoDelTag<CleanupLevelRequest>()
                 //             
                 .AddUnique(new CollectCoinSystem())
-                .AddUnique(new UpdatePlayerProgressSystem())
-                //
-                .AutoDelTag<GameCreatedEvent>();
+                .AddUnique(new UpdatePlayerProgressSystem());
+            //
         }
     }
 }

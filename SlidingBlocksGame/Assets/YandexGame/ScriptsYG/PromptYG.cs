@@ -45,7 +45,7 @@ namespace YG
 #if UNITY_EDITOR
             YandexGame.EnvironmentData.promptCanShow = true;
 #endif
-            if (YandexGame.savesData.promptDone)
+            if (YandexGame.savesData.PromptDone)
             {
                 if (notSupported) notSupported.SetActive(false);
                 if (done) done.SetActive(true);

@@ -6,50 +6,6 @@ using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 {
-    public class PurchaseAnimalSystem : IEcsRun
-    {
-        [EcsInject] private readonly EcsDefaultWorld _world;
-
-        private class ButtonClickedAspect : EcsAspectAuto
-        {
-            [Inc] public readonly EcsTagPool<UnlockButtonTag> UnlockButtonTag;
-            [Inc] public readonly EcsTagPool<ButtonClickedEvent> Clicked;
-        }
-
-        private class PlayerAspect : EcsAspectAuto
-        {
-            [IncImplicit(typeof(PlayerTag))]
-            [Inc] public readonly EcsPool<Coins> Coins;
-        }
-
-        private class PurchasesAspect : EcsAspectAuto
-        {
-            [IncImplicit(typeof(PurchaseAnimalTag))]
-            [IncImplicit(typeof(SnappedMarker))]
-            [Inc] public readonly EcsPool<PhysicView> PhysicViews;
-
-            [Inc] public readonly EcsPool<Purchase> Purchases;
-
-            [Opt] public readonly EcsTagPool<PurchasedMarker> Purchased;
-        }
-
-        public void Run()
-        {
-            foreach (int _ in _world.Where(out ButtonClickedAspect _))
-            {
-                foreach (int player in _world.Where(out PlayerAspect playerAspect))
-                {
-                    foreach (int purchase in _world.Where(out PurchasesAspect purchasesAspect))
-                    {
-                        playerAspect.Coins.Get(player).Value -= purchasesAspect.Purchases.Read(purchase).Price;
-
-                        purchasesAspect.Purchased.Add(purchase);
-                    }
-                }
-            }
-        }
-    }
-
     public class DisplayPurchaseStatusSystem : IEcsRun
     {
         [EcsInject] private readonly EcsDefaultWorld _world;
@@ -68,7 +24,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
         private class PlayerAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(PlayerTag))]
-            [Inc] public readonly EcsPool<Coins> Balances;
+            [Inc] public readonly EcsPool<Coins> Coins;
         }
 
         private class AnimalsShopWindowAspect : EcsAspectAuto
@@ -83,7 +39,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
             {
                 foreach (int player in _world.Where(out PlayerAspect playerAspect))
                 {
-                    ref readonly var coins = ref playerAspect.Balances.Get(player);
+                    ref readonly var coins = ref playerAspect.Coins.Get(player);
 
                     foreach (int window in _world.Where(out AnimalsShopWindowAspect animalsShopWindowAspect))
                     {

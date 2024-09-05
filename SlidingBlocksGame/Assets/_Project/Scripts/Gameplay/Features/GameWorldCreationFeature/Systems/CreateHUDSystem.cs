@@ -13,14 +13,16 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
         {
             [IncImplicit(typeof(CreateHUDRequest))]
             [Inc] public readonly EcsPool<HUDPrefab> HUDPrefabs;
+
             [Opt] public readonly EcsTagPool<CreateControlsRequest> CreateControls;
         }
 
-        private class BestUIAspect : EcsAspectAuto
+        private class ScoreUIAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(CreateControlsRequest))]
-            [Inc] public readonly EcsPool<BestUIConnect> BestUIConnects;
+            [Inc] public readonly EcsPool<ScoreUIConnect> ScoreUIConnects;
         }
+
         private class CoinUIAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(CreateControlsRequest))]
@@ -40,21 +42,21 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                 aspect.CreateControls.Add(hud.ID);
             }
 
-            foreach (int entity in _world.Where(out BestUIAspect aspect))
+            foreach (int entity in _world.Where(out ScoreUIAspect aspect))
             {
-                ref readonly BestUIConnect connect = ref aspect.BestUIConnects.Read(entity);
-                
+                ref readonly ScoreUIConnect connect = ref aspect.ScoreUIConnects.Read(entity);
+
                 entlong bestUI = _world.NewEntityLong();
-                
+
                 connect.Value.Connect(bestUI, applyTemplates: true);
             }
-            
+
             foreach (int entity in _world.Where(out CoinUIAspect aspect))
             {
                 ref readonly CoinUIConnect connect = ref aspect.CoinUIConnects.Read(entity);
-                
+
                 entlong coinUI = _world.NewEntityLong();
-                
+
                 connect.Value.Connect(coinUI, applyTemplates: true);
             }
         }

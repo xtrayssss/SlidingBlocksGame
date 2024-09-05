@@ -123,8 +123,8 @@ namespace YG
         public void _ResetSaveProgress()
         {
             Message("Reset Save Progress");
-            int idSave = savesData.idSave;
-            savesData = new SavesYG { idSave = idSave, isFirstSession = false };
+            int idSave = savesData.IDSave;
+            savesData = new SavesYG { IDSave = idSave, IsFirstSession = false };
 
             if (Time.unscaledTime < 0.5f)
             {
@@ -140,7 +140,7 @@ namespace YG
 
         public void _SaveProgress()
         {
-            savesData.idSave++;
+            savesData.IDSave++;
 #if !UNITY_EDITOR
                 if (!infoYG.saveCloud || (infoYG.saveCloud && infoYG.localSaveSync))
                 {
@@ -167,7 +167,7 @@ namespace YG
 #else
             LoadEditor();
 #endif
-            if (savesData.idSave > 0)
+            if (savesData.IDSave > 0)
                 GetDataInvoke();
         }
         public static void LoadProgress() => Instance._LoadProgress();
@@ -241,14 +241,14 @@ namespace YG
 
             if (cloudDataState == DataState.Exist && localDataState == DataState.Exist)
             {
-                if (cloudData.idSave >= localData.idSave)
+                if (cloudData.IDSave >= localData.IDSave)
                 {
-                    Message($"Load Cloud Complete! ID Cloud Save: {cloudData.idSave}, ID Local Save: {localData.idSave}");
+                    Message($"Load Cloud Complete! ID Cloud Save: {cloudData.IDSave}, ID Local Save: {localData.IDSave}");
                     savesData = cloudData;
                 }
                 else
                 {
-                    Message($"Load Local Complete! ID Cloud Save: {cloudData.idSave}, ID Local Save: {localData.idSave}");
+                    Message($"Load Local Complete! ID Cloud Save: {cloudData.IDSave}, ID Local Save: {localData.IDSave}");
                     savesData = localData;
                 }
             }

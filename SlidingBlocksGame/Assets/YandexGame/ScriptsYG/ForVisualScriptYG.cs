@@ -67,9 +67,9 @@ namespace YG
             payload = YandexGame.EnvironmentData.payload;
             promptCanShow = YandexGame.EnvironmentData.promptCanShow;
             reviewCanShow = YandexGame.EnvironmentData.reviewCanShow;
-            isFirstSession = YandexGame.savesData.isFirstSession;
-            languageSaves = YandexGame.savesData.language;
-            promptDone = YandexGame.savesData.promptDone;
+            isFirstSession = YandexGame.savesData.IsFirstSession;
+            languageSaves = YandexGame.savesData.Language;
+            promptDone = YandexGame.savesData.PromptDone;
 
             GetDataEvent.Invoke();
         }

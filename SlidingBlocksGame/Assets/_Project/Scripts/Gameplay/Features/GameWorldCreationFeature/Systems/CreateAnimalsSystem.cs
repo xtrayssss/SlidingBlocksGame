@@ -26,6 +26,8 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
         {
             [Opt] public readonly EcsPool<MovementDirection> Direction;
             [Opt] public readonly EcsPool<ActiveGameField> ActiveGameField;
+            [Opt] public readonly EcsPool<BoundExtents> BoundsExtents;
+            [Opt] public readonly EcsPool<MeshRendererRef> MeshRenderers;
         }
 
         public void Run()
@@ -60,6 +62,9 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                     animalAspect.Direction.Add(animal.ID).Value = animalData.InvertedSide;
 
                     animalAspect.ActiveGameField.Add(animal.ID).Value = entity.ToEntityLong(_world);
+
+                    animalAspect.BoundsExtents.Add(animal.ID).Value =
+                        animalAspect.MeshRenderers.Read(animal.ID).Value.bounds.extents;
                 }
             }
         }

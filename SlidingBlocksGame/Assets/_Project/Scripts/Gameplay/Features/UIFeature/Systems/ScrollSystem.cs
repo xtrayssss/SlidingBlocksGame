@@ -17,6 +17,8 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
             [Inc] public readonly EcsPool<ScrollSnap> ScrollSnaps;
             [Opt] public readonly EcsTagPool<ScrollSnappedEvent> ScrollSnappedEvent;
             [Opt] public readonly EcsTagPool<ScrollStartedEvent> ScrollStartedEvent;
+            [Opt] public readonly EcsTagPool<SnappedMarker> ScrollSnappedMarker;
+            [Opt] public readonly EcsTagPool<ScrollStartedMarker> ScrollStartedMarker;
             [Opt] public readonly EcsTagPool<ApplyEffectsMarker> ApplyEffects;
         }
 
@@ -26,7 +28,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
             [Inc] public readonly EcsPool<ScrollSnap> ScrollSnaps;
         }
 
-        private class ScrollStateAspect : EcsAspectAuto
+        private class ScrollStartStateAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(ScrollStartedEvent))]
             [Inc] public readonly EcsPool<ScrollSnap> ScrollSnaps;
@@ -138,10 +140,25 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                 UpdateNearest(ref scrollSnap);
 
                 if (Input.GetMouseButtonDown(0))
-                    aspect.ScrollStartedEvent.Add(entity);
+                    scrollSnap.LastScrollPosition = scrollSnap.Position;
 
-                if (Input.GetMouseButtonUp(0))
+                if (Input.GetMouseButton(0) && Math.Abs(scrollSnap.Position - scrollSnap.LastScrollPosition) > 0.01f &&
+                    !aspect.ScrollStartedMarker.Has(entity))
+                {
+                    Debug.Log("scroll started");
+                    aspect.ScrollStartedEvent.Add(entity);
+                    aspect.ScrollStartedMarker.Add(entity);
+
+                    aspect.ScrollSnappedMarker.Del(entity);
+                }
+
+                if (Input.GetMouseButtonUp(0) && !aspect.ScrollSnappedMarker.Has(entity))
+                {
                     aspect.ScrollSnappedEvent.Add(entity);
+                    aspect.ScrollSnappedMarker.Add(entity);
+                    
+                    aspect.ScrollStartedMarker.TryDel(entity);
+                }
 
                 if (aspect.ApplyEffects.Has(entity))
                 {
@@ -214,7 +231,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                 _world.GetPool<DeleteEntityCommand>().Add(entity);
             }
 
-            foreach (int entity in _world.Where(out ScrollStateAspect aspect))
+            foreach (int entity in _world.Where(out ScrollStartStateAspect aspect))
             {
                 ref ScrollSnap scrollSnap = ref aspect.ScrollSnaps.Get(entity);
 

@@ -77,7 +77,7 @@ namespace YG
 
         public static void SwitchLanguage(string language)
         {
-            savesData.language = language;
+            savesData.Language = language;
             lang = language;
             SwitchLangEvent?.Invoke(language);
             SaveKeyLang();
@@ -280,7 +280,7 @@ namespace YG
             else if (_lang == "ru" && !infoYG.languages.ru)
                 _lang = "en";
 
-            savesData.language = _lang;
+            savesData.Language = _lang;
             lang = _lang;
 
             if (SDKEnabled)

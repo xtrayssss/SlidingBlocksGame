@@ -11,8 +11,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
         private class GameAspect : EcsAspectAuto
         {
-            [Inc] public readonly EcsPool<PlayerCfgRef> PlayerCfg;
-
+            [Opt] public readonly EcsPool<PlayerCfgRef> PlayerCfg;
             [Opt] public readonly EcsTagPool<GameCreatedEvent> GameCreatedEvent;
         }
 
@@ -27,7 +26,11 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
             gameAspect.GameCreatedEvent.Add(game);
 
-            _world.NewEntity(gameAspect.PlayerCfg.Read(game).Value);
+            if (gameAspect.PlayerCfg.Has(game))
+                CreatePlayer(gameAspect, game);
         }
+
+        private void CreatePlayer(GameAspect gameAspect, int game) => 
+            _world.NewEntity(gameAspect.PlayerCfg.Read(game).Value);
     }
 }

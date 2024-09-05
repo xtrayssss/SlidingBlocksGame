@@ -93,6 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4686069103857726}
   - component: {fileID: 5735182481968669607}
+  - component: {fileID: 9198549827220880775}
   m_Layer: 0
   m_Name: Coin
   m_TagString: Untagged
@@ -131,4 +132,28 @@ MonoBehaviour:
   _deleteEntiityWithDestroy: 0
   _scriptableTemplates:
   - {fileID: 11400000, guid: 722ec03693b5ff241bf95f4302768b63, type: 2}
-  _monoTemplates: []
+  _monoTemplates:
+  - {fileID: 9198549827220880775}
+--- !u!114 &9198549827220880775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1994167017423174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 351338ca92ace49499f450172d857af6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _components:
+  - rid: 6454805130946282389
+  references:
+    version: 2
+    RefIds:
+    - rid: 6454805130946282389
+      type: {class: MeshRendererRef/Template, ns: _Project.Scripts.Gameplay.Features.CommonFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: {fileID: 23180863190121152}
