@@ -1693,6 +1693,7 @@ MonoBehaviour:
   - rid: 8499802837155577865
   - rid: 8499802837155577869
   - rid: 6454805156365861479
+  - rid: 6454805176898027520
   references:
     version: 2
     RefIds:
@@ -1702,6 +1703,12 @@ MonoBehaviour:
       data:
         component:
           Value: {fileID: 5550420860957629806}
+    - rid: 6454805176898027520
+      type: {class: GameTitleConnect/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: {fileID: 5219951114190502930}
     - rid: 8499802477987889216
       type: {class: SettingsMenuView/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
         asm: Assembly-CSharp}
@@ -10253,6 +10260,8 @@ GameObject:
   - component: {fileID: 4740099195960992524}
   - component: {fileID: 4166954164924885550}
   - component: {fileID: 7647358206888065530}
+  - component: {fileID: 5219951114190502930}
+  - component: {fileID: 825396892601817826}
   m_Layer: 5
   m_Name: GameNameTitle
   m_TagString: Untagged
@@ -10377,6 +10386,50 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &5219951114190502930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8971274280870935796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 495156623a7b1e94087f916ba42745e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _deleteEntiityWithDestroy: 0
+  _scriptableTemplates: []
+  _monoTemplates:
+  - {fileID: 825396892601817826}
+--- !u!114 &825396892601817826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8971274280870935796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 351338ca92ace49499f450172d857af6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _components:
+  - rid: 6454805176898027522
+  - rid: 6454805176898027937
+  references:
+    version: 2
+    RefIds:
+    - rid: 6454805176898027522
+      type: {class: GameTitleTag/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.Components,
+        asm: Assembly-CSharp}
+      data: {}
+    - rid: 6454805176898027937
+      type: {class: RectTransformRef/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: {fileID: 4740099195960992524}
 --- !u!1 &9059218015429973085
 GameObject:
   m_ObjectHideFlags: 0

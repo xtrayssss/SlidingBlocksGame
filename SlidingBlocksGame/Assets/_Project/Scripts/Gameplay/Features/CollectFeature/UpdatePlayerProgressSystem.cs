@@ -135,13 +135,14 @@ namespace _Project.Scripts.Gameplay.Features.CollectFeature
                     foreach (int player in _world.Where(out PlayerAspect playerAspect))
                     {
                         ref Coins playerCoins = ref playerAspect.Coins.Get(player);
-                        
+
                         YandexGame.savesData.RewardCollectedAt = YandexGame.ServerTime();
 
-                        int rewardCoins = (int)aspect.CoinsProgressionCurves.Read(reward).Value.Evaluate(YandexGame.savesData.RewardCount);
+                        int rewardCoins = (int)aspect.CoinsProgressionCurves.Read(reward).Value
+                            .Evaluate(YandexGame.savesData.RewardCount);
 
                         playerCoins.Value += rewardCoins;
-                        
+
                         YandexGame.savesData.RewardCount++;
 
                         YandexGame.savesData.Coins = playerCoins.Value;

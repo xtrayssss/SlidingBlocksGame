@@ -1,10 +1,9 @@
-﻿using System.Globalization;
-using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
 using _Project.Scripts.Gameplay.Features.UIFeature.Components;
+using _Project.Scripts.Gameplay.Features.VisualFeature.Components;
 using DCFApixels.DragonECS;
-using Object = System.Object;
 
 namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 {
@@ -30,6 +29,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
         {
             [IncImplicit(typeof(GameCreatedEvent))]
             [Opt] public readonly EcsTagPool<CreateHUDRequest> CreateHud;
+            [Opt] public readonly EcsTagPool<CreateGameScreenRequest> CreateGameScreen;
         }
 
         private class LevelCreationStateAspect : EcsAspectAuto
@@ -72,7 +72,10 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
         public void Run()
         {
             foreach (int game in _world.Where(out GameCreatedAspect aspect))
+            {
                 aspect.CreateHud.Add(game);
+                aspect.CreateGameScreen.Add(game);
+            }
 
             foreach (int _ in _world.Where(out PlayButtonClickedAspect _))
             {

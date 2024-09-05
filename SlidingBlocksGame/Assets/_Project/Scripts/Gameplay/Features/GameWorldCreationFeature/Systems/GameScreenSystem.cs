@@ -5,6 +5,7 @@ using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
 using _Project.Scripts.Gameplay.Features.ScrollFeature;
 using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.UIFeature.Systems;
+using _Project.Scripts.Gameplay.Features.VisualFeature.Components;
 using DCFApixels.DragonECS;
 using TMPro;
 using UnityEngine;
@@ -20,7 +21,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
         private class Aspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(GameCreatedEvent))]
+            [IncImplicit(typeof(CreateGameScreenRequest))]
             [Inc] public readonly EcsPool<GameScreenPrefab> GameScreenPrefabs;
 
             [Opt] public readonly EcsPool<GameScreen> GameScreen;
@@ -31,10 +32,17 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
             [Inc] public readonly EcsPool<AnimalPrefabs> AnimalPrefabs;
         }
 
+        private class GameScreenAspect : EcsAspectAuto
+        {
+            [Opt] public readonly EcsTagPool<WobbleRequest> Wobble;
+        }
+
         public void Run()
         {
             foreach (int entity in _world.Where(out Aspect gameAspect))
             {
+                GameScreenAspect gameScreenAspect = _world.GetAspect<GameScreenAspect>();
+                
                 entlong gameScreen = _world.NewEntityLong();
 
                 EcsEntityConnect connect = Object.Instantiate(gameAspect.GameScreenPrefabs.Read(entity).Value);
@@ -46,7 +54,20 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                 CreateInAppPurchases(connect);
                 CreateAnimalsPurchaseWindow(connect);
                 CreateReward(connect);
+                CreateGameTitle(connect, gameScreenAspect);
             }
+        }
+
+        private void CreateGameTitle(EcsEntityConnect connect, GameScreenAspect gameScreenAspect)
+        {
+            entlong screen = connect.Entity;
+
+            entlong title = _world.NewEntityLong();
+            
+            _world.GetPool<GameTitleConnect>().Get(screen.ID).Value
+                .Connect(title, applyTemplates: true);
+            
+            gameScreenAspect.Wobble.Add(title.ID);
         }
 
         private void CreateReward(EcsEntityConnect connect)

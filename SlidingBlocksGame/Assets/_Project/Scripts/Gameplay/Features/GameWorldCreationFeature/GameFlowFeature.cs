@@ -34,6 +34,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature
                 .AddUnique(new GameFlowSystem())
                 //
                 .AddUnique(new GameScreenSystem())
+                .AutoDelTag<CreateGameScreenRequest>()
                 //
                 .AddUnique(new CreateHUDSystem())
                 .AutoDelTag<CreateHUDRequest>()

@@ -1,4 +1,5 @@
-﻿using _Project.Scripts.Gameplay.Features.UIFeature.Components;
+﻿using _Project.Scripts.Gameplay.Features.CollectFeature;
+using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.UIFeature.Systems;
 using _Project.Scripts.Gameplay.Features.VisualFeature.Components;
 using _Project.Scripts.Gameplay.Features.VisualFeature.Systems;
@@ -42,6 +43,8 @@ namespace _Project.Scripts.Gameplay.Features.VisualFeature
                     .AddUnique(new TutorialSystem())
                     .AddUnique(new DisplayRewardSystem())
                     .AddUnique(new CanRewardSystem())
+                    .AddUnique(new WobbleSystem())
+                    .AutoDelTag<WobbleRequest>()
                     .AutoDelTag<ScrollStartedEvent>()
                     .AutoDelTag<ScrollSnappedEvent>();
             }
