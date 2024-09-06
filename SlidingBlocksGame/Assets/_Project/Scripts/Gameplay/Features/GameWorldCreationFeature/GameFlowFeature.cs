@@ -65,7 +65,6 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature
                 //             
                 .AddUnique(new CollectCoinSystem())
                 .AddUnique(new UpdatePlayerProgressSystem());
-            //
         }
     }
 }

@@ -35,6 +35,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
         private class GameScreenAspect : EcsAspectAuto
         {
             [Opt] public readonly EcsTagPool<WobbleRequest> Wobble;
+            [Inc] public readonly EcsPool<CanvasRef> Canvases;
         }
 
         public void Run()
@@ -42,7 +43,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
             foreach (int entity in _world.Where(out Aspect gameAspect))
             {
                 GameScreenAspect gameScreenAspect = _world.GetAspect<GameScreenAspect>();
-                
+
                 entlong gameScreen = _world.NewEntityLong();
 
                 EcsEntityConnect connect = Object.Instantiate(gameAspect.GameScreenPrefabs.Read(entity).Value);
@@ -50,6 +51,10 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                 connect.Connect(gameScreen, applyTemplates: true);
 
                 gameAspect.GameScreen.Add(entity).Value = gameScreen;
+
+                Camera uiCamera = GameObject.FindGameObjectWithTag("UICamera").GetComponent<Camera>();
+
+                gameScreenAspect.Canvases.Get(gameScreen.ID).Value.worldCamera = uiCamera;
 
                 CreateInAppPurchases(connect);
                 CreateAnimalsPurchaseWindow(connect);
@@ -63,10 +68,10 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
             entlong screen = connect.Entity;
 
             entlong title = _world.NewEntityLong();
-            
+
             _world.GetPool<GameTitleConnect>().Get(screen.ID).Value
                 .Connect(title, applyTemplates: true);
-            
+
             gameScreenAspect.Wobble.Add(title.ID);
         }
 
@@ -77,6 +82,25 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
             entlong reward = _world.NewEntityLong();
 
             _world.GetPool<RewardConnect>().Get(screen.ID).Value.Connect(reward, applyTemplates: true);
+
+            // create reward window
+            entlong rewardWindow = _world.NewEntityLong();
+
+            ref RewardWindowConnect rewardWindowConnect = ref _world.GetPool<RewardWindowConnect>().Get(reward.ID);
+
+            rewardWindowConnect.Value.Connect(rewardWindow, applyTemplates: true);
+
+            // create coins reward
+            _world.GetPool<CoinsRewardConnect>().Get(rewardWindow.ID).Value
+                .Connect(_world.NewEntityLong(), applyTemplates: true);
+
+            // congratulation
+            _world.GetPool<CongratulationConnect>().Get(rewardWindow.ID).Value
+                .Connect(_world.NewEntityLong(), applyTemplates: true);
+            
+            // tap to exit
+            _world.GetPool<TapToExitConnect>().Get(rewardWindow.ID).Value
+                .Connect(_world.NewEntityLong(), applyTemplates: true);
         }
 
         private void CreateAnimalsPurchaseWindow(EcsEntityConnect connect)
