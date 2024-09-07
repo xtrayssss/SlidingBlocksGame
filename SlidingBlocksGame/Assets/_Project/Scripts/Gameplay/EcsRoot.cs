@@ -14,7 +14,9 @@ using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.VisualFeature;
 using _Project.Scripts.Gameplay.Utils;
 using DCFApixels.DragonECS;
+using PrimeTween;
 using Sirenix.OdinInspector;
+using Unity.Mathematics;
 using UnityEngine;
 using YG;
 
@@ -34,6 +36,9 @@ namespace _Project.Scripts.Gameplay
                 .AddUnique(new TickAudioRequestSystem(audioUtils))
                 .AddUnique(new GameFieldAudioRequestSystem(audioUtils))
                 .AddUnique(new CollectedAudioSystem(audioUtils))
+                .AddUnique(new ConfettiExplodedAudioSystem(audioUtils))
+                .AddUnique(new RewardCollectedAudioSystem(audioUtils))
+                .AddUnique(new CoinAddedToTextAudioSystem(audioUtils))
                 .AddUnique(new PlayAudioSystem())
                 .AutoDelTag<PlayAudioRequest>();
         }
@@ -66,6 +71,11 @@ namespace _Project.Scripts.Gameplay
             YandexGame.SaveProgress();
         }
 
+        [Button]
+        private void Rotate(GameObject go)
+        {
+        }
+
         public void Start()
         {
             EcsDefaultWorldSingletonProvider provider = EcsDefaultWorldSingletonProvider.Instance;
@@ -80,8 +90,8 @@ namespace _Project.Scripts.Gameplay
                 .AddModule(new GameFieldFeature(coroutineRunner: this))
                 .AddModule(new MovementFeature())
                 .AddModule(new DestructionFeature())
-                .AddModule(new VisualFeature())
                 .AddModule(new AudioFeature())
+                .AddModule(new VisualFeature())
                 .AddModule(new CooldownFeature())
 
                 // 

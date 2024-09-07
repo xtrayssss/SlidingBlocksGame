@@ -29,13 +29,7 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
 
                 ref Levels levels = ref aspect.Levels.Get(entity);
 
-                ScriptableEntityTemplate[] levelsPack = GetLevelsPack(in levels);
-
-                if (levels.LevelIndex >= levelsPack.Length)
-                {
-                    levels.LevelIndex = 0;
-                    levels.PackIndex++;
-                }
+                ScriptableEntityTemplate[] levelsPack = GetLevelsPack(ref levels);
 
                 ScriptableEntityTemplate nextLevelCfg = levelsPack[levels.LevelIndex];
 
@@ -51,7 +45,26 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
             }
         }
 
-        private ScriptableEntityTemplate[] GetLevelsPack(in Levels levels) =>
-            levels.Value[levels.PackIndex].Levels;
+        private ScriptableEntityTemplate[] GetLevelsPack(ref Levels levels)
+        {
+            ScriptableEntityTemplate[] levelsPack = levels.Value[levels.PackIndex].Levels;
+
+            if (levels.LevelIndex >= levelsPack.Length)
+            {
+                levels.PackIndex++;
+                levels.LevelIndex = 0;
+
+                if (levels.PackIndex >= levels.Value.Length)
+                {
+                    levels.PackIndex = 0;
+
+                    return levels.Value[levels.PackIndex].Levels;
+                }
+
+                levelsPack = levels.Value[levels.PackIndex].Levels;
+            }
+
+            return levelsPack;
+        }
     }
 }

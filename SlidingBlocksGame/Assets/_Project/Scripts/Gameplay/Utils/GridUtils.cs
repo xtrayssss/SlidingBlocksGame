@@ -46,10 +46,10 @@ namespace _Project.Scripts.Gameplay.Utils
 
     public static class GridUtils
     {
-        private static readonly int2 Up = new int2(0, 1);
-        private static readonly int2 Down = new int2(0, -1);
-        private static readonly int2 Left = new int2(-1, 0);
-        private static readonly int2 Right = new int2(1, 0);
+        public static readonly int2 Up = new int2(0, 1);
+        public static readonly int2 Down = new int2(0, -1);
+        public static readonly int2 Left = new int2(-1, 0);
+        public static readonly int2 Right = new int2(1, 0);
 
         public static bool IsWithinCenter(float2 position, in GameField gameField)
         {
@@ -60,7 +60,7 @@ namespace _Project.Scripts.Gameplay.Utils
         }
 
         public static int2 GetCenter(in GameField gameField) =>
-            new int2(gameField.EdgeSize, gameField.CenterSize + gameField.EdgeSize);
+            new int2(gameField.EdgeSize, gameField.CenterSize + gameField.EdgeSize - 1);
 
         public static int2 GetInvertedSide(float2 position, in GameField gameField)
         {

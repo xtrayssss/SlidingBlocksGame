@@ -363,7 +363,7 @@ Canvas:
   m_GameObject: {fileID: 6012230607085623854}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -449,6 +449,7 @@ MonoBehaviour:
   - rid: 8499802702287471248
   - rid: 6454805113458655404
   - rid: 6454805130946281472
+  - rid: 6454805221806178313
   references:
     version: 2
     RefIds:
@@ -464,6 +465,12 @@ MonoBehaviour:
       data:
         component:
           Value: {fileID: 3878361284543174929}
+    - rid: 6454805221806178313
+      type: {class: CanvasRef/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: {fileID: 4438284065641242337}
     - rid: 8499802702287471248
       type: {class: GameLossTimerConnect/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
         asm: Assembly-CSharp}

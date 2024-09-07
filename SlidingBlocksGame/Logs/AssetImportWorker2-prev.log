@@ -1,0 +1,1012 @@
+Using pre-set license
+Built from '2022.3/staging' branch; Version is '2022.3.42f1 (2dcb6a0abc42) revision 3001194'; Using compiler version '192829333'; Build Type 'Release'
+OS: 'Windows 10  (10.0.19044) 64bit Professional' Language: 'ru' Physical Memory: 7561 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
+
+COMMAND LINE ARGUMENTS:
+D:\games\Unity\Unity Files (Dont Touch)\2021.3.9f1\2022.3.42f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker2
+-projectPath
+D:/games/SlidingCubesGame/SlidingBlocksGame
+-logFile
+Logs/AssetImportWorker2.log
+-srvPort
+54646
+Successfully changed project path to: D:/games/SlidingCubesGame/SlidingBlocksGame
+D:/games/SlidingCubesGame/SlidingBlocksGame
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Player connection [5788]  Target information:
+
+Player connection [5788]  * "[IP] 192.168.0.103 [Port] 0 [Flags] 2 [Guid] 3822238518 [EditorId] 3822238518 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-J7U7MAN) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [5788] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [5788] Host joined alternative multi-casting on [225.0.0.222:34997]...
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+Refreshing native plugins compatible for Editor in 48.91 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2022.3.42f1 (2dcb6a0abc42)
+[Subsystems] Discovering subsystems at path D:/games/Unity/Unity Files (Dont Touch)/2021.3.9f1/2022.3.42f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path D:/games/SlidingCubesGame/SlidingBlocksGame/Assets
+GfxDevice: creating device client; threaded=0; jobified=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: AMD Radeon (TM) Graphics (ID=0x15e7)
+    Vendor:   ATI
+    VRAM:     3780 MB
+    Driver:   31.0.12018.5
+Initialize mono
+Mono path[0] = 'D:/games/Unity/Unity Files (Dont Touch)/2021.3.9f1/2022.3.42f1/Editor/Data/Managed'
+Mono path[1] = 'D:/games/Unity/Unity Files (Dont Touch)/2021.3.9f1/2022.3.42f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'D:/games/Unity/Unity Files (Dont Touch)/2021.3.9f1/2022.3.42f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56408
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: D:/games/Unity/Unity Files (Dont Touch)/2021.3.9f1/2022.3.42f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: D:/games/Unity/Unity Files (Dont Touch)/2021.3.9f1/2022.3.42f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
+Register platform support module: D:/games/Unity/Unity Files (Dont Touch)/2021.3.9f1/2022.3.42f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.009383 seconds.
+- Loaded All Assemblies, in  0.426 seconds
+Native extension for WindowsStandalone target not found
+Native extension for Android target not found
+Android Extension - Scanning For ADB Devices 263 ms
+Native extension for WebGL target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.600 seconds
+Domain Reload Profiling: 1026ms
+	BeginReloadAssembly (180ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (0ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (1ms)
+	RebuildCommonClasses (37ms)
+	RebuildNativeTypeToScriptingClass (9ms)
+	initialDomainReloadingComplete (57ms)
+	LoadAllAssembliesAndSetupDomain (142ms)
+		LoadAssemblies (180ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (140ms)
+			TypeCache.Refresh (138ms)
+				TypeCache.ScanAssembly (126ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (0ms)
+	FinalizeReload (601ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (554ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (375ms)
+			SetLoadedEditorAssemblies (3ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (2ms)
+			ProcessInitializeOnLoadAttributes (126ms)
+			ProcessInitializeOnLoadMethodAttributes (48ms)
+			AfterProcessingInitializeOnLoad (0ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (0ms)
+========================================================================
+Worker process is ready to serve import requests
+Caller must complete domain reload
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  1.335 seconds
+Native extension for WindowsStandalone target not found
+Native extension for Android target not found
+Native extension for WebGL target not found
+Package Manager log level set to [2]
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.04 seconds
+Mono: successfully reloaded assembly
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+- Finished resetting the current domain, in  1.155 seconds
+Domain Reload Profiling: 2521ms
+	BeginReloadAssembly (217ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (6ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (30ms)
+	RebuildCommonClasses (33ms)
+	RebuildNativeTypeToScriptingClass (10ms)
+	initialDomainReloadingComplete (49ms)
+	LoadAllAssembliesAndSetupDomain (1056ms)
+		LoadAssemblies (658ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (507ms)
+			TypeCache.Refresh (452ms)
+				TypeCache.ScanAssembly (392ms)
+			ScanForSourceGeneratedMonoScriptInfo (41ms)
+			ResolveRequiredComponents (12ms)
+	FinalizeReload (1155ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (893ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (27ms)
+			SetLoadedEditorAssemblies (5ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (68ms)
+			ProcessInitializeOnLoadAttributes (436ms)
+			ProcessInitializeOnLoadMethodAttributes (354ms)
+			AfterProcessingInitializeOnLoad (3ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (5ms)
+database is locked
+Failed to delete database file Library/ShaderCache.db
+Refreshing native plugins compatible for Editor in 18.93 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 4404 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 37 unused Assets / (94.6 KB). Loaded Objects now: 4955.
+Memory consumption went from 177.9 MB to 177.8 MB.
+Total: 43.687700 ms (FindLiveObjects: 3.690200 ms CreateObjectMapping: 0.465900 ms MarkObjects: 32.527600 ms  DeleteObjects: 7.001200 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 9a22284fe3817be447336de3de66b15e -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 38224.860900 seconds.
+  path: Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_menu_button_scroll_11.wav
+  artifactKey: Guid(05a0f41cac323304da58fc9ff6b6915f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_menu_button_scroll_11.wav using Guid(05a0f41cac323304da58fc9ff6b6915f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'bcecb80b05713a26e358e6c9fc65d895') in 0.150170 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000056 seconds.
+  path: Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_menu_button_confirm_03.wav
+  artifactKey: Guid(294330f4eb0b53e4ea51234f448c2de0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_menu_button_confirm_03.wav using Guid(294330f4eb0b53e4ea51234f448c2de0) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '7c676acc020e90f27c54dcef1aa66566') in 0.012899 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_menu_button_beep_24.wav
+  artifactKey: Guid(5969bc2f609c12540839bdfd7b98e566) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_menu_button_beep_24.wav using Guid(5969bc2f609c12540839bdfd7b98e566) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '4b1be93c8300b04e6214361fcbba4d16') in 0.014029 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_menu_button_beep_02.wav
+  artifactKey: Guid(532c5dfc2b2143c48b160bd9142d365b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_menu_button_beep_02.wav using Guid(532c5dfc2b2143c48b160bd9142d365b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '6df81291bd5165623b455462f8834421') in 0.016527 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.382623 seconds.
+  path: Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_menu_button_scroll_13.wav
+  artifactKey: Guid(881065d40c9fb614384bf4d232d98d4b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_menu_button_scroll_13.wav using Guid(881065d40c9fb614384bf4d232d98d4b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '635433929331e3a6c3e6b841171e3c33') in 0.006460 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.799938 seconds.
+  path: Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_menu_button_scroll_12.wav
+  artifactKey: Guid(8cbfc5c8131c0a14d869f30d5b81254c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_menu_button_scroll_12.wav using Guid(8cbfc5c8131c0a14d869f30d5b81254c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '6c2b30d43795bd46cbc055aee98be3a1') in 0.011375 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 2.622265 seconds.
+  path: Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_menu_button_scroll_10.wav
+  artifactKey: Guid(b46f024256478c3439642f7b45912ac3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_menu_button_scroll_10.wav using Guid(b46f024256478c3439642f7b45912ac3) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '09f0813b4619a422e319660eacbbeb3d') in 0.006598 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.633512 seconds.
+  path: Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_menu_button_scroll_09.wav
+  artifactKey: Guid(1050caefdc730b2449eaf0ccb91bc653) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_menu_button_scroll_09.wav using Guid(1050caefdc730b2449eaf0ccb91bc653) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'ba1fd387c593f4dab579ce729d97264b') in 0.009893 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 1.523953 seconds.
+  path: Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_menu_button_scroll_08.wav
+  artifactKey: Guid(931b251f86c169547805607046cd5d58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_menu_button_scroll_08.wav using Guid(931b251f86c169547805607046cd5d58) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'f9f916282bdc0272d1a533745a54a9e3') in 0.008495 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.722391 seconds.
+  path: Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_menu_button_scroll_07.wav
+  artifactKey: Guid(5d133f74eb487f9448f11e959ce78983) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_menu_button_scroll_07.wav using Guid(5d133f74eb487f9448f11e959ce78983) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '9d92776a071f71327ab47521ea0bc679') in 0.007138 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.614796 seconds.
+  path: Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_menu_button_scroll_06.wav
+  artifactKey: Guid(a982c6ee7a4d20b4e919c5ebded53cc4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_menu_button_scroll_06.wav using Guid(a982c6ee7a4d20b4e919c5ebded53cc4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'b9e4e0ef78d3705f263faa0b47d10c3b') in 0.007656 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.833142 seconds.
+  path: Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_menu_button_scroll_05.wav
+  artifactKey: Guid(8ef658e2b6bdd3f4d89c8888bb56a5f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_menu_button_scroll_05.wav using Guid(8ef658e2b6bdd3f4d89c8888bb56a5f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '23788be1709534d852b77bc16421c61b') in 0.007146 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.802696 seconds.
+  path: Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_menu_button_scroll_04.wav
+  artifactKey: Guid(3c94096969bccf1449d8587c171c8760) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_menu_button_scroll_04.wav using Guid(3c94096969bccf1449d8587c171c8760) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '1bed7b6f1dd9776b9b624639511fd74e') in 0.008630 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.591636 seconds.
+  path: Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_menu_button_scroll_03.wav
+  artifactKey: Guid(4f43e141e69f00b458c891b2b96222fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_menu_button_scroll_03.wav using Guid(4f43e141e69f00b458c891b2b96222fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '00d52ab670a693717f27c3685cadc2d5') in 0.007693 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.680266 seconds.
+  path: Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_menu_button_scroll_02.wav
+  artifactKey: Guid(3e475e76bf594c24b9b5261369fc3e19) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_menu_button_scroll_02.wav using Guid(3e475e76bf594c24b9b5261369fc3e19) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '1dd906683c79b227511a7ccafd5d6d50') in 0.009014 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.347997 seconds.
+  path: Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_menu_button_scroll_01.wav
+  artifactKey: Guid(adbae0fe2eade9e43bcb465f16aa681f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_menu_button_scroll_01.wav using Guid(adbae0fe2eade9e43bcb465f16aa681f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '73b18cc23598923e66e6a01431395c15') in 0.007492 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 1.862370 seconds.
+  path: Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_menu_button_scroll_whoosh_01.wav
+  artifactKey: Guid(f18dac5531f9894408300faa39b2c02b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_menu_button_scroll_whoosh_01.wav using Guid(f18dac5531f9894408300faa39b2c02b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '11fb6a5c12c747b11c38970b7053af4a') in 0.005850 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.508249 seconds.
+  path: Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_menu_button_scroll_page_05.wav
+  artifactKey: Guid(7a77bfc136cdbb04a8654724d670f077) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_menu_button_scroll_page_05.wav using Guid(7a77bfc136cdbb04a8654724d670f077) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '62a827473c8c83854ea3595620f09204') in 0.006143 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.567575 seconds.
+  path: Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_menu_button_scroll_page_02.wav
+  artifactKey: Guid(b5b5eae8e8a0c8841a1d7154010e7dd7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_menu_button_scroll_page_02.wav using Guid(b5b5eae8e8a0c8841a1d7154010e7dd7) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'e834769b425145f800851275234736df') in 0.005693 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.641893 seconds.
+  path: Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_menu_button_scroll_page_01.wav
+  artifactKey: Guid(2c44fea0f793f824cb615481921254a1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_menu_button_scroll_page_01.wav using Guid(2c44fea0f793f824cb615481921254a1) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '91d6eaf20eaf5d6812c36dc7c6012b0a') in 0.006176 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.624120 seconds.
+  path: Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_menu_button_scroll_page_04.wav
+  artifactKey: Guid(e680d63a28214e346ae451aa077b10dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_menu_button_scroll_page_04.wav using Guid(e680d63a28214e346ae451aa077b10dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'f53e47318dbf9742c1b7b2191491e6d7') in 0.007151 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 2.923008 seconds.
+  path: Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_menu_popup_message_reward_01.wav
+  artifactKey: Guid(8db61ce7e74fe694dbd2e2b038e0001d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_menu_popup_message_reward_01.wav using Guid(8db61ce7e74fe694dbd2e2b038e0001d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '271937b5cb9a0b2a7168916dccbf8260') in 0.008581 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 1.453169 seconds.
+  path: Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_menu_popup_message_07.wav
+  artifactKey: Guid(f762dd5704ef22a4fbe1b96c6578727e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_menu_popup_message_07.wav using Guid(f762dd5704ef22a4fbe1b96c6578727e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'd929f2b166a6a72cd39955463e8f1b29') in 0.008756 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 1.664457 seconds.
+  path: Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_menu_popup_message_06.wav
+  artifactKey: Guid(23f7eb65d1346804085a258879cb7bd2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_menu_popup_message_06.wav using Guid(23f7eb65d1346804085a258879cb7bd2) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '9be26202c8edf2d336ce659d11e34c66') in 0.007863 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 1.460630 seconds.
+  path: Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_menu_popup_message_05.wav
+  artifactKey: Guid(5257f78fadd2ad5449a424dd9497682e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_menu_popup_message_05.wav using Guid(5257f78fadd2ad5449a424dd9497682e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '0a868e5a6ee5844a7c580cffbda6fdbd') in 0.008460 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 2.976074 seconds.
+  path: Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_menu_scan_01.wav
+  artifactKey: Guid(7d7126575e66fec44a1138607b1d3708) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_menu_scan_01.wav using Guid(7d7126575e66fec44a1138607b1d3708) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'f526c2ea16626dd41f56bd1bd04bac96') in 0.008847 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 1.101990 seconds.
+  path: Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_text_appear_scroll_effect_01.wav
+  artifactKey: Guid(609eebc3800f84f4bbc9e98c550a6f4d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_text_appear_scroll_effect_01.wav using Guid(609eebc3800f84f4bbc9e98c550a6f4d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '1342569def3aa36c942288a295cc2700') in 0.010023 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.539559 seconds.
+  path: Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_text_type_epic_effect_01.wav
+  artifactKey: Guid(05fbfa30795e241428b71a17fc16e3c4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_text_type_epic_effect_01.wav using Guid(05fbfa30795e241428b71a17fc16e3c4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '0408c44a3d54825c95e0347744b67932') in 0.011438 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 1.318400 seconds.
+  path: Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_text_type_scroll_effect_01.wav
+  artifactKey: Guid(895e9210771c5444fa7ca85a86793638) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_text_type_scroll_effect_01.wav using Guid(895e9210771c5444fa7ca85a86793638) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '2c385f56bef7c6b05b2646e81ae8b4ae') in 0.009268 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.995401 seconds.
+  path: Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_text_type_scroll_effect_02.wav
+  artifactKey: Guid(23716cd7964cdec42b4138a1605df54a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_text_type_scroll_effect_02.wav using Guid(23716cd7964cdec42b4138a1605df54a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '24b7fbc43654dc23d779594f93f352b9') in 0.012626 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.412318 seconds.
+  path: Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_text_type_scroll_effect_04.wav
+  artifactKey: Guid(5fa7490feadfc4748a530ab1b6fcd336) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_text_type_scroll_effect_04.wav using Guid(5fa7490feadfc4748a530ab1b6fcd336) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '64a69ffdebe64ce60ead601428f938fa') in 0.008251 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.288560 seconds.
+  path: Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_text_type_scroll_effect_05.wav
+  artifactKey: Guid(f073c0930550c0e46879da947501e673) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_text_type_scroll_effect_05.wav using Guid(f073c0930550c0e46879da947501e673) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'e0600c0f00ed84294c5cd4718cc3f520') in 0.008481 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.662713 seconds.
+  path: Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_menu_button_scroll_tone_01.wav
+  artifactKey: Guid(e93ac7e02d6fee34289b505de4ad67a7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_menu_button_scroll_tone_01.wav using Guid(e93ac7e02d6fee34289b505de4ad67a7) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '58e882cfce8b241a7b521a55378f50e4') in 0.009049 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.597366 seconds.
+  path: Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_menu_button_scroll_back_06.wav
+  artifactKey: Guid(989c8fe91e0be0c4ba5f097a32ff6695) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mati-as META_EDU e0e6e4f096f22de70137bbbe3ab40be135f247a4 Project-Assets_Resources_Audio_Gamemaster Audio - Fun Casual Sounds_User_Interface_Menu/ui_menu_button_scroll_back_06.wav using Guid(989c8fe91e0be0c4ba5f097a32ff6695) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'b2279306ea94718ea59df3de6d1067f9') in 0.007045 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 3054.947082 seconds.
+  path: Assets/mirobeka VRTest 286c7a6085c752f5675e9a9f9f245231de483342 Assets-Audio
+  artifactKey: Guid(871ea5aac835f68458405fbacb7ca5fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/mirobeka VRTest 286c7a6085c752f5675e9a9f9f245231de483342 Assets-Audio using Guid(871ea5aac835f68458405fbacb7ca5fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '9fdd51be1e09fc302cadcc5677a93877') in 0.014367 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 1.145557 seconds.
+  path: Assets/mirobeka VRTest 286c7a6085c752f5675e9a9f9f245231de483342 Assets-Audio/ambient.wav
+  artifactKey: Guid(e14fffb744ba2a24ea5137f2eba12d50) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/mirobeka VRTest 286c7a6085c752f5675e9a9f9f245231de483342 Assets-Audio/ambient.wav using Guid(e14fffb744ba2a24ea5137f2eba12d50) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'c102cd8b8e2329e7f5ea5e0d772b0ab9') in 0.155821 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 1.642897 seconds.
+  path: Assets/mirobeka VRTest 286c7a6085c752f5675e9a9f9f245231de483342 Assets-Audio/bat_hit_01.wav
+  artifactKey: Guid(f13dc72935559a840a44ac9c9fb77d07) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/mirobeka VRTest 286c7a6085c752f5675e9a9f9f245231de483342 Assets-Audio/bat_hit_01.wav using Guid(f13dc72935559a840a44ac9c9fb77d07) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'c3457907058fc6c468c6dc170a552750') in 0.010977 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.526537 seconds.
+  path: Assets/mirobeka VRTest 286c7a6085c752f5675e9a9f9f245231de483342 Assets-Audio/bat_hit_02.wav
+  artifactKey: Guid(2b132bf494af7364298297b8f8971d39) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/mirobeka VRTest 286c7a6085c752f5675e9a9f9f245231de483342 Assets-Audio/bat_hit_02.wav using Guid(2b132bf494af7364298297b8f8971d39) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '0423fbe72c2b3882ef4d1c68ebae4146') in 0.007328 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.400479 seconds.
+  path: Assets/mirobeka VRTest 286c7a6085c752f5675e9a9f9f245231de483342 Assets-Audio/bullseye.wav
+  artifactKey: Guid(692d2147dc8b1d64d9eaa9acae7a6b65) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/mirobeka VRTest 286c7a6085c752f5675e9a9f9f245231de483342 Assets-Audio/bullseye.wav using Guid(692d2147dc8b1d64d9eaa9acae7a6b65) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '048509991a1a709f62144e7b8b65f407') in 0.007144 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.860412 seconds.
+  path: Assets/mirobeka VRTest 286c7a6085c752f5675e9a9f9f245231de483342 Assets-Audio/button_click.mp3
+  artifactKey: Guid(b3405466d8917f44bb580822c392e76a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/mirobeka VRTest 286c7a6085c752f5675e9a9f9f245231de483342 Assets-Audio/button_click.mp3 using Guid(b3405466d8917f44bb580822c392e76a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '7621695e7ee5d285c413b0955037bf49') in 0.006030 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 3.032745 seconds.
+  path: Assets/mirobeka VRTest 286c7a6085c752f5675e9a9f9f245231de483342 Assets-Audio/confetti_pop.wav
+  artifactKey: Guid(4382d2bb5b3a73741a4e3c69ef85ea84) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/mirobeka VRTest 286c7a6085c752f5675e9a9f9f245231de483342 Assets-Audio/confetti_pop.wav using Guid(4382d2bb5b3a73741a4e3c69ef85ea84) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '040e2722b17919b398e7b4bdda508545') in 0.010069 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 2.416053 seconds.
+  path: Assets/mirobeka VRTest 286c7a6085c752f5675e9a9f9f245231de483342 Assets-Audio/explosion.wav
+  artifactKey: Guid(c0041449a9da0314998942e5af097227) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/mirobeka VRTest 286c7a6085c752f5675e9a9f9f245231de483342 Assets-Audio/explosion.wav using Guid(c0041449a9da0314998942e5af097227) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '1c00d9ad020452c980e6b4db09504bfa') in 0.007591 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 2.958090 seconds.
+  path: Assets/mirobeka VRTest 286c7a6085c752f5675e9a9f9f245231de483342 Assets-Audio/MainMixer.mixer
+  artifactKey: Guid(4e85aaa93865ae94a9aeae3cd6b35df8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/mirobeka VRTest 286c7a6085c752f5675e9a9f9f245231de483342 Assets-Audio/MainMixer.mixer using Guid(4e85aaa93865ae94a9aeae3cd6b35df8) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+Refreshing native plugins compatible for Editor in 7.84 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+ -> (artifact id: '36007163459c8719c4f81f5f3f1576b1') in 0.015919 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.080071 seconds.
+  path: Assets/mirobeka VRTest 286c7a6085c752f5675e9a9f9f245231de483342 Assets-Audio/paper_debris.wav
+  artifactKey: Guid(b12a0d16b753a4e419c45fd6e3c61de3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/mirobeka VRTest 286c7a6085c752f5675e9a9f9f245231de483342 Assets-Audio/paper_debris.wav using Guid(b12a0d16b753a4e419c45fd6e3c61de3) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '383a18c54b2a974a3ed4c991198ceb48') in 0.006367 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.131007 seconds.
+  path: Assets/mirobeka VRTest 286c7a6085c752f5675e9a9f9f245231de483342 Assets-Audio/paper_debris2.wav
+  artifactKey: Guid(1487925dbd5e8ca4e83566f5864a44e1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/mirobeka VRTest 286c7a6085c752f5675e9a9f9f245231de483342 Assets-Audio/paper_debris2.wav using Guid(1487925dbd5e8ca4e83566f5864a44e1) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '8425e097aa72da5d1dc609cbb20b7540') in 0.005679 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.891185 seconds.
+  path: Assets/mirobeka VRTest 286c7a6085c752f5675e9a9f9f245231de483342 Assets-Audio/paper_debris3.wav
+  artifactKey: Guid(c7643528b0cdb16489dbac58d71ba554) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/mirobeka VRTest 286c7a6085c752f5675e9a9f9f245231de483342 Assets-Audio/paper_debris3.wav using Guid(c7643528b0cdb16489dbac58d71ba554) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'f0dd5516b06352410d08e529e1cb7acc') in 0.005784 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.758914 seconds.
+  path: Assets/mirobeka VRTest 286c7a6085c752f5675e9a9f9f245231de483342 Assets-Audio/paper_debris4.wav
+  artifactKey: Guid(d15ee34860f0e004f8042079f5dab6bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/mirobeka VRTest 286c7a6085c752f5675e9a9f9f245231de483342 Assets-Audio/paper_debris4.wav using Guid(d15ee34860f0e004f8042079f5dab6bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '13dfb09a8c45396aa99daf5f803bf24d') in 0.005924 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.604322 seconds.
+  path: Assets/mirobeka VRTest 286c7a6085c752f5675e9a9f9f245231de483342 Assets-Audio/paper_debris5.wav
+  artifactKey: Guid(602fb7f11308fc049ad7b8ceb2e585a0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/mirobeka VRTest 286c7a6085c752f5675e9a9f9f245231de483342 Assets-Audio/paper_debris5.wav using Guid(602fb7f11308fc049ad7b8ceb2e585a0) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'b897f9d24d50c5b1cce2d37b1b67ed75') in 0.006196 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.394948 seconds.
+  path: Assets/mirobeka VRTest 286c7a6085c752f5675e9a9f9f245231de483342 Assets-Audio/stadium_melody.wav
+  artifactKey: Guid(67550acf89a35a5439eaee3420c06f4c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/mirobeka VRTest 286c7a6085c752f5675e9a9f9f245231de483342 Assets-Audio/stadium_melody.wav using Guid(67550acf89a35a5439eaee3420c06f4c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'aa318b2f07a28c85c36f65a09215338c') in 0.005748 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.132835 seconds.
+  path: Assets/mirobeka VRTest 286c7a6085c752f5675e9a9f9f245231de483342 Assets-Audio/start_countdown.mp3
+  artifactKey: Guid(87183afad60a74243954e8dbd87a9738) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/mirobeka VRTest 286c7a6085c752f5675e9a9f9f245231de483342 Assets-Audio/start_countdown.mp3 using Guid(87183afad60a74243954e8dbd87a9738) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'c43d7a6df05cba8f265eccb9d8a16674') in 0.005630 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.400824 seconds.
+  path: Assets/mirobeka VRTest 286c7a6085c752f5675e9a9f9f245231de483342 Assets-Audio/stop_countdown.mp3
+  artifactKey: Guid(844ff27ca27468b47b666b3907ce68b5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/mirobeka VRTest 286c7a6085c752f5675e9a9f9f245231de483342 Assets-Audio/stop_countdown.mp3 using Guid(844ff27ca27468b47b666b3907ce68b5) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '52039443c2602ef93ca70856a188243f') in 0.006527 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 569.931578 seconds.
+  path: Assets/Creative-AI-Research-Group dream_app bcf4d452d8886e27583a28ba94728d25f5258fb3 audio-wav
+  artifactKey: Guid(10cb840689bfaab4da38a24451a352d1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Creative-AI-Research-Group dream_app bcf4d452d8886e27583a28ba94728d25f5258fb3 audio-wav using Guid(10cb840689bfaab4da38a24451a352d1) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '122050472f0dcbf90d5c8c3c32c88728') in 0.004872 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 0.766017 seconds.
+  path: Assets/Creative-AI-Research-Group dream_app bcf4d452d8886e27583a28ba94728d25f5258fb3 audio-wav/000_Im.wav
+  artifactKey: Guid(fa8252338e05bde4fadd1ec5d2615706) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Creative-AI-Research-Group dream_app bcf4d452d8886e27583a28ba94728d25f5258fb3 audio-wav/000_Im.wav using Guid(fa8252338e05bde4fadd1ec5d2615706) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '9445a8e8b2f2a167990c325dd471dbb9') in 0.010029 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 2.839564 seconds.
+  path: Assets/Creative-AI-Research-Group dream_app bcf4d452d8886e27583a28ba94728d25f5258fb3 audio-wav/000_0_FULL_SENTENCE.wav
+  artifactKey: Guid(72c68a9ba3c7e8548b16d92a841a258e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Creative-AI-Research-Group dream_app bcf4d452d8886e27583a28ba94728d25f5258fb3 audio-wav/000_0_FULL_SENTENCE.wav using Guid(72c68a9ba3c7e8548b16d92a841a258e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '798d7a3f482f6cecab258b4c101fc330') in 0.001569 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 939.374846 seconds.
+  path: Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio/opening/opening.mp3
+  artifactKey: Guid(ad7af2f0730552b4e8ec451ab92f57df) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio/opening/opening.mp3 using Guid(ad7af2f0730552b4e8ec451ab92f57df) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'f4f2252fb6c0c0fe2c2e9c9976d1b31b') in 0.011047 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.334655 seconds.
+  path: Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio/opening/opening.ogg
+  artifactKey: Guid(9848cffc277bf0146b92a7b0d876f840) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio/opening/opening.ogg using Guid(9848cffc277bf0146b92a7b0d876f840) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '87745e9d15f14906d892bc43dbd52904') in 0.052639 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 1.183030 seconds.
+  path: Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio/opening/kittyopening.ogg
+  artifactKey: Guid(153c138846e756b498f0f7aeb69d4df1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio/opening/kittyopening.ogg using Guid(153c138846e756b498f0f7aeb69d4df1) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'dd05534c19759b7ee3d620950bd78692') in 0.006988 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 2.021190 seconds.
+  path: Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio/opening/kittyopening.mp3
+  artifactKey: Guid(e6daab800b6e3f049b18cccb14a309f7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio/opening/kittyopening.mp3 using Guid(e6daab800b6e3f049b18cccb14a309f7) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'ff1b019c629c9388bba2dd06b247e971') in 0.001259 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 2.180550 seconds.
+  path: Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio
+  artifactKey: Guid(89465b6a8ed71c642ba8ca13ad6185d1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio using Guid(89465b6a8ed71c642ba8ca13ad6185d1) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'ab7ce6f5474e383bcf69635be0012686') in 0.000664 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 0.548072 seconds.
+  path: Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio/play
+  artifactKey: Guid(5acabc43d65b30d42b6e91025689b27a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio/play using Guid(5acabc43d65b30d42b6e91025689b27a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'c6ca585e5059e567a42c49bc18090edc') in 0.001128 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 0.418984 seconds.
+  path: Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio/bgm.mp3
+  artifactKey: Guid(ea60d61d042a5cf469081e4f64678687) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio/bgm.mp3 using Guid(ea60d61d042a5cf469081e4f64678687) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'b83e8a887660f7c0f3988b0618ebbd75') in 0.005689 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 7.567835 seconds.
+  path: Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio/chest-small.ogg
+  artifactKey: Guid(2d39e69536ba54d40864231dd72b568f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio/chest-small.ogg using Guid(2d39e69536ba54d40864231dd72b568f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'b4d809944e6135f66958bf7fa4e32f3d') in 0.006553 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.460725 seconds.
+  path: Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio/click.mp3
+  artifactKey: Guid(3ca11bd8a9a144844bf2ea1674c87b89) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio/click.mp3 using Guid(3ca11bd8a9a144844bf2ea1674c87b89) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '7fd284d4a5c2295187e1bbe286e68c19') in 0.001010 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.743611 seconds.
+  path: Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio/click.ogg
+  artifactKey: Guid(4885cef463951bb43977c211f301243f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio/click.ogg using Guid(4885cef463951bb43977c211f301243f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'df057dd4375e6e4cdf506d61d663aa67') in 0.005881 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.738007 seconds.
+  path: Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio/coin.ogg
+  artifactKey: Guid(4f872270f0bc0704fb05f9a7562149be) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio/coin.ogg using Guid(4f872270f0bc0704fb05f9a7562149be) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '639ce8f3a43a5f17272b798aba4efa07') in 0.008736 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.919272 seconds.
+  path: Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio/crash.ogg
+  artifactKey: Guid(95cdbd4a3fdcaae4f8d708e39a31b0b3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio/crash.ogg using Guid(95cdbd4a3fdcaae4f8d708e39a31b0b3) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '6f3f7de33a7319dd5b30a17a921bec7f') in 0.009174 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 1.079202 seconds.
+  path: Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio/engine.ogg
+  artifactKey: Guid(6f40d24a8ecf176468d1773719c62ecc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio/engine.ogg using Guid(6f40d24a8ecf176468d1773719c62ecc) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'eaf397c9210566ff8c8e6aab5aeababf') in 0.006131 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 1.336749 seconds.
+  path: Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio/engine-out.ogg
+  artifactKey: Guid(ff55c59ef8dbe2342a708b4eb96c12b3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio/engine-out.ogg using Guid(ff55c59ef8dbe2342a708b4eb96c12b3) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'dcb37ac246f14c7fd437a55b2b5df4be') in 0.006694 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.942428 seconds.
+  path: Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio/reward.ogg
+  artifactKey: Guid(6cb042664b717a64d8f0e44aa93c50a9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio/reward.ogg using Guid(6cb042664b717a64d8f0e44aa93c50a9) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '8e1a93806e0f1555f2593ffc29011776') in 0.005017 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 5.738597 seconds.
+  path: Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio/skid1.ogg
+  artifactKey: Guid(decb8371d92567f4a8e18b8a69d0d088) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio/skid1.ogg using Guid(decb8371d92567f4a8e18b8a69d0d088) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'fa73f238dae2e0bb0f714798c0f3e9fb') in 0.005999 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 1.029041 seconds.
+  path: Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio/skid2.ogg
+  artifactKey: Guid(f3e984ed2dc58f0459f1972307ae3ea6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio/skid2.ogg using Guid(f3e984ed2dc58f0459f1972307ae3ea6) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '135a89172e4d326fc607cbad629167ce') in 0.006328 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.510334 seconds.
+  path: Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio/skid3.ogg
+  artifactKey: Guid(0937c1ff420041348a81f840b459e205) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio/skid3.ogg using Guid(0937c1ff420041348a81f840b459e205) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'ea5db14b4035ff9b6c74a6943f87cbad') in 0.005862 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 1.866046 seconds.
+  path: Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio/engine-low.ogg
+  artifactKey: Guid(c0ce05cd1d8880447823911f94262240) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio/engine-low.ogg using Guid(c0ce05cd1d8880447823911f94262240) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '35eab37e87962766e34472fea2c4165f') in 0.006066 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.495795 seconds.
+  path: Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio/engine-in.ogg
+  artifactKey: Guid(427a5fa1faec2e5428dad2728c3b22ac) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio/engine-in.ogg using Guid(427a5fa1faec2e5428dad2728c3b22ac) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'e7b4642f2963aa6aedc610c43abec8d5') in 0.006086 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 7.830206 seconds.
+  path: Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio/coin.mp3
+  artifactKey: Guid(ae691fb7f7c3e9944818cffe1dfbb76b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio/coin.mp3 using Guid(ae691fb7f7c3e9944818cffe1dfbb76b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'c37884ca8e06e4311a87489bcaa28ab0') in 0.000960 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 3.763666 seconds.
+  path: Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio/play/static.ogg
+  artifactKey: Guid(a7fc93d26d51c3b4d9daae90d7e5a811) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio/play/static.ogg using Guid(a7fc93d26d51c3b4d9daae90d7e5a811) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '11afa26c02d2eda7c1803bc3848c5e0f') in 0.005230 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 8.026646 seconds.
+  path: Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio/opening
+  artifactKey: Guid(7009326887bb34e429cbc8f2ea0a39c8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio/opening using Guid(7009326887bb34e429cbc8f2ea0a39c8) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '115d9b8f8d7b69039156fe7b9300b232') in 0.000900 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 4.876717 seconds.
+  path: Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio/chest-big.ogg
+  artifactKey: Guid(643b151d1fb0d8e4cb7fbd391dec2fb7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio/chest-big.ogg using Guid(643b151d1fb0d8e4cb7fbd391dec2fb7) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '65e98134681098d0c956449c3664487c') in 0.006093 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 288.060594 seconds.
+  path: Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio/chest-small.mp3
+  artifactKey: Guid(f11ffe49970856349b545b8f5857410f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio/chest-small.mp3 using Guid(f11ffe49970856349b545b8f5857410f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '646dbedb92a3a9602c27fd317c604e60') in 0.001778 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 7.093746 seconds.
+  path: Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio/engine-low.mp3
+  artifactKey: Guid(f4facfeab9b3bb141876335366a07f3e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio/engine-low.mp3 using Guid(f4facfeab9b3bb141876335366a07f3e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '8acdcfce772cb85e3d33f4c73bd68f7b') in 0.001148 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.358491 seconds.
+  path: Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio/engine-out.mp3
+  artifactKey: Guid(3cb60550a22dde34e8770a31b0c948b2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio/engine-out.mp3 using Guid(3cb60550a22dde34e8770a31b0c948b2) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '6af2dc7a35734f315fb2241071a50b5c') in 0.001423 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 19.590459 seconds.
+  path: Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio/chest-big.mp3
+  artifactKey: Guid(7906aa56d81b8d34eaa7c58f19f9a57c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio/chest-big.mp3 using Guid(7906aa56d81b8d34eaa7c58f19f9a57c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'c5128cb403ce99869d88a34d78d4d300') in 0.000877 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 1.953952 seconds.
+  path: Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio/reward.mp3
+  artifactKey: Guid(aba2d7b76ccede14792bcc0a35dc7d1d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Mac-Web macvg cec90a2c25106f6b2a9bf4893be9a5e3bc5e5f08 projects-drift-boss_media_audio/reward.mp3 using Guid(aba2d7b76ccede14792bcc0a35dc7d1d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '4c68f78777fa68f5819d80e48f3dff9c') in 0.001370 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1

@@ -1,6 +1,8 @@
 ﻿using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
 using _Project.Scripts.Gameplay.Features.UIFeature.Components;
+using _Project.Scripts.Gameplay.Features.VisualFeature.Components;
 using DCFApixels.DragonECS;
+using UnityEngine;
 using Object = UnityEngine.Object;
 
 namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
@@ -27,6 +29,10 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
         {
             [IncImplicit(typeof(CreateControlsRequest))]
             [Inc] public readonly EcsPool<CoinUIConnect> CoinUIConnects;
+        } 
+        private class HUDAspect : EcsAspectAuto
+        {
+            [Inc] public readonly EcsPool<CanvasRef> Canvases;
         }
 
         public void Run()
@@ -40,6 +46,12 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                 connect.Connect(hud, applyTemplates: true);
 
                 aspect.CreateControls.Add(hud.ID);
+
+                HUDAspect hudAspect = _world.GetAspect<HUDAspect>();
+                
+                Camera uiCamera = GameObject.FindGameObjectWithTag("UICamera").GetComponent<Camera>();
+
+                hudAspect.Canvases.Get(hud.ID).Value.worldCamera = uiCamera;
             }
 
             foreach (int entity in _world.Where(out ScoreUIAspect aspect))

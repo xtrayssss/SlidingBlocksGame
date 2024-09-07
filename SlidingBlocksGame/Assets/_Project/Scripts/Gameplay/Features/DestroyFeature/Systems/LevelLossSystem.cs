@@ -1,4 +1,5 @@
-﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+﻿using _Project.Scripts.Gameplay.Features.CollectFeature.Components;
+using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.DestroyFeature.c;
 using _Project.Scripts.Gameplay.Features.DestroyFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Components;
@@ -20,6 +21,7 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
             [Inc] public readonly EcsPool<GenerationGameFieldAlgorithmCfg> GameFieldAlgorithmConfigs;
 
             [Inc] public readonly EcsPool<DestructionAnimalStrategyCfg> DestructionAnimalStrategyConfigs;
+            [Opt] public readonly EcsTagPool<CanClickGameFieldMarker> CanClickGameField;
         }
 
         private class AnimalDestructedStateAspect : EcsAspectAuto
@@ -42,29 +44,40 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
             [IncImplicit(typeof(GameTag))]
             [Inc] public readonly EcsPool<Levels> Levels;
         }
-        
+
         private class GameLossTimerAspect : EcsAspectAuto
         {
             [Inc] public readonly EcsTagPool<GameLossTimerTag> Obstacles1;
             [Inc] public readonly EcsPool<GameObjectConnect> GameObjectConnects;
         }
-        
+
         private class GameScreenAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(GameScreenTag))]
             [Opt] public readonly EcsTagPool<ShowMetaGameUIRequest> ShowMetaGameUI;
         }
 
+        private class CoinAspect : EcsAspectAuto
+        {
+            [IncImplicit(typeof(CoinTag))]
+            [Opt] public readonly EcsTagPool<DeleteEntityCommand> DeleteEntity;
+
+            [Opt] public readonly EcsTagPool<DestroyViewRequest> DestroyView;
+            [Opt] public readonly EcsPool<GameObjectConnect> GameObjectConnects;
+        }
+
         public void Run()
         {
-            foreach (int level in _world.Where(out LostStateAspect levelAspect))
+            foreach (int level in _world.Where(out LostStateAspect aspect))
             {
                 entlong strategy =
-                    _world.NewEntityLong(levelAspect.DestructionAnimalStrategyConfigs.Read(level).Value);
+                    _world.NewEntityLong(aspect.DestructionAnimalStrategyConfigs.Read(level).Value);
 
                 _world.GetPool<TargetEntity>().Add(strategy.ID).Value = _world.GetEntityLong(level);
 
                 _world.GetPool<ApplyDestructionStrategyRequest>().Add(strategy.ID);
+
+                aspect.CanClickGameField.Del(level);
 
                 Debug.Log("LOSS");
             }
@@ -75,6 +88,24 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
 
                 _world.GetPool<GameFieldDestructRequest>().Add(algorithm);
                 _world.GetPool<TargetEntity>().Add(algorithm).Value = _world.GetEntityLong(level);
+
+                foreach (int coin in _world.Where(out CoinAspect coinAspect))
+                {
+                    ref var gameObjectConnect = ref coinAspect.GameObjectConnects.Get(coin);
+
+                    Tween
+                        .Scale(gameObjectConnect.Connect.transform, Vector3.zero, 0.4f, Ease.InBack)
+                        .OnComplete(
+                            target: gameObjectConnect.Connect,
+                            connect =>
+                            {
+                                if (!connect.Entity.TryGetID(out int coinID))
+                                    return;
+                                
+                                coinAspect.DeleteEntity.Add(coinID);
+                                coinAspect.DestroyView.Add(coinID);
+                            });
+                }
 
                 Debug.Log("Game field destruction request");
             }
@@ -88,11 +119,8 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
                     GameObjectConnect connect = timerAspect.GameObjectConnects.Read(timer);
 
                     Tween.Scale(connect.Connect.transform, Vector3.zero, 0.2f, Ease.OutQuad)
-                        .OnComplete(connect.Connect, target =>
-                        {
-                            target.gameObject.SetActive(false);
-                        });
-                
+                        .OnComplete(connect.Connect, target => { target.gameObject.SetActive(false); });
+
                     levelAspect.LevelLost.Del(level);
                 }
 
@@ -101,8 +129,8 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
                     _world.GetPool<CleanupLevelRequest>().Add(game);
                     gameAspect.Levels.Get(game).LevelIndex = 0;
                 }
-                
-                foreach (int gameScreen in _world.Where(out GameScreenAspect gameScreenAspect)) 
+
+                foreach (int gameScreen in _world.Where(out GameScreenAspect gameScreenAspect))
                     gameScreenAspect.ShowMetaGameUI.Add(gameScreen);
             }
         }

@@ -40,7 +40,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components
             public int2 CellPosition;
             public EcsEntityConnect View;
             public quaternion Rotation;
-            public float2 InvertedSide;
+            public int2 InvertedSide;
         }
 
         [Serializable]

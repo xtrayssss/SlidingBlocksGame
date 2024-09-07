@@ -1,9 +1,11 @@
 ﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+using _Project.Scripts.Gameplay.Features.DestroyFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
 using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.VisualFeature.Components;
 using DCFApixels.DragonECS;
+using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 {
@@ -55,6 +57,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
             [Opt] public readonly EcsTagPool<CreateGameLossTimerRequest> CreateGameLossTimer;
 
             [Opt] public readonly EcsTagPool<CreateCoinRequest> CreateCoin;
+            [Opt] public readonly EcsTagPool<CanClickGameFieldMarker> CanClickGameField;
         }
 
         private class GameScreenAspect : EcsAspectAuto
@@ -107,8 +110,11 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
             foreach (int level in _world.Where(out AnimalPositionedStateAspect aspect))
             {
+                Debug.Log("AnimalPositionedStateAspect");
+                
                 aspect.CreateGameLossTimer.Add(level);
                 aspect.CreateCoin.Add(level);
+                aspect.CanClickGameField.Add(level);
             }
         }
     }

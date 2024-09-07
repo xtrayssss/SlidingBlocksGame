@@ -41,7 +41,12 @@ namespace _Project.Scripts.Gameplay.Features.VisualFeature
                     .AddUnique(new DisplayProgressSystem())
                     .AddUnique(new RateUsSystem())
                     .AddUnique(new TutorialSystem())
+                    //
+                    .AutoDelTag<ConfettiExplodedEvent>()
+                    .AutoDelTag<RewardCollectedEvent>()
+                    .AutoDelEntityTag<CoinAddedToTextEvent>()
                     .AddUnique(new DisplayRewardSystem())
+                    //
                     .AddUnique(new CanRewardSystem())
                     .AddUnique(new WobbleSystem())
                     .AutoDelTag<WobbleRequest>()

@@ -7,18 +7,19 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
     {
         [EcsInject] private readonly EcsDefaultWorld _world;
 
-        private class Aspect : EcsAspectAuto
+        private class RequestAspect : EcsAspectAuto
         {
             [Inc] private readonly EcsTagPool<CleanupLevelRequest> _;
         }
+
         private class LifeTimeAspect : EcsAspectAuto
         {
-            [Inc] private readonly EcsTagPool<LevelLifeTimeMarker> _;
+            [Inc] private readonly EcsTagPool<LevelLifeTimeMarker> _levelLifeTime;
         }
 
         public void Run()
         {
-            foreach (int _ in _world.Where(out Aspect _))
+            foreach (int _ in _world.Where(out RequestAspect _))
             {
                 foreach (int entity in _world.Where(out LifeTimeAspect _)) 
                     _world.DelEntity(entity);

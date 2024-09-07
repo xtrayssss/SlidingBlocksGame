@@ -2,6 +2,7 @@
 using _Project.Scripts.Gameplay.Features.DestroyFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
+using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
 using DCFApixels.DragonECS;
 using PrimeTween;
 using UnityEngine;
@@ -18,6 +19,7 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
             [Inc] public readonly EcsPool<GenerationGameFieldAlgorithmCfg> GameFieldAlgorithmConfigs;
 
             [Opt] public readonly EcsPool<DestructionAnimalStrategyCfg> DestructionAnimalStrategyConfigs;
+            [Opt] public readonly EcsTagPool<CanClickGameFieldMarker> CanClickGameField;
         }
 
         private class AnimalDestructedStateAspect : EcsAspectAuto
@@ -57,6 +59,8 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
                 _world.GetPool<TargetEntity>().Add(strategy.ID).Value = _world.GetEntityLong(level);
 
                 _world.GetPool<ApplyDestructionStrategyRequest>().Add(strategy.ID);
+
+                aspect.CanClickGameField.Del(level);
             }
 
             foreach (int level in _world.Where(out AnimalDestructedStateAspect aspect))
@@ -78,10 +82,7 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
                     GameObjectConnect connect = timerAspect.GameObjectConnects.Read(timer);
 
                     Tween.Scale(connect.Connect.transform, Vector3.zero, 0.2f, Ease.OutQuad)
-                        .OnComplete(connect.Connect, target =>
-                        {
-                            target.gameObject.SetActive(false);
-                        });
+                        .OnComplete(connect.Connect, target => { target.gameObject.SetActive(false); });
                 }
 
                 foreach (int game in _world.Where(out GameAspect gameAspect))
@@ -90,7 +91,7 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
                     _world.GetPool<CleanupLevelRequest>().Add(game);
 
                     levelAspect.LevelWon.Del(level);
-                }
+                };
             }
         }
     }

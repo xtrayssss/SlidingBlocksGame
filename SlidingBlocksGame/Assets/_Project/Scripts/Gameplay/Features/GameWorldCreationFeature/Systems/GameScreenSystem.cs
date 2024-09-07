@@ -101,6 +101,10 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
             // tap to exit
             _world.GetPool<TapToExitConnect>().Get(rewardWindow.ID).Value
                 .Connect(_world.NewEntityLong(), applyTemplates: true);
+            
+            // confetti
+            _world.GetPool<RewardConfettiEffectConnect>().Get(rewardWindow.ID).Value
+                .Connect(_world.NewEntityLong(), applyTemplates: true);
         }
 
         private void CreateAnimalsPurchaseWindow(EcsEntityConnect connect)

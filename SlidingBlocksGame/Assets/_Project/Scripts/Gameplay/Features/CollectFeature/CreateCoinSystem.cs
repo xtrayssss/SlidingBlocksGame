@@ -4,6 +4,7 @@ using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
 using _Project.Scripts.Gameplay.Utils;
 using DCFApixels.DragonECS;
+using PrimeTween;
 using Unity.Mathematics;
 using UnityEngine;
 using Random = Unity.Mathematics.Random;
@@ -60,6 +61,15 @@ namespace _Project.Scripts.Gameplay.Features.CollectFeature
                     coinAspect.CellPosition.Add(coin.ID).Value = cellPosition;
 
                     connect.Connect(coin, applyTemplates: true);
+
+                    Tween.LocalEulerAngles(
+                        target: connect.transform,
+                        startValue: Vector3.zero,
+                        endValue: new Vector3(0, 360, 0),
+                        duration: 4f,
+                        ease: Ease.Linear,
+                        cycles: -1,
+                        cycleMode: CycleMode.Incremental);
                 }
             }
         }

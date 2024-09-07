@@ -1,5 +1,6 @@
 ﻿using System;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+using _Project.Scripts.Gameplay.Features.DestroyFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
 using _Project.Scripts.Gameplay.Utils;
@@ -30,6 +31,14 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
             [Opt] public readonly EcsPool<MeshRendererRef> MeshRenderers;
         }
 
+        private class SideAspect : EcsAspectAuto
+        {
+            [Opt] public readonly EcsPool<MovementDirection> MovementDirection;
+            [Opt] public readonly EcsTagPool<SideTag> SideTag;
+            [Opt] public readonly EcsPool<SideAnimals> SideAnimals;
+            [Opt] public readonly EcsTagPool<LevelLifeTimeMarker> LevelLifeTime;
+        }
+
         public void Run()
         {
             foreach (int entity in _world.Where(out Aspect aspect))
@@ -41,6 +50,13 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                 AnimalAspect animalAspect = _world.GetAspect<AnimalAspect>();
 
                 _world.NewEntityLong(aspect.StrategyConfigs.Read(entity).Value);
+
+                SideAspect sideAspect = _world.GetAspect<SideAspect>();
+
+                var left = CreateSide(sideAspect, GridUtils.Left);
+                var right = CreateSide(sideAspect, GridUtils.Right);
+                var up = CreateSide(sideAspect, GridUtils.Up);
+                var down = CreateSide(sideAspect, GridUtils.Down);
 
                 foreach (ref GameField.AnimalsData animalData in animals)
                 {
@@ -55,18 +71,39 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
                     view.ConnectWith(animal, applyTemplates: true);
 
-                    Scale( view, in gameField);
+                    Scale(view, in gameField);
 
                     _world.GetPool<CellPosition>().Add(animal.ID).Value = animalData.CellPosition;
-                    
-                    animalAspect.Direction.Add(animal.ID).Value = animalData.InvertedSide;
+
+                    ref MovementDirection movementDirection = ref animalAspect.Direction.Add(animal.ID);
+
+                    movementDirection.Value = animalData.InvertedSide;
 
                     animalAspect.ActiveGameField.Add(animal.ID).Value = entity.ToEntityLong(_world);
 
                     animalAspect.BoundsExtents.Add(animal.ID).Value =
                         animalAspect.MeshRenderers.Read(animal.ID).Value.bounds.extents;
+
+                    if (math.all(movementDirection.Value == right.direction))
+                        right.animals.Add(animal.ID);
+                    if (math.all(movementDirection.Value == left.direction))
+                        left.animals.Add(animal.ID);
+                    if (math.all(movementDirection.Value == up.direction))
+                        up.animals.Add(animal.ID);
+                    if (math.all(movementDirection.Value == down.direction))
+                        down.animals.Add(animal.ID);
                 }
             }
+        }
+
+        private (int2 direction, EcsGroup animals) CreateSide(SideAspect sideAspect, int2 direction)
+        {
+            int side = _world.NewEntity();
+            sideAspect.SideTag.Add(side);
+            sideAspect.LevelLifeTime.Add(side);
+
+            return (sideAspect.MovementDirection.Add(side).Value = direction,
+                sideAspect.SideAnimals.Add(side).Value = EcsGroup.New(_world));
         }
 
         private void Scale(EcsEntityConnect connect, in GameField gameField)

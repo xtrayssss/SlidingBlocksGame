@@ -55,9 +55,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
                     connect.Value.transform.localScale = Vector3.zero;
 
-                    Sequence.Create()
-                        .Chain(Tween.Scale(connect.Value.transform, Vector3.one * 1.2f, 0.2f, Ease.OutQuad)
-                            .Chain(Tween.Scale(connect.Value.transform, Vector3.one * 1f, 0.1f, Ease.InQuad)));
+                    Tween.Scale(connect.Value.transform, Vector3.one * 1.2f, 0.2f, Ease.OutBack);
 
                     connect.Value.gameObject.SetActive(true);
                 }
