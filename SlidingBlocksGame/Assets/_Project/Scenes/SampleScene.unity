@@ -449,10 +449,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilePrefab: {fileID: 5678163285392456267, guid: e5378788f6301a2428eb21e32a7e779b,
     type: 3}
-  rows: 5
-  columns: 10
+  rows: 3
+  columns: 3
   tileSpacing: 1.5
-  growthDuration: 0.1
+  growthDuration: 1
   moveDuration: 1
   waveAmplitude: 0.5
   waveFrequency: 1
@@ -737,6 +737,71 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1458684905
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1458684908}
+  - component: {fileID: 1458684907}
+  - component: {fileID: 1458684906}
+  m_Layer: 0
+  m_Name: TileGenerator8
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &1458684906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1458684905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6181415e50742a59a615adab8035b2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tilePrefab: {fileID: 5678163285392456267, guid: e5378788f6301a2428eb21e32a7e779b,
+    type: 3}
+  tileGrid: {fileID: 1458684907}
+  flyDuration: 1
+  spawnInterval: 0.5
+--- !u!114 &1458684907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1458684905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aaedba4b116c4cdaa39bc38b507a59c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gridWidth: 5
+  gridHeight: 5
+  tileSize: 1.1
+--- !u!4 &1458684908
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1458684905}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.5608768, y: 0.8679218, z: 2.4268942}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1353,6 +1418,7 @@ SceneRoots:
   - {fileID: 54039660}
   - {fileID: 5152618}
   - {fileID: 412552119}
+  - {fileID: 1458684908}
   - {fileID: 1618623522}
   - {fileID: 634604059}
   - {fileID: 2101764152}

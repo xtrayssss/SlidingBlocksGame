@@ -34,7 +34,6 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
            
             [Opt] public readonly EcsTagPool<GameFieldGeneratedEvent> GameFieldGenerated;
             [Opt] public readonly EcsTagPool<GameFieldDestructedEvent> GameFieldDestructed;
-            [Opt] public readonly EcsTagPool<GameFieldGeneratedPlaneAlgorithmMarker> GameFieldGeneratedPlaneAlgorithm;
         }
         
         public void Run()
@@ -57,8 +56,6 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
             Debug.Log($"Generate {algorithm}");
             if (!generationAspect.Targets.Read(algorithm).Value.TryGetID(out int levelID) || !levelAspect.IsMatches(levelID))
                 return;
-            
-            levelAspect.GameFieldGeneratedPlaneAlgorithm.Add(levelID);
             
             ref GameField gameField = ref levelAspect.GameFields.Get(levelID);
 

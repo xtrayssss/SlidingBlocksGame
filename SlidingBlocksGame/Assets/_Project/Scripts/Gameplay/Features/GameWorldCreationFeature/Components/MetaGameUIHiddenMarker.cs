@@ -4,12 +4,9 @@ using DCFApixels.DragonECS;
 namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components
 {
     [Serializable]
-    public struct WaveAlgorithm : IEcsComponent
+    public struct MetaGameUIHiddenMarker : IEcsTagComponent
     {
-        public float Speed;
-
-        [Serializable]
-        public sealed class Wrapper : ComponentTemplate<WaveAlgorithm>
+        private sealed class Template : TagComponentTemplate<MetaGameUIHiddenMarker>
         {
         }
     }

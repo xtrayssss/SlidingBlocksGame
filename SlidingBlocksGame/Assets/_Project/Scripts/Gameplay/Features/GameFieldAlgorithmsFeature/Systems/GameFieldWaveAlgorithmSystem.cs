@@ -4,6 +4,7 @@ using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.DestroyFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
+using _Project.Scripts.Gameplay.Utils;
 using DCFApixels.DragonECS;
 using Unity.Mathematics;
 using UnityEngine;
@@ -16,14 +17,14 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
         private readonly ICoroutineRunner _coroutineRunner;
         [EcsInject] private EcsWorld _world;
 
-        public GameFieldWaveAlgorithmSystem(ICoroutineRunner coroutineRunner) => 
+        public GameFieldWaveAlgorithmSystem(ICoroutineRunner coroutineRunner) =>
             _coroutineRunner = coroutineRunner;
 
         private class GenerationAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(GameFieldWaveAlgorithmTag))]
             [IncImplicit(typeof(GameFieldGenerateRequest))]
-            [Inc] public readonly EcsPool<WaveAlgorithm> Waves;
+            [Inc] public readonly EcsPool<Wave> Waves;
 
             [Inc] public readonly EcsPool<TargetEntity> Targets;
         }
@@ -32,7 +33,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
         {
             [IncImplicit(typeof(GameFieldWaveAlgorithmTag))]
             [IncImplicit(typeof(GameFieldDestructRequest))]
-            [Inc] public readonly EcsPool<WaveAlgorithm> Waves;
+            [Inc] public readonly EcsPool<Wave> Waves;
 
             [Inc] public readonly EcsPool<TargetEntity> Targets;
         }
@@ -41,9 +42,9 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
         {
             [Inc] public readonly EcsPool<GameField> GameFields;
 
-            [Opt] public readonly EcsTagPool<GameFieldGeneratedEvent> GameFieldGenerated;
-            [Opt] public readonly EcsTagPool<GameFieldDestructedEvent> GameFieldDestructed;
-            [Opt] public readonly EcsTagPool<GameFieldGeneratedWaveAlgorithmMarker> GameFieldGeneratedWaveAlgorithm;
+            [Opt] public readonly EcsTagPool<GameFieldGeneratedEvent> GameFieldGeneratedEvent;
+            [Opt] public readonly EcsTagPool<GameFieldDestructedEvent> GameFieldDestructedEvent;
+            [Opt] public readonly EcsTagPool<GameFieldGeneratedMarker> GameFieldGeneratedMarker;
         }
 
         public void Run()
@@ -74,15 +75,14 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
                 !levelAspect.IsMatches(levelID))
                 yield break;
 
-            levelAspect.GameFieldGeneratedWaveAlgorithm.Add(levelID);
-
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             ref GameField GameField() =>
                 ref levelAspect.GameFields.Get(levelID);
 
-            float3 waveOrigin = new float3(
+            float3 waveOrigin = generationAspect.Waves.Get(algorithm).WaveOrigin = new float3(
                 GameField().Size / 2f * (GameField().CellSize + GameField().Offset) + GameField().OriginPosition.x,
-                0, GameField().Size / 2f * (GameField().CellSize + GameField().Offset) + GameField().OriginPosition.z);
+                0,
+                GameField().Size / 2f * (GameField().CellSize + GameField().Offset) + GameField().OriginPosition.z);
 
             int counter = 0;
 
@@ -93,27 +93,32 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
                     if (x >= GameField().EdgeSize && x < GameField().EdgeSize + GameField().CenterSize ||
                         z >= GameField().EdgeSize && z < GameField().EdgeSize + GameField().CenterSize)
                     {
-                        float3 position = new float3(
-                            x * (GameField().CellSize + GameField().Offset) + GameField().OriginPosition.x, 0,
-                            z * (GameField().CellSize + GameField().Offset) + GameField().OriginPosition.z);
+                        float3 position = GridUtils.GetWorldPosition(
+                            coordinates: new int2(x, z),
+                            gameField: in GameField());
 
                         float delay = math.distance(position, waveOrigin) *
                                       generationAspect.Waves.Read(algorithm).Speed;
 
                         yield return new WaitForSeconds(delay);
 
-                        GameObject view = Object.Instantiate(GameField().CellPrefab, position, Quaternion.identity);
+                        GameObject view = Object.Instantiate(
+                            original: GameField().CellPrefab,
+                            position: position,
+                            rotation: Quaternion.identity);
 
-                        view.transform.localScale  = new Vector3(GameField().CellSize, view.transform.localScale.y,
+                        view.transform.localScale = new Vector3(
+                            GameField().CellSize,
+                            view.transform.localScale.y,
                             GameField().CellSize);
-                        
+
                         GameField().Cells[counter++] = new GameField.Cell
                         {
                             View = view,
                             CellPosition = new float2(x, z),
                             WorldPosition = position
                         };
-                        
+
                         int tile = _world.NewEntity();
 
                         _world.GetPool<TileGeneratedEvent>().Add(tile);
@@ -124,9 +129,10 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
             }
 
             Debug.Log("End");
-            
-            levelAspect.GameFieldGenerated.Add(levelID);
-            levelAspect.GameFieldGenerated.Add(algorithm);
+
+            levelAspect.GameFieldGeneratedEvent.Add(levelID);
+            levelAspect.GameFieldGeneratedEvent.Add(algorithm);
+            levelAspect.GameFieldGeneratedMarker.Add(levelID);
         }
 
         private IEnumerator Destruct(DestructionAspect destructionAspect, TargetLevelAspect levelAspect, int algorithm)
@@ -139,25 +145,20 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
             ref GameField GameField() =>
                 ref levelAspect.GameFields.Get(levelID);
 
-            float3 waveOrigin = new float3(
-                GameField().Size / 2f * (GameField().CellSize + GameField().Offset) + GameField().OriginPosition.x,
-                0, GameField().Size / 2f * (GameField().CellSize + GameField().Offset) + GameField().OriginPosition.z);
-
+            levelAspect.GameFieldGeneratedMarker.Del(levelID);
+            
             foreach (GameField.Cell cell in GameField().Cells)
             {
-                float3 position = new float3(
-                    cell.CellPosition.x * (GameField().CellSize + GameField().Offset) + GameField().OriginPosition.x, 0,
-                    cell.CellPosition.y * (GameField().CellSize + GameField().Offset) + GameField().OriginPosition.z);
-
-                float delay = math.distance(position, waveOrigin) * destructionAspect.Waves.Read(algorithm).Speed;
+                float delay = math.distance(cell.WorldPosition, destructionAspect.Waves.Read(algorithm).WaveOrigin) *
+                              destructionAspect.Waves.Read(algorithm).Speed;
 
                 yield return new WaitForSeconds(delay);
 
                 Object.Destroy(cell.View);
             }
 
-            levelAspect.GameFieldDestructed.Add(levelID);
-            levelAspect.GameFieldDestructed.Add(algorithm);
+            levelAspect.GameFieldDestructedEvent.Add(levelID);
+            levelAspect.GameFieldDestructedEvent.Add(algorithm);
         }
     }
 }

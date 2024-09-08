@@ -18,7 +18,7 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
         private class LostStateAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(LevelLostEvent))]
-            [Inc] public readonly EcsPool<GenerationGameFieldAlgorithmCfg> GameFieldAlgorithmConfigs;
+            [Inc] public readonly EcsPool<GameFieldAlgorithms> GameFieldAlgorithmConfigs;
 
             [Inc] public readonly EcsPool<DestructionAnimalStrategyCfg> DestructionAnimalStrategyConfigs;
             [Opt] public readonly EcsTagPool<CanClickGameFieldMarker> CanClickGameField;
@@ -28,7 +28,7 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
         {
             [IncImplicit(typeof(LevelLostMarker))]
             [IncImplicit(typeof(AnimalDestructedEvent))]
-            [Inc] public readonly EcsPool<GenerationGameFieldAlgorithmCfg> GameFieldAlgorithmConfigs;
+            [Opt] public readonly EcsTagPool<GameFieldDestructRequest> GameFieldDestruct;
         }
 
         private class GameFieldDestructedStateAspect : EcsAspectAuto
@@ -84,13 +84,11 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
 
             foreach (int level in _world.Where(out AnimalDestructedStateAspect aspect))
             {
-                int algorithm = _world.NewEntity(aspect.GameFieldAlgorithmConfigs.Get(level).Value);
-
-                _world.GetPool<GameFieldDestructRequest>().Add(algorithm);
-                _world.GetPool<TargetEntity>().Add(algorithm).Value = _world.GetEntityLong(level);
-
+                aspect.GameFieldDestruct.Add(level);
+                
                 foreach (int coin in _world.Where(out CoinAspect coinAspect))
                 {
+                    // destroy coin
                     ref var gameObjectConnect = ref coinAspect.GameObjectConnects.Get(coin);
 
                     Tween
@@ -101,13 +99,11 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
                             {
                                 if (!connect.Entity.TryGetID(out int coinID))
                                     return;
-                                
+
                                 coinAspect.DeleteEntity.Add(coinID);
                                 coinAspect.DestroyView.Add(coinID);
                             });
                 }
-
-                Debug.Log("Game field destruction request");
             }
 
             foreach (int level in _world.Where(out GameFieldDestructedStateAspect levelAspect))

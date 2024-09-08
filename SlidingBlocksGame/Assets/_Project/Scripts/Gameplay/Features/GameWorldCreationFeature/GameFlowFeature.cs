@@ -48,6 +48,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature
                 .AddUnique(new AnimalCreationChainStrategySystem())
                 .AutoDelTag<CreateAnimalsRequest>()
                 //
+                .AutoDelTag<MetaGameUIHiddenEvent>()
                 .AddUnique(new MetaGameUISystem())
                 .AutoDelTag<ShowMetaGameUIRequest>()
                 .AutoDelTag<HideMetaGameUIRequest>()

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using _Project.Scripts.Gameplay.Utils;
 using DCFApixels.DragonECS;
 using Unity.Mathematics;
@@ -13,6 +12,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components
     {
         public GameObject CellPrefab;
         public EcsEntityConnect AnimalPrefab;
+        public EcsEntityConnect GameFieldPrefab;
 
         public float3 OriginPosition;
         public int Size;

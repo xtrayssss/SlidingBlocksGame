@@ -55,21 +55,21 @@ public class TileGenerator7 : MonoBehaviour
         tile.transform.localScale = targetScale;
         elapsedTime = 0;
 
-        Vector3 initialPosition = tile.transform.position;
-        Vector3 targetPosition = new Vector3(col * tileSpacing, 0, row * tileSpacing);
-
-        // Ожидание перед началом перемещения к нормальной позиции
-        yield return new WaitForSeconds(1.0f);
-
-        // Анимация перемещения плитки к нормальной позиции
-        while (elapsedTime < moveDuration)
-        {
-            elapsedTime += Time.deltaTime;
-            tile.transform.position = Vector3.Lerp(initialPosition, targetPosition, elapsedTime / moveDuration);
-            yield return null;
-        }
-
-        tile.transform.position = targetPosition;
+        // Vector3 initialPosition = tile.transform.position;
+        // Vector3 targetPosition = new Vector3(col * tileSpacing, 0, row * tileSpacing);
+        //
+        // // Ожидание перед началом перемещения к нормальной позиции
+        // yield return new WaitForSeconds(1.0f);
+        //
+        // // Анимация перемещения плитки к нормальной позиции
+        // while (elapsedTime < moveDuration)
+        // {
+        //     elapsedTime += Time.deltaTime;
+        //     tile.transform.position = Vector3.Lerp(initialPosition, targetPosition, elapsedTime / moveDuration);
+        //     yield return null;
+        // }
+        //
+        // tile.transform.position = targetPosition;
     }
 
     // private void Update()

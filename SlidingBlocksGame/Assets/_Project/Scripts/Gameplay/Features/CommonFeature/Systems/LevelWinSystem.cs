@@ -3,6 +3,7 @@ using _Project.Scripts.Gameplay.Features.DestroyFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
+using _Project.Scripts.Gameplay.Utils;
 using DCFApixels.DragonECS;
 using PrimeTween;
 using UnityEngine;
@@ -16,7 +17,7 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
         private class WinStateAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(LevelWonEvent))]
-            [Inc] public readonly EcsPool<GenerationGameFieldAlgorithmCfg> GameFieldAlgorithmConfigs;
+            [Inc] public readonly EcsPool<GameFieldAlgorithms> GameFieldAlgorithmConfigs;
 
             [Opt] public readonly EcsPool<DestructionAnimalStrategyCfg> DestructionAnimalStrategyConfigs;
             [Opt] public readonly EcsTagPool<CanClickGameFieldMarker> CanClickGameField;
@@ -26,7 +27,7 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
         {
             [IncImplicit(typeof(LevelWonMarker))]
             [IncImplicit(typeof(AnimalDestructedEvent))]
-            [Inc] public readonly EcsPool<GenerationGameFieldAlgorithmCfg> GameFieldAlgorithmConfigs;
+            [Inc] public readonly EcsPool<GameFieldAlgorithms> GameFieldAlgorithmConfigs;
         }
 
         private class GameFieldDestructedStateAspect : EcsAspectAuto
@@ -65,12 +66,12 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
 
             foreach (int level in _world.Where(out AnimalDestructedStateAspect aspect))
             {
-                int algorithm = _world.NewEntity(aspect.GameFieldAlgorithmConfigs.Get(level).Value);
-
-                _world.GetPool<GameFieldDestructRequest>().Add(algorithm);
-                _world.GetPool<TargetEntity>().Add(algorithm).Value = _world.GetEntityLong(level);
-
-                Debug.Log("Game field destruction request");
+                // int algorithm = _world.NewEntity(aspect.GameFieldAlgorithmConfigs.Get(level).Value);
+                //
+                // _world.GetPool<GameFieldDestructRequest>().Add(algorithm);
+                // _world.GetPool<TargetEntity>().Add(algorithm).Value = _world.GetEntityLong(level);
+                //
+                // Debug.Log("Game field destruction request");
             }
 
             foreach (int level in _world.Where(out GameFieldDestructedStateAspect levelAspect))

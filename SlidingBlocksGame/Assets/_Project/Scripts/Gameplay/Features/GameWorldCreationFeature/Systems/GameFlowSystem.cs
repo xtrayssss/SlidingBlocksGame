@@ -3,7 +3,6 @@ using _Project.Scripts.Gameplay.Features.DestroyFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
 using _Project.Scripts.Gameplay.Features.UIFeature.Components;
-using _Project.Scripts.Gameplay.Features.VisualFeature.Components;
 using DCFApixels.DragonECS;
 using UnityEngine;
 
@@ -31,6 +30,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
         {
             [IncImplicit(typeof(GameCreatedEvent))]
             [Opt] public readonly EcsTagPool<CreateHUDRequest> CreateHud;
+
             [Opt] public readonly EcsTagPool<CreateGameScreenRequest> CreateGameScreen;
         }
 
@@ -38,9 +38,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
         {
             [IncImplicit(typeof(LevelTag))]
             [IncImplicit(typeof(SpawnedEvent))]
-            [Inc] public readonly EcsPool<GameField> GameFields;
-
-            [Opt] public readonly EcsTagPool<GameFieldGenerateRequest> GameFieldGenerate;
+            private int _;
         }
 
         private class GeneratedGameFieldStateAspect : EcsAspectAuto
@@ -60,6 +58,11 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
             [Opt] public readonly EcsTagPool<CanClickGameFieldMarker> CanClickGameField;
         }
 
+        private class MetaGameUIHiddenStateAspect : EcsAspectAuto
+        {
+            [Inc] private readonly EcsTagPool<MetaGameUIHiddenEvent> _metaGameUIHiddenEvents;
+        }
+
         private class GameScreenAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(GameScreenTag))]
@@ -70,6 +73,13 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
         {
             [IncImplicit(typeof(PlayerTag))]
             [Inc] public readonly EcsPool<SelectionAnimalID> SelectionAnimalIndicies;
+        }
+
+        private class LevelAspect : EcsAspectAuto
+        {
+            [IncImplicit(typeof(LevelTag))]
+            [Inc] public readonly EcsPool<GameField> GameFields;
+            [Opt] public readonly EcsTagPool<GameFieldGenerateRequest> GameFieldGenerate;
         }
 
         public void Run()
@@ -86,9 +96,15 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                     gameAspect.NextLevel.Add(game);
             }
 
-            foreach (int level in _world.Where(out LevelCreationStateAspect levelAspect))
+            foreach (int _ in _world.Where(out LevelCreationStateAspect _))
             {
-                levelAspect.GameFieldGenerate.Add(level);
+                foreach (int gameScreen in _world.Where(out GameScreenAspect gameScreenAspect))
+                    gameScreenAspect.HideMetaGameUI.Add(gameScreen);
+            }
+
+            foreach (int _ in _world.Where(out MetaGameUIHiddenStateAspect _))
+            {
+                Debug.Log("MetaGameUIHiddenStateAspect");
 
                 foreach (int player in _world.Where(out PlayerAspect playerAspect))
                 {
@@ -97,12 +113,13 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                         AnimalEntityConnect animalPrefab = gameAspect.AnimalPrefabs.Read(game)
                             .Animals[playerAspect.SelectionAnimalIndicies.Read(player).Value];
 
-                        levelAspect.GameFields.Get(level).AnimalPrefab = animalPrefab;
+                        foreach (int level in _world.Where(out LevelAspect levelAspect))
+                        {
+                            levelAspect.GameFieldGenerate.Add(level);
+                            levelAspect.GameFields.Get(level).AnimalPrefab = animalPrefab;
+                        }
                     }
                 }
-
-                foreach (int gameScreen in _world.Where(out GameScreenAspect gameScreenAspect))
-                    gameScreenAspect.HideMetaGameUI.Add(gameScreen);
             }
 
             foreach (int level in _world.Where(out GeneratedGameFieldStateAspect aspect))
@@ -110,8 +127,6 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
             foreach (int level in _world.Where(out AnimalPositionedStateAspect aspect))
             {
-                Debug.Log("AnimalPositionedStateAspect");
-                
                 aspect.CreateGameLossTimer.Add(level);
                 aspect.CreateCoin.Add(level);
                 aspect.CanClickGameField.Add(level);

@@ -5,17 +5,19 @@ using UnityEngine;
 namespace _Project.Scripts.Gameplay
 {
     [Serializable]
-    public class TemporaryEntityTemplate : ITemplate
+    public class EntityTemplate : ITemplate
     {
+// #if UNITY_EDITOR
+//         [SerializeField] private string _name;
+// #endif
+
         [SerializeReference] [ComponentTemplateReference]
         private IComponentTemplate[] _components;
 
         public void Apply(short worldID, int entityID)
         {
-            foreach (var item in _components)
-            {
+            foreach (IComponentTemplate item in _components)
                 item.Apply(worldID, entityID);
-            }
         }
     }
 }

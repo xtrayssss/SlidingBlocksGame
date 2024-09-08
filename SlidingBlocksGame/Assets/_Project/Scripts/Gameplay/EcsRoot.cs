@@ -34,7 +34,7 @@ namespace _Project.Scripts.Gameplay
                 .AddUnique(new SpawnedAudioRequestSystem(audioUtils))
                 .AddUnique(new DeathAudioRequestSystem(audioUtils))
                 .AddUnique(new TickAudioRequestSystem(audioUtils))
-                .AddUnique(new GameFieldAudioRequestSystem(audioUtils))
+                .AddUnique(new GameFieldAudioSystem(audioUtils))
                 .AddUnique(new CollectedAudioSystem(audioUtils))
                 .AddUnique(new ConfettiExplodedAudioSystem(audioUtils))
                 .AddUnique(new RewardCollectedAudioSystem(audioUtils))
