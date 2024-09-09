@@ -36,7 +36,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
         {
             [IncImplicit(typeof(LevelTag))]
             [IncImplicit(typeof(SpawnedEvent))]
-            private int _;
+            [Opt] public readonly EcsTagPool<GameFieldGenerateRequest> GameFieldGenerate;
         }
 
         private class GeneratedGameFieldStateAspect : EcsAspectAuto
@@ -67,12 +67,11 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
             [Opt] public readonly EcsTagPool<HideMetaGameUIRequest> HideMetaGameUI;
         }
 
-        private class LevelAspect : EcsAspectAuto
+        private class LevelClearedStateAspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(LevelTag))]
-            [Inc] public readonly EcsPool<GameField> GameFields;
-
-            [Opt] public readonly EcsTagPool<GameFieldGenerateRequest> GameFieldGenerate;
+            [IncImplicit(typeof(GameTag))]
+            [IncImplicit(typeof(LevelClearedEvent))]
+            [Opt] public readonly EcsTagPool<NextLeveRequest> NextLevel;
         }
 
         public void Run()
@@ -85,12 +84,6 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
             foreach (int _ in _world.Where(out PlayButtonClickedAspect _))
             {
-                foreach (int game in _world.Where(out GameAspect gameAspect))
-                    gameAspect.NextLevel.Add(game);
-            }
-
-            foreach (int _ in _world.Where(out LevelCreationStateAspect _))
-            {
                 foreach (int gameScreen in _world.Where(out GameScreenAspect gameScreenAspect))
                     gameScreenAspect.HideMetaGameUI.Add(gameScreen);
             }
@@ -99,9 +92,12 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
             {
                 Debug.Log("MetaGameUIHiddenStateAspect");
 
-                foreach (int level in _world.Where(out LevelAspect levelAspect))
-                    levelAspect.GameFieldGenerate.Add(level);
+                foreach (int game in _world.Where(out GameAspect gameAspect))
+                    gameAspect.NextLevel.Add(game);
             }
+
+            foreach (int level in _world.Where(out LevelCreationStateAspect levelAspect))
+                levelAspect.GameFieldGenerate.Add(level);
 
             foreach (int level in _world.Where(out GeneratedGameFieldStateAspect aspect))
                 aspect.CreateAnimals.Add(level);
@@ -112,6 +108,9 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                 aspect.CreateCoin.Add(level);
                 aspect.CanClickGameField.Add(level);
             }
+
+            foreach (int game in _world.Where(out LevelClearedStateAspect aspect)) 
+                aspect.NextLevel.Add(game);
         }
     }
 }

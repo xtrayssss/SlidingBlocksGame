@@ -39,8 +39,6 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 
                     ref ScrollSnap scrollSnap = ref animalsShopWindowAspect.ScrollSnap.Get(window);
 
-                    Debug.Log("123");
-
                     scrollSnap.OpenCloseTween.Stop();
 
                     gameObjectConnect.Connect.transform.localScale = Vector3.zero;
@@ -106,13 +104,19 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                 purchaseButton.transform.localScale = Vector3.zero;
                 price.transform.localScale = Vector3.zero;
 
-                Tween.Scale(target: purchaseButton.transform,
+                Tween.Scale(
+                    target: purchaseButton.transform,
                     endValue: Vector3.one,
-                    duration: 0.08f, Ease.Linear, startDelay: 0.08f * visibleIndex);
+                    duration: 0.08f,
+                    ease: Ease.Linear,
+                    startDelay: 0.08f * visibleIndex);
 
-                Tween.Scale(target: price.transform,
+                Tween.Scale(
+                    target: price.transform,
                     endValue: Vector3.one,
-                    duration: 0.08f, Ease.Linear, startDelay: 0.08f * visibleIndex);
+                    duration: 0.08f,
+                    ease: Ease.Linear, 
+                    startDelay: 0.08f * visibleIndex);
 
                 visibleSequence.ChainCallback(() =>
                 {

@@ -1,4 +1,5 @@
 ﻿using _Project.Scripts.Gameplay.Features.DestroyFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
 using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
@@ -7,9 +8,11 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
     {
         [EcsInject] private readonly EcsDefaultWorld _world;
 
-        private class RequestAspect : EcsAspectAuto
+        private class GameAspect : EcsAspectAuto
         {
-            [Inc] private readonly EcsTagPool<CleanupLevelRequest> _;
+            [IncImplicit(typeof(GameTag))]
+            [IncImplicit(typeof(CleanupLevelRequest))]
+            [Opt] public readonly EcsTagPool<LevelClearedEvent> LevelCleared;
         }
 
         private class LifeTimeAspect : EcsAspectAuto
@@ -19,10 +22,12 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
 
         public void Run()
         {
-            foreach (int _ in _world.Where(out RequestAspect _))
+            foreach (int game in _world.Where(out GameAspect gameAspect))
             {
-                foreach (int entity in _world.Where(out LifeTimeAspect _)) 
+                foreach (int entity in _world.Where(out LifeTimeAspect _))
                     _world.DelEntity(entity);
+                
+                gameAspect.LevelCleared.Add(game);
             }
         }
     }

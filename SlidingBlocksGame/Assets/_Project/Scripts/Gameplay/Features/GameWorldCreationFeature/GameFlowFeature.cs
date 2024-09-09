@@ -61,6 +61,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature
                 .AddUnique(new CreateCoinSystem())
                 .AutoDelTag<CreateCoinRequest>()
                 //
+                .AutoDelTag<LevelClearedEvent>()
                 .AddUnique(new CleanupLevelSystem())
                 .AutoDelTag<CleanupLevelRequest>()
                 //             

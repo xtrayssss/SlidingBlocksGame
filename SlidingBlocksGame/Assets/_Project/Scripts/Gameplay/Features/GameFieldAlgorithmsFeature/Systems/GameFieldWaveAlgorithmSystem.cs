@@ -45,6 +45,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
             [Opt] public readonly EcsTagPool<GameFieldGeneratedEvent> GameFieldGeneratedEvent;
             [Opt] public readonly EcsTagPool<GameFieldDestructedEvent> GameFieldDestructedEvent;
             [Opt] public readonly EcsTagPool<GameFieldGeneratedMarker> GameFieldGeneratedMarker;
+            [Opt] public readonly EcsTagPool<GameFieldDestructedMarker> GameFieldDestructedMarker;
         }
 
         public void Run()
@@ -78,6 +79,8 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             ref GameField GameField() =>
                 ref levelAspect.GameFields.Get(levelID);
+            
+            levelAspect.GameFieldDestructedMarker.TryDel(levelID);
 
             float3 waveOrigin = generationAspect.Waves.Get(algorithm).WaveOrigin = new float3(
                 GameField().Size / 2f * (GameField().CellSize + GameField().Offset) + GameField().OriginPosition.x,
@@ -132,6 +135,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
 
             levelAspect.GameFieldGeneratedEvent.Add(levelID);
             levelAspect.GameFieldGeneratedEvent.Add(algorithm);
+         
             levelAspect.GameFieldGeneratedMarker.Add(levelID);
         }
 
@@ -159,6 +163,8 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
 
             levelAspect.GameFieldDestructedEvent.Add(levelID);
             levelAspect.GameFieldDestructedEvent.Add(algorithm);
+            
+            levelAspect.GameFieldDestructedMarker.Add(levelID);
         }
     }
 }
