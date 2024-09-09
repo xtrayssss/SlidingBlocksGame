@@ -35,7 +35,6 @@ namespace _Project.Scripts.Gameplay.Features.VisualFeature
                     .AutoDelTag<ViewUpdatedEvent>()
                     .AddUnique(new DisplayPriceAnimalSystem())
                     .AddUnique(new DisplayPurchaseStatusSystem())
-                    .AddUnique(new PlayWithSelectedAnimalSystem())
                     .AddUnique(new DisplayAnimalPurchaseWindowSystem())
                     .AddUnique(new CloseAnimalPurchaseWindowSystem())
                     .AddUnique(new DisplayProgressSystem())

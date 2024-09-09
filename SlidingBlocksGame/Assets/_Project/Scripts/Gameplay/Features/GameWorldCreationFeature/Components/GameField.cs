@@ -11,7 +11,6 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components
     public struct GameField : IEcsComponent
     {
         public GameObject CellPrefab;
-        public EcsEntityConnect AnimalPrefab;
         public EcsEntityConnect GameFieldPrefab;
 
         public float3 OriginPosition;

@@ -47,8 +47,6 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
             foreach (int entity in _world.Where(out HideMetaGameUIAspect aspect))
             {
-                EcsDebug.Break();
-
                 Sequence sequence = Sequence.Create();
 
                 foreach (GameObject ui in aspect.UI.Get(entity).Value)

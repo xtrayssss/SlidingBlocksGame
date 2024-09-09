@@ -21,8 +21,6 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
         private class GameAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(GameTag))]
-            [Inc] public readonly EcsPool<AnimalPrefabs> AnimalPrefabs;
-
             [Opt] public readonly EcsTagPool<NextLeveRequest> NextLevel;
         }
 
@@ -69,16 +67,11 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
             [Opt] public readonly EcsTagPool<HideMetaGameUIRequest> HideMetaGameUI;
         }
 
-        private class PlayerAspect : EcsAspectAuto
-        {
-            [IncImplicit(typeof(PlayerTag))]
-            [Inc] public readonly EcsPool<SelectionAnimalID> SelectionAnimalIndicies;
-        }
-
         private class LevelAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(LevelTag))]
             [Inc] public readonly EcsPool<GameField> GameFields;
+
             [Opt] public readonly EcsTagPool<GameFieldGenerateRequest> GameFieldGenerate;
         }
 
@@ -106,20 +99,8 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
             {
                 Debug.Log("MetaGameUIHiddenStateAspect");
 
-                foreach (int player in _world.Where(out PlayerAspect playerAspect))
-                {
-                    foreach (int game in _world.Where(out GameAspect gameAspect))
-                    {
-                        AnimalEntityConnect animalPrefab = gameAspect.AnimalPrefabs.Read(game)
-                            .Animals[playerAspect.SelectionAnimalIndicies.Read(player).Value];
-
-                        foreach (int level in _world.Where(out LevelAspect levelAspect))
-                        {
-                            levelAspect.GameFieldGenerate.Add(level);
-                            levelAspect.GameFields.Get(level).AnimalPrefab = animalPrefab;
-                        }
-                    }
-                }
+                foreach (int level in _world.Where(out LevelAspect levelAspect))
+                    levelAspect.GameFieldGenerate.Add(level);
             }
 
             foreach (int level in _world.Where(out GeneratedGameFieldStateAspect aspect))

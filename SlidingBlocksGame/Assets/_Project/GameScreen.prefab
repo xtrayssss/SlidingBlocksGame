@@ -13722,14 +13722,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EntityCfg:
     _components:
-    - rid: 8499802562692645388
+    - rid: -2
   references:
     version: 2
     RefIds:
-    - rid: 8499802562692645388
-      type: {class: CloseAnimalPurchaseWindowButtonTag/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data: {}
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!1 &7586054034801916300
 GameObject:
   m_ObjectHideFlags: 0
@@ -32579,13 +32577,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
+      propertyPath: managedReferences[-2]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
+        type: 3}
       propertyPath: EntityCfg._components.Array.data[0]
-      value: 6454805155731210897
+      value: 6454805267925958658
       objectReference: {fileID: 0}
     - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
       propertyPath: managedReferences[6454805155731210897]
       value: Assembly-CSharp _Project.Scripts.Gameplay.Features.UIFeature.Components.CloseAnimalPurchaseWindowButtonTag/Template
+      objectReference: {fileID: 0}
+    - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
+        type: 3}
+      propertyPath: managedReferences[6454805267925958658]
+      value: Assembly-CSharp _Project.Scripts.Gameplay.Features.UIFeature.Components.PlayAnimalButtonTag/Template
       objectReference: {fileID: 0}
     - target: {fileID: 2188390974939379177, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}

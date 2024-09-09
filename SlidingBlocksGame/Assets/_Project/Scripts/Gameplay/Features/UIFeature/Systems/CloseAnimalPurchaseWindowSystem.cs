@@ -12,7 +12,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 
         private class ButtonClickedAspect : EcsAspectAuto
         {
-            [Inc] public readonly EcsTagPool<CloseAnimalPurchaseWindowButtonTag> CloseAnimalPurchaseWindowButtonTag;
+            [Inc] public readonly EcsTagPool<PlayAnimalButtonTag> PlayAnimalButtonTag;
             [Inc] public readonly EcsTagPool<ButtonClickedEvent> Clicked;
         }
 

@@ -27,7 +27,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
             [Opt] public readonly EcsPool<GameScreen> GameScreen;
         }
 
-        private class GameAspect : EcsAspectAuto
+        private class PlayerAspect : EcsAspectAuto
         {
             [Inc] public readonly EcsPool<AnimalPrefabs> AnimalPrefabs;
         }
@@ -134,9 +134,9 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
             List<GameObject> list = new List<GameObject>();
 
-            foreach (int game in _world.Where(out GameAspect gameAspect))
+            foreach (int player in _world.Where(out PlayerAspect playerAspect))
             {
-                ref readonly AnimalPrefabs animalPrefabs = ref gameAspect.AnimalPrefabs.Read(game);
+                ref readonly AnimalPrefabs animalPrefabs = ref playerAspect.AnimalPrefabs.Read(player);
 
                 foreach (EcsEntityConnect purchasePrefab in animalPurchases.Prefabs)
                 {

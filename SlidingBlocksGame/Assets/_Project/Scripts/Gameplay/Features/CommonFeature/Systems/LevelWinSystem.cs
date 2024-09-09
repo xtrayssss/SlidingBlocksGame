@@ -2,8 +2,6 @@
 using _Project.Scripts.Gameplay.Features.DestroyFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
-using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
-using _Project.Scripts.Gameplay.Utils;
 using DCFApixels.DragonECS;
 using PrimeTween;
 using UnityEngine;
@@ -27,13 +25,15 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
         {
             [IncImplicit(typeof(LevelWonMarker))]
             [IncImplicit(typeof(AnimalDestructedEvent))]
-            [Inc] public readonly EcsPool<GameFieldAlgorithms> GameFieldAlgorithmConfigs;
+            [Opt] public readonly EcsTagPool<GameFieldDestructRequest> GameFieldDestruct;
         }
 
         private class GameFieldDestructedStateAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(GameFieldDestructedEvent))]
             [Inc] public readonly EcsTagPool<LevelWonMarker> LevelWon;
+
+            [Opt] public readonly EcsTagPool<GameFieldGenerateRequest> GameFieldGenerate;
         }
 
         private class GameLossTimerAspect : EcsAspectAuto
@@ -65,14 +65,7 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
             }
 
             foreach (int level in _world.Where(out AnimalDestructedStateAspect aspect))
-            {
-                // int algorithm = _world.NewEntity(aspect.GameFieldAlgorithmConfigs.Get(level).Value);
-                //
-                // _world.GetPool<GameFieldDestructRequest>().Add(algorithm);
-                // _world.GetPool<TargetEntity>().Add(algorithm).Value = _world.GetEntityLong(level);
-                //
-                // Debug.Log("Game field destruction request");
-            }
+                aspect.GameFieldDestruct.Add(level);
 
             foreach (int level in _world.Where(out GameFieldDestructedStateAspect levelAspect))
             {
@@ -83,7 +76,11 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
                     GameObjectConnect connect = timerAspect.GameObjectConnects.Read(timer);
 
                     Tween.Scale(connect.Connect.transform, Vector3.zero, 0.2f, Ease.OutQuad)
-                        .OnComplete(connect.Connect, target => { target.gameObject.SetActive(false); });
+                        .OnComplete(connect.Connect, target =>
+                        {
+                            levelAspect.GameFieldGenerate.Add(level);
+                            target.gameObject.SetActive(false);
+                        });
                 }
 
                 foreach (int game in _world.Where(out GameAspect gameAspect))
@@ -92,7 +89,7 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
                     _world.GetPool<CleanupLevelRequest>().Add(game);
 
                     levelAspect.LevelWon.Del(level);
-                };
+                }
             }
         }
     }

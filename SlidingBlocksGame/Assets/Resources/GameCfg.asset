@@ -15,7 +15,6 @@ MonoBehaviour:
   _components:
   - rid: 8499802323967542113
   - rid: 8499802364150546640
-  - rid: 8499802611131088914
   - rid: 8499802700812648452
   - rid: 8499802702287471245
   - rid: 8499802702287471249
@@ -45,19 +44,6 @@ MonoBehaviour:
       type: {class: GameTag/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
         asm: Assembly-CSharp}
       data: {}
-    - rid: 8499802611131088914
-      type: {class: AnimalPrefabs/Template, ns: _Project.Scripts.Gameplay.Features.CommonFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          _animals:
-          - {fileID: 2013783015110300518, guid: bcb8c70410414a246922c356f4b52f69, type: 3}
-          - {fileID: 1491240329894344860, guid: ed9ce83c2744d864b983134d287ec369, type: 3}
-          - {fileID: 5302321889394267346, guid: 6837cb7328d775949ba228083fd08696, type: 3}
-          - {fileID: 8687766115236254335, guid: 3ffaf1ae16354074db9ac5a979cdb35f, type: 3}
-          - {fileID: 7558186800719259502, guid: bd6f74b8d916ffa4eb9ab1a34e4b5a3d, type: 3}
-          - {fileID: 1737809211169751524, guid: 60f569c8fef7bcb4aa6510ecdf2cc0b5, type: 3}
-          - {fileID: 2837514245448880509, guid: fdf867e4f78396d4893b9e39fbd9a5b3, type: 3}
     - rid: 8499802700812648452
       type: {class: PlayerCfgRef/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
         asm: Assembly-CSharp}

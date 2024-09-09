@@ -19,6 +19,8 @@ namespace _Project.Scripts.Gameplay.Features.CollectFeature
             [Inc] public readonly EcsPool<Coins> Coins;
 
             [Inc] public readonly EcsPool<Scores> Scores;
+            [Inc] public readonly EcsPool<SelectedAnimal> SelectedAnimals;
+            [Inc] public readonly EcsPool<AnimalPrefabs> AnimalPrefabs;
         }
 
         private class CoinCollectedAspect : EcsAspectAuto
@@ -42,6 +44,12 @@ namespace _Project.Scripts.Gameplay.Features.CollectFeature
         private class PurchaseButtonClickedAspect : EcsAspectAuto
         {
             [Inc] public readonly EcsTagPool<UnlockButtonTag> UnlockButtonTag;
+            [Inc] public readonly EcsTagPool<ButtonClickedEvent> Clicked;
+        }
+
+        private class PlayAnimalButtonClickedAspect : EcsAspectAuto
+        {
+            [Inc] public readonly EcsTagPool<PlayAnimalButtonTag> PlayAnimalButtonTag;
             [Inc] public readonly EcsTagPool<ButtonClickedEvent> Clicked;
         }
 
@@ -105,6 +113,25 @@ namespace _Project.Scripts.Gameplay.Features.CollectFeature
                 }
             }
 
+            foreach (int _ in _world.Where(out PlayAnimalButtonClickedAspect _))
+            {
+                foreach (int player in _world.Where(out PlayerAspect playerAspect))
+                {
+                    foreach (int animalPurchase in _world.Where(out PurchasesAspect purchasesAspect))
+                    {
+                        ref readonly Purchase purchase = ref purchasesAspect.Purchases.Read(animalPurchase);
+
+                        ref var selectedAnimal = ref playerAspect.SelectedAnimals.Get(player);
+                        selectedAnimal.ID = purchase.ProductIndex;
+                        selectedAnimal.Prefab = playerAspect.AnimalPrefabs.Read(player).Animals[selectedAnimal.ID];
+
+                        YandexGame.savesData.SelectedAnimalID = purchase.ProductIndex;
+
+                        YandexGame.SaveProgress();
+                    }
+                }
+            }
+
             foreach (int _ in _world.Where(out PurchaseButtonClickedAspect _))
             {
                 foreach (int player in _world.Where(out PlayerAspect playerAspect))
@@ -161,6 +188,10 @@ namespace _Project.Scripts.Gameplay.Features.CollectFeature
                 {
                     playerAspect.Coins.Get(player).Value = YandexGame.savesData.Coins;
                     playerAspect.Scores.Get(player).Value = YandexGame.savesData.Scores;
+                    
+                    ref SelectedAnimal selectedAnimal = ref playerAspect.SelectedAnimals.Get(player);
+                    selectedAnimal.ID = YandexGame.savesData.SelectedAnimalID;
+                    selectedAnimal.Prefab = playerAspect.AnimalPrefabs.Read(player).Animals[selectedAnimal.ID];
                 }
             }
 

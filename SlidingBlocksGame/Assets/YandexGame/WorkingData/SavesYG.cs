@@ -16,5 +16,6 @@ namespace YG
         public List<ushort> PurchasedAnimals = new List<ushort>();
         public long RewardCollectedAt;
         public int RewardCount;
+        public ushort SelectedAnimalID;
     }
 }
