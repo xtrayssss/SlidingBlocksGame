@@ -1,5 +1,4 @@
-﻿using _Project.Scripts.Gameplay.Features.CollectFeature;
-using _Project.Scripts.Gameplay.Features.UIFeature.Components;
+﻿using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.UIFeature.Systems;
 using _Project.Scripts.Gameplay.Features.VisualFeature.Components;
 using _Project.Scripts.Gameplay.Features.VisualFeature.Systems;
@@ -22,7 +21,7 @@ namespace _Project.Scripts.Gameplay.Features.VisualFeature
             {
                 builder
                     .AddUnique(new DisplayProgressTimerSystem())
-                    .AddUnique(new SettingsMenuSystem())
+                    .AddUnique(new SettingsPopupSystem())
                     .AddUnique(new AudioButtonsSystem())
                     .AddUnique(new InAppPopupSystem())
                     //

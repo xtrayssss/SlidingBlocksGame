@@ -45,7 +45,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 
         private class RewardWindowAspect : EcsAspectAuto
         {
-            [Inc] public readonly EcsPool<OpenCloseTween> OpenCloseTween;
+            [Inc] public readonly EcsPool<OpenCloseSequence> OpenCloseTween;
             [Inc] public readonly EcsPool<GameObjectConnect> GameObjectConnects;
             [Inc] public readonly EcsPool<CoinsRewardConnect> CoinsRewardConnects;
             [Inc] public readonly EcsPool<RewardConfettiEffectConnect> RewardConfettiEffectConnect;
@@ -96,16 +96,16 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 
                     rewardWindowConnect.Value.gameObject.SetActive(true);
 
-                    ref OpenCloseTween openCloseTween =
-                        ref _world.GetPool<OpenCloseTween>().Get(rewardWindowConnect.Value.Entity.ID);
+                    ref OpenCloseSequence openCloseSequence =
+                        ref _world.GetPool<OpenCloseSequence>().Get(rewardWindowConnect.Value.Entity.ID);
 
-                    openCloseTween.Value.Stop();
+                    openCloseSequence.Value.Stop();
                     Sequence sequence = Sequence.Create();
 
                     RewardCoinsAspect rewardCoinsAspect = _world.GetAspect<RewardCoinsAspect>();
                     RewardWindowAspect rewardWindowAspect = _world.GetAspect<RewardWindowAspect>();
 
-                    openCloseTween.Value = sequence
+                    openCloseSequence.Value = sequence
                         .Chain(Tween.Scale(rewardWindowConnect.Value.transform,
                             Vector3.one, 0.3f, Ease.OutBack));
 
@@ -113,7 +113,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                         rewardAspect,
                         rewardCoinsAspect, rewardWindowConnect.Value.Entity.ID);
 
-                    openCloseTween.Value
+                    openCloseSequence.Value
                         .ChainCallback(
                             target: rewardWindowConnect.Value,
                             connect =>
@@ -134,16 +134,16 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                 {
                     ref GameObjectConnect gameObjectConnect = ref aspect.GameObjectConnects.Get(window);
 
-                    ref OpenCloseTween openCloseTween = ref aspect.OpenCloseTween.Get(window);
+                    ref OpenCloseSequence openCloseSequence = ref aspect.OpenCloseTween.Get(window);
 
-                    openCloseTween.Value.Stop();
+                    openCloseSequence.Value.Stop();
 
                     Sequence sequence = Sequence.Create();
 
                     RewardCoinsAspect rewardCoinsAspect = _world.GetAspect<RewardCoinsAspect>();
                     RewardWindowAspect rewardWindowAspect = _world.GetAspect<RewardWindowAspect>();
 
-                    openCloseTween.Value =
+                    openCloseSequence.Value =
                         sequence
                             .Group(Tween.Scale(gameObjectConnect.Connect.transform, Vector3.zero, 0.2f, Ease.InBack))
                             .Group(AnimateRollback(rewardCoinsAspect, rewardWindowAspect, window))

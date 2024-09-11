@@ -29,6 +29,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
             [Opt] public readonly EcsPool<ActiveGameField> ActiveGameField;
             [Opt] public readonly EcsPool<BoundExtents> BoundsExtents;
             [Opt] public readonly EcsPool<MeshRendererRef> MeshRenderers;
+            [Opt] public readonly EcsTagPool<AnimalSpawnedEvent> AnimalSpawned;
         }
 
         private class SideAspect : EcsAspectAuto
@@ -92,6 +93,8 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                         animalAspect.BoundsExtents.Add(animal.ID).Value =
                             animalAspect.MeshRenderers.Read(animal.ID).Value.bounds.extents;
 
+                        animalAspect.AnimalSpawned.Add(animal.ID);
+                        
                         if (math.all(movementDirection.Value == right.direction))
                             right.animals.Add(animal.ID);
                         if (math.all(movementDirection.Value == left.direction))

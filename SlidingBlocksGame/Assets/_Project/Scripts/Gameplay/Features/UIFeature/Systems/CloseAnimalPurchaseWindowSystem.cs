@@ -12,7 +12,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 
         private class ButtonClickedAspect : EcsAspectAuto
         {
-            [Inc] public readonly EcsTagPool<PlayAnimalButtonTag> PlayAnimalButtonTag;
+            [Inc] public readonly EcsTagPool<CloseAnimalsShopWindowButtonTag> CloseAnimalsShopWindowButtonTag;
             [Inc] public readonly EcsTagPool<ButtonClickedEvent> Clicked;
         }
 
@@ -48,19 +48,51 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                     _world.GetPool<ApplyEffectsMarker>().Del(window);
 
                     scrollSnap.OpenCloseTween = Sequence.Create()
-                        .Chain(AnimateScrollElements(animalsShopWindowAspect.PurchaseAnimals.Read(window).Entities))
-                        .Insert(0.3f,
-                            Tween.Scale(gameObjectConnect.Connect.transform, Vector3.zero, 0.15f, Ease.InOutSine))
-                        .Insert(0.2f,
-                            Tween.Scale(animalsShopWindowAspect.PurchaseButtonStatus.Get(window).Current.transform,
-                                Vector3.zero, 0.15f, Ease.InOutSine))
-                        .Insert(0.2f,
-                            Tween.Scale(animalsShopWindowAspect.PurchaseButtonStatus.Get(window).Price.transform,
-                                Vector3.zero, 0.15f, Ease.InOutSine))
+                        .Chain(
+                            sequence: AnimateScrollElements(
+                                value: animalsShopWindowAspect.PurchaseAnimals.Read(window).Entities))
+                        .Insert(
+                            atTime: 0.3f,
+                            tween: Tween.Scale(
+                                target: gameObjectConnect.Connect.transform,
+                                endValue: Vector3.zero,
+                                duration: 0.15f,
+                                ease: Ease.InBack))
+                        .Insert(
+                            atTime: 0.2f,
+                            tween: Tween.Scale(
+                                target: animalsShopWindowAspect.PurchaseButtonStatus.Get(window).Current.transform,
+                                endValue: Vector3.zero,
+                                duration: 0.15f,
+                                ease: Ease.InBack))
+                        .Insert(
+                            atTime: 0.2f,
+                            tween: Tween.Scale(
+                                target: animalsShopWindowAspect.PurchaseButtonStatus.Get(window).Price.transform,
+                                endValue: Vector3.zero,
+                                duration: 0.15f,
+                                ease: Ease.InOutSine))
                         .ChainCallback(
-                            gameObjectConnect.Connect, target => { target.gameObject.SetActive(false); });
+                            target: gameObjectConnect.Connect,
+                            callback: Callback);
                 }
             }
+        }
+
+        private static void Callback(EcsEntityConnect connect)
+        {
+            connect.gameObject.SetActive(false);
+
+            if (!connect.Entity.TryGetID(out int id)) 
+                return;
+
+            EcsWorld world = connect.World;
+
+            ref PurchaseButtonStatus purchaseButtonStatus = ref world.GetPool<PurchaseButtonStatus>().Get(id);
+            
+            purchaseButtonStatus.Lock.transform.localScale = Vector3.one;
+            purchaseButtonStatus.Play.transform.localScale = Vector3.one;
+            purchaseButtonStatus.Unlock.transform.localScale = Vector3.one;
         }
 
         private Sequence AnimateScrollElements(EcsGroup value)
@@ -86,7 +118,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                 {
                     visibleAnimals = value.Slice(i - 1, 2);
                 }
-                
+
                 for (int index = 0; index < visibleAnimals.Count; index++)
                 {
                     int animal = visibleAnimals[index];

@@ -3,6 +3,7 @@ using _Project.Scripts.Gameplay.Features.CollectFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
 using _Project.Scripts.Gameplay.Features.UIFeature.Components;
+using _Project.Scripts.Gameplay.Features.VisualFeature.Components;
 using DCFApixels.DragonECS;
 using UnityEngine;
 using YG;
@@ -21,19 +22,23 @@ namespace _Project.Scripts.Gameplay.Features.CollectFeature
             [Inc] public readonly EcsPool<Scores> Scores;
             [Inc] public readonly EcsPool<SelectedAnimal> SelectedAnimals;
             [Inc] public readonly EcsPool<AnimalPrefabs> AnimalPrefabs;
+
+            [Opt] public readonly EcsTagPool<CoinsUpdatedEvent> CoinsUpdated;
+            [Opt] public readonly EcsTagPool<ScoresUpdatedEvent> ScoresUpdated;
+            [Opt] public readonly EcsPool<TargetEntity> TargetEntity;
+            [Opt] public readonly EcsTagPool<ClearPurchasesRequest> ClearPurchases;
         }
 
-        private class CoinCollectedAspect : EcsAspectAuto
+        private class CoinUpdateEventAspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(CoinCollectedEvent))]
-            [Inc] public readonly EcsPool<Coins> Coins;
+            [IncImplicit(typeof(CoinsUpdatedEvent))]
+            [Inc] public readonly EcsPool<TargetEntity> TargetEntity;
         }
 
-        private class ScoreUpdatedAspect : EcsAspectAuto
+        private class ScoreUpdatedEventAspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(LevelTag))]
-            [IncImplicit(typeof(SpawnedEvent))]
-            [Inc] public readonly EcsPool<Scores> Scores;
+            [IncImplicit(typeof(ScoresUpdatedEvent))]
+            [Inc] public readonly EcsPool<TargetEntity> TargetEntity;
         }
 
         private class GameCreatedAspect : EcsAspectAuto
@@ -41,10 +46,10 @@ namespace _Project.Scripts.Gameplay.Features.CollectFeature
             [Inc] private readonly EcsTagPool<GameCreatedEvent> _gameCreatedEvents;
         }
 
-        private class PurchaseButtonClickedAspect : EcsAspectAuto
+        private class PurchasedEventAspect : EcsAspectAuto
         {
-            [Inc] public readonly EcsTagPool<UnlockButtonTag> UnlockButtonTag;
-            [Inc] public readonly EcsTagPool<ButtonClickedEvent> Clicked;
+            [Inc] public readonly EcsTagPool<PurchasedEvent> PurchasedEvent;
+            [Inc] public readonly EcsPool<PurchasedEntity> PurchasedEntities;
         }
 
         private class PlayAnimalButtonClickedAspect : EcsAspectAuto
@@ -64,50 +69,75 @@ namespace _Project.Scripts.Gameplay.Features.CollectFeature
             [Opt] public readonly EcsTagPool<PurchasedMarker> Purchased;
         }
 
-        private class AnimalPurchasesWindowSpawnedAspect : EcsAspectAuto
+        private class AnimalsShopWindow : EcsAspectAuto
         {
             [IncImplicit(typeof(AnimalsShopWindowTag))]
-            [IncImplicit(typeof(SpawnedEvent))]
+            [IncImplicit(typeof(AnimalsShopWindowCreatedEvent))]
             [Inc] public readonly EcsPool<AnimalPurchases> AnimalPurchases;
         }
 
-        private class RewardButtonClickedAspect : EcsAspectAuto
+        private class RewardedEventAspect : EcsAspectAuto
         {
-            [Inc] private readonly EcsTagPool<RewardButtonTag> _rewardButtonTag;
-            [Inc] private readonly EcsTagPool<ButtonClickedEvent> _buttonClickedEvent;
+            [Inc] private readonly EcsTagPool<RewardedEvent> _rewardedEvent;
         }
 
-        private class RewardAspect : EcsAspectAuto
+        private class ResetProgressButtonClickedAspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(RewardTag))]
-            [IncImplicit(typeof(CanRewardMarker))]
-            [Inc] public readonly EcsPool<CoinsProgressionCurve> CoinsProgressionCurves;
+            [Inc] public readonly EcsTagPool<ButtonClickedEvent> ButtonClicked;
+            [Inc] public readonly EcsTagPool<ResetProgressButtonTag> ResetProgressButtonTag;
         }
 
         public void Run()
         {
-            foreach (int @event in _world.Where(out CoinCollectedAspect coinCollectedAspect))
+            foreach (int @event in _world.Where(out CoinUpdateEventAspect coinCollectedAspect))
             {
-                foreach (int entity in _world.Where(out PlayerAspect playerAspect))
-                {
-                    ref Coins coins = ref playerAspect.Coins.Get(entity);
-                    coins.Value += coinCollectedAspect.Coins.Read(@event).Value;
+                PlayerAspect playerAspect = _world.GetAspect<PlayerAspect>();
 
-                    YandexGame.savesData.Coins = coins.Value;
+                if (!coinCollectedAspect.TargetEntity.Read(@event).Value.TryGetID(out int targetID) ||
+                    !playerAspect.IsMatches(targetID))
+                    continue;
 
-                    YandexGame.SaveProgress();
-                }
+                ref Coins coins = ref playerAspect.Coins.Get(targetID);
+
+                YandexGame.savesData.Coins = coins.Value;
+
+                YandexGame.SaveProgress();
             }
 
-            foreach (int @event in _world.Where(out ScoreUpdatedAspect scoreUpdateAspect))
+            foreach (int @event in _world.Where(out ScoreUpdatedEventAspect scoreUpdatedEventAspect))
             {
-                foreach (int entity in _world.Where(out PlayerAspect playerAspect))
+                PlayerAspect playerAspect = _world.GetAspect<PlayerAspect>();
+
+                if (!scoreUpdatedEventAspect.TargetEntity.Read(@event).Value.TryGetID(out int targetID) ||
+                    !playerAspect.IsMatches(targetID))
+                    continue;
+
+                ref Scores scores = ref playerAspect.Scores.Get(targetID);
+
+                YandexGame.savesData.Scores = scores.Value;
+
+                YandexGame.SaveProgress();
+            }
+
+            foreach (int @event in _world.Where(out PurchasedEventAspect purchasedEventAspect))
+            {
+                if (!purchasedEventAspect.PurchasedEntities.Read(@event).Value.TryGetID(out int purchaseID))
+                    continue;
+
+                YandexGame.savesData.PurchasedAnimals.Add(_world.GetPool<Purchase>().Read(purchaseID).ProductIndex);
+
+                YandexGame.SaveProgress();
+            }
+
+            foreach (int _ in _world.Where(out RewardedEventAspect _))
+            {
+                foreach (int player in _world.Where(out PlayerAspect playerAspect))
                 {
-                    ref Scores scores = ref playerAspect.Scores.Get(entity);
+                    ref Coins playerCoins = ref playerAspect.Coins.Get(player);
 
-                    scores.Value += scoreUpdateAspect.Scores.Read(@event).Value;
+                    YandexGame.savesData.RewardCount++;
 
-                    YandexGame.savesData.Scores = scores.Value;
+                    YandexGame.savesData.Coins = playerCoins.Value;
 
                     YandexGame.SaveProgress();
                 }
@@ -132,52 +162,48 @@ namespace _Project.Scripts.Gameplay.Features.CollectFeature
                 }
             }
 
-            foreach (int _ in _world.Where(out PurchaseButtonClickedAspect _))
+            foreach (int _ in _world.Where(out ResetProgressButtonClickedAspect _))
             {
                 foreach (int player in _world.Where(out PlayerAspect playerAspect))
                 {
-                    foreach (int animalPurchase in _world.Where(out PurchasesAspect purchasesAspect))
+                    playerAspect.Coins.Get(player).Value = 0;
+                    playerAspect.Scores.Get(player).Value = 0;
+
+                    ref SelectedAnimal selectedAnimal = ref playerAspect.SelectedAnimals.Get(player);
+                    selectedAnimal.ID = 0;
+                    selectedAnimal.Prefab = playerAspect.AnimalPrefabs.Read(player).Animals[selectedAnimal.ID];
+
+                    SendCoinsEvent();
+                    SendScoresEvent();
+                    SendClearPurchasesEvent();
+
+                    void SendCoinsEvent()
                     {
-                        ref Coins coins = ref playerAspect.Coins.Get(player);
-
-                        ref readonly Purchase purchase = ref purchasesAspect.Purchases.Read(animalPurchase);
-
-                        coins.Value -= purchase.Price;
-
-                        purchasesAspect.Purchased.Add(animalPurchase);
-
-                        YandexGame.savesData.Coins = coins.Value;
-
-                        YandexGame.savesData.PurchasedAnimals.Add(purchase.ProductIndex);
-
-                        YandexGame.SaveProgress();
+                        int @event = _world.NewEntity();
+                        playerAspect.CoinsUpdated.Add(@event);
+                        playerAspect.TargetEntity.Add(@event).Value = player.ToEntityLong(_world);
                     }
-                }
-            }
 
-            foreach (int _ in _world.Where(out RewardButtonClickedAspect _))
-            {
-                foreach (int reward in _world.Where(out RewardAspect aspect))
-                {
-                    foreach (int player in _world.Where(out PlayerAspect playerAspect))
+                    void SendScoresEvent()
                     {
-                        ref Coins playerCoins = ref playerAspect.Coins.Get(player);
-
-                        YandexGame.savesData.RewardCollectedAt = YandexGame.ServerTime();
-
-                        int rewardCoins = (int)aspect.CoinsProgressionCurves.Read(reward).Value
-                            .Evaluate(YandexGame.savesData.RewardCount);
-
-                        playerCoins.Value += rewardCoins;
-
-                        YandexGame.savesData.RewardCount++;
-
-                        YandexGame.savesData.Coins = playerCoins.Value;
-
-                        YandexGame.SaveProgress();
-
-                        Debug.Log("Result");
+                        int @event = _world.NewEntity();
+                        playerAspect.ScoresUpdated.Add(@event);
+                        playerAspect.TargetEntity.Add(@event).Value = player.ToEntityLong(_world);
                     }
+
+                    void SendClearPurchasesEvent()
+                    {
+                        int @event = _world.NewEntity();
+                        playerAspect.ClearPurchases.Add(@event);
+                    }
+
+                    YandexGame.savesData.Coins = 0;
+                    YandexGame.savesData.Scores = 0;
+                    YandexGame.savesData.SelectedAnimalID = 0;
+                    YandexGame.savesData.PurchasedAnimals.Clear();
+                    YandexGame.savesData.RewardCount = 0;
+
+                    YandexGame.SaveProgress();
                 }
             }
 
@@ -188,14 +214,14 @@ namespace _Project.Scripts.Gameplay.Features.CollectFeature
                 {
                     playerAspect.Coins.Get(player).Value = YandexGame.savesData.Coins;
                     playerAspect.Scores.Get(player).Value = YandexGame.savesData.Scores;
-                    
+
                     ref SelectedAnimal selectedAnimal = ref playerAspect.SelectedAnimals.Get(player);
                     selectedAnimal.ID = YandexGame.savesData.SelectedAnimalID;
                     selectedAnimal.Prefab = playerAspect.AnimalPrefabs.Read(player).Animals[selectedAnimal.ID];
                 }
             }
 
-            foreach (int window in _world.Where(out AnimalPurchasesWindowSpawnedAspect aspect))
+            foreach (int window in _world.Where(out AnimalsShopWindow aspect))
             {
                 Debug.Log("Load Purchases");
 

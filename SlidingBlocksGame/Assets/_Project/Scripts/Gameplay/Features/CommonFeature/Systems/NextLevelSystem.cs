@@ -35,7 +35,7 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
 
                 entlong nextLevel = _world.NewEntityLong(nextLevelCfg);
 
-                _world.GetTagPool<SpawnedEvent>().Add(nextLevel.ID);
+                _world.GetTagPool<LevelChangedEvent>().Add(nextLevel.ID);
 
                 aspect.GameScreens.Add(nextLevel.ID).Value = aspect.GameScreens.Read(entity).Value;
 

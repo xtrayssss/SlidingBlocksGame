@@ -14,9 +14,7 @@ using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.VisualFeature;
 using _Project.Scripts.Gameplay.Utils;
 using DCFApixels.DragonECS;
-using PrimeTween;
 using Sirenix.OdinInspector;
-using Unity.Mathematics;
 using UnityEngine;
 using YG;
 
@@ -83,7 +81,6 @@ namespace _Project.Scripts.Gameplay
             provider.Set(_world = new EcsDefaultWorld());
 
             _pipeline = EcsPipeline.New()
-                .AutoDelTag<SpawnedEvent>()
                 .AutoDelTag<DeathEvent>()
                 .AddModule(new GameFlowFeature(_gameCfg))
                 .AddModule(new InputFeature())

@@ -20,19 +20,20 @@ namespace _Project.Scripts.Gameplay.Features.CollectFeature
             [IncImplicit(typeof(CoinTag))]
             [Inc] public readonly EcsPool<CellPosition> CellPositions;
 
-            [Inc] public readonly EcsPool<MeshRendererRef> MeshRenderers;
-
             [Exc] public readonly EcsTagPool<CollectedMarker> CollectedMarker;
-
+            [Inc] public readonly EcsPool<MeshRendererRef> MeshRenderers;
             [Inc] public readonly EcsPool<GameObjectConnect> GameObjectConnects;
 
             [Inc] public readonly EcsPool<Coins> Coins;
-            [Opt] public readonly EcsTagPool<CoinCollectedEvent> CoinCollectedEvent;
             [Opt] public readonly EcsTagPool<CollectedEvent> CollectedEvent;
-            [Opt] public readonly EcsPool<TargetEntity> Targets;
+
+            [Opt] public readonly EcsPool<CollectedTargetEntity> CollectedTarget;
+            [Opt] public readonly EcsPool<TargetEntity> Target;
 
             [Opt] public readonly EcsTagPool<DeleteEntityCommand> DeleteEntity;
             [Opt] public readonly EcsTagPool<DestroyViewRequest> DestroyView;
+
+            [Opt] public readonly EcsTagPool<CoinsUpdatedEvent> CoinsUpdated;
         }
 
         private class MovingAnimalAspect : EcsAspectAuto
@@ -47,62 +48,84 @@ namespace _Project.Scripts.Gameplay.Features.CollectFeature
             [Inc] public readonly EcsPool<BoundExtents> BoundExtents;
         }
 
+        private class PlayerAspect : EcsAspectAuto
+        {
+            [IncImplicit(typeof(PlayerTag))]
+            [Inc] public readonly EcsPool<Coins> Coins;
+        }
+
         public void Run()
         {
             foreach (int coin in _world.Where(out CoinAspect coinAspect))
             {
                 foreach (int animal in _world.Where(out MovingAnimalAspect movingAnimalAspect))
                 {
-                    if (movingAnimalAspect.ActiveGameFields.Read(animal).Value.TryGetID(out int gameFieldID))
+                    if (!movingAnimalAspect.ActiveGameFields.Read(animal).Value.TryGetID(out int gameFieldID))
+                        continue;
+
+                    float3 transformPosition = movingAnimalAspect.GameObjectConnects.Read(animal).Connect.transform
+                        .position;
+
+                    ref readonly BoundExtents boundExtents = ref movingAnimalAspect.BoundExtents.Read(animal);
+
+                    int2 position = GridUtils.GetCellPosition(
+                        worldPosition: transformPosition +
+                                       movingAnimalAspect.MovementDirections.Read(animal).Value.xyy *
+                                       boundExtents.Value,
+                        gameField: in _world.GetPool<GameField>().Read(gameFieldID));
+
+                    if (math.all(coinAspect.CellPositions.Read(coin).Value == position))
                     {
-                        float3 transformPosition = movingAnimalAspect.GameObjectConnects.Read(animal).Connect.transform
-                            .position;
+                        coinAspect.CollectedMarker.Add(coin);
 
-                        ref readonly BoundExtents boundExtents = ref movingAnimalAspect.BoundExtents.Read(animal);
-                        
-                        int2 position = GridUtils.GetCellPosition(
-                            worldPosition: transformPosition +
-                                           movingAnimalAspect.MovementDirections.Read(animal).Value.xyy *
-                                           boundExtents.Value,
-                            gameField: in _world.GetPool<GameField>().Read(gameFieldID));
+                        ref GameObjectConnect gameObjectConnect = ref coinAspect.GameObjectConnects.Get(coin);
 
-                        if (math.all(coinAspect.CellPositions.Read(coin).Value == position))
+                        Animate(coin, coinAspect, ref gameObjectConnect);
+
+                        foreach (int player in _world.Where(out PlayerAspect playerAspect))
                         {
-                            coinAspect.CollectedMarker.Add(coin);
+                            playerAspect.Coins.Get(player).Value += coinAspect.Coins.Read(coin).Value;
 
                             int @event = _world.NewEntity();
-
-                            coinAspect.CoinCollectedEvent.Add(@event);
-                            coinAspect.Coins.Add(@event).Value = coinAspect.Coins.Read(coin).Value;
-                            coinAspect.DeleteEntity.Add(@event);
                             coinAspect.CollectedEvent.Add(@event);
-                            coinAspect.Targets.Add(@event).Value = coin.ToEntityLong(_world);
+                            coinAspect.CoinsUpdated.Add(@event);
 
-                            ref GameObjectConnect gameObjectConnect = ref coinAspect.GameObjectConnects.Get(coin);
-
-                            Tween fadeTween = Tween.MaterialColor(coinAspect.MeshRenderers.Read(coin).Value.material,
-                                Color.clear, 0.8f, Ease.OutQuint);
-
-                            Tween positionTween = Tween.Position(gameObjectConnect.Connect.transform,
-                                new Vector3(gameObjectConnect.Connect.transform.position.x, 9,
-                                    gameObjectConnect.Connect.transform.position.y), 0.8f,
-                                Ease.OutQuint);
-
-                            Sequence.Create()
-                                .Group(positionTween)
-                                .Group(fadeTween)
-                                .ChainCallback(gameObjectConnect.Connect, target =>
-                                {
-                                    if (target.Entity.TryGetID(out int coinID))
-                                    {
-                                        coinAspect.DeleteEntity.Add(coinID);
-                                        coinAspect.DestroyView.Add(coinID);
-                                    }
-                                });
+                            coinAspect.CollectedTarget.Add(@event).Value = coin.ToEntityLong(_world);
+                            coinAspect.Target.Add(@event).Value = player.ToEntityLong(_world);
                         }
                     }
                 }
             }
+        }
+
+        private void Animate(int coin, CoinAspect coinAspect, ref GameObjectConnect gameObjectConnect)
+        {
+            Sequence.Create()
+                .Group(
+                    Tween.Position(
+                        target: gameObjectConnect.Connect.transform,
+                        endValue: new Vector3(
+                            gameObjectConnect.Connect.transform.position.x,
+                            9,
+                            gameObjectConnect.Connect.transform.position.y),
+                        duration: 0.8f,
+                        ease: Ease.OutQuint))
+                .Group(
+                    Tween.MaterialColor(
+                        target: coinAspect.MeshRenderers.Read(coin).Value.material,
+                        endValue: Color.clear,
+                        duration: 0.8f,
+                        ease: Ease.OutQuint))
+                .ChainCallback(
+                    target: gameObjectConnect.Connect,
+                    callback: target =>
+                    {
+                        if (!target.Entity.TryGetID(out int id))
+                            return;
+
+                        coinAspect.DeleteEntity.Add(id);
+                        coinAspect.DestroyView.Add(id);
+                    });
         }
     }
 }

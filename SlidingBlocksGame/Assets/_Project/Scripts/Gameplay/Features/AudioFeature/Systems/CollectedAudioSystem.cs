@@ -3,6 +3,7 @@ using _Project.Scripts.Gameplay.Features.CollectFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Utils;
 using DCFApixels.DragonECS;
+using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.AudioFeature.Systems
 {
@@ -18,10 +19,10 @@ namespace _Project.Scripts.Gameplay.Features.AudioFeature.Systems
         private class CollectedEventAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(CollectedEvent))]
-            [Inc] public readonly EcsPool<TargetEntity> Targets;
+            [Inc] public readonly EcsPool<CollectedTargetEntity> CollectedTarget;
         }
 
-        private class TargetAspect : EcsAspectAuto
+        private class TargetCollectedAspect : EcsAspectAuto
         {
             [Inc] public readonly EcsPool<CollectedAudioConfig> AudioConfigs;
         }
@@ -30,12 +31,14 @@ namespace _Project.Scripts.Gameplay.Features.AudioFeature.Systems
         {
             foreach (int entity in _world.Where(out CollectedEventAspect collectedEventAspect))
             {
-                if (collectedEventAspect.Targets.Read(entity).Value.TryGetID(out int targetID))
-                {
-                    TargetAspect targetAspect = _world.GetAspect<TargetAspect>();
+                if (!collectedEventAspect.CollectedTarget.Read(entity).Value.TryGetID(out int targetID)) 
+                    continue;
+                
+                TargetCollectedAspect targetCollectedAspect = _world.GetAspect<TargetCollectedAspect>();
 
-                    _audioUtils.Create(targetAspect.AudioConfigs.Read(targetID).Value);
-                }
+                _audioUtils.Create(targetCollectedAspect.AudioConfigs.Read(targetID).Value);
+
+                Debug.Log("Collected Audio");
             }
         }
     }

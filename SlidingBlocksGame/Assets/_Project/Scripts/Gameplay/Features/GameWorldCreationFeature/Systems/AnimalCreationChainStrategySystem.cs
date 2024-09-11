@@ -43,7 +43,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
             [IncImplicit(typeof(AnimalTag))]
             [Inc] public readonly EcsPool<GameObjectConnect> GameObjectConnects;
 
-            [Opt] public readonly EcsTagPool<SpawnedEvent> Spawned;
+            [Opt] public readonly EcsTagPool<AnimalSpawnedEvent> Spawned;
         }
 
         private class TargetLevelAspect : EcsAspectAuto

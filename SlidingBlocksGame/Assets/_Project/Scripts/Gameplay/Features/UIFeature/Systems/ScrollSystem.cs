@@ -257,8 +257,8 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 
                 if (scrollSnap.SafeItems[scrollSnap.NearestIndex].TryGetID(out int itemID))
                 {
-                    _world.GetPool<SnappedMarker>().Add(itemID);
-                    _world.GetPool<ScrollSnappedEvent>().Add(itemID);
+                    _world.GetPool<SnappedMarker>().TryAdd(itemID);
+                    _world.GetPool<ScrollSnappedEvent>().TryAdd(itemID);
 
                     _world.GetPool<ScrollStartedEvent>().TryDel(itemID);
                     _world.GetPool<ScrollStartedMarker>().TryDel(itemID);

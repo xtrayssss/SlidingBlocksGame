@@ -3,7 +3,6 @@ using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
 using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using DCFApixels.DragonECS;
-using DCFApixels.DragonECS.RunnersCore;
 using PrimeTween;
 using UnityEngine;
 
@@ -21,17 +20,22 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
             [Inc] public readonly EcsPool<RectTransformRef> RectTransforms;
         }
 
-        private class CoinCollectedAspect : EcsAspectAuto
+        private class CoinsUpdatedEventAspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(CoinCollectedEvent))]
-            [Inc] public readonly EcsPool<Coins> Coins;
+            [IncImplicit(typeof(CoinsUpdatedEvent))]
+            [Inc] public readonly EcsPool<TargetEntity> TargetEntities;
         }
 
-        private class ScoreUpdatedAspect : EcsAspectAuto
+        private class TargetEntityAspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(LevelTag))]
-            [IncImplicit(typeof(SpawnedEvent))]
-            [Inc] public readonly EcsPool<Scores> Scores;
+            [Opt] public readonly EcsPool<Coins> Coins;
+            [Opt] public readonly EcsPool<Scores> Scores;
+        }
+
+        private class ScoreUpdatedEventAspect : EcsAspectAuto
+        {
+            [IncImplicit(typeof(ScoresUpdatedEvent))]
+            [Inc] public readonly EcsPool<TargetEntity> TargetEntities;
         }
 
         private class CoinUIAspect : EcsAspectAuto
@@ -55,29 +59,40 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 
         public void Run()
         {
-            foreach (int _ in _world.Where(out CoinCollectedAspect _))
+            foreach (int @event in _world.Where(out CoinsUpdatedEventAspect collectedEventAspect))
             {
                 foreach (int entity in _world.Where(out CoinUIAspect coinUIAspect))
                 {
-                    foreach (int player in _world.Where(out PlayerAspect playerAspect))
-                    {
-                        coinUIAspect.Texts.Get(entity).Value.text = playerAspect.Coins.Read(player).Value.ToString();
+                    if (!collectedEventAspect.TargetEntities.Read(@event).Value.TryGetID(out int targetID))
+                        continue;
 
-                        Tween.PunchScale(coinUIAspect.RectTransforms.Read(entity).Value, new Vector3(0.5f, 0.5f), 0.2f);
-                    }
+                    TargetEntityAspect targetEntityAspect = _world.GetAspect<TargetEntityAspect>();
+
+                    coinUIAspect.Texts.Get(entity).Value.text =
+                        targetEntityAspect.Coins.Read(targetID).Value.ToString();
+
+                    Tween.PunchScale(
+                        target: coinUIAspect.RectTransforms.Read(entity).Value,
+                        strength: new Vector3(0.5f, 0.5f),
+                        duration: 0.2f);
                 }
             }
 
-            foreach (int _ in _world.Where(out ScoreUpdatedAspect _))
+            foreach (int @event in _world.Where(out ScoreUpdatedEventAspect scoreUpdatedEventAspect))
             {
                 foreach (int entity in _world.Where(out ScoreUIAspect aspect))
                 {
-                    foreach (int player in _world.Where(out PlayerAspect playerAspect))
-                    {
-                        aspect.Texts.Get(entity).Value.text = playerAspect.Scores.Get(player).Value.ToString();
+                    if (!scoreUpdatedEventAspect.TargetEntities.Read(@event).Value.TryGetID(out int targetID))
+                        continue;
 
-                        Tween.PunchScale(aspect.RectTransforms.Read(entity).Value, new Vector3(0.5f, 0.5f), 0.2f);
-                    }
+                    TargetEntityAspect targetEntityAspect = _world.GetAspect<TargetEntityAspect>();
+                    
+                    aspect.Texts.Get(entity).Value.text = targetEntityAspect.Scores.Get(targetID).Value.ToString();
+
+                    Tween.PunchScale(
+                        target: aspect.RectTransforms.Read(entity).Value,
+                        strength: new Vector3(0.5f, 0.5f),
+                        duration: 0.2f);
                 }
             }
 

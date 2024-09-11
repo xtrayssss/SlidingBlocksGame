@@ -35,7 +35,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
         private class LevelCreationStateAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(LevelTag))]
-            [IncImplicit(typeof(SpawnedEvent))]
+            [IncImplicit(typeof(LevelChangedEvent))]
             [Opt] public readonly EcsTagPool<GameFieldGenerateRequest> GameFieldGenerate;
         }
 
@@ -66,14 +66,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
             [IncImplicit(typeof(GameScreenTag))]
             [Opt] public readonly EcsTagPool<HideMetaGameUIRequest> HideMetaGameUI;
         }
-
-        private class LevelClearedStateAspect : EcsAspectAuto
-        {
-            [IncImplicit(typeof(GameTag))]
-            [IncImplicit(typeof(LevelClearedEvent))]
-            [Opt] public readonly EcsTagPool<NextLeveRequest> NextLevel;
-        }
-
+        
         public void Run()
         {
             foreach (int game in _world.Where(out GameCreatedAspect aspect))
@@ -108,9 +101,6 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                 aspect.CreateCoin.Add(level);
                 aspect.CanClickGameField.Add(level);
             }
-
-            foreach (int game in _world.Where(out LevelClearedStateAspect aspect)) 
-                aspect.NextLevel.Add(game);
         }
     }
 }

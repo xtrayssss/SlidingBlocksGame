@@ -44,7 +44,12 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                     gameObjectConnect.Connect.transform.localScale = Vector3.zero;
 
                     scrollSnap.OpenCloseTween = Sequence.Create()
-                        .Group(Tween.Scale(gameObjectConnect.Connect.transform, Vector3.one, 0.2f, Ease.InOutSine))
+                        .Group(
+                            tween: Tween.Scale(
+                                target: gameObjectConnect.Connect.transform,
+                                endValue: Vector3.one,
+                                duration: 0.2f,
+                                ease: Ease.InOutSine))
                         .Chain(
                             sequence: AnimateScrollElements(
                                 value: animalsShopWindowAspect.PurchaseAnimals.Read(window).Entities,
@@ -53,8 +58,6 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                                 window: window));
 
                     gameObjectConnect.Connect.transform.gameObject.SetActive(true);
-                    
-                    EcsDebug.Break();
                 }
             }
         }
@@ -100,9 +103,9 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                         endValue: Vector3.one,
                         duration: 0.08f, Ease.Linear, startDelay: 0.08f * visibleIndex));
                 }
-
-                purchaseButton.transform.localScale = Vector3.zero;
+                
                 price.transform.localScale = Vector3.zero;
+                purchaseButton.transform.localScale = Vector3.zero;
 
                 Tween.Scale(
                     target: purchaseButton.transform,
@@ -115,7 +118,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                     target: price.transform,
                     endValue: Vector3.one,
                     duration: 0.08f,
-                    ease: Ease.Linear, 
+                    ease: Ease.Linear,
                     startDelay: 0.08f * visibleIndex);
 
                 visibleSequence.ChainCallback(() =>

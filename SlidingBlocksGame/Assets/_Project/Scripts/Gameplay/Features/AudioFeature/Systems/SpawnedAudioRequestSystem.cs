@@ -16,13 +16,11 @@ namespace _Project.Scripts.Gameplay.Features.AudioFeature.Systems
 
         private class SpawnedRetranslationAspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(SpawnedEvent))]
             [Inc] public readonly EcsPool<TargetEntity> Targets;
         }
 
         private class SpawnedAspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(SpawnedEvent))]
             [Inc] public readonly EcsPool<SpawnedAudioConfig> AudioConfigs;
         }
 
@@ -36,17 +34,17 @@ namespace _Project.Scripts.Gameplay.Features.AudioFeature.Systems
         {
             foreach (int entity in _world.Where(out SpawnedRetranslationAspect spawnedRetranslationAspect))
             {
-                if (spawnedRetranslationAspect.Targets.Read(entity).Value.TryGetID(out int targetID))
-                {
-                    TargetAspect targetAspect = _world.GetAspect<TargetAspect>();
-
-                    if (targetAspect.IsMatches(targetID))
-                        _audioUtils.Create(targetAspect.AudioConfigs.Read(targetID).Value);
-                }
+                // if (spawnedRetranslationAspect.Targets.Read(entity).Value.TryGetID(out int targetID))
+                // {
+                //     TargetAspect targetAspect = _world.GetAspect<TargetAspect>();
+                //
+                //     if (targetAspect.IsMatches(targetID))
+                //         _audioUtils.Create(targetAspect.AudioConfigs.Read(targetID).Value);
+                // }
             }
-
-            foreach (int entity in _world.Where(out SpawnedAspect spawnedAspect))
-                _audioUtils.Create(spawnedAspect.AudioConfigs.Read(entity).Value);
+            //
+            // foreach (int entity in _world.Where(out SpawnedAspect spawnedAspect))
+            //     _audioUtils.Create(spawnedAspect.AudioConfigs.Read(entity).Value);
         }
     }
 }

@@ -7,7 +7,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Components
     [Serializable]
     public struct OpenCloseTween : IEcsComponent
     {
-        public Sequence Value;
+        public Tween Value;
 
         private sealed class Template : ComponentTemplate<OpenCloseTween>
         {

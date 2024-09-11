@@ -55,12 +55,20 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
             private int _;
         }
 
+        private class LevelClearedStateAspect : EcsAspectAuto
+        {
+            [IncImplicit(typeof(GameTag))]
+            [IncImplicit(typeof(LevelClearedEvent))]
+            [Opt] public readonly EcsTagPool<NextLeveRequest> NextLevel;
+        }
+
         private class LevelAspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(LevelTag))]
+            [IncImplicit(typeof(GameTag))]
+            [IncImplicit(typeof(LevelClearedEvent))]
             [Inc] public readonly EcsTagPool<LevelWonMarker> LevelWon;
 
-            [Opt] public readonly EcsTagPool<GameFieldGenerateRequest> GameFieldGenerate;
+            [Opt] public readonly EcsTagPool<NextLeveRequest> NextLevel;
         }
 
         public void Run()
@@ -82,7 +90,7 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
             foreach (int level in _world.Where(out AnimalDestructedStateAspect aspect))
                 aspect.GameFieldDestruct.Add(level);
 
-            foreach (int level in _world.Where(out GameFieldDestructedEnterStateAspect levelAspect))
+            foreach (int _ in _world.Where(out GameFieldDestructedEnterStateAspect _))
             {
                 Debug.Log("123");
 
@@ -106,11 +114,15 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
 
             foreach (int _ in _world.Where(out GameLossTimerClosedAspect _))
             {
+                foreach (int game in _world.Where(out GameAspect _))
+                    _world.GetPool<CleanupLevelRequest>().Add(game);
+            }
+
+            foreach (int game in _world.Where(out LevelClearedStateAspect aspect))
+            {
                 foreach (int level in _world.Where(out LevelAspect levelAspect))
                 {
-                    foreach (int game in _world.Where(out GameAspect _)) 
-                        _world.GetPool<CleanupLevelRequest>().Add(game);
-
+                    aspect.NextLevel.Add(game);
                     levelAspect.LevelWon.Del(level);
                 }
             }
