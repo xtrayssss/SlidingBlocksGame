@@ -75,12 +75,8 @@ namespace _Project.Scripts.Gameplay.Features.CollectFeature
         {
             [IncImplicit(typeof(AnimalsShopWindowTag))]
             [Inc] public readonly EcsPool<AnimalPurchases> AnimalPurchases;
-            [Inc] public readonly EcsPool<ScrollSnap> ScrollSnaps;
-        }
 
-        private class RewardedEventAspect : EcsAspectAuto
-        {
-            [Inc] private readonly EcsTagPool<RewardedEvent> _rewardedEvent;
+            [Inc] public readonly EcsPool<ScrollSnap> ScrollSnaps;
         }
 
         private class ResetProgressButtonClickedAspect : EcsAspectAuto
@@ -99,6 +95,18 @@ namespace _Project.Scripts.Gameplay.Features.CollectFeature
         {
             [IncImplicit(typeof(PurchasesClearedEvent))]
             [Inc] public readonly EcsPool<TargetEntity> TargetEntity;
+        }
+
+        private class RewardUpdatedEventAspect : EcsAspectAuto
+        {
+            [IncImplicit(typeof(RewardUpdatedEvent))]
+            [Inc] public readonly EcsPool<TargetEntity> TargetEntity;
+        }
+
+        private class RewardAspect : EcsAspectAuto
+        {
+            [Inc] public readonly EcsPool<RewardsCount> RewardsCounts;
+            [Inc] public readonly EcsPool<RewardCollectedAt> RewardCollectedAt;
         }
 
         public void Run()
@@ -140,20 +148,18 @@ namespace _Project.Scripts.Gameplay.Features.CollectFeature
                 YandexGame.SaveProgress();
             }
 
-            foreach (int _ in _world.Where(out RewardedEventAspect _))
+            foreach (int @event in _world.Where(out RewardUpdatedEventAspect rewardsCountUpdatedEventAspect))
             {
-                foreach (int player in _world.Where(out PlayerAspect playerAspect))
-                {
-                    ref Coins playerCoins = ref playerAspect.Coins.Get(player);
+                RewardAspect rewardAspect = _world.GetAspect<RewardAspect>();
 
-                    YandexGame.savesData.RewardCount++;
+                if (!rewardsCountUpdatedEventAspect.TargetEntity.Read(@event).Value.TryGetID(out int targetID) ||
+                    !rewardAspect.IsMatches(targetID))
+                    continue;
 
-                    YandexGame.savesData.Coins = playerCoins.Value;
+                YandexGame.savesData.RewardCount = rewardAspect.RewardsCounts.Read(targetID).Value;
+                YandexGame.savesData.RewardCollectedAt = rewardAspect.RewardCollectedAt.Read(targetID).Value;
 
-                    YandexGame.savesData.RewardCollectedAt = YandexGame.ServerTime();
-
-                    YandexGame.SaveProgress();
-                }
+                YandexGame.SaveProgress();
             }
 
             foreach (int _ in _world.Where(out PlayAnimalButtonClickedAspect _))
@@ -186,7 +192,7 @@ namespace _Project.Scripts.Gameplay.Features.CollectFeature
                 YandexGame.SaveProgress();
             }
 
-            
+
             foreach (int @event in _world.Where(out PurchasesClearedEventAspect purchasesClearedEventAspect))
             {
                 PlayerAspect playerAspect = _world.GetAspect<PlayerAspect>();
@@ -223,9 +229,16 @@ namespace _Project.Scripts.Gameplay.Features.CollectFeature
 
                     ProgressUtils.ClearPurchases(target: player);
 
-                    YandexGame.savesData.RewardCount = 0;
-
                     YandexGame.SaveProgress();
+                }
+
+                foreach (int reward in _world.Where(out RewardAspect _))
+                {
+                    ProgressUtils.UpdateReward(
+                        target: reward,
+                        time: 0,
+                        count: 0,
+                        overwrite: true);
                 }
             }
 
@@ -264,6 +277,14 @@ namespace _Project.Scripts.Gameplay.Features.CollectFeature
                     ref ScrollSnap scrollSnap = ref aspect.ScrollSnaps.Get(window);
 
                     scrollSnap.TargetIndex = YandexGame.savesData.SelectedAnimalID;
+                }
+
+                foreach (int reward in _world.Where(out RewardAspect _))
+                {
+                    ProgressUtils.UpdateReward(
+                        target: reward,
+                        time: YandexGame.savesData.RewardCollectedAt,
+                        count: YandexGame.savesData.RewardCount);
                 }
             }
         }

@@ -7,7 +7,7 @@ using YG;
 
 namespace _Project.Scripts.Gameplay.Features.CollectFeature
 {
-    public class RewardSystem : IEcsRun
+    public class RewardCollectSystem : IEcsRun
     {
         [EcsInject] private EcsDefaultWorld _world;
 
@@ -23,7 +23,7 @@ namespace _Project.Scripts.Gameplay.Features.CollectFeature
             [IncImplicit(typeof(CanRewardMarker))]
             [Inc] public readonly EcsPool<CoinsProgressionCurve> CoinsProgressionCurves;
 
-            [Opt] public readonly EcsTagPool<RewardedEvent> Rewarded;
+            [Inc] public readonly EcsPool<RewardsCount> RewardsCount;
         }
 
         private class PlayerAspect : EcsAspectAuto
@@ -43,9 +43,14 @@ namespace _Project.Scripts.Gameplay.Features.CollectFeature
                         int rewardCoins = (int)rewardAspect.CoinsProgressionCurves.Read(reward).Value
                             .Evaluate(YandexGame.savesData.RewardCount);
 
-                        ProgressUtils.UpdateCoins(player, rewardCoins);
-                        
-                        rewardAspect.Rewarded.Add(reward);
+                        ProgressUtils.UpdateCoins(
+                            target: player,
+                            coins: rewardCoins);
+
+                        ProgressUtils.UpdateReward(
+                            target: reward,
+                            time: YandexGame.ServerTime(),
+                            count: 1);
                     }
                 }
             }

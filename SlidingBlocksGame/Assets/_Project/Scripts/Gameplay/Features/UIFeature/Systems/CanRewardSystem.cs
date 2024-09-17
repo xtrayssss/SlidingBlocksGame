@@ -1,4 +1,5 @@
-﻿using _Project.Scripts.Gameplay.Features.UIFeature.Components;
+﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using DCFApixels.DragonECS;
 using UnityEngine;
 using YG;
@@ -13,6 +14,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
         {
             [IncImplicit(typeof(RewardTag))]
             [Inc] public readonly EcsPool<RewardInterval> RewardIntervals;
+            [Inc] public readonly EcsPool<RewardCollectedAt> RewardCollectedAt;
 
             [Opt] public readonly EcsTagPool<CanRewardMarker> CanReward;
         }
@@ -21,7 +23,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
         {
             foreach (int reward in _world.Where(out RewardAspect aspect))
             {
-                long lastRewardTime = YandexGame.savesData.RewardCollectedAt;
+                long lastRewardTime = aspect.RewardCollectedAt.Read(reward).Value;
 
                 long currentTime = YandexGame.ServerTime();
 

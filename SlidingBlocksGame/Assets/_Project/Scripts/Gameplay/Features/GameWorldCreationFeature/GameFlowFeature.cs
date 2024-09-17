@@ -75,8 +75,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature
                 .AutoDelTag<CoinCollectedEvent>()
                 .AddUnique(new CollectCoinSystem())
                 //
-                .AutoDelTag<RewardedEvent>()
-                .AddUnique(new RewardSystem())
+                .AddUnique(new RewardCollectSystem())
                 //
                 .AutoDelTag<PurchasedEvent>()
                 .AddUnique(new PurchaseAnimalSystem())
@@ -94,6 +93,10 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature
                 .AddUnique(new PurchaseSystem())
                 .AutoDelEntityComponent<UpdateSelectedAnimalRequest>()
                 .AutoDelEntityTag<ClearPurchasesRequest>()
+                //
+                .AutoDelEntityTag<RewardUpdatedEvent>()
+                .AddUnique(new RewardSystem())
+                .AutoDelEntityComponent<UpdateRewardRequest>()
                 //
                 .AddUnique(new SaveLoadPlayerProgressSystem())
                 .AutoDelTag<LoadProgressRequest>();

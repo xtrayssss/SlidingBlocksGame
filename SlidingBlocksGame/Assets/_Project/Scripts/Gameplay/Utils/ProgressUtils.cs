@@ -16,6 +16,8 @@ namespace _Project.Scripts.Gameplay.Utils
 
             [Opt] public readonly EcsTagPool<ClearPurchasesRequest> ClearPurchasesRequest;
 
+            [Opt] public readonly EcsPool<UpdateRewardRequest> UpdateRewardRequest;
+
             [Opt] public readonly EcsPool<TargetEntity> TargetEntity;
         }
 
@@ -68,8 +70,25 @@ namespace _Project.Scripts.Gameplay.Utils
 
             ref UpdateSelectedAnimalRequest updateSelectedAnimalRequest =
                 ref progressAspect.UpdateSelectedAnimalRequest.Add(@event);
-            
+
             updateSelectedAnimalRequest.SelectedID = selectedID;
+            progressAspect.TargetEntity.Add(@event).Value = target.ToEntityLong(world);
+        }
+
+
+        public static void UpdateReward(int target, long time, int count, bool overwrite = false)
+        {
+            EcsDefaultWorld world = EcsDefaultWorldSingletonProvider.Instance.Get();
+
+            ProgressAspect progressAspect = world.GetAspect<ProgressAspect>();
+
+            int @event = world.NewEntity();
+
+            ref UpdateRewardRequest updateRewardRequest = ref progressAspect.UpdateRewardRequest.Add(@event);
+
+            updateRewardRequest.Count = count;
+            updateRewardRequest.Time = time;
+            updateRewardRequest.Overwrite = overwrite;
             progressAspect.TargetEntity.Add(@event).Value = target.ToEntityLong(world);
         }
     }

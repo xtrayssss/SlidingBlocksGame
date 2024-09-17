@@ -461,8 +461,8 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data:
         component:
-          NearestIndex: 0
-          NearestPos: 0
+          TargetIndex: 0
+          TargetPosition: 0
           Distance: 0
           Position: 0
           ScrollRect: {fileID: 2733579238015879002}
@@ -474,6 +474,8 @@ MonoBehaviour:
           LastScrollPosition: 0
           Selected:
             _full: 0
+          NearestIndex: 0
+          NearestPosition: 0
 --- !u!1 &375510034156156418
 GameObject:
   m_ObjectHideFlags: 0
@@ -12746,6 +12748,8 @@ MonoBehaviour:
   - rid: 6454805156365861478
   - rid: 6454805158866715625
   - rid: 6454805162115203465
+  - rid: 6454805456610394902
+  - rid: 6454805456610394903
   references:
     version: 2
     RefIds:
@@ -12754,7 +12758,7 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data:
         component:
-          Value: 5000
+          Value: 10000
     - rid: 6454805156365861477
       type: {class: RewardTag/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
         asm: Assembly-CSharp}
@@ -12819,6 +12823,18 @@ MonoBehaviour:
             m_PreInfinity: 2
             m_PostInfinity: 2
             m_RotationOrder: 4
+    - rid: 6454805456610394902
+      type: {class: RewardCollectedAt/Template, ns: _Project.Scripts.Gameplay.Features.CommonFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: 0
+    - rid: 6454805456610394903
+      type: {class: RewardsCount/Template, ns: _Project.Scripts.Gameplay.Features.CommonFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: 0
 --- !u!1 &5509671444867596447
 GameObject:
   m_ObjectHideFlags: 0
@@ -14596,10 +14612,10 @@ RectTransform:
   - {fileID: 1797637023928037806}
   m_Father: {fileID: 8233149588231225911}
   m_LocalEulerAnglesHint: {x: 0, y: -0, z: -0}
-  m_AnchorMin: {x: 0.5, y: 0.4961914}
+  m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0024948, y: 31.5}
-  m_SizeDelta: {x: 343.5755, y: 187}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 343.5755, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3461208353292902713
 CanvasRenderer:
