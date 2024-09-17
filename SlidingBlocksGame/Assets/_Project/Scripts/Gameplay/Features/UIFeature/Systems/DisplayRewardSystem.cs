@@ -100,31 +100,49 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                         ref _world.GetPool<OpenCloseSequence>().Get(rewardWindowConnect.Value.Entity.ID);
 
                     openCloseSequence.Value.Stop();
+
                     Sequence sequence = Sequence.Create();
 
                     RewardCoinsAspect rewardCoinsAspect = _world.GetAspect<RewardCoinsAspect>();
                     RewardWindowAspect rewardWindowAspect = _world.GetAspect<RewardWindowAspect>();
 
                     openCloseSequence.Value = sequence
-                        .Chain(Tween.Scale(rewardWindowConnect.Value.transform,
-                            Vector3.one, 0.3f, Ease.OutBack));
+                        .Chain(
+                            Tween.Scale(
+                                target: rewardWindowConnect.Value.transform,
+                                endValue: Vector3.one,
+                                duration: 0.3f,
+                                ease: Ease.OutBack));
 
-                    AnimateCoins(sequence, rewardWindowConnect.Value.Entity, reward,
+                    AnimateCoins(
+                        sequence,
+                        rewardWindowConnect.Value.Entity,
+                        reward,
                         rewardAspect,
-                        rewardCoinsAspect, rewardWindowConnect.Value.Entity.ID);
+                        rewardCoinsAspect,
+                        rewardWindowConnect.Value.Entity.ID);
 
                     openCloseSequence.Value
                         .ChainCallback(
                             target: rewardWindowConnect.Value,
-                            connect =>
+                            static connect =>
                             {
                                 if (!connect.Entity.TryGetID(out int rewardWindowID))
                                     return;
 
+                                EcsWorld world = connect.Entity.World;
+
+                                RewardWindowAspect rewardWindowAspect = world.GetAspect<RewardWindowAspect>();
+
                                 rewardWindowAspect.RewardCollected.Add(rewardWindowID);
                             })
                         .ChainDelay(0.3f)
-                        .Chain(Animate(rewardCoinsAspect, rewardAspect, reward, rewardWindowAspect));
+                        .Chain(
+                            Animate(
+                                rewardCoinsAspect,
+                                rewardAspect,
+                                reward,
+                                rewardWindowAspect));
                 }
             }
 
@@ -145,8 +163,15 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 
                     openCloseSequence.Value =
                         sequence
-                            .Group(Tween.Scale(gameObjectConnect.Connect.transform, Vector3.zero, 0.2f, Ease.InBack))
-                            .Group(AnimateRollback(rewardCoinsAspect, rewardWindowAspect, window))
+                            .Group(
+                                Tween.Scale(
+                                    target: gameObjectConnect.Connect.transform,
+                                    endValue: Vector3.zero,
+                                    duration: 0.2f,
+                                    ease: Ease.InBack))
+                            .Group(
+                                AnimateRollback(rewardWindowAspect,
+                                    window))
                             // confetti
                             .ChainCallback(
                                 target: rewardWindowAspect.RewardConfettiEffectConnect.Get(window).Value,
@@ -154,10 +179,14 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                             // reward coins
                             .ChainCallback(
                                 target: gameObjectConnect.Connect,
-                                connect =>
+                                static connect =>
                                 {
                                     if (!connect.Entity.TryGetID(out int rewardWindowID))
                                         return;
+
+                                    EcsWorld world = connect.Entity.World;
+
+                                    RewardWindowAspect rewardWindowAspect = world.GetAspect<RewardWindowAspect>();
 
                                     ref readonly CoinsRewardConnect coinsRewardConnect =
                                         ref rewardWindowAspect.CoinsRewardConnects.Read(rewardWindowID);
@@ -165,11 +194,13 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                                     if (!coinsRewardConnect.Value.Entity.TryGetID(out int coinsRewardID))
                                         return;
 
+                                    RewardCoinsAspect rewardCoinsAspect = world.GetAspect<RewardCoinsAspect>();
+
                                     rewardCoinsAspect.TextMeshProUGUI.Get(coinsRewardID).Value.text = "0";
                                 })
                             .ChainCallback(
                                 target: gameObjectConnect.Connect,
-                                connect => connect.gameObject.SetActive(false));
+                                static connect => connect.gameObject.SetActive(false));
                 }
             }
         }
@@ -252,8 +283,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
             return sequence;
         }
 
-        private Sequence AnimateRollback(RewardCoinsAspect rewardCoinsAspect, RewardWindowAspect rewardWindowAspect,
-            int window)
+        private Sequence AnimateRollback(RewardWindowAspect rewardWindowAspect, int window)
         {
             Sequence sequence = Sequence.Create();
 
@@ -266,33 +296,50 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
             ref readonly CoinsRewardConnect coinsRewardConnect =
                 ref rewardWindowAspect.CoinsRewardConnects.Read(rewardWindowID);
 
-            sequence.ChainCallback(coinsRewardConnect.Value, connect =>
-            {
-                if (!connect.Entity.TryGetID(out int coinsRewardID))
-                    return;
+            sequence
+                .ChainCallback(
+                    target: coinsRewardConnect.Value,
+                    static connect =>
+                    {
+                        if (!connect.Entity.TryGetID(out int coinsRewardID))
+                            return;
 
-                rewardCoinsAspect.WobbleTween.Get(coinsRewardID).Value.Stop();
-            });
+                        EcsWorld world = connect.Entity.World;
+
+                        RewardCoinsAspect rewardCoinsAspect = world.GetAspect<RewardCoinsAspect>();
+
+                        rewardCoinsAspect.WobbleTween.Get(coinsRewardID).Value.Stop();
+                    });
 
             // congratulation
             ref CongratulationConnect congratulationConnect = ref rewardWindowAspect.CongratulationConnects
                 .Get(rewardWindowID);
 
             sequence
-                .Group(Tween.Scale(congratulationConnect.Value.transform, Vector3.zero, 0.15f, Ease.InBack))
+                .Group(
+                    Tween.Scale(
+                        target: congratulationConnect.Value.transform,
+                        endValue: Vector3.zero,
+                        duration: 0.15f,
+                        ease: Ease.InBack))
                 .ChainCallback(
                     target: congratulationConnect.Value,
-                    connect => connect.gameObject.SetActive(false));
+                    static connect => connect.gameObject.SetActive(false));
 
             // sunshine 
             ref SunshineConnect sunshineConnect =
                 ref rewardWindowAspect.SunshineConnects.Get(rewardWindowID);
 
             sequence
-                .Group(Tween.Scale(sunshineConnect.Value.transform, Vector3.zero, 0.15f, Ease.InBack))
+                .Group(
+                    Tween.Scale(
+                        target: sunshineConnect.Value.transform,
+                        endValue: Vector3.zero,
+                        duration: 0.15f,
+                        ease: Ease.InBack))
                 .ChainCallback(
                     target: sunshineConnect.Value,
-                    connect => connect.gameObject.SetActive(false));
+                    static connect => connect.gameObject.SetActive(false));
 
             // tap to exit
             ref TapToExitConnect tapToExitConnect = ref rewardWindowAspect.TapToExitConnects.Get(rewardWindowID);
@@ -300,18 +347,25 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
             sequence
                 .ChainCallback(
                     target: tapToExitConnect.Value,
-                    connect =>
+                    static connect =>
                     {
                         if (!connect.Entity.TryGetID(out int tapToExitID))
                             return;
 
-                        _world.GetPool<WobbleTween>().Get(tapToExitID).Value.Stop();
-                        _world.GetPool<ButtonRef>().Get(tapToExitID).Value.interactable = false;
+                        EcsWorld world = connect.Entity.World;
+
+                        world.GetPool<WobbleTween>().Get(tapToExitID).Value.Stop();
+                        world.GetPool<ButtonRef>().Get(tapToExitID).Value.interactable = false;
                     })
-                .Group(Tween.Scale(tapToExitConnect.Value.transform, Vector3.zero, 0.15f, Ease.InBack))
+                .Group(
+                    Tween.Scale(
+                        target: tapToExitConnect.Value.transform,
+                        Vector3.zero,
+                        duration: 0.15f,
+                        Ease.InBack))
                 .ChainCallback(
                     target: tapToExitConnect.Value,
-                    connect => connect.gameObject.SetActive(false));
+                    static connect => connect.gameObject.SetActive(false));
 
             return sequence;
         }
@@ -334,7 +388,8 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                 int i1 = i;
 
                 animationSequence
-                    .Chain(Tween.Delay(0.05f))
+                    .Chain(
+                        Tween.Delay(0.05f))
                     .ChainCallback(
                         target: coinsRewardConnect.Value,
                         connect =>
@@ -342,18 +397,24 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                             if (!connect.Entity.TryGetID(out int coinsRewardID))
                                 return;
 
-                            int @event = _world.NewEntity();
-                            _world.GetPool<CoinAddedToTextEvent>().Add(@event);
-                            _world.GetPool<TargetEntity>().Add(@event).Value = connect.Entity;
+                            EcsWorld world = connect.Entity.World;
+
+                            int @event = world.NewEntity();
+                            world.GetPool<CoinAddedToTextEvent>().Add(@event);
+                            world.GetPool<TargetEntity>().Add(@event).Value = connect.Entity;
+
+                            RewardCoinsAspect rewardCoinsAspect = world.GetAspect<RewardCoinsAspect>();
 
                             rewardCoinsAspect.TextMeshProUGUI.Get(coinsRewardID).Value.text = (i1 + 1).ToString();
                         });
             }
 
             sequence.Chain(
-                Tween.ShakeLocalPosition(rewardCoinsAspect.TextMeshProUGUI
-                        .Get(coinsRewardConnect.Value.Entity.ID).Value.gameObject.transform, strength: Vector3.one * 20,
-                    coins * 0.05f, frequency: 100));
+                Tween.ShakeLocalPosition(
+                    target: rewardCoinsAspect.TextMeshProUGUI.Get(coinsRewardConnect.Value.Entity.ID).Value.transform,
+                    strength: Vector3.one * 20,
+                    duration: coins * 0.05f,
+                    frequency: 100));
 
             sequence.Group(animationSequence);
 
@@ -361,16 +422,19 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 
             float percent = coinsTime * (80f / 100f) + 0.3f;
 
-            sequence.InsertCallback(percent,
-                rewardWindowAspect.RewardConfettiEffectConnect.Get(rewardWindowID).Value,
-                connect =>
+            sequence.InsertCallback(
+                atTime: percent,
+                target: rewardWindowAspect.RewardConfettiEffectConnect.Get(rewardWindowID).Value,
+                static connect =>
                 {
                     connect.gameObject.SetActive(true);
 
                     if (!connect.Entity.TryGetID(out int confettiID))
                         return;
 
-                    _world.GetPool<ConfettiExplodedEvent>().Add(confettiID);
+                    EcsWorld world = connect.Entity.World;
+
+                    world.GetPool<ConfettiExplodedEvent>().Add(confettiID);
                 });
 
             return animationSequence;
