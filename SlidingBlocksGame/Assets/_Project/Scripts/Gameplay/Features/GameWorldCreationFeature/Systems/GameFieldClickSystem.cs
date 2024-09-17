@@ -36,9 +36,9 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                 foreach (int entity in _world.Where(out Aspect aspect))
                 {
                     ref GameField gameField = ref aspect.Fields.Get(entity);
-                    float2 gridPosition = GridUtils.GetCellPosition(clickPosition, gameField);
+                    float2 gridPosition = Utils.GridUtils.GetCellPosition(clickPosition, gameField);
 
-                    if (IsWithinGrid(gridPosition, gameField.Size) && !GridUtils.IsWithinCenter(gridPosition, in gameField) &&
+                    if (IsWithinGrid(gridPosition, gameField.Size) && !Utils.GridUtils.IsWithinCenter(gridPosition, in gameField) &&
                         IsInCross(gameField, gridPosition))
                     {
                         _world.GetPool<WorldPosition>().Add(click).Value = clickPosition;

@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
+using _Project.Scripts.Gameplay.Utils;
 using DCFApixels.DragonECS;
 using PrimeTween;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
@@ -54,13 +57,12 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
             [Opt] public readonly EcsTagPool<CellOccupancyMarker> CellOccupancy;
         }
 
+
         public void Run()
         {
             foreach (int entity in _world.Where(out StrategyAspect chainAspect))
             {
                 EcsSpan movables = _world.Where(out MovableAspect movableAspect);
-
-                Debug.Log(movables.Count);
 
                 for (int index = 0; index < movables.Count; index++)
                 {
@@ -75,7 +77,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                     cooldownAspect.Refresh.Add(cooldown);
 
                     chainAspect.ChainMovement.Add(cooldown);
-                    
+
                     movableAspect.CanMove.Del(movable);
 
                     _world.GetPool<DeleteOnExpiredMarker>().Add(cooldown);
@@ -93,17 +95,21 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 
                     ref GameObjectConnect gameObjectConnect = ref movableAspect.GameObjectConnects.Get(targetID);
 
-                    Tween.PositionAtSpeed(gameObjectConnect.Connect.transform,
-                        movableAspect.WorldDestinations.Read(targetID).Value,
-                        movableAspect.MovementSpeedFactors.Read(targetID).Value, Ease.OutQuart).OnComplete(
-                        gameObjectConnect.Connect,
-                        target =>
-                        {
-                            int callback = _world.NewEntity();
-                            _world.GetPool<TweenCompletedEvent>().Add(callback);
-                            _world.GetPool<TargetEntity>().Add(callback).Value = target.Entity;
-                            _world.GetPool<DeleteEntityCommand>().Add(callback);
-                        });
+                    Tween
+                        .PositionAtSpeed(
+                            target: gameObjectConnect.Connect.transform,
+                            endValue: movableAspect.WorldDestinations.Read(targetID).Value,
+                            averageSpeed: movableAspect.MovementSpeedFactors.Read(targetID).Value,
+                            ease: Ease.OutQuart)
+                        .OnComplete(
+                            target: gameObjectConnect.Connect,
+                            onComplete: target =>
+                            {
+                                int callback = _world.NewEntity();
+                                _world.GetPool<TweenCompletedEvent>().Add(callback);
+                                _world.GetPool<TargetEntity>().Add(callback).Value = target.Entity;
+                                _world.GetPool<DeleteEntityCommand>().Add(callback);
+                            });
 
                     movableAspect.Moving.Add(targetID);
                 }

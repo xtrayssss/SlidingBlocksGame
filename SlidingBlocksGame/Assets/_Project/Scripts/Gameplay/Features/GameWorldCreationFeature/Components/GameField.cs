@@ -31,6 +31,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components
         public float CellTop;
 
         public float UnitCellTopOffset;
+        public short Center;
 
         [Serializable]
         public struct AnimalsData
@@ -40,6 +41,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components
             public EcsEntityConnect View;
             public quaternion Rotation;
             public int2 InvertedSide;
+            public float3 Scale;
         }
 
         [Serializable]
@@ -49,7 +51,6 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components
             public float3 WorldPosition;
             public GameObject View;
         }
-
 
         public class Template : ComponentTemplate<GameField>
         {
@@ -77,18 +78,19 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components
                     float upperY = lowerY + renderer.bounds.size.y;
                     return upperY;
                 }
-
-
+                
                 foreach (ref AnimalsData animal in component.Animals.AsSpan())
                 {
                     animal.Position = CellToWorld(animal.CellPosition, component) +
                                       new float3(0, component.CellTop + component.UnitCellTopOffset, 0);
 
-                    animal.InvertedSide = GridUtils.GetInvertedSide(animal.CellPosition, in component);
+                    animal.InvertedSide = Utils.GridUtils.GetInvertedSide(animal.CellPosition, in component);
 
                     animal.Rotation = quaternion.LookRotation(
                         forward: new float3(animal.InvertedSide.x, 0, animal.InvertedSide.y),
                         up: Upward);
+
+                    animal.Scale = component.CellSize - 0.1f;
                 }
             }
 

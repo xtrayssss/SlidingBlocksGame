@@ -1,4 +1,5 @@
-﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+﻿using System;
+using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.DestroyFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
@@ -13,33 +14,26 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
     {
         [EcsInject] private readonly EcsDefaultWorld _world;
 
-        private class WinStateAspect : EcsAspectAuto
+        private class WinStateAspect
         {
-            [IncImplicit(typeof(LevelWonEvent))]
-            [Inc] public readonly EcsPool<GameFieldAlgorithms> GameFieldAlgorithmConfigs;
+            public class OnEnter : EcsAspectAuto
+            {
+                [IncImplicit(typeof(LevelWonEvent))]
+                [Inc] public readonly EcsPool<GameFieldAlgorithms> GameFieldAlgorithmConfigs;
 
-            [Opt] public readonly EcsPool<DestructionAnimalStrategyCfg> DestructionAnimalStrategyConfigs;
-            [Opt] public readonly EcsTagPool<CanClickGameFieldMarker> CanClickGameField;
+                [Opt] public readonly EcsPool<DestructionAnimalStrategyCfg> DestructionAnimalStrategyConfigs;
+                [Opt] public readonly EcsTagPool<CanClickGameFieldMarker> CanClickGameField;
+            }
         }
 
-        private class AnimalDestructedStateAspect : EcsAspectAuto
+        private class AnimalDestructedStateAspect
         {
-            [IncImplicit(typeof(LevelWonMarker))]
-            [IncImplicit(typeof(AnimalDestructedEvent))]
-            [Opt] public readonly EcsTagPool<GameFieldDestructRequest> GameFieldDestruct;
-        }
-
-        private class GameFieldDestructedEnterStateAspect : EcsAspectAuto
-        {
-            [IncImplicit(typeof(GameFieldDestructedEvent))]
-            [Inc] public readonly EcsTagPool<LevelWonMarker> LevelWon;
-        }
-
-        private class GameLossTimerAspect : EcsAspectAuto
-        {
-            [Inc] public readonly EcsTagPool<GameLossTimerTag> Obstacles1;
-            [Inc] public readonly EcsPool<GameObjectConnect> GameObjectConnects;
-            [Opt] public readonly EcsTagPool<ClosedMarker> Closed;
+            public class OnEnter : EcsAspectAuto
+            {
+                [IncImplicit(typeof(LevelWonMarker))]
+                [IncImplicit(typeof(AnimalDestructedEvent))]
+                [Opt] public readonly EcsTagPool<GameFieldDestructRequest> GameFieldDestruct;
+            }
         }
 
         private class GameAspect : EcsAspectAuto
@@ -48,34 +42,49 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
             [Opt] public readonly EcsTagPool<NextLeveRequest> NextLeveRequest;
         }
 
-        private class GameLossTimerClosedAspect : EcsAspectAuto
+        private class GameLossTimerClosedStateAspect
+        {
+            public class OnUpdate : EcsAspectAuto
+            {
+                [Inc] public readonly EcsTagPool<GameLossTimerTag> GameLossTimerTag;
+                [Inc] public readonly EcsTagPool<ClosedMarker> ClosedMarker;
+            }
+        }
+
+        private class LevelClearedStateAspect
+        {
+            public class OnEnter : EcsAspectAuto
+            {
+                [IncImplicit(typeof(LevelTag))]
+                [IncImplicit(typeof(LevelWonMarker))]
+                [IncImplicit(typeof(LevelClearedEvent))]
+                [Opt] public readonly EcsTagPool<NextLeveRequest> NextLevel;
+            }
+        }
+
+        private class GameLossTimerAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(GameLossTimerTag))]
-            [IncImplicit(typeof(ClosedMarker))]
-            private int _;
+            [Opt] public readonly EcsTagPool<CloseGameLossTimerRequest> Close;
         }
 
-        private class LevelClearedStateAspect : EcsAspectAuto
+        private class DestructedGameFieldStateAspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(GameTag))]
-            [IncImplicit(typeof(LevelClearedEvent))]
-            [Opt] public readonly EcsTagPool<NextLeveRequest> NextLevel;
-        }
+            public class OnUpdate : EcsAspectAuto
+            {
+                [ExcImplicit(typeof(LevelClearedEvent))]
+                [Inc] public readonly EcsTagPool<LevelTag> LevelTag;
 
-        private class LevelAspect : EcsAspectAuto
-        {
-            [IncImplicit(typeof(GameTag))]
-            [IncImplicit(typeof(LevelClearedEvent))]
-            [Inc] public readonly EcsTagPool<LevelWonMarker> LevelWon;
-
-            [Opt] public readonly EcsTagPool<NextLeveRequest> NextLevel;
+                [Inc] public readonly EcsTagPool<GameFieldDestructedMarker> GameFieldDestructedMarker;
+                [Inc] public readonly EcsTagPool<LevelWonMarker> LevelWonMarker;
+            }
         }
 
         public void Run()
         {
-            foreach (int level in _world.Where(out WinStateAspect aspect))
+            foreach (int level in _world.Where(out WinStateAspect.OnEnter aspect))
             {
-                Debug.Log("WINNER");
+                Debug.Log("WinStateAspect.OnEnter");
 
                 entlong strategy =
                     _world.NewEntityLong(aspect.DestructionAnimalStrategyConfigs.Read(level).Value);
@@ -87,44 +96,26 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
                 aspect.CanClickGameField.Del(level);
             }
 
-            foreach (int level in _world.Where(out AnimalDestructedStateAspect aspect))
-                aspect.GameFieldDestruct.Add(level);
-
-            foreach (int _ in _world.Where(out GameFieldDestructedEnterStateAspect _))
+            foreach (int level in _world.Where(out AnimalDestructedStateAspect.OnEnter levelAspect))
             {
-                Debug.Log("123");
+                levelAspect.GameFieldDestruct.Add(level);
 
-                foreach (int timer in _world.Where(out GameLossTimerAspect timerAspect))
-                {
-                    Debug.Log("Disable game loss timer");
-
-                    GameObjectConnect connect = timerAspect.GameObjectConnects.Read(timer);
-
-                    Tween.Scale(connect.Connect.transform, Vector3.zero, 0.2f, Ease.OutQuad)
-                        .OnComplete(connect.Connect, target =>
-                        {
-                            if (!connect.Connect.Entity.TryGetID(out int id))
-                                return;
-
-                            timerAspect.Closed.Add(id);
-                            target.gameObject.SetActive(false);
-                        });
-                }
+                foreach (int timer in _world.Where(out GameLossTimerAspect gameLossTimerAspect))
+                    gameLossTimerAspect.Close.Add(timer);
             }
 
-            foreach (int _ in _world.Where(out GameLossTimerClosedAspect _))
+            foreach (int level in _world.Where(out DestructedGameFieldStateAspect.OnUpdate _))
+            {
+                foreach (int _ in _world.Where(out GameLossTimerClosedStateAspect.OnUpdate _))
+                    _world.GetPool<CleanupLevelRequest>().Add(level);
+            }
+
+            foreach (int level in _world.Where(out LevelClearedStateAspect.OnEnter aspect))
             {
                 foreach (int game in _world.Where(out GameAspect _))
-                    _world.GetPool<CleanupLevelRequest>().Add(game);
-            }
-
-            foreach (int game in _world.Where(out LevelClearedStateAspect aspect))
-            {
-                foreach (int level in _world.Where(out LevelAspect levelAspect))
-                {
                     aspect.NextLevel.Add(game);
-                    levelAspect.LevelWon.Del(level);
-                }
+
+                _world.DelEntity(level);
             }
         }
     }

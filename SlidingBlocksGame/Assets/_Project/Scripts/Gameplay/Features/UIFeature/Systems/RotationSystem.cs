@@ -2,7 +2,7 @@
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using DCFApixels.DragonECS;
-using Unity.Mathematics;
+using PrimeTween;
 using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
@@ -11,58 +11,67 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
     {
         [EcsInject] private readonly EcsDefaultWorld _world;
 
-        private class AnimalAspect : EcsAspectAuto
+        private class AnimalSnappedStateAspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(PurchaseAnimalTag))]
-            [IncImplicit(typeof(SnappedMarker))]
-            [Inc] public readonly EcsPool<PhysicView> PhysicViews;
+            public class OnEnter : EcsAspectAuto
+            {
+                [IncImplicit(typeof(ScrollSnappedEvent))]
+                [IncImplicit(typeof(PurchaseAnimalTag))]
+                [Inc] public readonly EcsPool<PhysicView> PhysicViews;
 
-            [Inc] public readonly EcsPool<RotationSpeedFactor> Factors;
+                [Inc] public readonly EcsPool<RotationTween> RotationTween;
+            }
         }
 
-        private class SnapBackAnimalAspect : EcsAspectAuto
+        private class AnimalDraggedStateAspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(PurchaseAnimalTag))]
-            [IncImplicit(typeof(ScrollStartedMarker))]
-            [Inc] public readonly EcsPool<PhysicView> PhysicViews;
+            public class OnEnter : EcsAspectAuto
+            {
+                [IncImplicit(typeof(PurchaseAnimalTag))]
+                [IncImplicit(typeof(ScrollDraggedEvent))]
+                [Inc] public readonly EcsPool<PhysicView> PhysicViews;
 
-            [Inc] public readonly EcsPool<RotationSpeedFactor> Factors;
+                [Inc] public readonly EcsPool<RotationTween> Factors;
+            }
         }
 
         public void Run()
         {
-            foreach (int entity in _world.Where(out AnimalAspect aspect))
+            foreach (int entity in _world.Where(out AnimalSnappedStateAspect.OnEnter aspect))
             {
-                ref RotationSpeedFactor factor = ref aspect.Factors.Get(entity);
-
-                aspect.PhysicViews.Get(entity).Value.transform.Rotate(factor.Value * Vector3.up * Time.deltaTime);
-
-                factor.IsSnapBack = true;
-
-                factor.Original = aspect.PhysicViews.Get(entity).Value.transform.rotation;
-                
-                _world.GetPool<ViewUpdatedEvent>().Add(entity);
-            }
-
-            foreach (int entity in _world.Where(out SnapBackAnimalAspect aspect))
-            {
-                ref RotationSpeedFactor factor = ref aspect.Factors.Get(entity);
+                ref RotationTween rotationTween = ref aspect.RotationTween.Get(entity);
 
                 ref PhysicView physicView = ref aspect.PhysicViews.Get(entity);
 
-                if (factor.IsSnapBack)
-                {
-                    physicView.Value.transform.rotation = Quaternion.Slerp(physicView.Value.transform.rotation, Quaternion.identity,
-                        factor.SnapBackFactor * Time.deltaTime);
+                rotationTween.Tween.Stop();
 
-                    if (Quaternion.Angle(physicView.Value.transform.rotation, Quaternion.identity) < 0.1f)
-                    {
-                        physicView.Value.transform.rotation = Quaternion.identity;
-                        factor.IsSnapBack = false;
-                    }
-                }
+                rotationTween.Tween = Tween.LocalEulerAngles(
+                    target: physicView.Value.transform,
+                    startValue: physicView.Value.transform.eulerAngles,
+                    endValue: new Vector3(0, 360, 0),
+                    duration: 4f,
+                    ease: Ease.Linear,
+                    cycles: -1,
+                    cycleMode: CycleMode.Incremental);
 
-                _world.GetPool<ViewUpdatedEvent>().Add(entity);
+                _world.GetPool<ViewUpdatedMarker>().TryAdd(entity);
+            }
+
+            foreach (int entity in _world.Where(out AnimalDraggedStateAspect.OnEnter aspect))
+            {
+                ref RotationTween rotationTween = ref aspect.Factors.Get(entity);
+
+                ref PhysicView physicView = ref aspect.PhysicViews.Get(entity);
+
+                rotationTween.Tween.Stop();
+
+                rotationTween.Tween = Tween.LocalEulerAngles(
+                        target: physicView.Value.transform,
+                        startValue: physicView.Value.transform.eulerAngles,
+                        endValue: new Vector3(0, 0, 0),
+                        duration: 1f,
+                        ease: Ease.Linear)
+                    .OnComplete(() => _world.GetPool<ViewUpdatedMarker>().TryDel(entity));
             }
         }
     }
@@ -73,7 +82,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 
         private class Aspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(ViewUpdatedEvent))]
+            [IncImplicit(typeof(ViewUpdatedMarker))]
             [Inc] public readonly EcsPool<RenderCamera> RenderCameras;
         }
 
@@ -82,14 +91,14 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
             foreach (int entity in _world.Where(out Aspect aspect))
             {
                 ref readonly RenderCamera renderCamera = ref aspect.RenderCameras.Read(entity);
-                
+
                 renderCamera.Value.Render();
             }
         }
     }
 
     [Serializable]
-    public struct ViewUpdatedEvent : IEcsTagComponent
+    public struct ViewUpdatedMarker : IEcsTagComponent
     {
     }
 

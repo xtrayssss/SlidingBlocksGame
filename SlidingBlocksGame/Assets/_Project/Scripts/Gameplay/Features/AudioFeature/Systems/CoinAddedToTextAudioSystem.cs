@@ -10,11 +10,6 @@ namespace _Project.Scripts.Gameplay.Features.AudioFeature.Systems
     {
         [EcsInject] private readonly EcsDefaultWorld _world;
 
-        private readonly AudioUtils _audioUtils;
-
-        public CoinAddedToTextAudioSystem(AudioUtils audioUtils) =>
-            _audioUtils = audioUtils;
-
         private class CoinAddedToTextAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(CoinAddedToTextEvent))]
@@ -34,7 +29,7 @@ namespace _Project.Scripts.Gameplay.Features.AudioFeature.Systems
                 {
                     TargetAspect targetAspect = _world.GetAspect<TargetAspect>();
 
-                    _audioUtils.Create(targetAspect.AudioConfigs.Read(targetID).Value);
+                    AudioUtils.Create(targetAspect.AudioConfigs.Read(targetID).Value);
                 }
             }
         }

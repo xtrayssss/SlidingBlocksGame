@@ -8,33 +8,46 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
     {
         [EcsInject] private EcsDefaultWorld _world;
 
-        private class LevelChangedAspect : EcsAspectAuto
+        private class RequestAspect : EcsAspectAuto
         {
-            [Inc] private readonly EcsTagPool<LevelChangedEvent> _levelChanged;
+            [Inc] public readonly EcsPool<UpdateScoresRequest> UpdateScoresRequest;
+            [Inc] public readonly EcsPool<TargetEntity> TargetEntities;
         }
 
-        private class PlayerAspect : EcsAspectAuto
+        private class TargetEntityAspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(PlayerTag))]
             [Inc] public readonly EcsPool<Scores> Scores;
 
-            [Opt] public readonly EcsTagPool<ScoresUpdatedEvent> ScoresUpdated;
             [Opt] public readonly EcsPool<TargetEntity> TargetEntity;
+            [Opt] public readonly EcsPool<ScoresUpdatedEvent> ScoresUpdatedEvent;
         }
 
         public void Run()
         {
-            foreach (int _ in _world.Where(out LevelChangedAspect _))
+            foreach (int entity in _world.Where(out RequestAspect requestAspect))
             {
-                foreach (int player in _world.Where(out PlayerAspect playerAspect))
-                {
-                    playerAspect.Scores.Get(player).Value += 1;
+                ref readonly TargetEntity targetEntity = ref requestAspect.TargetEntities.Read(entity);
 
-                    int @event = _world.NewEntity();
+                if (!targetEntity.Value.TryGetID(out int targetID))
+                    continue;
 
-                    playerAspect.ScoresUpdated.Add(@event);
-                    playerAspect.TargetEntity.Add(@event).Value = player.ToEntityLong(_world);
-                }
+                ref readonly UpdateScoresRequest
+                    updateScoresRequest = ref requestAspect.UpdateScoresRequest.Read(entity);
+
+                TargetEntityAspect targetEntityAspect = _world.GetAspect<TargetEntityAspect>();
+
+                ref Scores scores = ref targetEntityAspect.Scores.Get(targetID);
+
+                int lastScores = scores.Value;
+
+                if (updateScoresRequest.Overwrite)
+                    scores.Value = updateScoresRequest.Value;
+                else
+                    scores.Value += updateScoresRequest.Value;
+
+                int @event = _world.NewEntity();
+                targetEntityAspect.ScoresUpdatedEvent.Add(@event).Delta = scores.Value - lastScores;
+                targetEntityAspect.TargetEntity.Add(@event).Value = targetEntity.Value;
             }
         }
     }

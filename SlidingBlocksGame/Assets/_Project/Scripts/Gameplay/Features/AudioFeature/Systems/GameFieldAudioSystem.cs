@@ -12,11 +12,6 @@ namespace _Project.Scripts.Gameplay.Features.AudioFeature.Systems
     {
         [EcsInject] private readonly EcsDefaultWorld _world;
 
-        private readonly AudioUtils _audioUtils;
-
-        public GameFieldAudioSystem(AudioUtils audioUtils) =>
-            _audioUtils = audioUtils;
-
         private class TileGeneratedAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(TileGeneratedEvent))]
@@ -37,7 +32,11 @@ namespace _Project.Scripts.Gameplay.Features.AudioFeature.Systems
         public void Run()
         {
             foreach (int entity in _world.Where(out GameFieldGeneratedAspect aspect))
-                _audioUtils.Create(aspect.AudioConfigs.Read(entity).Value);
+            {
+                Debug.Log("GameFieldAudio");
+
+                AudioUtils.Create(aspect.AudioConfigs.Read(entity).Value);
+            }
 
             foreach (int entity in _world.Where(out TileGeneratedAspect tileGeneratedAspect))
             {
@@ -47,9 +46,9 @@ namespace _Project.Scripts.Gameplay.Features.AudioFeature.Systems
                     !targetAspect.IsMatches(targetID))
                     return;
 
-                Debug.Log("Audio");
+                Debug.Log("TileAudio");
 
-                _audioUtils.Create(targetAspect.AudioConfigs.Read(targetID).Value);
+                AudioUtils.Create(targetAspect.AudioConfigs.Read(targetID).Value);
             }
         }
     }

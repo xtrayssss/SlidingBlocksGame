@@ -22,8 +22,8 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 
         private class CoinsUpdatedEventAspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(CoinsUpdatedEvent))]
             [Inc] public readonly EcsPool<TargetEntity> TargetEntities;
+            [Inc] public readonly EcsPool<CoinsUpdatedEvent> CoinsUpdatedEvent;
         }
 
         private class TargetEntityAspect : EcsAspectAuto
@@ -34,8 +34,8 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 
         private class ScoreUpdatedEventAspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(ScoresUpdatedEvent))]
             [Inc] public readonly EcsPool<TargetEntity> TargetEntities;
+            [Inc] public readonly EcsPool<ScoresUpdatedEvent> ScoresUpdatedEvent;
         }
 
         private class CoinUIAspect : EcsAspectAuto
@@ -59,11 +59,11 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 
         public void Run()
         {
-            foreach (int @event in _world.Where(out CoinsUpdatedEventAspect collectedEventAspect))
+            foreach (int @event in _world.Where(out CoinsUpdatedEventAspect coinsUpdatedEventAspect))
             {
                 foreach (int entity in _world.Where(out CoinUIAspect coinUIAspect))
                 {
-                    if (!collectedEventAspect.TargetEntities.Read(@event).Value.TryGetID(out int targetID))
+                    if (!coinsUpdatedEventAspect.TargetEntities.Read(@event).Value.TryGetID(out int targetID))
                         continue;
 
                     TargetEntityAspect targetEntityAspect = _world.GetAspect<TargetEntityAspect>();
@@ -71,10 +71,13 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                     coinUIAspect.Texts.Get(entity).Value.text =
                         targetEntityAspect.Coins.Read(targetID).Value.ToString();
 
-                    Tween.PunchScale(
-                        target: coinUIAspect.RectTransforms.Read(entity).Value,
-                        strength: new Vector3(0.5f, 0.5f),
-                        duration: 0.2f);
+                    if (coinsUpdatedEventAspect.CoinsUpdatedEvent.Read(@event).Delta != 0)
+                    {
+                        Tween.PunchScale(
+                            target: coinUIAspect.RectTransforms.Read(entity).Value,
+                            strength: new Vector3(0.5f, 0.5f),
+                            duration: 0.2f);
+                    }
                 }
             }
 
@@ -86,13 +89,16 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                         continue;
 
                     TargetEntityAspect targetEntityAspect = _world.GetAspect<TargetEntityAspect>();
-                    
+
                     aspect.Texts.Get(entity).Value.text = targetEntityAspect.Scores.Get(targetID).Value.ToString();
 
-                    Tween.PunchScale(
-                        target: aspect.RectTransforms.Read(entity).Value,
-                        strength: new Vector3(0.5f, 0.5f),
-                        duration: 0.2f);
+                    if (scoreUpdatedEventAspect.ScoresUpdatedEvent.Read(@event).Delta != 0)
+                    {
+                        Tween.PunchScale(
+                            target: aspect.RectTransforms.Read(entity).Value,
+                            strength: new Vector3(0.5f, 0.5f),
+                            duration: 0.2f);
+                    }
                 }
             }
 

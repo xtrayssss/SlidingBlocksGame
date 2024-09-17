@@ -15,28 +15,35 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
     {
         [EcsInject] private readonly EcsDefaultWorld _world;
 
-        private class LostStateAspect : EcsAspectAuto
+        private class LossStateAspect
         {
-            [IncImplicit(typeof(LevelLostEvent))]
-            [Inc] public readonly EcsPool<GameFieldAlgorithms> GameFieldAlgorithmConfigs;
+            public class OnEnter : EcsAspectAuto
+            {
+                [IncImplicit(typeof(LevelLostEvent))]
+                [Inc] public readonly EcsPool<GameFieldAlgorithms> GameFieldAlgorithmConfigs;
 
-            [Inc] public readonly EcsPool<DestructionAnimalStrategyCfg> DestructionAnimalStrategyConfigs;
-            [Opt] public readonly EcsTagPool<CanClickGameFieldMarker> CanClickGameField;
+                [Inc] public readonly EcsPool<DestructionAnimalStrategyCfg> DestructionAnimalStrategyConfigs;
+                [Opt] public readonly EcsTagPool<CanClickGameFieldMarker> CanClickGameField;
+            }
         }
 
         private class AnimalDestructedStateAspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(LevelLostMarker))]
-            [IncImplicit(typeof(AnimalDestructedEvent))]
-            private int _;
+            public class OnEnter : EcsAspectAuto
+            {
+                [Inc] public readonly EcsTagPool<LevelLostMarker> LevelLostMarker;
+                [Inc] public readonly EcsTagPool<AnimalDestructedEvent> AnimalDestructedEvent;
+            }
         }
 
-        private class GameFieldDestructedStateAspect : EcsAspectAuto
+        private class DestructedGameFieldStateAspect
         {
-            [IncImplicit(typeof(GameFieldDestructedEvent))]
-            [Inc] public readonly EcsTagPool<LevelLostMarker> LevelLost;
-
-            [Inc] public readonly EcsPool<GameScreen> GameScreens;
+            public class OnUpdate : EcsAspectAuto
+            {
+                [ExcImplicit(typeof(LevelClearedEvent))]
+                [IncImplicit(typeof(GameFieldDestructedMarker))]
+                [Inc] public readonly EcsTagPool<LevelLostMarker> LevelLostMarker;
+            }
         }
 
         private class GameAspect : EcsAspectAuto
@@ -47,8 +54,8 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
 
         private class GameLossTimerAspect : EcsAspectAuto
         {
-            [Inc] public readonly EcsTagPool<GameLossTimerTag> Obstacles1;
-            [Inc] public readonly EcsPool<GameObjectConnect> GameObjectConnects;
+            [IncImplicit(typeof(GameLossTimerTag))]
+            [Opt] public readonly EcsTagPool<CloseGameLossTimerRequest> Close;
         }
 
         private class GameScreenAspect : EcsAspectAuto
@@ -60,28 +67,56 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
         private class CoinAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(CoinTag))]
-            [Opt] public readonly EcsTagPool<DeleteEntityCommand> DeleteEntity;
-
             [Opt] public readonly EcsTagPool<DestroyViewRequest> DestroyView;
+
             [Opt] public readonly EcsPool<GameObjectConnect> GameObjectConnects;
         }
 
         private class LevelAspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(LevelWonMarker))]
+            [IncImplicit(typeof(LevelLostMarker))]
             [Opt] public readonly EcsTagPool<GameFieldDestructRequest> GameFieldDestruct;
         }
-        
-        private class GameLossTimerClosedAspect : EcsAspectAuto
+
+        private class GameLossTimerClosedStateAspect
         {
-            [IncImplicit(typeof(GameLossTimerTag))]
-            [IncImplicit(typeof(ClosedMarker))]
-            private int _;
+            public class OnUpdate : EcsAspectAuto
+            {
+                [Inc] public readonly EcsTagPool<GameLossTimerTag> GameLossTimerTag;
+                [Inc] public readonly EcsTagPool<ClosedMarker> ClosedMarker;
+            }
+        }
+
+        private class CoinViewDestroyedStateAspect
+        {
+            public class OnEnter : EcsAspectAuto
+            {
+                [Inc] public readonly EcsTagPool<CoinTag> CoinTag;
+                [Inc] public readonly EcsTagPool<ViewDestroyedEvent> ViewDestroyedEvent;
+            }
+
+            public class OnUpdate : EcsAspectAuto
+            {
+                [Inc] public readonly EcsTagPool<CoinDestroyedMarker> CoinDestroyedMarker;
+                [Inc] public readonly EcsTagPool<LevelTag> LevelTag;
+                [Inc] public readonly EcsTagPool<LevelLostMarker> LevelLostMarker;
+            }
+        }
+
+        private class LevelClearedStateAspect
+        {
+            public class OnEnter : EcsAspectAuto
+            {
+                [IncImplicit(typeof(LevelTag))]
+                [IncImplicit(typeof(LevelLostMarker))]
+                [IncImplicit(typeof(LevelClearedEvent))]
+                [Opt] public readonly EcsTagPool<NextLeveRequest> NextLevel;
+            }
         }
 
         public void Run()
         {
-            foreach (int level in _world.Where(out LostStateAspect aspect))
+            foreach (int level in _world.Where(out LossStateAspect.OnEnter aspect))
             {
                 entlong strategy =
                     _world.NewEntityLong(aspect.DestructionAnimalStrategyConfigs.Read(level).Value);
@@ -95,66 +130,91 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
                 Debug.Log("LOSS");
             }
 
-            foreach (int level in _world.Where(out AnimalDestructedStateAspect aspect))
+            foreach (int level in _world.Where(out AnimalDestructedStateAspect.OnEnter _))
             {
-               // aspect.GameFieldDestruct.Add(level);
-
-                foreach (int coin in _world.Where(out CoinAspect coinAspect))
+                EcsSpan ecsSpan = _world.Where(out CoinAspect coinAspect);
+                
+                if (ecsSpan.Count > 0)
                 {
-                    // destroy coin
-                    ref var gameObjectConnect = ref coinAspect.GameObjectConnects.Get(coin);
+                    foreach (int coin in ecsSpan)
+                    {
+                        ref GameObjectConnect goConnect = ref coinAspect.GameObjectConnects.Get(coin);
 
-                    Tween
-                        .Scale(gameObjectConnect.Connect.transform, Vector3.zero, 0.4f, Ease.InBack)
-                        .OnComplete(
-                            target: gameObjectConnect.Connect,
-                            connect =>
-                            {
-                                if (!connect.Entity.TryGetID(out int coinID))
-                                    return;
+                        Tween
+                            .Scale(
+                                target: goConnect.Connect.transform,
+                                endValue: Vector3.zero,
+                                duration: 0.4f,
+                                ease: Ease.InBack)
+                            .OnComplete(
+                                target: goConnect.Connect,
+                                onComplete: static connect =>
+                                {
+                                    if (!connect.Entity.TryGetID(out int id))
+                                        return;
 
-                                coinAspect.DeleteEntity.Add(coinID);
-                                coinAspect.DestroyView.Add(coinID);
-                            });
+                                    EcsWorld world = connect.Entity.World;
+
+                                    CoinAspect coinAspect = world.GetAspect<CoinAspect>();
+
+                                    coinAspect.DestroyView.Add(id);
+                                });
+                    }
+                }
+                else
+                {
+                    _world.GetPool<CoinDestroyedMarker>().Add(level);
                 }
             }
 
-            foreach (int level in _world.Where(out LevelAspect levelAspect))
+            foreach (int _ in _world.Where(out CoinViewDestroyedStateAspect.OnEnter _))
             {
-                if (_world.Where(out CoinAspect _).Count == 0)
+                foreach (int level in _world.Where(out LevelAspect levelAspect))
                 {
+                    Debug.Log("CoinViewDestroyedStateAspect");
+
                     levelAspect.GameFieldDestruct.Add(level);
                     
                     foreach (int timer in _world.Where(out GameLossTimerAspect timerAspect))
-                    {
-                        GameObjectConnect connect = timerAspect.GameObjectConnects.Read(timer);
+                        timerAspect.Close.Add(timer);
+                }
+            }
 
-                        Tween
-                            .Scale(connect.Connect.transform, Vector3.zero, 0.2f, Ease.OutQuad)
-                            .OnComplete(
-                                target: connect.Connect,
-                                onComplete: target => target.gameObject.SetActive(false));
+            foreach (int _ in _world.Where(out CoinViewDestroyedStateAspect.OnUpdate _))
+            {
+                foreach (int level in _world.Where(out LevelAspect levelAspect))
+                {
+                    Debug.Log("CoinViewDestroyedStateAspect");
+
+                    levelAspect.GameFieldDestruct.Add(level);
+
+                    _world.GetPool<CoinDestroyedMarker>().Del(level);
+
+                    foreach (int timer in _world.Where(out GameLossTimerAspect timerAspect))
+                        timerAspect.Close.Add(timer);
+                }
+            }
+
+            foreach (int level in _world.Where(out DestructedGameFieldStateAspect.OnUpdate _))
+            {
+                foreach (int _ in _world.Where(out GameLossTimerClosedStateAspect.OnUpdate _))
+                {
+                    foreach (int game in _world.Where(out GameAspect gameAspect))
+                    {
+                        _world.GetPool<CleanupLevelRequest>().Add(level);
+                        gameAspect.Levels.Get(game).LevelIndex = 0;
                     }
                 }
             }
 
-            foreach (int level in _world.Where(out GameFieldDestructedStateAspect levelAspect))
+            foreach (int level in _world.Where(out LevelClearedStateAspect.OnEnter _))
             {
-                Debug.Log("Disable game loss timer");
-                
-                foreach (int game in _world.Where(out GameAspect gameAspect))
-                {
-                    _world.GetPool<CleanupLevelRequest>().Add(game);
-                    gameAspect.Levels.Get(game).LevelIndex = 0;
-                }
-            }
+                Debug.Log("Cleared");
 
-            foreach (var _ in _world.Where(out GameLossTimerAspect _))
-            {
-                foreach (int gameScreen in _world.Where(out GameScreenAspect gameScreenAspect))
-                {
-                    gameScreenAspect.ShowMetaGameUI.Add(gameScreen);
-                }
+                _world.DelEntity(level);
+
+                foreach (int screen in _world.Where(out GameScreenAspect gameScreenAspect))
+                    gameScreenAspect.ShowMetaGameUI.Add(screen);
             }
         }
     }

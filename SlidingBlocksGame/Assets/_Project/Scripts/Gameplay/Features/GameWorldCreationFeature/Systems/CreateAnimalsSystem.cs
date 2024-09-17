@@ -6,7 +6,6 @@ using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
 using _Project.Scripts.Gameplay.Utils;
 using DCFApixels.DragonECS;
 using Unity.Mathematics;
-using UnityEngine;
 using Object = UnityEngine.Object;
 
 namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
@@ -29,7 +28,6 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
             [Opt] public readonly EcsPool<ActiveGameField> ActiveGameField;
             [Opt] public readonly EcsPool<BoundExtents> BoundsExtents;
             [Opt] public readonly EcsPool<MeshRendererRef> MeshRenderers;
-            [Opt] public readonly EcsTagPool<AnimalSpawnedEvent> AnimalSpawned;
         }
 
         private class SideAspect : EcsAspectAuto
@@ -62,10 +60,10 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
                     SideAspect sideAspect = _world.GetAspect<SideAspect>();
 
-                    var left = CreateSide(sideAspect, GridUtils.Left);
-                    var right = CreateSide(sideAspect, GridUtils.Right);
-                    var up = CreateSide(sideAspect, GridUtils.Up);
-                    var down = CreateSide(sideAspect, GridUtils.Down);
+                    var left = CreateSide(sideAspect, Utils.GridUtils.Left);
+                    var right = CreateSide(sideAspect, Utils.GridUtils.Right);
+                    var up = CreateSide(sideAspect, Utils.GridUtils.Up);
+                    var down = CreateSide(sideAspect, Utils.GridUtils.Down);
 
                     foreach (ref GameField.AnimalsData animalData in animals)
                     {
@@ -80,7 +78,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
                         view.ConnectWith(animal, applyTemplates: true);
 
-                        Scale(view, in gameField);
+                        view.transform.localScale = animalData.Scale;
 
                         _world.GetPool<CellPosition>().Add(animal.ID).Value = animalData.CellPosition;
 
@@ -93,8 +91,6 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                         animalAspect.BoundsExtents.Add(animal.ID).Value =
                             animalAspect.MeshRenderers.Read(animal.ID).Value.bounds.extents;
 
-                        animalAspect.AnimalSpawned.Add(animal.ID);
-                        
                         if (math.all(movementDirection.Value == right.direction))
                             right.animals.Add(animal.ID);
                         if (math.all(movementDirection.Value == left.direction))
@@ -116,20 +112,6 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
             return (sideAspect.MovementDirection.Add(side).Value = direction,
                 sideAspect.SideAnimals.Add(side).Value = EcsGroup.New(_world));
-        }
-
-        private void Scale(EcsEntityConnect connect, in GameField gameField)
-        {
-            ref RendererRef renderer = ref _world.GetPool<RendererRef>().Get(connect.Entity.ID);
-
-            var meshFilter = renderer.Value.GetComponent<MeshFilter>();
-
-            float size = 1 / meshFilter.mesh.bounds.size.x;
-
-            renderer.Value.transform.localScale = new Vector3(size, size, size);
-
-            connect.transform.localScale = new Vector3(gameField.CellSize + 0.1f, gameField.CellSize + 0.1f,
-                gameField.CellSize + 0.1f);
         }
     }
 }

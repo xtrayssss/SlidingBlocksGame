@@ -8,6 +8,7 @@ using _Project.Scripts.Gameplay.Features.DestroyFeature.Components;
 using _Project.Scripts.Gameplay.Features.DestroyFeature.Systems;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems;
+using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.VisualFeature.Components;
 using DCFApixels.DragonECS;
 
@@ -36,7 +37,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature
                 //
                 .AddUnique(new GameFlowSystem())
                 //
-                .AutoDelTag<AnimalsShopWindowCreatedEvent>()
+                .AutoDelTag<GameScreenCreatedEvent>()
                 .AddUnique(new GameScreenSystem())
                 .AutoDelTag<CreateGameScreenRequest>()
                 //
@@ -48,9 +49,9 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature
                 .AddUnique(new GameLossTimerSystem())
                 .AutoDelTag<CreateGameLossTimerRequest>()
                 //
-                .AutoDelTag<AnimalSpawnedEvent>()
                 .AddUnique(new CreateAnimalsSystem())
                 .AutoDelTag<AnimalPositionedEvent>()
+                .AutoDelTag<AnimalSpawnedEvent>()
                 .AddUnique(new AnimalCreationChainStrategySystem())
                 .AutoDelTag<CreateAnimalsRequest>()
                 //
@@ -62,7 +63,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature
                 .AddUnique(new LevelWinCheckSystem())
                 .AddUnique(new LevelLostCheckSystem())
                 .AddUnique(new LevelWinSystem())
-                //.AddUnique(new LevelLossSystem())
+                .AddUnique(new LevelLossSystem())
                 //
                 .AddUnique(new CreateCoinSystem())
                 .AutoDelTag<CreateCoinRequest>()
@@ -71,20 +72,31 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature
                 .AddUnique(new CleanupLevelSystem())
                 .AutoDelTag<CleanupLevelRequest>()
                 //             
-                .AutoDelEntityTag<CoinsUpdatedEvent>()
+                .AutoDelTag<CoinCollectedEvent>()
                 .AddUnique(new CollectCoinSystem())
                 //
-                .AutoDelEntityTag<ScoresUpdatedEvent>()
-                .AddUnique(new ScoresSystem())
-                //
-                .AutoDelEntityTag<RewardedEvent>()
+                .AutoDelTag<RewardedEvent>()
                 .AddUnique(new RewardSystem())
                 //
-                .AutoDelEntityTag<PurchasedEvent>()
+                .AutoDelTag<PurchasedEvent>()
                 .AddUnique(new PurchaseAnimalSystem())
-                .AutoDelTag<ClearPurchasesRequest>()
                 //
-                .AddUnique(new UpdatePlayerProgressSystem());
+                .AutoDelEntityComponent<ScoresUpdatedEvent>()
+                .AddUnique(new ScoresSystem())
+                .AutoDelEntityComponent<UpdateScoresRequest>()
+                //
+                .AutoDelEntityComponent<CoinsUpdatedEvent>()
+                .AddUnique(new CoinsSystem())
+                .AutoDelEntityComponent<UpdateCoinsRequest>()
+                //
+                .AutoDelEntityTag<SelectedAnimalUpdatedEvent>()
+                .AutoDelEntityTag<PurchasesClearedEvent>()
+                .AddUnique(new PurchaseSystem())
+                .AutoDelEntityComponent<UpdateSelectedAnimalRequest>()
+                .AutoDelEntityTag<ClearPurchasesRequest>()
+                //
+                .AddUnique(new SaveLoadPlayerProgressSystem())
+                .AutoDelTag<LoadProgressRequest>();
         }
     }
 }

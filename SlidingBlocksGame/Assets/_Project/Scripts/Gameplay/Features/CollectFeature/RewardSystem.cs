@@ -1,6 +1,7 @@
 ﻿using _Project.Scripts.Gameplay.Features.CollectFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.UIFeature.Components;
+using _Project.Scripts.Gameplay.Utils;
 using DCFApixels.DragonECS;
 using YG;
 
@@ -23,8 +24,6 @@ namespace _Project.Scripts.Gameplay.Features.CollectFeature
             [Inc] public readonly EcsPool<CoinsProgressionCurve> CoinsProgressionCurves;
 
             [Opt] public readonly EcsTagPool<RewardedEvent> Rewarded;
-            [Opt] public readonly EcsTagPool<CoinsUpdatedEvent> CoinsUpdated;
-            [Opt] public readonly EcsPool<TargetEntity> TargetEntity;
         }
 
         private class PlayerAspect : EcsAspectAuto
@@ -39,19 +38,14 @@ namespace _Project.Scripts.Gameplay.Features.CollectFeature
             {
                 foreach (int reward in _world.Where(out RewardAspect rewardAspect))
                 {
-                    foreach (int player in _world.Where(out PlayerAspect playerAspect))
+                    foreach (int player in _world.Where(out PlayerAspect _))
                     {
-                        ref Coins playerCoins = ref playerAspect.Coins.Get(player);
-
                         int rewardCoins = (int)rewardAspect.CoinsProgressionCurves.Read(reward).Value
                             .Evaluate(YandexGame.savesData.RewardCount);
 
-                        playerCoins.Value += rewardCoins;
-
-                        int @event = _world.NewEntity();
-                        rewardAspect.Rewarded.Add(@event);
-                        rewardAspect.CoinsUpdated.Add(@event);
-                        rewardAspect.TargetEntity.Add(@event).Value = player.ToEntityLong(_world);
+                        ProgressUtils.UpdateCoins(player, rewardCoins);
+                        
+                        rewardAspect.Rewarded.Add(reward);
                     }
                 }
             }

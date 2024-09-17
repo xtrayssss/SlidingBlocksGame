@@ -13,20 +13,17 @@ MonoBehaviour:
   m_Name: PurchaseAnimalCfg
   m_EditorClassIdentifier: 
   _components:
-  - rid: 8499802524237955074
   - rid: 8499802837155577859
+  - rid: 6454805365177712640
   references:
     version: 2
     RefIds:
-    - rid: 8499802524237955074
-      type: {class: RotationSpeedFactor/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
+    - rid: 6454805365177712640
+      type: {class: RotationTween/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
-          Value: 200
-          Original: {x: 0, y: 0, z: 0, w: 0}
-          SnapBackFactor: 10
-          IsSnapBack: 1
+          Duration: 2
     - rid: 8499802837155577859
       type: {class: PurchaseAnimalTag/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
         asm: Assembly-CSharp}

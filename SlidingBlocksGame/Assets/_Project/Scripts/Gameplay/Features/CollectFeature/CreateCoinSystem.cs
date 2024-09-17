@@ -40,7 +40,7 @@ namespace _Project.Scripts.Gameplay.Features.CollectFeature
                 {
                     ref readonly GameField gameField = ref levelAspect.GameFields.Read(entity);
 
-                    int2 center = GridUtils.GetCenter(in gameField);
+                    int2 center = Utils.GridUtils.GetCenter(in gameField);
 
                     int randomX = random.NextInt(center.x, center.y);
                     int randomY = random.NextInt(center.x, center.y);
@@ -48,7 +48,7 @@ namespace _Project.Scripts.Gameplay.Features.CollectFeature
                     int2 cellPosition = new int2(randomX, randomY);
                     
                     EcsEntityConnect connect = UnityEngine.Object.Instantiate(gameAspect.CoinPrefabs.Read(game).Prefab,
-                        GridUtils.GetWorldPosition(cellPosition, in gameField) +
+                        Utils.GridUtils.GetWorldPosition(cellPosition, in gameField) +
                         new float3(0, gameField.CellTop + gameField.UnitCellTopOffset, 0), Quaternion.identity);
 
                     connect.transform.localScale = new Vector3(gameField.CellSize + 0.1f, gameField.CellSize + 0.1f,

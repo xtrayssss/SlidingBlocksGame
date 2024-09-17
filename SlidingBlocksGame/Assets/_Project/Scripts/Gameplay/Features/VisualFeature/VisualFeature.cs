@@ -26,16 +26,23 @@ namespace _Project.Scripts.Gameplay.Features.VisualFeature
                     .AddUnique(new InAppPopupSystem())
                     //
                     .AddUnique(new ScrollSystem())
-                    .AutoDelTag<ScrollSetupRequest>()
+                    .AutoDel<ScrollSetupRequest>()
                     .AutoDelTag<ApplyEffectRequest>()
                     //
                     .AddUnique(new RotationSystem())
                     .AddUnique(new CameraRenderSystem())
-                    .AutoDelTag<ViewUpdatedEvent>()
                     .AddUnique(new DisplayPriceAnimalSystem())
                     .AddUnique(new DisplayPurchaseStatusSystem())
+                    //
+                    .AutoDelTag<ScrollOpenedEvent>()
                     .AddUnique(new DisplayAnimalPurchaseWindowSystem())
+                    .AutoDelTag<ScrollClosedEvent>()
                     .AddUnique(new CloseAnimalPurchaseWindowSystem())
+                    //
+                    .AutoDelTag<GameLossTimerClosedEvent>()
+                    .AddUnique(new CloseGameLossTimerSystem())
+                    .AutoDelTag<CloseGameLossTimerRequest>()
+                    //
                     .AddUnique(new DisplayProgressSystem())
                     .AddUnique(new RateUsSystem())
                     .AddUnique(new TutorialSystem())
@@ -47,9 +54,7 @@ namespace _Project.Scripts.Gameplay.Features.VisualFeature
                     //
                     .AddUnique(new CanRewardSystem())
                     .AddUnique(new WobbleSystem())
-                    .AutoDelTag<WobbleRequest>()
-                    .AutoDelTag<ScrollStartedEvent>()
-                    .AutoDelTag<ScrollSnappedEvent>();
+                    .AutoDelTag<WobbleRequest>();
             }
         }
 

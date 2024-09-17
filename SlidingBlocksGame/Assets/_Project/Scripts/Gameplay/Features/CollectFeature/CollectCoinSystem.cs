@@ -25,15 +25,12 @@ namespace _Project.Scripts.Gameplay.Features.CollectFeature
             [Inc] public readonly EcsPool<GameObjectConnect> GameObjectConnects;
 
             [Inc] public readonly EcsPool<Coins> Coins;
-            [Opt] public readonly EcsTagPool<CollectedEvent> CollectedEvent;
+            [Opt] public readonly EcsTagPool<CoinCollectedEvent> CollectedEvent;
 
-            [Opt] public readonly EcsPool<CollectedTargetEntity> CollectedTarget;
             [Opt] public readonly EcsPool<TargetEntity> Target;
 
             [Opt] public readonly EcsTagPool<DeleteEntityCommand> DeleteEntity;
             [Opt] public readonly EcsTagPool<DestroyViewRequest> DestroyView;
-
-            [Opt] public readonly EcsTagPool<CoinsUpdatedEvent> CoinsUpdated;
         }
 
         private class MovingAnimalAspect : EcsAspectAuto
@@ -82,16 +79,11 @@ namespace _Project.Scripts.Gameplay.Features.CollectFeature
 
                         Animate(coin, coinAspect, ref gameObjectConnect);
 
-                        foreach (int player in _world.Where(out PlayerAspect playerAspect))
+                        foreach (int player in _world.Where(out PlayerAspect _))
                         {
-                            playerAspect.Coins.Get(player).Value += coinAspect.Coins.Read(coin).Value;
-
-                            int @event = _world.NewEntity();
-                            coinAspect.CollectedEvent.Add(@event);
-                            coinAspect.CoinsUpdated.Add(@event);
-
-                            coinAspect.CollectedTarget.Add(@event).Value = coin.ToEntityLong(_world);
-                            coinAspect.Target.Add(@event).Value = player.ToEntityLong(_world);
+                            ProgressUtils.UpdateCoins(player, coinAspect.Coins.Read(coin).Value);
+                            
+                            coinAspect.CollectedEvent.Add(coin);
                         }
                     }
                 }

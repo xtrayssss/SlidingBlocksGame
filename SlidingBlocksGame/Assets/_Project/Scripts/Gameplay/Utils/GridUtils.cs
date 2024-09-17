@@ -1,49 +1,11 @@
-﻿using _Project.Scripts.Gameplay.Features.AudioFeature.Components;
-using _Project.Scripts.Gameplay.Features.AudioFeature.Systems;
-using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
-using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
+﻿using System;
+using System.Collections.Generic;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
-using DCFApixels.DragonECS;
 using Unity.Mathematics;
-using UnityEditor;
+using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Utils
 {
-    public class AudioUtils : IEcsProcess
-    {
-        [EcsInject] private EcsDefaultWorld _world;
-
-        private class AudioAspect : EcsAspectAuto
-        {
-            [Opt] public EcsTagPool<PlayAudioRequest> PlayAudio;
-            [Opt] public EcsTagPool<DeleteEntityCommand> DeleteEntity;
-            [Opt] public EcsPool<AudioSourceRef> AudioSource;
-            [Opt] public EcsTagPool<AudioLoopMarker> AudioLoopMarker;
-            [Opt] public EcsTagPool<RefreshCooldownRequest> Refresh;
-        }
-
-        public int Create(ScriptableEntityTemplate audioCfg)
-        {
-            AudioAspect audioAspect = _world.GetAspect<AudioAspect>();
-
-            int audio = _world.NewEntity(audioCfg);
-
-            audioAspect.PlayAudio.Add(audio);
-            audioAspect.AudioSource.Add(audio).Value = GameAudio.Instance.SfxSource;
-
-            if (audioAspect.AudioLoopMarker.Has(audio))
-            {
-                audioAspect.Refresh.Add(audio);
-            }
-            else
-            {
-                audioAspect.DeleteEntity.Add(audio);
-            }
-
-            return audio;
-        }
-    }
-
     public static class GridUtils
     {
         public static readonly int2 Up = new int2(0, 1);
@@ -88,9 +50,111 @@ namespace _Project.Scripts.Gameplay.Utils
 
             return new int2(x, z);
         }
-        
+
         public static float3 GetWorldPosition(int2 coordinates, in GameField gameField) =>
             new float3(coordinates.x * (gameField.CellSize + gameField.Offset) + gameField.OriginPosition.x, 0,
                 coordinates.y * (gameField.CellSize + gameField.Offset) + gameField.OriginPosition.z);
+
+        public static void SetCell(int2 position, ref GameField gameField)
+        {
+            int2 dimensions = position.yx - gameField.EdgeSize;
+
+            int bitPosition = dimensions.x * gameField.EdgeSize + dimensions.y;
+
+            gameField.Center |= (short)(1 << bitPosition);
+
+            DebugGameField(in gameField);
+
+            void DebugGameField(in GameField gameField)
+            {
+                string fieldRepresentation = "GameField:\n";
+
+                for (int row = 0; row < gameField.EdgeSize; row++)
+                {
+                    for (int col = 0; col < gameField.EdgeSize; col++)
+                    {
+                        bool isOccupied = GetCell(new int2(row, col), in gameField);
+                        fieldRepresentation += isOccupied ? "1 " : "0 ";
+                    }
+
+                    fieldRepresentation += "\n";
+                }
+
+                Debug.Log(fieldRepresentation);
+            }
+        }
+
+        public static bool GetCell(int2 dimensions, in GameField gameField)
+        {
+            int bitPosition = dimensions.x * gameField.EdgeSize + dimensions.y;
+            return (gameField.Center & (1 << bitPosition)) != 0;
+        }
+
+        public static (int2 obstacle, bool success) GetNearestCentralObstacle(int2 position, int2 side,
+            in GameField gameField)
+        {
+            int2 dimensions = new int2();
+
+            if (side.x == 1)
+            {
+                dimensions.x = position.y - gameField.EdgeSize;
+                dimensions.y = 0;
+            }
+            else if (side.x == -1)
+            {
+                dimensions.x = position.y - gameField.EdgeSize;
+                dimensions.y = gameField.EdgeSize - 1;
+            }
+            else if (side.y == 1)
+            {
+                dimensions.x = 0;
+                dimensions.y = position.x - gameField.EdgeSize;
+            }
+            else if (side.y == -1)
+            {
+                dimensions.x = gameField.EdgeSize - 1;
+                dimensions.y = position.x - gameField.EdgeSize;
+            }
+
+            side = side.yx;
+
+            int step = 0;
+
+            do
+            {
+                dimensions += side * step;
+
+                Debug.Log(dimensions);
+
+                int bitPosition = dimensions.x * gameField.EdgeSize + dimensions.y;
+
+                Debug.Log(bitPosition);
+
+                if ((gameField.Center & (1 << bitPosition)) != 0)
+                {
+                    Debug.Log("HAS OBSTACLE " + bitPosition);
+
+                    return (dimensions.yx, true);
+                }
+            } while (step++ != gameField.EdgeSize - 1);
+
+            return default;
+        }
+
+        public static List<int2> GetNearestCentralObstacles(Span<int2> positions, int2 side,
+            in GameField gameField)
+        {
+            List<int2> obstacles = new List<int2>(positions.Length / 2);
+
+            foreach (ref int2 position in positions)
+            {
+                (int2 obstacle, bool success) nearest = GetNearestCentralObstacle(position, side, in gameField);
+
+                if (nearest.success)
+                    obstacles.Add(nearest.obstacle);
+            }
+
+            return obstacles;
+        }
     }
 }

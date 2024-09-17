@@ -55,7 +55,18 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                                 value: animalsShopWindowAspect.PurchaseAnimals.Read(window).Entities,
                                 purchaseButton: animalsShopWindowAspect.PurchaseButtonStatus.Get(window).Current,
                                 price: animalsShopWindowAspect.PurchaseButtonStatus.Get(window).Price,
-                                window: window));
+                                window: window))
+                        .ChainCallback(
+                            target: gameObjectConnect.Connect,
+                            callback: static connect =>
+                            {
+                                if (!connect.Entity.TryGetID(out int id))
+                                    return;
+
+                                EcsWorld world = connect.Entity.World;
+
+                                world.GetPool<ScrollOpenedEvent>().Add(id);
+                            });
 
                     gameObjectConnect.Connect.transform.gameObject.SetActive(true);
                 }
@@ -71,7 +82,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
             {
                 EcsSpan visibleAnimals = default;
 
-                if (!_world.GetPool<SnappedMarker>().Has(value[i]))
+                if (!_world.GetPool<ScrollSnappedMarker>().Has(value[i]))
                     continue;
 
                 if (i > 0 && i < value.Count - 1)
@@ -103,7 +114,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                         endValue: Vector3.one,
                         duration: 0.08f, Ease.Linear, startDelay: 0.08f * visibleIndex));
                 }
-                
+
                 price.transform.localScale = Vector3.zero;
                 purchaseButton.transform.localScale = Vector3.zero;
 
@@ -120,12 +131,6 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                     duration: 0.08f,
                     ease: Ease.Linear,
                     startDelay: 0.08f * visibleIndex);
-
-                visibleSequence.ChainCallback(() =>
-                {
-                    _world.GetPool<ScrollSnap>().Get(window).ScrollRect.enabled = true;
-                    _world.GetPool<ApplyEffectsMarker>().Add(window);
-                });
 
                 sequence.Group(visibleSequence);
 

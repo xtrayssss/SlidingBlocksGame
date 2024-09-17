@@ -25,8 +25,6 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
         {
             foreach (int entity in _world.Where(out Aspect aspect))
             {
-                Debug.Log("Next level system");
-
                 ref Levels levels = ref aspect.Levels.Get(entity);
 
                 ScriptableEntityTemplate[] levelsPack = GetLevelsPack(ref levels);

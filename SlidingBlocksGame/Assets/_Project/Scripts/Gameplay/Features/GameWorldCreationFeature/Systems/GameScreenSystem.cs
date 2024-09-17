@@ -61,6 +61,9 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                 CreateReward(connect);
                 CreateGameTitle(connect, gameScreenAspect);
                 CreateSettingsPopup(connect, gameScreenAspect);
+
+
+                _world.GetPool<GameScreenCreatedEvent>().Add(gameScreen.ID);
             }
         }
 
@@ -108,11 +111,11 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
             // congratulation
             _world.GetPool<CongratulationConnect>().Get(rewardWindow.ID).Value
                 .Connect(_world.NewEntityLong(), applyTemplates: true);
-            
+
             // tap to exit
             _world.GetPool<TapToExitConnect>().Get(rewardWindow.ID).Value
                 .Connect(_world.NewEntityLong(), applyTemplates: true);
-            
+
             // confetti
             _world.GetPool<RewardConfettiEffectConnect>().Get(rewardWindow.ID).Value
                 .Connect(_world.NewEntityLong(), applyTemplates: true);
@@ -126,7 +129,8 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
             _world.GetPool<ClosedMarker>().Add(shop);
 
-            AnimalsShopWindowConnect animalsShopWindowConnect = _world.GetPool<AnimalsShopWindowConnect>().Read(screen.ID);
+            AnimalsShopWindowConnect animalsShopWindowConnect =
+                _world.GetPool<AnimalsShopWindowConnect>().Read(screen.ID);
             animalsShopWindowConnect.Value.Connect(shop.ToEntityLong(_world), true);
 
             ref AnimalPurchases animalPurchases =
@@ -140,8 +144,8 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                 animalsShopWindowConnect.Value.transform.Find("Viewport/Price/Price").GetComponent<TextMeshProUGUI>();
 
             _world.GetPool<ScrollSnap>().Get(animalsShopWindowConnect.Value.Entity.ID).Items = animalPurchases.Entities;
-            _world.GetPool<ScrollSetupRequest>().Add(animalsShopWindowConnect.Value.Entity.ID);
-            _world.GetPool<AnimalsShopWindowCreatedEvent>().Add(animalsShopWindowConnect.Value.Entity.ID);
+            ref ScrollSetupRequest scrollSetupRequest =
+                ref _world.GetPool<ScrollSetupRequest>().Add(animalsShopWindowConnect.Value.Entity.ID);
 
             List<GameObject> list = new List<GameObject>();
 
@@ -182,7 +186,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
             GameObject animalRendererView = Object.Instantiate(animalRenderer);
 
             _world.GetPool<PhysicView>().Add(purchase.ID).Value = animalRendererView;
-            
+
             var cam = fitObjectToOrthographicCamera.Create(animalRendererView);
 
             _world.GetPool<RenderCamera>().Add(purchase.ID).Value = cam;

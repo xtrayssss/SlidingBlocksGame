@@ -96,14 +96,12 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
                     if (x >= GameField().EdgeSize && x < GameField().EdgeSize + GameField().CenterSize ||
                         z >= GameField().EdgeSize && z < GameField().EdgeSize + GameField().CenterSize)
                     {
-                        float3 position = GridUtils.GetWorldPosition(
+                        float3 position = Utils.GridUtils.GetWorldPosition(
                             coordinates: new int2(x, z),
                             gameField: in GameField());
 
                         float delay = math.distance(position, waveOrigin) *
                                       generationAspect.Waves.Read(algorithm).Speed;
-
-                        yield return new WaitForSeconds(delay);
 
                         GameObject view = Object.Instantiate(
                             original: GameField().CellPrefab,
@@ -127,6 +125,8 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
                         _world.GetPool<TileGeneratedEvent>().Add(tile);
                         _world.GetPool<TargetEntity>().Add(tile).Value = _world.GetEntityLong(levelID);
                         _world.GetPool<DeleteEntityCommand>().Add(tile);
+
+                        yield return new WaitForSeconds(delay);
                     }
                 }
             }

@@ -42,11 +42,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                     _world.GetPool<ClosedMarker>().Add(window);
 
                     scrollSnap.OpenCloseTween.Stop();
-
-                    scrollSnap.ScrollRect.enabled = false;
-
-                    _world.GetPool<ApplyEffectsMarker>().Del(window);
-
+                    
                     scrollSnap.OpenCloseTween = Sequence.Create()
                         .Chain(
                             sequence: AnimateScrollElements(
@@ -93,6 +89,8 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
             purchaseButtonStatus.Lock.transform.localScale = Vector3.one;
             purchaseButtonStatus.Play.transform.localScale = Vector3.one;
             purchaseButtonStatus.Unlock.transform.localScale = Vector3.one;
+            
+            world.GetPool<ScrollClosedEvent>().Add(id);
         }
 
         private Sequence AnimateScrollElements(EcsGroup value)
@@ -103,7 +101,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
             {
                 EcsSpan visibleAnimals = default;
 
-                if (!_world.GetPool<SnappedMarker>().Has(value[i]))
+                if (!_world.GetPool<ScrollSnappedMarker>().Has(value[i]))
                     continue;
 
                 if (i > 0 && i < value.Count - 1)

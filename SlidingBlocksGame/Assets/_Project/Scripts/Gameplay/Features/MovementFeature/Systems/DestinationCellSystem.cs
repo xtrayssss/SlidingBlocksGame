@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.DestroyFeature.Components;
@@ -112,88 +113,43 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 
                 ref SideAnimals sideAnimals = ref sideAspect.SideAnimals.Get(sideID);
 
+                bool hasNearest = false;
+                int2 minDistance = int.MaxValue;
+
                 foreach (int animal in sideAnimals.Value)
                 {
-                    ref readonly var cellPosition = ref animalAspect.CellPositions.Read(animal);
+                    ref readonly CellPosition cellPosition = ref animalAspect.CellPositions.Read(animal);
 
-                    float2 end = default;
+                    (int2 obstacle, bool success) nearest =
+                        GridUtils.GetNearestCentralObstacle(cellPosition.Value, invertedSide, in gameField);
 
-                    if (cellPosition.Value.x < gameField.EdgeSize)
-                        end = new float2(3, cellPosition.Value.y);
-                    else if (cellPosition.Value.y < gameField.EdgeSize)
-                        end = new float2(cellPosition.Value.x, 3);
-                    else if (cellPosition.Value.x >= gameField.EdgeSize + gameField.CenterSize)
-                        end = new float2(gameField.EdgeSize, cellPosition.Value.y);
-                    else if (cellPosition.Value.y >= gameField.EdgeSize + gameField.CenterSize)
-                        end = new float2(cellPosition.Value.x, gameField.EdgeSize);
+                    int2 convertedObstacle = nearest.obstacle + gameField.EdgeSize;
 
-                    float2 progress;
-
-                    if (invertedSide.x == 1 || invertedSide.y == 1)
-                        progress = gameField.EdgeSize * invertedSide - cellPosition.Value * invertedSide +
-                                   cellPosition.Value;
-                    else
-                        progress = (gameField.EdgeSize + gameField.CenterSize - 1) * math.abs(invertedSide) -
-                                   cellPosition.Value * math.abs(invertedSide) +
-                                   cellPosition.Value;
-                    int step = 0;
-
-                    do
+                    int2 distance = convertedObstacle - cellPosition.Value;
+                    
+                    if (math.any(math.abs(minDistance) > math.abs(distance)) && nearest.success)
                     {
-                        progress += invertedSide * step;
+                        minDistance = distance;
+                        hasNearest = true;
+                    }
 
-                        Debug.Log(progress);
-
-                        foreach (int obstacle in _world.Where(out ObstacleAnimalAspect obstacleAnimalAspect))
-                        {
-                            ref readonly CellDestination obstacleCellPosition =
-                                ref obstacleAnimalAspect.CellDestinations.Read(obstacle);
-
-                            if (math.all(obstacleCellPosition.Value == progress))
-                            {
-                                obstacles.Add(obstacleCellPosition.Value);
-                            }
-                        }
-
-                        step++;
-                    } while (math.any(progress != end));
+                    Debug.Log(convertedObstacle);
                 }
 
-
-                if (obstacles.Count == 0)
+                if (!hasNearest)
                 {
-                    Debug.Log("no obstacles" + "============");
-
                     int2 max = sideAnimals.Value
                         .Select(x => _world.GetPool<CellPosition>().Read(x).Value * invertedSide)
                         .Aggregate((x, y) => math.max(x, y));
 
-                    Debug.Log(max);
+                    int2 center;
 
-                    max = math.abs(max);
+                    if (math.any(invertedSide < 0))
+                        center = gameField.EdgeSize;
+                    else
+                        center = gameField.EdgeSize + gameField.CenterSize - 1;
 
-                    int2 center = GridUtils.GetCenter(in gameField);
-
-                    if (invertedSide.x == 1)
-                    {
-                        center = center.yx;
-                    }
-                    else if (invertedSide.x == -1)
-                    {
-                        center = center.xx;
-                    }
-                    else if (invertedSide.y == 1)
-                    {
-                        center = center.xy;
-                    }
-                    else if (invertedSide.y == -1)
-                    {
-                        center = center.xx;
-                    }
-
-                    int2 distance = center * math.abs(invertedSide) - max;
-
-                    Debug.Log(distance);
+                    int2 distance = center * math.abs(invertedSide) - math.abs(max);
 
                     foreach (int animal in sideAnimals.Value)
                     {
@@ -207,40 +163,36 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                             new float3(destination.x,
                                 _world.GetPool<GameObjectConnect>().Read(animal).Connect.transform.position.y,
                                 destination.z);
+                                                
+                        GridUtils.SetCell(
+                            position: cellDestination.Value,
+                            gameField: ref gameFieldAspect.GameFields.Get(gameFieldID));
 
                         _world.GetPool<CanMoveMarker>().Add(animal);
                     }
                 }
                 else
                 {
-                    int2 minObstacle = obstacles.Select(x => x * invertedSide).Aggregate((x, y) => math.min(x, y));
-
-                    int2 max = sideAnimals.Value
-                        .Select(x => _world.GetPool<CellPosition>().Read(x).Value * invertedSide)
-                        .Aggregate((x, y) => math.max(x, y));
-
-                    max = math.abs(max);
-                    minObstacle = math.abs(minObstacle);
-
-                    Debug.Log(minObstacle + "============");
-
-                    int2 distance = minObstacle * math.abs(invertedSide) - max * math.abs(invertedSide) -
-                                    invertedSide;
+                    minDistance -= invertedSide;
 
                     foreach (int animal in sideAnimals.Value)
                     {
-                        ref var cellDestination = ref animalAspect.CellDestination.Add(animal);
+                        ref CellDestination cellDestination = ref animalAspect.CellDestination.Add(animal);
 
-                        Debug.Log(distance);
                         cellDestination.Value =
-                            animalAspect.CellPositions.Read(animal).Value + distance;
+                            animalAspect.CellPositions.Read(animal).Value + minDistance;
 
                         float3 destination = GridUtils.GetWorldPosition(cellDestination.Value, in gameField);
 
                         animalAspect.WorldDestination.Add(animal).Value =
-                            new float3(destination.x,
+                            new float3(
+                                destination.x,
                                 _world.GetPool<GameObjectConnect>().Read(animal).Connect.transform.position.y,
                                 destination.z);
+                        
+                        GridUtils.SetCell(
+                            position: cellDestination.Value,
+                            gameField: ref gameFieldAspect.GameFields.Get(gameFieldID));
 
                         _world.GetPool<CanMoveMarker>().Add(animal);
                     }

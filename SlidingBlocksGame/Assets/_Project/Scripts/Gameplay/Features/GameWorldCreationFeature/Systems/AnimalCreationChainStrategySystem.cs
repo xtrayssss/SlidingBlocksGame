@@ -109,7 +109,6 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
                     if (targetLevelAspect.IsMatches(levelID))
                     {
-                        Debug.Log("Animal positioned");
                         targetLevelAspect.AnimalPositionedEvent.Add(levelID);
                         targetLevelAspect.AnimalPositionedMarker.Add(levelID);
                     }

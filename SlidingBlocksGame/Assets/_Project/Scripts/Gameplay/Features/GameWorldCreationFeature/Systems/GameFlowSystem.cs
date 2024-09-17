@@ -1,9 +1,13 @@
-﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+﻿using _Project.Scripts.Gameplay.Features.CollectFeature;
+using _Project.Scripts.Gameplay.Features.CollectFeature.Components;
+using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.DestroyFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
 using _Project.Scripts.Gameplay.Features.UIFeature.Components;
+using _Project.Scripts.Gameplay.Utils;
 using DCFApixels.DragonECS;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
@@ -66,13 +70,30 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
             [IncImplicit(typeof(GameScreenTag))]
             [Opt] public readonly EcsTagPool<HideMetaGameUIRequest> HideMetaGameUI;
         }
-        
+
+        private class PlayerAspect : EcsAspectAuto
+        {
+            [IncImplicit(typeof(PlayerTag))]
+            [Opt] public readonly EcsPool<Scores> Scores;
+            [Opt] public readonly EcsTagPool<LoadProgressRequest> LoadProgressRequest;
+        }
+        private class GameScreenCreatedAspect : EcsAspectAuto
+        {
+            [Inc] public readonly EcsTagPool<GameScreenCreatedEvent> GameScreenCreatedEvent;
+        }
+
         public void Run()
         {
             foreach (int game in _world.Where(out GameCreatedAspect aspect))
             {
                 aspect.CreateHud.Add(game);
                 aspect.CreateGameScreen.Add(game);
+            }
+
+            foreach (int _ in _world.Where(out GameScreenCreatedAspect _))
+            {
+                foreach (int player in _world.Where(out PlayerAspect playerAspect)) 
+                    playerAspect.LoadProgressRequest.Add(player);
             }
 
             foreach (int _ in _world.Where(out PlayButtonClickedAspect _))
@@ -83,14 +104,17 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
             foreach (int _ in _world.Where(out MetaGameUIHiddenStateAspect _))
             {
-                Debug.Log("MetaGameUIHiddenStateAspect");
-
                 foreach (int game in _world.Where(out GameAspect gameAspect))
                     gameAspect.NextLevel.Add(game);
             }
 
             foreach (int level in _world.Where(out LevelCreationStateAspect levelAspect))
+            {
+                foreach (int player in _world.Where(out PlayerAspect _)) 
+                    ProgressUtils.UpdateScores(player, 1);
+
                 levelAspect.GameFieldGenerate.Add(level);
+            }
 
             foreach (int level in _world.Where(out GeneratedGameFieldStateAspect aspect))
                 aspect.CreateAnimals.Add(level);

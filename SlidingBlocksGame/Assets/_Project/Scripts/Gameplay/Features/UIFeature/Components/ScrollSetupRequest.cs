@@ -2,7 +2,8 @@
 
 namespace _Project.Scripts.Gameplay.Features.UIFeature.Components
 {
-    public struct ScrollSetupRequest : IEcsTagComponent
+    public struct ScrollSetupRequest : IEcsComponent
     {
+        public int TargetIndex;
     }
 }

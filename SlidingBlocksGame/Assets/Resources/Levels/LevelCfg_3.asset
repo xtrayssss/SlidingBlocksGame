@@ -18,8 +18,8 @@ MonoBehaviour:
   - rid: 8499802296898551899
   - rid: 8499802340583015395
   - rid: 8499802343622050639
-  - rid: 8499802367295750794
-  - rid: 6454805113458656095
+  - rid: 6454805113458655410
+  - rid: 6454805247463260164
   references:
     version: 2
     RefIds:
@@ -30,8 +30,8 @@ MonoBehaviour:
         component:
           CellPrefab: {fileID: 5678163285392456267, guid: e5378788f6301a2428eb21e32a7e779b,
             type: 3}
-          AnimalPrefab: {fileID: 0}
-          GameFieldPrefab: {fileID: 0}
+          GameFieldPrefab: {fileID: 6921811843097038720, guid: 5536d5cbf0b2a014daf0112d52598540,
+            type: 3}
           OriginPosition:
             x: -2.5
             y: 0
@@ -220,6 +220,10 @@ MonoBehaviour:
             InvertedSide:
               x: 0
               y: -1
+            Scale:
+              x: 0.59999996
+              y: 0.59999996
+              z: 0.59999996
           - Position:
               x: -0.90000004
               y: 0.20437674
@@ -237,6 +241,10 @@ MonoBehaviour:
             InvertedSide:
               x: 0
               y: -1
+            Scale:
+              x: 0.59999996
+              y: 0.59999996
+              z: 0.59999996
           - Position:
               x: 1.5
               y: 0.20437674
@@ -254,6 +262,10 @@ MonoBehaviour:
             InvertedSide:
               x: -1
               y: 0
+            Scale:
+              x: 0.59999996
+              y: 0.59999996
+              z: 0.59999996
           - Position:
               x: 1.5
               y: 0.20437674
@@ -271,17 +283,50 @@ MonoBehaviour:
             InvertedSide:
               x: -1
               y: 0
+            Scale:
+              x: 0.59999996
+              y: 0.59999996
+              z: 0.59999996
           BaseSize: 6
           BaseCellSize: 0.7
           CellsCount: 20
           CellTop: 0.18437675
           UnitCellTopOffset: 0.02
-    - rid: 6454805113458656095
+          Center: 0
+    - rid: 6454805113458655410
       type: {class: Scores/Template, ns: _Project.Scripts.Gameplay.Features.CollectFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
           Value: 1
+    - rid: 6454805247463260164
+      type: {class: GameFieldAlgorithms/Template, ns: _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value:
+          - _components:
+            - rid: 6454805247463260166
+            - rid: 6454805247463260175
+            - rid: 6454805386191437878
+    - rid: 6454805247463260166
+      type: {class: GameFieldAlgorithmCfg/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: {fileID: 11400000, guid: fae2afb1b7a1b1b418cf43a39493aac0, type: 2}
+    - rid: 6454805247463260175
+      type: {class: GameFieldGeneratedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: {fileID: 11400000, guid: f857536a371faf54fbd1e4c76e8602f4, type: 2}
+    - rid: 6454805386191437878
+      type: {class: TileGeneratedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: {fileID: 11400000, guid: 9e7d2bc0efe5f544392d1a9544a560f5, type: 2}
     - rid: 8499802292475658342
       type: {class: GameLossTimerCfg/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
         asm: Assembly-CSharp}
@@ -302,9 +347,5 @@ MonoBehaviour:
           Value: {fileID: 11400000, guid: ae77d2d66bba6934ea24d0fe74b8d979, type: 2}
     - rid: 8499802343622050639
       type: {class: LevelTag/Template, ns: _Project.Scripts.Gameplay.Features.CommonFeature.Components,
-        asm: Assembly-CSharp}
-      data: {}
-    - rid: 8499802367295750794
-      type: {class: LevelLifeTimeMarker/Template, ns: _Project.Scripts.Gameplay.Features.DestroyFeature.Components,
         asm: Assembly-CSharp}
       data: {}
