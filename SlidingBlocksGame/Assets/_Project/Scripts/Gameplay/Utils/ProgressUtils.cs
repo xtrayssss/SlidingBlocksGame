@@ -92,4 +92,31 @@ namespace _Project.Scripts.Gameplay.Utils
             progressAspect.TargetEntity.Add(@event).Value = target.ToEntityLong(world);
         }
     }
+
+    public static class SliceUtils
+    {
+        // public static (EcsGroup, EcsGroup) SliceWithExcept(this EcsGroup source, int index)
+        // {
+        //     EcsSpan excepted = default;
+        //
+        //     if (index > 0 && index < source.Count - 1)
+        //     {
+        //         excepted = source.Slice(index - 1, 3);
+        //     }
+        //     else if (index == 0)
+        //     {
+        //         excepted = source.Slice(index, 2);
+        //     }
+        //     else if (index == source.Count - 1)
+        //     {
+        //         excepted = source.Slice(index - 1, 2);
+        //     }
+        //
+        //     EcsGroup sourceClone = source.Clone();
+        //
+        //     sourceClone.ExceptWith(excepted);
+        //
+        //     return (sourceClone, excepted);
+        // }
+    }
 }

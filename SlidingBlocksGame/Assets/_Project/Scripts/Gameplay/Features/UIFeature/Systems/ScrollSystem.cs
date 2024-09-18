@@ -196,7 +196,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
             {
                 ref ScrollSnap scrollSnap = ref aspect.ScrollSnaps.Get(entity);
 
-                scrollSnap.ScrollRect.horizontalScrollbar.value = scrollSnap.TargetPosition;
+                //scrollSnap.ScrollRect.horizontalScrollbar.value = scrollSnap.TargetPosition;
 
                 Debug.Log(scrollSnap.TargetPosition);
                 Debug.Log(scrollSnap.ScrollRect.horizontalNormalizedPosition);

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.VisualFeature.Components;
@@ -19,6 +20,9 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
             [IncImplicit(typeof(RewardTag))]
             [IncImplicit(typeof(CanRewardMarker))]
             [Inc] public readonly EcsPool<RewardStatus> Status;
+
+            [Inc] public readonly EcsPool<GrabRewardText> GrabRewardText;
+            [Inc] public readonly EcsPool<RewardTimeText> RewardTimeText;
         }
 
         private class RewardLockStateAspect : EcsAspectAuto
@@ -26,6 +30,11 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
             [IncImplicit(typeof(RewardTag))]
             [ExcImplicit(typeof(CanRewardMarker))]
             [Inc] public readonly EcsPool<RewardStatus> Status;
+
+            [Inc] public readonly EcsPool<RewardTimeText> RewardTimeText;
+            [Inc] public readonly EcsPool<RewardCollectedAt> RewardCollectedAt;
+            [Inc] public readonly EcsPool<GrabRewardText> GrabRewardText;
+            [Inc] public readonly EcsPool<RewardInterval> RewardInterval;
         }
 
         private class RewardButtonClickedAspect : EcsAspectAuto
@@ -76,6 +85,9 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 
                 rewardStatus.Unlocked.gameObject.SetActive(true);
                 rewardStatus.Locked.gameObject.SetActive(false);
+
+                aspect.GrabRewardText.Get(entity).Value.gameObject.SetActive(true);
+                aspect.RewardTimeText.Get(entity).Value.gameObject.SetActive(false);
             }
 
             foreach (int entity in _world.Where(out RewardLockStateAspect aspect))
@@ -84,6 +96,19 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 
                 rewardStatus.Locked.gameObject.SetActive(true);
                 rewardStatus.Unlocked.gameObject.SetActive(false);
+
+                long difference = YandexGame.ServerTime() - aspect.RewardCollectedAt.Read(entity).Value;
+                
+                difference = Math.Max(0, difference);
+
+                string time = TimeSpan
+                    .FromMilliseconds(aspect.RewardInterval.Get(entity).Value - difference)
+                    .ToString(@"hh\:mm\:ss");
+
+                aspect.RewardTimeText.Get(entity).Value.text = "REWARD IN: " + time;
+
+                aspect.GrabRewardText.Get(entity).Value.gameObject.SetActive(false);
+                aspect.RewardTimeText.Get(entity).Value.gameObject.SetActive(true);
             }
 
             foreach (int _ in _world.Where(out RewardButtonClickedAspect _))
@@ -112,17 +137,14 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                                 target: rewardWindowConnect.Value.transform,
                                 endValue: Vector3.one,
                                 duration: 0.3f,
-                                ease: Ease.OutBack));
-
-                    AnimateCoins(
-                        sequence,
-                        rewardWindowConnect.Value.Entity,
-                        reward,
-                        rewardAspect,
-                        rewardCoinsAspect,
-                        rewardWindowConnect.Value.Entity.ID);
-
-                    openCloseSequence.Value
+                                ease: Ease.OutBack))
+                        .Chain(
+                            AnimateCoins(
+                                rewardWindowConnect.Value.Entity,
+                                reward,
+                                rewardAspect,
+                                rewardCoinsAspect,
+                                rewardWindowConnect.Value.Entity.ID))
                         .ChainCallback(
                             target: rewardWindowConnect.Value,
                             static connect =>
@@ -158,7 +180,6 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 
                     Sequence sequence = Sequence.Create();
 
-                    RewardCoinsAspect rewardCoinsAspect = _world.GetAspect<RewardCoinsAspect>();
                     RewardWindowAspect rewardWindowAspect = _world.GetAspect<RewardWindowAspect>();
 
                     openCloseSequence.Value =
@@ -172,11 +193,11 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                             .Group(
                                 AnimateRollback(rewardWindowAspect,
                                     window))
-                            // confetti
+                            // close confetti
                             .ChainCallback(
                                 target: rewardWindowAspect.RewardConfettiEffectConnect.Get(window).Value,
                                 connect => connect.gameObject.SetActive(false))
-                            // reward coins
+                            // cleanup reward coins
                             .ChainCallback(
                                 target: gameObjectConnect.Connect,
                                 static connect =>
@@ -198,6 +219,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 
                                     rewardCoinsAspect.TextMeshProUGUI.Get(coinsRewardID).Value.text = "0";
                                 })
+                            // close window
                             .ChainCallback(
                                 target: gameObjectConnect.Connect,
                                 static connect => connect.gameObject.SetActive(false));
@@ -370,31 +392,35 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
             return sequence;
         }
 
-        private Sequence AnimateCoins(Sequence sequence, entlong rewardWindow, int reward, RewardAspect rewardAspect,
+        private Sequence AnimateCoins(entlong window, int reward, RewardAspect rewardAspect,
             RewardCoinsAspect rewardCoinsAspect, int rewardWindowID)
         {
-            Sequence animationSequence = Sequence.Create();
+            Sequence sequence = Sequence.Create();
 
             RewardWindowAspect rewardWindowAspect = _world.GetAspect<RewardWindowAspect>();
 
-            ref CoinsRewardConnect coinsRewardConnect = ref rewardWindowAspect.CoinsRewardConnects.Get(rewardWindow.ID);
+            ref CoinsRewardConnect coinsRewardConnect = ref rewardWindowAspect.CoinsRewardConnects.Get(window.ID);
             coinsRewardConnect.Value.gameObject.SetActive(true);
 
             int coins = (int)rewardAspect.CoinsProgressionCurves.Read(reward).Value
                 .Evaluate(YandexGame.savesData.RewardCount);
 
+            const float coinDelay = 0.05f;
+
+            float totalCoinDelay = coinDelay * coins;
+
             for (int i = 0; i < coins; i++)
             {
                 int i1 = i;
 
-                animationSequence
+                sequence
                     .Chain(
-                        Tween.Delay(0.05f))
+                        Tween.Delay(coinDelay))
                     .ChainCallback(
                         target: coinsRewardConnect.Value,
                         connect =>
                         {
-                            if (!connect.Entity.TryGetID(out int coinsRewardID))
+                            if (!connect.Entity.TryGetID(out int id))
                                 return;
 
                             EcsWorld world = connect.Entity.World;
@@ -405,22 +431,18 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 
                             RewardCoinsAspect rewardCoinsAspect = world.GetAspect<RewardCoinsAspect>();
 
-                            rewardCoinsAspect.TextMeshProUGUI.Get(coinsRewardID).Value.text = (i1 + 1).ToString();
+                            rewardCoinsAspect.TextMeshProUGUI.Get(id).Value.text = (i1 + 1).ToString();
                         });
             }
 
-            sequence.Chain(
+            sequence.Group(
                 Tween.ShakeLocalPosition(
                     target: rewardCoinsAspect.TextMeshProUGUI.Get(coinsRewardConnect.Value.Entity.ID).Value.transform,
                     strength: Vector3.one * 20,
-                    duration: coins * 0.05f,
+                    duration: totalCoinDelay,
                     frequency: 100));
 
-            sequence.Group(animationSequence);
-
-            float coinsTime = coins * 0.05f;
-
-            float percent = coinsTime * (80f / 100f) + 0.3f;
+            float percent = totalCoinDelay * 0.8f;
 
             sequence.InsertCallback(
                 atTime: percent,
@@ -429,19 +451,15 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                 {
                     connect.gameObject.SetActive(true);
 
-                    if (!connect.Entity.TryGetID(out int confettiID))
+                    if (!connect.Entity.TryGetID(out int id))
                         return;
 
                     EcsWorld world = connect.Entity.World;
 
-                    world.GetPool<ConfettiExplodedEvent>().Add(confettiID);
+                    world.GetPool<ConfettiExplodedEvent>().Add(id);
                 });
 
-            return animationSequence;
+            return sequence;
         }
-    }
-
-    public struct CoinAddedToTextEvent : IEcsTagComponent
-    {
     }
 }

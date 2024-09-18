@@ -42,23 +42,24 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                     scrollSnap.OpenCloseTween.Stop();
 
                     gameObjectConnect.Connect.transform.localScale = Vector3.zero;
-
+                    
+                    //EcsDebug.Break();
+                    
                     scrollSnap.OpenCloseTween = Sequence.Create()
                         .Group(
-                            tween: Tween.Scale(
+                            Tween.Scale(
                                 target: gameObjectConnect.Connect.transform,
                                 endValue: Vector3.one,
                                 duration: 0.2f,
-                                ease: Ease.InOutSine))
+                                ease: Ease.OutBack))
                         .Chain(
-                            sequence: AnimateScrollElements(
-                                value: animalsShopWindowAspect.PurchaseAnimals.Read(window).Entities,
+                            AnimatePurchases(
+                                animals: animalsShopWindowAspect.PurchaseAnimals.Read(window).Entities,
                                 purchaseButton: animalsShopWindowAspect.PurchaseButtonStatus.Get(window).Current,
-                                price: animalsShopWindowAspect.PurchaseButtonStatus.Get(window).Price,
-                                window: window))
+                                price: animalsShopWindowAspect.PurchaseButtonStatus.Get(window).Price))
                         .ChainCallback(
                             target: gameObjectConnect.Connect,
-                            callback: static connect =>
+                            static connect =>
                             {
                                 if (!connect.Entity.TryGetID(out int id))
                                     return;
@@ -73,70 +74,58 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
             }
         }
 
-        private Sequence AnimateScrollElements(EcsGroup value, GameObject purchaseButton,
-            GameObject price, int window)
+        private Sequence AnimatePurchases(EcsGroup animals, GameObject purchaseButton, GameObject price)
         {
             Sequence sequence = Sequence.Create();
 
-            for (int i = 0; i < value.Count; i++)
+            for (int i = 0; i < animals.Count; i++)
             {
-                EcsSpan visibleAnimals = default;
+                EcsSpan visible = default;
 
-                if (!_world.GetPool<ScrollSnappedMarker>().Has(value[i]))
+                if (!_world.GetPool<ScrollSnappedMarker>().Has(animals[i]))
                     continue;
 
-                if (i > 0 && i < value.Count - 1)
-                {
-                    visibleAnimals = value.Slice(i - 1, 3);
-                }
+                if (i > 0 && i < animals.Count - 1)
+                    visible = animals.Slice(i - 1, 3);
                 else if (i == 0)
+                    visible = animals.Slice(i, 2);
+                else if (i == animals.Count - 1)
+                    visible = animals.Slice(i - 1, 2);
+
+                foreach (int animal in visible)
                 {
-                    visibleAnimals = value.Slice(i, 2);
-                }
-                else if (i == value.Count - 1)
-                {
-                    visibleAnimals = value.Slice(i - 1, 2);
-                }
-
-                Sequence visibleSequence = Sequence.Create();
-
-                int visibleIndex;
-
-                for (visibleIndex = 0; visibleIndex < visibleAnimals.Count; visibleIndex++)
-                {
-                    int animal = visibleAnimals[visibleIndex];
-
                     ref GameObjectConnect gameObjectConnect = ref _world.GetPool<GameObjectConnect>().Get(animal);
 
                     gameObjectConnect.Connect.transform.localScale = Vector3.zero;
 
-                    visibleSequence.Group(Tween.Scale(target: gameObjectConnect.Connect.transform,
-                        endValue: Vector3.one,
-                        duration: 0.08f, Ease.Linear, startDelay: 0.08f * visibleIndex));
+                    sequence.Chain(
+                        Tween.Scale(
+                            target: gameObjectConnect.Connect.transform,
+                            endValue: Vector3.one,
+                            duration: 0.8f,
+                            ease: Ease.Linear));
                 }
 
                 price.transform.localScale = Vector3.zero;
                 purchaseButton.transform.localScale = Vector3.zero;
 
-                Tween.Scale(
-                    target: purchaseButton.transform,
-                    endValue: Vector3.one,
-                    duration: 0.08f,
-                    ease: Ease.Linear,
-                    startDelay: 0.08f * visibleIndex);
+                sequence
+                    .Chain(
+                        Tween.Scale(
+                            target: purchaseButton.transform,
+                            endValue: Vector3.one,
+                            duration: 0.08f,
+                            ease: Ease.OutBack))
+                    .Group(
+                        Tween.Scale(
+                            target: price.transform,
+                            endValue: Vector3.one,
+                            duration: 0.08f,
+                            ease: Ease.OutBack));
 
-                Tween.Scale(
-                    target: price.transform,
-                    endValue: Vector3.one,
-                    duration: 0.08f,
-                    ease: Ease.Linear,
-                    startDelay: 0.08f * visibleIndex);
+                EcsGroup buffer = animals.Clone();
 
-                sequence.Group(visibleSequence);
-
-                EcsGroup buffer = value.Clone();
-
-                buffer.ExceptWith(visibleAnimals);
+                buffer.ExceptWith(visible);
 
                 foreach (int animal in buffer)
                 {
