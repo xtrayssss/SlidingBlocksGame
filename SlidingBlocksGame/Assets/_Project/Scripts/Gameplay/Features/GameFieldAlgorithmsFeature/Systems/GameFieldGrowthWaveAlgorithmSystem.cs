@@ -130,8 +130,9 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
 
             await Task.WhenAll(generationAspect.GrowthWaves.Get(algorithm).GrowthTasks);
 
-            levelAspect.GameFieldGenerated.Add(levelID);
-            levelAspect.GameFieldGenerated.Add(algorithm);
+            GridUtils.GameFieldEvent<GameFieldGeneratedRequest>(_world, target: levelID);
+            GridUtils.GameFieldEvent<GameFieldGeneratedRequest>(_world, target: algorithm);
+
             levelAspect.GameFieldGeneratedMarker.Add(levelID);
         }
 
@@ -193,8 +194,9 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
 
             await Task.WhenAll(destructionAspect.GrowthWaves.Get(algorithm).ShrinkTasks);
 
-            levelAspect.GameFieldDestructed.Add(levelID);
-            levelAspect.GameFieldDestructed.Add(algorithm);
+            GridUtils.GameFieldEvent<GameFieldDestructedRequest>(_world, target: levelID);
+            GridUtils.GameFieldEvent<GameFieldDestructedRequest>(_world, target: algorithm);
+            
             levelAspect.GameFieldDestructedMarker.Add(levelID);
         }
 

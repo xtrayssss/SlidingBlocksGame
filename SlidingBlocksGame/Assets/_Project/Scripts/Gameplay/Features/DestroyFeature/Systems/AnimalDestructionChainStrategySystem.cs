@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
 {
-    public class DestructionChainStrategySystem : IEcsRun
+    public class AnimalDestructionChainStrategySystem : IEcsRun
     {
         [EcsInject] private readonly EcsDefaultWorld _world;
 

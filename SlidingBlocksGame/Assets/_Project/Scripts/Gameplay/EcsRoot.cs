@@ -49,7 +49,7 @@ namespace _Project.Scripts.Gameplay
         {
             builder
                 //
-                .AddUnique(new DestructionChainStrategySystem())
+                .AddUnique(new AnimalDestructionChainStrategySystem())
                 .AutoDelTag<AnimalDestructedEvent>()
                 .AddUnique(new ChainDestructionRequestSystem())
                 .AutoDelTag<ApplyDestructionStrategyRequest>();

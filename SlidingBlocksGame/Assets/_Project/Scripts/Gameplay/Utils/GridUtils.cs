@@ -1,6 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
+using DCFApixels.DragonECS;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -141,20 +142,12 @@ namespace _Project.Scripts.Gameplay.Utils
             return default;
         }
 
-        public static List<int2> GetNearestCentralObstacles(Span<int2> positions, int2 side,
-            in GameField gameField)
+        public static void GameFieldEvent<TEvent>(EcsWorld world, int target) where TEvent : struct, IEcsTagComponent
         {
-            List<int2> obstacles = new List<int2>(positions.Length / 2);
+            int @event = world.NewEntity();
 
-            foreach (ref int2 position in positions)
-            {
-                (int2 obstacle, bool success) nearest = GetNearestCentralObstacle(position, side, in gameField);
-
-                if (nearest.success)
-                    obstacles.Add(nearest.obstacle);
-            }
-
-            return obstacles;
+            world.GetPool<TEvent>().Add(@event);
+            world.GetPool<TargetEntity>().Add(@event).Value = target.ToEntityLong(world);
         }
     }
 }

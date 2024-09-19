@@ -79,7 +79,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             ref GameField GameField() =>
                 ref levelAspect.GameFields.Get(levelID);
-            
+
             levelAspect.GameFieldDestructedMarker.TryDel(levelID);
 
             float3 waveOrigin = generationAspect.Waves.Get(algorithm).WaveOrigin = new float3(
@@ -96,7 +96,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
                     if (x >= GameField().EdgeSize && x < GameField().EdgeSize + GameField().CenterSize ||
                         z >= GameField().EdgeSize && z < GameField().EdgeSize + GameField().CenterSize)
                     {
-                        float3 position = Utils.GridUtils.GetWorldPosition(
+                        float3 position = GridUtils.GetWorldPosition(
                             coordinates: new int2(x, z),
                             gameField: in GameField());
 
@@ -130,12 +130,10 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
                     }
                 }
             }
+            
+            GridUtils.GameFieldEvent<GameFieldGeneratedRequest>(_world, target: levelID);
+            GridUtils.GameFieldEvent<GameFieldGeneratedRequest>(_world, target: algorithm);
 
-            Debug.Log("End");
-
-            levelAspect.GameFieldGeneratedEvent.Add(levelID);
-            levelAspect.GameFieldGeneratedEvent.Add(algorithm);
-         
             levelAspect.GameFieldGeneratedMarker.Add(levelID);
         }
 
@@ -150,7 +148,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
                 ref levelAspect.GameFields.Get(levelID);
 
             levelAspect.GameFieldGeneratedMarker.Del(levelID);
-            
+
             foreach (GameField.Cell cell in GameField().Cells)
             {
                 float delay = math.distance(cell.WorldPosition, destructionAspect.Waves.Read(algorithm).WaveOrigin) *
@@ -161,9 +159,9 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
                 Object.Destroy(cell.View);
             }
 
-            levelAspect.GameFieldDestructedEvent.Add(levelID);
-            levelAspect.GameFieldDestructedEvent.Add(algorithm);
-            
+            GridUtils.GameFieldEvent<GameFieldDestructedRequest>(_world, target: levelID);
+            GridUtils.GameFieldEvent<GameFieldDestructedRequest>(_world, target: algorithm);
+
             levelAspect.GameFieldDestructedMarker.Add(levelID);
         }
     }

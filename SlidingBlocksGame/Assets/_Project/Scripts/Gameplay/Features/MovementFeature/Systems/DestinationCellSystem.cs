@@ -73,8 +73,8 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
             {
                 GameFieldAspect gameFieldAspect = _world.GetAspect<GameFieldAspect>();
 
-                if (!clickAspect.ActiveGameFields.Read(click).Value.TryGetID(out int gameFieldID) &&
-                    gameFieldAspect.IsMatches(gameFieldID))
+                if (!clickAspect.ActiveGameFields.Read(click).Value.TryGetID(out int gameFieldID) ||
+                    !gameFieldAspect.IsMatches(gameFieldID))
                     continue;
 
                 ref readonly WorldPosition clickPosition = ref clickAspect.WorldPositions.Read(click);

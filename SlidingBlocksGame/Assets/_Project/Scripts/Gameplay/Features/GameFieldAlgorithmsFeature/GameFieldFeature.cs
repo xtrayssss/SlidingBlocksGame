@@ -20,12 +20,13 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature
                 //
                 .AddUnique(new SelectGameFieldAlgorithmSystem())
                 //
-                .AutoDelTag<GameFieldGeneratedEvent>()
-                .AutoDelTag<GameFieldDestructedEvent>()
-                //
                 .AddUnique(new GameFieldPlaneAlgorithmSystem())
                 .AddUnique(new GameFieldWaveAlgorithmSystem(_coroutineRunner))
                 .AddUnique(new GameFieldGrowthWaveAlgorithmSystem(_coroutineRunner))
+                //
+                .AutoDelTag<GameFieldGeneratedEvent>()
+                .AutoDelTag<GameFieldDestructedEvent>()
+                .AddUnique(new CatchGameFieldEventsSystem())
                 //
                 .AutoDelTag<GameFieldGenerateRequest>()
                 .AutoDelTag<GameFieldDestructRequest>();

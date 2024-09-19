@@ -22,16 +22,16 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
 
         private class GameLossTimerAspect : EcsAspectAuto
         {
-            [Inc] private readonly EcsTagPool<CooldownExpiredEvent> _cooldownExpiredEvents;
-            [Inc] private readonly EcsTagPool<GameLossTimerTag> _gameLossTimerTag;
+            [Inc] public readonly EcsTagPool<CooldownExpiredMarker> CooldownExpiredMarker;
+            [Inc] public readonly EcsTagPool<GameLossTimerTag> GameLossTimerTag;
         }
 
         private class AnimalAspect : EcsAspectAuto
         {
-            [Inc] private readonly EcsTagPool<CellOccupancyMarker> _cellOccupancyMarkers;
-            [Exc] private readonly EcsTagPool<WithinCenterMarker> _withinCenterMarkers;
+            [Inc] public readonly EcsTagPool<CellOccupancyMarker> CellOccupancyMarker;
+            [Exc] public readonly EcsTagPool<WithinCenterMarker> WithinCenterMarker;
         }
-        
+
         private class MovingAnimals : EcsAspectAuto
         {
             [Inc] public readonly EcsTagPool<MovingMarker> MovingMarkers;
@@ -41,6 +41,9 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
         {
             foreach (int _ in _world.Where(out GameLossTimerAspect _))
             {
+                if (_world.Where(out MovingAnimals _).Count != 0)
+                    continue;
+
                 foreach (int entity in _world.Where(out LevelAspect aspect))
                 {
                     aspect.LevelLostEvent.Add(entity);
