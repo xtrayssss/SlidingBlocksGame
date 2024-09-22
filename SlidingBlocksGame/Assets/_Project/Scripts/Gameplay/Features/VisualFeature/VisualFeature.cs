@@ -53,6 +53,7 @@ namespace _Project.Scripts.Gameplay.Features.VisualFeature
                     .AddUnique(new RewardCatcherSystem())
                     .AddUnique(new DisplayRewardSystem())
                     //
+                    .AutoDelTag<CanRewardEvent>()
                     .AddUnique(new CanRewardSystem())
                     .AddUnique(new WobbleSystem())
                     .AutoDelTag<WobbleRequest>();

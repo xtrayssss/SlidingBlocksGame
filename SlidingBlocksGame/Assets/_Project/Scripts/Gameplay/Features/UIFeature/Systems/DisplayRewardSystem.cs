@@ -17,14 +17,18 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
     {
         [EcsInject] private readonly EcsDefaultWorld _world;
 
-        private class RewardUnlockStateAspect : EcsAspectAuto
+        private class RewardUnlockStateAspect
         {
-            [IncImplicit(typeof(RewardTag))]
-            [IncImplicit(typeof(CanRewardMarker))]
-            [Inc] public readonly EcsPool<RewardStatus> Status;
+            public class OnEnter : EcsAspectAuto
+            {
+                [IncImplicit(typeof(RewardTag))]
+                [IncImplicit(typeof(CanRewardEvent))]
+                [Inc] public readonly EcsPool<RewardStatus> Status;
 
-            [Inc] public readonly EcsPool<GrabRewardText> GrabRewardText;
-            [Inc] public readonly EcsPool<RewardTimeText> RewardTimeText;
+                [Inc] public readonly EcsPool<GrabRewardText> GrabRewardText;
+                [Inc] public readonly EcsPool<RewardTimeText> RewardTimeText;
+                [Inc] public readonly EcsPool<GrabRewardTextTween> GrabRewardTextTween;
+            }
         }
 
         private class RewardLockStateAspect : EcsAspectAuto
@@ -81,15 +85,32 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 
         public void Run()
         {
-            foreach (int entity in _world.Where(out RewardUnlockStateAspect aspect))
+            foreach (int entity in _world.Where(out RewardUnlockStateAspect.OnEnter aspect))
             {
                 ref RewardStatus rewardStatus = ref aspect.Status.Get(entity);
 
                 rewardStatus.Unlocked.gameObject.SetActive(true);
                 rewardStatus.Locked.gameObject.SetActive(false);
 
-                aspect.GrabRewardText.Get(entity).Value.gameObject.SetActive(true);
+                ref GrabRewardText grabRewardText = ref aspect.GrabRewardText.Get(entity);
+                grabRewardText.Value.gameObject.SetActive(true);
                 aspect.RewardTimeText.Get(entity).Value.gameObject.SetActive(false);
+
+                ref GrabRewardTextTween tween = ref aspect.GrabRewardTextTween.Get(entity);
+
+                Debug.Log("RewardUnlockStateAspect.OnEnter");
+                
+                tween.Value.Stop();
+
+                grabRewardText.Value.transform.localScale = Vector3.one;
+                
+                tween.Value = Tween.Scale(
+                    target: grabRewardText.Value.transform,
+                    endValue: new Vector3(1.15f, 1.15f, 1),
+                    duration: 0.5f,
+                    ease: Ease.InOutSine,
+                    cycles: -1,
+                    cycleMode: CycleMode.Yoyo);
             }
 
             foreach (int entity in _world.Where(out RewardLockStateAspect aspect))
@@ -156,7 +177,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                                     return;
 
                                 EcsWorld world = connect.Entity.World;
-                                
+
                                 int catcher = world.NewEntity();
 
                                 RewardCatcherAspect.RewardCollectedCatcher catcherAspect =

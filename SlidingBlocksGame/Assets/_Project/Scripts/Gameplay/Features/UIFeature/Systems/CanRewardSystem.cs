@@ -14,9 +14,11 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
         {
             [IncImplicit(typeof(RewardTag))]
             [Inc] public readonly EcsPool<RewardInterval> RewardIntervals;
+
             [Inc] public readonly EcsPool<RewardCollectedAt> RewardCollectedAt;
 
-            [Opt] public readonly EcsTagPool<CanRewardMarker> CanReward;
+            [Opt] public readonly EcsTagPool<CanRewardMarker> CanRewardMarker;
+            [Opt] public readonly EcsTagPool<CanRewardEvent> CanRewardEvent;
         }
 
         public void Run()
@@ -28,9 +30,15 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                 long currentTime = YandexGame.ServerTime();
 
                 if (currentTime - lastRewardTime >= aspect.RewardIntervals.Read(reward).Value)
-                    aspect.CanReward.TryAdd(reward);
+                {
+                    if (!aspect.CanRewardMarker.Has(reward))
+                    {
+                        aspect.CanRewardMarker.TryAdd(reward);
+                        aspect.CanRewardEvent.TryAdd(reward);
+                    }
+                }
                 else
-                    aspect.CanReward.TryDel(reward);
+                    aspect.CanRewardMarker.TryDel(reward);
             }
         }
     }
