@@ -123,11 +123,11 @@ namespace _Project.Scripts.Gameplay.Utils
 
             do
             {
-                dimensions += side * step;
+                int2 tempDimensions = dimensions + side * step;
 
-                Debug.Log(dimensions);
+                Debug.Log(tempDimensions);
 
-                int bitPosition = dimensions.x * gameField.EdgeSize + dimensions.y;
+                int bitPosition = tempDimensions.x * gameField.EdgeSize + tempDimensions.y;
 
                 Debug.Log(bitPosition);
 
@@ -135,7 +135,7 @@ namespace _Project.Scripts.Gameplay.Utils
                 {
                     Debug.Log("HAS OBSTACLE " + bitPosition);
 
-                    return (dimensions.yx, true);
+                    return (tempDimensions.yx, true);
                 }
             } while (step++ != gameField.EdgeSize - 1);
 

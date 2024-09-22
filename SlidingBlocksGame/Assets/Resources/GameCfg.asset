@@ -92,7 +92,7 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data:
         component:
-          Value: 1
+          Value: 1.5
     - rid: 6454805567168053249
       type: {class: TweenEase/Template, ns: _Project.Scripts.Gameplay.Features.TweenFeature.Components,
         asm: Assembly-CSharp}
@@ -167,6 +167,8 @@ MonoBehaviour:
           LevelIndex: 0
           PackIndex: 0
           Value:
+          - Levels:
+            - {fileID: 11400000, guid: 7fa248adbc82bb04d9cc69bb6ef81a34, type: 2}
           - Levels:
             - {fileID: 11400000, guid: 11143ba066baf534bacac77d57741075, type: 2}
     - rid: 8499802364150546640
