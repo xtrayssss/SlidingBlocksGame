@@ -13,12 +13,14 @@ namespace _Project.Scripts.Gameplay.Features.InputFeature.Systems
 
         private class MobileAspect : EcsAspectAuto
         {
-            [Inc] private readonly EcsTagPool<MobileDeviceMarker> _mobileDeviceMarkers;
+            [Inc] public readonly EcsTagPool<MobileDeviceMarker> MobileDeviceMarker;
+            [Exc] public readonly EcsTagPool<LockGameInputMarker> LockGameInputMarker;
         }
 
         private class StandaloneAspect : EcsAspectAuto
         {
-            [Inc] private readonly EcsTagPool<StandaloneDeviceMarker> _standaloneDeviceMarkers;
+            [Inc] public readonly EcsTagPool<StandaloneDeviceMarker> StandaloneDeviceMarker;
+            [Exc] public readonly EcsTagPool<LockGameInputMarker> LockGameInputMarker;
         }
 
         private class InputAspect : EcsAspectAuto
@@ -34,6 +36,7 @@ namespace _Project.Scripts.Gameplay.Features.InputFeature.Systems
         {
             [IncImplicit(typeof(PlayerTag))]
             [Opt] public readonly EcsTagPool<StandaloneDeviceMarker> StandaloneDevice;
+
             [Opt] public readonly EcsTagPool<MobileDeviceMarker> MobileDevice;
         }
 
@@ -59,7 +62,7 @@ namespace _Project.Scripts.Gameplay.Features.InputFeature.Systems
                 if (Input.touches.Length > 0)
                 {
                     ref Touch primaryTouch = ref Input.touches[0];
-                    
+
                     if (primaryTouch.phase == TouchPhase.Began)
                     {
                         int click = CreateClickDown(primaryTouch.position);
@@ -74,7 +77,8 @@ namespace _Project.Scripts.Gameplay.Features.InputFeature.Systems
 
                     int startSlice = touchCount > 1 ? 1 : 0;
 
-                    foreach (ref Touch touch in Input.touches.AsSpan().Slice(startSlice, touchCount - startSlice))
+                    foreach (ref readonly Touch touch in Input.touches.AsSpan()
+                                 .Slice(startSlice, touchCount - startSlice))
                     {
                         if (touch.phase == TouchPhase.Began)
                             CreateClickDown(touch.position);
@@ -110,7 +114,7 @@ namespace _Project.Scripts.Gameplay.Features.InputFeature.Systems
 
             return click;
         }
-        
+
         private int CreateClickDown(float3 position)
         {
             int click = _world.NewEntity();

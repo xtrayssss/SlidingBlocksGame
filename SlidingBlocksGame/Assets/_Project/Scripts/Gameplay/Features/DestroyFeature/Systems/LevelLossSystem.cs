@@ -6,6 +6,7 @@ using _Project.Scripts.Gameplay.Features.DestroyFeature.c;
 using _Project.Scripts.Gameplay.Features.DestroyFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
+using _Project.Scripts.Gameplay.Features.InputFeature.Components;
 using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using DCFApixels.DragonECS;
 using PrimeTween;
@@ -25,7 +26,6 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
                 [Inc] public readonly EcsPool<GameFieldAlgorithms> GameFieldAlgorithmConfigs;
 
                 [Inc] public readonly EcsPool<DestructionAnimalStrategyCfg> DestructionAnimalStrategyConfigs;
-                [Opt] public readonly EcsTagPool<CanClickGameFieldMarker> CanClickGameField;
             }
         }
 
@@ -116,6 +116,12 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
                 [Opt] public readonly EcsTagPool<NextLeveRequest> NextLevel;
             }
         }
+        
+        private class PlayerAspect : EcsAspectAuto
+        {
+            [IncImplicit(typeof(PlayerTag))]
+            [Exc] public readonly EcsTagPool<LockGameInputMarker> LockGameInputMarker;
+        }
 
         public void Run()
         {
@@ -128,7 +134,8 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
 
                 _world.GetPool<ApplyDestructionStrategyRequest>().Add(strategy.ID);
 
-                aspect.CanClickGameField.Del(level);
+                foreach (int player in _world.Where(out PlayerAspect playerAspect))
+                    playerAspect.LockGameInputMarker.Add(player);
 
                 Debug.Log("LOSS");
             }

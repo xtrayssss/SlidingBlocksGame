@@ -48,7 +48,6 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 
         private class GameFieldAspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(CanClickGameFieldMarker))]
             [Inc] public readonly EcsPool<GameField> GameFields;
         }
 
@@ -87,11 +86,8 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                     position: worldToGridPosition,
                     gameField: in gameField);
 
-                EcsSpan where = _world.Where(out AnimalAspect animalAspect);
-
-                List<int2> obstacles =
-                    new List<int2>(where.Count);
-
+                _world.Where(out AnimalAspect animalAspect);
+                
                 entlong side = default;
 
                 SideAspect sideAspect;

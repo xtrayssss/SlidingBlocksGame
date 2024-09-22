@@ -5,6 +5,7 @@ using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.DestroyFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
+using _Project.Scripts.Gameplay.Features.InputFeature.Components;
 using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using _Project.Scripts.Gameplay.Utils;
 using DCFApixels.DragonECS;
@@ -59,7 +60,6 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
             [Opt] public readonly EcsTagPool<CreateGameLossTimerRequest> CreateGameLossTimer;
 
             [Opt] public readonly EcsTagPool<CreateCoinRequest> CreateCoin;
-            [Opt] public readonly EcsTagPool<CanClickGameFieldMarker> CanClickGameField;
         }
 
         private class MetaGameUIHiddenStateAspect : EcsAspectAuto
@@ -79,6 +79,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
             [Opt] public readonly EcsPool<Scores> Scores;
 
             [Opt] public readonly EcsTagPool<LoadProgressRequest> LoadProgressRequest;
+            [Opt] public readonly EcsTagPool<LockGameInputMarker> LockGameInputMarker;
         }
 
         private class GameScreenCreatedAspect : EcsAspectAuto
@@ -137,7 +138,9 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
             {
                 aspect.CreateGameLossTimer.Add(level);
                 aspect.CreateCoin.Add(level);
-                aspect.CanClickGameField.Add(level);
+
+                foreach (int player in _world.Where(out PlayerAspect playerAspect)) 
+                    playerAspect.LockGameInputMarker.Del(player);
             }
         }
     }
