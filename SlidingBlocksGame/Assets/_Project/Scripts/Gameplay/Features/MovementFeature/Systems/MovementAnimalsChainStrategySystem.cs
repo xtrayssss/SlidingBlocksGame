@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
-using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
-using _Project.Scripts.Gameplay.Utils;
 using DCFApixels.DragonECS;
 using PrimeTween;
-using Unity.Mathematics;
-using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 {
-    public class ChainMovementAnimalStrategySystem : IEcsRun
+    public class MovementAnimalsChainStrategySystem : IEcsRun
     {
         [EcsInject] private readonly EcsDefaultWorld _world;
 
@@ -45,9 +39,9 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
             [Inc] public readonly EcsPool<MovementSpeedFactor> MovementSpeedFactors;
         }
 
-        private class TweenCompletedAspect : EcsAspectAuto
+        private class MovementTweenCompletedAspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(TweenCompletedEvent))]
+            [IncImplicit(typeof(MovementTweenCompletedEvent))]
             [Inc] public readonly EcsPool<TargetEntity> Targets;
         }
 
@@ -56,7 +50,6 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
             [Inc] public readonly EcsTagPool<MovingMarker> Moving;
             [Opt] public readonly EcsTagPool<CellOccupancyMarker> CellOccupancy;
         }
-
 
         public void Run()
         {
@@ -103,19 +96,27 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                             ease: Ease.OutQuart)
                         .OnComplete(
                             target: gameObjectConnect.Connect,
-                            onComplete: target =>
+                            onComplete: static connect =>
                             {
-                                int callback = _world.NewEntity();
-                                _world.GetPool<TweenCompletedEvent>().Add(callback);
-                                _world.GetPool<TargetEntity>().Add(callback).Value = target.Entity;
-                                _world.GetPool<DeleteEntityCommand>().Add(callback);
+                                if (!connect.Entity.TryGetID(out _))
+                                    return;
+
+                                EcsWorld world = connect.Entity.World;
+
+                                int catcher = world.NewEntity();
+
+                                MovementTweenCatcherAspect catcherAspect =
+                                    world.GetAspect<MovementTweenCatcherAspect>();
+
+                                catcherAspect.CommonCatcherAspect.TargetEntities.Add(catcher).Value = connect.Entity;
+                                catcherAspect.CatchMovementTweenRequest.Add(catcher);
                             });
 
                     movableAspect.Moving.Add(targetID);
                 }
             }
 
-            foreach (int entity in _world.Where(out TweenCompletedAspect tweenCompletedAspect))
+            foreach (int entity in _world.Where(out MovementTweenCompletedAspect tweenCompletedAspect))
             {
                 if (tweenCompletedAspect.Targets.Read(entity).Value.TryGetID(out int targetID))
                 {

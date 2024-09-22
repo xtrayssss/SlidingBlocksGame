@@ -5,6 +5,7 @@ using UnityEngine;
 namespace _Project.Scripts.Gameplay.Features.AudioFeature.Components
 {
     [Serializable]
+    [MetaGroup("Audio")]
     public struct AnimalSpawnedAudioConfig : IEcsAudioConfig
     {
         [field: SerializeField] public ScriptableEntityTemplate Value { get; set; }

@@ -2,7 +2,7 @@
 
 namespace _Project.Scripts.Gameplay.Features.CommonFeature.Components
 {
-    public struct TweenCompletedEvent : IEcsTagComponent
+    public struct MovementTweenCompletedEvent : IEcsTagComponent
     {
     }
 }

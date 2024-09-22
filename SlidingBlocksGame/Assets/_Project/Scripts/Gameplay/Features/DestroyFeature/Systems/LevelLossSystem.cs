@@ -1,4 +1,6 @@
-﻿using _Project.Scripts.Gameplay.Features.CollectFeature.Components;
+﻿using _Project.Scripts.Gameplay.Features.AudioFeature.Components;
+using _Project.Scripts.Gameplay.Features.AudioFeature.Systems;
+using _Project.Scripts.Gameplay.Features.CollectFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.DestroyFeature.c;
 using _Project.Scripts.Gameplay.Features.DestroyFeature.Components;
@@ -50,6 +52,7 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
         {
             [IncImplicit(typeof(GameTag))]
             [Inc] public readonly EcsPool<Levels> Levels;
+            [Inc] public readonly EcsPool<AudioEffectInOnLevelExit> AudioEffects;
         }
 
         private class GameLossTimerAspect : EcsAspectAuto
@@ -215,6 +218,13 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
 
                 foreach (int screen in _world.Where(out GameScreenAspect gameScreenAspect))
                     gameScreenAspect.ShowMetaGameUI.Add(screen);
+                
+                foreach (int game in _world.Where(out GameAspect gameAspect))
+                {
+                    int effect = _world.NewEntity(gameAspect.AudioEffects.Read(game).Value);
+                    _world.GetPool<ApplyAudioEffectRequest>().Add(effect);
+                    _world.GetPool<RestartAudioRequest>().Add(effect);
+                }
             }
         }
     }

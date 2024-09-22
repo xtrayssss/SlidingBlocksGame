@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _components:
   - rid: 6454805113458656097
+  - rid: 6454805569733133208
   references:
     version: 2
     RefIds:
@@ -23,3 +24,9 @@ MonoBehaviour:
       data:
         component:
           Value: {fileID: 8300000, guid: 2eb3dadce8177471996f94d099823504, type: 3}
+    - rid: 6454805569733133208
+      type: {class: AudioTypeRef/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: 1

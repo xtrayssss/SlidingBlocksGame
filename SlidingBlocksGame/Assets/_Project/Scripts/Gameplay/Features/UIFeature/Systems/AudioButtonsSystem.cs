@@ -38,14 +38,14 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 
                     if (audioButtonsStatus.SoundIsOn)
                     {
-                        GameAudio.Instance.SfxSource.volume = 1;
+                        GameAudio.Instance.SfxSource.Sfx.volume = 1;
 
                         audioButtonsStatus.SoundOff.gameObject.SetActive(false);
                         audioButtonsStatus.SoundOn.gameObject.SetActive(true);
                     }
                     else
                     {
-                        GameAudio.Instance.SfxSource.volume = 0;
+                        GameAudio.Instance.SfxSource.Sfx.volume = 0;
 
                         audioButtonsStatus.SoundOn.gameObject.SetActive(false);
                         audioButtonsStatus.SoundOff.gameObject.SetActive(true);

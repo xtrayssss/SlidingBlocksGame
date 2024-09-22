@@ -1,4 +1,5 @@
-﻿using _Project.Scripts.Gameplay.Features.AudioFeature;
+﻿using System;
+using _Project.Scripts.Gameplay.Features.AudioFeature;
 using _Project.Scripts.Gameplay.Features.AudioFeature.Components;
 using _Project.Scripts.Gameplay.Features.AudioFeature.Systems;
 using _Project.Scripts.Gameplay.Features.CollectFeature.Components;
@@ -14,10 +15,11 @@ using _Project.Scripts.Gameplay.Features.MovementFeature;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
 using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.VisualFeature;
-using _Project.Scripts.Gameplay.Utils;
 using DCFApixels.DragonECS;
+using JetBrains.Annotations;
 using PrimeTween;
 using Sirenix.OdinInspector;
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 using YG;
 
@@ -38,8 +40,13 @@ namespace _Project.Scripts.Gameplay
                 .AddAudioSystem<RewardCollectedEvent, RewardCollectedAudioConfig>()
                 .AddUnique(new CoinAddedToTextAudioSystem())
                 .AddAudioSystem<PurchasedEvent, PurchasedAudioConfig>()
+                //
                 .AddUnique(new PlayAudioSystem())
-                .AutoDelTag<PlayAudioRequest>();
+                .AddUnique(new AudioSystem())
+                .AutoDelTag<ApplyAudioEffectRequest>()
+                .AutoDelTag<PlayAudioRequest>()
+                .AutoDelTag<StopAudioRequest>()
+                .AutoDelTag<RestartAudioRequest>();
         }
     }
 
@@ -58,6 +65,10 @@ namespace _Project.Scripts.Gameplay
 
     public class EcsRoot : MonoBehaviour, ICoroutineRunner
     {
+        [SerializeField] public TweenSettings TweenSettings;
+        [SerializeField] public TweenSettings<float> TweenSettings2;
+
+
         [SerializeField] private ScriptableEntityTemplate _gameCfg;
 
         private EcsPipeline _pipeline;
@@ -70,22 +81,34 @@ namespace _Project.Scripts.Gameplay
             YandexGame.SaveProgress();
         }
 
-        public Tween tween;
-        
         [Button]
         public void NormalizeMeshSize(GameObject obj, float targetSize = 1f)
         {
-            tween = Tween.Scale(obj.transform, new Vector3(targetSize, targetSize, targetSize), 3).OnComplete(() =>
-            {
-                Debug.Log("123");
-            });
         }
 
         [Button]
         public void Stop(GameObject obj, float targetSize = 1f)
         {
-            tween.Stop();
+            MyStruct1 myStruct1 = new MyStruct1
+            {
+                value = 2
+            };
+
+            MyStruct2 myStruct2 = UnsafeUtility.As<MyStruct1, MyStruct2>(ref myStruct1);
+
+            Debug.Log(myStruct2.value);
         }
+
+        struct MyStruct1
+        {
+            public int value;
+        }
+
+        struct MyStruct2
+        {
+            public int value;
+        }
+
         [Button]
         private void Rotate(GameObject go)
         {
@@ -105,9 +128,9 @@ namespace _Project.Scripts.Gameplay
                 .AddModule(new GameFieldFeature(coroutineRunner: this))
                 .AddModule(new MovementFeature())
                 .AddModule(new DestructionFeature())
-                .AddModule(new AudioFeature())
                 .AddModule(new VisualFeature())
                 .AddModule(new CooldownFeature())
+                .AddModule(new AudioFeature())
 
                 // 
                 .AutoDelTag<GameCreatedEvent>()

@@ -1,4 +1,5 @@
-﻿using _Project.Scripts.Gameplay.Features.CollectFeature;
+﻿using _Project.Scripts.Gameplay.Features.AudioFeature.Components;
+using _Project.Scripts.Gameplay.Features.AudioFeature.Systems;
 using _Project.Scripts.Gameplay.Features.CollectFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.DestroyFeature.Components;
@@ -7,8 +8,6 @@ using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
 using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using _Project.Scripts.Gameplay.Utils;
 using DCFApixels.DragonECS;
-using Unity.VisualScripting;
-using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 {
@@ -26,6 +25,9 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
         {
             [IncImplicit(typeof(GameTag))]
             [Opt] public readonly EcsTagPool<NextLeveRequest> NextLevel;
+
+            [Opt] public readonly EcsPool<MenuAudio> MenuMusics;
+            [Opt] public readonly EcsPool<AudioEffectInOnLevelEnter> Effects;
         }
 
         private class GameCreatedAspect : EcsAspectAuto
@@ -75,8 +77,10 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
         {
             [IncImplicit(typeof(PlayerTag))]
             [Opt] public readonly EcsPool<Scores> Scores;
+
             [Opt] public readonly EcsTagPool<LoadProgressRequest> LoadProgressRequest;
         }
+
         private class GameScreenCreatedAspect : EcsAspectAuto
         {
             [Inc] public readonly EcsTagPool<GameScreenCreatedEvent> GameScreenCreatedEvent;
@@ -92,8 +96,11 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
             foreach (int _ in _world.Where(out GameScreenCreatedAspect _))
             {
-                foreach (int player in _world.Where(out PlayerAspect playerAspect)) 
+                foreach (int player in _world.Where(out PlayerAspect playerAspect))
                     playerAspect.LoadProgressRequest.Add(player);
+
+                foreach (int game in _world.Where(out GameAspect gameAspect))
+                    AudioUtils.Create(gameAspect.MenuMusics.Get(game).Value);
             }
 
             foreach (int _ in _world.Where(out PlayButtonClickedAspect _))
@@ -110,10 +117,17 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
             foreach (int level in _world.Where(out LevelCreationStateAspect levelAspect))
             {
-                foreach (int player in _world.Where(out PlayerAspect _)) 
+                foreach (int player in _world.Where(out PlayerAspect _))
                     ProgressUtils.UpdateScores(player, 1);
 
                 levelAspect.GameFieldGenerate.Add(level);
+
+                foreach (int game in _world.Where(out GameAspect gameAspect))
+                {
+                    int effect = _world.NewEntity(gameAspect.Effects.Read(game).Value);
+
+                    _world.GetPool<ApplyAudioEffectRequest>().Add(effect);
+                }
             }
 
             foreach (int level in _world.Where(out GeneratedGameFieldStateAspect aspect))

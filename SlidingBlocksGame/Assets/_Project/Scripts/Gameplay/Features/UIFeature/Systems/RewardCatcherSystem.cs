@@ -1,0 +1,55 @@
+﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+using _Project.Scripts.Gameplay.Features.MovementFeature;
+using DCFApixels.DragonECS;
+
+namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
+{
+    public class RewardCatcherSystem : IEcsRun
+    {
+        [EcsInject] private EcsDefaultWorld _world;
+
+        public void Run()
+        {
+            foreach (int entity in _world.Where(out RewardCatcherAspect.ConfettiCatcher catcherAspect))
+            {
+                ref readonly TargetEntity targetEntity =
+                    ref catcherAspect.CommonCatcherAspect.TargetEntities.Read(entity);
+
+                if (targetEntity.Value.TryGetID(out int targetID))
+                    catcherAspect.ConfettiExplodedEvent.Add(targetID);
+
+                _world.DelEntity(entity);
+            }
+
+            foreach (int entity in _world.Where(out RewardCatcherAspect.CoinAddedToTextCatcher catcherAspect))
+            {
+                CommonCatcherAspect commonCatcherAspect = catcherAspect.CommonCatcherAspect;
+
+                ref readonly TargetEntity targetEntity =
+                    ref commonCatcherAspect.TargetEntities.Read(entity);
+
+                if (targetEntity.Value.TryGetID(out _))
+                {
+                    int @event = _world.NewEntity();
+                    catcherAspect.CoinAddedToTextEvent.Add(@event);
+                    commonCatcherAspect.TargetEntities.Add(@event).Value = targetEntity.Value;
+                }
+
+                _world.DelEntity(entity);
+            }
+
+            foreach (int entity in _world.Where(out RewardCatcherAspect.RewardCollectedCatcher catcherAspect))
+            {
+                CommonCatcherAspect commonCatcherAspect = catcherAspect.CommonCatcherAspect;
+
+                ref readonly TargetEntity targetEntity =
+                    ref commonCatcherAspect.TargetEntities.Read(entity);
+
+                if (targetEntity.Value.TryGetID(out int targetID)) 
+                    catcherAspect.RewardCollectedEvent.Add(targetID);
+
+                _world.DelEntity(entity);
+            }
+        }
+    }
+}

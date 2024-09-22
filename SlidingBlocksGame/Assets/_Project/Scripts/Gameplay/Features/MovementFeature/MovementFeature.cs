@@ -1,4 +1,4 @@
-﻿using _Project.Scripts.Gameplay.Features.CollectFeature;
+﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Systems;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Systems;
@@ -13,7 +13,11 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature
             builder
                 .AddUnique(new GameFieldClickSystem())
                 .AddUnique(new DestinationCellSystem())
-                .AddUnique(new ChainMovementAnimalStrategySystem())
+                //
+                .AutoDelEntityTag<MovementTweenCompletedEvent>()
+                .AddUnique(new CatchMovementTweenSystem())
+                .AddUnique(new MovementAnimalsChainStrategySystem())
+                //
                 .AddUnique(new UpdatePositionsSystem())
                 .AddUnique(new WithinCenterSystem());
         }

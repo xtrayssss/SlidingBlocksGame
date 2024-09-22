@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Linq;
+using _Project.Scripts.Gameplay.Features.CollectFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.VisualFeature.Components;
@@ -7,7 +7,9 @@ using DCFApixels.DragonECS;
 using PrimeTween;
 using UnityEngine;
 using YG;
+using IEcsRun = DCFApixels.DragonECS.IEcsRun;
 using Sequence = PrimeTween.Sequence;
+using Tween = PrimeTween.Tween;
 
 namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 {
@@ -52,21 +54,21 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
             [Inc] public readonly EcsPool<CoinsProgressionCurve> CoinsProgressionCurves;
         }
 
-        private class RewardWindowAspect : EcsAspectAuto
+        public class RewardWindowAspect : EcsAspectAuto
         {
             [Inc] public readonly EcsPool<OpenCloseSequence> OpenCloseTween;
             [Inc] public readonly EcsPool<GameObjectConnect> GameObjectConnects;
             [Inc] public readonly EcsPool<CoinsRewardConnect> CoinsRewardConnects;
             [Inc] public readonly EcsPool<RewardConfettiEffectConnect> RewardConfettiEffectConnect;
-            [Inc] public EcsPool<CongratulationConnect> CongratulationConnects;
-            [Inc] public EcsPool<SunshineConnect> SunshineConnects;
-            [Inc] public EcsPool<TapToExitConnect> TapToExitConnects;
-            [Opt] public EcsTagPool<RewardCollectedEvent> RewardCollected;
+            [Inc] public readonly EcsPool<CongratulationConnect> CongratulationConnects;
+            [Inc] public readonly EcsPool<SunshineConnect> SunshineConnects;
+            [Inc] public readonly EcsPool<TapToExitConnect> TapToExitConnects;
         }
 
         private class RewardCoinsAspect : EcsAspectAuto
         {
             [Inc] public readonly EcsPool<TextMeshProUGUIRef> TextMeshProUGUI;
+            [Inc] public readonly EcsPool<Coins> CoinsDisplay;
             [Opt] public readonly EcsTagPool<WobbleRequest> Wobble;
             [Opt] public readonly EcsPool<WobbleTween> WobbleTween;
         }
@@ -98,7 +100,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                 rewardStatus.Unlocked.gameObject.SetActive(false);
 
                 long difference = YandexGame.ServerTime() - aspect.RewardCollectedAt.Read(entity).Value;
-                
+
                 difference = Math.Max(0, difference);
 
                 string time = TimeSpan
@@ -110,6 +112,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                 aspect.GrabRewardText.Get(entity).Value.gameObject.SetActive(false);
                 aspect.RewardTimeText.Get(entity).Value.gameObject.SetActive(true);
             }
+
 
             foreach (int _ in _world.Where(out RewardButtonClickedAspect _))
             {
@@ -149,14 +152,18 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                             target: rewardWindowConnect.Value,
                             static connect =>
                             {
-                                if (!connect.Entity.TryGetID(out int rewardWindowID))
+                                if (!connect.Entity.TryGetID(out int _))
                                     return;
 
                                 EcsWorld world = connect.Entity.World;
+                                
+                                int catcher = world.NewEntity();
 
-                                RewardWindowAspect rewardWindowAspect = world.GetAspect<RewardWindowAspect>();
+                                RewardCatcherAspect.RewardCollectedCatcher catcherAspect =
+                                    world.GetAspect<RewardCatcherAspect.RewardCollectedCatcher>();
 
-                                rewardWindowAspect.RewardCollected.Add(rewardWindowID);
+                                catcherAspect.CommonCatcherAspect.TargetEntities.Add(catcher).Value = connect.Entity;
+                                catcherAspect.CatchRewardCollectedRequest.Add(catcher);
                             })
                         .ChainDelay(0.3f)
                         .Chain(
@@ -191,7 +198,8 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                                     duration: 0.2f,
                                     ease: Ease.InBack))
                             .Group(
-                                AnimateRollback(rewardWindowAspect,
+                                AnimateRollback(
+                                    rewardWindowAspect,
                                     window))
                             // close confetti
                             .ChainCallback(
@@ -223,6 +231,8 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                             .ChainCallback(
                                 target: gameObjectConnect.Connect,
                                 static connect => connect.gameObject.SetActive(false));
+
+                    Debug.Log(openCloseSequence.Value.durationTotal);
                 }
             }
         }
@@ -277,7 +287,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                     target: connect.transform,
                     startValue: connect.transform.localRotation.eulerAngles,
                     endValue: new Vector3(0, 0, 360),
-                    duration: 4f,
+                    duration: 3f,
                     ease: Ease.Linear,
                     cycles: -1,
                     cycleMode: CycleMode.Incremental));
@@ -409,29 +419,35 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 
             float totalCoinDelay = coinDelay * coins;
 
+            if (coinsRewardConnect.Value.Entity.TryGetID(out int coinsRewardID))
+                rewardCoinsAspect.CoinsDisplay.Get(coinsRewardID).Value = 0;
+
             for (int i = 0; i < coins; i++)
             {
-                int i1 = i;
-
                 sequence
                     .Chain(
                         Tween.Delay(coinDelay))
                     .ChainCallback(
                         target: coinsRewardConnect.Value,
-                        connect =>
+                        static connect =>
                         {
                             if (!connect.Entity.TryGetID(out int id))
                                 return;
 
                             EcsWorld world = connect.Entity.World;
 
-                            int @event = world.NewEntity();
-                            world.GetPool<CoinAddedToTextEvent>().Add(@event);
-                            world.GetPool<TargetEntity>().Add(@event).Value = connect.Entity;
-
                             RewardCoinsAspect rewardCoinsAspect = world.GetAspect<RewardCoinsAspect>();
 
-                            rewardCoinsAspect.TextMeshProUGUI.Get(id).Value.text = (i1 + 1).ToString();
+                            rewardCoinsAspect.TextMeshProUGUI.Get(id).Value.text =
+                                (++world.GetPool<Coins>().Get(id).Value).ToString();
+
+                            int catcher = world.NewEntity();
+
+                            RewardCatcherAspect.CoinAddedToTextCatcher catcherAspect =
+                                world.GetAspect<RewardCatcherAspect.CoinAddedToTextCatcher>();
+
+                            catcherAspect.CommonCatcherAspect.TargetEntities.Add(catcher).Value = connect.Entity;
+                            catcherAspect.CatchCoinAddedToTextRequest.Add(catcher);
                         });
             }
 
@@ -451,12 +467,17 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                 {
                     connect.gameObject.SetActive(true);
 
-                    if (!connect.Entity.TryGetID(out int id))
+                    if (!connect.Entity.TryGetID(out _))
                         return;
 
                     EcsWorld world = connect.Entity.World;
 
-                    world.GetPool<ConfettiExplodedEvent>().Add(id);
+                    int catcher = world.NewEntity();
+
+                    RewardCatcherAspect.ConfettiCatcher catcherAspect =
+                        world.GetAspect<RewardCatcherAspect.ConfettiCatcher>();
+                    catcherAspect.CommonCatcherAspect.TargetEntities.Add(catcher).Value = connect.Entity;
+                    catcherAspect.CatchConfettiExplodedRequest.Add(catcher);
                 });
 
             return sequence;

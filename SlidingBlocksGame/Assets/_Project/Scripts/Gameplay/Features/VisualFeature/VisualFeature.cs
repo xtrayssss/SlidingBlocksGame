@@ -47,9 +47,10 @@ namespace _Project.Scripts.Gameplay.Features.VisualFeature
                     .AddUnique(new RateUsSystem())
                     .AddUnique(new TutorialSystem())
                     //
-                    .AutoDelTag<ConfettiExplodedEvent>()
                     .AutoDelTag<RewardCollectedEvent>()
                     .AutoDelEntityTag<CoinAddedToTextEvent>()
+                    .AutoDelTag<ConfettiExplodedEvent>()
+                    .AddUnique(new RewardCatcherSystem())
                     .AddUnique(new DisplayRewardSystem())
                     //
                     .AddUnique(new CanRewardSystem())

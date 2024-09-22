@@ -3,7 +3,8 @@ using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Components
 {
-    [Serializable]
+    [Serializable] 
+    [MetaGroup("GameField")]
     public struct GameFieldGrowthWaveAlgorithmTag : IEcsTagComponent
     {
         private sealed class Template : TagComponentTemplate<GameFieldGrowthWaveAlgorithmTag>

@@ -1,8 +1,10 @@
-﻿using _Project.Scripts.Gameplay.Features.AudioFeature.Components;
+﻿using System;
+using _Project.Scripts.Gameplay.Features.AudioFeature.Components;
 using _Project.Scripts.Gameplay.Features.AudioFeature.Systems;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
 using DCFApixels.DragonECS;
+using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Utils
 {
@@ -15,6 +17,7 @@ namespace _Project.Scripts.Gameplay.Utils
             [Opt] public readonly EcsPool<AudioSourceRef> AudioSource;
             [Opt] public readonly EcsTagPool<AudioLoopMarker> AudioLoopMarker;
             [Opt] public readonly EcsTagPool<RefreshCooldownRequest> Refresh;
+            [Opt] public readonly EcsPool<AudioTypeRef> AudioTypes;
         }
 
         public static int Create(ScriptableEntityTemplate audioCfg)
@@ -26,7 +29,23 @@ namespace _Project.Scripts.Gameplay.Utils
             int audio = world.NewEntity(audioCfg);
 
             audioAspect.PlayAudio.Add(audio);
-            audioAspect.AudioSource.Add(audio).Value = GameAudio.Instance.SfxSource;
+
+            ref AudioSourceRef audioSource = ref audioAspect.AudioSource.Add(audio);
+
+            ref readonly AudioTypeRef audioType = ref audioAspect.AudioTypes.Read(audio);
+
+            Debug.Log(audioType.Value);
+            
+            audioSource.Value = audioType.Value switch
+            {
+                AudioTypeRef.Type.NONE => GameAudio.Instance.SfxSource.Normal,
+                AudioTypeRef.Type.SFX_NORMAL => GameAudio.Instance.SfxSource.Normal,
+                AudioTypeRef.Type.SFX_SPECIAL => GameAudio.Instance.SfxSource.Special,
+                AudioTypeRef.Type.MUSIC => GameAudio.Instance.MusicSource,
+                _ => GameAudio.Instance.SfxSource.Normal
+            };
+
+            audioSource.Value.loop = audioAspect.AudioLoopMarker.Has(audio);
 
             audioAspect.DeleteEntity.Add(audio);
 

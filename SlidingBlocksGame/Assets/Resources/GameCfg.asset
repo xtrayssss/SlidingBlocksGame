@@ -20,6 +20,9 @@ MonoBehaviour:
   - rid: 8499802702287471249
   - rid: 8499802753235157229
   - rid: 6454805110216720499
+  - rid: 6454805541227593732
+  - rid: 6454805541227593734
+  - rid: 6454805541227593738
   references:
     version: 2
     RefIds:
@@ -30,6 +33,132 @@ MonoBehaviour:
         component:
           Prefab: {fileID: 5735182481968669607, guid: 187a65e427b09c648af34d93f2a9eb18,
             type: 3}
+    - rid: 6454805541227593732
+      type: {class: MenuAudio/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: {fileID: 11400000, guid: 0292591f830540a4485b890cac074188, type: 2}
+    - rid: 6454805541227593734
+      type: {class: AudioEffectInOnLevelEnter/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value:
+            _components:
+            - rid: 6454805541227593742
+            - rid: 6454805541227593737
+            - rid: 6454805567168053253
+            - rid: 6454805567168053252
+            - rid: 6454805567168053254
+            - rid: 6454805567168053255
+            - rid: 6454805567168053256
+    - rid: 6454805541227593737
+      type: {class: AudioTypeRef/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: 3
+    - rid: 6454805541227593738
+      type: {class: AudioEffectInOnLevelExit/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value:
+            _components:
+            - rid: 6454805541227593741
+            - rid: 6454805541227593740
+            - rid: 6454805567168053249
+            - rid: 6454805567168053248
+            - rid: 6454805567168053251
+            - rid: 6454805567168053250
+            - rid: 6454805567168053257
+    - rid: 6454805541227593740
+      type: {class: AudioTypeRef/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: 3
+    - rid: 6454805541227593741
+      type: {class: VolumeEffectTag/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+        asm: Assembly-CSharp}
+      data: {}
+    - rid: 6454805541227593742
+      type: {class: VolumeEffectTag/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+        asm: Assembly-CSharp}
+      data: {}
+    - rid: 6454805567168053248
+      type: {class: TweenDuration/Template, ns: _Project.Scripts.Gameplay.Features.TweenFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: 1
+    - rid: 6454805567168053249
+      type: {class: TweenEase/Template, ns: _Project.Scripts.Gameplay.Features.TweenFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Curve:
+            serializedVersion: 2
+            m_Curve: []
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+          Ease: 1
+    - rid: 6454805567168053250
+      type: {class: TweenEndDelay/Template, ns: _Project.Scripts.Gameplay.Features.TweenFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: 0
+    - rid: 6454805567168053251
+      type: {class: TweenTargetFloatValue/Template, ns: _Project.Scripts.Gameplay.Features.TweenFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: 1
+    - rid: 6454805567168053252
+      type: {class: TweenDuration/Template, ns: _Project.Scripts.Gameplay.Features.TweenFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: 1.5
+    - rid: 6454805567168053253
+      type: {class: TweenEase/Template, ns: _Project.Scripts.Gameplay.Features.TweenFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Curve:
+            serializedVersion: 2
+            m_Curve: []
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+          Ease: 1
+    - rid: 6454805567168053254
+      type: {class: TweenEndDelay/Template, ns: _Project.Scripts.Gameplay.Features.TweenFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: 0
+    - rid: 6454805567168053255
+      type: {class: TweenTargetFloatValue/Template, ns: _Project.Scripts.Gameplay.Features.TweenFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: 0
+    - rid: 6454805567168053256
+      type: {class: TweenStartDelay/Template, ns: _Project.Scripts.Gameplay.Features.TweenFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: 0
+    - rid: 6454805567168053257
+      type: {class: TweenStartDelay/Template, ns: _Project.Scripts.Gameplay.Features.TweenFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: 0
     - rid: 8499802323967542113
       type: {class: Levels/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
         asm: Assembly-CSharp}

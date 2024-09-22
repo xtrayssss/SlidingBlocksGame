@@ -5,6 +5,7 @@ using UnityEngine;
 namespace _Project.Scripts.Gameplay.Features.AudioFeature.Components
 {
     [Serializable]
+    [MetaGroup("Audio")]
     public struct Audio : IEcsComponent
     {
         public AudioClip Value;
