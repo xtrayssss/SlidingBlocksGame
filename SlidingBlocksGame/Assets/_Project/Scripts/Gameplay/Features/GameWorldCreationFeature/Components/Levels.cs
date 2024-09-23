@@ -1,15 +1,17 @@
 ﻿using System;
 using DCFApixels.DragonECS;
+using UnityEngine.Serialization;
 
 namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components
 {
     [Serializable]
     public struct Levels : IEcsComponent
     {
-        public int LevelIndex;
+        [FormerlySerializedAs("LevelIndex")] public int LevelsCount;
         public int PackIndex;
         
-        public LevelsPack[] Value;
+        [FormerlySerializedAs("Value")] public LevelsPack[] Pack;
+        public int[][] Randoms;
 
         [Serializable]
         public struct LevelsPack

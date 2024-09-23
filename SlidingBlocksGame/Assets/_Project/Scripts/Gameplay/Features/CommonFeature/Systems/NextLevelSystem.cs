@@ -19,47 +19,47 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
             [Inc] public readonly EcsPool<GameScreen> GameScreens;
         }
 
-        private Random random = new Random((uint)Environment.TickCount);
-
         public void Run()
         {
             foreach (int entity in _world.Where(out Aspect aspect))
             {
                 ref Levels levels = ref aspect.Levels.Get(entity);
 
-                ScriptableEntityTemplate[] levelsPack = GetLevelsPack(ref levels);
+                ScriptableEntityTemplate[] levelsPack = GetLevelsInPack(ref levels);
 
-                ScriptableEntityTemplate nextLevelCfg = levelsPack[levels.LevelIndex];
+                int random = levels.Randoms[levels.PackIndex][levels.LevelsCount];
 
-                entlong nextLevel = _world.NewEntityLong(nextLevelCfg);
+                ScriptableEntityTemplate randomLevelCfg = levelsPack[random];
+
+                Debug.Log(random + " Random");
+
+                entlong nextLevel = _world.NewEntityLong(randomLevelCfg);
 
                 _world.GetTagPool<LevelChangedEvent>().Add(nextLevel.ID);
 
                 aspect.GameScreens.Add(nextLevel.ID).Value = aspect.GameScreens.Read(entity).Value;
 
-                levels.LevelIndex = random.NextInt(0, levelsPack.Length - 1);
-
-                levels.LevelIndex++;
+                levels.LevelsCount++;
             }
         }
-
-        private ScriptableEntityTemplate[] GetLevelsPack(ref Levels levels)
+        
+        private ScriptableEntityTemplate[] GetLevelsInPack(ref Levels levels)
         {
-            ScriptableEntityTemplate[] levelsPack = levels.Value[levels.PackIndex].Levels;
+            ScriptableEntityTemplate[] levelsPack = levels.Pack[levels.PackIndex].Levels;
 
-            if (levels.LevelIndex >= levelsPack.Length)
+            if (levels.LevelsCount >= levelsPack.Length)
             {
                 levels.PackIndex++;
-                levels.LevelIndex = 0;
+                levels.LevelsCount = 0;
 
-                if (levels.PackIndex >= levels.Value.Length)
+                if (levels.PackIndex >= levels.Pack.Length)
                 {
                     levels.PackIndex = 0;
 
-                    return levels.Value[levels.PackIndex].Levels;
+                    return levels.Pack[levels.PackIndex].Levels;
                 }
 
-                levelsPack = levels.Value[levels.PackIndex].Levels;
+                levelsPack = levels.Pack[levels.PackIndex].Levels;
             }
 
             return levelsPack;

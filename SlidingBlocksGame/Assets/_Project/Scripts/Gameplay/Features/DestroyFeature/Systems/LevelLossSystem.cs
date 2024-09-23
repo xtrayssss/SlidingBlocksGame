@@ -212,7 +212,7 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
                     foreach (int game in _world.Where(out GameAspect gameAspect))
                     {
                         _world.GetPool<CleanupLevelRequest>().Add(level);
-                        gameAspect.Levels.Get(game).LevelIndex = 0;
+                        gameAspect.Levels.Get(game).LevelsCount = 0;
                     }
                 }
             }
