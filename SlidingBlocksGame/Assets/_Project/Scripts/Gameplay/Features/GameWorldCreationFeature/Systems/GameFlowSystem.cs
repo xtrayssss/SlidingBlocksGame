@@ -9,6 +9,8 @@ using _Project.Scripts.Gameplay.Features.InputFeature.Components;
 using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using _Project.Scripts.Gameplay.Utils;
 using DCFApixels.DragonECS;
+using Unity.IO.LowLevel.Unsafe;
+using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 {
@@ -87,6 +89,18 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
             [Inc] public readonly EcsTagPool<GameScreenCreatedEvent> GameScreenCreatedEvent;
         }
 
+        private class CoinSpawnedStateAspect : EcsAspectAuto
+        {
+            [Inc] public readonly EcsTagPool<CoinSpawnedEvent> CoinSpawnedEvent;
+            [Inc] public readonly EcsTagPool<CoinTag> CoinTag;
+        }
+
+        private class LevelAspect : EcsAspectAuto
+        {
+            [IncImplicit(typeof(LevelTag))]
+            [Opt] public readonly EcsTagPool<CreateGameLossTimerRequest> CreateGameLossTimerRequest;
+        }
+
         public void Run()
         {
             foreach (int game in _world.Where(out GameCreatedAspect aspect))
@@ -135,11 +149,14 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                 aspect.CreateAnimals.Add(level);
 
             foreach (int level in _world.Where(out AnimalPositionedStateAspect aspect))
-            {
-                aspect.CreateGameLossTimer.Add(level);
                 aspect.CreateCoin.Add(level);
 
-                foreach (int player in _world.Where(out PlayerAspect playerAspect)) 
+            foreach (int _ in _world.Where(out CoinSpawnedStateAspect _))
+            {
+                foreach (int level in _world.Where(out LevelAspect levelAspect))
+                    levelAspect.CreateGameLossTimerRequest.Add(level);
+
+                foreach (int player in _world.Where(out PlayerAspect playerAspect))
                     playerAspect.LockGameInputMarker.Del(player);
             }
         }

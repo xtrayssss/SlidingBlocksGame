@@ -65,6 +65,8 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature
                 .AddUnique(new LevelWinSystem())
                 .AddUnique(new LevelLossSystem())
                 //
+                .AutoDelTag<CoinSpawnedEvent>()
+                .AddUnique(new CatchCoinSystem())
                 .AddUnique(new CreateCoinSystem())
                 .AutoDelTag<CreateCoinRequest>()
                 //

@@ -1,5 +1,5 @@
-﻿using System;
-using _Project.Scripts.Gameplay.Features.CollectFeature.Components;
+﻿using _Project.Scripts.Gameplay.Features.CollectFeature.Components;
+using _Project.Scripts.Gameplay.Features.CommonFeature;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
 using _Project.Scripts.Gameplay.Utils;
@@ -7,7 +7,7 @@ using DCFApixels.DragonECS;
 using PrimeTween;
 using Unity.Mathematics;
 using UnityEngine;
-using Random = Unity.Mathematics.Random;
+using Random = UnityEngine.Random;
 
 namespace _Project.Scripts.Gameplay.Features.CollectFeature
 {
@@ -25,12 +25,11 @@ namespace _Project.Scripts.Gameplay.Features.CollectFeature
         {
             [Inc] public readonly EcsPool<CoinPrefab> CoinPrefabs;
         }
+
         private class CoinAspect : EcsAspectAuto
         {
             [Opt] public readonly EcsPool<CellPosition> CellPosition;
         }
-
-        Random random = new Random((uint)Environment.TickCount);
 
         public void Run()
         {
@@ -40,19 +39,52 @@ namespace _Project.Scripts.Gameplay.Features.CollectFeature
                 {
                     ref readonly GameField gameField = ref levelAspect.GameFields.Read(entity);
 
-                    int2 center = Utils.GridUtils.GetCenter(in gameField);
+                    int2 center = GridUtils.GetCenter(in gameField);
 
-                    int randomX = random.NextInt(center.x, center.y);
-                    int randomY = random.NextInt(center.x, center.y);
+                    int randomX = Random.Range(center.x, center.y);
+                    int randomY = Random.Range(center.x, center.y);
 
                     int2 cellPosition = new int2(randomX, randomY);
-                    
-                    EcsEntityConnect connect = UnityEngine.Object.Instantiate(gameAspect.CoinPrefabs.Read(game).Prefab,
-                        Utils.GridUtils.GetWorldPosition(cellPosition, in gameField) +
-                        new float3(0, gameField.CellTop + gameField.UnitCellTopOffset, 0), Quaternion.identity);
 
-                    connect.transform.localScale = new Vector3(gameField.CellSize + 0.1f, gameField.CellSize + 0.1f,
-                        gameField.CellSize + 0.1f) / 2f;
+                    float3 surfaceOffset = new float3(
+                        0,
+                        gameField.CellTop + gameField.UnitCellTopOffset,
+                        0);
+
+                    float3 worldPosition = GridUtils.GetWorldPosition(cellPosition, in gameField) + surfaceOffset;
+
+                    EcsEntityConnect connect =
+                        Object.Instantiate(
+                            original: gameAspect.CoinPrefabs.Read(game).Prefab,
+                            position: worldPosition,
+                            rotation: Quaternion.identity);
+
+                    Tween.Scale(
+                            target: connect.transform,
+                            startValue: Vector3.zero,
+                            endValue: new Vector3(
+                                gameField.CellSize + 0.1f,
+                                gameField.CellSize + 0.1f,
+                                gameField.CellSize + 0.1f) / 2f,
+                            duration: 0.4f,
+                            ease: Ease.InOutSine)
+                        .OnComplete(
+                            target: connect,
+                            static target =>
+                            {
+                                if (!target.Entity.TryGetID(out int _))
+                                    return;
+
+                                EcsWorld world = target.Entity.World;
+
+                                int catcher = world.NewEntity();
+
+                                CoinCatcherAspect.CoinSpawnedCatcher catcherAspect =
+                                    world.GetAspect<CoinCatcherAspect.CoinSpawnedCatcher>();
+
+                                catcherAspect.CommonCatcherAspect.TargetEntities.Add(catcher).Value = target.Entity;
+                                catcherAspect.CatchCoinSpawnedRequest.Add(catcher);
+                            });
 
                     entlong coin = _world.NewEntityLong();
 
