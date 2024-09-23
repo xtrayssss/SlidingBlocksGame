@@ -1,11 +1,11 @@
 ﻿using System.Linq;
+using _Project.Scripts.Gameplay.Features.AudioFeature.Components;
 using _Project.Scripts.Gameplay.Features.CollectFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
-using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
 using _Project.Scripts.Gameplay.Features.UIFeature.Components;
-using _Project.Scripts.Gameplay.Features.VisualFeature.Components;
 using _Project.Scripts.Gameplay.Utils;
 using DCFApixels.DragonECS;
+using UnityEditor;
 using UnityEngine;
 using YG;
 
@@ -109,6 +109,18 @@ namespace _Project.Scripts.Gameplay.Features.CollectFeature
             [Inc] public readonly EcsPool<RewardCollectedAt> RewardCollectedAt;
         }
 
+        private class GameAudioUpdatedAspect : EcsAspectAuto
+        {
+            [Inc] public readonly EcsTagPool<GameAudioUpdatedEvent> GameAudioUpdatedEvent;
+            [Inc] public readonly EcsPool<AudioButtonsStatus> AudioButtonsStatus;
+        }
+
+        private class SettingsPopupAspect : EcsAspectAuto
+        {
+            [IncImplicit(typeof(SettingsPopupTag))]
+            [Inc] public readonly EcsPool<AudioButtonsStatus> AudioButtonsStatus;
+        }
+
         public void Run()
         {
             foreach (int @event in _world.Where(out CoinUpdateEventAspect coinCollectedAspect))
@@ -192,7 +204,6 @@ namespace _Project.Scripts.Gameplay.Features.CollectFeature
                 YandexGame.SaveProgress();
             }
 
-
             foreach (int @event in _world.Where(out PurchasesClearedEventAspect purchasesClearedEventAspect))
             {
                 PlayerAspect playerAspect = _world.GetAspect<PlayerAspect>();
@@ -203,6 +214,16 @@ namespace _Project.Scripts.Gameplay.Features.CollectFeature
 
                 YandexGame.savesData.PurchasedAnimals.Clear();
 
+                YandexGame.SaveProgress();
+            }
+
+            foreach (int entity in _world.Where(out GameAudioUpdatedAspect aspect))
+            {
+                ref readonly AudioButtonsStatus status = ref aspect.AudioButtonsStatus.Read(entity);
+
+                YandexGame.savesData.Audio.MusicIsOn = status.MusicIsOn;
+                YandexGame.savesData.Audio.SoundIsOn = status.SoundIsOn;
+                
                 YandexGame.SaveProgress();
             }
 
@@ -285,6 +306,14 @@ namespace _Project.Scripts.Gameplay.Features.CollectFeature
                         target: reward,
                         time: YandexGame.savesData.RewardCollectedAt,
                         count: YandexGame.savesData.RewardCount);
+                }
+
+                foreach (int entity in _world.Where(out SettingsPopupAspect _))
+                {
+                    ProgressUtils.UpdateGameAudio(
+                        target: entity, 
+                        isMusicOn: YandexGame.savesData.Audio.MusicIsOn,
+                        isSoundOn: YandexGame.savesData.Audio.SoundIsOn);
                 }
             }
         }

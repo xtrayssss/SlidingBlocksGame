@@ -1,4 +1,5 @@
 ﻿using System;
+using _Project.Scripts.Gameplay.Features.AudioFeature;
 using _Project.Scripts.Gameplay.Features.AudioFeature.Components;
 using _Project.Scripts.Gameplay.Features.AudioFeature.Systems;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
@@ -38,11 +39,11 @@ namespace _Project.Scripts.Gameplay.Utils
             
             audioSource.Value = audioType.Value switch
             {
-                AudioTypeRef.Type.NONE => GameAudio.Instance.SfxSource.Normal,
-                AudioTypeRef.Type.SFX_NORMAL => GameAudio.Instance.SfxSource.Normal,
-                AudioTypeRef.Type.SFX_SPECIAL => GameAudio.Instance.SfxSource.Special,
-                AudioTypeRef.Type.MUSIC => GameAudio.Instance.MusicSource,
-                _ => GameAudio.Instance.SfxSource.Normal
+                AudioTypeRef.Type.NONE => GameAudio.Instance.Sfx.Normal,
+                AudioTypeRef.Type.SFX_NORMAL => GameAudio.Instance.Sfx.Normal,
+                AudioTypeRef.Type.SFX_SPECIAL => GameAudio.Instance.Sfx.Special,
+                AudioTypeRef.Type.MUSIC => GameAudio.Instance.Music.Source,
+                _ => GameAudio.Instance.Sfx.Normal
             };
 
             audioSource.Value.loop = audioAspect.AudioLoopMarker.Has(audio);

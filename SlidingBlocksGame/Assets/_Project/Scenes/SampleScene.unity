@@ -371,11 +371,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e2d8317b0aa438d9e4763cb37a4d94a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SfxSource:
-    Sfx: {fileID: 1747886851}
+  Sfx:
+    Mixer: {fileID: 24300026, guid: 5a0509d7541639549b3816a97324582b, type: 2}
+    Base: {fileID: 1747886851}
     Normal: {fileID: 238150628}
     Special: {fileID: 354505669}
-  MusicSource: {fileID: 1719119663}
+  Music:
+    Source: {fileID: 1719119663}
+    Mixer: {fileID: 24300004, guid: 5a0509d7541639549b3816a97324582b, type: 2}
 --- !u!1 &197760451
 GameObject:
   m_ObjectHideFlags: 0

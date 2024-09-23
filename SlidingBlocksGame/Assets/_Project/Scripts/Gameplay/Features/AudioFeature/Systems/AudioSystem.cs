@@ -41,11 +41,11 @@ namespace _Project.Scripts.Gameplay.Features.AudioFeature.Systems
 
                 AudioSource audioSource = audioType.Value switch
                 {
-                    AudioTypeRef.Type.NONE => GameAudio.Instance.SfxSource.Normal,
-                    AudioTypeRef.Type.SFX_NORMAL => GameAudio.Instance.SfxSource.Normal,
-                    AudioTypeRef.Type.SFX_SPECIAL => GameAudio.Instance.SfxSource.Special,
-                    AudioTypeRef.Type.MUSIC => GameAudio.Instance.MusicSource,
-                    _ => GameAudio.Instance.SfxSource.Normal
+                    AudioTypeRef.Type.NONE => GameAudio.Instance.Sfx.Normal,
+                    AudioTypeRef.Type.SFX_NORMAL => GameAudio.Instance.Sfx.Normal,
+                    AudioTypeRef.Type.SFX_SPECIAL => GameAudio.Instance.Sfx.Special,
+                    AudioTypeRef.Type.MUSIC => GameAudio.Instance.Music.Source,
+                    _ => GameAudio.Instance.Sfx.Normal
                 };
                 
                 bool startFromCurrent = !aspect.TweenStartFloatValue.Has(entity);

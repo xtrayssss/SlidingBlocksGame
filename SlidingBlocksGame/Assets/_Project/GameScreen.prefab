@@ -1670,7 +1670,6 @@ MonoBehaviour:
   _components:
   - rid: 8499802495351259692
   - rid: 8499802702287471247
-  - rid: 8499802837155577865
   - rid: 8499802837155577869
   - rid: 6454805156365861479
   - rid: 6454805176898027520
@@ -1727,17 +1726,6 @@ MonoBehaviour:
           - {fileID: 4284820810062785476}
           - {fileID: 7201141152681179760}
           - {fileID: 4552092448067883863}
-    - rid: 8499802837155577865
-      type: {class: AudioButtonsStatus/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          MusicOff: {fileID: 722720835799653520}
-          MusicOn: {fileID: 6492435775002359016}
-          SoundOff: {fileID: 6682940301788810153}
-          SoundOn: {fileID: 7404214395830944470}
-          MusicIsOn: 1
-          SoundIsOn: 1
     - rid: 8499802837155577869
       type: {class: TutorialConnect/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
         asm: Assembly-CSharp}
@@ -10865,6 +10853,7 @@ MonoBehaviour:
   _components:
   - rid: 6454805290330882050
   - rid: 6454805290330882052
+  - rid: 6454805584115138560
   references:
     version: 2
     RefIds:
@@ -10876,6 +10865,17 @@ MonoBehaviour:
       type: {class: OpenCloseTween/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
         asm: Assembly-CSharp}
       data: {}
+    - rid: 6454805584115138560
+      type: {class: AudioButtonsStatus/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          MusicOff: {fileID: 722720835799653520}
+          MusicOn: {fileID: 6492435775002359016}
+          SoundOff: {fileID: 6682940301788810153}
+          SoundOn: {fileID: 7404214395830944470}
+          MusicIsOn: 1
+          SoundIsOn: 1
 --- !u!1 &4357101349447033869
 GameObject:
   m_ObjectHideFlags: 0

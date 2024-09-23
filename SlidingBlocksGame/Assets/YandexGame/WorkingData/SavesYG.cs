@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.Collections.Generic;
 
 namespace YG
@@ -19,5 +20,19 @@ namespace YG
         
         public int RewardCount;
         public ushort SelectedAnimalID;
+        public SaveAudio Audio = new SaveAudio(musicIsOn: true, soundIsOn: true);
+        
+        [Serializable]
+        public struct SaveAudio
+        {
+            public bool MusicIsOn;
+            public bool SoundIsOn;
+
+            public SaveAudio(bool musicIsOn, bool soundIsOn)
+            {
+                MusicIsOn = musicIsOn;
+                SoundIsOn = soundIsOn;
+            }
+        }
     }
 }

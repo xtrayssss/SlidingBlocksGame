@@ -1,4 +1,5 @@
-﻿using _Project.Scripts.Gameplay.Features.UIFeature.Components;
+﻿using _Project.Scripts.Gameplay.Features.AudioFeature.Components;
+using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.UIFeature.Systems;
 using _Project.Scripts.Gameplay.Features.VisualFeature.Components;
 using _Project.Scripts.Gameplay.Features.VisualFeature.Systems;
@@ -21,8 +22,13 @@ namespace _Project.Scripts.Gameplay.Features.VisualFeature
             {
                 builder
                     .AddUnique(new DisplayProgressTimerSystem())
+                    //
                     .AddUnique(new SettingsPopupSystem())
-                    .AddUnique(new AudioButtonsSystem())
+                    .AutoDelTag<GameAudioUpdatedEvent>()
+                    .AddUnique(new UpdateGameAudioSystem())
+                    .AddUnique(new DisplayAudioButtonsStatusSystem())
+                    .AutoDelEntityComponent<UpdateGameAudioRequest>()
+                    //
                     .AddUnique(new InAppPopupSystem())
                     //
                     .AddUnique(new ScrollSystem())

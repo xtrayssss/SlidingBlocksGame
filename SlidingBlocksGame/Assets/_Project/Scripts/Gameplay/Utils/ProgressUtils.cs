@@ -1,5 +1,6 @@
 ﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Systems;
+using _Project.Scripts.Gameplay.Features.UIFeature.Systems;
 using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Utils
@@ -17,6 +18,8 @@ namespace _Project.Scripts.Gameplay.Utils
             [Opt] public readonly EcsTagPool<ClearPurchasesRequest> ClearPurchasesRequest;
 
             [Opt] public readonly EcsPool<UpdateRewardRequest> UpdateRewardRequest;
+
+            [Opt] public readonly EcsPool<UpdateGameAudioRequest> UpdateGameAudioRequest;
 
             [Opt] public readonly EcsPool<TargetEntity> TargetEntity;
         }
@@ -90,6 +93,22 @@ namespace _Project.Scripts.Gameplay.Utils
             updateRewardRequest.Time = time;
             updateRewardRequest.Overwrite = overwrite;
             progressAspect.TargetEntity.Add(@event).Value = target.ToEntityLong(world);
+        }
+
+        public static void UpdateGameAudio(int target, bool isMusicOn, bool isSoundOn)
+        {
+            EcsDefaultWorld world = EcsDefaultWorldSingletonProvider.Instance.Get();
+
+            ProgressAspect progressAspect = world.GetAspect<ProgressAspect>();
+
+            int request = world.NewEntity();
+
+            ref UpdateGameAudioRequest updateGameAudioRequest = ref progressAspect.UpdateGameAudioRequest.Add(request);
+
+            updateGameAudioRequest.IsMusicOn = isMusicOn;
+            updateGameAudioRequest.IsSoundOn = isSoundOn;
+            
+            progressAspect.TargetEntity.Add(request).Value = target.ToEntityLong(world);
         }
     }
 

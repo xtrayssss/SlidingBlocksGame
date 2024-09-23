@@ -1,23 +1,33 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.Serialization;
 
-namespace _Project.Scripts.Gameplay.Features.AudioFeature.Systems
+namespace _Project.Scripts.Gameplay.Features.AudioFeature
 {
     public class GameAudio : MonoBehaviour
     {
         [Serializable]
-        public struct SfxSources
+        public struct SfxAudio
         {
-            public AudioSource Sfx;
+            public AudioMixerGroup Mixer;
+            [FormerlySerializedAs("Sfx")] public AudioSource Base;
             public AudioSource Normal;
             public AudioSource Special;
         }
 
-        public static GameAudio Instance { get; private set; }
+        [Serializable]
+        public struct MusicAudio
+        {
+            public AudioSource Source;
+            public AudioMixerGroup Mixer;
+        }
 
-        public SfxSources SfxSource;
-        public AudioSource MusicSource;
+        public SfxAudio Sfx;
+
+        public MusicAudio Music;
+
+        public static GameAudio Instance { get; private set; }
 
         private void Awake()
         {
