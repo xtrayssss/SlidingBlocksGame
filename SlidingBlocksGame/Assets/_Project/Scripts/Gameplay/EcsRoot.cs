@@ -1,7 +1,4 @@
 ﻿using _Project.Scripts.Gameplay.Features.AudioFeature;
-using _Project.Scripts.Gameplay.Features.AudioFeature.Components;
-using _Project.Scripts.Gameplay.Features.AudioFeature.Systems;
-using _Project.Scripts.Gameplay.Features.CollectFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.CooldownFeature;
 using _Project.Scripts.Gameplay.Features.DestroyFeature.Components;
@@ -23,31 +20,6 @@ using YG;
 
 namespace _Project.Scripts.Gameplay
 {
-    public class AudioFeature : IEcsModule
-    {
-        public void Import(EcsPipeline.Builder builder)
-        {
-            builder
-                .AddAudioSystem<AnimalSpawnedEvent, AnimalSpawnedAudioConfig>()
-                .AddAudioSystem<ButtonClickedEvent, ClickedAudioConfig>()
-                .AddAudioSystem<DeathEvent, DeathAudioConfig>()
-                .AddAudioSystem<TickEvent, TickAudioConfig>()
-                .AddUnique(new GameFieldAudioSystem())
-                .AddAudioSystem<CoinCollectedEvent, CollectedAudioConfig>()
-                .AddAudioSystem<ConfettiExplodedEvent, ConfettiExplodedAudioConfig>()
-                .AddAudioSystem<RewardCollectedEvent, RewardCollectedAudioConfig>()
-                .AddUnique(new CoinAddedToTextAudioSystem())
-                .AddAudioSystem<PurchasedEvent, PurchasedAudioConfig>()
-                //
-                .AddUnique(new PlayAudioSystem())
-                .AddUnique(new AudioSystem())
-                .AutoDelTag<ApplyAudioEffectRequest>()
-                .AutoDelTag<PlayAudioRequest>()
-                .AutoDelTag<StopAudioRequest>()
-                .AutoDelTag<RestartAudioRequest>();
-        }
-    }
-
     public class DestructionFeature : IEcsModule
     {
         public void Import(EcsPipeline.Builder builder)

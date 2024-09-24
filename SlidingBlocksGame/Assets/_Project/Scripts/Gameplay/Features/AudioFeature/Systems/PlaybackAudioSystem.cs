@@ -1,15 +1,16 @@
 ﻿using _Project.Scripts.Gameplay.Features.AudioFeature.Components;
 using DCFApixels.DragonECS;
+using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.AudioFeature.Systems
 {
-    public class PlayAudioSystem : IEcsRun
+    public class PlaybackAudioSystem : IEcsRun
     {
         [EcsInject] private readonly EcsDefaultWorld _world;
 
-        private class OneShotAspect : EcsAspectAuto
+        private class PlayOneShotAspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(PlayAudioRequest))]
+            [IncImplicit(typeof(PlayOneShotAudioRequest))]
             [ExcImplicit(typeof(AudioLoopMarker))]
             [Inc] public readonly EcsPool<Audio> Audios;
 
@@ -45,11 +46,14 @@ namespace _Project.Scripts.Gameplay.Features.AudioFeature.Systems
             foreach (int entity in _world.Where(out RestartAspect aspect))
             {
                 ref AudioSourceRef audioSource = ref aspect.AudioSources.Get(entity);
+
                 audioSource.Value.Stop();
                 audioSource.Value.Play();
+
+                Debug.Log("AUDIO RESTARTED");
             }
 
-            foreach (int entity in _world.Where(out OneShotAspect aspect))
+            foreach (int entity in _world.Where(out PlayOneShotAspect aspect))
                 aspect.AudioSources.Read(entity).Value.PlayOneShot(aspect.Audios.Read(entity).Value);
 
             foreach (int entity in _world.Where(out PlayAspect aspect))
@@ -59,6 +63,8 @@ namespace _Project.Scripts.Gameplay.Features.AudioFeature.Systems
                 audioSource.Value.clip = aspect.Audios.Read(entity).Value;
 
                 audioSource.Value.Play();
+
+                Debug.Log("AUDIO PLAY");
             }
         }
     }

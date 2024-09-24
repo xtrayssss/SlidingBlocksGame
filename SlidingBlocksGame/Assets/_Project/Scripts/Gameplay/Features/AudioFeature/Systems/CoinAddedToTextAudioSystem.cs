@@ -1,8 +1,6 @@
 ﻿using _Project.Scripts.Gameplay.Features.AudioFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.UIFeature.Components;
-using _Project.Scripts.Gameplay.Features.UIFeature.Systems;
-using _Project.Scripts.Gameplay.Utils;
 using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.AudioFeature.Systems
@@ -30,7 +28,7 @@ namespace _Project.Scripts.Gameplay.Features.AudioFeature.Systems
                 {
                     TargetAspect targetAspect = _world.GetAspect<TargetAspect>();
 
-                    AudioUtils.Create(targetAspect.AudioConfigs.Read(targetID).Value);
+                    _world.NewAudioEntity(targetAspect.AudioConfigs.Read(targetID).Value);
                 }
             }
         }

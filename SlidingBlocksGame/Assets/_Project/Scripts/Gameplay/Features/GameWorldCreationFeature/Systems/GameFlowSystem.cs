@@ -1,16 +1,13 @@
-﻿using _Project.Scripts.Gameplay.Features.AudioFeature.Components;
-using _Project.Scripts.Gameplay.Features.AudioFeature.Systems;
+﻿using _Project.Scripts.Gameplay.Features.AudioFeature;
+using _Project.Scripts.Gameplay.Features.AudioFeature.Components;
 using _Project.Scripts.Gameplay.Features.CollectFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
-using _Project.Scripts.Gameplay.Features.DestroyFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
 using _Project.Scripts.Gameplay.Features.InputFeature.Components;
 using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using _Project.Scripts.Gameplay.Utils;
 using DCFApixels.DragonECS;
-using Unity.IO.LowLevel.Unsafe;
-using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 {
@@ -115,7 +112,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                     playerAspect.LoadProgressRequest.Add(player);
 
                 foreach (int game in _world.Where(out GameAspect gameAspect))
-                    AudioUtils.Create(gameAspect.MenuMusics.Get(game).Value);
+                    _world.NewAudioEntity(gameAspect.MenuMusics.Get(game).Value);
             }
 
             foreach (int _ in _world.Where(out PlayButtonClickedAspect _))

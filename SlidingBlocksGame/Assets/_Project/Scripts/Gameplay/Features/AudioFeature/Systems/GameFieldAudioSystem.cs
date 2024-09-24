@@ -35,7 +35,7 @@ namespace _Project.Scripts.Gameplay.Features.AudioFeature.Systems
             {
                 Debug.Log("GameFieldAudio");
 
-                AudioUtils.Create(aspect.AudioConfigs.Read(entity).Value);
+                _world.NewAudioEntity(aspect.AudioConfigs.Read(entity).Value);
             }
 
             foreach (int entity in _world.Where(out TileGeneratedAspect tileGeneratedAspect))
@@ -48,7 +48,7 @@ namespace _Project.Scripts.Gameplay.Features.AudioFeature.Systems
 
                 Debug.Log("TileAudio");
 
-                AudioUtils.Create(targetAspect.AudioConfigs.Read(targetID).Value);
+                _world.NewAudioEntity(targetAspect.AudioConfigs.Read(targetID).Value);
             }
         }
     }

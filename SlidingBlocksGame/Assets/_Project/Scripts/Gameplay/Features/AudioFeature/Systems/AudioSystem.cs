@@ -47,7 +47,7 @@ namespace _Project.Scripts.Gameplay.Features.AudioFeature.Systems
                     AudioTypeRef.Type.MUSIC => GameAudio.Instance.Music.Source,
                     _ => GameAudio.Instance.Sfx.Normal
                 };
-                
+
                 bool startFromCurrent = !aspect.TweenStartFloatValue.Has(entity);
 
                 Tween.AudioVolume(
@@ -84,7 +84,7 @@ namespace _Project.Scripts.Gameplay.Features.AudioFeature.Systems
         {
             [Inc] public readonly EcsTagPool<TEvent> Events;
             [Inc] public readonly EcsPool<TConfig> AudioConfigs;
-            
+
             [Opt] public readonly EcsPool<AudioTypeRef> AudioTypes;
         }
 
@@ -92,7 +92,7 @@ namespace _Project.Scripts.Gameplay.Features.AudioFeature.Systems
         {
             foreach (int entity in _world.Where(out Aspect aspect))
             {
-                int audio = AudioUtils.Create(aspect.AudioConfigs.Read(entity).Value);
+                int audio = _world.NewAudioEntity(aspect.AudioConfigs.Read(entity).Value);
 
                 Debug.Log("AUDIO: " + typeof(TEvent).Name + aspect.AudioTypes.Read(audio).Value);
             }

@@ -9,12 +9,15 @@ namespace _Project.Scripts.Gameplay.Features.AudioFeature.Components
     {
         public Type Value;
 
+        [Flags]
         public enum Type : byte
         {
             NONE = 0,
-            SFX_NORMAL = 1,
-            SFX_SPECIAL = 2,
-            MUSIC = 3
+            SFX_NORMAL = 1 << 0,
+            SFX_SPECIAL = 1 << 1,
+            MUSIC = 1 << 2,
+            
+            SFX = SFX_NORMAL | SFX_SPECIAL
         }
 
         private sealed class Template : ComponentTemplate<AudioTypeRef>
