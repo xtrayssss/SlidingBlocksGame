@@ -38,7 +38,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
             [Inc] public readonly EcsPool<TargetEntity> Targets;
         }
 
-        private class TargetLevelAspect : EcsAspectAuto
+        private class GameFieldAspect : EcsAspectAuto
         {
             [Inc] public readonly EcsPool<GameField> GameFields;
 
@@ -46,6 +46,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
             [Opt] public readonly EcsTagPool<GameFieldDestructedEvent> GameFieldDestructedEvent;
             [Opt] public readonly EcsTagPool<GameFieldGeneratedMarker> GameFieldGeneratedMarker;
             [Opt] public readonly EcsTagPool<GameFieldDestructedMarker> GameFieldDestructedMarker;
+            [Opt] public readonly EcsPool<GameFieldGeneratedByAlgorithm> GameFieldGeneratedByAlgorithm;
         }
 
         public void Run()
@@ -55,7 +56,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
                 _coroutineRunner
                     .StartCoroutine(Generate(
                         generationAspect: aspect,
-                        levelAspect: _world.GetAspect<TargetLevelAspect>(),
+                        gameFieldAspect: _world.GetAspect<GameFieldAspect>(),
                         algorithm: entity));
             }
 
@@ -64,23 +65,23 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
                 _coroutineRunner
                     .StartCoroutine(Destruct(
                         destructionAspect: aspect,
-                        levelAspect: _world.GetAspect<TargetLevelAspect>(),
+                        gameFieldAspect: _world.GetAspect<GameFieldAspect>(),
                         algorithm: entity
                     ));
             }
         }
 
-        private IEnumerator Generate(GenerationAspect generationAspect, TargetLevelAspect levelAspect, int algorithm)
+        private IEnumerator Generate(GenerationAspect generationAspect, GameFieldAspect gameFieldAspect, int algorithm)
         {
-            if (!generationAspect.Targets.Read(algorithm).Value.TryGetID(out int levelID) ||
-                !levelAspect.IsMatches(levelID))
+            if (!generationAspect.Targets.Read(algorithm).Value.TryGetID(out int gameFieldID) ||
+                !gameFieldAspect.IsMatches(gameFieldID))
                 yield break;
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             ref GameField GameField() =>
-                ref levelAspect.GameFields.Get(levelID);
+                ref gameFieldAspect.GameFields.Get(gameFieldID);
 
-            levelAspect.GameFieldDestructedMarker.TryDel(levelID);
+            gameFieldAspect.GameFieldDestructedMarker.TryDel(gameFieldID);
 
             float3 waveOrigin = generationAspect.Waves.Get(algorithm).WaveOrigin = new float3(
                 GameField().Size / 2f * (GameField().CellSize + GameField().Offset) + GameField().OriginPosition.x,
@@ -113,7 +114,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
 
                         view.transform.localScale = new Vector3(
                             GameField().CellSize,
-                            view.transform.localScale.y,
+                            GameField().CellSize,
                             GameField().CellSize);
 
                         GameField().Cells[counter++] = new GameField.Cell
@@ -126,31 +127,33 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
                         int tile = _world.NewEntity();
 
                         _world.GetPool<TileGeneratedEvent>().Add(tile);
-                        _world.GetPool<TargetEntity>().Add(tile).Value = _world.GetEntityLong(levelID);
+                        _world.GetPool<TargetEntity>().Add(tile).Value = _world.GetEntityLong(gameFieldID);
                         _world.GetPool<DeleteEntityCommand>().Add(tile);
 
                         yield return new WaitForSeconds(delay);
                     }
                 }
             }
+            
+            gameFieldAspect.GameFieldGeneratedByAlgorithm.TryAddOrGet(gameFieldID).Value =
+                algorithm.ToEntityLong(_world);
 
-            GridUtils.GameFieldEvent<GameFieldGeneratedRequest>(_world, target: levelID);
-            GridUtils.GameFieldEvent<GameFieldGeneratedRequest>(_world, target: algorithm);
+            GridUtils.Catch<CatchGameFieldGeneratedRequest>(_world, target: gameFieldID);
 
-            levelAspect.GameFieldGeneratedMarker.Add(levelID);
+            gameFieldAspect.GameFieldGeneratedMarker.Add(gameFieldID);
         }
 
-        private IEnumerator Destruct(DestructionAspect destructionAspect, TargetLevelAspect levelAspect, int algorithm)
+        private IEnumerator Destruct(DestructionAspect destructionAspect, GameFieldAspect gameFieldAspect, int algorithm)
         {
-            if (!destructionAspect.Targets.Read(algorithm).Value.TryGetID(out int levelID) ||
-                !levelAspect.IsMatches(levelID))
+            if (!destructionAspect.Targets.Read(algorithm).Value.TryGetID(out int gameFieldID) ||
+                !gameFieldAspect.IsMatches(gameFieldID))
                 yield break;
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             ref GameField GameField() =>
-                ref levelAspect.GameFields.Get(levelID);
+                ref gameFieldAspect.GameFields.Get(gameFieldID);
 
-            levelAspect.GameFieldGeneratedMarker.Del(levelID);
+            gameFieldAspect.GameFieldGeneratedMarker.Del(gameFieldID);
 
             foreach (GameField.Cell cell in GameField().Cells)
             {
@@ -162,10 +165,11 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
                 Object.Destroy(cell.View);
             }
 
-            GridUtils.GameFieldEvent<GameFieldDestructedRequest>(_world, target: levelID);
-            GridUtils.GameFieldEvent<GameFieldDestructedRequest>(_world, target: algorithm);
+            GridUtils.Catch<GameFieldDestructedRequest>(_world, target: gameFieldID);
 
-            levelAspect.GameFieldDestructedMarker.Add(levelID);
+            gameFieldAspect.GameFieldDestructedMarker.Add(gameFieldID);
+
+            gameFieldAspect.GameFieldGeneratedByAlgorithm.Del(gameFieldID);
         }
     }
 }

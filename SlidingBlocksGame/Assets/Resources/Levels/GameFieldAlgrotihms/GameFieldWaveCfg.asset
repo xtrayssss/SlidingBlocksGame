@@ -16,6 +16,7 @@ MonoBehaviour:
   - rid: 8499802388792868925
   - rid: 8499802755217490839
   - rid: 6454805247463260171
+  - rid: 6454805609293545980
   references:
     version: 2
     RefIds:
@@ -30,6 +31,10 @@ MonoBehaviour:
             y: 0
             z: 0
           BaseSpeedFactor: 0.025
+    - rid: 6454805609293545980
+      type: {class: LevelLifeTimeMarker/Template, ns: _Project.Scripts.Gameplay.Features.DestroyFeature.Components,
+        asm: Assembly-CSharp}
+      data: {}
     - rid: 8499802388792868925
       type: {class: GameFieldWaveAlgorithmTag/Template, ns: _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Components,
         asm: Assembly-CSharp}

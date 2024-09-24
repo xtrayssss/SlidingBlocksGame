@@ -82,7 +82,9 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
         private class LevelAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(LevelLostMarker))]
-            [Opt] public readonly EcsTagPool<GameFieldDestructRequest> GameFieldDestruct;
+            [Inc] public readonly EcsPool<GameFieldGeneratedByAlgorithm> GameFieldGeneratedByAlgorithm;
+
+            [Opt] public readonly EcsTagPool<GameFieldDestructRequest> GameFieldDestructRequest;
         }
 
         private class GameLossTimerClosedStateAspect
@@ -141,7 +143,7 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
                 foreach (int player in _world.Where(out PlayerAspect playerAspect))
                     playerAspect.LockGameInputMarker.Add(player);
 
-                foreach (int timer in _world.Where(out GameLossTimerAspect gameLossTimerAspect)) 
+                foreach (int timer in _world.Where(out GameLossTimerAspect gameLossTimerAspect))
                     gameLossTimerAspect.CooldownLockMarker.Add(timer);
 
                 Debug.Log("LOSS");
@@ -186,15 +188,8 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
 
             foreach (int _ in _world.Where(out CoinViewDestroyedStateAspect.OnEnter _))
             {
-                foreach (int level in _world.Where(out LevelAspect levelAspect))
-                {
-                    Debug.Log("CoinViewDestroyedStateAspect");
-
-                    levelAspect.GameFieldDestruct.Add(level);
-
-                    foreach (int timer in _world.Where(out GameLossTimerAspect timerAspect))
-                        timerAspect.Close.Add(timer);
-                }
+                foreach (int timer in _world.Where(out GameLossTimerAspect timerAspect))
+                    timerAspect.Close.Add(timer);
             }
 
             foreach (int _ in _world.Where(out CoinViewDestroyedStateAspect.OnUpdate _))
@@ -203,7 +198,8 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
                 {
                     Debug.Log("CoinViewDestroyedStateAspect");
 
-                    levelAspect.GameFieldDestruct.Add(level);
+                    if (levelAspect.GameFieldGeneratedByAlgorithm.Read(level).Value.TryGetID(out int algorithmID))
+                        levelAspect.GameFieldDestructRequest.Add(algorithmID);
 
                     _world.GetPool<CoinDestroyedMarker>().Del(level);
 

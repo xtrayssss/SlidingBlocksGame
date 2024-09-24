@@ -12,7 +12,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
 
         private class GameFieldGeneratedRequestAspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(GameFieldGeneratedRequest))]
+            [IncImplicit(typeof(CatchGameFieldGeneratedRequest))]
             [Inc] public readonly EcsPool<TargetEntity> TargetEntities;
 
             [Opt] public readonly EcsTagPool<GameFieldGeneratedEvent> GameFieldGeneratedEvent;

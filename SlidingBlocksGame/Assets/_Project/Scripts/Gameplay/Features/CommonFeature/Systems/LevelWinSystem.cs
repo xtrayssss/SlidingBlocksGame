@@ -31,6 +31,8 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
             {
                 [IncImplicit(typeof(LevelWonMarker))]
                 [IncImplicit(typeof(AnimalDestructedEvent))]
+                [Inc] public readonly EcsPool<GameFieldGeneratedByAlgorithm> GameFieldGeneratedByAlgorithm;
+
                 [Opt] public readonly EcsTagPool<GameFieldDestructRequest> GameFieldDestruct;
             }
         }
@@ -65,6 +67,7 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
         {
             [IncImplicit(typeof(GameLossTimerTag))]
             [Opt] public readonly EcsTagPool<CloseGameLossTimerRequest> Close;
+
             [Opt] public readonly EcsTagPool<CooldownLockMarker> CooldownLockMarker;
         }
 
@@ -101,14 +104,15 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
 
                 foreach (int player in _world.Where(out PlayerAspect playerAspect))
                     playerAspect.LockGameInputMarker.Add(player);
-                
+
                 foreach (int timer in _world.Where(out GameLossTimerAspect gameLossTimerAspect))
                     gameLossTimerAspect.CooldownLockMarker.Add(timer);
             }
 
             foreach (int level in _world.Where(out AnimalDestructedStateAspect.OnEnter levelAspect))
             {
-                levelAspect.GameFieldDestruct.Add(level);
+                if (levelAspect.GameFieldGeneratedByAlgorithm.Read(level).Value.TryGetID(out int algorithmID))
+                    levelAspect.GameFieldDestruct.Add(algorithmID);
 
                 foreach (int timer in _world.Where(out GameLossTimerAspect gameLossTimerAspect))
                     gameLossTimerAspect.Close.Add(timer);

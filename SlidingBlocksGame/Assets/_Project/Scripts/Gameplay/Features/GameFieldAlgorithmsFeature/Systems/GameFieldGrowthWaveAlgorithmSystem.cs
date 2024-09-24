@@ -40,7 +40,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
             [Inc] public readonly EcsPool<TargetEntity> Targets;
         }
 
-        private class TargetLevelAspect : EcsAspectAuto
+        private class GameFieldAspect : EcsAspectAuto
         {
             [Inc] public readonly EcsPool<GameField> GameFields;
 
@@ -48,6 +48,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
             [Opt] public readonly EcsTagPool<GameFieldDestructedEvent> GameFieldDestructed;
             [Opt] public readonly EcsTagPool<GameFieldGeneratedMarker> GameFieldGeneratedMarker;
             [Opt] public readonly EcsTagPool<GameFieldDestructedMarker> GameFieldDestructedMarker;
+            [Opt] public readonly EcsPool<GameFieldGeneratedByAlgorithm> GameFieldGeneratedByAlgorithm;
         }
 
         public void Run()
@@ -56,7 +57,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
             {
                 Generate(
                     generationAspect: aspect,
-                    levelAspect: _world.GetAspect<TargetLevelAspect>(),
+                    gameFieldAspect: _world.GetAspect<GameFieldAspect>(),
                     algorithm: entity);
             }
 
@@ -64,24 +65,24 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
             {
                 Destruct(
                     destructionAspect: aspect,
-                    levelAspect: _world.GetAspect<TargetLevelAspect>(),
+                    gameFieldAspect: _world.GetAspect<GameFieldAspect>(),
                     algorithm: entity);
             }
         }
 
-        private async void Generate(GenerationAspect generationAspect, TargetLevelAspect levelAspect, int algorithm)
+        private async void Generate(GenerationAspect generationAspect, GameFieldAspect gameFieldAspect, int algorithm)
         {
-            if (!generationAspect.Targets.Read(algorithm).Value.TryGetID(out int levelID) ||
-                !levelAspect.IsMatches(levelID))
+            if (!generationAspect.Targets.Read(algorithm).Value.TryGetID(out int gameFieldID) ||
+                !gameFieldAspect.IsMatches(gameFieldID))
                 return;
 
             int counter = 0;
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             ref GameField GameField() =>
-                ref levelAspect.GameFields.Get(levelID);
+                ref gameFieldAspect.GameFields.Get(gameFieldID);
 
-            levelAspect.GameFieldDestructedMarker.TryDel(levelID);
+            gameFieldAspect.GameFieldDestructedMarker.TryDel(gameFieldID);
 
             generationAspect.GrowthWaves.Get(algorithm).GrowthTasks ??= new Task[GameField().CellsCount];
 
@@ -96,7 +97,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
                     if (x >= GameField().EdgeSize && x < GameField().EdgeSize + GameField().CenterSize ||
                         z >= GameField().EdgeSize && z < GameField().EdgeSize + GameField().CenterSize)
                     {
-                        float3 position = Utils.GridUtils.GetWorldPosition(new int2(x, z), in GameField());
+                        float3 position = GridUtils.GetWorldPosition(new int2(x, z), in GameField());
 
                         GameObject view = Object.Instantiate(
                             original: GameField().CellPrefab,
@@ -106,14 +107,15 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
                         view.transform.localScale = float3.zero;
 
                         generationAspect.GrowthWaves.Get(algorithm).GrowthTasks[counter] =
-                            GrowTile(view, generationAspect, algorithm, levelID, levelAspect)
+                            GrowTile(view, generationAspect, algorithm, gameFieldID, gameFieldAspect)
                                 .ContinueWith(
                                     _ =>
                                     {
                                         int tile = _world.NewEntity();
 
                                         _world.GetPool<TileGeneratedEvent>().Add(tile);
-                                        _world.GetPool<TargetEntity>().Add(tile).Value = _world.GetEntityLong(levelID);
+                                        _world.GetPool<TargetEntity>().Add(tile).Value =
+                                            _world.GetEntityLong(gameFieldID);
                                         _world.GetPool<DeleteEntityCommand>().Add(tile);
                                     },
                                     continuationOptions: TaskContinuationOptions.ExecuteSynchronously);
@@ -134,25 +136,24 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
 
             await Task.WhenAll(generationAspect.GrowthWaves.Get(algorithm).GrowthTasks);
 
-            GridUtils.GameFieldEvent<GameFieldGeneratedRequest>(_world, target: levelID);
-            GridUtils.GameFieldEvent<GameFieldGeneratedRequest>(_world, target: algorithm);
+            gameFieldAspect.GameFieldGeneratedByAlgorithm.TryAddOrGet(gameFieldID).Value =
+                algorithm.ToEntityLong(_world);
 
-            levelAspect.GameFieldGeneratedMarker.Add(levelID);
+            GridUtils.Catch<CatchGameFieldGeneratedRequest>(_world, target: gameFieldID);
+
+            gameFieldAspect.GameFieldGeneratedMarker.Add(gameFieldID);
         }
 
-        private async Task GrowTile(GameObject tile, GenerationAspect generationAspect, int algorithm, int levelID,
-            TargetLevelAspect levelAspect)
+        private async Task GrowTile(GameObject tile, GenerationAspect generationAspect, int algorithm, int gameFieldID,
+            GameFieldAspect gameFieldAspect)
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             ref GameField GameField() =>
-                ref levelAspect.GameFields.Get(levelID);
+                ref gameFieldAspect.GameFields.Get(gameFieldID);
 
             float3 initialScale = float3.zero;
 
-            float3 targetScale = new float3(
-                GameField().CellSize,
-                1,
-                GameField().CellSize);
+            float3 targetScale = new float3(GameField().CellSize);
 
             float elapsedTime = 0;
 
@@ -170,19 +171,19 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
             tile.transform.localScale = targetScale;
         }
 
-        private async void Destruct(DestructionAspect destructionAspect, TargetLevelAspect levelAspect, int algorithm)
+        private async void Destruct(DestructionAspect destructionAspect, GameFieldAspect gameFieldAspect, int algorithm)
         {
-            if (!destructionAspect.Targets.Read(algorithm).Value.TryGetID(out int levelID) ||
-                !levelAspect.IsMatches(levelID))
+            if (!destructionAspect.Targets.Read(algorithm).Value.TryGetID(out int gameFieldID) ||
+                !gameFieldAspect.IsMatches(gameFieldID))
                 return;
 
-            levelAspect.GameFieldGeneratedMarker.Del(levelID);
+            gameFieldAspect.GameFieldGeneratedMarker.Del(gameFieldID);
 
             destructionAspect.GrowthWaves.Get(algorithm).ShrinkTasks ??= new Task[GameField().CellsCount];
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             ref GameField GameField() =>
-                ref levelAspect.GameFields.Get(levelID);
+                ref gameFieldAspect.GameFields.Get(gameFieldID);
 
             GameField.Cell[] cells = GameField().Cells;
 
@@ -198,10 +199,11 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
 
             await Task.WhenAll(destructionAspect.GrowthWaves.Get(algorithm).ShrinkTasks);
 
-            GridUtils.GameFieldEvent<GameFieldDestructedRequest>(_world, target: levelID);
-            GridUtils.GameFieldEvent<GameFieldDestructedRequest>(_world, target: algorithm);
+            GridUtils.Catch<GameFieldDestructedRequest>(_world, target: gameFieldID);
 
-            levelAspect.GameFieldDestructedMarker.Add(levelID);
+            gameFieldAspect.GameFieldDestructedMarker.Add(gameFieldID);
+
+            gameFieldAspect.GameFieldGeneratedByAlgorithm.Del(gameFieldID);
         }
 
         private async Task ShrinkTile(GameObject tile, DestructionAspect generationAspect, int algorithm)

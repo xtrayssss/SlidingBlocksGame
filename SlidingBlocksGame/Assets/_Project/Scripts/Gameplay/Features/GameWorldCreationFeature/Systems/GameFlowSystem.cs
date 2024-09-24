@@ -45,7 +45,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
         {
             [IncImplicit(typeof(LevelTag))]
             [IncImplicit(typeof(LevelChangedEvent))]
-            [Opt] public readonly EcsTagPool<GameFieldGenerateRequest> GameFieldGenerate;
+            [Opt] public readonly EcsTagPool<GameFieldGenerateRequest> GameFieldGenerateRequest;
         }
 
         private class GeneratedGameFieldStateAspect : EcsAspectAuto
@@ -135,7 +135,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                 foreach (int player in _world.Where(out PlayerAspect _))
                     ProgressUtils.UpdateScores(player, 1);
 
-                levelAspect.GameFieldGenerate.Add(level);
+                levelAspect.GameFieldGenerateRequest.Add(level);
 
                 foreach (int game in _world.Where(out GameAspect gameAspect))
                 {

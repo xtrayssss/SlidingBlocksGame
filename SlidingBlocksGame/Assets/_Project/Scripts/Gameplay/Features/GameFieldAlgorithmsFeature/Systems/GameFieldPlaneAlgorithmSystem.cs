@@ -20,44 +20,47 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
             [IncImplicit(typeof(GameFieldGenerateRequest))]
             [Inc] public readonly EcsPool<TargetEntity> Targets;
         }
-        
+
         private class DestructionAlgorithmAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(GameFieldPlaneAlgorithmTag))]
             [IncImplicit(typeof(GameFieldDestructRequest))]
             [Inc] public readonly EcsPool<TargetEntity> Targets;
         }
-        
-        private class TargetLevelAspect : EcsAspectAuto
+
+        private class GameFieldAspect : EcsAspectAuto
         {
             [Inc] public readonly EcsPool<GameField> GameFields;
-           
-            [Opt] public readonly EcsTagPool<GameFieldGeneratedEvent> GameFieldGenerated;
-            [Opt] public readonly EcsTagPool<GameFieldDestructedEvent> GameFieldDestructed;
+
+            [Opt] public readonly EcsTagPool<GameFieldGeneratedEvent> GameFieldGeneratedMarker;
+            [Opt] public readonly EcsTagPool<GameFieldDestructedEvent> GameFieldDestructedEvent;
+            [Opt] public readonly EcsPool<GameFieldGeneratedByAlgorithm> GameFieldGeneratedByAlgorithm;
         }
-        
+
         public void Run()
         {
             foreach (int entity in _world.Where(out GenerationAlgorithmAspect aspect))
                 Generate(
                     generationAspect: aspect,
                     algorithm: entity,
-                    levelAspect: _world.GetAspect<TargetLevelAspect>());
+                    gameFieldAspect: _world.GetAspect<GameFieldAspect>());
 
             foreach (int entity in _world.Where(out DestructionAlgorithmAspect aspect))
                 Destruct(
                     destructionAspect: aspect,
-                    algorithm: entity, 
-                    levelAspect: _world.GetAspect<TargetLevelAspect>());
+                    algorithm: entity,
+                    gameFieldAspect: _world.GetAspect<GameFieldAspect>());
         }
 
-        private void Generate(GenerationAlgorithmAspect generationAspect, int algorithm, TargetLevelAspect levelAspect)
+        private void Generate(GenerationAlgorithmAspect generationAspect, int algorithm,
+            GameFieldAspect gameFieldAspect)
         {
             Debug.Log($"Generate {algorithm}");
-            if (!generationAspect.Targets.Read(algorithm).Value.TryGetID(out int levelID) || !levelAspect.IsMatches(levelID))
+            if (!generationAspect.Targets.Read(algorithm).Value.TryGetID(out int gameFieldID) ||
+                !gameFieldAspect.IsMatches(gameFieldID))
                 return;
-            
-            ref GameField gameField = ref levelAspect.GameFields.Get(levelID);
+
+            ref GameField gameField = ref gameFieldAspect.GameFields.Get(gameFieldID);
 
 #if UNITY_EDITOR
             GameObject container = new GameObject(name: "GameField");
@@ -99,23 +102,28 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
                     }
                 }
             }
-            
-            levelAspect.GameFieldGenerated.Add(levelID);
-            levelAspect.GameFieldGenerated.Add(algorithm);
+
+            gameFieldAspect.GameFieldGeneratedMarker.Add(gameFieldID);
+
+            gameFieldAspect.GameFieldGeneratedByAlgorithm.TryAddOrGet(gameFieldID).Value =
+                algorithm.ToEntityLong(_world);
         }
 
-        private void Destruct(DestructionAlgorithmAspect destructionAspect, int algorithm, TargetLevelAspect levelAspect)
+        private void Destruct(DestructionAlgorithmAspect destructionAspect, int algorithm,
+            GameFieldAspect gameFieldAspect)
         {
-            if (!destructionAspect.Targets.Read(algorithm).Value.TryGetID(out int levelID) || !levelAspect.IsMatches(levelID))
+            if (!destructionAspect.Targets.Read(algorithm).Value.TryGetID(out int gameFieldID) ||
+                !gameFieldAspect.IsMatches(gameFieldID))
                 return;
-            
-            ref GameField gameField = ref levelAspect.GameFields.Get(levelID);
+
+            ref GameField gameField = ref gameFieldAspect.GameFields.Get(gameFieldID);
 
             foreach (ref GameField.Cell cell in gameField.Cells.AsSpan())
                 Object.Destroy(cell.View);
 
-            levelAspect.GameFieldDestructed.Add(levelID);
-            levelAspect.GameFieldDestructed.Add(algorithm);
+            gameFieldAspect.GameFieldDestructedEvent.Add(gameFieldID);
+
+            gameFieldAspect.GameFieldGeneratedByAlgorithm.Del(gameFieldID);
         }
     }
 }

@@ -18,7 +18,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature
         {
             builder
                 //
-                .AddUnique(new SelectGameFieldAlgorithmSystem())
+                .AddUnique(new RandomGameFieldAlgorithmSystem())
                 //
                 .AddUnique(new GameFieldPlaneAlgorithmSystem())
                 .AddUnique(new GameFieldWaveAlgorithmSystem(_coroutineRunner))

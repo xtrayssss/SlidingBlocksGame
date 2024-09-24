@@ -142,11 +142,11 @@ namespace _Project.Scripts.Gameplay.Utils
             return default;
         }
 
-        public static void GameFieldEvent<TEvent>(EcsWorld world, int target) where TEvent : struct, IEcsTagComponent
+        public static void Catch<TRequest>(EcsWorld world, int target) where TRequest : struct, IEcsTagComponent
         {
             int @event = world.NewEntity();
 
-            world.GetPool<TEvent>().Add(@event);
+            world.GetPool<TRequest>().Add(@event);
             world.GetPool<TargetEntity>().Add(@event).Value = target.ToEntityLong(world);
         }
     }

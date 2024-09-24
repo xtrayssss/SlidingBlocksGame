@@ -68,6 +68,10 @@ public class TileGenerator7 : MonoBehaviour
         //     tile.transform.position = Vector3.Lerp(initialPosition, targetPosition, elapsedTime / moveDuration);
         //     yield return null;
         // }
+        
+        
+        
+        
         //
         // tile.transform.position = targetPosition;
     }
