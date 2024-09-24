@@ -60,10 +60,10 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
                     SideAspect sideAspect = _world.GetAspect<SideAspect>();
 
-                    var left = CreateSide(sideAspect, Utils.GridUtils.Left);
-                    var right = CreateSide(sideAspect, Utils.GridUtils.Right);
-                    var up = CreateSide(sideAspect, Utils.GridUtils.Up);
-                    var down = CreateSide(sideAspect, Utils.GridUtils.Down);
+                    var left = CreateSide(sideAspect, GridUtils.Left);
+                    var right = CreateSide(sideAspect, GridUtils.Right);
+                    var up = CreateSide(sideAspect, GridUtils.Up);
+                    var down = CreateSide(sideAspect, GridUtils.Down);
 
                     foreach (ref GameField.AnimalsData animalData in animals)
                     {
@@ -90,6 +90,8 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
                         animalAspect.BoundsExtents.Add(animal.ID).Value =
                             animalAspect.MeshRenderers.Read(animal.ID).Value.bounds.extents;
+                        
+                        _world.GetPool<CalculateMovementSpeedRequest>().Add(animal.ID);
 
                         if (math.all(movementDirection.Value == right.direction))
                             right.animals.Add(animal.ID);

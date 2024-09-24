@@ -84,7 +84,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components
                     animal.Position = CellToWorld(animal.CellPosition, component) +
                                       new float3(0, component.CellTop + component.UnitCellTopOffset, 0);
 
-                    animal.InvertedSide = Utils.GridUtils.GetInvertedSide(animal.CellPosition, in component);
+                    animal.InvertedSide = GridUtils.GetInvertedSide(animal.CellPosition, in component);
 
                     animal.Rotation = quaternion.LookRotation(
                         forward: new float3(animal.InvertedSide.x, 0, animal.InvertedSide.y),

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using DCFApixels.DragonECS;
+using UnityEngine.Serialization;
 
 namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components
 {
@@ -10,7 +11,8 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components
         public Task[] GrowthTasks;
         public Task[] ShrinkTasks;
         
-        public float GrowthDuration;
+        [FormerlySerializedAs("Base")] public float BaseSpeedFactor;
+        [FormerlySerializedAs("Speed")] public float SpeedFactor;
 
         [Serializable]
         public sealed class Wrapper : ComponentTemplate<GrowthWave>

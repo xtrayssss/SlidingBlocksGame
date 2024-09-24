@@ -80,10 +80,14 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             ref GameField GameField() =>
                 ref levelAspect.GameFields.Get(levelID);
-            
+
             levelAspect.GameFieldDestructedMarker.TryDel(levelID);
-            
+
             generationAspect.GrowthWaves.Get(algorithm).GrowthTasks ??= new Task[GameField().CellsCount];
+
+            generationAspect.GrowthWaves.Get(algorithm).SpeedFactor =
+                generationAspect.GrowthWaves.Get(algorithm).BaseSpeedFactor *
+                ((float)GameField().BaseSize / GameField().Size);
 
             for (int x = 0; x < GameField().Size; x++)
             {
@@ -123,7 +127,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
                     }
 
                     await Task.Delay(TimeSpan.FromSeconds(
-                        generationAspect.GrowthWaves.Get(algorithm).GrowthDuration /
+                        generationAspect.GrowthWaves.Get(algorithm).SpeedFactor /
                         (GameField().Size * GameField().Size)));
                 }
             }
@@ -152,13 +156,13 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
 
             float elapsedTime = 0;
 
-            while (elapsedTime < generationAspect.GrowthWaves.Get(algorithm).GrowthDuration)
+            while (elapsedTime < generationAspect.GrowthWaves.Get(algorithm).SpeedFactor)
             {
                 elapsedTime += Time.deltaTime;
 
                 tile.transform.localScale =
                     math.lerp(initialScale, targetScale,
-                        elapsedTime / generationAspect.GrowthWaves.Get(algorithm).GrowthDuration);
+                        elapsedTime / generationAspect.GrowthWaves.Get(algorithm).SpeedFactor);
 
                 await Task.Yield();
             }
@@ -188,7 +192,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
                     ShrinkTile(cells[index].View, destructionAspect, algorithm);
 
                 await Task.Delay(TimeSpan.FromSeconds(
-                    destructionAspect.GrowthWaves.Get(algorithm).GrowthDuration /
+                    destructionAspect.GrowthWaves.Get(algorithm).SpeedFactor /
                     (GameField().Size * GameField().Size)));
             }
 
@@ -196,7 +200,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
 
             GridUtils.GameFieldEvent<GameFieldDestructedRequest>(_world, target: levelID);
             GridUtils.GameFieldEvent<GameFieldDestructedRequest>(_world, target: algorithm);
-            
+
             levelAspect.GameFieldDestructedMarker.Add(levelID);
         }
 
@@ -208,13 +212,13 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
 
             float elapsedTime = 0;
 
-            while (elapsedTime < generationAspect.GrowthWaves.Get(algorithm).GrowthDuration)
+            while (elapsedTime < generationAspect.GrowthWaves.Get(algorithm).SpeedFactor)
             {
                 elapsedTime += Time.deltaTime;
 
                 tile.transform.localScale =
                     math.lerp(initialScale, targetScale,
-                        elapsedTime / generationAspect.GrowthWaves.Get(algorithm).GrowthDuration);
+                        elapsedTime / generationAspect.GrowthWaves.Get(algorithm).SpeedFactor);
 
                 await Task.Yield();
             }

@@ -24,11 +24,12 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data:
         component:
-          Speed: 0.025
+          SpeedFactor: 0
           WaveOrigin:
             x: 0
             y: 0
             z: 0
+          BaseSpeedFactor: 0.025
     - rid: 8499802388792868925
       type: {class: GameFieldWaveAlgorithmTag/Template, ns: _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Components,
         asm: Assembly-CSharp}

@@ -3,7 +3,8 @@ using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.MovementFeature.Components
 {
-    [Serializable]
+    [Serializable]    
+    [MetaGroup("Movement")]
     public struct MovementStrategyCfg : IEcsComponent
     {
         public ScriptableEntityTemplate Value;

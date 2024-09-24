@@ -87,6 +87,9 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
                 0,
                 GameField().Size / 2f * (GameField().CellSize + GameField().Offset) + GameField().OriginPosition.z);
 
+            generationAspect.Waves.Get(algorithm).SpeedFactor = generationAspect.Waves.Read(algorithm).BaseSpeedFactor *
+                                                                ((float)GameField().BaseSize / GameField().Size);
+
             int counter = 0;
 
             for (int x = 0; x < GameField().Size; x++)
@@ -101,7 +104,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
                             gameField: in GameField());
 
                         float delay = math.distance(position, waveOrigin) *
-                                      generationAspect.Waves.Read(algorithm).Speed;
+                                      generationAspect.Waves.Get(algorithm).SpeedFactor;
 
                         GameObject view = Object.Instantiate(
                             original: GameField().CellPrefab,
@@ -130,7 +133,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
                     }
                 }
             }
-            
+
             GridUtils.GameFieldEvent<GameFieldGeneratedRequest>(_world, target: levelID);
             GridUtils.GameFieldEvent<GameFieldGeneratedRequest>(_world, target: algorithm);
 
@@ -152,7 +155,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
             foreach (GameField.Cell cell in GameField().Cells)
             {
                 float delay = math.distance(cell.WorldPosition, destructionAspect.Waves.Read(algorithm).WaveOrigin) *
-                              destructionAspect.Waves.Read(algorithm).Speed;
+                              destructionAspect.Waves.Read(algorithm).SpeedFactor;
 
                 yield return new WaitForSeconds(delay);
 

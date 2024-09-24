@@ -5,6 +5,7 @@ using Unity.Mathematics;
 namespace _Project.Scripts.Gameplay.Features.MovementFeature.Components
 {
     [Serializable]
+    [MetaGroup("Movement")]
     public struct MovementDirection : IEcsComponent
     {
         public int2 Value;
