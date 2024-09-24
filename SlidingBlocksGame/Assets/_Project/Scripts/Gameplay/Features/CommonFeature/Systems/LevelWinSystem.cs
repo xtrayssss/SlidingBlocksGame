@@ -1,4 +1,5 @@
 ﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
 using _Project.Scripts.Gameplay.Features.DestroyFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
@@ -64,6 +65,7 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
         {
             [IncImplicit(typeof(GameLossTimerTag))]
             [Opt] public readonly EcsTagPool<CloseGameLossTimerRequest> Close;
+            [Opt] public readonly EcsTagPool<CooldownLockMarker> CooldownLockMarker;
         }
 
         private class DestructedGameFieldStateAspect : EcsAspectAuto
@@ -99,6 +101,9 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
 
                 foreach (int player in _world.Where(out PlayerAspect playerAspect))
                     playerAspect.LockGameInputMarker.Add(player);
+                
+                foreach (int timer in _world.Where(out GameLossTimerAspect gameLossTimerAspect))
+                    gameLossTimerAspect.CooldownLockMarker.Add(timer);
             }
 
             foreach (int level in _world.Where(out AnimalDestructedStateAspect.OnEnter levelAspect))

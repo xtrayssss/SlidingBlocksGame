@@ -1,7 +1,7 @@
 ﻿using _Project.Scripts.Gameplay.Features.AudioFeature.Components;
-using _Project.Scripts.Gameplay.Features.AudioFeature.Systems;
 using _Project.Scripts.Gameplay.Features.CollectFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
 using _Project.Scripts.Gameplay.Features.DestroyFeature.c;
 using _Project.Scripts.Gameplay.Features.DestroyFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Components;
@@ -52,13 +52,17 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
         {
             [IncImplicit(typeof(GameTag))]
             [Inc] public readonly EcsPool<Levels> Levels;
+
             [Inc] public readonly EcsPool<AudioEffectInOnLevelExit> AudioEffects;
         }
 
         private class GameLossTimerAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(GameLossTimerTag))]
+            [Inc] public readonly EcsPool<Cooldown> Cooldown;
+
             [Opt] public readonly EcsTagPool<CloseGameLossTimerRequest> Close;
+            [Opt] public readonly EcsTagPool<CooldownLockMarker> CooldownLockMarker;
         }
 
         private class GameScreenAspect : EcsAspectAuto
@@ -116,7 +120,7 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
                 [Opt] public readonly EcsTagPool<NextLeveRequest> NextLevel;
             }
         }
-        
+
         private class PlayerAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(PlayerTag))]
@@ -137,13 +141,16 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
                 foreach (int player in _world.Where(out PlayerAspect playerAspect))
                     playerAspect.LockGameInputMarker.Add(player);
 
+                foreach (int timer in _world.Where(out GameLossTimerAspect gameLossTimerAspect)) 
+                    gameLossTimerAspect.CooldownLockMarker.Add(timer);
+
                 Debug.Log("LOSS");
             }
 
             foreach (int level in _world.Where(out AnimalDestructedStateAspect.OnEnter _))
             {
                 EcsSpan ecsSpan = _world.Where(out CoinAspect coinAspect);
-                
+
                 if (ecsSpan.Count > 0)
                 {
                     foreach (int coin in ecsSpan)
@@ -184,7 +191,7 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
                     Debug.Log("CoinViewDestroyedStateAspect");
 
                     levelAspect.GameFieldDestruct.Add(level);
-                    
+
                     foreach (int timer in _world.Where(out GameLossTimerAspect timerAspect))
                         timerAspect.Close.Add(timer);
                 }
@@ -225,7 +232,7 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
 
                 foreach (int screen in _world.Where(out GameScreenAspect gameScreenAspect))
                     gameScreenAspect.ShowMetaGameUI.Add(screen);
-                
+
                 foreach (int game in _world.Where(out GameAspect gameAspect))
                 {
                     int effect = _world.NewEntity(gameAspect.AudioEffects.Read(game).Value);
