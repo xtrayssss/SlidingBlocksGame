@@ -3,6 +3,7 @@ using _Project.Scripts.Gameplay.Utils;
 using DCFApixels.DragonECS;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Object = UnityEngine.Object;
 
 namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components
@@ -27,10 +28,11 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components
         public int CellsCount;
 
         [HideInInspector]
-        public float CellUpper;
+        public float CellScaleY;
 
         public float UnitCellTopOffset;
         public short Center;
+        public float BaseCellScaleY;
 
         [Serializable]
         public struct AnimalsData

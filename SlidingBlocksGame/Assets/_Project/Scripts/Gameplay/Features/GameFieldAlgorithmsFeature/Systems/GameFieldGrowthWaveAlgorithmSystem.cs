@@ -152,7 +152,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
 
             float3 initialScale = float3.zero;
 
-            float3 targetScale = new float3(GameField().CellSize);
+            float3 targetScale = new float3(GameField().CellSize, GameField().CellScaleY, GameField().CellSize);
 
             float elapsedTime = 0;
 

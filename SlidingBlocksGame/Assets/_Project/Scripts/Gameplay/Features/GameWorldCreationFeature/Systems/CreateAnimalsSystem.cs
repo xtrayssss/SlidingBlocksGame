@@ -69,7 +69,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                     {
                         entlong animal = _world.NewEntityLong();
 
-                        float3 cellUpperOffset = new float3(0, gameField.CellUpper + gameField.UnitCellTopOffset, 0);
+                        float3 cellUpperOffset = new float3(0, gameField.CellScaleY + gameField.UnitCellTopOffset, 0);
                         
                         EcsEntityConnect view = Object.Instantiate(
                             original: playerAspect.SelectedAnimalPrefabs.Read(player).Prefab,

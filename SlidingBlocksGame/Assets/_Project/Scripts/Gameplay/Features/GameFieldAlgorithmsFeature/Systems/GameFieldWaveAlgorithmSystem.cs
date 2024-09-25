@@ -114,7 +114,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
 
                         view.transform.localScale = new Vector3(
                             GameField().CellSize,
-                            GameField().CellSize,
+                            GameField().CellScaleY,
                             GameField().CellSize);
 
                         GameField().Cells[counter++] = new GameField.Cell

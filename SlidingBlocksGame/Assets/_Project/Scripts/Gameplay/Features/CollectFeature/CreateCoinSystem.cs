@@ -48,7 +48,7 @@ namespace _Project.Scripts.Gameplay.Features.CollectFeature
 
                     float3 cellUpperOffset = new float3(
                         0,
-                        gameField.CellUpper + gameField.UnitCellTopOffset,
+                        gameField.CellScaleY + gameField.UnitCellTopOffset,
                         0);
 
                     float3 worldPosition = GridUtils.GetWorldPosition(cellPosition, in gameField) + cellUpperOffset;

@@ -54,6 +54,12 @@ namespace _Project.Scripts.Gameplay
         [Button]
         public void NormalizeMeshSize(GameObject obj, float targetSize = 1f)
         {
+            MeshRenderer renderer = obj.GetComponentInChildren<MeshRenderer>();
+            
+            float lowerY = renderer.bounds.center.y - renderer.bounds.extents.y;
+            float upperY = lowerY + renderer.bounds.size.y;
+
+            Debug.Log(renderer.bounds.max);
         }
 
         [Button]
