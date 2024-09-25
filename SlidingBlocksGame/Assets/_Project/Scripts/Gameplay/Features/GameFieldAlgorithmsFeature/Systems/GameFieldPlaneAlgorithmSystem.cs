@@ -96,7 +96,6 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
                         gameField.Cells[counter++] = new GameField.Cell
                         {
                             View = cell,
-                            CellPosition = new float2(x, z),
                             WorldPosition = position
                         };
                     }

@@ -11,7 +11,6 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components
     public struct GameField : IEcsComponent
     {
         public GameObject CellPrefab;
-        public EcsEntityConnect GameFieldPrefab;
 
         public float3 OriginPosition;
         public int Size;
@@ -28,7 +27,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components
         public int CellsCount;
 
         [HideInInspector]
-        public float CellTop;
+        public float CellUpper;
 
         public float UnitCellTopOffset;
         public short Center;
@@ -38,7 +37,6 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components
         {
             public float3 Position;
             public int2 CellPosition;
-            public EcsEntityConnect View;
             public quaternion Rotation;
             public int2 InvertedSide;
             public float3 Scale;
@@ -47,7 +45,6 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components
         [Serializable]
         public struct Cell
         {
-            public float2 CellPosition;
             public float3 WorldPosition;
             public GameObject View;
         }
@@ -59,8 +56,6 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components
 
             public override void OnValidate(Object obj)
             {
-                component.CellTop = GetUpperSurfaceY(component.CellPrefab.GetComponentInChildren<MeshRenderer>());
-
                 component.EdgeSize = component.Size / 3;
                 component.CenterSize = component.Size - 2 * component.EdgeSize;
 
@@ -72,17 +67,9 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components
 
                 component.CellSize = newTileSize;
 
-                float GetUpperSurfaceY(MeshRenderer renderer)
-                {
-                    float lowerY = renderer.bounds.center.y - renderer.bounds.extents.y;
-                    float upperY = lowerY + renderer.bounds.size.y;
-                    return upperY;
-                }
-                
                 foreach (ref AnimalsData animal in component.Animals.AsSpan())
                 {
-                    animal.Position = CellToWorld(animal.CellPosition, component) +
-                                      new float3(0, component.CellTop + component.UnitCellTopOffset, 0);
+                    animal.Position = CellToWorld(animal.CellPosition, component);
 
                     animal.InvertedSide = GridUtils.GetInvertedSide(animal.CellPosition, in component);
 

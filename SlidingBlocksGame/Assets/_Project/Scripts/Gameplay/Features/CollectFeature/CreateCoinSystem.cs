@@ -46,12 +46,12 @@ namespace _Project.Scripts.Gameplay.Features.CollectFeature
 
                     int2 cellPosition = new int2(randomX, randomY);
 
-                    float3 surfaceOffset = new float3(
+                    float3 cellUpperOffset = new float3(
                         0,
-                        gameField.CellTop + gameField.UnitCellTopOffset,
+                        gameField.CellUpper + gameField.UnitCellTopOffset,
                         0);
 
-                    float3 worldPosition = GridUtils.GetWorldPosition(cellPosition, in gameField) + surfaceOffset;
+                    float3 worldPosition = GridUtils.GetWorldPosition(cellPosition, in gameField) + cellUpperOffset;
 
                     EcsEntityConnect connect =
                         Object.Instantiate(

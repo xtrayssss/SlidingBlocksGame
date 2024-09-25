@@ -69,12 +69,12 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                     {
                         entlong animal = _world.NewEntityLong();
 
+                        float3 cellUpperOffset = new float3(0, gameField.CellUpper + gameField.UnitCellTopOffset, 0);
+                        
                         EcsEntityConnect view = Object.Instantiate(
                             original: playerAspect.SelectedAnimalPrefabs.Read(player).Prefab,
-                            position: animalData.Position,
+                            position: animalData.Position + cellUpperOffset,
                             rotation: animalData.Rotation);
-
-                        animalData.View = view;
 
                         view.ConnectWith(animal, applyTemplates: true);
 
@@ -90,7 +90,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
                         animalAspect.BoundsExtents.Add(animal.ID).Value =
                             animalAspect.MeshRenderers.Read(animal.ID).Value.bounds.extents;
-                        
+
                         _world.GetPool<CalculateMovementSpeedRequest>().Add(animal.ID);
 
                         if (math.all(movementDirection.Value == right.direction))

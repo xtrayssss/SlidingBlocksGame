@@ -2,7 +2,6 @@
 using _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
-using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems;
 using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature
@@ -17,13 +16,13 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature
         public void Import(EcsPipeline.Builder builder)
         {
             builder
-                //
                 .AddUnique(new RandomGameFieldAlgorithmSystem())
+                //
+                .AddUnique(new CalculateUpperCellSystem())
                 //
                 .AddUnique(new GameFieldPlaneAlgorithmSystem())
                 .AddUnique(new GameFieldWaveAlgorithmSystem(_coroutineRunner))
                 .AddUnique(new GameFieldGrowthWaveAlgorithmSystem(_coroutineRunner))
-                //
                 .AutoDelTag<GameFieldGeneratedEvent>()
                 .AutoDelTag<GameFieldDestructedEvent>()
                 .AddUnique(new CatchGameFieldEventsSystem())

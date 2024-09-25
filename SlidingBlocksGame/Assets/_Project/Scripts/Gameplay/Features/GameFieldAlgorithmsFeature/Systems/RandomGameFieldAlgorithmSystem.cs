@@ -6,7 +6,7 @@ using _Project.Scripts.Gameplay.Utils;
 using DCFApixels.DragonECS;
 using UnityEngine;
 
-namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
+namespace _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Systems
 {
     public class RandomGameFieldAlgorithmSystem : IEcsRun
     {
@@ -66,7 +66,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                 }
 
                 aspect.GameFieldAlgorithmIndex.Add(entity).Value = randomIndex;
-                
+
                 _world.DelEntity(pack);
             }
         }
