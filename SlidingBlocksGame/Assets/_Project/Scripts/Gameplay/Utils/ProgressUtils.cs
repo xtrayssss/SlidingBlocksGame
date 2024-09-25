@@ -1,5 +1,4 @@
 ﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
-using _Project.Scripts.Gameplay.Features.CommonFeature.Systems;
 using _Project.Scripts.Gameplay.Features.UIFeature.Systems;
 using DCFApixels.DragonECS;
 
@@ -12,6 +11,8 @@ namespace _Project.Scripts.Gameplay.Utils
             [Opt] public readonly EcsPool<UpdateCoinsRequest> UpdateCoinsRequest;
 
             [Opt] public readonly EcsPool<UpdateScoresRequest> UpdateScoresRequest;
+
+            [Opt] public readonly EcsPool<UpdateBestScoreRequest> UpdateBestScoreRequest;
 
             [Opt] public readonly EcsPool<UpdateSelectedAnimalRequest> UpdateSelectedAnimalRequest;
 
@@ -110,32 +111,18 @@ namespace _Project.Scripts.Gameplay.Utils
             
             progressAspect.TargetEntity.Add(request).Value = target.ToEntityLong(world);
         }
-    }
 
-    public static class SliceUtils
-    {
-        // public static (EcsGroup, EcsGroup) SliceWithExcept(this EcsGroup source, int index)
-        // {
-        //     EcsSpan excepted = default;
-        //
-        //     if (index > 0 && index < source.Count - 1)
-        //     {
-        //         excepted = source.Slice(index - 1, 3);
-        //     }
-        //     else if (index == 0)
-        //     {
-        //         excepted = source.Slice(index, 2);
-        //     }
-        //     else if (index == source.Count - 1)
-        //     {
-        //         excepted = source.Slice(index - 1, 2);
-        //     }
-        //
-        //     EcsGroup sourceClone = source.Clone();
-        //
-        //     sourceClone.ExceptWith(excepted);
-        //
-        //     return (sourceClone, excepted);
-        // }
+        public static void UpdateBestScore(int target, int scores, bool overwrite = false)
+        {
+            EcsDefaultWorld world = EcsDefaultWorldSingletonProvider.Instance.Get();
+
+            ProgressAspect progressAspect = world.GetAspect<ProgressAspect>();
+
+            int @event = world.NewEntity();
+            ref UpdateBestScoreRequest updateScoresRequest = ref progressAspect.UpdateBestScoreRequest.Add(@event);
+            updateScoresRequest.Value = scores;
+            updateScoresRequest.Overwrite = overwrite;
+            progressAspect.TargetEntity.Add(@event).Value = target.ToEntityLong(world);
+        }
     }
 }

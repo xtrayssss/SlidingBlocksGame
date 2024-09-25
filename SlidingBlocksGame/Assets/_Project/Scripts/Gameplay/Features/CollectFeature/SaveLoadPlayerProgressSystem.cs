@@ -20,12 +20,11 @@ namespace _Project.Scripts.Gameplay.Features.CollectFeature
             [IncImplicit(typeof(PlayerTag))]
             [Inc] public readonly EcsPool<Coins> Coins;
 
-            [Inc] public readonly EcsPool<Scores> Scores;
+            [Inc] public readonly EcsPool<BestScore> BestScores;
             [Inc] public readonly EcsPool<SelectedAnimal> SelectedAnimals;
             [Inc] public readonly EcsPool<AnimalPrefabs> AnimalPrefabs;
 
             [Opt] public readonly EcsPool<CoinsUpdatedEvent> CoinsUpdated;
-            [Opt] public readonly EcsPool<ScoresUpdatedEvent> ScoresUpdated;
 
             [Opt] public readonly EcsPool<TargetEntity> TargetEntity;
             [Opt] public readonly EcsTagPool<PurchasesClearedEvent> PurchasesClearedEvent;
@@ -37,9 +36,9 @@ namespace _Project.Scripts.Gameplay.Features.CollectFeature
             [Inc] public readonly EcsPool<TargetEntity> TargetEntity;
         }
 
-        private class ScoreUpdatedEventAspect : EcsAspectAuto
+        private class BestScoreUpdatedEventAspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(ScoresUpdatedEvent))]
+            [IncImplicit(typeof(BestScoreUpdatedEvent))]
             [Inc] public readonly EcsPool<TargetEntity> TargetEntity;
         }
 
@@ -138,7 +137,7 @@ namespace _Project.Scripts.Gameplay.Features.CollectFeature
                 YandexGame.SaveProgress();
             }
 
-            foreach (int @event in _world.Where(out ScoreUpdatedEventAspect scoreUpdatedEventAspect))
+            foreach (int @event in _world.Where(out BestScoreUpdatedEventAspect scoreUpdatedEventAspect))
             {
                 PlayerAspect playerAspect = _world.GetAspect<PlayerAspect>();
 
@@ -146,9 +145,9 @@ namespace _Project.Scripts.Gameplay.Features.CollectFeature
                     !playerAspect.IsMatches(targetID))
                     continue;
 
-                ref Scores scores = ref playerAspect.Scores.Get(targetID);
+                ref BestScore bestScore = ref playerAspect.BestScores.Get(targetID);
 
-                YandexGame.savesData.Scores = scores.Value;
+                YandexGame.savesData.BestScores = bestScore.Value;
 
                 YandexGame.SaveProgress();
             }
@@ -239,7 +238,7 @@ namespace _Project.Scripts.Gameplay.Features.CollectFeature
                         coins: 0,
                         overwrite: true);
 
-                    ProgressUtils.UpdateScores(
+                    ProgressUtils.UpdateBestScore(
                         target: player,
                         scores: 0,
                         overwrite: true);
@@ -272,9 +271,9 @@ namespace _Project.Scripts.Gameplay.Features.CollectFeature
                         coins: YandexGame.savesData.Coins,
                         overwrite: true);
 
-                    ProgressUtils.UpdateScores(
+                    ProgressUtils.UpdateBestScore(
                         target: player,
-                        scores: YandexGame.savesData.Scores,
+                        scores: YandexGame.savesData.BestScores,
                         overwrite: true);
 
                     ProgressUtils.UpdateSelectedAnimal(

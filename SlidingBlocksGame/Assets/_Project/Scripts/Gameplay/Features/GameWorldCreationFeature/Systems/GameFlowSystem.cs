@@ -8,6 +8,7 @@ using _Project.Scripts.Gameplay.Features.InputFeature.Components;
 using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using _Project.Scripts.Gameplay.Utils;
 using DCFApixels.DragonECS;
+using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 {
@@ -56,7 +57,6 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
         {
             [IncImplicit(typeof(LevelTag))]
             [IncImplicit(typeof(AnimalPositionedEvent))]
-            [Opt] public readonly EcsTagPool<CreateGameLossTimerRequest> CreateGameLossTimer;
 
             [Opt] public readonly EcsTagPool<CreateCoinRequest> CreateCoin;
         }
@@ -92,10 +92,16 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
             [Inc] public readonly EcsTagPool<CoinTag> CoinTag;
         }
 
-        private class LevelAspect : EcsAspectAuto
+        private class HUDAspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(LevelTag))]
+            [IncImplicit(typeof(HUDTag))]
             [Opt] public readonly EcsTagPool<CreateGameLossTimerRequest> CreateGameLossTimerRequest;
+        }
+        
+        private class GameLossTimerOpenedAspect : EcsAspectAuto
+        {
+            [IncImplicit(typeof(GameLossTimerTag))]
+            [Inc] public readonly EcsTagPool<GameLossTimerOpenedEvent> GameLossTimerOpenedEvent;
         }
 
         public void Run()
@@ -129,9 +135,6 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
             foreach (int level in _world.Where(out LevelCreationStateAspect levelAspect))
             {
-                foreach (int player in _world.Where(out PlayerAspect _))
-                    ProgressUtils.UpdateScores(player, 1);
-
                 levelAspect.GameFieldGenerateRequest.Add(level);
 
                 foreach (int game in _world.Where(out GameAspect gameAspect))
@@ -150,11 +153,17 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
 
             foreach (int _ in _world.Where(out CoinSpawnedStateAspect _))
             {
-                foreach (int level in _world.Where(out LevelAspect levelAspect))
-                    levelAspect.CreateGameLossTimerRequest.Add(level);
+                foreach (int level in _world.Where(out HUDAspect hudAspect))
+                    hudAspect.CreateGameLossTimerRequest.Add(level);
 
                 foreach (int player in _world.Where(out PlayerAspect playerAspect))
                     playerAspect.LockGameInputMarker.Del(player);
+            }
+
+            foreach (int _ in _world.Where(out GameLossTimerOpenedAspect _))
+            {
+                foreach (int player in _world.Where(out PlayerAspect _))
+                    ProgressUtils.UpdateScores(player, 1);
             }
         }
     }

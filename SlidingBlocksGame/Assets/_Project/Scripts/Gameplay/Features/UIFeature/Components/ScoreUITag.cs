@@ -4,9 +4,9 @@ using DCFApixels.DragonECS;
 namespace _Project.Scripts.Gameplay.Features.UIFeature.Components
 {
     [Serializable]
-    public struct ScoreTag : IEcsTagComponent
+    public struct ScoreUITag : IEcsTagComponent
     {
-        private sealed class Template : TagComponentTemplate<ScoreTag>
+        private sealed class Template : TagComponentTemplate<ScoreUITag>
         {
         }
     }

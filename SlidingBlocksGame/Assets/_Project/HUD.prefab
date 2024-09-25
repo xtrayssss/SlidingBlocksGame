@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3878361284543174929}
   - component: {fileID: 682240893758478756}
   m_Layer: 5
-  m_Name: Scores
+  m_Name: BestScore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52,8 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _deleteEntiityWithDestroy: 0
-  _scriptableTemplates:
-  - {fileID: 11400000, guid: dc3902e1897e25247b4f0d30f133d77d, type: 2}
+  _scriptableTemplates: []
   _monoTemplates:
   - {fileID: 682240893758478756}
 --- !u!114 &682240893758478756
@@ -71,9 +70,14 @@ MonoBehaviour:
   _components:
   - rid: 8499802450894258315
   - rid: 8499802814705828379
+  - rid: 6454805616810262901
   references:
     version: 2
     RefIds:
+    - rid: 6454805616810262901
+      type: {class: BestScoreUITag/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
+        asm: Assembly-CSharp}
+      data: {}
     - rid: 8499802450894258315
       type: {class: TextMeshProUGUIRef/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
         asm: Assembly-CSharp}
@@ -450,6 +454,8 @@ MonoBehaviour:
   - rid: 6454805113458655404
   - rid: 6454805130946281472
   - rid: 6454805221806178313
+  - rid: 6454805633061093378
+  - rid: 6454805633271857204
   references:
     version: 2
     RefIds:
@@ -464,13 +470,23 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data:
         component:
-          Value: {fileID: 3878361284543174929}
+          Value: {fileID: 1286422758813987361}
     - rid: 6454805221806178313
       type: {class: CanvasRef/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
           Value: {fileID: 4438284065641242337}
+    - rid: 6454805633061093378
+      type: {class: BestScoreUIConnect/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: {fileID: 3878361284543174929}
+    - rid: 6454805633271857204
+      type: {class: HUDTag/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
+        asm: Assembly-CSharp}
+      data: {}
     - rid: 8499802702287471248
       type: {class: GameLossTimerConnect/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
         asm: Assembly-CSharp}
@@ -993,6 +1009,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 4182299319287621592}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1286422758813987361 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3157245150299346425, guid: 9c8902b6b78006149a75e0be6ae89dd3,
+    type: 3}
+  m_PrefabInstance: {fileID: 4182299319287621592}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 495156623a7b1e94087f916ba42745e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2267403923633711704 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2701575697393814912, guid: 9c8902b6b78006149a75e0be6ae89dd3,

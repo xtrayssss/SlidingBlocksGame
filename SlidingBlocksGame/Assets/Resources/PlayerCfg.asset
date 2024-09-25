@@ -19,6 +19,7 @@ MonoBehaviour:
   - rid: 6454805267925958657
   - rid: 6454805267925958660
   - rid: 6454805569733133212
+  - rid: 6454805633061093376
   references:
     version: 2
     RefIds:
@@ -58,6 +59,12 @@ MonoBehaviour:
       type: {class: LockGameInputMarker/Template, ns: _Project.Scripts.Gameplay.Features.InputFeature.Components,
         asm: Assembly-CSharp}
       data: {}
+    - rid: 6454805633061093376
+      type: {class: BestScore/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: 0
     - rid: 8499802700812648450
       type: {class: PlayerTag/Template, ns: _Project.Scripts.Gameplay.Features.CommonFeature.Components,
         asm: Assembly-CSharp}

@@ -29,7 +29,14 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
         {
             [IncImplicit(typeof(CreateControlsRequest))]
             [Inc] public readonly EcsPool<CoinUIConnect> CoinUIConnects;
-        } 
+        }
+
+        private class BestScoreUIAspect : EcsAspectAuto
+        {
+            [IncImplicit(typeof(CreateControlsRequest))]
+            [Inc] public readonly EcsPool<BestScoreUIConnect> BestScoreUIConnects;
+        }
+
         private class HUDAspect : EcsAspectAuto
         {
             [Inc] public readonly EcsPool<CanvasRef> Canvases;
@@ -48,7 +55,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                 aspect.CreateControls.Add(hud.ID);
 
                 HUDAspect hudAspect = _world.GetAspect<HUDAspect>();
-                
+
                 Camera uiCamera = GameObject.FindGameObjectWithTag("UICamera").GetComponent<Camera>();
 
                 hudAspect.Canvases.Get(hud.ID).Value.worldCamera = uiCamera;
@@ -70,6 +77,15 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                 entlong coinUI = _world.NewEntityLong();
 
                 connect.Value.Connect(coinUI, applyTemplates: true);
+            }
+
+            foreach (int entity in _world.Where(out BestScoreUIAspect aspect))
+            {
+                ref readonly BestScoreUIConnect connect = ref aspect.BestScoreUIConnects.Read(entity);
+
+                entlong bestScoreUI = _world.NewEntityLong();
+
+                connect.Value.Connect(bestScoreUI, applyTemplates: true);
             }
         }
     }

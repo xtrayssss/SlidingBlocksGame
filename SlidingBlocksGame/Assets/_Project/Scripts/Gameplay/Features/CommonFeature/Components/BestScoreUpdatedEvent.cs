@@ -2,8 +2,8 @@
 
 namespace _Project.Scripts.Gameplay.Features.CommonFeature.Components
 {
-    public struct ScoresUpdatedEvent : IEcsComponent
+    public struct BestScoreUpdatedEvent : IEcsComponent
     {
-        public float Delta;
+        public int Delta;
     }
 }

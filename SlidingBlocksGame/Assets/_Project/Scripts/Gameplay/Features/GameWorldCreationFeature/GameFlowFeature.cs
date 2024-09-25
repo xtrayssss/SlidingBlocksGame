@@ -46,6 +46,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature
                 .AutoDelTag<CreateHUDRequest>()
                 .AutoDelTag<CreateControlsRequest>()
                 //
+                .AutoDelTag<GameLossTimerOpenedEvent>()
                 .AddUnique(new GameLossTimerSystem())
                 .AutoDelTag<CreateGameLossTimerRequest>()
                 //
@@ -82,7 +83,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature
                 .AutoDelTag<PurchasedEvent>()
                 .AddUnique(new PurchaseAnimalSystem())
                 //
-                .AutoDelEntityComponent<ScoresUpdatedEvent>()
+                .AutoDelEntityComponent<ScoreUpdatedEvent>()
                 .AddUnique(new ScoresSystem())
                 .AutoDelEntityComponent<UpdateScoresRequest>()
                 //
@@ -99,6 +100,11 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature
                 .AutoDelEntityTag<RewardUpdatedEvent>()
                 .AddUnique(new RewardSystem())
                 .AutoDelEntityComponent<UpdateRewardRequest>()
+                //
+                .AddUnique(new BestScoreCheckSystem())
+                .AutoDelEntityComponent<BestScoreUpdatedEvent>()
+                .AddUnique(new BestScoreSystem())
+                .AutoDelEntityComponent<UpdateBestScoreRequest>()
                 //
                 .AddUnique(new SaveLoadPlayerProgressSystem())
                 .AutoDelTag<LoadProgressRequest>();

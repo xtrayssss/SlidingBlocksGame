@@ -11,6 +11,7 @@ using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using DCFApixels.DragonECS;
 using PrimeTween;
 using UnityEngine;
+using ProgressUtils = _Project.Scripts.Gameplay.Utils.ProgressUtils;
 
 namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
 {
@@ -126,7 +127,7 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
         private class PlayerAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(PlayerTag))]
-            [Exc] public readonly EcsTagPool<LockGameInputMarker> LockGameInputMarker;
+            [Opt] public readonly EcsTagPool<LockGameInputMarker> LockGameInputMarker;
         }
 
         public void Run()
@@ -234,6 +235,14 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
                     int effect = _world.NewEntity(gameAspect.AudioEffects.Read(game).Value);
                     _world.GetPool<ApplyAudioEffectRequest>().Add(effect);
                     _world.GetPool<RestartAudioRequest>().Add(effect);
+                }
+
+                foreach (int player in _world.Where(out PlayerAspect _))
+                {
+                    ProgressUtils.UpdateScores(
+                        target: player,
+                        0,
+                        overwrite: true);
                 }
             }
         }

@@ -1,6 +1,6 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
+using UnityEngine.Serialization;
 
 namespace YG
 {
@@ -13,15 +13,15 @@ namespace YG
         public bool PromptDone;
 
         public int Coins;
-        public int Scores;
+        public int BestScores;
         public List<ushort> PurchasedAnimals = new List<ushort>();
-        
+
         public long RewardCollectedAt;
-        
+
         public int RewardCount;
         public ushort SelectedAnimalID;
         public SaveAudio Audio = new SaveAudio(musicIsOn: true, soundIsOn: true);
-        
+
         [Serializable]
         public struct SaveAudio
         {
