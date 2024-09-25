@@ -191,6 +191,14 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
             {
                 foreach (int timer in _world.Where(out GameLossTimerAspect timerAspect))
                     timerAspect.Close.Add(timer);
+                
+                foreach (int level in _world.Where(out LevelAspect levelAspect))
+                {
+                    Debug.Log("CoinViewDestroyedStateAspect");
+
+                    if (levelAspect.GameFieldGeneratedByAlgorithm.Read(level).Value.TryGetID(out int algorithmID))
+                        levelAspect.GameFieldDestructRequest.Add(algorithmID);
+                }
             }
 
             foreach (int _ in _world.Where(out CoinViewDestroyedStateAspect.OnUpdate _))

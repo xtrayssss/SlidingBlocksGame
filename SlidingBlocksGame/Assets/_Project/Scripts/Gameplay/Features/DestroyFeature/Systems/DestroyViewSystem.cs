@@ -23,6 +23,8 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
             {
                 Object.Destroy(aspect.GameObjectConnects.Read(entity).Connect.gameObject);
 
+                UnityEngine.Debug.Log(entity.ToEntityLong(_world).IsAlive);
+                UnityEngine.Debug.Log(entity.ToEntityLong(_world).TryGetID(out int id));
                 if (entity.ToEntityLong(_world).IsAlive) 
                     aspect.ViewDestroyedEvent.Add(entity);
             }

@@ -39,7 +39,7 @@ namespace _Project.Scripts.Gameplay.Features.CollectFeature
                 {
                     ref readonly GameField gameField = ref levelAspect.GameFields.Read(entity);
 
-                    int2 center = GridUtils.GetCenter(in gameField);
+                    int2 center = GridUtils.GetCenter(in gameField) + new int2(0, 1);
 
                     int randomX = Random.Range(center.x, center.y);
                     int randomY = Random.Range(center.x, center.y);
