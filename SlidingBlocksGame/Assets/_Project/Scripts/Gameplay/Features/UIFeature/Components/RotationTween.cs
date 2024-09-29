@@ -9,7 +9,8 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Components
     {
         public float Duration;
         public Tween Tween;
-        
+        public Tween Delay;
+
         private sealed class Template : ComponentTemplate<RotationTween>
         {
         }

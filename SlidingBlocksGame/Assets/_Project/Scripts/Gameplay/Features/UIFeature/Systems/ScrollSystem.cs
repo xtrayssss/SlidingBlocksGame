@@ -10,10 +10,6 @@ using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 {
-    public struct ScrollOpenedEvent : IEcsTagComponent
-    {
-    }
-
     public class ScrollSystem : IEcsRun
     {
         [EcsInject] private readonly EcsDefaultWorld _world;
@@ -121,7 +117,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
         {
             public class OnEnter : EcsAspectAuto
             {
-                [IncImplicit(typeof(ScrollOpenedEvent))]
+                [IncImplicit(typeof(OpenedEvent))]
                 [Inc] public readonly EcsPool<ScrollSnap> ScrollSnaps;
             }
         }
@@ -130,7 +126,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
         {
             public class OnEnter : EcsAspectAuto
             {
-                [IncImplicit(typeof(ScrollClosedEvent))]
+                [IncImplicit(typeof(ClosedStartEvent))]
                 [Inc] public readonly EcsPool<ScrollSnap> ScrollSnaps;
             }
         }
@@ -196,10 +192,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
             {
                 ref ScrollSnap scrollSnap = ref aspect.ScrollSnaps.Get(entity);
 
-                //scrollSnap.ScrollRect.horizontalScrollbar.value = scrollSnap.TargetPosition;
-
-                Debug.Log(scrollSnap.TargetPosition);
-                Debug.Log(scrollSnap.ScrollRect.horizontalNormalizedPosition);
+                scrollSnap.ScrollRect.horizontalScrollbar.value = scrollSnap.TargetPosition;
                 
                 scrollSnap.SnapTween.Stop();
 
@@ -414,8 +407,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                     aspect.ScrollToTargetMarker.Del(entity);
                 }
             }
-
-
+            
             foreach (int entity in _world.Where(out ScaleEffectAspect aspect))
             {
                 ref readonly ScrollSnapEffect effect = ref aspect.ScrollSnapEffects.Read(entity);
@@ -461,7 +453,11 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
         }
     }
 
-    public struct ScrollClosedEvent : IEcsTagComponent
+    public struct ClosedStartEvent : IEcsTagComponent
+    {
+    }
+
+    public struct OpenedEvent : IEcsTagComponent
     {
     }
 }

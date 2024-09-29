@@ -26,6 +26,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 
             [Inc] public readonly EcsPool<AnimalPurchases> PurchaseAnimals;
             [Inc] public readonly EcsPool<PurchaseButtonStatus> PurchaseButtonStatus;
+            [Opt] public readonly EcsTagPool<ClosedStartEvent> ClosedStartEvent;
         }
 
         public void Run()
@@ -44,7 +45,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 
                     float factor = 0.7f;
                     
-                    //EcsDebug.Break();
+                    animalsShopWindowAspect.ClosedStartEvent.Add(window);
                     
                     scrollSnap.OpenCloseTween = Sequence.Create()
                         .Chain(
@@ -85,6 +86,8 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                                     return;
 
                                 EcsWorld world = connect.World;
+                                
+                                world.GetPool<ClosedEvent>().Add(id);
 
                                 ref PurchaseButtonStatus purchaseButtonStatus =
                                     ref world.GetPool<PurchaseButtonStatus>().Get(id);
@@ -92,8 +95,6 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                                 purchaseButtonStatus.Lock.transform.localScale = Vector3.one;
                                 purchaseButtonStatus.Play.transform.localScale = Vector3.one;
                                 purchaseButtonStatus.Unlock.transform.localScale = Vector3.one;
-
-                                world.GetPool<ScrollClosedEvent>().Add(id);
                             });
                 }
             }

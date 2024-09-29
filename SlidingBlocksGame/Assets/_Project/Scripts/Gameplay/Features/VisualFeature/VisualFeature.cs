@@ -35,14 +35,15 @@ namespace _Project.Scripts.Gameplay.Features.VisualFeature
                     .AutoDel<ScrollSetupRequest>()
                     .AutoDelTag<ApplyEffectRequest>()
                     //
-                    .AddUnique(new RotationSystem())
+                    .AddUnique(new RotatePurchaseSystem())
                     .AddUnique(new CameraRenderSystem())
                     .AddUnique(new DisplayPriceAnimalSystem())
                     .AddUnique(new DisplayPurchaseStatusSystem())
                     //
-                    .AutoDelTag<ScrollOpenedEvent>()
+                    .AutoDelTag<OpenedEvent>()
                     .AddUnique(new DisplayAnimalPurchaseWindowSystem())
-                    .AutoDelTag<ScrollClosedEvent>()
+                    .AutoDelTag<ClosedStartEvent>()
+                    .AutoDelTag<ClosedEvent>()
                     .AddUnique(new CloseAnimalPurchaseWindowSystem())
                     //
                     .AutoDelTag<GameLossTimerClosedEvent>()

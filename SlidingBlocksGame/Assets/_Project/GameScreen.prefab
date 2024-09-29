@@ -455,7 +455,7 @@ MonoBehaviour:
           Unlock: {fileID: 5636915135579761801}
           Play: {fileID: 625629822529605203}
           Price: {fileID: 2165986824057982645}
-          Current: {fileID: 0}
+          Current: {fileID: 8128212170323240168}
     - rid: 8499802790374932481
       type: {class: ScrollSnap/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
         asm: Assembly-CSharp}
@@ -1504,7 +1504,7 @@ MonoBehaviour:
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
-  m_ScreenMatchMode: 0
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -13408,7 +13408,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 33.7
+  m_fontSize: 59.6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -16499,7 +16499,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 115.15
+  m_fontSize: 200
   m_fontSizeBase: 200
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -32720,16 +32720,26 @@ PrefabInstance:
     - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
       propertyPath: EntityCfg._components.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
       propertyPath: EntityCfg._components.Array.data[0]
+      value: 6454805702832816128
+      objectReference: {fileID: 0}
+    - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
+        type: 3}
+      propertyPath: EntityCfg._components.Array.data[1]
       value: 8499802776494932275
       objectReference: {fileID: 0}
     - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
       propertyPath: managedReferences[6454805290330882054]
+      value: Assembly-CSharp _Project.Scripts.Gameplay.Features.UIFeature.Components.CloseAnimalsShopWindowButtonTag/Template
+      objectReference: {fileID: 0}
+    - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
+        type: 3}
+      propertyPath: managedReferences[6454805702832816128]
       value: Assembly-CSharp _Project.Scripts.Gameplay.Features.UIFeature.Components.CloseAnimalsShopWindowButtonTag/Template
       objectReference: {fileID: 0}
     - target: {fileID: 5293964723850601425, guid: 261de00eb0358724ea491f0c065012bb,
@@ -32872,7 +32882,7 @@ PrefabInstance:
     - target: {fileID: 7504101692243652340, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
       propertyPath: m_Name
-      value: Button
+      value: Close
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
