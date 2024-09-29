@@ -99,11 +99,11 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                 ref GrabRewardTextTween tween = ref aspect.GrabRewardTextTween.Get(entity);
 
                 Debug.Log("RewardUnlockStateAspect.OnEnter");
-                
+
                 tween.Value.Stop();
 
                 grabRewardText.Value.transform.localScale = Vector3.one;
-                
+
                 tween.Value = Tween.Scale(
                     target: grabRewardText.Value.transform,
                     endValue: new Vector3(1.15f, 1.15f, 1),
@@ -300,7 +300,11 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
             sunshineConnect.Value.transform.localScale = Vector3.zero;
 
             sequence
-                .Group(Tween.Scale(sunshineConnect.Value.transform, new Vector3(2, 2, 2), 0.5f, Ease.OutBack));
+                .Group(Tween.Scale(
+                    target: sunshineConnect.Value.transform,
+                    endValue: Vector3.one,
+                    duration: 0.5f,
+                    ease: Ease.OutBack));
 
             sequence.ChainCallback(
                 target: sunshineConnect.Value,

@@ -141,7 +141,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
             RectTransform content = animalsShopWindowConnect.Value.GetComponent<ScrollRect>().content;
 
             TextMeshProUGUI priceText =
-                animalsShopWindowConnect.Value.transform.Find("Viewport/Price/Price").GetComponent<TextMeshProUGUI>();
+                animalsShopWindowConnect.Value.transform.Find("Viewport/Price").GetComponentInChildren<TextMeshProUGUI>();
 
             _world.GetPool<ScrollSnap>().Get(animalsShopWindowConnect.Value.Entity.ID).Items = animalPurchases.Entities;
             ref ScrollSetupRequest scrollSetupRequest =

@@ -7,6 +7,7 @@ using DCFApixels.DragonECS;
 using PrimeTween;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 {
@@ -367,6 +368,8 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                 ref GameObjectConnect gameObjectConnect = ref aspect.GameObjectConnects.Get(entity);
 
                 Debug.Log("SnapTween");
+
+                AspectRatioFitter aspectRatioFitter;
                 
                 scrollSnap.SnapTween = Tween
                     .UIHorizontalNormalizedPosition(
