@@ -26,7 +26,8 @@ namespace _Project.Scripts.Gameplay.Features.VisualFeature.Systems
 
                 aspect.WobbleTween.TryAddOrGet(entity).Value = Tween.UIAnchoredPosition(
                     target: rect.Value,
-                    endValue: rect.Value.anchoredPosition + new Vector2(0, 45), 1.3f,
+                    endValue: rect.Value.anchoredPosition + new Vector2(0, 45),
+                    duration: 1.3f,
                     cycles: -1,
                     cycleMode: CycleMode.Yoyo,
                     ease: Ease.Linear);

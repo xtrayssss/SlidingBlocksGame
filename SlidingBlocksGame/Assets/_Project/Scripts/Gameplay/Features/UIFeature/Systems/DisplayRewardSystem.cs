@@ -311,7 +311,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                 connect => Tween.LocalEulerAngles(
                     target: connect.transform,
                     startValue: connect.transform.localRotation.eulerAngles,
-                    endValue: new Vector3(0, 0, 360),
+                    endValue: connect.transform.localRotation.eulerAngles + new Vector3(0, 0, 360),
                     duration: 3f,
                     ease: Ease.Linear,
                     cycles: -1,
