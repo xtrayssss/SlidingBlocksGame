@@ -20,7 +20,7 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
             [Exc] public readonly EcsTagPool<LevelLostMarker> LevelLostMarker;
         }
 
-        private class GameLossTimerAspect : EcsAspectAuto
+        private class GameLossTimerExpiredAspect : EcsAspectAuto
         {
             [Inc] public readonly EcsTagPool<CooldownExpiredMarker> CooldownExpiredMarker;
             [Inc] public readonly EcsTagPool<GameLossTimerTag> GameLossTimerTag;
@@ -39,7 +39,7 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
 
         public void Run()
         {
-            foreach (int _ in _world.Where(out GameLossTimerAspect _))
+            foreach (int _ in _world.Where(out GameLossTimerExpiredAspect _))
             {
                 if (_world.Where(out MovingAnimals _).Count != 0)
                     continue;
@@ -55,7 +55,6 @@ namespace _Project.Scripts.Gameplay.Features.DestroyFeature.Systems
             {
                 if (_world.Where(out AnimalAspect _).Count != 0 && _world.Where(out MovingAnimals _).Count == 0)
                 {
-                    EcsDebug.Break();
                     aspect.LevelLostEvent.Add(entity);
                     aspect.LevelLostMarker.Add(entity);
                 }

@@ -57,8 +57,10 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                             callback: go => go.SetActive(false));
                 }
 
+                ref GameObjectConnect goConnect = ref aspect.GameObjectConnects.Get(entity);
+                
                 sequence.ChainCallback(
-                    target: aspect.GameObjectConnects.Get(entity).Connect,
+                    target: goConnect.Connect,
                     callback: connect =>
                     {
                         if (!connect.Entity.TryGetID(out int id))

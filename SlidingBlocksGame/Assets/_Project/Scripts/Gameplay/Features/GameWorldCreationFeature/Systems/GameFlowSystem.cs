@@ -64,6 +64,7 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
         private class MetaGameUIHiddenStateAspect : EcsAspectAuto
         {
             [Inc] private readonly EcsTagPool<MetaGameUIHiddenEvent> _metaGameUIHiddenEvents;
+            [Inc] public readonly EcsPool<PlayButtonConnect> PlayButtonConnects;
         }
 
         private class GameScreenAspect : EcsAspectAuto
@@ -127,10 +128,14 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Systems
                     gameScreenAspect.HideMetaGameUI.Add(gameScreen);
             }
 
-            foreach (int _ in _world.Where(out MetaGameUIHiddenStateAspect _))
+            foreach (int gameScreen in _world.Where(out MetaGameUIHiddenStateAspect gameScreenAspect))
             {
                 foreach (int game in _world.Where(out GameAspect gameAspect))
                     gameAspect.NextLevel.Add(game);
+
+                ref PlayButtonConnect playButtonConnect = ref gameScreenAspect.PlayButtonConnects.Get(gameScreen);
+                playButtonConnect.Play.gameObject.SetActive(false);
+                playButtonConnect.Replay.gameObject.SetActive(true);
             }
 
             foreach (int level in _world.Where(out LevelCreationStateAspect levelAspect))
