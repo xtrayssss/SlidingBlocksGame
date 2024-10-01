@@ -21,7 +21,7 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 6454805247463260171
-      type: {class: Wave/Wrapper, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
+      type: {class: Wave/Wrapper, ns: _Project.Scripts.Gameplay.Features.GameFieldFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -32,14 +32,14 @@ MonoBehaviour:
             z: 0
           BaseSpeedFactor: 0.025
     - rid: 6454805609293545980
-      type: {class: LevelLifeTimeMarker/Template, ns: _Project.Scripts.Gameplay.Features.DestroyFeature.Components,
+      type: {class: LevelLifeTimeMarker/Template, ns: _Project.Scripts.Gameplay.Features.GameFlowFeature.Components,
         asm: Assembly-CSharp}
       data: {}
     - rid: 8499802388792868925
-      type: {class: GameFieldWaveAlgorithmTag/Template, ns: _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Components,
+      type: {class: GameFieldWaveAlgorithmTag/Template, ns: _Project.Scripts.Gameplay.Features.GameFieldFeature.Components,
         asm: Assembly-CSharp}
       data: {}
     - rid: 8499802755217490839
-      type: {class: GameFieldAlgorithmTag/Template, ns: _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Components,
+      type: {class: GameFieldAlgorithmTag/Template, ns: _Project.Scripts.Gameplay.Features.GameFieldFeature.Components,
         asm: Assembly-CSharp}
       data: {}

@@ -13,8 +13,10 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.Components
         public float3 WaveOrigin;
         public float BaseSpeedFactor;
 
-		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Components", sourceClassName: "Wave/Wrapper", sourceAssembly: "Assembly-CSharp")]
-		public sealed class Wrapper : ComponentTemplate<Wave>
+        [MovedFrom(autoUpdateAPI: false,
+            sourceNamespace: "_Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components",
+            sourceClassName: "Wave/Wrapper", sourceAssembly: "Assembly-CSharp")]
+        public sealed class Wrapper : ComponentTemplate<Wave>
         {
         }
     }

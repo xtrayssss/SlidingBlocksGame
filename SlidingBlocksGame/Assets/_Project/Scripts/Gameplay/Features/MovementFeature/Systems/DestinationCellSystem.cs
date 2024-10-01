@@ -1,7 +1,8 @@
 using System.Linq;
+using _Project.Scripts.Gameplay.Features.AnimalFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFieldFeature.Components;
-using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameFlowFeature.Components;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
 using _Project.Scripts.Gameplay.Utils;
 using DCFApixels.DragonECS;
@@ -25,15 +26,6 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 
             [Opt] public readonly EcsPool<CellDestination> CellDestination;
             [Opt] public readonly EcsPool<WorldDestination> WorldDestination;
-        }
-
-        private class ObstacleAnimalAspect : EcsAspectAuto
-        {
-            [IncImplicit(typeof(AnimalTag))]
-            [Inc] public readonly EcsPool<MovementDirection> Directions;
-
-            [Inc] public readonly EcsPool<ActiveGameField> ActiveGameFields;
-            [Inc] public readonly EcsPool<CellDestination> CellDestinations;
         }
 
         private class ClickAspect : EcsAspectAuto
@@ -161,8 +153,6 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                         GridUtils.SetCell(
                             position: cellDestination.Value,
                             gameField: ref gameFieldAspect.GameFields.Get(gameFieldID));
-
-                        _world.GetPool<CanMoveMarker>().Add(animal);
                     }
                 }
                 else
@@ -187,15 +177,16 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                         GridUtils.SetCell(
                             position: cellDestination.Value,
                             gameField: ref gameFieldAspect.GameFields.Get(gameFieldID));
-
-                        _world.GetPool<CanMoveMarker>().Add(animal);
                     }
                 }
 
                 foreach (int game in _world.Where(out GameAspect gameAspect))
                 {
-                    int movementStrategy = _world.NewEntity(gameAspect.MovementStrategyConfigs.Read(game).Value);
-                    _world.GetPool<ApplyStrategyRequest>().Add(movementStrategy);
+                    Debug.Log("GAMEEEEEEEEE");
+                    ref readonly MovementStrategyCfg movementStrategyCfg = ref gameAspect.MovementStrategyConfigs.Read(game);
+                    int movementStrategy = _world.NewEntity(movementStrategyCfg.Value);
+                    _world.GetPool<ApplyMovementStrategyRequest>().Add(movementStrategy);
+                    _world.GetPool<TargetEntities>().Add(movementStrategy).Value = sideAnimals.Value;
                 }
             }
         }

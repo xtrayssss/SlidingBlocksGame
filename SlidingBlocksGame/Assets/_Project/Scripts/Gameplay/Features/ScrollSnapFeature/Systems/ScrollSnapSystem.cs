@@ -1,5 +1,6 @@
 using System;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+using _Project.Scripts.Gameplay.Features.DestructionFeature.Components;
 using _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Components;
 using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using _Project.Scripts.Gameplay.Utils;
@@ -431,7 +432,7 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Systems
                 transform.Value.localScale =
                     math.lerp(transform.Value.localScale, targetScale, 0.04f);
 
-                _world.GetPool<DeleteEntityCommand>().Add(entity);
+                _world.GetPool<DeleteEntityRequest>().Add(entity);
             }
 
             foreach (int entity in _world.Where(out FadeEffectAspect aspect))
@@ -451,7 +452,7 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Systems
                 graphic.Value.color = new Color(graphic.Value.color.r, graphic.Value.color.g, graphic.Value.color.b,
                     targetAlpha);
 
-                _world.GetPool<DeleteEntityCommand>().Add(entity);
+                _world.GetPool<DeleteEntityRequest>().Add(entity);
             }
         }
     }

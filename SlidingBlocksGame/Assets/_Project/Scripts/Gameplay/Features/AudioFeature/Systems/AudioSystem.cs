@@ -3,6 +3,7 @@ using _Project.Scripts.Gameplay.Features.TweenFeature.Components;
 using _Project.Scripts.Gameplay.Utils;
 using DCFApixels.DragonECS;
 using PrimeTween;
+using Sirenix.OdinInspector.Editor.Modules;
 using UnityEngine;
 using UnityEngine.Scripting.APIUpdating;
 
@@ -98,5 +99,5 @@ namespace _Project.Scripts.Gameplay.Features.AudioFeature.Systems
                 Debug.Log("AUDIO: " + typeof(TEvent).Name + aspect.AudioTypes.Read(audio).Value);
             }
         }
-    }
+    } 
 }

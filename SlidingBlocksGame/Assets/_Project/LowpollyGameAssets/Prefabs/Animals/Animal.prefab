@@ -131,8 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _deleteEntiityWithDestroy: 1
-  _scriptableTemplates:
-  - {fileID: 11400000, guid: 5bc022f7814f7564ca22c0875b9c214d, type: 2}
+  _scriptableTemplates: []
   _monoTemplates:
   - {fileID: 299863596686586096}
   _renderer: {fileID: 8479443584960617139}
@@ -152,9 +151,48 @@ MonoBehaviour:
   - rid: 8499802272422691542
   - rid: 8499802611131088910
   - rid: 6454805130946282388
+  - rid: 3543309302603710465
+  - rid: 3543309302603710466
+  - rid: 3543309302603710467
+  - rid: 3543309302603710468
+  - rid: 3543309302603710469
   references:
     version: 2
     RefIds:
+    - rid: 3543309302603710465
+      type: {class: AnimalTag/Wrapper, ns: _Project.Scripts.Gameplay.Features.AnimalFeature.Components,
+        asm: Assembly-CSharp}
+      data: {}
+    - rid: 3543309302603710466
+      type: {class: WorldPosition/Wrapper, ns: _Project.Scripts.Gameplay.Features.CommonFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value:
+            x: 0
+            y: 0
+            z: 0
+    - rid: 3543309302603710467
+      type: {class: AnimalSpawnedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AnimalFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          <Value>k__BackingField: {fileID: 11400000, guid: 7f8a393c9d3181b4d8fca37f7c0f1925,
+            type: 2}
+    - rid: 3543309302603710468
+      type: {class: MovementSpeedFactor/Template, ns: _Project.Scripts.Gameplay.Features.MovementFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Base: 2
+          Value: 0
+    - rid: 3543309302603710469
+      type: {class: DeathAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          <Value>k__BackingField: {fileID: 11400000, guid: b67d4df315aecf34080e7c03cd4c2e18,
+            type: 2}
     - rid: 6454805130946282388
       type: {class: MeshRendererRef/Template, ns: _Project.Scripts.Gameplay.Features.CommonFeature.Components,
         asm: Assembly-CSharp}

@@ -15,12 +15,11 @@ MonoBehaviour:
   _components:
   - rid: 8499802340583015396
   - rid: 8499802340583015397
-  - rid: 8499802343551533792
   references:
     version: 2
     RefIds:
     - rid: 8499802340583015396
-      type: {class: CreationChainTag/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
+      type: {class: CreationChainStrategyTag/Template, ns: _Project.Scripts.Gameplay.Features.GameFlowFeature.Components,
         asm: Assembly-CSharp}
       data: {}
     - rid: 8499802340583015397
@@ -30,9 +29,3 @@ MonoBehaviour:
         component:
           Elapsed: 0
           Duration: 0.1
-    - rid: 8499802343551533792
-      type: {class: Prefab/Template, ns: _Project.Scripts.Gameplay.Features.CommonFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: {fileID: 0}

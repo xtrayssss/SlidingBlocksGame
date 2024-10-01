@@ -6,7 +6,6 @@ using _Project.Scripts.Gameplay.Features.UIFeature.Systems;
 using _Project.Scripts.Gameplay.Features.VisualFeature.Components;
 using _Project.Scripts.Gameplay.Features.VisualFeature.Systems;
 using DCFApixels.DragonECS;
-using UnityEngine.Scripting.APIUpdating;
 
 namespace _Project.Scripts.Gameplay.Features.VisualFeature
 {
@@ -66,7 +65,9 @@ namespace _Project.Scripts.Gameplay.Features.VisualFeature
                     .AutoDelTag<CanRewardEvent>()
                     .AddUnique(new CanRewardSystem())
                     .AddUnique(new WobbleSystem())
-                    .AutoDelTag<WobbleRequest>();
+                    .AutoDelTag<WobbleRequest>()
+                    //
+                    .AutoDelEntityTag<ButtonClickedEvent>();
             }
         }
 

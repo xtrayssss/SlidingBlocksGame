@@ -1,44 +1,33 @@
-﻿using _Project.Scripts.Gameplay.Features.AudioFeature;
-using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+﻿using _Project.Scripts.Gameplay.Features.AnimalFeature;
+using _Project.Scripts.Gameplay.Features.AudioFeature;
 using _Project.Scripts.Gameplay.Features.CooldownFeature;
-using _Project.Scripts.Gameplay.Features.DestroyFeature.Components;
-using _Project.Scripts.Gameplay.Features.DestroyFeature.Systems;
+using _Project.Scripts.Gameplay.Features.CreationFeature;
+using _Project.Scripts.Gameplay.Features.DestructionFeature;
 using _Project.Scripts.Gameplay.Features.GameFieldFeature;
-using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature;
-using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameFlowFeature;
+using _Project.Scripts.Gameplay.Features.GameFlowFeature.Components;
 using _Project.Scripts.Gameplay.Features.InputFeature;
 using _Project.Scripts.Gameplay.Features.MovementFeature;
-using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
-using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.VisualFeature;
 using DCFApixels.DragonECS;
-using PrimeTween;
 using Sirenix.OdinInspector;
-using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 using YG;
 
 namespace _Project.Scripts.Gameplay
 {
-    public class DestructionFeature : IEcsModule
+    public class PlayerFeature : IEcsModule
     {
         public void Import(EcsPipeline.Builder builder)
         {
             builder
-                //
-                .AddUnique(new AnimalDestructionChainStrategySystem())
-                .AutoDelTag<AnimalDestructedEvent>()
-                .AddUnique(new ChainDestructionRequestSystem())
-                .AutoDelTag<ApplyDestructionStrategyRequest>();
+                .AddModule(new InputFeature());
+            //.AddUnique(new SaveLoadPlayerProgressSystem());
         }
     }
 
     public class EcsRoot : MonoBehaviour, ICoroutineRunner
     {
-        [SerializeField] public TweenSettings TweenSettings;
-        [SerializeField] public TweenSettings<float> TweenSettings2;
-
-
         [SerializeField] private ScriptableEntityTemplate _gameCfg;
 
         private EcsPipeline _pipeline;
@@ -50,24 +39,7 @@ namespace _Project.Scripts.Gameplay
             YandexGame.ResetSaveProgress();
             YandexGame.SaveProgress();
         }
-
-        [Button]
-        public void NormalizeMeshSize(GameObject obj, float targetSize = 1f)
-        {
-            MeshRenderer renderer = obj.GetComponentInChildren<MeshRenderer>();
-            
-            float lowerY = renderer.bounds.center.y - renderer.bounds.extents.y;
-            float upperY = lowerY + renderer.bounds.size.y;
-
-            Debug.Log(renderer.bounds.max);
-        }
-
-        [Button]
-        private void Rotate(GameObject go)
-        {
-            NormalizeMeshSize(go);
-        }
-
+        
         public void Start()
         {
             EcsDefaultWorldSingletonProvider provider = EcsDefaultWorldSingletonProvider.Instance;
@@ -75,27 +47,18 @@ namespace _Project.Scripts.Gameplay
             provider.Set(_world = new EcsDefaultWorld());
 
             _pipeline = EcsPipeline.New()
-                .AutoDelTag<DeathEvent>()
                 .AddModule(new GameFlowFeature(_gameCfg))
-                .AddModule(new InputFeature())
+                .AddModule(new PlayerFeature())
+                .AddModule(new CreationFeature())
                 .AddModule(new GameFieldFeature(coroutineRunner: this))
+                .AddModule(new AnimalFeature())
                 .AddModule(new MovementFeature())
                 .AddModule(new DestructionFeature())
                 .AddModule(new VisualFeature())
                 .AddModule(new CooldownFeature())
                 .AddModule(new AudioFeature())
-
                 // 
                 .AutoDelTag<GameCreatedEvent>()
-                //
-                .AutoDelTag<ApplyStrategyRequest>()
-                // spawned
-                .AutoDelTag<ViewDestroyedEvent>()
-                .AddUnique(new DestroyViewSystem())
-                .AutoDelEntityTag<DeleteEntityCommand>()
-                .AutoDelEntityTag<ButtonClickedEvent>()
-                // other
-                //
                 .AddUnityDebug(_world)
                 .Inject(_world)
                 .AutoInject()

@@ -1,9 +1,8 @@
 using DCFApixels.DragonECS;
-using UnityEngine.Scripting.APIUpdating;
 
 namespace _Project.Scripts.Gameplay.Features.CommonFeature.Components
 {
-    internal struct NextLeveRequest : IEcsTagComponent
+    public struct NextLeveRequest : IEcsTagComponent
     {
     }
 }

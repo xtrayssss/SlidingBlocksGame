@@ -682,40 +682,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff5703cff0e54627b1a489995a5c5490, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TweenSettings:
-    duration: 1
-    ease: 0
-    customEase:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    cycles: 1
-    cycleMode: 0
-    startDelay: 0
-    endDelay: 0
-    useUnscaledTime: 0
-    useFixedUpdate: 0
-  TweenSettings2:
-    startFromCurrent: 0
-    startValue: 0
-    endValue: 0
-    settings:
-      duration: 1
-      ease: 0
-      customEase:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-      cycles: 1
-      cycleMode: 0
-      startDelay: 0
-      endDelay: 0
-      useUnscaledTime: 0
-      useFixedUpdate: 0
   _gameCfg: {fileID: 11400000, guid: a6c6745e88dd1ee40a1f2088e4454454, type: 2}
 --- !u!4 &197760453
 Transform:
@@ -37696,13 +37662,13 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 6454805156365861479
-      type: {class: RewardConnect/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
+      type: {class: RewardConnect/Template, ns: _Project.Scripts.Gameplay.Features.GameFlowFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
           Value: {fileID: 5550420862275140226}
     - rid: 6454805176898027520
-      type: {class: GameTitleConnect/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
+      type: {class: GameTitleConnect/Template, ns: _Project.Scripts.Gameplay.Features.GameFlowFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -37739,7 +37705,7 @@ MonoBehaviour:
         component:
           Value: {fileID: 7648407152559335814}
     - rid: 8499802702287471247
-      type: {class: MetaGameUI/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
+      type: {class: MetaGameUI/Template, ns: _Project.Scripts.Gameplay.Features.GameFlowFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -40901,13 +40867,13 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 6454805156365861479
-      type: {class: RewardConnect/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
+      type: {class: RewardConnect/Template, ns: _Project.Scripts.Gameplay.Features.GameFlowFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
           Value: {fileID: 6198858325405827461}
     - rid: 6454805176898027520
-      type: {class: GameTitleConnect/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
+      type: {class: GameTitleConnect/Template, ns: _Project.Scripts.Gameplay.Features.GameFlowFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -40944,7 +40910,7 @@ MonoBehaviour:
         component:
           Value: {fileID: 8153014339905852033}
     - rid: 8499802702287471247
-      type: {class: MetaGameUI/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
+      type: {class: MetaGameUI/Template, ns: _Project.Scripts.Gameplay.Features.GameFlowFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:

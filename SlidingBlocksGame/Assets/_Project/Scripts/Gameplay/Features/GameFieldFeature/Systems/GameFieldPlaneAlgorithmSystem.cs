@@ -1,6 +1,5 @@
 using System;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
-using _Project.Scripts.Gameplay.Features.DestroyFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFieldFeature.Components;
 using DCFApixels.DragonECS;
 using Unity.Mathematics;

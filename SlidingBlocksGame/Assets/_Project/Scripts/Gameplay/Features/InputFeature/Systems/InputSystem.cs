@@ -1,6 +1,8 @@
 using System;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+using _Project.Scripts.Gameplay.Features.DestructionFeature.Components;
 using _Project.Scripts.Gameplay.Features.InputFeature.Components;
+using _Project.Scripts.Gameplay.Features.PlayerFeature.Components;
 using DCFApixels.DragonECS;
 using Unity.Mathematics;
 using UnityEngine;
@@ -28,7 +30,7 @@ namespace _Project.Scripts.Gameplay.Features.InputFeature.Systems
         {
             [Opt] public readonly EcsTagPool<ClickDownEvent> ClickDown;
             [Opt] public readonly EcsTagPool<ClickUpEvent> ClickUp;
-            [Opt] public readonly EcsTagPool<DeleteEntityCommand> DeleteEntity;
+            [Opt] public readonly EcsTagPool<DeleteEntityRequest> DeleteEntity;
             [Opt] public readonly EcsTagPool<PrimaryClickMarker> PrimaryClick;
             [Opt] public readonly EcsPool<ScreenPosition> ScreenPosition;
         }

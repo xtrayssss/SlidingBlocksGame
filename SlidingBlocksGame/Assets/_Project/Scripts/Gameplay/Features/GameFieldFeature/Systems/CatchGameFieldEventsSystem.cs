@@ -1,5 +1,4 @@
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
-using _Project.Scripts.Gameplay.Features.DestroyFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFieldFeature.Components;
 using DCFApixels.DragonECS;
 

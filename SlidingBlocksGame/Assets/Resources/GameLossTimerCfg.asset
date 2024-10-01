@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _components:
   - rid: 8499802292475658343
-  - rid: 8499802292475658366
   - rid: 8499802296451858795
   - rid: 8499802296898552009
   - rid: 8499802814705828381
@@ -28,13 +27,6 @@ MonoBehaviour:
         component:
           Elapsed: 0
           Duration: 20
-    - rid: 8499802292475658366
-      type: {class: Prefab/Template, ns: _Project.Scripts.Gameplay.Features.CommonFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: {fileID: 2701575697393814912, guid: 9c8902b6b78006149a75e0be6ae89dd3,
-            type: 3}
     - rid: 8499802296451858795
       type: {class: CooldownInterval/Template, ns: _Project.Scripts.Gameplay.Features.CooldownFeature.Components,
         asm: Assembly-CSharp}

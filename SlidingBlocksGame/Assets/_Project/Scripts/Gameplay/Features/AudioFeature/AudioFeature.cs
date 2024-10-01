@@ -1,8 +1,10 @@
+using _Project.Scripts.Gameplay.Features.AnimalFeature.Components;
 using _Project.Scripts.Gameplay.Features.AudioFeature.Components;
 using _Project.Scripts.Gameplay.Features.AudioFeature.Systems;
 using _Project.Scripts.Gameplay.Features.CollectFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
-using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
+using _Project.Scripts.Gameplay.Features.DestructionFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameFlowFeature.Components;
 using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using DCFApixels.DragonECS;
 using UnityEngine.Scripting.APIUpdating;
@@ -14,7 +16,6 @@ namespace _Project.Scripts.Gameplay.Features.AudioFeature
         public void Import(EcsPipeline.Builder builder)
         {
             builder
-                .AddAudioSystem<AnimalSpawnedEvent, AnimalSpawnedAudioConfig>()
                 .AddAudioSystem<ButtonClickedEvent, ClickedAudioConfig>()
                 .AddAudioSystem<DeathEvent, DeathAudioConfig>()
                 .AddAudioSystem<TickEvent, TickAudioConfig>()

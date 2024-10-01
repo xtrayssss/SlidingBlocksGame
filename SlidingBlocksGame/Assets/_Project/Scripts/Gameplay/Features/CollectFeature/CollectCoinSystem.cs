@@ -1,9 +1,10 @@
+using _Project.Scripts.Gameplay.Features.AnimalFeature.Components;
 using _Project.Scripts.Gameplay.Features.CollectFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
-using _Project.Scripts.Gameplay.Features.DestroyFeature.Components;
+using _Project.Scripts.Gameplay.Features.DestructionFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFieldFeature.Components;
-using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
+using _Project.Scripts.Gameplay.Features.PlayerFeature.Components;
 using _Project.Scripts.Gameplay.Utils;
 using DCFApixels.DragonECS;
 using PrimeTween;
@@ -31,7 +32,7 @@ namespace _Project.Scripts.Gameplay.Features.CollectFeature
 
             [Opt] public readonly EcsPool<TargetEntity> Target;
 
-            [Opt] public readonly EcsTagPool<DeleteEntityCommand> DeleteEntity;
+            [Opt] public readonly EcsTagPool<DeleteEntityRequest> DeleteEntity;
             [Opt] public readonly EcsTagPool<DestroyViewRequest> DestroyView;
         }
 

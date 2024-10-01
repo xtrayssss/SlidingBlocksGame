@@ -5,14 +5,16 @@ using UnityEngine.Scripting.APIUpdating;
 
 namespace _Project.Scripts.Gameplay.Features.MovementFeature.Components
 {
-    [Serializable] 
+    [Serializable]
     [MetaGroup("Movement")]
     public struct WorldDestination : IEcsComponent
     {
         public float3 Value;
 
-		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.MovementFeature.Components", sourceClassName: "WorldDestination/Template", sourceAssembly: "Assembly-CSharp")]
-		private sealed class Template : ComponentTemplate<WorldDestination>
+        [MovedFrom(autoUpdateAPI: false,
+            sourceNamespace: "_Project.Scripts.Gameplay.Features.MovementFeature.Components",
+            sourceClassName: "WorldDestination/Template", sourceAssembly: "Assembly-CSharp")]
+        private sealed class Template : ComponentTemplate<WorldDestination>
         {
         }
     }
