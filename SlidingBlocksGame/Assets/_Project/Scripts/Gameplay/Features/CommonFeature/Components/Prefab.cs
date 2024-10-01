@@ -1,6 +1,7 @@
-﻿using System;
+using System;
 using DCFApixels.DragonECS;
 using UnityEngine;
+using UnityEngine.Scripting.APIUpdating;
 
 namespace _Project.Scripts.Gameplay.Features.CommonFeature.Components
 {
@@ -8,8 +9,9 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Components
     public struct Prefab : IEcsComponent
     {
         public EcsEntityConnect Value;
-        
-        private sealed class Template : ComponentTemplate<Prefab>
+
+		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.CommonFeature.Components", sourceClassName: "Prefab/Template", sourceAssembly: "Assembly-CSharp")]
+		private sealed class Template : ComponentTemplate<Prefab>
         {
         }
     }

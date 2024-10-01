@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using DCFApixels.DragonECS;
+using UnityEngine.Scripting.APIUpdating;
 
 namespace _Project.Scripts.Gameplay.Features.CommonFeature.Components
 {
@@ -9,7 +10,8 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Components
         public int Price;
         public ushort ProductIndex;
 
-        private sealed class Template : ComponentTemplate<Purchase>
+		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.CommonFeature.Components", sourceClassName: "Purchase/Template", sourceAssembly: "Assembly-CSharp")]
+		private sealed class Template : ComponentTemplate<Purchase>
         {
         }
     }

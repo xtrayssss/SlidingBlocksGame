@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using DCFApixels.DragonECS;
+using UnityEngine.Scripting.APIUpdating;
 
 namespace _Project.Scripts.Gameplay.Features.CooldownFeature.Components
 {
@@ -9,7 +10,8 @@ namespace _Project.Scripts.Gameplay.Features.CooldownFeature.Components
         public float Elapsed;
         public float Duration;
 
-        public sealed class Template : ComponentTemplate<Cooldown>
+		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.CooldownFeature.Components", sourceClassName: "Cooldown/Template", sourceAssembly: "Assembly-CSharp")]
+		public sealed class Template : ComponentTemplate<Cooldown>
         {
         }
     }

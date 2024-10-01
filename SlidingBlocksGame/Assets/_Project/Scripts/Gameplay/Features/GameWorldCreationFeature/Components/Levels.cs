@@ -1,6 +1,7 @@
-﻿using System;
+using System;
 using DCFApixels.DragonECS;
 using UnityEngine.Serialization;
+using UnityEngine.Scripting.APIUpdating;
 
 namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components
 {
@@ -19,7 +20,8 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components
             public ScriptableEntityTemplate[] Levels;
         }
 
-        private sealed class Template : ComponentTemplate<Levels>
+		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components", sourceClassName: "Levels/LevelsPack/Template", sourceAssembly: "Assembly-CSharp")]
+		private sealed class Template : ComponentTemplate<Levels>
         {
         }
     }

@@ -1,6 +1,7 @@
-﻿using System;
+using System;
 using DCFApixels.DragonECS;
 using TMPro;
+using UnityEngine.Scripting.APIUpdating;
 
 namespace _Project.Scripts.Gameplay.Features.UIFeature.Components
 {
@@ -9,7 +10,8 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Components
     {
         public TextMeshProUGUI Value;
 
-        private sealed class Template : ComponentTemplate<RewardTimeText>
+		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.UIFeature.Components", sourceClassName: "RewardTimeText/Template", sourceAssembly: "Assembly-CSharp")]
+		private sealed class Template : ComponentTemplate<RewardTimeText>
         {
         }
     }

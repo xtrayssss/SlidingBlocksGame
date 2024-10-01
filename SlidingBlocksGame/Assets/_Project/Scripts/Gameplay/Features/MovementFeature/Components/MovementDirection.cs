@@ -1,6 +1,7 @@
-﻿using System;
+using System;
 using DCFApixels.DragonECS;
 using Unity.Mathematics;
+using UnityEngine.Scripting.APIUpdating;
 
 namespace _Project.Scripts.Gameplay.Features.MovementFeature.Components
 {
@@ -11,7 +12,9 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Components
         public int2 Value;
 
         [Serializable]
-        public sealed class Template : ComponentTemplate<MovementDirection>
+
+		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.MovementFeature.Components", sourceClassName: "MovementDirection/Template", sourceAssembly: "Assembly-CSharp")]
+		public sealed class Template : ComponentTemplate<MovementDirection>
         {
         }
     }

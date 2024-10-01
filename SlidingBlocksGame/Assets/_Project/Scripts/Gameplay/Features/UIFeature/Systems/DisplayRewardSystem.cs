@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using _Project.Scripts.Gameplay.Features.CollectFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.UIFeature.Components;
@@ -10,6 +10,7 @@ using YG;
 using IEcsRun = DCFApixels.DragonECS.IEcsRun;
 using Sequence = PrimeTween.Sequence;
 using Tween = PrimeTween.Tween;
+using UnityEngine.Scripting.APIUpdating;
 
 namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 {

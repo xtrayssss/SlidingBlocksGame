@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using DCFApixels.DragonECS;
+using UnityEngine.Scripting.APIUpdating;
 
 namespace _Project.Scripts.Gameplay.Features.InputFeature.Components
 {
@@ -7,7 +8,9 @@ namespace _Project.Scripts.Gameplay.Features.InputFeature.Components
     [MetaGroup("Input")]
     public struct LockGameInputMarker : IEcsTagComponent
     {
-        private sealed class Template : TagComponentTemplate<LockGameInputMarker>
+
+		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.InputFeature.Components", sourceClassName: "LockGameInputMarker/Template", sourceAssembly: "Assembly-CSharp")]
+		private sealed class Template : TagComponentTemplate<LockGameInputMarker>
         {
         }
     }

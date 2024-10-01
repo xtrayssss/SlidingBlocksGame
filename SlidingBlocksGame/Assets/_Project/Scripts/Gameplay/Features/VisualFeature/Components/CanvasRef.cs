@@ -1,6 +1,7 @@
-﻿using System;
+using System;
 using DCFApixels.DragonECS;
 using UnityEngine;
+using UnityEngine.Scripting.APIUpdating;
 
 namespace _Project.Scripts.Gameplay.Features.VisualFeature.Components
 {
@@ -9,7 +10,8 @@ namespace _Project.Scripts.Gameplay.Features.VisualFeature.Components
     {
         public Canvas Value;
 
-        private sealed class Template : ComponentTemplate<CanvasRef>
+		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.VisualFeature.Components", sourceClassName: "CanvasRef/Template", sourceAssembly: "Assembly-CSharp")]
+		private sealed class Template : ComponentTemplate<CanvasRef>
         {
         }
     }

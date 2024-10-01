@@ -1,6 +1,7 @@
-﻿using System;
+using System;
 using DCFApixels.DragonECS;
 using UnityEngine;
+using UnityEngine.Scripting.APIUpdating;
 
 namespace _Project.Scripts.Gameplay.Features.UIFeature.Components
 {
@@ -14,7 +15,8 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Components
         
         public GameObject Current;
 
-        private sealed class Template : ComponentTemplate<PurchaseButtonStatus>
+		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.UIFeature.Components", sourceClassName: "PurchaseButtonStatus/Template", sourceAssembly: "Assembly-CSharp")]
+		private sealed class Template : ComponentTemplate<PurchaseButtonStatus>
         {
         }
     }

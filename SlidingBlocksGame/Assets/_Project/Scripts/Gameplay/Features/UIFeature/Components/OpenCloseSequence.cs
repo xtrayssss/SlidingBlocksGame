@@ -1,7 +1,8 @@
-﻿using System;
+using System;
 using System.Collections;
 using DCFApixels.DragonECS;
 using PrimeTween;
+using UnityEngine.Scripting.APIUpdating;
 
 namespace _Project.Scripts.Gameplay.Features.UIFeature.Components
 {
@@ -10,7 +11,8 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Components
     {
         public Sequence Value;
 
-        private sealed class Template : ComponentTemplate<OpenCloseSequence>
+		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.UIFeature.Components", sourceClassName: "OpenCloseSequence/Template", sourceAssembly: "Assembly-CSharp")]
+		private sealed class Template : ComponentTemplate<OpenCloseSequence>
         {
         }
     }

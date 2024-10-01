@@ -1,6 +1,7 @@
-﻿using System;
+using System;
 using DCFApixels.DragonECS;
 using Unity.Mathematics;
+using UnityEngine.Scripting.APIUpdating;
 
 namespace _Project.Scripts.Gameplay.Features.CommonFeature.Components
 {
@@ -11,7 +12,9 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Components
         public int2 Fixed;
 
         [Serializable]
-        public sealed class Wrapper : ComponentTemplate<CellPosition>
+
+		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.CommonFeature.Components", sourceClassName: "CellPosition/Wrapper", sourceAssembly: "Assembly-CSharp")]
+		public sealed class Wrapper : ComponentTemplate<CellPosition>
         {
         }   
     }

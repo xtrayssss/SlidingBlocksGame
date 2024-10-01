@@ -1,7 +1,8 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using DCFApixels.DragonECS;
 using UnityEngine.Serialization;
+using UnityEngine.Scripting.APIUpdating;
 
 namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components
 {
@@ -15,7 +16,9 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components
         [FormerlySerializedAs("Speed")] public float SpeedFactor;
 
         [Serializable]
-        public sealed class Wrapper : ComponentTemplate<GrowthWave>
+
+		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components", sourceClassName: "GrowthWave/Wrapper", sourceAssembly: "Assembly-CSharp")]
+		public sealed class Wrapper : ComponentTemplate<GrowthWave>
         {
         }
     }

@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using DCFApixels.DragonECS;
+using UnityEngine.Scripting.APIUpdating;
 
 namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components
 {
@@ -8,7 +9,8 @@ namespace _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components
     {
         public ScriptableEntityTemplate Value;
 
-        private sealed class Template : ComponentTemplate<PlayerCfgRef>
+		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components", sourceClassName: "PlayerCfgRef/Template", sourceAssembly: "Assembly-CSharp")]
+		private sealed class Template : ComponentTemplate<PlayerCfgRef>
         {
         }
     }

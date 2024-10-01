@@ -1,6 +1,7 @@
-﻿using System;
+using System;
 using DCFApixels.DragonECS;
 using Unity.Mathematics;
+using UnityEngine.Scripting.APIUpdating;
 
 namespace _Project.Scripts.Gameplay.Features.MovementFeature.Components
 {
@@ -10,7 +11,8 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Components
     {
         public float3 Value;
 
-        private sealed class Template : ComponentTemplate<WorldDestination>
+		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.MovementFeature.Components", sourceClassName: "WorldDestination/Template", sourceAssembly: "Assembly-CSharp")]
+		private sealed class Template : ComponentTemplate<WorldDestination>
         {
         }
     }

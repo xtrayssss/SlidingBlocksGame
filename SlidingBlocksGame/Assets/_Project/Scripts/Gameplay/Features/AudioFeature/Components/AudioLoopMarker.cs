@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using DCFApixels.DragonECS;
+using UnityEngine.Scripting.APIUpdating;
 
 namespace _Project.Scripts.Gameplay.Features.AudioFeature.Components
 {
@@ -7,7 +8,9 @@ namespace _Project.Scripts.Gameplay.Features.AudioFeature.Components
     [MetaGroup("Audio")]
     public struct AudioLoopMarker : IEcsTagComponent
     {
-        private sealed class Template : TagComponentTemplate<AudioLoopMarker>
+
+		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.AudioFeature.Components", sourceClassName: "AudioLoopMarker/Template", sourceAssembly: "Assembly-CSharp")]
+		private sealed class Template : TagComponentTemplate<AudioLoopMarker>
         {
         }
     }

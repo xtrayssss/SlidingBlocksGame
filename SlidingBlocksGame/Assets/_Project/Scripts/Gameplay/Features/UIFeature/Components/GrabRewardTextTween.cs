@@ -1,6 +1,7 @@
-﻿using System;
+using System;
 using DCFApixels.DragonECS;
 using PrimeTween;
+using UnityEngine.Scripting.APIUpdating;
 
 namespace _Project.Scripts.Gameplay.Features.UIFeature.Components
 {
@@ -9,7 +10,8 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Components
     {
         public Tween Value;
 
-        private sealed class Template : ComponentTemplate<GrabRewardTextTween>
+		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.UIFeature.Components", sourceClassName: "GrabRewardTextTween/Template", sourceAssembly: "Assembly-CSharp")]
+		private sealed class Template : ComponentTemplate<GrabRewardTextTween>
         {
         }
     }

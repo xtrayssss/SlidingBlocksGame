@@ -1,4 +1,4 @@
-﻿using DCFApixels.DragonECS;
+using DCFApixels.DragonECS;
 using Unity.Mathematics;
 
 namespace _Project.Scripts.Gameplay.Features.InputFeature.Components

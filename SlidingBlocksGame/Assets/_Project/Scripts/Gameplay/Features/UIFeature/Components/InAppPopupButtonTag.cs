@@ -1,12 +1,15 @@
-﻿using System;
+using System;
 using DCFApixels.DragonECS;
+using UnityEngine.Scripting.APIUpdating;
 
 namespace _Project.Scripts.Gameplay.Features.UIFeature.Components
 {
     [Serializable]
     public struct InAppPopupButtonTag : IEcsTagComponent
     {
-        private sealed class Template : TagComponentTemplate<InAppPopupButtonTag>
+
+		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.UIFeature.Components", sourceClassName: "InAppPopupButtonTag/Template", sourceAssembly: "Assembly-CSharp")]
+		private sealed class Template : TagComponentTemplate<InAppPopupButtonTag>
         {
         }
     }

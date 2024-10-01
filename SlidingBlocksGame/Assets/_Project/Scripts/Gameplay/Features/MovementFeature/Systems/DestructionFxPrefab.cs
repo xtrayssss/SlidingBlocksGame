@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using DCFApixels.DragonECS;
+using UnityEngine.Scripting.APIUpdating;
 
 namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 {
@@ -8,7 +9,8 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
     {
         public EcsEntityConnect Value;
 
-        private class Template : ComponentTemplate<DestructionFxPrefab>
+		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.MovementFeature.Systems", sourceClassName: "DestructionFxPrefab/Template", sourceAssembly: "Assembly-CSharp")]
+		private class Template : ComponentTemplate<DestructionFxPrefab>
         {
         }
     }

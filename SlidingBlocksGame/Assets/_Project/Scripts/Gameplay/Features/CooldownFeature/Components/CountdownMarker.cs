@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using DCFApixels.DragonECS;
+using UnityEngine.Scripting.APIUpdating;
 
 namespace _Project.Scripts.Gameplay.Features.CooldownFeature.Components
 {
@@ -7,7 +8,9 @@ namespace _Project.Scripts.Gameplay.Features.CooldownFeature.Components
     public struct CountdownMarker : IEcsTagComponent
     {
         [Serializable]
-        public sealed class Template : TagComponentTemplate<CountdownMarker>
+
+		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.CooldownFeature.Components", sourceClassName: "CountdownMarker/Template", sourceAssembly: "Assembly-CSharp")]
+		public sealed class Template : TagComponentTemplate<CountdownMarker>
         {
         }
     }

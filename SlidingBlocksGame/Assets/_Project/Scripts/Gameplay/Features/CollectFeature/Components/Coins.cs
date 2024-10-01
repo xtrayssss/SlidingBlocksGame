@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using DCFApixels.DragonECS;
+using UnityEngine.Scripting.APIUpdating;
 
 namespace _Project.Scripts.Gameplay.Features.CollectFeature.Components
 {
@@ -8,7 +9,8 @@ namespace _Project.Scripts.Gameplay.Features.CollectFeature.Components
     {
         public int Value;
 
-        private sealed class Template : ComponentTemplate<Coins>
+		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.CollectFeature.Components", sourceClassName: "Coins/Template", sourceAssembly: "Assembly-CSharp")]
+		private sealed class Template : ComponentTemplate<Coins>
         {
         }
     }

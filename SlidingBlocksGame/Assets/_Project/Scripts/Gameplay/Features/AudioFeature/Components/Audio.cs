@@ -1,6 +1,7 @@
-﻿using System;
+using System;
 using DCFApixels.DragonECS;
 using UnityEngine;
+using UnityEngine.Scripting.APIUpdating;
 
 namespace _Project.Scripts.Gameplay.Features.AudioFeature.Components
 {
@@ -9,8 +10,9 @@ namespace _Project.Scripts.Gameplay.Features.AudioFeature.Components
     public struct Audio : IEcsComponent
     {
         public AudioClip Value;
-    
-        private sealed class Template : ComponentTemplate<Audio>
+
+		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.AudioFeature.Components", sourceClassName: "Audio/Template", sourceAssembly: "Assembly-CSharp")]
+		private sealed class Template : ComponentTemplate<Audio>
         {
         }
     }

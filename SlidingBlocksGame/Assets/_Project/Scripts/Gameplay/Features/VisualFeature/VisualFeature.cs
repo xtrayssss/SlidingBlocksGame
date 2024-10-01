@@ -1,9 +1,12 @@
-﻿using _Project.Scripts.Gameplay.Features.AudioFeature.Components;
+using _Project.Scripts.Gameplay.Features.AudioFeature.Components;
+using _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Components;
+using _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Systems;
 using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.UIFeature.Systems;
 using _Project.Scripts.Gameplay.Features.VisualFeature.Components;
 using _Project.Scripts.Gameplay.Features.VisualFeature.Systems;
 using DCFApixels.DragonECS;
+using UnityEngine.Scripting.APIUpdating;
 
 namespace _Project.Scripts.Gameplay.Features.VisualFeature
 {
@@ -31,7 +34,7 @@ namespace _Project.Scripts.Gameplay.Features.VisualFeature
                     //
                     .AddUnique(new InAppPopupSystem())
                     //
-                    .AddUnique(new ScrollSystem())
+                    .AddUnique(new ScrollSnapSystem())
                     .AutoDel<ScrollSetupRequest>()
                     .AutoDelTag<ApplyEffectRequest>()
                     //

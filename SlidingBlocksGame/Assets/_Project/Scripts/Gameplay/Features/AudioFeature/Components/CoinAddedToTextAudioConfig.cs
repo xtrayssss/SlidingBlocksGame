@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using DCFApixels.DragonECS;
+using UnityEngine.Scripting.APIUpdating;
 
 namespace _Project.Scripts.Gameplay.Features.AudioFeature.Components
 {
@@ -8,8 +9,9 @@ namespace _Project.Scripts.Gameplay.Features.AudioFeature.Components
     public struct CoinAddedToTextAudioConfig : IEcsComponent
     {
         public ScriptableEntityTemplate Value;
-        
-        private sealed class Template : ComponentTemplate<CoinAddedToTextAudioConfig>
+
+		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.AudioFeature.Components", sourceClassName: "CoinAddedToTextAudioConfig/Template", sourceAssembly: "Assembly-CSharp")]
+		private sealed class Template : ComponentTemplate<CoinAddedToTextAudioConfig>
         {
         }
     }

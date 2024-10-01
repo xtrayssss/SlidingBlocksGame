@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using DCFApixels.DragonECS;
+using UnityEngine.Scripting.APIUpdating;
 
 namespace _Project.Scripts.Gameplay.Features.TweenFeature.Components
 {
@@ -9,7 +10,8 @@ namespace _Project.Scripts.Gameplay.Features.TweenFeature.Components
     {
         public float Value;
 
-        private sealed class Template : ComponentTemplate<TweenDuration>
+		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.TweenFeature.Components", sourceClassName: "TweenDuration/Template", sourceAssembly: "Assembly-CSharp")]
+		private sealed class Template : ComponentTemplate<TweenDuration>
         {
         }
     }

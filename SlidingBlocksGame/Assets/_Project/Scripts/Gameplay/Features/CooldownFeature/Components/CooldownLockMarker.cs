@@ -1,12 +1,15 @@
-﻿using System;
+using System;
 using DCFApixels.DragonECS;
+using UnityEngine.Scripting.APIUpdating;
 
 namespace _Project.Scripts.Gameplay.Features.CooldownFeature.Components
 {
     [Serializable]
     public struct CooldownLockMarker : IEcsTagComponent
     {
-        private sealed class Template : TagComponentTemplate<CooldownLockMarker>
+
+		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.CooldownFeature.Components", sourceClassName: "CooldownLockMarker/Template", sourceAssembly: "Assembly-CSharp")]
+		private sealed class Template : TagComponentTemplate<CooldownLockMarker>
         {
         }
     }

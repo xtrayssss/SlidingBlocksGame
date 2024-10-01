@@ -1,6 +1,7 @@
-﻿using System;
+using System;
 using DCFApixels.DragonECS;
 using Unity.Mathematics;
+using UnityEngine.Scripting.APIUpdating;
 
 namespace _Project.Scripts.Gameplay.Features.UIFeature.Components
 {
@@ -10,7 +11,8 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Components
         public float3 Selected;
         public float3 Deselected;
 
-        private sealed class Template : ComponentTemplate<SelectionStateEffectFactor>
+		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.UIFeature.Components", sourceClassName: "SelectionStateEffectFactor/Template", sourceAssembly: "Assembly-CSharp")]
+		private sealed class Template : ComponentTemplate<SelectionStateEffectFactor>
         {
         }
     }

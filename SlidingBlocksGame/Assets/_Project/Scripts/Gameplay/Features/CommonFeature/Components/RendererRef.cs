@@ -1,6 +1,7 @@
-﻿using System;
+using System;
 using DCFApixels.DragonECS;
 using UnityEngine;
+using UnityEngine.Scripting.APIUpdating;
 
 namespace _Project.Scripts.Gameplay.Features.CommonFeature.Components
 {
@@ -9,7 +10,8 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Components
     {
         public GameObject Value;
 
-        private class Template : ComponentTemplate<RendererRef>
+		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.CommonFeature.Components", sourceClassName: "RendererRef/Template", sourceAssembly: "Assembly-CSharp")]
+		private class Template : ComponentTemplate<RendererRef>
         {
             
         }

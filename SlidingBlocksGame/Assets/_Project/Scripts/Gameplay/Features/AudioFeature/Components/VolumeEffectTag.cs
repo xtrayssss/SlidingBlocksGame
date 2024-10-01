@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using DCFApixels.DragonECS;
+using UnityEngine.Scripting.APIUpdating;
 
 namespace _Project.Scripts.Gameplay.Features.AudioFeature.Components
 {
@@ -7,7 +8,9 @@ namespace _Project.Scripts.Gameplay.Features.AudioFeature.Components
     [MetaGroup("Audio")]
     public struct VolumeEffectTag : IEcsTagComponent
     {
-        private sealed class Template : TagComponentTemplate<VolumeEffectTag>
+
+		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.AudioFeature.Components", sourceClassName: "VolumeEffectTag/Template", sourceAssembly: "Assembly-CSharp")]
+		private sealed class Template : TagComponentTemplate<VolumeEffectTag>
         {
         }
     }

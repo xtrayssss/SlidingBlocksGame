@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using DCFApixels.DragonECS;
+using UnityEngine.Scripting.APIUpdating;
 
 namespace _Project.Scripts.Gameplay.Features.AudioFeature.Components
 {
@@ -20,7 +21,8 @@ namespace _Project.Scripts.Gameplay.Features.AudioFeature.Components
             SFX = SFX_NORMAL | SFX_SPECIAL
         }
 
-        private sealed class Template : ComponentTemplate<AudioTypeRef>
+		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.AudioFeature.Components", sourceClassName: "AudioTypeRef/Template", sourceAssembly: "Assembly-CSharp")]
+		private sealed class Template : ComponentTemplate<AudioTypeRef>
         {
         }
     }

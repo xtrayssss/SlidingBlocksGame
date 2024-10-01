@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 using UnityEngine;
+using UnityEngine.Scripting.APIUpdating;
 
 public class CameraScaler : MonoBehaviour
 {

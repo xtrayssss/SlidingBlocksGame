@@ -1,8 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using DCFApixels.DragonECS;
 using UnityEngine;
+using UnityEngine.Scripting.APIUpdating;
 
 namespace _Project.Scripts.Gameplay.Features.CommonFeature.Components
 {
@@ -13,7 +14,8 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Components
         
         public Dictionary<uint, AnimalEntityConnect> Animals;
 
-        private sealed class Template : ComponentTemplate<AnimalPrefabs>
+		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.CommonFeature.Components", sourceClassName: "AnimalPrefabs/Template", sourceAssembly: "Assembly-CSharp")]
+		private sealed class Template : ComponentTemplate<AnimalPrefabs>
         {
             public override void Apply(short worldID, int entityID)
             {

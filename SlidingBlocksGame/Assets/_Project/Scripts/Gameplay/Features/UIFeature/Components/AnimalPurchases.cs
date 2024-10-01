@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using DCFApixels.DragonECS;
+using UnityEngine.Scripting.APIUpdating;
 
 namespace _Project.Scripts.Gameplay.Features.UIFeature.Components
 {
@@ -9,7 +10,8 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Components
         public EcsGroup Entities;
         public EcsEntityConnect[] Prefabs;
 
-        private sealed class Template : ComponentTemplate<AnimalPurchases>
+		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.UIFeature.Components", sourceClassName: "AnimalPurchases/Template", sourceAssembly: "Assembly-CSharp")]
+		private sealed class Template : ComponentTemplate<AnimalPurchases>
         {
         }
     }

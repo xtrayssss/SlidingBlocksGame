@@ -3,7 +3,7 @@ using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.CooldownFeature;
 using _Project.Scripts.Gameplay.Features.DestroyFeature.Components;
 using _Project.Scripts.Gameplay.Features.DestroyFeature.Systems;
-using _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature;
+using _Project.Scripts.Gameplay.Features.GameFieldFeature;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature;
 using _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components;
 using _Project.Scripts.Gameplay.Features.InputFeature;
@@ -60,29 +60,6 @@ namespace _Project.Scripts.Gameplay
             float upperY = lowerY + renderer.bounds.size.y;
 
             Debug.Log(renderer.bounds.max);
-        }
-
-        [Button]
-        public void Stop(GameObject obj, float targetSize = 1f)
-        {
-            MyStruct1 myStruct1 = new MyStruct1
-            {
-                value = 2
-            };
-
-            MyStruct2 myStruct2 = UnsafeUtility.As<MyStruct1, MyStruct2>(ref myStruct1);
-
-            Debug.Log(myStruct2.value);
-        }
-
-        struct MyStruct1
-        {
-            public int value;
-        }
-
-        struct MyStruct2
-        {
-            public int value;
         }
 
         [Button]

@@ -1,4 +1,4 @@
-﻿using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
+using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
 using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.MovementFeature
