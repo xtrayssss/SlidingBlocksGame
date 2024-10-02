@@ -27,6 +27,7 @@ namespace _Project.Scripts.Gameplay.Features.CollectFeature.Systems
 
             [Inc] public readonly EcsPool<Coins> Coins;
             [Opt] public readonly EcsTagPool<CoinCollectedEvent> CollectedEvent;
+            [Exc] public readonly EcsTagPool<CollectedMarker> CollectedMarker;
 
             [Opt] public readonly EcsPool<TargetEntity> Target;
 
@@ -66,14 +67,18 @@ namespace _Project.Scripts.Gameplay.Features.CollectFeature.Systems
 
                     ref readonly BoundExtents boundExtents = ref movingAnimalAspect.BoundExtents.Read(animal);
 
+                    ref readonly GameField gameField = ref _world.GetPool<GameField>().Read(gameFieldID);
+                    
                     int2 position = GridUtils.GetCellPosition(
                         worldPosition: transformPosition +
                                        movingAnimalAspect.MovementDirections.Read(animal).Value.xyy *
                                        boundExtents.Value,
-                        gameField: in _world.GetPool<GameField>().Read(gameFieldID));
+                        gameField: in gameField);
 
                     if (math.all(coinAspect.CellPositions.Read(coin).Value == position))
                     {
+                        coinAspect.CollectedMarker.Add(coin);
+                        
                         ref GameObjectConnect gameObjectConnect = ref coinAspect.GameObjectConnects.Get(coin);
 
                         Animate(coin, coinAspect, ref gameObjectConnect);

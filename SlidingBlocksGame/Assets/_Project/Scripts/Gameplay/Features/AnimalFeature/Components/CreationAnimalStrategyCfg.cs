@@ -9,10 +9,10 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature.Components
     {
         public ScriptableEntityTemplate Value;
 
-		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components", sourceClassName: "CreationAnimalStrategyCfg/Template", sourceAssembly: "Assembly-CSharp")]
-
-
-		private sealed class Template : ComponentTemplate<CreationAnimalStrategyCfg>
+        [MovedFrom(autoUpdateAPI: false,
+            sourceNamespace: "_Project.Scripts.Gameplay.Features.GameFlowFeature.Components",
+            sourceClassName: "CreationAnimalStrategyCfg/Template", sourceAssembly: "Assembly-CSharp")]
+        private sealed class Template : ComponentTemplate<CreationAnimalStrategyCfg>
         {
         }
     }
