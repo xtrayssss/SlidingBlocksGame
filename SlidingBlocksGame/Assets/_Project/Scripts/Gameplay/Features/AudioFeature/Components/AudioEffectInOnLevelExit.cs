@@ -11,6 +11,8 @@ namespace _Project.Scripts.Gameplay.Features.AudioFeature.Components
         public EntityTemplate Value;
 
 		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.AudioFeature.Components", sourceClassName: "AudioEffectInOnLevelExit/Template", sourceAssembly: "Assembly-CSharp")]
+
+
 		private sealed class Template : ComponentTemplate<AudioEffectInOnLevelExit>
         {
         }

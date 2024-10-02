@@ -10,6 +10,8 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Components
         public int Value;
 
 		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.CommonFeature.Components", sourceClassName: "RewardsCount/Template", sourceAssembly: "Assembly-CSharp")]
+
+
 		private sealed class Template : ComponentTemplate<RewardsCount>
         {
         }

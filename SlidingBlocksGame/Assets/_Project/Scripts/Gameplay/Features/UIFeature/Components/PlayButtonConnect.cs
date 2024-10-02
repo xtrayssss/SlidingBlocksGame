@@ -11,6 +11,8 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Components
         public EcsEntityConnect Replay;
 
 		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.UIFeature.Components", sourceClassName: "PlayButtonConnect/Template", sourceAssembly: "Assembly-CSharp")]
+
+
 		private sealed class Template : ComponentTemplate<PlayButtonConnect>
         {
         }

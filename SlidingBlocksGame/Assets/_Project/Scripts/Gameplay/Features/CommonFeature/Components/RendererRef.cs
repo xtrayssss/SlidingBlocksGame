@@ -11,6 +11,8 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Components
         public GameObject Value;
 
 		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.CommonFeature.Components", sourceClassName: "RendererRef/Template", sourceAssembly: "Assembly-CSharp")]
+
+
 		private class Template : ComponentTemplate<RendererRef>
         {
             

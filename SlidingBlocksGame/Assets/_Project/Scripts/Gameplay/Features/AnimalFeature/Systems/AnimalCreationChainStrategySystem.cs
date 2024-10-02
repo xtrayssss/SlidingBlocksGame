@@ -5,6 +5,7 @@ using _Project.Scripts.Gameplay.Features.CreationFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFieldFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFlowFeature.Components;
 using DCFApixels.DragonECS;
+using UnityEngine.Scripting.APIUpdating;
 
 namespace _Project.Scripts.Gameplay.Features.AnimalFeature.Systems
 {

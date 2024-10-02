@@ -11,6 +11,8 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature.Components
         public ScriptableEntityTemplate Value;
 
 		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.DestroyFeature.Components", sourceClassName: "DestructionAnimalStrategyCfg/Template", sourceAssembly: "Assembly-CSharp")]
+
+
 		private sealed class Template : ComponentTemplate<DestructionAnimalStrategyCfg>
         {
         }

@@ -10,9 +10,9 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.Components
     {
         public ScriptableEntityTemplate Value;
 
-        [MovedFrom(autoUpdateAPI: false,
-            sourceNamespace: "_Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components",
-            sourceClassName: "GameFieldAlgorithmCfg/Template", sourceAssembly: "Assembly-CSharp")]
+        [MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.GameFieldFeature.Components", sourceClassName: "GameFieldAlgorithmCfg/Template", sourceAssembly: "Assembly-CSharp")]
+
+
         private sealed class Template : ComponentTemplate<GameFieldAlgorithmCfg>
         {
         }

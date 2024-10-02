@@ -7,8 +7,8 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Components
     [Serializable]
     public struct LevelTag : IEcsTagComponent
     {
-        [MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.GameFlowFeature.Components",
-            sourceClassName: "LevelTag/Template", sourceAssembly: "Assembly-CSharp")]
+        [MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.CommonFeature.Components", sourceClassName: "LevelTag/Template", sourceAssembly: "Assembly-CSharp")]
+
         private sealed class Template : TagComponentTemplate<LevelTag>
         {
         }

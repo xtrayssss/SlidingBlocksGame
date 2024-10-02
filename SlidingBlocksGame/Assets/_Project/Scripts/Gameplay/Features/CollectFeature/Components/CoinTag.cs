@@ -9,6 +9,8 @@ namespace _Project.Scripts.Gameplay.Features.CollectFeature.Components
     {
 
 		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.CollectFeature.Components", sourceClassName: "CoinTag/Template", sourceAssembly: "Assembly-CSharp")]
+
+
 		private sealed class Template : TagComponentTemplate<CoinTag>
         {
         }

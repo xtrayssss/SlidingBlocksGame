@@ -10,7 +10,9 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Components
     {
         [Serializable]
 
-		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.MovementFeature.Components", sourceClassName: "ChainMovementMarker/Wrapper", sourceAssembly: "Assembly-CSharp")]
+		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.MovementFeature.Components", sourceClassName: "ChainMovementStrategyTag/Wrapper", sourceAssembly: "Assembly-CSharp")]
+
+
 		public sealed class Wrapper : TagComponentTemplate<ChainMovementStrategyTag>
         {
         }

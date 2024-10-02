@@ -13,6 +13,8 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Components
         [Serializable]
 
 		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.CommonFeature.Components", sourceClassName: "WorldPosition/Wrapper", sourceAssembly: "Assembly-CSharp")]
+
+
 		public sealed class Wrapper : ComponentTemplate<WorldPosition>
         {
         }

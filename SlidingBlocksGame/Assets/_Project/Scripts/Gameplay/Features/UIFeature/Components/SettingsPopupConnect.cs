@@ -10,6 +10,8 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Components
         public EcsEntityConnect Value;
 
 		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.UIFeature.Components", sourceClassName: "SettingsPopupConnect/Template", sourceAssembly: "Assembly-CSharp")]
+
+
 		private sealed class Template : ComponentTemplate<SettingsPopupConnect>
         {
         }

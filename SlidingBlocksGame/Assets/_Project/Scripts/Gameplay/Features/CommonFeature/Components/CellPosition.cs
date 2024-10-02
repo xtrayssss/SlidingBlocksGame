@@ -14,6 +14,8 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Components
         [Serializable]
 
 		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.CommonFeature.Components", sourceClassName: "CellPosition/Wrapper", sourceAssembly: "Assembly-CSharp")]
+
+
 		public sealed class Wrapper : ComponentTemplate<CellPosition>
         {
         }   

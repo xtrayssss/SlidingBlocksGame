@@ -9,7 +9,9 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Components
     {
         [Serializable]
 
-		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components", sourceClassName: "GameTag/Template", sourceAssembly: "Assembly-CSharp")]
+		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.GameFlowFeature.Components", sourceClassName: "GameTag/Template", sourceAssembly: "Assembly-CSharp")]
+
+
 		public sealed class Template : TagComponentTemplate<GameTag>
         {
         }

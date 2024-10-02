@@ -10,7 +10,9 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Components
     {
         public GameObject[] Value;
 
-		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components", sourceClassName: "MetaGameUI/Template", sourceAssembly: "Assembly-CSharp")]
+		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.GameFlowFeature.Components", sourceClassName: "MetaGameUI/Template", sourceAssembly: "Assembly-CSharp")]
+
+
 		private sealed class Template : ComponentTemplate<MetaGameUI>
         {
         }

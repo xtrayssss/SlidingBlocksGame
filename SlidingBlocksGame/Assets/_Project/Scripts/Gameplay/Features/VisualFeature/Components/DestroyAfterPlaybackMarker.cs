@@ -9,6 +9,8 @@ namespace _Project.Scripts.Gameplay.Features.VisualFeature.Components
     {
 
 		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.VisualFeature.Components", sourceClassName: "DestroyAfterPlaybackMarker/Template", sourceAssembly: "Assembly-CSharp")]
+
+
 		private sealed class Template : TagComponentTemplate<DestroyAfterPlaybackMarker>
         {
         }

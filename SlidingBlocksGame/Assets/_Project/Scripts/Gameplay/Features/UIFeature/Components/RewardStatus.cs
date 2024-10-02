@@ -12,6 +12,8 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Components
         [FormerlySerializedAs("UnCollected")] public EcsEntityConnect Unlocked;
 
 		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.UIFeature.Components", sourceClassName: "RewardStatus/Template", sourceAssembly: "Assembly-CSharp")]
+
+
 		private sealed class Template : ComponentTemplate<RewardStatus>
         {
         }

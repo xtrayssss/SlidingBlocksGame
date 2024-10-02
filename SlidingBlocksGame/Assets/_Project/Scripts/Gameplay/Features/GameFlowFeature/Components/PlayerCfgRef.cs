@@ -9,7 +9,9 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Components
     {
         public ScriptableEntityTemplate Value;
 
-		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components", sourceClassName: "PlayerCfgRef/Template", sourceAssembly: "Assembly-CSharp")]
+		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.GameFlowFeature.Components", sourceClassName: "PlayerCfgRef/Template", sourceAssembly: "Assembly-CSharp")]
+
+
 		private sealed class Template : ComponentTemplate<PlayerCfgRef>
         {
         }

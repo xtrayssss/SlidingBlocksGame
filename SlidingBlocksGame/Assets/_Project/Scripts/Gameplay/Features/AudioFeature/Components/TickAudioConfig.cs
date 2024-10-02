@@ -12,6 +12,8 @@ namespace _Project.Scripts.Gameplay.Features.AudioFeature.Components
         [field: SerializeField] public ScriptableEntityTemplate Value { get; set; }
 
 		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.AudioFeature.Components", sourceClassName: "TickAudioConfig/Template", sourceAssembly: "Assembly-CSharp")]
+
+
 		private sealed class Template : ComponentTemplate<TickAudioConfig>
         {
         }

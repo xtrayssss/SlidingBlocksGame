@@ -27,7 +27,9 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Components
         public float NearestPosition;
         public readonly EcsLongsSpan SafeItems => Items.Longs;
 
-		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.UIFeature.Components", sourceClassName: "ScrollSnap/Template", sourceAssembly: "Assembly-CSharp")]
+		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.ScrollSnapFeature.Components", sourceClassName: "ScrollSnap/Template", sourceAssembly: "Assembly-CSharp")]
+
+
 		private sealed class Template : ComponentTemplate<ScrollSnap>
         {
         }

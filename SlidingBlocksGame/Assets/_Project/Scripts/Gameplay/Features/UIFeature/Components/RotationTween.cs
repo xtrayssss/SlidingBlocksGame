@@ -13,6 +13,8 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Components
         public Tween Delay;
 
 		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.UIFeature.Components", sourceClassName: "RotationTween/Template", sourceAssembly: "Assembly-CSharp")]
+
+
 		private sealed class Template : ComponentTemplate<RotationTween>
         {
         }

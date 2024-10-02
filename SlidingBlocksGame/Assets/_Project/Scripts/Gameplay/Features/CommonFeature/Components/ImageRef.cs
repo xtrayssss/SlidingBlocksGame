@@ -11,6 +11,8 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Components
         public Image Value;
 
 		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.CommonFeature.Components", sourceClassName: "ImageRef/Template", sourceAssembly: "Assembly-CSharp")]
+
+
 		private sealed class Template : ComponentTemplate<ImageRef>
         {
         }

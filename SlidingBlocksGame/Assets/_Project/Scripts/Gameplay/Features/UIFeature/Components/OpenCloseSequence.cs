@@ -12,6 +12,8 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Components
         public Sequence Value;
 
 		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.UIFeature.Components", sourceClassName: "OpenCloseSequence/Template", sourceAssembly: "Assembly-CSharp")]
+
+
 		private sealed class Template : ComponentTemplate<OpenCloseSequence>
         {
         }

@@ -8,7 +8,8 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.Components
     [MetaGroup("GameField")]
     public struct GameFieldWaveAlgorithmTag : IEcsTagComponent
     {
-		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Components", sourceClassName: "GameFieldWaveAlgorithmTag/Template", sourceAssembly: "Assembly-CSharp")]
+		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.GameFieldFeature.Components", sourceClassName: "GameFieldWaveAlgorithmTag/Template", sourceAssembly: "Assembly-CSharp")]
+
 		private sealed class Template : TagComponentTemplate<GameFieldWaveAlgorithmTag>
         {
         }

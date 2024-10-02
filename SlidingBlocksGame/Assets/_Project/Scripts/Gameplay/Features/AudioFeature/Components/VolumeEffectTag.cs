@@ -10,6 +10,8 @@ namespace _Project.Scripts.Gameplay.Features.AudioFeature.Components
     {
 
 		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.AudioFeature.Components", sourceClassName: "VolumeEffectTag/Template", sourceAssembly: "Assembly-CSharp")]
+
+
 		private sealed class Template : TagComponentTemplate<VolumeEffectTag>
         {
         }

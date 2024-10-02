@@ -9,6 +9,8 @@ namespace _Project.Scripts.Gameplay.Features.CooldownFeature.Components
     {
 
 		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.CooldownFeature.Components", sourceClassName: "CooldownLockMarker/Template", sourceAssembly: "Assembly-CSharp")]
+
+
 		private sealed class Template : TagComponentTemplate<CooldownLockMarker>
         {
         }

@@ -17,6 +17,8 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Components
         }
 
 		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.UIFeature.Components", sourceClassName: "InAppPurchases/Purchase/Template", sourceAssembly: "Assembly-CSharp")]
+
+
 		private sealed class Template : ComponentTemplate<InAppPurchases>
         {
         }

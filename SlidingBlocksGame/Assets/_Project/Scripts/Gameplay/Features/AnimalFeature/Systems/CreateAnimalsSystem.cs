@@ -9,6 +9,7 @@ using _Project.Scripts.Gameplay.Utils;
 using DCFApixels.DragonECS;
 using Unity.Mathematics;
 using Object = UnityEngine.Object;
+using UnityEngine.Scripting.APIUpdating;
 
 namespace _Project.Scripts.Gameplay.Features.AnimalFeature.Systems
 {

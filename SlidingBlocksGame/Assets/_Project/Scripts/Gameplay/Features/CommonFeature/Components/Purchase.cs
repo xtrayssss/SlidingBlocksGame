@@ -11,6 +11,8 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Components
         public ushort ProductIndex;
 
 		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.CommonFeature.Components", sourceClassName: "Purchase/Template", sourceAssembly: "Assembly-CSharp")]
+
+
 		private sealed class Template : ComponentTemplate<Purchase>
         {
         }

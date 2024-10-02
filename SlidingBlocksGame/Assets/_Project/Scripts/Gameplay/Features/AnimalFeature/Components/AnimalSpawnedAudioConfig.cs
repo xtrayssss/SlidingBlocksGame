@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using _Project.Scripts.Gameplay.Features.AudioFeature.Components;
 using DCFApixels.DragonECS;
 using UnityEngine;
@@ -12,8 +12,9 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature.Components
     {
         [field: SerializeField] public ScriptableEntityTemplate Value { get; set; }
 
-        [MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.AudioFeature.Components",
-            sourceClassName: "AnimalSpawnedAudioConfig/Template", sourceAssembly: "Assembly-CSharp")]
+        [MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.AnimalFeature.Components", sourceClassName: "AnimalSpawnedAudioConfig/Template", sourceAssembly: "Assembly-CSharp")]
+
+
         private sealed class Template : ComponentTemplate<AnimalSpawnedAudioConfig>
         {
         }

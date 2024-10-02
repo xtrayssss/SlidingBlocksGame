@@ -11,6 +11,8 @@ namespace _Project.Scripts.Gameplay.Features.AudioFeature.Components
         public ScriptableEntityTemplate Value;
 
 		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.AudioFeature.Components", sourceClassName: "CoinAddedToTextAudioConfig/Template", sourceAssembly: "Assembly-CSharp")]
+
+
 		private sealed class Template : ComponentTemplate<CoinAddedToTextAudioConfig>
         {
         }

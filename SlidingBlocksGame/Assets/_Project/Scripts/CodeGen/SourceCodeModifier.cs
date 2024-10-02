@@ -36,7 +36,6 @@ namespace _Project.Scripts.CodeGen
             const string requiredUsing = "using UnityEngine.Scripting.APIUpdating;";
             if (!content.Contains(requiredUsing))
             {
-                // Найдем последний using в файле
                 var lastUsingIndex = content.LastIndexOf("using ", StringComparison.Ordinal);
                 if (lastUsingIndex != -1)
                 {
@@ -44,7 +43,6 @@ namespace _Project.Scripts.CodeGen
                     return content.Insert(insertIndex, requiredUsing + Environment.NewLine);
                 }
 
-                // Если using'ов нет, добавим в начало файла
                 return requiredUsing + Environment.NewLine + Environment.NewLine + content;
             }
 
@@ -54,54 +52,42 @@ namespace _Project.Scripts.CodeGen
         private static string ModifyContent(string content, string fileName)
         {
             var classStack = new Stack<string>();
-            string pattern =
-                @"(?<=\n|^)(\s*)((?:public|internal|private|protected)?\s*(?:sealed\s+)?(?:struct|class)\s+(\w+)(?:\s*:\s*(?:TagComponentTemplate|ComponentTemplate)<[^>]+>)?)";
+            string namespaceName = ExtractNamespace(content) ?? "global";
+            string assemblyName = "Assembly-CSharp";
+
+            string pattern = @"((?:[\r\n]+\s*)+)(\[MovedFrom\([^\)]*\)\]\s*(?:[\r\n]+\s*)*)?(public|internal|private|protected)?\s*(sealed\s+)?(struct|class)\s+(\w+)(\s*:\s*(?:TagComponentTemplate|ComponentTemplate)<[^>]+>)?";
 
             return Regex.Replace(content, pattern, match =>
             {
-                string indentation = match.Groups[1].Value;
-                string classDeclaration = match.Groups[2].Value;
-                string className = match.Groups[3].Value;
-                string namespaceName = ExtractNamespace(content) ?? "global";
-                string assemblyName = "Assembly-CSharp";
+                string leadingWhitespace = match.Groups[1].Value;
+                string existingAttribute = match.Groups[2].Value;
+                string accessModifier = match.Groups[3].Value;
+                string sealedKeyword = match.Groups[4].Value;
+                string structOrClass = match.Groups[5].Value;
+                string className = match.Groups[6].Value;
+                string inheritance = match.Groups[7].Value;
 
                 // Определяем, является ли это вложенным классом
-                if (indentation.Length > 0 && classStack.Count > 0)
+                string fullClassName = className;
+                if (classStack.Count > 0)
                 {
-                    // Если отступ меньше, чем у предыдущего класса, удаляем классы из стека
-                    while (classStack.Count > 0 && indentation.Length <= GetIndentationLength(classStack.Peek()))
-                    {
-                        classStack.Pop();
-                    }
-
-                    classStack.Push(indentation + className);
-                    className = string.Join("/", classStack.Reverse().Select(c => c.Trim()));
+                    fullClassName = string.Join("/", classStack.Reverse().Concat(new[] { className }));
                 }
-                else
+                classStack.Push(className);
+
+                // Проверяем, нужно ли добавлять атрибут
+                if (!string.IsNullOrEmpty(inheritance) && 
+                    (inheritance.Contains("TagComponentTemplate") || inheritance.Contains("ComponentTemplate")))
                 {
-                    classStack.Clear();
-                    classStack.Push(className);
+                    string newAttribute = $"[MovedFrom(autoUpdateAPI: false, sourceNamespace: \"{namespaceName}\", sourceClassName: \"{fullClassName}\", sourceAssembly: \"{assemblyName}\")]";
+                    string classDeclaration = $"{accessModifier} {sealedKeyword}{structOrClass} {className}{inheritance}";
+                    
+                    return $"{leadingWhitespace}{newAttribute}\n{leadingWhitespace}{classDeclaration}";
                 }
-
-                if (!classDeclaration.Contains("TagComponentTemplate") && !classDeclaration.Contains("ComponentTemplate"))
-                {
-                    return match.Value; // Возвращаем исходное объявление без изменений
-                }
-
-                Debug.Log(classDeclaration);
-                Debug.Log(className);
-                Debug.Log(indentation);
-
-                string attribute =
-                    $"\n\t\t[MovedFrom(autoUpdateAPI: false, sourceNamespace: \"{namespaceName}\", sourceClassName: \"{className}\", sourceAssembly: \"{assemblyName}\")]\n";
-
-                return attribute + "\t\t" + classDeclaration;
+                
+                // Если атрибут не нужен, возвращаем исходное объявление
+                return match.Value;
             });
-        }
-
-        private static int GetIndentationLength(string classDeclaration)
-        {
-            return classDeclaration.TakeWhile(char.IsWhiteSpace).Count();
         }
 
         private static string ExtractNamespace(string content)

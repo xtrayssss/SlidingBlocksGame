@@ -11,6 +11,8 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Components
         public EcsEntityConnect[] Prefabs;
 
 		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.UIFeature.Components", sourceClassName: "AnimalPurchases/Template", sourceAssembly: "Assembly-CSharp")]
+
+
 		private sealed class Template : ComponentTemplate<AnimalPurchases>
         {
         }

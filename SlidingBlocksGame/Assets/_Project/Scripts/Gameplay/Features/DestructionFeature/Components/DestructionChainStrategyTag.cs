@@ -8,9 +8,8 @@ namespace _Project.Scripts.Gameplay.Features.DestructionFeature.Components
     [MetaGroup("Destruction")]
     public struct DestructionChainStrategyTag : IEcsTagComponent
     {
-        [MovedFrom(autoUpdateAPI: false,
-            sourceNamespace: "_Project.Scripts.Gameplay.Features.DestroyFeature.Components",
-            sourceClassName: "DestructionChainTag/Template", sourceAssembly: "Assembly-CSharp")]
+        [MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.DestructionFeature.Components", sourceClassName: "DestructionChainStrategyTag/Template", sourceAssembly: "Assembly-CSharp")]
+
         private sealed class Template : TagComponentTemplate<DestructionChainStrategyTag>
         {
         }

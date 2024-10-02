@@ -11,6 +11,8 @@ namespace _Project.Scripts.Gameplay.Features.VisualFeature.Components
         public Canvas Value;
 
 		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.VisualFeature.Components", sourceClassName: "CanvasRef/Template", sourceAssembly: "Assembly-CSharp")]
+
+
 		private sealed class Template : ComponentTemplate<CanvasRef>
         {
         }

@@ -9,6 +9,8 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Components
     {
 
 		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.UIFeature.Components", sourceClassName: "BestScoreUITag/Template", sourceAssembly: "Assembly-CSharp")]
+
+
 		private sealed class Template : TagComponentTemplate<BestScoreUITag>
         {
         }

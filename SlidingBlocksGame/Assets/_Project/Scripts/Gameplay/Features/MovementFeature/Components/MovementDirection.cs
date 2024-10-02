@@ -14,6 +14,8 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Components
         [Serializable]
 
 		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.MovementFeature.Components", sourceClassName: "MovementDirection/Template", sourceAssembly: "Assembly-CSharp")]
+
+
 		public sealed class Template : ComponentTemplate<MovementDirection>
         {
         }

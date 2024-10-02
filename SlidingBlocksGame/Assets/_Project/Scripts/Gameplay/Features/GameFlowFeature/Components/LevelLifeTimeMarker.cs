@@ -9,6 +9,8 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Components
     {
 
 		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.DestroyFeature.Components", sourceClassName: "LevelLifeTimeMarker/Template", sourceAssembly: "Assembly-CSharp")]
+
+
 		private sealed class Template : TagComponentTemplate<LevelLifeTimeMarker>
         {
         }

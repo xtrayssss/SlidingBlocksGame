@@ -11,6 +11,8 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Components
         public Button Value;
 
 		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.UIFeature.Components", sourceClassName: "ButtonRef/Template", sourceAssembly: "Assembly-CSharp")]
+
+
 		private sealed class Template : ComponentTemplate<ButtonRef>
         {
         }

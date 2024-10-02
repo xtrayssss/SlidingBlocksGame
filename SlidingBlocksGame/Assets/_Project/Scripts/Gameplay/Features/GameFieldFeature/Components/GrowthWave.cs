@@ -4,7 +4,8 @@ using DCFApixels.DragonECS;
 using UnityEngine.Scripting.APIUpdating;
 using UnityEngine.Serialization;
 
-namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Components
+
+namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.Components
 {
     [Serializable]
     public struct GrowthWave : IEcsComponent
@@ -18,6 +19,8 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Components
         [Serializable]
 
 		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components", sourceClassName: "GrowthWave/Wrapper", sourceAssembly: "Assembly-CSharp")]
+
+
 		public sealed class Wrapper : ComponentTemplate<GrowthWave>
         {
         }

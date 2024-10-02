@@ -10,6 +10,8 @@ namespace _Project.Scripts.Gameplay.Features.CollectFeature.Components
         public int Value;
 
 		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.CollectFeature.Components", sourceClassName: "Coins/Template", sourceAssembly: "Assembly-CSharp")]
+
+
 		private sealed class Template : ComponentTemplate<Coins>
         {
         }

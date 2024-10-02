@@ -11,6 +11,8 @@ namespace _Project.Scripts.Gameplay.Features.CooldownFeature.Components
         public float Interval;
 
 		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.CooldownFeature.Components", sourceClassName: "CooldownInterval/Template", sourceAssembly: "Assembly-CSharp")]
+
+
 		private sealed class Template : ComponentTemplate<CooldownInterval>
         {
         }

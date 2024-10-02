@@ -11,6 +11,8 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Components
         public AnimationCurve Value;
 
 		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.UIFeature.Components", sourceClassName: "CoinsProgressionCurve/Template", sourceAssembly: "Assembly-CSharp")]
+
+
 		private sealed class Template : ComponentTemplate<CoinsProgressionCurve>
         {
         }

@@ -9,6 +9,8 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Components
     {
 
 		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.CommonFeature.Components", sourceClassName: "GameLossTimerTag/Template", sourceAssembly: "Assembly-CSharp")]
+
+
 		private sealed class Template : TagComponentTemplate<GameLossTimerTag>
         {
         }

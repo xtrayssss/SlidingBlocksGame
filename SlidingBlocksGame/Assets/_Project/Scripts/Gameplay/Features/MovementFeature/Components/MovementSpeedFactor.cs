@@ -12,6 +12,8 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Components
         public float Value;
 
 		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.MovementFeature.Components", sourceClassName: "MovementSpeedFactor/Template", sourceAssembly: "Assembly-CSharp")]
+
+
 		private sealed class Template : ComponentTemplate<MovementSpeedFactor>
         {
         }

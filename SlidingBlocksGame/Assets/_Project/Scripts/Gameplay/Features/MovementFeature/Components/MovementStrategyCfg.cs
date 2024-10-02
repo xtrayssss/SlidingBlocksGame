@@ -10,9 +10,9 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Components
     {
         public ScriptableEntityTemplate Value;
 
-        [MovedFrom(autoUpdateAPI: false,
-            sourceNamespace: "_Project.Scripts.Gameplay.Features.MovementFeature.Components",
-            sourceClassName: "MovementStrategyCfg/Template", sourceAssembly: "Assembly-CSharp")]
+        [MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.MovementFeature.Components", sourceClassName: "MovementStrategyCfg/Template", sourceAssembly: "Assembly-CSharp")]
+
+
         private sealed class Template : ComponentTemplate<MovementStrategyCfg>
         {
         }

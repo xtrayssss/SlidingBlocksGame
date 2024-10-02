@@ -10,6 +10,8 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Components
         public long Value;
 
 		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.CommonFeature.Components", sourceClassName: "RewardCollectedAt/Template", sourceAssembly: "Assembly-CSharp")]
+
+
 		private sealed class Template : ComponentTemplate<RewardCollectedAt>
         {
         }

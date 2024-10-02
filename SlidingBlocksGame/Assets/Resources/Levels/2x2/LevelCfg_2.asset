@@ -16,9 +16,9 @@ MonoBehaviour:
   - rid: 499105128608694272
   - rid: 8499802296898551899
   - rid: 8499802340583015395
-  - rid: 8499802343622050639
   - rid: 6454805113458655410
   - rid: 6454805247463260164
+  - rid: 3543309319059275776
   references:
     version: 2
     RefIds:
@@ -227,6 +227,10 @@ MonoBehaviour:
           UnitCellTopOffset: 0.02
           Center: 0
           BaseCellScaleY: 0.25
+    - rid: 3543309319059275776
+      type: {class: LevelTag/Template, ns: _Project.Scripts.Gameplay.Features.GameFlowFeature.Components,
+        asm: Assembly-CSharp}
+      data: {}
     - rid: 6454805113458655410
       type: {class: Scores/Template, ns: _Project.Scripts.Gameplay.Features.CollectFeature.Components,
         asm: Assembly-CSharp}
@@ -273,7 +277,3 @@ MonoBehaviour:
       data:
         component:
           Value: {fileID: 11400000, guid: ae77d2d66bba6934ea24d0fe74b8d979, type: 2}
-    - rid: 8499802343622050639
-      type: {class: LevelTag/Template, ns: _Project.Scripts.Gameplay.Features.CommonFeature.Components,
-        asm: Assembly-CSharp}
-      data: {}

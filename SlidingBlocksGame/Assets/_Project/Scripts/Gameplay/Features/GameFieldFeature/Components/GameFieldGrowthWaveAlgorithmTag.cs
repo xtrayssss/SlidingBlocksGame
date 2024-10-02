@@ -9,6 +9,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.Components
     public struct GameFieldGrowthWaveAlgorithmTag : IEcsTagComponent
     {
 		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Components", sourceClassName: "GameFieldGrowthWaveAlgorithmTag/Template", sourceAssembly: "Assembly-CSharp")]
+
 		private sealed class Template : TagComponentTemplate<GameFieldGrowthWaveAlgorithmTag>
         {
         }

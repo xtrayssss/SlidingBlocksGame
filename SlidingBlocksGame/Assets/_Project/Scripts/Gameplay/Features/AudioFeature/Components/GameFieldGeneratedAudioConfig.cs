@@ -11,6 +11,8 @@ namespace _Project.Scripts.Gameplay.Features.AudioFeature.Components
         public ScriptableEntityTemplate Value;
 
 		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.AudioFeature.Components", sourceClassName: "GameFieldGeneratedAudioConfig/Template", sourceAssembly: "Assembly-CSharp")]
+
+
 		private sealed class Template : ComponentTemplate<GameFieldGeneratedAudioConfig>
         {
         }

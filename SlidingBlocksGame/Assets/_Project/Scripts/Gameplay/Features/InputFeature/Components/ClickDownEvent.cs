@@ -1,5 +1,6 @@
 using DCFApixels.DragonECS;
 using Unity.Mathematics;
+using UnityEngine.Scripting.APIUpdating;
 
 namespace _Project.Scripts.Gameplay.Features.InputFeature.Components
 {

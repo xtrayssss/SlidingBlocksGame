@@ -11,6 +11,8 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Components
         public ushort ID;
 
 		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.CommonFeature.Components", sourceClassName: "SelectedAnimal/Template", sourceAssembly: "Assembly-CSharp")]
+
+
 		private sealed class Template : ComponentTemplate<SelectedAnimal>
         {
         }

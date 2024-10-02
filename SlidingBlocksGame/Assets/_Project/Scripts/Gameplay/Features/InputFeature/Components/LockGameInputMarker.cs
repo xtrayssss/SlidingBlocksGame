@@ -10,6 +10,8 @@ namespace _Project.Scripts.Gameplay.Features.InputFeature.Components
     {
 
 		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.InputFeature.Components", sourceClassName: "LockGameInputMarker/Template", sourceAssembly: "Assembly-CSharp")]
+
+
 		private sealed class Template : TagComponentTemplate<LockGameInputMarker>
         {
         }

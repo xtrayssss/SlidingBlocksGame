@@ -12,6 +12,8 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Components
         public float3 Deselected;
 
 		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.UIFeature.Components", sourceClassName: "SelectionStateEffectFactor/Template", sourceAssembly: "Assembly-CSharp")]
+
+
 		private sealed class Template : ComponentTemplate<SelectionStateEffectFactor>
         {
         }

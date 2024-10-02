@@ -12,6 +12,8 @@ namespace _Project.Scripts.Gameplay.Features.AudioFeature.Components
         public AudioClip Value;
 
 		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.AudioFeature.Components", sourceClassName: "Audio/Template", sourceAssembly: "Assembly-CSharp")]
+
+
 		private sealed class Template : ComponentTemplate<Audio>
         {
         }

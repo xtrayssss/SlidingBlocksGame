@@ -16,6 +16,8 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Components
         public GameObject Current;
 
 		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.UIFeature.Components", sourceClassName: "PurchaseButtonStatus/Template", sourceAssembly: "Assembly-CSharp")]
+
+
 		private sealed class Template : ComponentTemplate<PurchaseButtonStatus>
         {
         }

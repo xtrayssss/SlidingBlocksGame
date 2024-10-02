@@ -11,6 +11,8 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Components
         public GameObject Value;
 
 		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.CommonFeature.Components", sourceClassName: "PhysicView/Template", sourceAssembly: "Assembly-CSharp")]
+
+
 		private sealed class Template : ComponentTemplate<PhysicView>
         {
         }
