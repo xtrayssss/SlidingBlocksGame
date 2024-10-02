@@ -21,7 +21,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
         {
             [IncImplicit(typeof(HUDTag))]
             [IncImplicit(typeof(CreateGameLossTimerRequest))]
-            [Inc] public readonly EcsPool<GameLossTimerConnect> GameLossTimerConnect;
+            [Inc] public readonly EcsPool<GameLossTimerUIConnect> GameLossTimerConnect;
         }
 
         private class GameLossTimerAspect : EcsAspectAuto
@@ -33,14 +33,14 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
         {
             foreach (int hud in _world.Where(out HUDAspect hudAspect))
             {
-                ref readonly GameLossTimerConnect connect =
+                ref readonly GameLossTimerUIConnect uiConnect =
                     ref hudAspect.GameLossTimerConnect.Read(hud);
 
                 entlong timer = _world.NewEntityLong();
 
-                connect.Value.Connect(timer, applyTemplates: true);
+                uiConnect.Value.Connect(timer, applyTemplates: true);
 
-                foreach (MonoEntityTemplateBase template in connect.Value.MonoTemplates)
+                foreach (MonoEntityTemplateBase template in uiConnect.Value.MonoTemplates)
                     template.Apply(_world.id, timer.ID);
 
                 TimerAspect timerAspect = _world.GetAspect<TimerAspect>();
@@ -49,15 +49,15 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
 
                 timerAspect.LevelLifeTime.Add(timer.ID);
 
-                connect.Value.transform.localScale = Vector3.zero;
+                uiConnect.Value.transform.localScale = Vector3.zero;
 
                 Tween.Scale(
-                        target: connect.Value.transform,
+                        target: uiConnect.Value.transform,
                         endValue: Vector3.one * 1.2f,
                         duration: 0.2f,
                         ease: Ease.OutBack)
                     .OnComplete(
-                        connect.Value,
+                        uiConnect.Value,
                         static connect =>
                         {
                             if (!connect.Entity.TryGetID(out int id))
@@ -70,7 +70,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
                             gameLossTimerAspect.GameLossTimerOpenedEvent.Add(id);
                         });
 
-                connect.Value.gameObject.SetActive(true);
+                uiConnect.Value.gameObject.SetActive(true);
             }
         }
     }

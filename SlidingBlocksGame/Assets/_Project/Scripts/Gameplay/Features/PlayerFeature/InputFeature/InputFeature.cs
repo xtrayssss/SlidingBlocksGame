@@ -1,0 +1,14 @@
+using _Project.Scripts.Gameplay.Features.PlayerFeature.InputFeature.Systems;
+using DCFApixels.DragonECS;
+
+namespace _Project.Scripts.Gameplay.Features.PlayerFeature.InputFeature
+{
+    public class InputFeature : IEcsModule
+    {
+        public void Import(EcsPipeline.Builder builder)
+        {
+            builder
+                .AddUnique(new InputSystem());
+        }
+    }
+}

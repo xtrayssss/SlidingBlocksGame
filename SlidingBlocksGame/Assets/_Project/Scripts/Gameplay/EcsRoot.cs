@@ -6,8 +6,8 @@ using _Project.Scripts.Gameplay.Features.DestructionFeature;
 using _Project.Scripts.Gameplay.Features.GameFieldFeature;
 using _Project.Scripts.Gameplay.Features.GameFlowFeature;
 using _Project.Scripts.Gameplay.Features.GameFlowFeature.Components;
-using _Project.Scripts.Gameplay.Features.InputFeature;
 using _Project.Scripts.Gameplay.Features.MovementFeature;
+using _Project.Scripts.Gameplay.Features.PlayerFeature.Components;
 using _Project.Scripts.Gameplay.Features.VisualFeature;
 using DCFApixels.DragonECS;
 using Sirenix.OdinInspector;
@@ -16,16 +16,6 @@ using YG;
 
 namespace _Project.Scripts.Gameplay
 {
-    public class PlayerFeature : IEcsModule
-    {
-        public void Import(EcsPipeline.Builder builder)
-        {
-            builder
-                .AddModule(new InputFeature());
-            //.AddUnique(new SaveLoadPlayerProgressSystem());
-        }
-    }
-
     public class EcsRoot : MonoBehaviour, ICoroutineRunner
     {
         [SerializeField] private ScriptableEntityTemplate _gameCfg;

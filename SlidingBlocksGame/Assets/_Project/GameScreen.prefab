@@ -457,7 +457,7 @@ MonoBehaviour:
           Price: {fileID: 2165986824057982645}
           Current: {fileID: 8128212170323240168}
     - rid: 8499802790374932481
-      type: {class: ScrollSnap/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
+      type: {class: ScrollSnap/Template, ns: _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -1286,19 +1286,19 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 6454805156365861479
-      type: {class: RewardConnect/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
+      type: {class: RewardConnect/Template, ns: _Project.Scripts.Gameplay.Features.GameFlowFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
           Value: {fileID: 5550420860957629806}
     - rid: 6454805176898027520
-      type: {class: GameTitleConnect/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
+      type: {class: GameTitleConnect/Template, ns: _Project.Scripts.Gameplay.Features.GameFlowFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
           Value: {fileID: 5219951114190502930}
     - rid: 6454805177393218448
-      type: {class: CanvasRef/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.Components,
+      type: {class: CanvasRef/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -1329,7 +1329,7 @@ MonoBehaviour:
         component:
           Value: {fileID: 7648407152314584682}
     - rid: 8499802702287471247
-      type: {class: MetaGameUI/Template, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
+      type: {class: MetaGameUI/Template, ns: _Project.Scripts.Gameplay.Features.GameFlowFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -7171,9 +7171,9 @@ RectTransform:
   - {fileID: 9142924212830270631}
   m_Father: {fileID: 5022302798933455215}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.43970373, y: 0}
-  m_AnchorMax: {x: 0.43970373, y: 0}
-  m_AnchoredPosition: {x: 65.119995, y: 140.2334}
+  m_AnchorMin: {x: 0.5, y: 0.072833344}
+  m_AnchorMax: {x: 0.5, y: 0.072833344}
+  m_AnchoredPosition: {x: 0.11999512, y: 0.23339844}
   m_SizeDelta: {x: 200, y: 105.0712}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2201425925064960374
@@ -9121,9 +9121,9 @@ RectTransform:
   - {fileID: 5879776428728838605}
   m_Father: {fileID: 5022302798933455215}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -634.76746}
+  m_AnchorMin: {x: 0.5, y: 0.172}
+  m_AnchorMax: {x: 0.5, y: 0.172}
+  m_AnchoredPosition: {x: 0, y: -5.767456}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &3833690245554737071
@@ -13840,9 +13840,9 @@ RectTransform:
   - {fileID: 8838934768766667939}
   - {fileID: 8793279135690968678}
   - {fileID: 7667810152355633431}
-  - {fileID: 8900828026383820300}
   - {fileID: 2287053894430683086}
   - {fileID: 7806521507890657865}
+  - {fileID: 8900828026383820300}
   m_Father: {fileID: 264566875566175809}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -14347,7 +14347,7 @@ GameObject:
   - component: {fileID: 5219951114190502930}
   - component: {fileID: 825396892601817826}
   m_Layer: 5
-  m_Name: GameNameTitle
+  m_Name: GameTitle_txt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14499,15 +14499,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _components:
-  - rid: 6454805176898027522
   - rid: 6454805176898027937
   references:
     version: 2
     RefIds:
-    - rid: 6454805176898027522
-      type: {class: GameTitleTag/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.Components,
-        asm: Assembly-CSharp}
-      data: {}
     - rid: 6454805176898027937
       type: {class: RectTransformRef/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
         asm: Assembly-CSharp}
@@ -30015,12 +30010,12 @@ PrefabInstance:
     - target: {fileID: 5293964723850601425, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 142
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 5293964723850601425, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 137
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 5293964723850601425, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
@@ -30060,12 +30055,12 @@ PrefabInstance:
     - target: {fileID: 5293964723850601425, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 20
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 5293964723850601425, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -20
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 5293964723850601425, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
