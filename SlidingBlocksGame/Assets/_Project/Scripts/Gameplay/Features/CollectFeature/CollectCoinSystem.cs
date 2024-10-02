@@ -10,7 +10,6 @@ using DCFApixels.DragonECS;
 using PrimeTween;
 using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.Scripting.APIUpdating;
 
 namespace _Project.Scripts.Gameplay.Features.CollectFeature
 {

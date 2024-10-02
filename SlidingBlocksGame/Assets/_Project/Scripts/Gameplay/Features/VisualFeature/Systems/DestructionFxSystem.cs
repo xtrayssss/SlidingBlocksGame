@@ -5,7 +5,6 @@ using _Project.Scripts.Gameplay.Features.VisualFeature.Components;
 using DCFApixels.DragonECS;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Scripting.APIUpdating;
 
 namespace _Project.Scripts.Gameplay.Features.VisualFeature.Systems
 {

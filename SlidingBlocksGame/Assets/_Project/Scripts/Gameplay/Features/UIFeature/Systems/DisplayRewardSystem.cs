@@ -10,7 +10,6 @@ using YG;
 using IEcsRun = DCFApixels.DragonECS.IEcsRun;
 using Sequence = PrimeTween.Sequence;
 using Tween = PrimeTween.Tween;
-using UnityEngine.Scripting.APIUpdating;
 
 namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 {

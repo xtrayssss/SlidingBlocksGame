@@ -14,7 +14,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
 using ScrollSnap = _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Components.ScrollSnap;
-using UnityEngine.Scripting.APIUpdating;
 
 namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
 {

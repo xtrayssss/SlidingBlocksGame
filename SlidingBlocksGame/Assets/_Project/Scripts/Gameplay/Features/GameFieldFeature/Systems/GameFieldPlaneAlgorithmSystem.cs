@@ -5,7 +5,6 @@ using DCFApixels.DragonECS;
 using Unity.Mathematics;
 using UnityEngine;
 using Object = UnityEngine.Object;
-using UnityEngine.Scripting.APIUpdating;
 
 namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.Systems
 {

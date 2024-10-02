@@ -6,7 +6,6 @@ using _Project.Scripts.Gameplay.Utils;
 using DCFApixels.DragonECS;
 using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.Scripting.APIUpdating;
 
 namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
 {

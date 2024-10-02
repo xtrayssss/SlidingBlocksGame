@@ -5,7 +5,6 @@ using DCFApixels.DragonECS;
 using PrimeTween;
 using UnityEngine;
 using ScrollSnap = _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Components.ScrollSnap;
-using UnityEngine.Scripting.APIUpdating;
 
 namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 {

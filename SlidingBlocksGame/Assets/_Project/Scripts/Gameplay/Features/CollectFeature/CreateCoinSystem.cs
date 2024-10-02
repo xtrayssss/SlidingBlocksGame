@@ -9,7 +9,6 @@ using PrimeTween;
 using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
-using UnityEngine.Scripting.APIUpdating;
 
 namespace _Project.Scripts.Gameplay.Features.CollectFeature
 {

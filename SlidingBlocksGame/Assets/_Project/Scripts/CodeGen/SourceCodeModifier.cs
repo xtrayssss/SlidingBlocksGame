@@ -10,6 +10,8 @@ namespace _Project.Scripts.CodeGen
 {
     public class SourceCodeModifier : MonoBehaviour
     {
+        private const string REQUIRED_USING = "using UnityEngine.Scripting.APIUpdating;";
+
         public static void ModifySourceFiles(string directoryPath)
         {
             foreach (var file in Directory.GetFiles(directoryPath, "*.cs", SearchOption.AllDirectories))
@@ -55,7 +57,8 @@ namespace _Project.Scripts.CodeGen
             string namespaceName = ExtractNamespace(content) ?? "global";
             string assemblyName = "Assembly-CSharp";
 
-            string pattern = @"((?:[\r\n]+\s*)+)(\[MovedFrom\([^\)]*\)\]\s*(?:[\r\n]+\s*)*)?(public|internal|private|protected)?\s*(sealed\s+)?(struct|class)\s+(\w+)(\s*:\s*(?:TagComponentTemplate|ComponentTemplate)<[^>]+>)?";
+            string pattern =
+                @"((?:[\r\n]+\s*)+)(\[MovedFrom\([^\)]*\)\]\s*(?:[\r\n]+\s*)*)?(public|internal|private|protected)?\s*(sealed\s+)?(struct|class)\s+(\w+)(\s*:\s*(?:TagComponentTemplate|ComponentTemplate)<[^>]+>)?";
 
             return Regex.Replace(content, pattern, match =>
             {
@@ -73,18 +76,21 @@ namespace _Project.Scripts.CodeGen
                 {
                     fullClassName = string.Join("/", classStack.Reverse().Concat(new[] { className }));
                 }
+
                 classStack.Push(className);
 
                 // Проверяем, нужно ли добавлять атрибут
-                if (!string.IsNullOrEmpty(inheritance) && 
+                if (!string.IsNullOrEmpty(inheritance) &&
                     (inheritance.Contains("TagComponentTemplate") || inheritance.Contains("ComponentTemplate")))
                 {
-                    string newAttribute = $"[MovedFrom(autoUpdateAPI: false, sourceNamespace: \"{namespaceName}\", sourceClassName: \"{fullClassName}\", sourceAssembly: \"{assemblyName}\")]";
-                    string classDeclaration = $"{accessModifier} {sealedKeyword}{structOrClass} {className}{inheritance}";
-                    
+                    string newAttribute =
+                        $"[MovedFrom(autoUpdateAPI: false, sourceNamespace: \"{namespaceName}\", sourceClassName: \"{fullClassName}\", sourceAssembly: \"{assemblyName}\")]";
+                    string classDeclaration =
+                        $"{accessModifier} {sealedKeyword}{structOrClass} {className}{inheritance}";
+
                     return $"{leadingWhitespace}{newAttribute}\n{leadingWhitespace}{classDeclaration}";
                 }
-                
+
                 // Если атрибут не нужен, возвращаем исходное объявление
                 return match.Value;
             });
@@ -96,10 +102,54 @@ namespace _Project.Scripts.CodeGen
             return namespaceMatch.Success ? namespaceMatch.Groups[1].Value : null;
         }
 
+
+        private static void RemoveUnnecessaryUsingFromFile(string filePath)
+        {
+            string content = File.ReadAllText(filePath);
+            bool hasRequiredClasses = CheckForRequiredClasses(content);
+
+            if (!hasRequiredClasses)
+            {
+                string modifiedContent = RemoveRequiredUsing(content);
+                if (content != modifiedContent)
+                {
+                    File.WriteAllText(filePath, modifiedContent);
+                    Console.WriteLine($"Removed unnecessary using from: {filePath}");
+                }
+            }
+        }
+
+        private static bool CheckForRequiredClasses(string content)
+        {
+            string pattern = @"(struct|class)\s+\w+\s*:\s*(?:TagComponentTemplate|ComponentTemplate)<[^>]+>";
+            return Regex.IsMatch(content, pattern);
+        }
+
+        private static string RemoveRequiredUsing(string content)
+        {
+            var usingIndex = content.IndexOf(REQUIRED_USING, StringComparison.Ordinal);
+            if (usingIndex != -1)
+            {
+                int endIndex = content.IndexOf('\n', usingIndex) + 1;
+                return content.Remove(usingIndex, endIndex - usingIndex);
+            }
+
+            return content;
+        }
+
         [Button]
         public static void Main(string path)
         {
             ModifySourceFiles(path);
+        }
+
+        [Button]
+        public static void RemoveUnnecessaryUsing(string directoryPath)
+        {
+            foreach (var file in Directory.GetFiles(directoryPath, "*.cs", SearchOption.AllDirectories))
+            {
+                RemoveUnnecessaryUsingFromFile(file);
+            }
         }
     }
 }

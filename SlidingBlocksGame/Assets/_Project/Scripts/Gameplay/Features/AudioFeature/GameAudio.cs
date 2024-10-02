@@ -2,7 +2,6 @@ using System;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.Serialization;
-using UnityEngine.Scripting.APIUpdating;
 
 namespace _Project.Scripts.Gameplay.Features.AudioFeature
 {

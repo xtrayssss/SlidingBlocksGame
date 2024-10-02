@@ -3,7 +3,6 @@ using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using DCFApixels.DragonECS;
 using UnityEngine;
 using YG;
-using UnityEngine.Scripting.APIUpdating;
 
 namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 {

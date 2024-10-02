@@ -2,7 +2,6 @@ using _Project.Scripts.Gameplay.Features.GameFlowFeature.Components;
 using _Project.Scripts.Gameplay.Utils;
 using DCFApixels.DragonECS;
 using UnityEngine;
-using UnityEngine.Scripting.APIUpdating;
 
 namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
 {
