@@ -9,10 +9,10 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Components
     {
         public EcsEntityConnect Value;
 
-		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.GameFlowFeature.Components", sourceClassName: "ScoreUIConnect/Template", sourceAssembly: "Assembly-CSharp")]
-
-
-		private sealed class Template : ComponentTemplate<ScoreUIConnect>
+        [MovedFrom(autoUpdateAPI: false,
+            sourceNamespace: "_Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components",
+            sourceClassName: "ScoreUIConnect/Template", sourceAssembly: "Assembly-CSharp")]
+        private sealed class Template : ComponentTemplate<ScoreUIConnect>
         {
         }
     }

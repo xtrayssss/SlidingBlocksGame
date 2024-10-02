@@ -1,8 +1,8 @@
 using System;
 using _Project.Scripts.Gameplay.Features.CollectFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
 using _Project.Scripts.Gameplay.Features.UIFeature.Components;
-using _Project.Scripts.Gameplay.Features.VisualFeature.Components;
 using DCFApixels.DragonECS;
 using PrimeTween;
 using UnityEngine;

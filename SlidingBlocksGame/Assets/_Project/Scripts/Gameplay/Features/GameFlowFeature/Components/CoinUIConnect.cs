@@ -9,10 +9,10 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Components
     {
         public EcsEntityConnect Value;
 
-		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.GameFlowFeature.Components", sourceClassName: "CoinUIConnect/Template", sourceAssembly: "Assembly-CSharp")]
-
-
-		private sealed class Template : ComponentTemplate<CoinUIConnect>
+        [MovedFrom(autoUpdateAPI: false,
+            sourceNamespace: "_Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components",
+            sourceClassName: "CoinUIConnect/Template", sourceAssembly: "Assembly-CSharp")]
+        private sealed class Template : ComponentTemplate<CoinUIConnect>
         {
         }
     }

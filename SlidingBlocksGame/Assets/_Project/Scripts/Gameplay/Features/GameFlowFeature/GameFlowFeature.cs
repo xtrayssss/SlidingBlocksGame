@@ -5,7 +5,6 @@ using _Project.Scripts.Gameplay.Features.CommonFeature.Systems;
 using _Project.Scripts.Gameplay.Features.GameFlowFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems;
 using _Project.Scripts.Gameplay.Features.UIFeature.Components;
-using _Project.Scripts.Gameplay.Features.VisualFeature.Components;
 using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.GameFlowFeature
@@ -97,10 +96,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature
                 .AddUnique(new BestScoreCheckSystem())
                 .AutoDelEntityComponent<BestScoreUpdatedEvent>()
                 .AddUnique(new BestScoreSystem())
-                .AutoDelEntityComponent<UpdateBestScoreRequest>()
-                //
-                .AddUnique(new SaveLoadPlayerProgressSystem())
-                .AutoDelTag<LoadProgressRequest>();
+                .AutoDelEntityComponent<UpdateBestScoreRequest>();
         }
     }
 }

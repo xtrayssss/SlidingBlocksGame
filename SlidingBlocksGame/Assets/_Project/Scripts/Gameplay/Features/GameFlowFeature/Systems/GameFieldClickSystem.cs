@@ -1,7 +1,7 @@
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFieldFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFlowFeature.Components;
-using _Project.Scripts.Gameplay.Features.InputFeature.Components;
+using _Project.Scripts.Gameplay.Features.PlayerFeature.InputFeature.Components;
 using _Project.Scripts.Gameplay.Utils;
 using DCFApixels.DragonECS;
 using Unity.Mathematics;

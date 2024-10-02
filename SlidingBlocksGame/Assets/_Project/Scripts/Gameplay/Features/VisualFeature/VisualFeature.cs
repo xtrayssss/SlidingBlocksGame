@@ -1,10 +1,11 @@
 using _Project.Scripts.Gameplay.Features.AudioFeature.Components;
+using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
+using _Project.Scripts.Gameplay.Features.MovementFeature.Systems;
 using _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Components;
 using _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Systems;
 using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.UIFeature.Systems;
-using _Project.Scripts.Gameplay.Features.VisualFeature.Components;
-using _Project.Scripts.Gameplay.Features.VisualFeature.Systems;
+using _Project.Scripts.Gameplay.Features.VisualFeature.VFXFeature;
 using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.VisualFeature
@@ -14,7 +15,7 @@ namespace _Project.Scripts.Gameplay.Features.VisualFeature
         public void Import(EcsPipeline.Builder builder)
         {
             builder
-                .AddModule(new FxFeature())
+                .AddModule(new VfxFeature())
                 .AddModule(new UIFeature());
         }
 
@@ -68,18 +69,6 @@ namespace _Project.Scripts.Gameplay.Features.VisualFeature
                     .AutoDelTag<WobbleRequest>()
                     //
                     .AutoDelEntityTag<ButtonClickedEvent>();
-            }
-        }
-
-        private class FxFeature : IEcsModule
-        {
-            public void Import(EcsPipeline.Builder builder)
-            {
-                builder
-                    .AddUnique(new PlayFxSystem())
-                    .AutoDelTag<PlayFxRequest>()
-                    .AddUnique(new DestroyFxRequestSystem())
-                    .AddUnique(new DestructionFxSystem());
             }
         }
     }

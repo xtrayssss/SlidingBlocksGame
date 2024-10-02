@@ -36,10 +36,6 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                         Utils.GridUtils.GetCellPosition(
                             worldPosition: aspect.GameObjectConnects.Read(entity).Connect.transform.position,
                             gameField: in gameFieldAspect.GameFields.Read(gameFieldID));
-                    
-                    cellPosition.Fixed = Utils.GridUtils.GetCellPosition(
-                        worldPosition: aspect.GameObjectConnects.Read(entity).Connect.transform.position,
-                        gameField: in gameFieldAspect.GameFields.Read(gameFieldID));
                 }
             }
         }
