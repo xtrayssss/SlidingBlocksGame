@@ -10,10 +10,9 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Components
     {
         public MeshRenderer Value;
 
-		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.CommonFeature.Components", sourceClassName: "MeshRendererRef/Template", sourceAssembly: "Assembly-CSharp")]
-
-
-		private sealed class Template : ComponentTemplate<MeshRendererRef>
+        [MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.CommonFeature.Components",
+            sourceClassName: "MeshRendererRef/Template", sourceAssembly: "Assembly-CSharp")]
+        private sealed class Template : ComponentTemplate<MeshRendererRef>
         {
         }
     }

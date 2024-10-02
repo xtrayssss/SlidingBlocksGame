@@ -1,4 +1,5 @@
 using System;
+using _Project.Scripts.Gameplay.Features.AnimalFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.CreationFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFieldFeature.Components;
@@ -63,10 +64,10 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature.Systems
 
                     SideAspect sideAspect = _world.GetAspect<SideAspect>();
 
-                    (int2 direction, EcsGroup animals) left = CreateSide(sideAspect, GridUtils.Left);
-                    (int2 direction, EcsGroup animals) right = CreateSide(sideAspect, GridUtils.Right);
-                    (int2 direction, EcsGroup animals) up = CreateSide(sideAspect, GridUtils.Up);
-                    (int2 direction, EcsGroup animals) down = CreateSide(sideAspect, GridUtils.Down);
+                    (int2 direction, EcsGroup animals) left = CreateSide(sideAspect, GridUtils.LEFT);
+                    (int2 direction, EcsGroup animals) right = CreateSide(sideAspect, GridUtils.RIGHT);
+                    (int2 direction, EcsGroup animals) up = CreateSide(sideAspect, GridUtils.UP);
+                    (int2 direction, EcsGroup animals) down = CreateSide(sideAspect, GridUtils.DOWN);
 
                     foreach (ref GameField.AnimalsData animalData in animals)
                     {

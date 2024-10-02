@@ -1,5 +1,6 @@
 ﻿using _Project.Scripts.Gameplay.Features.CollectFeature;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+using _Project.Scripts.Gameplay.Features.PlayerFeature.Systems;
 using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.PlayerFeature.Components

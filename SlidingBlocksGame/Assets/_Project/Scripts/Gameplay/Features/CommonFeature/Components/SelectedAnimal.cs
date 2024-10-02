@@ -10,10 +10,9 @@ namespace _Project.Scripts.Gameplay.Features.CommonFeature.Components
         public EcsEntityConnect Prefab;
         public ushort ID;
 
-		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.CommonFeature.Components", sourceClassName: "SelectedAnimal/Template", sourceAssembly: "Assembly-CSharp")]
-
-
-		private sealed class Template : ComponentTemplate<SelectedAnimal>
+        [MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.CommonFeature.Components",
+            sourceClassName: "SelectedAnimal/Template", sourceAssembly: "Assembly-CSharp")]
+        private sealed class Template : ComponentTemplate<SelectedAnimal>
         {
         }
     }
