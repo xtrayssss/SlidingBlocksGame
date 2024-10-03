@@ -37,7 +37,11 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 
                     tutorialConnect.Value.transform.localScale = Vector3.zero;
 
-                    Tween.Scale(tutorialConnect.Value.transform, Vector3.one, 0.2f, Ease.OutBack);
+                    Tween.Scale(
+                        target: tutorialConnect.Value.transform,
+                        endValue: Vector3.one,
+                        duration: 0.2f,
+                        ease: Ease.OutBack);
 
                     tutorialConnect.Value.gameObject.SetActive(true);
                 }
@@ -49,9 +53,14 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                 {
                     ref TutorialConnect tutorialConnect = ref gameScreenAspect.TutorialConnects.Get(screen);
 
-                    Tween.Scale(gameScreenAspect.TutorialConnects.Get(screen).Value.transform, Vector3.zero, 0.2f,
-                            Ease.InBack)
-                        .OnComplete(tutorialConnect.Value, target => { target.gameObject.SetActive(false); });
+                    Tween.Scale(
+                            target: gameScreenAspect.TutorialConnects.Get(screen).Value.transform,
+                            endValue: Vector3.zero,
+                            duration: 0.2f,
+                            ease: Ease.InBack)
+                        .OnComplete(
+                            target: tutorialConnect.Value,
+                            connect => connect.gameObject.SetActive(false));
                 }
             }
         }

@@ -1,6 +1,7 @@
-using _Project.Scripts.Gameplay.Features.CollectFeature.Components;
+using _Project.Scripts.Gameplay.Features.CollectionFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.PlayerFeature.Components;
+using _Project.Scripts.Gameplay.Features.PurchaseFeature.Components;
 using _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Components;
 using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using DCFApixels.DragonECS;
@@ -13,7 +14,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 
         private class PurchasesAspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(PurchaseAnimalTag))]
+            [IncImplicit(typeof(PurchaseTag))]
             [IncImplicit(typeof(ScrollSnappedMarker))]
             [Inc] public readonly EcsPool<PhysicView> PhysicViews;
 

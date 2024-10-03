@@ -1,5 +1,5 @@
 ﻿using _Project.Scripts.Gameplay.Features.AnimalFeature;
-using _Project.Scripts.Gameplay.Features.AudioFeature;
+using _Project.Scripts.Gameplay.Features.AudioBaseFeature;
 using _Project.Scripts.Gameplay.Features.CooldownFeature;
 using _Project.Scripts.Gameplay.Features.CreationFeature;
 using _Project.Scripts.Gameplay.Features.DestructionFeature;
@@ -8,6 +8,9 @@ using _Project.Scripts.Gameplay.Features.GameFlowFeature;
 using _Project.Scripts.Gameplay.Features.GameFlowFeature.Components;
 using _Project.Scripts.Gameplay.Features.MovementFeature;
 using _Project.Scripts.Gameplay.Features.PlayerFeature.Components;
+using _Project.Scripts.Gameplay.Features.PurchaseFeature;
+using _Project.Scripts.Gameplay.Features.RewardFeature;
+using _Project.Scripts.Gameplay.Features.ScoreFeature;
 using _Project.Scripts.Gameplay.Features.VisualFeature;
 using DCFApixels.DragonECS;
 using Sirenix.OdinInspector;
@@ -44,6 +47,9 @@ namespace _Project.Scripts.Gameplay
                 .AddModule(new AnimalFeature())
                 .AddModule(new MovementFeature())
                 .AddModule(new DestructionFeature())
+                .AddModule(new PurchaseFeature())
+                .AddModule(new ScoreFeature())
+                .AddModule(new RewardFeature())
                 .AddModule(new VisualFeature())
                 .AddModule(new CooldownFeature())
                 .AddModule(new AudioFeature())

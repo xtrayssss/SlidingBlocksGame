@@ -1,7 +1,9 @@
 using System;
-using _Project.Scripts.Gameplay.Features.CollectFeature.Components;
+using _Project.Scripts.Gameplay.Features.CollectionFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
+using _Project.Scripts.Gameplay.Features.RewardFeature.Components;
+using _Project.Scripts.Gameplay.Features.RewardFeature.Systems;
 using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using DCFApixels.DragonECS;
 using PrimeTween;
@@ -22,7 +24,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
             public class OnEnter : EcsAspectAuto
             {
                 [IncImplicit(typeof(RewardTag))]
-                [IncImplicit(typeof(CanRewardEvent))]
+                [IncImplicit(typeof(RewardEligibilityEvent))]
                 [Inc] public readonly EcsPool<RewardStatus> Status;
 
                 [Inc] public readonly EcsPool<GrabRewardText> GrabRewardText;
@@ -34,11 +36,11 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
         private class RewardLockStateAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(RewardTag))]
-            [ExcImplicit(typeof(CanRewardMarker))]
+            [ExcImplicit(typeof(RewardEligibilityMarker))]
             [Inc] public readonly EcsPool<RewardStatus> Status;
 
             [Inc] public readonly EcsPool<RewardTimeText> RewardTimeText;
-            [Inc] public readonly EcsPool<RewardCollectedAt> RewardCollectedAt;
+            [Inc] public readonly EcsPool<RewardCollectionTime> RewardCollectionTime;
             [Inc] public readonly EcsPool<GrabRewardText> GrabRewardText;
             [Inc] public readonly EcsPool<RewardInterval> RewardInterval;
         }
@@ -52,10 +54,10 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
         private class RewardAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(RewardTag))]
-            [IncImplicit(typeof(CanRewardMarker))]
+            [IncImplicit(typeof(RewardEligibilityMarker))]
             [Inc] public readonly EcsPool<RewardWindowConnect> RewardWindowConnects;
 
-            [Inc] public readonly EcsPool<CoinsProgressionCurve> CoinsProgressionCurves;
+            [Inc] public readonly EcsPool<RewardScalingCurve> CoinsProgressionCurves;
         }
 
         public class RewardWindowAspect : EcsAspectAuto
@@ -120,7 +122,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                 rewardStatus.Locked.gameObject.SetActive(true);
                 rewardStatus.Unlocked.gameObject.SetActive(false);
 
-                long difference = YandexGame.ServerTime() - aspect.RewardCollectedAt.Read(entity).Value;
+                long difference = YandexGame.ServerTime() - aspect.RewardCollectionTime.Read(entity).Value;
 
                 difference = Math.Max(0, difference);
 

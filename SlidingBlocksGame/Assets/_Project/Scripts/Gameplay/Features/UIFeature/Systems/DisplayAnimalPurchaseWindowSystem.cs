@@ -1,3 +1,4 @@
+using _Project.Scripts.Gameplay.Features.PurchaseFeature.Components;
 using _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Components;
 using _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Systems;
 using _Project.Scripts.Gameplay.Features.UIFeature.Components;

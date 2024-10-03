@@ -4,6 +4,8 @@ using _Project.Scripts.Gameplay.Features.AnimalFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFlowFeature.Components;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
+using _Project.Scripts.Gameplay.Features.PurchaseFeature.Components;
+using _Project.Scripts.Gameplay.Features.PurchaseFeature.Systems;
 using _Project.Scripts.Gameplay.Features.ScrollSnapFeature;
 using _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Components;
 using _Project.Scripts.Gameplay.Features.UIFeature.Components;
@@ -58,12 +60,10 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
 
                 gameScreenAspect.Canvases.Get(gameScreen.ID).Value.worldCamera = uiCamera;
 
-                CreateInAppPurchases(connect);
                 CreateAnimalsPurchaseWindow(connect);
                 CreateReward(connect);
                 CreateGameTitle(connect, gameScreenAspect);
                 CreateSettingsPopup(connect, gameScreenAspect);
-
 
                 _world.GetPool<GameScreenCreatedEvent>().Add(gameScreen.ID);
             }
@@ -192,18 +192,6 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
             var cam = fitObjectToOrthographicCamera.Create(animalRendererView);
 
             _world.GetPool<RenderCamera>().Add(purchase.ID).Value = cam;
-        }
-
-        private void CreateInAppPurchases(EcsEntityConnect connect)
-        {
-            entlong screen = connect.Entity;
-
-            Transform shop = connect.transform.GetChild(0).Find("InAppShop").Find("Products");
-
-            ref readonly InAppPurchases inAppPurchases = ref _world.GetPool<InAppPurchases>().Read(screen.ID);
-
-            foreach (ref readonly InAppPurchases.Purchase purchase in inAppPurchases.Value.AsSpan())
-                Object.Instantiate(purchase.Prefab, shop.transform, false);
         }
     }
 }

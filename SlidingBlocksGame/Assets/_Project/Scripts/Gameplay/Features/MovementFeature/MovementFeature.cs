@@ -12,7 +12,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature
         public void Import(EcsPipeline.Builder builder)
         {
             builder
-                .AddUnique(new GameFieldClickSystem())
+                .AddUnique(new GameFieldSideClickSystem())
                 .AutoDelEntityTag<ApplyMovementStrategyRequest>()
                 .AddUnique(new DestinationCellSystem())
                 //

@@ -10,7 +10,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
     {
         [EcsInject] private EcsDefaultWorld _world;
         
-        private static readonly Vector2 WobbleOffset = new Vector2(0, 45);
+        private static readonly Vector2 WOBBLE_OFFSET = new Vector2(0, 45);
 
         private class Aspect : EcsAspectAuto
         {
@@ -30,7 +30,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                 
                 wobbleTween.Value = Tween.UIAnchoredPosition(
                     target: rect.Value,
-                    endValue: rect.Value.anchoredPosition + WobbleOffset,
+                    endValue: rect.Value.anchoredPosition + WOBBLE_OFFSET,
                     duration: 1.3f,
                     cycles: -1,
                     cycleMode: CycleMode.Yoyo,

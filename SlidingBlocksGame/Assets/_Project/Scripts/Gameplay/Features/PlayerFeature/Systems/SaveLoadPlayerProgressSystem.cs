@@ -1,9 +1,12 @@
 ﻿using System.Linq;
 using _Project.Scripts.Gameplay.Features.AnimalFeature.Components;
-using _Project.Scripts.Gameplay.Features.AudioFeature.Components;
-using _Project.Scripts.Gameplay.Features.CollectFeature.Components;
+using _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components;
+using _Project.Scripts.Gameplay.Features.CollectionFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.PlayerFeature.Components;
+using _Project.Scripts.Gameplay.Features.PurchaseFeature.Components;
+using _Project.Scripts.Gameplay.Features.RewardFeature.Components;
+using _Project.Scripts.Gameplay.Features.ScoreFeature.Components;
 using _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Components;
 using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using _Project.Scripts.Gameplay.Utils;
@@ -52,7 +55,7 @@ namespace _Project.Scripts.Gameplay.Features.PlayerFeature.Systems
         private class PurchasedEventAspect : EcsAspectAuto
         {
             [Inc] public readonly EcsTagPool<PurchasedEvent> PurchasedEvent;
-            [Inc] public readonly EcsTagPool<PurchaseAnimalTag> PurchaseAnimalTag;
+            [Inc] public readonly EcsTagPool<PurchaseTag> PurchaseAnimalTag;
         }
 
         private class PlayAnimalButtonClickedAspect : EcsAspectAuto
@@ -63,7 +66,7 @@ namespace _Project.Scripts.Gameplay.Features.PlayerFeature.Systems
 
         private class PurchasesAspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(PurchaseAnimalTag))]
+            [IncImplicit(typeof(PurchaseTag))]
             [IncImplicit(typeof(ScrollSnappedMarker))]
             [Inc] public readonly EcsPool<PhysicView> PhysicViews;
 
@@ -107,7 +110,7 @@ namespace _Project.Scripts.Gameplay.Features.PlayerFeature.Systems
         private class RewardAspect : EcsAspectAuto
         {
             [Inc] public readonly EcsPool<RewardsCount> RewardsCounts;
-            [Inc] public readonly EcsPool<RewardCollectedAt> RewardCollectedAt;
+            [Inc] public readonly EcsPool<RewardCollectionTime> RewardCollectionTime;
         }
 
         private class GameAudioUpdatedAspect : EcsAspectAuto
@@ -170,7 +173,7 @@ namespace _Project.Scripts.Gameplay.Features.PlayerFeature.Systems
                     continue;
 
                 YandexGame.savesData.RewardCount = rewardAspect.RewardsCounts.Read(targetID).Value;
-                YandexGame.savesData.RewardCollectedAt = rewardAspect.RewardCollectedAt.Read(targetID).Value;
+                YandexGame.savesData.RewardCollectedAt = rewardAspect.RewardCollectionTime.Read(targetID).Value;
 
                 YandexGame.SaveProgress();
             }

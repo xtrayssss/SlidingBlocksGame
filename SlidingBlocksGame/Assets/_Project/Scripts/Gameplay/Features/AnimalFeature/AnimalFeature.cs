@@ -1,7 +1,6 @@
 using _Project.Scripts.Gameplay.Features.AnimalFeature.Components;
 using _Project.Scripts.Gameplay.Features.AnimalFeature.Systems;
-using _Project.Scripts.Gameplay.Features.AudioFeature;
-using _Project.Scripts.Gameplay.Features.GameFlowFeature.Components;
+using _Project.Scripts.Gameplay.Features.AudioBaseFeature;
 using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.AnimalFeature
@@ -24,6 +23,11 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature
                 // destruction feature
                 .AutoDelTag<AnimalDestructedEvent>()
                 .AddUnique(new AnimalDestructionChainStrategySystem())
+                
+                // selection feature
+                .AutoDelEntityTag<SelectedAnimalUpdatedEvent>()
+                .AddUnique(new UpdateSelectedAnimalSystem())
+                .AutoDelEntityComponent<UpdateSelectedAnimalRequest>()
                 
                 // audio feature
                 .AddAudioSystem<AnimalSpawnedEvent, AnimalSpawnedAudioConfig>();

@@ -1,10 +1,16 @@
-using _Project.Scripts.Gameplay.Features.CollectFeature;
-using _Project.Scripts.Gameplay.Features.CollectFeature.Components;
-using _Project.Scripts.Gameplay.Features.CollectFeature.Systems;
+using _Project.Scripts.Gameplay.Features.AnimalFeature.Components;
+using _Project.Scripts.Gameplay.Features.CollectionFeature.Components;
+using _Project.Scripts.Gameplay.Features.CollectionFeature.Systems;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
-using _Project.Scripts.Gameplay.Features.CommonFeature.Systems;
 using _Project.Scripts.Gameplay.Features.GameFlowFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems;
+using _Project.Scripts.Gameplay.Features.PurchaseFeature;
+using _Project.Scripts.Gameplay.Features.PurchaseFeature.Components;
+using _Project.Scripts.Gameplay.Features.PurchaseFeature.Systems;
+using _Project.Scripts.Gameplay.Features.RewardFeature.Components;
+using _Project.Scripts.Gameplay.Features.RewardFeature.Systems;
+using _Project.Scripts.Gameplay.Features.ScoreFeature.Components;
+using _Project.Scripts.Gameplay.Features.ScoreFeature.Systems;
 using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.UIFeature.Systems;
 using DCFApixels.DragonECS;
@@ -72,33 +78,13 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature
                 .AutoDelTag<CoinCollectedEvent>()
                 .AddUnique(new CollectCoinSystem())
                 //
-                .AddUnique(new RewardCollectSystem())
-                //
-                .AutoDelTag<PurchasedEvent>()
-                .AddUnique(new PurchaseAnimalSystem())
-                //
-                .AutoDelEntityComponent<ScoreUpdatedEvent>()
-                .AddUnique(new ScoresSystem())
-                .AutoDelEntityComponent<UpdateScoresRequest>()
-                //
                 .AutoDelEntityComponent<CoinsUpdatedEvent>()
                 .AddUnique(new CoinsSystem())
                 .AutoDelEntityComponent<UpdateCoinsRequest>()
                 //
-                .AutoDelEntityTag<SelectedAnimalUpdatedEvent>()
-                .AutoDelEntityTag<PurchasesClearedEvent>()
-                .AddUnique(new PurchaseSystem())
-                .AutoDelEntityComponent<UpdateSelectedAnimalRequest>()
-                .AutoDelEntityTag<ClearPurchasesRequest>()
-                //
                 .AutoDelEntityTag<RewardUpdatedEvent>()
                 .AddUnique(new RewardSystem())
-                .AutoDelEntityComponent<UpdateRewardRequest>()
-                //
-                .AddUnique(new BestScoreCheckSystem())
-                .AutoDelEntityComponent<BestScoreUpdatedEvent>()
-                .AddUnique(new BestScoreSystem())
-                .AutoDelEntityComponent<UpdateBestScoreRequest>();
+                .AutoDelEntityComponent<UpdateRewardRequest>();
         }
     }
 }

@@ -14,36 +14,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _components:
   - rid: 8499802700812648450
-  - rid: 6454805113458655407
   - rid: 6454805113458655408
   - rid: 6454805267925958657
   - rid: 6454805267925958660
   - rid: 6454805569733133212
   - rid: 6454805633061093376
+  - rid: 3543309342932729856
   references:
     version: 2
     RefIds:
-    - rid: 6454805113458655407
-      type: {class: Scores/Template, ns: _Project.Scripts.Gameplay.Features.CollectFeature.Components,
+    - rid: 3543309342932729856
+      type: {class: Scores/Template, ns: _Project.Scripts.Gameplay.Features.ScoreFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
           Value: 0
     - rid: 6454805113458655408
-      type: {class: Coins/Template, ns: _Project.Scripts.Gameplay.Features.CollectFeature.Components,
+      type: {class: Coins/Template, ns: _Project.Scripts.Gameplay.Features.CollectionFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
           Value: 500
     - rid: 6454805267925958657
-      type: {class: SelectedAnimal/Template, ns: _Project.Scripts.Gameplay.Features.CommonFeature.Components,
+      type: {class: SelectedAnimal/Template, ns: _Project.Scripts.Gameplay.Features.AnimalFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
-          Prefab: {fileID: 0}
+          Prefab: {fileID: 2013783015110300518, guid: bcb8c70410414a246922c356f4b52f69,
+            type: 3}
           ID: 0
     - rid: 6454805267925958660
-      type: {class: AnimalPrefabs/Template, ns: _Project.Scripts.Gameplay.Features.CommonFeature.Components,
+      type: {class: AnimalPrefabs/Template, ns: _Project.Scripts.Gameplay.Features.AnimalFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -56,7 +57,7 @@ MonoBehaviour:
           - {fileID: 1737809211169751524, guid: 60f569c8fef7bcb4aa6510ecdf2cc0b5, type: 3}
           - {fileID: 2837514245448880509, guid: fdf867e4f78396d4893b9e39fbd9a5b3, type: 3}
     - rid: 6454805569733133212
-      type: {class: LockGameInputMarker/Template, ns: _Project.Scripts.Gameplay.Features.InputFeature.Components,
+      type: {class: LockGameInputMarker/Template, ns: _Project.Scripts.Gameplay.Features.PlayerFeature.InputFeature.Components,
         asm: Assembly-CSharp}
       data: {}
     - rid: 6454805633061093376
@@ -66,6 +67,6 @@ MonoBehaviour:
         component:
           Value: 0
     - rid: 8499802700812648450
-      type: {class: PlayerTag/Template, ns: _Project.Scripts.Gameplay.Features.CommonFeature.Components,
+      type: {class: PlayerTag/Template, ns: _Project.Scripts.Gameplay.Features.PlayerFeature.Components,
         asm: Assembly-CSharp}
       data: {}

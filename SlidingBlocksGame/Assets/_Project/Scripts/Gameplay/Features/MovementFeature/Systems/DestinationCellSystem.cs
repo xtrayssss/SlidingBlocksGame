@@ -30,7 +30,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 
         private class ClickAspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(ClickSideMarker))]
+            [IncImplicit(typeof(SideClickedMarker))]
             [Inc] public readonly EcsPool<WorldPosition> WorldPositions;
 
             [Inc] public readonly EcsPool<ActiveGameField> ActiveGameFields;
