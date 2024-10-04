@@ -227,7 +227,7 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Systems
                 for (int i = 0; i < count; i++)
                 {
                     if (scrollSnap.SafeItems[i].TryGetID(out int itemID))
-                        _world.GetPool<ScrollPosition>().Get(itemID).Value = scrollSnap.Distance * i;
+                        _world.GetPool<ScrollPosition>().Add(itemID).Value = scrollSnap.Distance * i;
                 }
 
                 scrollSnap.Effects = EcsGroup.New(_world);

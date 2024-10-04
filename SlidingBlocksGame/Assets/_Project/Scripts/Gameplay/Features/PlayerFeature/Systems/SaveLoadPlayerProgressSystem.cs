@@ -78,7 +78,7 @@ namespace _Project.Scripts.Gameplay.Features.PlayerFeature.Systems
         private class AnimalsShopWindow : EcsAspectAuto
         {
             [IncImplicit(typeof(AnimalsShopWindowTag))]
-            [Inc] public readonly EcsPool<AnimalPurchases> AnimalPurchases;
+            [Inc] public readonly EcsPool<Purchases> AnimalPurchases;
 
             [Inc] public readonly EcsPool<ScrollSnap> ScrollSnaps;
         }
@@ -159,7 +159,7 @@ namespace _Project.Scripts.Gameplay.Features.PlayerFeature.Systems
 
             foreach (int purchase in _world.Where(out PurchasedEventAspect _))
             {
-                YandexGame.savesData.PurchasedAnimals.Add(_world.GetPool<Purchase>().Read(purchase).ProductIndex);
+                YandexGame.savesData.PurchasedAnimals.Add(_world.GetPool<Purchase>().Read(purchase).Index);
 
                 YandexGame.SaveProgress();
             }
@@ -188,7 +188,7 @@ namespace _Project.Scripts.Gameplay.Features.PlayerFeature.Systems
 
                         ProgressUtils.UpdateSelectedAnimal(
                             target: player,
-                            selectedID: purchase.ProductIndex);
+                            selectedID: purchase.Index);
                     }
                 }
             }
@@ -290,11 +290,11 @@ namespace _Project.Scripts.Gameplay.Features.PlayerFeature.Systems
                 {
                     Debug.Log("Load Purchases");
 
-                    ref AnimalPurchases animalPurchases = ref aspect.AnimalPurchases.Get(window);
+                    ref Purchases purchases = ref aspect.AnimalPurchases.Get(window);
 
-                    foreach (int purchased in animalPurchases.Entities.Where(x =>
+                    foreach (int purchased in purchases.Entities.Where(x =>
                                  YandexGame.savesData.PurchasedAnimals.Contains(_world.GetPool<Purchase>().Read(x)
-                                     .ProductIndex)))
+                                     .Index)))
                     {
                         _world.GetPool<PurchasedMarker>().Add(purchased);
                     }

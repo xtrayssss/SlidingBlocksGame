@@ -1,10 +1,10 @@
 using _Project.Scripts.Gameplay.Features.CollectionFeature.Components;
-using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.PlayerFeature.Components;
 using _Project.Scripts.Gameplay.Features.PurchaseFeature.Components;
 using _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Components;
 using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using DCFApixels.DragonECS;
+using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 {
@@ -16,7 +16,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
         {
             [IncImplicit(typeof(PurchaseTag))]
             [IncImplicit(typeof(ScrollSnappedMarker))]
-            [Inc] public readonly EcsPool<PhysicView> PhysicViews;
+            [Inc] public readonly EcsPool<PurchaseWidget> PurchaseWidgets;
 
             [Inc] public readonly EcsPool<Purchase> Purchases;
 
@@ -29,51 +29,42 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
             [Inc] public readonly EcsPool<Coins> Coins;
         }
 
-        private class AnimalsShopWindowAspect : EcsAspectAuto
-        {
-            [IncImplicit(typeof(AnimalsShopWindowTag))]
-            [Inc] public readonly EcsPool<PurchaseButtonStatus> Status;
-        }
-
         public void Run()
         {
             foreach (int entity in _world.Where(out PurchasesAspect aspect))
             {
                 foreach (int player in _world.Where(out PlayerAspect playerAspect))
                 {
-                    ref readonly var coins = ref playerAspect.Coins.Get(player);
+                    ref readonly Coins coins = ref playerAspect.Coins.Get(player);
 
-                    foreach (int window in _world.Where(out AnimalsShopWindowAspect animalsShopWindowAspect))
+                    ref PurchaseWidget widget = ref aspect.PurchaseWidgets.Get(entity);
+                    
+                    if (aspect.Purchased.Has(entity))
                     {
-                        if (aspect.Purchased.Has(entity))
-                        {
-                            animalsShopWindowAspect.Status.Get(window).Current = animalsShopWindowAspect.Status.Read(window).Play;
-                            
-                            animalsShopWindowAspect.Status.Read(window).Play.SetActive(true);
+                        widget.PurchaseStatusWidget.Current = widget.PurchaseStatusWidget.Play;
 
-                            animalsShopWindowAspect.Status.Read(window).Unlock.SetActive(false);
-                            animalsShopWindowAspect.Status.Read(window).Lock.SetActive(false);
+                        widget.PurchaseStatusWidget.Play.SetActive(true);
+                        widget.PurchaseStatusWidget.Unlock.SetActive(false);
+                        widget.PurchaseStatusWidget.Lock.SetActive(false);
+                    }
+                    else
+                    {
+                        if (coins.Value >= aspect.Purchases.Get(entity).Price)
+                        {
+                            widget.PurchaseStatusWidget.Current = widget.PurchaseStatusWidget.Unlock;
+
+                             widget.PurchaseStatusWidget.Unlock.SetActive(true);
+
+                             widget.PurchaseStatusWidget.Play.SetActive(false);
+                             widget.PurchaseStatusWidget.Lock.SetActive(false);
                         }
                         else
                         {
-                            if (coins.Value >= aspect.Purchases.Get(entity).Price)
-                            {
-                                animalsShopWindowAspect.Status.Get(window).Current = animalsShopWindowAspect.Status.Read(window).Unlock;
+                            widget.PurchaseStatusWidget.Current = widget.PurchaseStatusWidget.Lock;
 
-                                animalsShopWindowAspect.Status.Read(window).Unlock.SetActive(true);
-
-                                animalsShopWindowAspect.Status.Read(window).Play.SetActive(false);
-                                animalsShopWindowAspect.Status.Read(window).Lock.SetActive(false);
-                            }
-                            else
-                            {
-                                animalsShopWindowAspect.Status.Get(window).Current = animalsShopWindowAspect.Status.Read(window).Lock;
-
-                                animalsShopWindowAspect.Status.Read(window).Lock.SetActive(true);
-
-                                animalsShopWindowAspect.Status.Read(window).Play.SetActive(false);
-                                animalsShopWindowAspect.Status.Read(window).Unlock.SetActive(false);
-                            }
+                             widget.PurchaseStatusWidget.Lock.SetActive(true);
+                             widget.PurchaseStatusWidget.Play.SetActive(false);
+                             widget.PurchaseStatusWidget.Unlock.SetActive(false);
                         }
                     }
                 }

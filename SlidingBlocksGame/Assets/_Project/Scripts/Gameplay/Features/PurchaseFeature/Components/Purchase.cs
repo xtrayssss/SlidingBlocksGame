@@ -9,7 +9,7 @@ namespace _Project.Scripts.Gameplay.Features.PurchaseFeature.Components
     public struct Purchase : IEcsComponent
     {
         public int Price;
-        public ushort ProductIndex;
+        public ushort Index;
 
         [MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.CommonFeature.Components",
             sourceClassName: "Purchase/Template", sourceAssembly: "Assembly-CSharp")]

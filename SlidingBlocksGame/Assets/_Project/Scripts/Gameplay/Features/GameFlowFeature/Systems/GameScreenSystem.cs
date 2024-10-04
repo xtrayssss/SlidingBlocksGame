@@ -1,19 +1,13 @@
-using System;
-using System.Collections.Generic;
 using _Project.Scripts.Gameplay.Features.AnimalFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFlowFeature.Components;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
 using _Project.Scripts.Gameplay.Features.PurchaseFeature.Components;
 using _Project.Scripts.Gameplay.Features.PurchaseFeature.Systems;
-using _Project.Scripts.Gameplay.Features.ScrollSnapFeature;
 using _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Components;
 using _Project.Scripts.Gameplay.Features.UIFeature.Components;
-using _Project.Scripts.Gameplay.Features.UIFeature.Systems;
 using DCFApixels.DragonECS;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using Object = UnityEngine.Object;
 using ScrollSnap = _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Components.ScrollSnap;
 
@@ -23,12 +17,10 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
     {
         [EcsInject] private readonly EcsDefaultWorld _world;
 
-        private class Aspect : EcsAspectAuto
+        private class GameAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(CreateGameScreenRequest))]
             [Inc] public readonly EcsPool<GameScreenPrefab> GameScreenPrefabs;
-
-            [Opt] public readonly EcsPool<GameScreen> GameScreen;
         }
 
         private class PlayerAspect : EcsAspectAuto
@@ -38,160 +30,225 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
 
         private class GameScreenAspect : EcsAspectAuto
         {
+            [Inc] public readonly EcsPool<GameScreen> GameScreens;
+            [Opt] public readonly EcsTagPool<GameScreenCreatedEvent> GameScreenCreatedEvent;
+        }
+
+        private class AnimalsShopWindowAspect : EcsAspectAuto
+        {
+            [Inc] public readonly EcsPool<AnimalsShopWindow> AnimalsShopWindows;
+            [Inc] public readonly EcsPool<Purchases> Purchases;
+            [Inc] public readonly EcsPool<ScrollSnap> ScrollSnaps;
+            [Opt] public readonly EcsPool<ScrollSetupRequest> ScrollSetupRequest;
+        }
+
+        private class RewardWidgetAspect : EcsAspectAuto
+        {
+            [Inc] public readonly EcsPool<RewardWidget> RewardWidgets;
+        }
+
+        private class RewardWindowAspect : EcsAspectAuto
+        {
+            [Inc] public readonly EcsPool<RewardWindow> RewardWindows;
+        }
+
+        private class GameTitleWidgetAspect : EcsAspectAuto
+        {
             [Opt] public readonly EcsTagPool<WobbleRequest> Wobble;
-            [Inc] public readonly EcsPool<CanvasRef> Canvases;
+        }
+
+        private class PurchaseAspect : EcsAspectAuto
+        {
+            [Opt] public readonly EcsPool<PurchaseWidget> PurchaseWidgets;
+            [Opt] public readonly EcsPool<PhysicView> PhysicView;
+            [Opt] public readonly EcsPool<RenderCamera> RenderCamera;
+            [Opt] public readonly EcsTagPool<Render3DToUIRequest> Render3DToUI;
         }
 
         public void Run()
         {
-            foreach (int entity in _world.Where(out Aspect gameAspect))
+            foreach (int entity in _world.Where(out GameAspect gameAspect))
             {
                 GameScreenAspect gameScreenAspect = _world.GetAspect<GameScreenAspect>();
 
-                entlong gameScreen = _world.NewEntityLong();
+                entlong gameScreenLong = _world.NewEntityLong();
 
                 EcsEntityConnect connect = Object.Instantiate(gameAspect.GameScreenPrefabs.Read(entity).Value);
 
-                connect.Connect(gameScreen, applyTemplates: true);
+                connect.Connect(gameScreenLong, applyTemplates: true);
 
-                gameAspect.GameScreen.Add(entity).Value = gameScreen;
+                ref GameScreen gameScreen = ref gameScreenAspect.GameScreens.Get(gameScreenLong.ID);
 
-                Camera uiCamera = GameObject.FindGameObjectWithTag("UICamera").GetComponent<Camera>();
+                gameScreen.Canvas.worldCamera = GameObject.FindWithTag("UICamera").GetComponent<Camera>();
 
-                gameScreenAspect.Canvases.Get(gameScreen.ID).Value.worldCamera = uiCamera;
+                if (gameScreen.SettingsPopupConnect != null)
+                    CreateSettingsPopup(in gameScreen);
 
-                CreateAnimalsPurchaseWindow(connect);
-                CreateReward(connect);
-                CreateGameTitle(connect, gameScreenAspect);
-                CreateSettingsPopup(connect, gameScreenAspect);
+                if (gameScreen.AnimalsShopWindowConnect != null)
+                    CreateAnimalsShopWindow(in gameScreen);
 
-                _world.GetPool<GameScreenCreatedEvent>().Add(gameScreen.ID);
+                if (gameScreen.RewardWidgetConnect != null)
+                    CreateReward(in gameScreen);
+
+                if (gameScreen.GameTileWidgetConnect != null)
+                    CreateGameTitle(in gameScreen);
+
+                if (gameScreen.PlayWidgetConnect != null)
+                    CreatePlayWidget(in gameScreen);
+
+                if (gameScreen.ScoreWidgetConnect != null)
+                    CreateScoreWidget(in gameScreen);
+
+                if (gameScreen.CoinsWidgetConnect != null)
+                    CreateCoinsWidget(in gameScreen);
+
+                if (gameScreen.BestScoreWidgetConnect != null)
+                    CreateBestScoreWidget(in gameScreen);
+
+                gameScreenAspect.GameScreenCreatedEvent.Add(gameScreenLong.ID);
             }
         }
 
-        private void CreateSettingsPopup(EcsEntityConnect connect, GameScreenAspect gameScreenAspect)
+        private void CreateBestScoreWidget(in GameScreen gameScreen)
         {
-            entlong screen = connect.Entity;
+            entlong widget = _world.NewEntityLong();
 
+            gameScreen.BestScoreWidgetConnect.Connect(widget, applyTemplates: true);
+        }
+
+        private void CreateCoinsWidget(in GameScreen gameScreen)
+        {
+            entlong widget = _world.NewEntityLong();
+
+            gameScreen.CoinsWidgetConnect.Connect(widget, applyTemplates: true);
+        }
+
+        private void CreateScoreWidget(in GameScreen gameScreen)
+        {
+            entlong widget = _world.NewEntityLong();
+
+            gameScreen.ScoreWidgetConnect.Connect(widget, applyTemplates: true);
+        }
+
+        private void CreatePlayWidget(in GameScreen gameScreen)
+        {
+            entlong widget = _world.NewEntityLong();
+
+            gameScreen.PlayWidgetConnect.Connect(widget, applyTemplates: true);
+        }
+
+        private void CreateSettingsPopup(in GameScreen gameScreen)
+        {
             entlong popup = _world.NewEntityLong();
 
-            _world.GetPool<SettingsPopupConnect>().Get(screen.ID).Value
-                .Connect(popup, applyTemplates: true);
+            gameScreen.SettingsPopupConnect.Connect(popup, applyTemplates: true);
         }
 
-        private void CreateGameTitle(EcsEntityConnect connect, GameScreenAspect gameScreenAspect)
+        private void CreateGameTitle(in GameScreen gameScreen)
         {
-            entlong screen = connect.Entity;
-
             entlong title = _world.NewEntityLong();
 
-            _world.GetPool<GameTitleConnect>().Get(screen.ID).Value
-                .Connect(title, applyTemplates: true);
+            GameTitleWidgetAspect widgetAspect = _world.GetAspect<GameTitleWidgetAspect>();
 
-            gameScreenAspect.Wobble.Add(title.ID);
+            gameScreen.GameTileWidgetConnect.Connect(title, applyTemplates: true);
+
+            widgetAspect.Wobble.Add(title.ID);
         }
 
-        private void CreateReward(EcsEntityConnect connect)
+        private void CreateReward(in GameScreen gameScreen)
         {
-            entlong screen = connect.Entity;
-
             entlong reward = _world.NewEntityLong();
 
-            _world.GetPool<RewardConnect>().Get(screen.ID).Value.Connect(reward, applyTemplates: true);
+            gameScreen.RewardWidgetConnect.Connect(reward, applyTemplates: true);
+
+            entlong rewardWindowLong = _world.NewEntityLong();
+
+            RewardWidgetAspect rewardWidgetAspect = _world.GetAspect<RewardWidgetAspect>();
+
+            ref RewardWidget rewardWidget = ref rewardWidgetAspect.RewardWidgets.Get(reward.ID);
 
             // create reward window
-            entlong rewardWindow = _world.NewEntityLong();
+            rewardWidget.RewardWindowConnect.Connect(rewardWindowLong, applyTemplates: true);
 
-            ref RewardWindowConnect rewardWindowConnect = ref _world.GetPool<RewardWindowConnect>().Get(reward.ID);
-
-            rewardWindowConnect.Value.Connect(rewardWindow, applyTemplates: true);
+            RewardWindowAspect rewardWindowAspect = _world.GetAspect<RewardWindowAspect>();
 
             // create coins reward
-            _world.GetPool<CoinsRewardConnect>().Get(rewardWindow.ID).Value
-                .Connect(_world.NewEntityLong(), applyTemplates: true);
+            ref readonly RewardWindow rewardWindow = ref rewardWindowAspect.RewardWindows.Read(rewardWindowLong.ID);
+            rewardWindow.RewardCoinsWidgetConnect.Connect(_world.NewEntityLong(), applyTemplates: true);
 
             // congratulation
-            _world.GetPool<CongratulationConnect>().Get(rewardWindow.ID).Value
-                .Connect(_world.NewEntityLong(), applyTemplates: true);
+            rewardWindow.CongratulationWidgetConnect.Connect(_world.NewEntityLong(), applyTemplates: true);
 
             // tap to exit
-            _world.GetPool<TapToExitConnect>().Get(rewardWindow.ID).Value
-                .Connect(_world.NewEntityLong(), applyTemplates: true);
+            rewardWindow.TapToExitWidgetConnect.Connect(_world.NewEntityLong(), applyTemplates: true);
 
             // confetti
-            _world.GetPool<RewardConfettiEffectConnect>().Get(rewardWindow.ID).Value
-                .Connect(_world.NewEntityLong(), applyTemplates: true);
+            rewardWindow.RewardConfettiEffectConnect.Connect(_world.NewEntityLong(), applyTemplates: true);
         }
 
-        private void CreateAnimalsPurchaseWindow(EcsEntityConnect connect)
+        private void CreateAnimalsShopWindow(in GameScreen gameScreen)
         {
-            entlong screen = connect.Entity;
+            entlong window = _world.NewEntityLong();
 
-            int shop = _world.NewEntity();
+            gameScreen.AnimalsShopWindowConnect.Connect(window, applyTemplates: true);
 
-            _world.GetPool<ClosedMarker>().Add(shop);
+            CreatePurchases(window.ID);
+        }
 
-            AnimalsShopWindowConnect animalsShopWindowConnect =
-                _world.GetPool<AnimalsShopWindowConnect>().Read(screen.ID);
-            animalsShopWindowConnect.Value.Connect(shop.ToEntityLong(_world), true);
+        private void CreatePurchases(int window)
+        {
+            AnimalsShopWindowAspect windowAspect = _world.GetAspect<AnimalsShopWindowAspect>();
 
-            ref AnimalPurchases animalPurchases =
-                ref _world.GetPool<AnimalPurchases>().Get(shop);
+            ref Purchases purchases = ref windowAspect.Purchases.Get(window);
 
-            animalPurchases.Entities = EcsGroup.New(_world);
+            purchases.Entities = EcsGroup.New(_world);
 
-            RectTransform content = animalsShopWindowConnect.Value.GetComponent<ScrollRect>().content;
+            ref ScrollSnap scrollSnap = ref windowAspect.ScrollSnaps.Get(window);
 
-            TextMeshProUGUI priceText =
-                animalsShopWindowConnect.Value.transform.Find("Viewport/Price").GetComponentInChildren<TextMeshProUGUI>();
+            scrollSnap.Items = purchases.Entities;
 
-            _world.GetPool<ScrollSnap>().Get(animalsShopWindowConnect.Value.Entity.ID).Items = animalPurchases.Entities;
-            ref ScrollSetupRequest scrollSetupRequest =
-                ref _world.GetPool<ScrollSetupRequest>().Add(animalsShopWindowConnect.Value.Entity.ID);
-
-            List<GameObject> list = new List<GameObject>();
+            windowAspect.ScrollSetupRequest.Add(window);
 
             foreach (int player in _world.Where(out PlayerAspect playerAspect))
             {
                 ref readonly AnimalPrefabs animalPrefabs = ref playerAspect.AnimalPrefabs.Read(player);
 
-                foreach (EcsEntityConnect purchasePrefab in animalPurchases.Prefabs)
+                foreach (EcsEntityConnect purchasePrefab in purchases.Prefabs)
                 {
-                    EcsEntityConnect purchaseView = Object
-                        .Instantiate(purchasePrefab, content.transform, false);
+                    EcsEntityConnect purchaseView = Object.Instantiate(
+                        purchasePrefab,
+                        scrollSnap.ScrollRect.content.transform,
+                        worldPositionStays: false);
 
-                    list.Add(purchaseView.gameObject);
+                    entlong purchaseLong = _world.NewEntityLong();
+                    purchaseView.Connect(purchaseLong, applyTemplates: true);
+                    purchases.Entities.Add(purchaseLong.ID);
 
-                    entlong purchase = _world.NewEntityLong();
+                    ref readonly Purchase purchase = ref _world.GetPool<Purchase>().Read(purchaseLong.ID);
+                    GameObject rendererPrefab = animalPrefabs.Animals[purchase.Index].Renderer;
+                    GameObject renderer = Object.Instantiate(rendererPrefab);
+                    PurchaseAspect purchaseAspect = _world.GetAspect<PurchaseAspect>();
+                    purchaseAspect.PhysicView.Add(purchaseLong.ID).Value = renderer;
 
-                    purchaseView.Connect(purchase, true);
+                    ref PurchaseWidget purchaseWidget = ref purchaseAspect.PurchaseWidgets.Get(purchaseLong.ID);
 
-                    animalPurchases.Entities.Add(purchase.ID);
+                    int renderer3D = _world.NewEntity();
+                    purchaseAspect.Render3DToUI.Add(renderer3D);
+                    _world.GetPool<RawImageRef>().Add(renderer3D).Value = purchaseWidget.Icon;
+                    _world.GetPool<TargetEntity>().Add(renderer3D).Value = purchaseLong;
 
-                    UI3D(animalPrefabs, purchase, purchaseView);
-
-                    _world.GetPool<TextMeshProUGUIRef>().Get(purchase.ID).Value = priceText;
-
-                    _world.GetPool<ScrollPosition>().Add(purchase.ID);
+                    ref AnimalsShopWindow animalsShopWindow = ref windowAspect.AnimalsShopWindows.Get(window);
+                    purchaseWidget.PurchaseStatusWidget = new PurchaseStatusWidget
+                    {
+                        Current = animalsShopWindow.PurchaseStatusWidget.Current,
+                        Lock = animalsShopWindow.PurchaseStatusWidget.Lock,
+                        Play = animalsShopWindow.PurchaseStatusWidget.Play,
+                        Price = animalsShopWindow.PurchaseStatusWidget.Price,
+                        PriceText = animalsShopWindow.PurchaseStatusWidget.PriceText,
+                        Unlock = animalsShopWindow.PurchaseStatusWidget.Unlock
+                    };
                 }
             }
-        }
-
-        private void UI3D(AnimalPrefabs animalPrefabs, entlong purchase, EcsEntityConnect purchaseView)
-        {
-            FitObjectToOrthographicCamera fitObjectToOrthographicCamera =
-                purchaseView.GetComponent<FitObjectToOrthographicCamera>();
-
-            GameObject animalRenderer = animalPrefabs.Animals[_world.GetPool<Purchase>().Read(purchase.ID).ProductIndex]
-                .Renderer;
-
-            GameObject animalRendererView = Object.Instantiate(animalRenderer);
-
-            _world.GetPool<PhysicView>().Add(purchase.ID).Value = animalRendererView;
-
-            var cam = fitObjectToOrthographicCamera.Create(animalRendererView);
-
-            _world.GetPool<RenderCamera>().Add(purchase.ID).Value = cam;
         }
     }
 }

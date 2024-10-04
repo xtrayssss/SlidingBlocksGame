@@ -55,8 +55,13 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature
                 .AddUnique(new RewardCatcherSystem())
                 .AddUnique(new DisplayRewardSystem())
                 //
+                .AddUnique(new PlayWidgetSystem())
+                //
                 .AddUnique(new WobbleSystem())
                 .AutoDelTag<WobbleRequest>()
+                //
+                .AddUnique(new Render3DToUISystem())
+                .AutoDelTag<Render3DToUIRequest>()
                 //
                 .AutoDelEntityTag<ButtonClickedEvent>();
         }

@@ -17,11 +17,11 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
             [Opt] public readonly EcsTagPool<LevelLifeTimeMarker> LevelLifeTime;
         }
 
-        private class HUDAspect : EcsAspectAuto
+        private class GameScreenAspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(HUDTag))]
+            [IncImplicit(typeof(GameScreenTag))]
             [IncImplicit(typeof(CreateGameLossTimerRequest))]
-            [Inc] public readonly EcsPool<GameLossTimerUIConnect> GameLossTimerConnect;
+            [Inc] public readonly EcsPool<GameScreen> GameScreens;
         }
 
         private class GameLossTimerAspect : EcsAspectAuto
@@ -31,16 +31,15 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
 
         public void Run()
         {
-            foreach (int hud in _world.Where(out HUDAspect hudAspect))
+            foreach (int screen in _world.Where(out GameScreenAspect gameScreenAspect))
             {
-                ref readonly GameLossTimerUIConnect uiConnect =
-                    ref hudAspect.GameLossTimerConnect.Read(hud);
+                ref readonly GameScreen gameScreen = ref gameScreenAspect.GameScreens.Read(screen);
 
                 entlong timer = _world.NewEntityLong();
 
-                uiConnect.Value.Connect(timer, applyTemplates: true);
+                gameScreen.GameLossTimerWidgetConnect.Connect(timer, applyTemplates: true);
 
-                foreach (MonoEntityTemplateBase template in uiConnect.Value.MonoTemplates)
+                foreach (MonoEntityTemplateBase template in gameScreen.GameLossTimerWidgetConnect.MonoTemplates)
                     template.Apply(_world.id, timer.ID);
 
                 TimerAspect timerAspect = _world.GetAspect<TimerAspect>();
@@ -49,15 +48,15 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
 
                 timerAspect.LevelLifeTime.Add(timer.ID);
 
-                uiConnect.Value.transform.localScale = Vector3.zero;
+                gameScreen.GameLossTimerWidgetConnect.transform.localScale = Vector3.zero;
 
                 Tween.Scale(
-                        target: uiConnect.Value.transform,
+                        target: gameScreen.GameLossTimerWidgetConnect.transform,
                         endValue: Vector3.one * 1.2f,
                         duration: 0.2f,
                         ease: Ease.OutBack)
                     .OnComplete(
-                        uiConnect.Value,
+                        gameScreen.GameLossTimerWidgetConnect,
                         static connect =>
                         {
                             if (!connect.Entity.TryGetID(out int id))
@@ -70,7 +69,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
                             gameLossTimerAspect.GameLossTimerOpenedEvent.Add(id);
                         });
 
-                uiConnect.Value.gameObject.SetActive(true);
+                gameScreen.GameLossTimerWidgetConnect.gameObject.SetActive(true);
             }
         }
     }

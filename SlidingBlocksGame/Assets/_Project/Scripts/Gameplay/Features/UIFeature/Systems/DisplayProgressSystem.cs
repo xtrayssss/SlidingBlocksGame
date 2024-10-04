@@ -30,27 +30,16 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
             [Inc] public readonly EcsPool<BestScoreUpdatedEvent> BestScoreUpdatedEvent;
         }
 
-        private class ScoreUIAspect : EcsAspectAuto
+        private class ScoreWidgetAspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(ScoreUITag))]
-            [Inc] public readonly EcsPool<TextMeshProUGUIRef> Texts;
             [Inc] public readonly EcsPool<RectTransformRef> RectTransforms;
+            [Inc] public readonly EcsPool<ScoreWidget> ScoreWidgets;
         }
-
-        private class BestScoreUIAspect : EcsAspectAuto
+        
+        private class CoinWidgetAspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(BestScoreUITag))]
-            [Inc] public readonly EcsPool<TextMeshProUGUIRef> Texts;
-
             [Inc] public readonly EcsPool<RectTransformRef> RectTransforms;
-        }
-
-        private class CoinUIAspect : EcsAspectAuto
-        {
-            [IncImplicit(typeof(CoinUITag))]
-            [Inc] public readonly EcsPool<TextMeshProUGUIRef> Texts;
-
-            [Inc] public readonly EcsPool<RectTransformRef> RectTransforms;
+            [Inc] public readonly EcsPool<CoinWidget> CoinWidgets;
         }
 
         private class TargetEntityAspect : EcsAspectAuto
@@ -64,20 +53,20 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
         {
             foreach (int @event in _world.Where(out CoinsUpdatedEventAspect coinsUpdatedEventAspect))
             {
-                foreach (int entity in _world.Where(out CoinUIAspect uiAspect))
+                foreach (int widget in _world.Where(out CoinWidgetAspect widgetAspect))
                 {
                     if (!coinsUpdatedEventAspect.TargetEntities.Read(@event).Value.TryGetID(out int targetID))
                         continue;
 
                     TargetEntityAspect targetEntityAspect = _world.GetAspect<TargetEntityAspect>();
 
-                    uiAspect.Texts.Get(entity).Value.text =
-                        targetEntityAspect.Coins.Read(targetID).Value.ToString();
+                    ref CoinWidget coinWidget = ref widgetAspect.CoinWidgets.Get(widget);
+                    coinWidget.AmountText.text = targetEntityAspect.Coins.Read(targetID).Value.ToString();
 
                     if (coinsUpdatedEventAspect.CoinsUpdatedEvent.Read(@event).Delta != 0)
                     {
                         Tween.PunchScale(
-                            target: uiAspect.RectTransforms.Read(entity).Value,
+                            target: widgetAspect.RectTransforms.Read(widget).Value,
                             strength: new Vector3(0.5f, 0.5f),
                             duration: 0.2f);
                     }
@@ -86,43 +75,23 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 
             foreach (int @event in _world.Where(out ScoreUpdatedEventAspect scoreUpdatedEventAspect))
             {
-                foreach (int entity in _world.Where(out ScoreUIAspect uiAspect))
+                foreach (int widget in _world.Where(out ScoreWidgetAspect widgetAspect))
                 {
                     if (!scoreUpdatedEventAspect.TargetEntities.Read(@event).Value.TryGetID(out int targetID))
                         continue;
 
                     TargetEntityAspect targetEntityAspect = _world.GetAspect<TargetEntityAspect>();
 
-                    uiAspect.Texts.Get(entity).Value.text = targetEntityAspect.Scores.Get(targetID).Value.ToString();
+                    ref ScoreWidget scoreWidget = ref widgetAspect.ScoreWidgets.Get(widget);
+
+                    scoreWidget.AmountText.text = targetEntityAspect.Scores.Get(targetID).Value.ToString();
                     
+                    //scoreWidget.Value.text = targetEntityAspect.BestScores.Get(targetID).Value.ToString();
+
                     Tween.PunchScale(
-                        target: uiAspect.RectTransforms.Read(entity).Value,
+                        target: widgetAspect.RectTransforms.Read(widget).Value,
                         strength: new Vector3(0.5f, 0.5f),
                         duration: 0.2f);
-                }
-            }
-
-            foreach (int @event in _world.Where(out BestScoreUpdatedEventAspect bestScoreUpdatedEventAspect))
-            {
-                foreach (int entity in _world.Where(out BestScoreUIAspect uiAspect))
-                {
-                    if (!bestScoreUpdatedEventAspect.TargetEntities.Read(@event).Value.TryGetID(out int targetID))
-                        continue;
-
-                    TargetEntityAspect targetEntityAspect = _world.GetAspect<TargetEntityAspect>();
-
-                    BestScoreUIAspect bestScoreUIAspect = _world.GetAspect<BestScoreUIAspect>();
-
-                    bestScoreUIAspect.Texts.Get(entity).Value.text =
-                        targetEntityAspect.BestScores.Get(targetID).Value.ToString();
-
-                    if (bestScoreUpdatedEventAspect.BestScoreUpdatedEvent.Read(@event).Delta != 0)
-                    {
-                        Tween.PunchScale(
-                            target: uiAspect.RectTransforms.Read(entity).Value,
-                            strength: new Vector3(0.5f, 0.5f),
-                            duration: 0.2f);
-                    }
                 }
             }
         }

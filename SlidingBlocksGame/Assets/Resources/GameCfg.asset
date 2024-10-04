@@ -17,30 +17,37 @@ MonoBehaviour:
   - rid: 8499802364150546640
   - rid: 8499802700812648452
   - rid: 8499802702287471245
-  - rid: 8499802702287471249
   - rid: 8499802753235157229
   - rid: 6454805110216720499
   - rid: 6454805541227593732
   - rid: 6454805541227593734
   - rid: 6454805541227593738
+  - rid: 3543309369267716916
   references:
     version: 2
     RefIds:
+    - rid: 3543309369267716916
+      type: {class: Renderer3DCameraPrefab/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: {fileID: 4153145025860640308, guid: 7f72679fce06cf44b84b37caef3f1033,
+            type: 3}
     - rid: 6454805110216720499
-      type: {class: CoinPrefab/Template, ns: _Project.Scripts.Gameplay.Features.CollectFeature.Components,
+      type: {class: CoinPrefab/Template, ns: _Project.Scripts.Gameplay.Features.CollectionFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
           Prefab: {fileID: 5735182481968669607, guid: 187a65e427b09c648af34d93f2a9eb18,
             type: 3}
     - rid: 6454805541227593732
-      type: {class: MenuAudio/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+      type: {class: MenuAudio/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
           Value: {fileID: 11400000, guid: 0292591f830540a4485b890cac074188, type: 2}
     - rid: 6454805541227593734
-      type: {class: AudioEffectInOnLevelEnter/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+      type: {class: AudioEffectInOnLevelEnter/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -54,13 +61,13 @@ MonoBehaviour:
             - rid: 6454805567168053255
             - rid: 6454805567168053256
     - rid: 6454805541227593737
-      type: {class: AudioTypeRef/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+      type: {class: AudioTypeRef/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
           Value: 4
     - rid: 6454805541227593738
-      type: {class: AudioEffectInOnLevelExit/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+      type: {class: AudioEffectInOnLevelExit/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -74,17 +81,17 @@ MonoBehaviour:
             - rid: 6454805567168053250
             - rid: 6454805567168053257
     - rid: 6454805541227593740
-      type: {class: AudioTypeRef/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+      type: {class: AudioTypeRef/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
           Value: 4
     - rid: 6454805541227593741
-      type: {class: VolumeEffectTag/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+      type: {class: VolumeEffectTag/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
         asm: Assembly-CSharp}
       data: {}
     - rid: 6454805541227593742
-      type: {class: VolumeEffectTag/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+      type: {class: VolumeEffectTag/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
         asm: Assembly-CSharp}
       data: {}
     - rid: 6454805567168053248
@@ -179,7 +186,7 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data: {}
     - rid: 8499802700812648452
-      type: {class: PlayerCfgRef/Template, ns: _Project.Scripts.Gameplay.Features.GameFlowFeature.Components,
+      type: {class: PlayerCfgRef/Template, ns: _Project.Scripts.Gameplay.Features.PlayerFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -190,13 +197,6 @@ MonoBehaviour:
       data:
         component:
           Value: {fileID: 3889562784997870761, guid: 414af5587425f08428ab122766844dad,
-            type: 3}
-    - rid: 8499802702287471249
-      type: {class: HUDPrefab/Template, ns: _Project.Scripts.Gameplay.Features.GameFlowFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: {fileID: 1498337169468322313, guid: 6b19eefb20a97ee46a9f55e015dd2b21,
             type: 3}
     - rid: 8499802753235157229
       type: {class: MovementStrategyCfg/Template, ns: _Project.Scripts.Gameplay.Features.MovementFeature.Components,

@@ -1,4 +1,3 @@
-using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.PurchaseFeature.Components;
 using _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Components;
 using _Project.Scripts.Gameplay.Features.UIFeature.Components;
@@ -14,7 +13,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
         {
             [IncImplicit(typeof(PurchaseTag))]
             [IncImplicit(typeof(ScrollSnappedEvent))]
-            [Inc] public readonly EcsPool<TextMeshProUGUIRef> PriceTexts;
+            [Inc] public readonly EcsPool<PurchaseWidget> PurchaseWidgets;
 
             [Inc] public readonly EcsPool<Purchase> Purchases;
         }
@@ -23,10 +22,11 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
         {
             foreach (int entity in _world.Where(out Aspect aspect))
             {
-                ref TextMeshProUGUIRef price = ref aspect.PriceTexts.Get(entity);
-
-                price.Value.text = aspect.Purchases.Get(entity).Price.ToString();
+                ref PurchaseWidget widget = ref aspect.PurchaseWidgets.Get(entity);
+                
+                widget.PurchaseStatusWidget.PriceText.text = aspect.Purchases.Get(entity).Price.ToString();
             }
         }
     }
+
 }

@@ -21,42 +21,45 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
             [IncImplicit(typeof(SettingsPopupTag))]
             [IncImplicit(typeof(GameAudioUpdatedEvent))]
             [Inc] public readonly EcsPool<AudioButtonsStatus> AudioButtonsStatus;
+            [Inc] public readonly EcsPool<SettingsPopup> SettingsPopups;
         }
 
         public void Run()
         {
             foreach (int popup in _world.Where(out SettingsPopupAspect settingsPopupAspect))
             {
+                ref SettingsPopup settingsPopup = ref settingsPopupAspect.SettingsPopups.Get(popup);
+                
                 ref AudioButtonsStatus audioButtonsStatus = ref settingsPopupAspect.AudioButtonsStatus.Get(popup);
 
                 if (audioButtonsStatus.SoundIsOn)
                 {
                     GameAudio.Instance.Sfx.Mixer.audioMixer.SetFloat("SFXVolume", 0);
 
-                    audioButtonsStatus.SoundOff.gameObject.SetActive(false);
-                    audioButtonsStatus.SoundOn.gameObject.SetActive(true);
+                    settingsPopup.SoundOff.gameObject.SetActive(false);
+                    settingsPopup.SoundOn.gameObject.SetActive(true);
                 }
                 else
                 {
                     GameAudio.Instance.Sfx.Mixer.audioMixer.SetFloat("SFXVolume", -80);
 
-                    audioButtonsStatus.SoundOn.gameObject.SetActive(false);
-                    audioButtonsStatus.SoundOff.gameObject.SetActive(true);
+                    settingsPopup.SoundOn.gameObject.SetActive(false);
+                    settingsPopup.SoundOff.gameObject.SetActive(true);
                 }
 
                 if (audioButtonsStatus.MusicIsOn)
                 {
                     GameAudio.Instance.Music.Mixer.audioMixer.SetFloat("MusicVolume", 0);
 
-                    audioButtonsStatus.MusicOff.gameObject.SetActive(false);
-                    audioButtonsStatus.MusicOn.gameObject.SetActive(true);
+                    settingsPopup.MusicOff.gameObject.SetActive(false);
+                    settingsPopup.MusicOn.gameObject.SetActive(true);
                 }
                 else
                 {
                     GameAudio.Instance.Music.Mixer.audioMixer.SetFloat("MusicVolume", -80);
 
-                    audioButtonsStatus.MusicOn.gameObject.SetActive(false);
-                    audioButtonsStatus.MusicOff.gameObject.SetActive(true);
+                    settingsPopup.MusicOn.gameObject.SetActive(false);
+                    settingsPopup.MusicOff.gameObject.SetActive(true);
                 }
             }
         }

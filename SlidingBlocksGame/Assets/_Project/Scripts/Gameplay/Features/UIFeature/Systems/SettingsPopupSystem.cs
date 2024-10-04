@@ -2,7 +2,6 @@ using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using DCFApixels.DragonECS;
 using PrimeTween;
 using UnityEngine;
-using YG;
 
 namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 {
@@ -16,73 +15,62 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
             [Inc] public readonly EcsTagPool<SettingsButtonTag> SettingsButtonTag;
         }
 
-        private class CloseButtonClickedAspect : EcsAspectAuto
+        private class ClosePopupButtonClickedAspect : EcsAspectAuto
         {
             [Inc] public readonly EcsTagPool<ButtonClickedEvent> _;
             [Inc] public readonly EcsTagPool<CloseSettingsButtonTag> _1;
         }
 
-        private class GameScreenAspect : EcsAspectAuto
-        {
-            [IncImplicit(typeof(GameScreenTag))]
-            [Inc] public readonly EcsPool<SettingsPopupConnect> SettingsMenuViews;
-        }
-
         private class SettingsPopupAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(SettingsPopupTag))]
-            [Inc] public readonly EcsPool<OpenCloseTween> OpenCloseTween;
+            [Inc] public readonly EcsPool<SettingsPopup> SettingsPopups;
+            [Inc] public readonly EcsPool<GameObjectConnect> GoConnects;
         }
 
         public void Run()
         {
             foreach (int _ in _world.Where(out OpenPopupButtonClickedAspect _))
             {
-                foreach (int gameScreen in _world.Where(out GameScreenAspect gameScreenAspect))
+                foreach (int popup in _world.Where(out SettingsPopupAspect settingsPopupAspect))
                 {
-                    ref readonly SettingsPopupConnect
-                        connect = ref gameScreenAspect.SettingsMenuViews.Read(gameScreen);
+                    ref SettingsPopup settingsPopup = ref settingsPopupAspect.SettingsPopups.Get(popup);
+                    ref GameObjectConnect goConnect = ref settingsPopupAspect.GoConnects.Get(popup);
 
-                    if (!connect.Value.Entity.TryGetID(out int popupID))
-                        return;
+                    goConnect.Connect.transform.localScale = Vector3.zero;
 
-                    SettingsPopupAspect settingsPopupAspect = _world.GetAspect<SettingsPopupAspect>();
+                    goConnect.Connect.gameObject.SetActive(true);
 
-                    ref OpenCloseTween openCloseTween = ref settingsPopupAspect.OpenCloseTween.Get(popupID);
+                    settingsPopup.OpenCloseTween.Stop();
 
-                    connect.Value.transform.localScale = Vector3.zero;
-
-                    connect.Value.gameObject.SetActive(true);
-
-                    openCloseTween.Value.Stop();
-
-                    openCloseTween.Value =
-                        Tween.Scale(connect.Value.transform, Vector3.one, 0.2f, Ease.OutBack);
+                    settingsPopup.OpenCloseTween =
+                        Tween.Scale(
+                            target: goConnect.Connect.transform,
+                            endValue: Vector3.one,
+                            duration: 0.2f,
+                            ease: Ease.OutBack);
                 }
             }
 
-            foreach (int _ in _world.Where(out CloseButtonClickedAspect _))
+            foreach (int _ in _world.Where(out ClosePopupButtonClickedAspect _))
             {
-                foreach (int gameScreen in _world.Where(out GameScreenAspect gameScreenAspect))
+                foreach (int popup in _world.Where(out SettingsPopupAspect settingsPopupAspect))
                 {
-                    ref readonly SettingsPopupConnect
-                        connect = ref gameScreenAspect.SettingsMenuViews.Read(gameScreen);
+                    ref SettingsPopup settingsPopup = ref settingsPopupAspect.SettingsPopups.Get(popup);
+                    ref GameObjectConnect goConnect = ref settingsPopupAspect.GoConnects.Get(popup);
 
-                    if (!connect.Value.Entity.TryGetID(out int popupID))
-                        return;
+                    settingsPopup.OpenCloseTween.Stop();
 
-                    SettingsPopupAspect settingsPopupAspect = _world.GetAspect<SettingsPopupAspect>();
-
-                    ref OpenCloseTween openCloseTween = ref settingsPopupAspect.OpenCloseTween.Get(popupID);
-
-                    openCloseTween.Value.Stop();
-
-                    openCloseTween.Value =
+                    settingsPopup.OpenCloseTween =
                         Tween
-                            .Scale(connect.Value.transform, Vector3.zero, 0.2f, Ease.InBack)
+                            .Scale(
+                                target: goConnect.Connect.transform,
+                                endValue: Vector3.zero,
+                                duration: 0.2f,
+                                ease: Ease.InBack)
                             .OnComplete(
-                                target: connect.Value,
-                                onComplete: entityConnect => entityConnect.gameObject.SetActive(false));
+                                target: goConnect.Connect,
+                                onComplete: static connect => connect.gameObject.SetActive(false));
                 }
             }
         }
