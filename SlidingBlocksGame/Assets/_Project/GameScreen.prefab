@@ -574,7 +574,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _components:
   - rid: 8499802702287471247
-  - rid: 8499802837155577869
   - rid: 3543309363944357889
   references:
     version: 2
@@ -593,6 +592,7 @@ MonoBehaviour:
           ScoreWidgetConnect: {fileID: 2459616179414762375}
           CoinsWidgetConnect: {fileID: 5218585447727694956}
           BestScoreWidgetConnect: {fileID: 2048256791592957944}
+          TutorialWindowConnect: {fileID: 3718234142805669173}
           Canvas: {fileID: 6717997911519986422}
     - rid: 8499802702287471247
       type: {class: MetaGameUI/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
@@ -604,12 +604,6 @@ MonoBehaviour:
           - {fileID: 5481624264488083440}
           - {fileID: 8377850253040136295}
           - {fileID: 6453350233843187249}
-    - rid: 8499802837155577869
-      type: {class: TutorialConnect/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: {fileID: 0}
 --- !u!1 &1443198049746137957
 GameObject:
   m_ObjectHideFlags: 0
@@ -9930,6 +9924,7 @@ GameObject:
   - component: {fileID: 7806521507890657865}
   - component: {fileID: 5303676411524524831}
   - component: {fileID: 3718234142805669173}
+  - component: {fileID: 5756540999898689434}
   m_Layer: 5
   m_Name: TutorialWindow
   m_TagString: Untagged
@@ -9979,7 +9974,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _deleteEntiityWithDestroy: 0
   _scriptableTemplates: []
-  _monoTemplates: []
+  _monoTemplates:
+  - {fileID: 5756540999898689434}
+--- !u!114 &5756540999898689434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8753363287543300509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 351338ca92ace49499f450172d857af6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _components:
+  - rid: 3543309382331663250
+  references:
+    version: 2
+    RefIds:
+    - rid: 3543309382331663250
+      type: {class: TutorialWindowTag/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
+        asm: Assembly-CSharp}
+      data: {}
 --- !u!1 &8971274280870935796
 GameObject:
   m_ObjectHideFlags: 0

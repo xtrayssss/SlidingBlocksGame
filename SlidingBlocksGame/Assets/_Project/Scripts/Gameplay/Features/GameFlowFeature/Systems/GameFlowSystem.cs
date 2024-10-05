@@ -69,6 +69,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
         {
             [IncImplicit(typeof(GameScreenTag))]
             [Opt] public readonly EcsTagPool<HideMetaGameUIRequest> HideMetaGameUI;
+            [Opt] public readonly EcsTagPool<CreateGameLossTimerRequest> CreateGameLossTimerRequest;
         }
 
         private class PlayerAspect : EcsAspectAuto
@@ -95,11 +96,6 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
         {
             [IncImplicit(typeof(GameLossTimerTag))]
             [Inc] public readonly EcsTagPool<GameLossTimerOpenedEvent> GameLossTimerOpenedEvent;
-        }
-        private class LevelAspect : EcsAspectAuto
-        {
-            [IncImplicit(typeof(LevelTag))]
-            [Inc] public readonly EcsTagPool<CreateGameLossTimerRequest> CreateGameLossTimerRequest;
         }
 
         public void Run()
@@ -148,8 +144,8 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
 
             foreach (int _ in _world.Where(out CoinSpawnedStateAspect _))
             {
-                foreach (int level in _world.Where(out LevelAspect levelAspect)) 
-                    levelAspect.CreateGameLossTimerRequest.Add(level);
+                foreach (int gameScreen in _world.Where(out GameScreenAspect gameScreenAspect)) 
+                    gameScreenAspect.CreateGameLossTimerRequest.Add(gameScreen);
 
                 foreach (int player in _world.Where(out PlayerAspect playerAspect))
                     playerAspect.LockGameInputMarker.Del(player);

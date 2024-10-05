@@ -62,7 +62,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
             [Opt] public readonly EcsPool<PurchaseWidget> PurchaseWidgets;
             [Opt] public readonly EcsPool<PhysicView> PhysicView;
             [Opt] public readonly EcsPool<RenderCamera> RenderCamera;
-            [Opt] public readonly EcsTagPool<Render3DToUIRequest> Render3DToUI;
+            [Opt] public readonly EcsPool<Render3DToUIRequest> Render3DToUI;
         }
 
         public void Run()
@@ -103,10 +103,20 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
                     CreateCoinsWidget(in gameScreen);
 
                 if (gameScreen.BestScoreWidgetConnect != null)
-                    CreateBestScoreWidget(in gameScreen);
+                    CreateBestScoreWidget(in gameScreen);                
+                
+                if (gameScreen.TutorialWindowConnect != null)
+                    CreateTutorialWindow(in gameScreen);
 
                 gameScreenAspect.GameScreenCreatedEvent.Add(gameScreenLong.ID);
             }
+        }
+
+        private void CreateTutorialWindow(in GameScreen gameScreen)
+        {
+            entlong window = _world.NewEntityLong();
+
+            gameScreen.TutorialWindowConnect.Connect(window, applyTemplates: true);
         }
 
         private void CreateBestScoreWidget(in GameScreen gameScreen)
@@ -233,8 +243,10 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
                     ref PurchaseWidget purchaseWidget = ref purchaseAspect.PurchaseWidgets.Get(purchaseLong.ID);
 
                     int renderer3D = _world.NewEntity();
-                    purchaseAspect.Render3DToUI.Add(renderer3D);
-                    _world.GetPool<RawImageRef>().Add(renderer3D).Value = purchaseWidget.Icon;
+                    purchaseAspect.Render3DToUI.Add(renderer3D) = new Render3DToUIRequest
+                    {
+                        RawImage = purchaseWidget.Icon
+                    };
                     _world.GetPool<TargetEntity>().Add(renderer3D).Value = purchaseLong;
 
                     ref AnimalsShopWindow animalsShopWindow = ref windowAspect.AnimalsShopWindows.Get(window);

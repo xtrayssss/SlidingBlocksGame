@@ -1,16 +1,13 @@
 ﻿using System;
 using DCFApixels.DragonECS;
-using UnityEngine.UI;
 
 namespace _Project.Scripts.Gameplay.Features.UIFeature.Components
 {
     [Serializable]
     [MetaGroup("UI")]
-    public struct RawImageRef : IEcsComponent
+    public struct TutorialWindowTag : IEcsTagComponent
     {
-        public RawImage Value;
-
-        private sealed class Template : ComponentTemplate<RawImageRef>
+        private sealed class Template : TagComponentTemplate<TutorialWindowTag>
         {
         }
     }

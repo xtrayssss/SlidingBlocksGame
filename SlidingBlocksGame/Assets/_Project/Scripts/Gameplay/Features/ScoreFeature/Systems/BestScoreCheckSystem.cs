@@ -1,7 +1,5 @@
-using _Project.Scripts.Gameplay.Features.CollectionFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.ScoreFeature.Components;
-using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using _Project.Scripts.Gameplay.Utils;
 using DCFApixels.DragonECS;
 

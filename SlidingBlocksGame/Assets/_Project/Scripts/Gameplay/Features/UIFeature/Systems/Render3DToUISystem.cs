@@ -12,9 +12,8 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 
         private class Aspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(Render3DToUIRequest))]
             [Inc] public readonly EcsPool<TargetEntity> Renderables;
-            [Inc] public readonly EcsPool<RawImageRef> RawImages;
+            [Inc] public readonly EcsPool<Render3DToUIRequest> Render3DToUIRequest;
         }
 
         private class RenderableAspect : EcsAspectAuto
@@ -35,9 +34,9 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 
         public void Run()
         {
-            foreach (int entity in _world.Where(out Aspect aspect))
+            foreach (int request in _world.Where(out Aspect aspect))
             {
-                if (!aspect.Renderables.Read(entity).Value.TryGetID(out int renderableID))
+                if (!aspect.Renderables.Read(request).Value.TryGetID(out int renderableID))
                     continue;
 
                 RenderableAspect renderableAspect = _world.GetAspect<RenderableAspect>();
@@ -67,9 +66,9 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 
                     camera.targetTexture = renderable3DTexture.Value;
 
-                    ref RawImageRef rawImage = ref aspect.RawImages.Get(entity);
+                    ref Render3DToUIRequest render3DToUIRequest = ref aspect.Render3DToUIRequest.Get(request);
 
-                    rawImage.Value.texture = renderable3DTexture.Value;
+                    render3DToUIRequest.RawImage.texture = renderable3DTexture.Value;
 
                     Bounds bounds = GetBounds(physicView.Value.gameObject);
 

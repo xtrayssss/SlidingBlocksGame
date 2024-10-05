@@ -45,7 +45,9 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature
                 .AddUnique(new CloseGameLossTimerSystem())
                 .AutoDelTag<CloseGameLossTimerRequest>()
                 //
-                .AddUnique(new DisplayProgressSystem())
+                .AddUnique(new DisplayCoinsSystem())
+                .AddUnique(new DisplayScoresSystem())
+                //
                 .AddUnique(new RateUsSystem())
                 .AddUnique(new TutorialSystem())
                 //
@@ -61,7 +63,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature
                 .AutoDelTag<WobbleRequest>()
                 //
                 .AddUnique(new Render3DToUISystem())
-                .AutoDelTag<Render3DToUIRequest>()
+                .AutoDel<Render3DToUIRequest>()
                 //
                 .AutoDelEntityTag<ButtonClickedEvent>();
         }

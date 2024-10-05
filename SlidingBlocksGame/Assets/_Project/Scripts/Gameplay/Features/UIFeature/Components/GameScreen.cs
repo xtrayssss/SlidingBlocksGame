@@ -17,6 +17,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Components
         public EcsEntityConnect ScoreWidgetConnect;
         public EcsEntityConnect CoinsWidgetConnect;
         public EcsEntityConnect BestScoreWidgetConnect;
+        public EcsEntityConnect TutorialWindowConnect;
         public Canvas Canvas;
 
         private sealed class Template : ComponentTemplate<GameScreen>

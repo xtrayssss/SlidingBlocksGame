@@ -21,46 +21,46 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
             [Inc] public readonly EcsTagPool<ButtonClickedEvent> Clicked;
         }
 
-        private class GameScreenAspect : EcsAspectAuto
+        private class TutorialWindowAspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(GameScreenTag))]
-            [Inc] public readonly EcsPool<TutorialConnect> TutorialConnects;
+            [IncImplicit(typeof(TutorialWindowTag))]
+            [Inc] public readonly EcsPool<GameObjectConnect> GoConnects;
         }
 
         public void Run()
         {
             foreach (int _ in _world.Where(out OpenButtonClickedAspect _))
             {
-                foreach (int screen in _world.Where(out GameScreenAspect gameScreenAspect))
+                foreach (int window in _world.Where(out TutorialWindowAspect tutorialWindowAspect))
                 {
-                    ref TutorialConnect tutorialConnect = ref gameScreenAspect.TutorialConnects.Get(screen);
+                    ref GameObjectConnect goConnect = ref tutorialWindowAspect.GoConnects.Get(window);
 
-                    tutorialConnect.Value.transform.localScale = Vector3.zero;
+                    goConnect.Connect.transform.localScale = Vector3.zero;
 
                     Tween.Scale(
-                        target: tutorialConnect.Value.transform,
+                        target: goConnect.Connect.transform,
                         endValue: Vector3.one,
                         duration: 0.2f,
                         ease: Ease.OutBack);
 
-                    tutorialConnect.Value.gameObject.SetActive(true);
+                    goConnect.Connect.gameObject.SetActive(true);
                 }
             }
 
             foreach (int _ in _world.Where(out CloseButtonClickedAspect _))
             {
-                foreach (int screen in _world.Where(out GameScreenAspect gameScreenAspect))
+                foreach (int window in _world.Where(out TutorialWindowAspect tutorialWindowAspect))
                 {
-                    ref TutorialConnect tutorialConnect = ref gameScreenAspect.TutorialConnects.Get(screen);
+                    ref GameObjectConnect goConnect = ref tutorialWindowAspect.GoConnects.Get(window);
 
                     Tween.Scale(
-                            target: gameScreenAspect.TutorialConnects.Get(screen).Value.transform,
+                            target: goConnect.Connect.transform,
                             endValue: Vector3.zero,
                             duration: 0.2f,
                             ease: Ease.InBack)
                         .OnComplete(
-                            target: tutorialConnect.Value,
-                            connect => connect.gameObject.SetActive(false));
+                            target: goConnect.Connect,
+                            static connect => connect.gameObject.SetActive(false));
                 }
             }
         }
