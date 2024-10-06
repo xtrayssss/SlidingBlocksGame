@@ -23,10 +23,12 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
             [IncImplicit(typeof(AnimalsShopWindowTag))]
             [IncImplicit(typeof(ClosedMarker))]
             [Inc] public readonly EcsPool<GameObjectConnect> GameObjectConnects;
-            [Inc] public readonly EcsPool<AnimalsShopWindow> AnimalsShopWindows;
 
+            [Inc] public readonly EcsPool<AnimalsShopWindow> AnimalsShopWindows;
             [Inc] public readonly EcsPool<Purchases> PurchaseAnimals;
             [Inc] public readonly EcsPool<ScrollSnap> ScrollSnap;
+
+            [Opt] public readonly EcsTagPool<UnlockScrollSnapRequest> UnlockScrollSnap;
         }
 
         public void Run()
@@ -38,7 +40,8 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                     ref GameObjectConnect goConnect =
                         ref animalsShopWindowAspect.GameObjectConnects.Get(window);
 
-                    ref AnimalsShopWindow animalsShopWindow = ref animalsShopWindowAspect.AnimalsShopWindows.Get(window);
+                    ref AnimalsShopWindow animalsShopWindow =
+                        ref animalsShopWindowAspect.AnimalsShopWindows.Get(window);
 
                     _world.GetPool<ClosedMarker>().Del(window);
 
@@ -70,7 +73,9 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 
                                 EcsWorld world = connect.Entity.World;
 
-                                world.GetPool<OpenedEvent>().Add(id);
+                                AnimalsShopWindowAspect windowAspect = world.GetAspect<AnimalsShopWindowAspect>();
+
+                                windowAspect.UnlockScrollSnap.Add(id);
                             });
 
                     goConnect.Connect.transform.gameObject.SetActive(true);
@@ -86,7 +91,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
             EcsSpan visible = default;
 
             Debug.Log("AnimatePurchases");
-            
+
             int i = scrollSnap.TargetIndex;
 
             if (i > 0 && i < animals.Count - 1)

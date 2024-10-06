@@ -115,22 +115,20 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Systems
             [Inc] public readonly EcsPool<FadeAlphaEffectFactor> FadeAlphaEffectFactors;
         }
 
-        private class OpenedStateAspect
+        private class UnlockAspect : EcsAspectAuto
         {
-            public class OnEnter : EcsAspectAuto
-            {
-                [IncImplicit(typeof(OpenedEvent))]
-                [Inc] public readonly EcsPool<ScrollSnap> ScrollSnaps;
-            }
+            [IncImplicit(typeof(UnlockScrollSnapRequest))]
+            [Inc] public readonly EcsPool<ScrollSnap> ScrollSnaps;
+
+            [Opt] public readonly EcsTagPool<ApplyEffectsMarker> ApplyEffectsMarker;
         }
 
-        private class ClosedState
+        private class LockStateAspect : EcsAspectAuto
         {
-            public class OnEnter : EcsAspectAuto
-            {
-                [IncImplicit(typeof(ClosedStartEvent))]
-                [Inc] public readonly EcsPool<ScrollSnap> ScrollSnaps;
-            }
+            [IncImplicit(typeof(LockScrollSnapRequest))]
+            [Inc] public readonly EcsPool<ScrollSnap> ScrollSnaps;
+
+            [Inc] public readonly EcsTagPool<ApplyEffectsMarker> ApplyEffectsMarker;
         }
 
         private void UpdateNearest(ref ScrollSnap scrollSnap)
@@ -165,16 +163,17 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Systems
 
         public void Run()
         {
-            foreach (int entity in _world.Where(out OpenedStateAspect.OnEnter aspect))
+            foreach (int entity in _world.Where(out UnlockAspect unlockAspect))
             {
-                ref ScrollSnap scrollSnap = ref aspect.ScrollSnaps.Get(entity);
+                ref ScrollSnap scrollSnap = ref unlockAspect.ScrollSnaps.Get(entity);
 
                 scrollSnap.ScrollRect.enabled = true;
-                _world.GetPool<ApplyEffectsMarker>().Add(entity);
+
+                unlockAspect.ApplyEffectsMarker.Add(entity);
 
                 Debug.Log(scrollSnap.TargetIndex);
                 Debug.Log(scrollSnap.NearestIndex);
-                
+
                 if (scrollSnap.TargetIndex != scrollSnap.NearestIndex)
                 {
                     if (scrollSnap.SafeItems[scrollSnap.TargetIndex].TryGetID(out int targetID))
@@ -188,30 +187,30 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Systems
                     _world.GetPool<ScrollSnappedEvent>().Add(entity);
                     _world.GetPool<ScrollSnappedMarker>().Add(entity);
                 }
+
+                Debug.Log("SCROLL_UNLOCKED");
             }
 
-            foreach (int entity in _world.Where(out ClosedState.OnEnter aspect))
+            foreach (int entity in _world.Where(out LockStateAspect lockStateAspect))
             {
-                ref ScrollSnap scrollSnap = ref aspect.ScrollSnaps.Get(entity);
+                ref ScrollSnap scrollSnap = ref lockStateAspect.ScrollSnaps.Get(entity);
 
                 scrollSnap.ScrollRect.horizontalScrollbar.value = scrollSnap.TargetPosition;
-                
+
                 scrollSnap.SnapTween.Stop();
 
-                Debug.Log("cancelled");
-                
-                _world.GetPool<ApplyEffectsMarker>().Del(entity);
+                lockStateAspect.ApplyEffectsMarker.Del(entity);
 
                 scrollSnap.ScrollRect.enabled = false;
 
                 _world.GetPool<ScrollToTargetMarker>().TryDel(entity);
                 _world.GetPool<ScrollSnappedMarker>().TryDel(entity);
                 _world.GetPool<ScrollDraggedMarker>().TryDel(entity);
-                
+
                 if (scrollSnap.Selected.TryGetID(out int selectedID))
-                {
                     _world.GetPool<ScrollSnappedMarker>().TryDel(selectedID);
-                }
+
+                Debug.Log("SCROLL_LOCKED");
             }
 
             foreach (int entity in _world.Where(out SetupStateAspect aspect))
@@ -302,7 +301,7 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Systems
                 }
             }
 
-            
+
             foreach (int entity in _world.Where(out ScrollSnappedStateAspect.OnEnter aspect))
             {
                 ref ScrollSnap scrollSnap = ref aspect.ScrollSnaps.Get(entity);
@@ -371,7 +370,7 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Systems
                 Debug.Log("SnapTween");
 
                 AspectRatioFitter aspectRatioFitter;
-                
+
                 scrollSnap.SnapTween = Tween
                     .UIHorizontalNormalizedPosition(
                         target: scrollSnap.ScrollRect,
@@ -411,7 +410,7 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Systems
                     aspect.ScrollToTargetMarker.Del(entity);
                 }
             }
-            
+
             foreach (int entity in _world.Where(out ScaleEffectAspect aspect))
             {
                 ref readonly ScrollSnapEffect effect = ref aspect.ScrollSnapEffects.Read(entity);
@@ -455,13 +454,5 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Systems
                 _world.GetPool<DeleteEntityRequest>().Add(entity);
             }
         }
-    }
-
-    public struct ClosedStartEvent : IEcsTagComponent
-    {
-    }
-
-    public struct OpenedEvent : IEcsTagComponent
-    {
     }
 }

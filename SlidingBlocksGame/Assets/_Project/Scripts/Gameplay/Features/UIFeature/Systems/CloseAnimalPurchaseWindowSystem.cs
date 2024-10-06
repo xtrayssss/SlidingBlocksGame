@@ -30,7 +30,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 
             [Inc] public readonly EcsPool<Purchases> PurchaseAnimals;
             [Inc] public readonly EcsPool<AnimalsShopWindow> AnimalsShopWindows;
-            [Opt] public readonly EcsTagPool<ClosedStartEvent> ClosedStartEvent;
+            [Opt] public readonly EcsTagPool<LockScrollSnapRequest> LockScrollSnap;
             [Opt] public readonly EcsTagPool<ClosedEvent> ClosedEvent;
         }
 
@@ -38,13 +38,12 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
         {
             foreach (int _ in _world.Where(out ButtonClickedAspect _))
             {
-                foreach (int window in _world.Where(out AnimalsShopWindowAspect animalsShopWindowAspect))
+                foreach (int window in _world.Where(out AnimalsShopWindowAspect windowAspect))
                 {
-                    ref GameObjectConnect goConnect = ref animalsShopWindowAspect.GameObjectConnects.Get(window);
+                    ref GameObjectConnect goConnect = ref windowAspect.GameObjectConnects.Get(window);
 
-                    ref AnimalsShopWindow animalsShopWindow =
-                        ref animalsShopWindowAspect.AnimalsShopWindows.Get(window);
-                    ref ScrollSnap scrollSnap = ref animalsShopWindowAspect.ScrollSnap.Get(window);
+                    ref AnimalsShopWindow animalsShopWindow = ref windowAspect.AnimalsShopWindows.Get(window);
+                    ref ScrollSnap scrollSnap = ref windowAspect.ScrollSnap.Get(window);
 
                     _world.GetPool<ClosedMarker>().Add(window);
 
@@ -52,12 +51,12 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 
                     float factor = 0.7f;
 
-                    animalsShopWindowAspect.ClosedStartEvent.Add(window);
+                    windowAspect.LockScrollSnap.Add(window);
 
                     scrollSnap.OpenCloseTween = Sequence.Create()
                         .Chain(
                             sequence: AnimatePurchases(
-                                animals: animalsShopWindowAspect.PurchaseAnimals.Read(window).Entities,
+                                animals: windowAspect.PurchaseAnimals.Read(window).Entities,
                                 out float delay))
                         // close window
                         .Insert(

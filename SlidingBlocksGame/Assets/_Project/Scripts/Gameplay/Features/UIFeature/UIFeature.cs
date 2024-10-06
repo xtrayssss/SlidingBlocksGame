@@ -27,17 +27,11 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature
                 .AddUnique(new DisplayAudioButtonsStatusSystem())
                 .AutoDelEntityComponent<UpdateGameAudioRequest>()
                 //
-                .AddUnique(new ScrollSnapSystem())
-                .AutoDel<ScrollSetupRequest>()
-                .AutoDelTag<ApplyEffectRequest>()
-                //
                 .AddUnique(new CameraRenderSystem())
                 .AddUnique(new DisplayPurchasePriceSystem())
                 .AddUnique(new DisplayPurchaseStatusSystem())
                 //
-                .AutoDelTag<OpenedEvent>()
                 .AddUnique(new DisplayAnimalPurchaseWindowSystem())
-                .AutoDelTag<ClosedStartEvent>()
                 .AutoDelTag<ClosedEvent>()
                 .AddUnique(new CloseAnimalPurchaseWindowSystem())
                 //
@@ -65,6 +59,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature
                 .AddUnique(new Render3DToUISystem())
                 .AutoDel<Render3DToUIRequest>()
                 //
+                .AddModule(new ScrollSnapFeature.ScrollSnapFeature())
                 .AutoDelEntityTag<ButtonClickedEvent>();
         }
     }
