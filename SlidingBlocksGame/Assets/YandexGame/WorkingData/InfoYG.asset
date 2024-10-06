@@ -23,7 +23,6 @@ MonoBehaviour:
     uniqueID: 000
     photo: https://justplaygames.ru/public/icon_player.png
     payingStatus: paying
-    serverTime: 1725453734765
   AdWhenLoadingScene: 0
   showFirstAd: 1
   rewardedAfterClosing: 1
@@ -184,7 +183,7 @@ MonoBehaviour:
       score: 10
   LocalizationEnable: 1
   callingLanguageCheck: 1
-  translateMethod: 0
+  translateMethod: 1
   domainAutoLocalization: com
   CSVFileTranslate:
     format: 0
@@ -218,8 +217,40 @@ MonoBehaviour:
     de: 0
     hi: 0
   fonts:
-    defaultFont: []
+    defaultFont:
+    - {fileID: 12800000, guid: 672723d8d54df4f998621d9f268c4afa, type: 3}
     ru: []
+    en: []
+    tr: []
+    az: []
+    be: []
+    he: []
+    hy: []
+    ka: []
+    et: []
+    fr: []
+    kk: []
+    ky: []
+    lt: []
+    lv: []
+    ro: []
+    tg: []
+    tk: []
+    uk: []
+    uz: []
+    es: []
+    pt: []
+    ar: []
+    id: []
+    ja: []
+    it: []
+    de: []
+    hi: []
+  fontsTMP:
+    defaultFont:
+    - {fileID: 11400000, guid: 1b6c1f3157894e947864ce33af929981, type: 2}
+    ru:
+    - {fileID: 11400000, guid: 1b6c1f3157894e947864ce33af929981, type: 2}
     en: []
     tr: []
     az: []
@@ -274,34 +305,7 @@ MonoBehaviour:
     it: 
     de: 
     hi: 
-  purshasesSimulation:
-  - id: gun
-    title: Gun
-    description: Product - Gun
-    imageURI: https://justplaygames.ru/public/Paymant1.png
-    price: 5 YAN
-    priceValue: 5
-    priceCurrencyCode: YAN
-    currencyImageURL: https://yastatic.net/s3/games-static/static-data/images/payments/sdk/currency-icon-s@2x.png
-    consumed: 1
-  - id: armor
-    title: Armor
-    description: Product - Armor
-    imageURI: https://justplaygames.ru/public/Paymant2.png
-    price: 10 YAN
-    priceValue: 10
-    priceCurrencyCode: YAN
-    currencyImageURL: https://yastatic.net/s3/games-static/static-data/images/payments/sdk/currency-icon-s@2x.png
-    consumed: 1
-  - id: grenade
-    title: Grenade
-    description: Product - Grenade
-    imageURI: https://justplaygames.ru/public/Paymant3.png
-    price: 30 YAN
-    priceValue: 30
-    priceCurrencyCode: YAN
-    currencyImageURL: https://yastatic.net/s3/games-static/static-data/images/payments/sdk/currency-icon-s@2x.png
-    consumed: 1
+  purshasesSimulation: []
   metricaEnable: 0
   metricaCounterID: 0
   debug: 1

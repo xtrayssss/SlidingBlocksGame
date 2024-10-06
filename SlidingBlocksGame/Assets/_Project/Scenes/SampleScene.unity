@@ -96,8 +96,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: c3104d640e93ef84a8c5fdf2b1531886,
-    type: 2}
+  m_LightingDataAsset: {fileID: 0}
   m_LightingSettings: {fileID: 4890085278179872738, guid: a62cc13ec42bca9468986ea3c34bebee,
     type: 2}
 --- !u!196 &4
@@ -530,7 +529,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 375
 --- !u!114 &184169994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3297,9 +3296,8 @@ MonoBehaviour:
     be
     over when  it.'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1b6c1f3157894e947864ce33af929981, type: 2}
-  m_sharedMaterial: {fileID: -1975015116027720056, guid: 1b6c1f3157894e947864ce33af929981,
-    type: 2}
+  m_fontAsset: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5519,9 +5517,8 @@ MonoBehaviour:
   m_text: "Click on 1 of 4 directions to move all the tiles on it \ninto the middle
     one."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1b6c1f3157894e947864ce33af929981, type: 2}
-  m_sharedMaterial: {fileID: -1975015116027720056, guid: 1b6c1f3157894e947864ce33af929981,
-    type: 2}
+  m_fontAsset: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -11692,7 +11689,7 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 8499802776494932275
-      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -11841,9 +11838,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: TAP TO EXIT
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1b6c1f3157894e947864ce33af929981, type: 2}
-  m_sharedMaterial: {fileID: -1975015116027720056, guid: 1b6c1f3157894e947864ce33af929981,
-    type: 2}
+  m_fontAsset: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -12384,117 +12380,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _components:
-  - rid: 6454805156365861476
-  - rid: 6454805156365861477
-  - rid: 6454805156365861478
-  - rid: 6454805158866715625
-  - rid: 6454805162115203465
-  - rid: 6454805456610394902
-  - rid: 6454805456610394903
-  - rid: 6454805475984932914
-  - rid: 6454805475984932915
-  - rid: 6454805571574956974
+  - rid: -2
+  - rid: -2
+  - rid: -2
+  - rid: -2
+  - rid: -2
+  - rid: -2
+  - rid: -2
+  - rid: -2
+  - rid: -2
+  - rid: -2
   references:
     version: 2
     RefIds:
-    - rid: 6454805156365861476
-      type: {class: RewardInterval/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: 1000000
-    - rid: 6454805156365861477
-      type: {class: RewardTag/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data: {}
-    - rid: 6454805156365861478
-      type: {class: RewardStatus/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Locked: {fileID: 2763355771235301348}
-          Unlocked: {fileID: 6224057068698151592}
-    - rid: 6454805158866715625
-      type: {class: RewardWindowConnect/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: {fileID: 6535349574837091657}
-    - rid: 6454805162115203465
-      type: {class: CoinsProgressionCurve/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value:
-            serializedVersion: 2
-            m_Curve:
-            - serializedVersion: 3
-              time: 0
-              value: 10
-              inSlope: 5
-              outSlope: 5
-              tangentMode: 34
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0.33333334
-            - serializedVersion: 3
-              time: 1
-              value: 15
-              inSlope: 4.940288
-              outSlope: 4.940288
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0.31040502
-              outWeight: 0
-            - serializedVersion: 3
-              time: 2
-              value: 20
-              inSlope: 4.9539423
-              outSlope: 4.9539423
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0.33333334
-              outWeight: 0.33333334
-            - serializedVersion: 3
-              time: 3
-              value: 22
-              inSlope: 5.0196867
-              outSlope: 5.0196867
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0.33333334
-              outWeight: 0.33333334
-            m_PreInfinity: 2
-            m_PostInfinity: 2
-            m_RotationOrder: 4
-    - rid: 6454805456610394902
-      type: {class: RewardCollectedAt/Template, ns: _Project.Scripts.Gameplay.Features.CommonFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: 0
-    - rid: 6454805456610394903
-      type: {class: RewardsCount/Template, ns: _Project.Scripts.Gameplay.Features.CommonFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: 0
-    - rid: 6454805475984932914
-      type: {class: GrabRewardText/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: {fileID: 4721196836280420101}
-    - rid: 6454805475984932915
-      type: {class: RewardTimeText/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: {fileID: 7134184722592566943}
-    - rid: 6454805571574956974
-      type: {class: GrabRewardTextTween/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data: {}
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!222 &430348037798353076
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12658,7 +12558,7 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 8499802776494932275
-      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -12756,7 +12656,7 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data: {}
     - rid: 8499802776494932275
-      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -12786,7 +12686,7 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data: {}
     - rid: 8499802776494932275
-      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -13047,9 +12947,8 @@ MonoBehaviour:
   m_text: "Click on 1 of 4 directions to move all the tiles on it \ninto the middle
     one."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1b6c1f3157894e947864ce33af929981, type: 2}
-  m_sharedMaterial: {fileID: -1975015116027720056, guid: 1b6c1f3157894e947864ce33af929981,
-    type: 2}
+  m_fontAsset: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -13673,9 +13572,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1b6c1f3157894e947864ce33af929981, type: 2}
-  m_sharedMaterial: {fileID: -1975015116027720056, guid: 1b6c1f3157894e947864ce33af929981,
-    type: 2}
+  m_fontAsset: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -13931,7 +13829,7 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data: {}
     - rid: 8499802776494932275
-      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -13990,21 +13888,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _components:
-  - rid: 6454805176898027522
-  - rid: 6454805176898027937
+  - rid: -2
+  - rid: -2
   references:
     version: 2
     RefIds:
-    - rid: 6454805176898027522
-      type: {class: GameTitleTag/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.Components,
-        asm: Assembly-CSharp}
-      data: {}
-    - rid: 6454805176898027937
-      type: {class: RectTransformRef/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: {fileID: 4740099195665450208}
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!114 &826003030713632007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14560,9 +14450,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1b6c1f3157894e947864ce33af929981, type: 2}
-  m_sharedMaterial: {fileID: -1975015116027720056, guid: 1b6c1f3157894e947864ce33af929981,
-    type: 2}
+  m_fontAsset: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -15023,7 +14912,7 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 8499802776494932275
-      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -15440,7 +15329,7 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data: {}
     - rid: 8499802776494932275
-      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -15529,21 +15418,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _components:
-  - rid: 6454805176898027522
-  - rid: 6454805176898027937
+  - rid: -2
+  - rid: -2
   references:
     version: 2
     RefIds:
-    - rid: 6454805176898027522
-      type: {class: GameTitleTag/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.Components,
-        asm: Assembly-CSharp}
-      data: {}
-    - rid: 6454805176898027937
-      type: {class: RectTransformRef/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: {fileID: 6542038705276403687}
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!114 &1186496129228815872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15770,9 +15651,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1b6c1f3157894e947864ce33af929981, type: 2}
-  m_sharedMaterial: {fileID: -1975015116027720056, guid: 1b6c1f3157894e947864ce33af929981,
-    type: 2}
+  m_fontAsset: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -16585,7 +16465,7 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 8499802776494932275
-      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -16919,9 +16799,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1b6c1f3157894e947864ce33af929981, type: 2}
-  m_sharedMaterial: {fileID: -1975015116027720056, guid: 1b6c1f3157894e947864ce33af929981,
-    type: 2}
+  m_fontAsset: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -17414,7 +17293,7 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 8499802776494932275
-      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -17597,9 +17476,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: TAP TO EXIT
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1b6c1f3157894e947864ce33af929981, type: 2}
-  m_sharedMaterial: {fileID: -1975015116027720056, guid: 1b6c1f3157894e947864ce33af929981,
-    type: 2}
+  m_fontAsset: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -23649,9 +23527,8 @@ MonoBehaviour:
   m_text: "Click on 1 of 4 directions to move all the tiles on it \ninto the middle
     one."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1b6c1f3157894e947864ce33af929981, type: 2}
-  m_sharedMaterial: {fileID: -1975015116027720056, guid: 1b6c1f3157894e947864ce33af929981,
-    type: 2}
+  m_fontAsset: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -23854,7 +23731,7 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 8499802776494932275
-      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -23921,7 +23798,7 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data: {}
     - rid: 8499802776494932275
-      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -23951,7 +23828,7 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data: {}
     - rid: 8499802776494932275
-      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -24344,117 +24221,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _components:
-  - rid: 6454805156365861476
-  - rid: 6454805156365861477
-  - rid: 6454805156365861478
-  - rid: 6454805158866715625
-  - rid: 6454805162115203465
-  - rid: 6454805456610394902
-  - rid: 6454805456610394903
-  - rid: 6454805475984932914
-  - rid: 6454805475984932915
-  - rid: 6454805571574956974
+  - rid: -2
+  - rid: -2
+  - rid: -2
+  - rid: -2
+  - rid: -2
+  - rid: -2
+  - rid: -2
+  - rid: -2
+  - rid: -2
+  - rid: -2
   references:
     version: 2
     RefIds:
-    - rid: 6454805156365861476
-      type: {class: RewardInterval/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: 1000000
-    - rid: 6454805156365861477
-      type: {class: RewardTag/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data: {}
-    - rid: 6454805156365861478
-      type: {class: RewardStatus/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Locked: {fileID: 4420463349466877155}
-          Unlocked: {fileID: 5575879089272197551}
-    - rid: 6454805158866715625
-      type: {class: RewardWindowConnect/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: {fileID: 4734395090442651214}
-    - rid: 6454805162115203465
-      type: {class: CoinsProgressionCurve/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value:
-            serializedVersion: 2
-            m_Curve:
-            - serializedVersion: 3
-              time: 0
-              value: 10
-              inSlope: 5
-              outSlope: 5
-              tangentMode: 34
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0.33333334
-            - serializedVersion: 3
-              time: 1
-              value: 15
-              inSlope: 4.940288
-              outSlope: 4.940288
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0.31040502
-              outWeight: 0
-            - serializedVersion: 3
-              time: 2
-              value: 20
-              inSlope: 4.9539423
-              outSlope: 4.9539423
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0.33333334
-              outWeight: 0.33333334
-            - serializedVersion: 3
-              time: 3
-              value: 22
-              inSlope: 5.0196867
-              outSlope: 5.0196867
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0.33333334
-              outWeight: 0.33333334
-            m_PreInfinity: 2
-            m_PostInfinity: 2
-            m_RotationOrder: 4
-    - rid: 6454805456610394902
-      type: {class: RewardCollectedAt/Template, ns: _Project.Scripts.Gameplay.Features.CommonFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: 0
-    - rid: 6454805456610394903
-      type: {class: RewardsCount/Template, ns: _Project.Scripts.Gameplay.Features.CommonFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: 0
-    - rid: 6454805475984932914
-      type: {class: GrabRewardText/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: {fileID: 6522554841677134850}
-    - rid: 6454805475984932915
-      type: {class: RewardTimeText/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: {fileID: 8647049431423399320}
-    - rid: 6454805571574956974
-      type: {class: GrabRewardTextTween/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data: {}
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!222 &2231865472886498227
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -25391,33 +25172,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _components:
-  - rid: 6454805177393218251
+  - rid: -2
   - rid: 6454805187556802585
   - rid: 6454805221806178312
   - rid: 6454805541227593728
   references:
     version: 2
     RefIds:
-    - rid: 6454805177393218251
-      type: {class: TextMeshProUGUIRef/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: {fileID: 5528149102715192596}
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 6454805187556802585
       type: {class: RectTransformRef/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
-          Value: {fileID: 1820819007923671958}
+          Value: {fileID: 0}
     - rid: 6454805221806178312
-      type: {class: CoinAddedToTextAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+      type: {class: CoinAddedToTextAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
-          Value: {fileID: 11400000, guid: b444f90dbf464b746b824afb8fa5f002, type: 2}
+          Value: {fileID: 0}
     - rid: 6454805541227593728
-      type: {class: Coins/Template, ns: _Project.Scripts.Gameplay.Features.CollectFeature.Components,
+      type: {class: Coins/Template, ns: _Project.Scripts.Gameplay.Features.CollectionFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -25465,7 +25242,7 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data: {}
     - rid: 8499802776494932275
-      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -25514,9 +25291,8 @@ MonoBehaviour:
 
     ANIMAL'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1b6c1f3157894e947864ce33af929981, type: 2}
-  m_sharedMaterial: {fileID: -1975015116027720056, guid: 1b6c1f3157894e947864ce33af929981,
-    type: 2}
+  m_fontAsset: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -25974,7 +25750,7 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data: {}
     - rid: 8499802776494932275
-      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -26573,7 +26349,7 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data: {}
     - rid: 8499802776494932275
-      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -27009,14 +26785,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EntityCfg:
     _components:
-    - rid: 8499802495351259691
+    - rid: -2
   references:
     version: 2
     RefIds:
-    - rid: 8499802495351259691
-      type: {class: CloseInAppPopupButtonTag/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data: {}
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!222 &2875486755996014111
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -27841,9 +27615,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: SOUND
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1b6c1f3157894e947864ce33af929981, type: 2}
-  m_sharedMaterial: {fileID: -1975015116027720056, guid: 1b6c1f3157894e947864ce33af929981,
-    type: 2}
+  m_fontAsset: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -28298,7 +28071,7 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data: {}
     - rid: 8499802776494932275
-      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -28427,7 +28200,7 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data: {}
     - rid: 8499802776494932275
-      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -28507,12 +28280,11 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 6454805221806178309
-      type: {class: ConfettiExplodedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+      type: {class: ConfettiExplodedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
-          <Value>k__BackingField: {fileID: 11400000, guid: 85770ea557f1b6846b60a6a2df9d90ea,
-            type: 2}
+          <Value>k__BackingField: {fileID: 0}
 --- !u!1 &3184564262449669191
 GameObject:
   m_ObjectHideFlags: 0
@@ -28826,7 +28598,7 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data: {}
     - rid: 8499802776494932275
-      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -29647,7 +29419,7 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data: {}
     - rid: 8499802776494932275
-      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -29924,9 +29696,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: SOUND
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1b6c1f3157894e947864ce33af929981, type: 2}
-  m_sharedMaterial: {fileID: -1975015116027720056, guid: 1b6c1f3157894e947864ce33af929981,
-    type: 2}
+  m_fontAsset: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -31246,7 +31017,7 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data: {}
     - rid: 8499802776494932275
-      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -31407,7 +31178,7 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data: {}
     - rid: 8499802776494932275
-      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -31487,12 +31258,11 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 6454805221806178309
-      type: {class: ConfettiExplodedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+      type: {class: ConfettiExplodedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
-          <Value>k__BackingField: {fileID: 11400000, guid: 85770ea557f1b6846b60a6a2df9d90ea,
-            type: 2}
+          <Value>k__BackingField: {fileID: 0}
 --- !u!1 &3976699098633690944
 GameObject:
   m_ObjectHideFlags: 0
@@ -31744,33 +31514,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _components:
-  - rid: 6454805177393218251
+  - rid: -2
   - rid: 6454805187556802585
   - rid: 6454805221806178312
   - rid: 6454805541227593728
   references:
     version: 2
     RefIds:
-    - rid: 6454805177393218251
-      type: {class: TextMeshProUGUIRef/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: {fileID: 6320279542562946579}
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 6454805187556802585
       type: {class: RectTransformRef/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
-          Value: {fileID: 163558598114011281}
+          Value: {fileID: 0}
     - rid: 6454805221806178312
-      type: {class: CoinAddedToTextAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+      type: {class: CoinAddedToTextAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
-          Value: {fileID: 11400000, guid: b444f90dbf464b746b824afb8fa5f002, type: 2}
+          Value: {fileID: 0}
     - rid: 6454805541227593728
-      type: {class: Coins/Template, ns: _Project.Scripts.Gameplay.Features.CollectFeature.Components,
+      type: {class: Coins/Template, ns: _Project.Scripts.Gameplay.Features.CollectionFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -31818,7 +31584,7 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data: {}
     - rid: 8499802776494932275
-      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -31882,9 +31648,8 @@ MonoBehaviour:
 
     ANIMAL'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1b6c1f3157894e947864ce33af929981, type: 2}
-  m_sharedMaterial: {fileID: -1975015116027720056, guid: 1b6c1f3157894e947864ce33af929981,
-    type: 2}
+  m_fontAsset: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -33113,14 +32878,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EntityCfg:
     _components:
-    - rid: 8499802495351259691
+    - rid: -2
   references:
     version: 2
     RefIds:
-    - rid: 8499802495351259691
-      type: {class: CloseInAppPopupButtonTag/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data: {}
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!222 &4388209627454614808
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -33321,7 +33084,7 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data: {}
     - rid: 8499802776494932275
-      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -33881,7 +33644,7 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data: {}
     - rid: 8499802776494932275
-      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -34197,7 +33960,7 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data:
         component:
-          Value: {fileID: 5114273637073908454}
+          Value: {fileID: 0}
 --- !u!114 &4650221918278184810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34635,7 +34398,7 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data: {}
     - rid: 8499802776494932275
-      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -34707,9 +34470,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "GRAB YOUR \nREWARD!"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1b6c1f3157894e947864ce33af929981, type: 2}
-  m_sharedMaterial: {fileID: -1975015116027720056, guid: 1b6c1f3157894e947864ce33af929981,
-    type: 2}
+  m_fontAsset: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -35810,7 +35572,7 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data: {}
     - rid: 8499802776494932275
-      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -35935,7 +35697,7 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data: {}
     - rid: 8499802776494932275
-      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -36698,7 +36460,7 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 6454805201906302983
-      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -36917,9 +36679,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1b6c1f3157894e947864ce33af929981, type: 2}
-  m_sharedMaterial: {fileID: -1975015116027720056, guid: 1b6c1f3157894e947864ce33af929981,
-    type: 2}
+  m_fontAsset: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -37407,9 +37168,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: RATE US
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1b6c1f3157894e947864ce33af929981, type: 2}
-  m_sharedMaterial: {fileID: -1975015116027720056, guid: 1b6c1f3157894e947864ce33af929981,
-    type: 2}
+  m_fontAsset: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -37636,78 +37396,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _components:
-  - rid: 8499802495351259692
-  - rid: 8499802702287471247
-  - rid: 8499802837155577869
-  - rid: 6454805156365861479
-  - rid: 6454805176898027520
-  - rid: 6454805177393218448
-  - rid: 6454805290330882053
-  - rid: 6454805318907199488
-  - rid: 6454805721116049408
+  - rid: -2
+  - rid: -2
+  - rid: -2
+  - rid: -2
+  - rid: -2
+  - rid: -2
+  - rid: -2
+  - rid: -2
+  - rid: -2
   references:
     version: 2
     RefIds:
-    - rid: 6454805156365861479
-      type: {class: RewardConnect/Template, ns: _Project.Scripts.Gameplay.Features.GameFlowFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: {fileID: 5550420862275140226}
-    - rid: 6454805176898027520
-      type: {class: GameTitleConnect/Template, ns: _Project.Scripts.Gameplay.Features.GameFlowFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: {fileID: 5219951113895484414}
-    - rid: 6454805177393218448
-      type: {class: CanvasRef/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: {fileID: 6717997911275775258}
-    - rid: 6454805290330882053
-      type: {class: SettingsPopupConnect/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: {fileID: 4230186695030456180}
-    - rid: 6454805318907199488
-      type: {class: AnimalsShopWindowConnect/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: {fileID: 6429701158327127411}
-    - rid: 6454805721116049408
-      type: {class: PlayButtonConnect/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Play: {fileID: 7359626171890530233}
-          Replay: {fileID: 2132888220536274653}
-    - rid: 8499802495351259692
-      type: {class: InAppPopupView/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: {fileID: 7648407152559335814}
-    - rid: 8499802702287471247
-      type: {class: MetaGameUI/Template, ns: _Project.Scripts.Gameplay.Features.GameFlowFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value:
-          - {fileID: 8971274281165478680}
-          - {fileID: 5481624264243607580}
-          - {fileID: 8377850252257925003}
-          - {fileID: 7201141153999986076}
-          - {fileID: 4552092448830829755}
-    - rid: 8499802837155577869
-      type: {class: TutorialConnect/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: {fileID: 3718234143100146393}
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!114 &5307003658256522973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37751,31 +37453,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _components:
-  - rid: 6454805290330882050
-  - rid: 6454805290330882052
-  - rid: 6454805584115138560
+  - rid: -2
+  - rid: -2
+  - rid: -2
   references:
     version: 2
     RefIds:
-    - rid: 6454805290330882050
-      type: {class: SettingsPopupTag/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data: {}
-    - rid: 6454805290330882052
-      type: {class: OpenCloseTween/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data: {}
-    - rid: 6454805584115138560
-      type: {class: AudioButtonsStatus/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          MusicOff: {fileID: 6351561683057813733}
-          MusicOn: {fileID: 815787729244696707}
-          SoundOff: {fileID: 7143583012956361307}
-          SoundOn: {fileID: 3482443365056989757}
-          MusicIsOn: 1
-          SoundIsOn: 1
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!114 &5312381676816226502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38731,9 +38416,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1b6c1f3157894e947864ce33af929981, type: 2}
-  m_sharedMaterial: {fileID: -1975015116027720056, guid: 1b6c1f3157894e947864ce33af929981,
-    type: 2}
+  m_fontAsset: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -38823,9 +38507,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1b6c1f3157894e947864ce33af929981, type: 2}
-  m_sharedMaterial: {fileID: -1975015116027720056, guid: 1b6c1f3157894e947864ce33af929981,
-    type: 2}
+  m_fontAsset: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -39345,7 +39028,7 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 8499802776494932275
-      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -39907,9 +39590,8 @@ MonoBehaviour:
     be
     over when  it.'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1b6c1f3157894e947864ce33af929981, type: 2}
-  m_sharedMaterial: {fileID: -1975015116027720056, guid: 1b6c1f3157894e947864ce33af929981,
-    type: 2}
+  m_fontAsset: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -40594,9 +40276,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: RATE US
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1b6c1f3157894e947864ce33af929981, type: 2}
-  m_sharedMaterial: {fileID: -1975015116027720056, guid: 1b6c1f3157894e947864ce33af929981,
-    type: 2}
+  m_fontAsset: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -40841,78 +40522,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _components:
-  - rid: 8499802495351259692
-  - rid: 8499802702287471247
-  - rid: 8499802837155577869
-  - rid: 6454805156365861479
-  - rid: 6454805176898027520
-  - rid: 6454805177393218448
-  - rid: 6454805290330882053
-  - rid: 6454805318907199488
-  - rid: 6454805721116049408
+  - rid: -2
+  - rid: -2
+  - rid: -2
+  - rid: -2
+  - rid: -2
+  - rid: -2
+  - rid: -2
+  - rid: -2
+  - rid: -2
   references:
     version: 2
     RefIds:
-    - rid: 6454805156365861479
-      type: {class: RewardConnect/Template, ns: _Project.Scripts.Gameplay.Features.GameFlowFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: {fileID: 6198858325405827461}
-    - rid: 6454805176898027520
-      type: {class: GameTitleConnect/Template, ns: _Project.Scripts.Gameplay.Features.GameFlowFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: {fileID: 6012647938331713785}
-    - rid: 6454805177393218448
-      type: {class: CanvasRef/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: {fileID: 5060591402517437981}
-    - rid: 6454805290330882053
-      type: {class: SettingsPopupConnect/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: {fileID: 2428969562948338803}
-    - rid: 6454805318907199488
-      type: {class: AnimalsShopWindowConnect/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: {fileID: 4772454079057868404}
-    - rid: 6454805721116049408
-      type: {class: PlayButtonConnect/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Play: {fileID: 9017173554401758398}
-          Replay: {fileID: 475200236834768346}
-    - rid: 8499802495351259692
-      type: {class: InAppPopupView/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: {fileID: 8153014339905852033}
-    - rid: 8499802702287471247
-      type: {class: MetaGameUI/Template, ns: _Project.Scripts.Gameplay.Features.GameFlowFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value:
-          - {fileID: 7458406274337431583}
-          - {fileID: 6274480380359525147}
-          - {fileID: 8018044486185266316}
-          - {fileID: 8714004763282744987}
-          - {fileID: 2606895232542216124}
-    - rid: 8499802837155577869
-      type: {class: TutorialConnect/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: {fileID: 2925115243638860254}
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!114 &5955879826828961242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40956,31 +40579,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _components:
-  - rid: 6454805290330882050
-  - rid: 6454805290330882052
-  - rid: 6454805584115138560
+  - rid: -2
+  - rid: -2
+  - rid: -2
   references:
     version: 2
     RefIds:
-    - rid: 6454805290330882050
-      type: {class: SettingsPopupTag/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data: {}
-    - rid: 6454805290330882052
-      type: {class: OpenCloseTween/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data: {}
-    - rid: 6454805584115138560
-      type: {class: AudioButtonsStatus/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          MusicOff: {fileID: 4838147080708854754}
-          MusicOn: {fileID: 1176433522170825604}
-          SoundOff: {fileID: 8656710642706508124}
-          SoundOn: {fileID: 3122636499573109050}
-          MusicIsOn: 1
-          SoundIsOn: 1
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!114 &5960677303216694209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41684,9 +41290,8 @@ MonoBehaviour:
     be
     over when  it.'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1b6c1f3157894e947864ce33af929981, type: 2}
-  m_sharedMaterial: {fileID: -1975015116027720056, guid: 1b6c1f3157894e947864ce33af929981,
-    type: 2}
+  m_fontAsset: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -41772,7 +41377,7 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 8499802776494932275
-      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -42609,9 +42214,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1b6c1f3157894e947864ce33af929981, type: 2}
-  m_sharedMaterial: {fileID: -1975015116027720056, guid: 1b6c1f3157894e947864ce33af929981,
-    type: 2}
+  m_fontAsset: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -42701,9 +42305,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1b6c1f3157894e947864ce33af929981, type: 2}
-  m_sharedMaterial: {fileID: -1975015116027720056, guid: 1b6c1f3157894e947864ce33af929981,
-    type: 2}
+  m_fontAsset: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -43585,7 +43188,7 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data: {}
     - rid: 8499802776494932275
-      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -43613,9 +43216,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "GRAB YOUR \nREWARD!"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1b6c1f3157894e947864ce33af929981, type: 2}
-  m_sharedMaterial: {fileID: -1975015116027720056, guid: 1b6c1f3157894e947864ce33af929981,
-    type: 2}
+  m_fontAsset: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -44197,7 +43799,7 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data:
         component:
-          Value: {fileID: 6771239377196894689}
+          Value: {fileID: 0}
 --- !u!114 &6597135557135127686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44431,7 +44033,7 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 6454805201906302983
-      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -44684,9 +44286,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1b6c1f3157894e947864ce33af929981, type: 2}
-  m_sharedMaterial: {fileID: -1975015116027720056, guid: 1b6c1f3157894e947864ce33af929981,
-    type: 2}
+  m_fontAsset: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -45373,7 +44974,7 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data: {}
     - rid: 8499802776494932275
-      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -45437,7 +45038,7 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data: {}
     - rid: 8499802776494932275
-      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -46360,9 +45961,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1b6c1f3157894e947864ce33af929981, type: 2}
-  m_sharedMaterial: {fileID: -1975015116027720056, guid: 1b6c1f3157894e947864ce33af929981,
-    type: 2}
+  m_fontAsset: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -46619,9 +46219,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'REWARD IN:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1b6c1f3157894e947864ce33af929981, type: 2}
-  m_sharedMaterial: {fileID: -1975015116027720056, guid: 1b6c1f3157894e947864ce33af929981,
-    type: 2}
+  m_fontAsset: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -47268,22 +46867,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _components:
   - rid: 6454805201906302980
-  - rid: 6454805201906302986
+  - rid: -2
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 6454805201906302980
       type: {class: RectTransformRef/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
-          Value: {fileID: 2259613619680670719}
-    - rid: 6454805201906302986
-      type: {class: ButtonRef/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: {fileID: 1609039949588809710}
+          Value: {fileID: 0}
 --- !u!224 &7226016099843469680
 RectTransform:
   m_ObjectHideFlags: 0
@@ -52700,7 +52295,7 @@ MeshRenderer:
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
+  m_ScaleInLightmap: 5
   m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
@@ -63828,9 +63423,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: GAME
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1b6c1f3157894e947864ce33af929981, type: 2}
-  m_sharedMaterial: {fileID: -1975015116027720056, guid: 1b6c1f3157894e947864ce33af929981,
-    type: 2}
+  m_fontAsset: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -64036,21 +63630,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _components:
-  - rid: 8499802549844443670
+  - rid: -2
   - rid: 8499802790374932481
   references:
     version: 2
     RefIds:
-    - rid: 8499802549844443670
-      type: {class: PurchaseButtonStatus/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Lock: {fileID: 8128212169490694916}
-          Unlock: {fileID: 5636915135892065125}
-          Play: {fileID: 625629822287817151}
-          Price: {fileID: 2165986822758902105}
-          Current: {fileID: 8128212169490694916}
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 8499802790374932481
       type: {class: ScrollSnap/Template, ns: _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Components,
         asm: Assembly-CSharp}
@@ -64060,12 +63646,12 @@ MonoBehaviour:
           TargetPosition: 0
           Distance: 0
           Position: 0
-          ScrollRect: {fileID: 2733579236111442102}
+          ScrollRect: {fileID: 0}
           SnapDuration: 1
           SnapEase: 4
           EffectsConfigs:
-          - {fileID: 11400000, guid: 1fd1894c54cd2914e9c57d65bc50ef85, type: 2}
-          - {fileID: 11400000, guid: deb1be64955b3ae43848c77bdc946d6a, type: 2}
+          - {fileID: 0}
+          - {fileID: 0}
           LastScrollPosition: 0
           Selected:
             _full: 0
@@ -64773,7 +64359,7 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 8499802776494932275
-      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -64943,57 +64529,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _components:
-  - rid: 6454805176898028492
-  - rid: 6454805201906302976
-  - rid: 6454805201906302978
-  - rid: 6454805201906302979
-  - rid: 6454805201906302987
-  - rid: 6454805221806178310
-  - rid: 6454805290330882051
+  - rid: -2
+  - rid: -2
+  - rid: -2
+  - rid: -2
+  - rid: -2
+  - rid: -2
+  - rid: -2
   references:
     version: 2
     RefIds:
-    - rid: 6454805176898028492
-      type: {class: CoinsRewardConnect/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: {fileID: 4753121012972755469}
-    - rid: 6454805201906302976
-      type: {class: CongratulationConnect/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: {fileID: 6374978187373214692}
-    - rid: 6454805201906302978
-      type: {class: SunshineConnect/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: {fileID: 492879321744421050}
-    - rid: 6454805201906302979
-      type: {class: TapToExitConnect/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: {fileID: 2413616905585715865}
-    - rid: 6454805201906302987
-      type: {class: RewardConfettiEffectConnect/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: {fileID: 7084997485536175544}
-    - rid: 6454805221806178310
-      type: {class: RewardCollectedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          <Value>k__BackingField: {fileID: 11400000, guid: 192e72617be132845881e7a0d7b442b6,
-            type: 2}
-    - rid: 6454805290330882051
-      type: {class: OpenCloseSequence/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data: {}
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!114 &7872039272473733838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65157,7 +64704,7 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data: {}
     - rid: 8499802776494932275
-      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -65243,7 +64790,7 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data: {}
     - rid: 8499802776494932275
-      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -66313,9 +65860,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: GAME
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1b6c1f3157894e947864ce33af929981, type: 2}
-  m_sharedMaterial: {fileID: -1975015116027720056, guid: 1b6c1f3157894e947864ce33af929981,
-    type: 2}
+  m_fontAsset: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -66473,21 +66019,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _components:
-  - rid: 8499802549844443670
+  - rid: -2
   - rid: 8499802790374932481
   references:
     version: 2
     RefIds:
-    - rid: 8499802549844443670
-      type: {class: PurchaseButtonStatus/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Lock: {fileID: 7767864344252659715}
-          Unlock: {fileID: 6141664022464082018}
-          Play: {fileID: 1418464085606994616}
-          Price: {fileID: 364487117530894942}
-          Current: {fileID: 7767864344252659715}
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 8499802790374932481
       type: {class: ScrollSnap/Template, ns: _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Components,
         asm: Assembly-CSharp}
@@ -66497,12 +66035,12 @@ MonoBehaviour:
           TargetPosition: 0
           Distance: 0
           Position: 0
-          ScrollRect: {fileID: 4534655630703877041}
+          ScrollRect: {fileID: 0}
           SnapDuration: 1
           SnapEase: 4
           EffectsConfigs:
-          - {fileID: 11400000, guid: 1fd1894c54cd2914e9c57d65bc50ef85, type: 2}
-          - {fileID: 11400000, guid: deb1be64955b3ae43848c77bdc946d6a, type: 2}
+          - {fileID: 0}
+          - {fileID: 0}
           LastScrollPosition: 0
           Selected:
             _full: 0
@@ -67596,7 +67134,7 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data: {}
     - rid: 8499802776494932275
-      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -67936,57 +67474,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _components:
-  - rid: 6454805176898028492
-  - rid: 6454805201906302976
-  - rid: 6454805201906302978
-  - rid: 6454805201906302979
-  - rid: 6454805201906302987
-  - rid: 6454805221806178310
-  - rid: 6454805290330882051
+  - rid: -2
+  - rid: -2
+  - rid: -2
+  - rid: -2
+  - rid: -2
+  - rid: -2
+  - rid: -2
   references:
     version: 2
     RefIds:
-    - rid: 6454805176898028492
-      type: {class: CoinsRewardConnect/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: {fileID: 6554902331454234890}
-    - rid: 6454805201906302976
-      type: {class: CongratulationConnect/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: {fileID: 4862113478072352995}
-    - rid: 6454805201906302978
-      type: {class: SunshineConnect/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: {fileID: 2150123238308187069}
-    - rid: 6454805201906302979
-      type: {class: TapToExitConnect/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: {fileID: 4215133240925245854}
-    - rid: 6454805201906302987
-      type: {class: RewardConfettiEffectConnect/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: {fileID: 8742398633538838207}
-    - rid: 6454805221806178310
-      type: {class: RewardCollectedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          <Value>k__BackingField: {fileID: 11400000, guid: 192e72617be132845881e7a0d7b442b6,
-            type: 2}
-    - rid: 6454805290330882051
-      type: {class: OpenCloseSequence/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data: {}
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!1 &8516224672281961699
 GameObject:
   m_ObjectHideFlags: 0
@@ -68153,7 +67652,7 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data: {}
     - rid: 8499802776494932275
-      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -68376,7 +67875,7 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 8499802776494932275
-      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -68467,9 +67966,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'REWARD IN:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1b6c1f3157894e947864ce33af929981, type: 2}
-  m_sharedMaterial: {fileID: -1975015116027720056, guid: 1b6c1f3157894e947864ce33af929981,
-    type: 2}
+  m_fontAsset: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -69067,9 +68565,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1b6c1f3157894e947864ce33af929981, type: 2}
-  m_sharedMaterial: {fileID: -1975015116027720056, guid: 1b6c1f3157894e947864ce33af929981,
-    type: 2}
+  m_fontAsset: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -80622,22 +80119,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _components:
   - rid: 6454805201906302980
-  - rid: 6454805201906302986
+  - rid: -2
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 6454805201906302980
       type: {class: RectTransformRef/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
-          Value: {fileID: 313571977084881144}
-    - rid: 6454805201906302986
-      type: {class: ButtonRef/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: {fileID: 960885060477484265}
+          Value: {fileID: 0}
 --- !u!224 &9171085636218014327
 RectTransform:
   m_ObjectHideFlags: 0
