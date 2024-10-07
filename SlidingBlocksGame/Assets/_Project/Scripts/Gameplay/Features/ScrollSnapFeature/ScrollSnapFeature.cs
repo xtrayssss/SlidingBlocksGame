@@ -14,7 +14,8 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature
                 .AutoDel<ScrollSetupRequest>()
                 .AutoDelTag<LockScrollSnapRequest>()
                 .AutoDelTag<UnlockScrollSnapRequest>()
-                .AutoDelTag<ApplyEffectRequest>();
+                .AutoDelTag<ApplyEffectRequest>()
+                .AddUnique(new DynamicLayoutSystem());
         }
     }
 }

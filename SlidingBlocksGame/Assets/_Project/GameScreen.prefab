@@ -202,6 +202,10 @@ MonoBehaviour:
             _full: 0
           NearestIndex: 0
           NearestPosition: 0
+          LayoutGroup: {fileID: 2785722013213662944}
+          VisiblePartRatio: 0.82
+          ElementTemplate: {fileID: 4541698119196968763, guid: 969efa0530d0e5a4b8b39deaae5694cf,
+            type: 3}
 --- !u!1 &441374457445912636
 GameObject:
   m_ObjectHideFlags: 0
@@ -426,12 +430,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 277
-    m_Right: 277
+    m_Left: 88
+    m_Right: 88
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 3
-  m_Spacing: -155
+  m_Spacing: -49.226852
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
@@ -6262,7 +6266,7 @@ MonoBehaviour:
   m_text: "Click on 1 of 4 directions to move all the tiles on it \ninto the middle
     one."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1b6c1f3157894e947864ce33af929981, type: 2}
+  m_fontAsset: {fileID: 0}
   m_sharedMaterial: {fileID: -1975015116027720056, guid: 1b6c1f3157894e947864ce33af929981,
     type: 2}
   m_fontSharedMaterials: []
@@ -6625,7 +6629,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: TAP TO EXIT
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1b6c1f3157894e947864ce33af929981, type: 2}
+  m_fontAsset: {fileID: 0}
   m_sharedMaterial: {fileID: -1975015116027720056, guid: 1b6c1f3157894e947864ce33af929981,
     type: 2}
   m_fontSharedMaterials: []
@@ -7053,7 +7057,7 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1b6c1f3157894e947864ce33af929981, type: 2}
+  m_fontAsset: {fileID: 0}
   m_sharedMaterial: {fileID: -1975015116027720056, guid: 1b6c1f3157894e947864ce33af929981,
     type: 2}
   m_fontSharedMaterials: []
@@ -7286,7 +7290,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.172}
   m_AnchorMax: {x: 0.5, y: 0.172}
-  m_AnchoredPosition: {x: 0, y: -5.767456}
+  m_AnchoredPosition: {x: 0, y: -5.767578}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &3976699098390788268
@@ -7324,7 +7328,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -0.000030517, y: -330}
+  m_AnchoredPosition: {x: 0, y: -330}
   m_SizeDelta: {x: 687.8043, y: 265.9935}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &5256580122871429615
@@ -7554,7 +7558,7 @@ MonoBehaviour:
     be
     over when  it.'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1b6c1f3157894e947864ce33af929981, type: 2}
+  m_fontAsset: {fileID: 0}
   m_sharedMaterial: {fileID: -1975015116027720056, guid: 1b6c1f3157894e947864ce33af929981,
     type: 2}
   m_fontSharedMaterials: []
@@ -10107,7 +10111,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'REWARD IN:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1b6c1f3157894e947864ce33af929981, type: 2}
+  m_fontAsset: {fileID: 0}
   m_sharedMaterial: {fileID: -1975015116027720056, guid: 1b6c1f3157894e947864ce33af929981,
     type: 2}
   m_fontSharedMaterials: []
@@ -25513,8 +25517,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: 1b6c1f3157894e947864ce33af929981,
-        type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 2504982695374424991, guid: 9c8902b6b78006149a75e0be6ae89dd3,
         type: 3}
       propertyPath: m_sharedMaterial
@@ -25619,7 +25622,7 @@ PrefabInstance:
     - target: {fileID: 3770330356014832131, guid: 9c8902b6b78006149a75e0be6ae89dd3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -160.00021
+      value: -160
       objectReference: {fileID: 0}
     - target: {fileID: 3770330356014832131, guid: 9c8902b6b78006149a75e0be6ae89dd3,
         type: 3}
