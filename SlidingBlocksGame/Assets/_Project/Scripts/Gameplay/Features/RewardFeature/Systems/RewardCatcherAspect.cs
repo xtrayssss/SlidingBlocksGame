@@ -1,7 +1,9 @@
+using _Project.Scripts.Gameplay.Features.CommonFeature;
 using _Project.Scripts.Gameplay.Features.MovementFeature;
 using _Project.Scripts.Gameplay.Features.RewardFeature.Components;
-using _Project.Scripts.Gameplay.Features.UIFeature.Components;
+using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components;
 using DCFApixels.DragonECS;
+// ReSharper disable UnassignedReadonlyField
 
 namespace _Project.Scripts.Gameplay.Features.RewardFeature.Systems
 {
@@ -18,20 +20,23 @@ namespace _Project.Scripts.Gameplay.Features.RewardFeature.Systems
                 CommonCatcherAspect = builder.Combine<CommonCatcherAspect>();
         }
 
-        public class CoinAddedToTextCatcher : EcsAspectAuto
+        public class CoinCountDisplayedCatcher : EcsAspectAuto
         {
-            [Inc] public readonly EcsTagPool<CatchCoinAddedToTextRequest> CatchCoinAddedToTextRequest;
-            [Opt] public readonly EcsTagPool<CoinAddedToTextEvent> CoinAddedToTextEvent;
+            [Inc] public readonly EcsTagPool<CatchRewardCoinCountDisplayedRequest> CatchRewardCoinCountDisplayedRequest;
+            [Opt] public readonly EcsTagPool<RewardCoinCountDisplayedEvent> RewardCoinCountDisplayedEvent;
 
             public CommonCatcherAspect CommonCatcherAspect;
 
             protected override void InitAfterDI(Builder builder) =>
                 CommonCatcherAspect = builder.Combine<CommonCatcherAspect>();
         }
-        public class RewardCollectedCatcher : EcsAspectAuto
+
+        public class CoinDisplayCompletedCatcher : EcsAspectAuto
         {
-            [Inc] public readonly EcsTagPool<CatchRewardCollectedRequest> CatchRewardCollectedRequest;
-            [Opt] public readonly EcsTagPool<RewardCollectedEvent> RewardCollectedEvent;
+            [Inc] public readonly EcsTagPool<CatchRewardCoinDisplayCompletedRequest>
+                CatchRewardCoinDisplayCompletedRequest;
+
+            [Opt] public readonly EcsTagPool<RewardCoinDisplayCompletedEvent> RewardCoinDisplayCompletedEvent;
 
             public CommonCatcherAspect CommonCatcherAspect;
 

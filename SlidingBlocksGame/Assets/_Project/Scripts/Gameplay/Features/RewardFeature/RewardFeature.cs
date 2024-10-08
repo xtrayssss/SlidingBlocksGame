@@ -1,4 +1,4 @@
-﻿using _Project.Scripts.Gameplay.Features.CollectionFeature.Systems;
+﻿using _Project.Scripts.Gameplay.Features.GameProgressFeature.Systems;
 using _Project.Scripts.Gameplay.Features.RewardFeature.Components;
 using _Project.Scripts.Gameplay.Features.RewardFeature.Systems;
 using DCFApixels.DragonECS;
@@ -12,7 +12,7 @@ namespace _Project.Scripts.Gameplay.Features.RewardFeature
             builder
                 .AutoDelTag<RewardEligibilityEvent>()
                 .AddUnique(new RewardEligibilitySystem())
-                .AddUnique(new RewardGrantSystem());
+                .AddUnique(new RewardClaimSystem());
         }
     }
 }

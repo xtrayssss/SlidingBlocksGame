@@ -1,7 +1,7 @@
 ﻿using _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
-using _Project.Scripts.Gameplay.Features.UIFeature.Components;
-using _Project.Scripts.Gameplay.Features.UIFeature.Systems;
+using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components;
+using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Systems;
 using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.AudioFeature

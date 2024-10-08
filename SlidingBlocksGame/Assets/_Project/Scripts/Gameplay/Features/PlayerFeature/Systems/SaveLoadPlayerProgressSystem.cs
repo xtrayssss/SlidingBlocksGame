@@ -1,14 +1,13 @@
 ﻿using System.Linq;
 using _Project.Scripts.Gameplay.Features.AnimalFeature.Components;
 using _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components;
-using _Project.Scripts.Gameplay.Features.CollectionFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameProgressFeature.Components;
 using _Project.Scripts.Gameplay.Features.PlayerFeature.Components;
 using _Project.Scripts.Gameplay.Features.PurchaseFeature.Components;
 using _Project.Scripts.Gameplay.Features.RewardFeature.Components;
-using _Project.Scripts.Gameplay.Features.ScoreFeature.Components;
 using _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Components;
-using _Project.Scripts.Gameplay.Features.UIFeature.Components;
+using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components;
 using _Project.Scripts.Gameplay.Utils;
 using DCFApixels.DragonECS;
 using UnityEngine;
@@ -109,8 +108,7 @@ namespace _Project.Scripts.Gameplay.Features.PlayerFeature.Systems
 
         private class RewardAspect : EcsAspectAuto
         {
-            [Inc] public readonly EcsPool<RewardsCount> RewardsCounts;
-            [Inc] public readonly EcsPool<RewardCollectionTime> RewardCollectionTime;
+            [Inc] public readonly EcsPool<Reward> Rewards;
         }
 
         private class GameAudioUpdatedAspect : EcsAspectAuto
@@ -172,8 +170,10 @@ namespace _Project.Scripts.Gameplay.Features.PlayerFeature.Systems
                     !rewardAspect.IsMatches(targetID))
                     continue;
 
-                YandexGame.savesData.RewardCount = rewardAspect.RewardsCounts.Read(targetID).Value;
-                YandexGame.savesData.RewardCollectedAt = rewardAspect.RewardCollectionTime.Read(targetID).Value;
+                ref readonly Reward reward = ref rewardAspect.Rewards.Read(targetID);
+                
+                YandexGame.savesData.RewardCount = reward.ClaimedCount;
+                YandexGame.savesData.RewardCollectedAt = reward.CollectionTime;
 
                 YandexGame.SaveProgress();
             }

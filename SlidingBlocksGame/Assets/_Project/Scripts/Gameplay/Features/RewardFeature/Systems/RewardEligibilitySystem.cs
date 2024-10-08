@@ -11,9 +11,7 @@ namespace _Project.Scripts.Gameplay.Features.RewardFeature.Systems
         private class RewardAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(RewardTag))]
-            [Inc] public readonly EcsPool<RewardInterval> RewardIntervals;
-
-            [Inc] public readonly EcsPool<RewardCollectionTime> RewardCollectionTime;
+            [Inc] public readonly EcsPool<Reward> Rewards;
 
             [Opt] public readonly EcsTagPool<RewardEligibilityMarker> RewardEligibilityMarker;
             [Opt] public readonly EcsTagPool<RewardEligibilityEvent> RewardEligibilityEvent;
@@ -21,22 +19,22 @@ namespace _Project.Scripts.Gameplay.Features.RewardFeature.Systems
 
         public void Run()
         {
-            foreach (int reward in _world.Where(out RewardAspect aspect))
+            foreach (int rewardID in _world.Where(out RewardAspect rewardAspect))
             {
-                long lastRewardTime = aspect.RewardCollectionTime.Read(reward).Value;
+                ref readonly Reward reward = ref rewardAspect.Rewards.Read(rewardID);
 
                 long currentTime = YandexGame.ServerTime();
 
-                if (currentTime - lastRewardTime >= aspect.RewardIntervals.Read(reward).Value)
+                if (currentTime - reward.CollectionTime >= reward.Interval)
                 {
-                    if (!aspect.RewardEligibilityMarker.Has(reward))
+                    if (!rewardAspect.RewardEligibilityMarker.Has(rewardID))
                     {
-                        aspect.RewardEligibilityMarker.TryAdd(reward);
-                        aspect.RewardEligibilityEvent.TryAdd(reward);
+                        rewardAspect.RewardEligibilityMarker.TryAdd(rewardID);
+                        rewardAspect.RewardEligibilityEvent.TryAdd(rewardID);
                     }
                 }
                 else
-                    aspect.RewardEligibilityMarker.TryDel(reward);
+                    rewardAspect.RewardEligibilityMarker.TryDel(rewardID);
             }
         }
     }

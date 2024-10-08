@@ -1,11 +1,11 @@
 using _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components;
 using _Project.Scripts.Gameplay.Features.AudioBaseFeature.Systems;
 using _Project.Scripts.Gameplay.Features.AudioFeature.Systems;
-using _Project.Scripts.Gameplay.Features.CollectionFeature.Components;
 using _Project.Scripts.Gameplay.Features.DestructionFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameProgressFeature.Components;
 using _Project.Scripts.Gameplay.Features.PurchaseFeature.Components;
 using _Project.Scripts.Gameplay.Features.RewardFeature.Components;
-using _Project.Scripts.Gameplay.Features.UIFeature.Components;
+using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components;
 using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.AudioBaseFeature
@@ -21,8 +21,8 @@ namespace _Project.Scripts.Gameplay.Features.AudioBaseFeature
                 .AddUnique(new GameFieldAudioSystem())
                 .AddAudioSystem<CoinCollectedEvent, CollectedAudioConfig>()
                 .AddAudioSystem<ConfettiExplodedEvent, ConfettiExplodedAudioConfig>()
-                .AddAudioSystem<RewardCollectedEvent, RewardCollectedAudioConfig>()
-                .AddUnique(new CoinAddedToTextAudioSystem())
+                .AddAudioSystem<RewardCoinDisplayCompletedEvent, RewardCoinDisplayCompletedAudioConfig>()
+                .AddUnique(new RewardCoinCountDisplayedAudioSystem())
                 .AddAudioSystem<PurchasedEvent, PurchasedAudioConfig>()
                 //
                 .AddUnique(new AddAudioSourceSystem())

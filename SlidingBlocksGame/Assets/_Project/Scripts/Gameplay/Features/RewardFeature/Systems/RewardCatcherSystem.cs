@@ -1,3 +1,4 @@
+using _Project.Scripts.Gameplay.Features.CommonFeature;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.MovementFeature;
 using DCFApixels.DragonECS;
@@ -21,7 +22,7 @@ namespace _Project.Scripts.Gameplay.Features.RewardFeature.Systems
                 _world.DelEntity(entity);
             }
 
-            foreach (int entity in _world.Where(out RewardCatcherAspect.CoinAddedToTextCatcher catcherAspect))
+            foreach (int entity in _world.Where(out RewardCatcherAspect.CoinCountDisplayedCatcher catcherAspect))
             {
                 CommonCatcherAspect commonCatcherAspect = catcherAspect.CommonCatcherAspect;
 
@@ -31,14 +32,14 @@ namespace _Project.Scripts.Gameplay.Features.RewardFeature.Systems
                 if (targetEntity.Value.TryGetID(out _))
                 {
                     int @event = _world.NewEntity();
-                    catcherAspect.CoinAddedToTextEvent.Add(@event);
+                    catcherAspect.RewardCoinCountDisplayedEvent.Add(@event);
                     commonCatcherAspect.TargetEntities.Add(@event).Value = targetEntity.Value;
                 }
 
                 _world.DelEntity(entity);
             }
 
-            foreach (int entity in _world.Where(out RewardCatcherAspect.RewardCollectedCatcher catcherAspect))
+            foreach (int entity in _world.Where(out RewardCatcherAspect.CoinDisplayCompletedCatcher catcherAspect))
             {
                 CommonCatcherAspect commonCatcherAspect = catcherAspect.CommonCatcherAspect;
 
@@ -46,7 +47,7 @@ namespace _Project.Scripts.Gameplay.Features.RewardFeature.Systems
                     ref commonCatcherAspect.TargetEntities.Read(entity);
 
                 if (targetEntity.Value.TryGetID(out int targetID)) 
-                    catcherAspect.RewardCollectedEvent.Add(targetID);
+                    catcherAspect.RewardCoinDisplayCompletedEvent.Add(targetID);
 
                 _world.DelEntity(entity);
             }

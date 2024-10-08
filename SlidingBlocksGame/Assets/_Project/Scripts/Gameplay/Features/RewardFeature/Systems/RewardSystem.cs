@@ -16,8 +16,7 @@ namespace _Project.Scripts.Gameplay.Features.RewardFeature.Systems
 
         private class TargetEntityAspect : EcsAspectAuto
         {
-            [Inc] public readonly EcsPool<RewardsCount> RewardsCounts;
-            [Inc] public readonly EcsPool<RewardCollectionTime> RewardCollectionTime;
+            [Inc] public readonly EcsPool<Reward> Rewards;
 
             [Opt] public readonly EcsTagPool<RewardUpdatedEvent> RewardUpdatedEvent;
             [Opt] public readonly EcsPool<TargetEntity> TargetEntity;
@@ -36,15 +35,14 @@ namespace _Project.Scripts.Gameplay.Features.RewardFeature.Systems
 
                 TargetEntityAspect targetEntityAspect = _world.GetAspect<TargetEntityAspect>();
 
-                ref RewardCollectionTime rewardCollectionTime = ref targetEntityAspect.RewardCollectionTime.Get(targetID);
-                ref RewardsCount rewardsCount = ref targetEntityAspect.RewardsCounts.Get(targetID);
-
-                rewardCollectionTime.Value = updateRewardRequest.Time;
+                ref Reward reward = ref targetEntityAspect.Rewards.Get(targetID);
+                
+                reward.CollectionTime = updateRewardRequest.Time;
 
                 if (updateRewardRequest.Overwrite)
-                    rewardsCount.Value = updateRewardRequest.Count;
+                    reward.ClaimedCount = updateRewardRequest.Count;
                 else
-                    rewardsCount.Value += updateRewardRequest.Count;
+                    reward.ClaimedCount += updateRewardRequest.Count;
 
                 int @event = _world.NewEntity();
                 targetEntityAspect.RewardUpdatedEvent.Add(@event);

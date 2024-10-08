@@ -144,8 +144,8 @@ MonoBehaviour:
   - rid: 8499802790374932481
   - rid: 3543309368061067687
   - rid: 3543309368061067688
-  - rid: 3543309368061067689
   - rid: 3543309368061067690
+  - rid: 3543309452483756033
   references:
     version: 2
     RefIds:
@@ -163,15 +163,11 @@ MonoBehaviour:
           - {fileID: 660239028200211701, guid: c6d63eb23f457a446901c2e8517910a9, type: 3}
           - {fileID: 4871628510474233944, guid: 380666c9d4efb134b869939de5dfaca4, type: 3}
     - rid: 3543309368061067688
-      type: {class: AnimalsShopWindowTag/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data: {}
-    - rid: 3543309368061067689
-      type: {class: ClosedMarker/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
+      type: {class: AnimalsShopWindowTag/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components,
         asm: Assembly-CSharp}
       data: {}
     - rid: 3543309368061067690
-      type: {class: AnimalsShopWindow/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
+      type: {class: AnimalsShopWindow/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -182,6 +178,10 @@ MonoBehaviour:
             Play: {fileID: 625629822529605203}
             Price: {fileID: 2165986824057982645}
             Current: {fileID: 8128212170323240168}
+    - rid: 3543309452483756033
+      type: {class: ClosedMarker/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components,
+        asm: Assembly-CSharp}
+      data: {}
     - rid: 8499802790374932481
       type: {class: ScrollSnap/Template, ns: _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Components,
         asm: Assembly-CSharp}
@@ -206,6 +206,7 @@ MonoBehaviour:
           VisiblePartRatio: 0.82
           ElementTemplate: {fileID: 4541698119196968763, guid: 969efa0530d0e5a4b8b39deaae5694cf,
             type: 3}
+          IsDebug: 0
 --- !u!1 &441374457445912636
 GameObject:
   m_ObjectHideFlags: 0
@@ -355,13 +356,13 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 3543309367565090819
-      type: {class: TapToExitWidget/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
+      type: {class: TapToExitWidget/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
-          ExitButton: {fileID: 1609039950420434946}
+          ExitButton: {fileID: 0}
     - rid: 6454805201906302980
-      type: {class: RectTransformRef/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
+      type: {class: RectTransformRef/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -583,7 +584,7 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 3543309363944357889
-      type: {class: GameScreen/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
+      type: {class: GameScreen/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -599,7 +600,7 @@ MonoBehaviour:
           TutorialWindowConnect: {fileID: 3718234142805669173}
           Canvas: {fileID: 6717997911519986422}
     - rid: 8499802702287471247
-      type: {class: MetaGameUI/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
+      type: {class: MetaGameUI/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -6974,13 +6975,13 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 3543309367449223169
-      type: {class: CoinWidget/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
+      type: {class: CoinWidget/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
           AmountText: {fileID: 5473160543204482095}
     - rid: 8499802814705828379
-      type: {class: RectTransformRef/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
+      type: {class: RectTransformRef/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -7159,7 +7160,7 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 6454805201906302977
-      type: {class: RectTransformRef/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
+      type: {class: RectTransformRef/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -7740,7 +7741,7 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 3543309369267716917
-      type: {class: SettingsPopup/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
+      type: {class: SettingsPopup/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -7749,11 +7750,11 @@ MonoBehaviour:
           MusicOff: {fileID: 6351561682212032265}
           MusicOn: {fileID: 815787730614032239}
     - rid: 3543309369267716918
-      type: {class: SettingsPopupTag/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
+      type: {class: SettingsPopupTag/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components,
         asm: Assembly-CSharp}
       data: {}
     - rid: 6454805584115138560
-      type: {class: AudioButtonsStatus/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
+      type: {class: AudioButtonsStatus/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -7827,11 +7828,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _components:
   - rid: 3543309367565090818
+  - rid: 3543309449364243214
   references:
     version: 2
     RefIds:
     - rid: 3543309367565090818
-      type: {class: RewardWindow/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
+      type: {class: RewardWindow/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -7840,6 +7842,13 @@ MonoBehaviour:
           CongratulationWidgetConnect: {fileID: 6374978188218588168}
           SunshineWidgetConnect: {fileID: 492879322037196630}
           TapToExitWidgetConnect: {fileID: 2099636979442837474}
+    - rid: 3543309449364243214
+      type: {class: RewardCoinDisplayCompletedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          <Value>k__BackingField: {fileID: 11400000, guid: 192e72617be132845881e7a0d7b442b6,
+            type: 2}
 --- !u!1 &4590428129969161955
 GameObject:
   m_ObjectHideFlags: 0
@@ -8092,7 +8101,7 @@ MonoBehaviour:
           <Value>k__BackingField: {fileID: 11400000, guid: c7ba15024db7d8340a8665925333d92e,
             type: 2}
     - rid: 6454805201906302984
-      type: {class: CloseRewardWindowButtonTag/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
+      type: {class: CloseRewardWindowButtonTag/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components,
         asm: Assembly-CSharp}
       data: {}
 --- !u!1 &5363297474128932385
@@ -8429,15 +8438,13 @@ MonoBehaviour:
   _components:
   - rid: 3543309367565090817
   - rid: 3543309367565090821
-  - rid: 3543309367565090822
-  - rid: 3543309367565090823
   - rid: 3543309367565090824
-  - rid: 3543309368061067686
+  - rid: 3543309449364243212
   references:
     version: 2
     RefIds:
     - rid: 3543309367565090817
-      type: {class: RewardWidget/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
+      type: {class: RewardWidget/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -8451,18 +8458,6 @@ MonoBehaviour:
       type: {class: RewardTag/Template, ns: _Project.Scripts.Gameplay.Features.RewardFeature.Components,
         asm: Assembly-CSharp}
       data: {}
-    - rid: 3543309367565090822
-      type: {class: RewardInterval/Template, ns: _Project.Scripts.Gameplay.Features.RewardFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: 5000
-    - rid: 3543309367565090823
-      type: {class: RewardCollectionTime/Template, ns: _Project.Scripts.Gameplay.Features.RewardFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: 0
     - rid: 3543309367565090824
       type: {class: RewardScalingCurve/Template, ns: _Project.Scripts.Gameplay.Features.RewardFeature.Components,
         asm: Assembly-CSharp}
@@ -8528,12 +8523,14 @@ MonoBehaviour:
             m_PreInfinity: 2
             m_PostInfinity: 2
             m_RotationOrder: 4
-    - rid: 3543309368061067686
-      type: {class: RewardsCount/Template, ns: _Project.Scripts.Gameplay.Features.RewardFeature.Components,
+    - rid: 3543309449364243212
+      type: {class: Reward/Template, ns: _Project.Scripts.Gameplay.Features.RewardFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
-          Value: 0
+          CollectionTime: 0
+          Interval: 5000
+          ClaimedCount: 0
 --- !u!1 &5509671444867596447
 GameObject:
   m_ObjectHideFlags: 0
@@ -9613,32 +9610,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _components:
   - rid: 6454805187556802585
-  - rid: 6454805221806178312
   - rid: 6454805541227593728
   - rid: 3543309367565090820
+  - rid: 3543309449364243213
   references:
     version: 2
     RefIds:
     - rid: 3543309367565090820
-      type: {class: RewardCoinsWidget/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
+      type: {class: RewardCoinsWidget/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
-          AmountText: {fileID: 6320279540643813887}
-    - rid: 6454805187556802585
-      type: {class: RectTransformRef/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: {fileID: 163558598945034109}
-    - rid: 6454805221806178312
-      type: {class: CoinAddedToTextAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
+          AmountText: {fileID: 0}
+    - rid: 3543309449364243213
+      type: {class: RewardCoinCountDisplayedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
           Value: {fileID: 11400000, guid: b444f90dbf464b746b824afb8fa5f002, type: 2}
+    - rid: 6454805187556802585
+      type: {class: RectTransformRef/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components,
+        asm: Assembly-CSharp}
+      data:
+        component:
+          Value: {fileID: 163558598945034109}
     - rid: 6454805541227593728
-      type: {class: Coins/Template, ns: _Project.Scripts.Gameplay.Features.CollectionFeature.Components,
+      type: {class: Coins/Template, ns: _Project.Scripts.Gameplay.Features.GameProgressFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -9908,13 +9905,13 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 3543309367449223168
-      type: {class: BestScoreWidget/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
+      type: {class: BestScoreWidget/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
           AmountText: {fileID: 6896612143512867910}
     - rid: 8499802814705828379
-      type: {class: RectTransformRef/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
+      type: {class: RectTransformRef/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -9992,7 +9989,7 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 3543309367449223171
-      type: {class: PlayWidget/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
+      type: {class: PlayWidget/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -10255,12 +10252,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _components:
-  - rid: 3543309382331663250
+  - rid: 3543309452483756034
   references:
     version: 2
     RefIds:
-    - rid: 3543309382331663250
-      type: {class: TutorialWindowTag/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
+    - rid: 3543309452483756034
+      type: {class: TutorialWindowTag/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components,
         asm: Assembly-CSharp}
       data: {}
 --- !u!1 &8971274280870935796
@@ -10345,7 +10342,7 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 6454805176898027937
-      type: {class: RectTransformRef/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
+      type: {class: RectTransformRef/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components,
         asm: Assembly-CSharp}
       data:
         component:
@@ -25408,7 +25405,7 @@ PrefabInstance:
     - target: {fileID: 3517825441609125697, guid: a90fda7ca2beea74ea48a4a3917b79c6,
         type: 3}
       propertyPath: managedReferences[6454805584215540639]
-      value: Assembly-CSharp _Project.Scripts.Gameplay.Features.UIFeature.Components.RateUsButtonTag/Template
+      value: Assembly-CSharp _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components.RateUsButtonTag/Template
       objectReference: {fileID: 0}
     - target: {fileID: 4464622807039356274, guid: a90fda7ca2beea74ea48a4a3917b79c6,
         type: 3}
@@ -25657,7 +25654,7 @@ PrefabInstance:
     - target: {fileID: 7332563614399721989, guid: 9c8902b6b78006149a75e0be6ae89dd3,
         type: 3}
       propertyPath: _components.Array.data[1]
-      value: 3543309367565090816
+      value: 3543309452483756037
       objectReference: {fileID: 0}
     - target: {fileID: 7332563614399721989, guid: 9c8902b6b78006149a75e0be6ae89dd3,
         type: 3}
@@ -25666,7 +25663,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7332563614399721989, guid: 9c8902b6b78006149a75e0be6ae89dd3,
         type: 3}
+      propertyPath: managedReferences[3543309452483756036]
+      value: Assembly-CSharp _Project.Scripts.Gameplay.Features.GameProgressFeature.Components.Scores/Template
+      objectReference: {fileID: 0}
+    - target: {fileID: 7332563614399721989, guid: 9c8902b6b78006149a75e0be6ae89dd3,
+        type: 3}
+      propertyPath: managedReferences[3543309452483756037]
+      value: Assembly-CSharp _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components.ScoreWidget/Template
+      objectReference: {fileID: 0}
+    - target: {fileID: 7332563614399721989, guid: 9c8902b6b78006149a75e0be6ae89dd3,
+        type: 3}
+      propertyPath: managedReferences[3543309452483756036].component.Value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7332563614399721989, guid: 9c8902b6b78006149a75e0be6ae89dd3,
+        type: 3}
       propertyPath: managedReferences[3543309367565090816].component.AmountText
+      value: 
+      objectReference: {fileID: 3112543849947586017}
+    - target: {fileID: 7332563614399721989, guid: 9c8902b6b78006149a75e0be6ae89dd3,
+        type: 3}
+      propertyPath: managedReferences[3543309452483756037].component.AmountText
       value: 
       objectReference: {fileID: 3112543849947586017}
     m_RemovedComponents: []
@@ -25732,7 +25749,7 @@ PrefabInstance:
     - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
       propertyPath: managedReferences[6454805221806179154]
-      value: Assembly-CSharp _Project.Scripts.Gameplay.Features.UIFeature.Components.AnimalPurchaseWindowButtonTag/Template
+      value: Assembly-CSharp _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components.AnimalPurchaseWindowButtonTag/Template
       objectReference: {fileID: 0}
     - target: {fileID: 2188390974939379177, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
@@ -25918,7 +25935,7 @@ PrefabInstance:
     - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
       propertyPath: managedReferences[8499802837155577868]
-      value: Assembly-CSharp _Project.Scripts.Gameplay.Features.UIFeature.Components.CloseTutorialButtonTag/Template
+      value: Assembly-CSharp _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components.CloseTutorialButtonTag/Template
       objectReference: {fileID: 0}
     - target: {fileID: 2188390974939379177, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
@@ -26259,7 +26276,7 @@ PrefabInstance:
     - target: {fileID: 3517825441609125697, guid: a90fda7ca2beea74ea48a4a3917b79c6,
         type: 3}
       propertyPath: managedReferences[6454805584215540641]
-      value: Assembly-CSharp _Project.Scripts.Gameplay.Features.UIFeature.Components.ResetProgressButtonTag/Template
+      value: Assembly-CSharp _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components.ResetProgressButtonTag/Template
       objectReference: {fileID: 0}
     - target: {fileID: 5714348720894187816, guid: a90fda7ca2beea74ea48a4a3917b79c6,
         type: 3}
@@ -26565,7 +26582,7 @@ PrefabInstance:
     - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
       propertyPath: managedReferences[6454805702832816128]
-      value: Assembly-CSharp _Project.Scripts.Gameplay.Features.UIFeature.Components.CloseAnimalsShopWindowButtonTag/Template
+      value: Assembly-CSharp _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components.CloseAnimalsShopWindowButtonTag/Template
       objectReference: {fileID: 0}
     - target: {fileID: 5293964723850601425, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
@@ -26746,7 +26763,7 @@ PrefabInstance:
     - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
       propertyPath: managedReferences[6454805386191437880]
-      value: Assembly-CSharp _Project.Scripts.Gameplay.Features.UIFeature.Components.PurchaseAnimalButtonTag/Template
+      value: Assembly-CSharp _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components.PurchaseAnimalButtonTag/Template
       objectReference: {fileID: 0}
     - target: {fileID: 2188390974939379177, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
@@ -27369,7 +27386,7 @@ PrefabInstance:
     - target: {fileID: 3517825441609125697, guid: a90fda7ca2beea74ea48a4a3917b79c6,
         type: 3}
       propertyPath: managedReferences[6454805584215540640]
-      value: Assembly-CSharp _Project.Scripts.Gameplay.Features.UIFeature.Components.TutorialButtonTag/Template
+      value: Assembly-CSharp _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components.TutorialButtonTag/Template
       objectReference: {fileID: 0}
     - target: {fileID: 5714348720894187816, guid: a90fda7ca2beea74ea48a4a3917b79c6,
         type: 3}
@@ -27453,7 +27470,7 @@ PrefabInstance:
     - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
       propertyPath: managedReferences[6454805221806179153]
-      value: Assembly-CSharp _Project.Scripts.Gameplay.Features.UIFeature.Components.PlayButtonTag/Template
+      value: Assembly-CSharp _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components.PlayButtonTag/Template
       objectReference: {fileID: 0}
     - target: {fileID: 5293964723850601425, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
@@ -27779,7 +27796,7 @@ PrefabInstance:
     - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
       propertyPath: managedReferences[6454805221806179153]
-      value: Assembly-CSharp _Project.Scripts.Gameplay.Features.UIFeature.Components.PlayButtonTag/Template
+      value: Assembly-CSharp _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components.PlayButtonTag/Template
       objectReference: {fileID: 0}
     - target: {fileID: 5293964723850601425, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
@@ -27970,7 +27987,7 @@ PrefabInstance:
     - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
       propertyPath: managedReferences[6454805608600698880]
-      value: Assembly-CSharp _Project.Scripts.Gameplay.Features.UIFeature.Components.RewardButtonTag/Template
+      value: Assembly-CSharp _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components.RewardButtonTag/Template
       objectReference: {fileID: 0}
     - target: {fileID: 5293964723850601425, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
@@ -28447,7 +28464,7 @@ PrefabInstance:
     - target: {fileID: 3517825441609125697, guid: a90fda7ca2beea74ea48a4a3917b79c6,
         type: 3}
       propertyPath: managedReferences[6454805584215540638]
-      value: Assembly-CSharp _Project.Scripts.Gameplay.Features.UIFeature.Components.MusicButtonTag/Template
+      value: Assembly-CSharp _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components.MusicButtonTag/Template
       objectReference: {fileID: 0}
     - target: {fileID: 4041859636771330579, guid: a90fda7ca2beea74ea48a4a3917b79c6,
         type: 3}
@@ -28527,7 +28544,7 @@ PrefabInstance:
     - target: {fileID: 7180662729279379239, guid: a90fda7ca2beea74ea48a4a3917b79c6,
         type: 3}
       propertyPath: managedReferences[6454805584215540637]
-      value: Assembly-CSharp _Project.Scripts.Gameplay.Features.UIFeature.Components.MusicButtonTag/Template
+      value: Assembly-CSharp _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components.MusicButtonTag/Template
       objectReference: {fileID: 0}
     - target: {fileID: 7737347712241795701, guid: a90fda7ca2beea74ea48a4a3917b79c6,
         type: 3}
@@ -28609,12 +28626,12 @@ PrefabInstance:
     - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
       propertyPath: managedReferences[6454805267925958658]
-      value: Assembly-CSharp _Project.Scripts.Gameplay.Features.UIFeature.Components.PlayAnimalButtonTag/Template
+      value: Assembly-CSharp _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components.PlayAnimalButtonTag/Template
       objectReference: {fileID: 0}
     - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
       propertyPath: managedReferences[6454805318907200179]
-      value: Assembly-CSharp _Project.Scripts.Gameplay.Features.UIFeature.Components.CloseAnimalsShopWindowButtonTag/Template
+      value: Assembly-CSharp _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components.CloseAnimalsShopWindowButtonTag/Template
       objectReference: {fileID: 0}
     - target: {fileID: 2188390974939379177, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
@@ -29127,7 +29144,7 @@ PrefabInstance:
     - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
       propertyPath: managedReferences[8499802837155577860]
-      value: Assembly-CSharp _Project.Scripts.Gameplay.Features.UIFeature.Components.CloseSettingsButtonTag/Template
+      value: Assembly-CSharp _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components.CloseSettingsButtonTag/Template
       objectReference: {fileID: 0}
     - target: {fileID: 2188390974939379177, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}

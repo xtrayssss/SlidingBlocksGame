@@ -6,6 +6,7 @@ using UnityEngine.Scripting.APIUpdating;
 namespace _Project.Scripts.Gameplay.Features.RewardFeature.Components
 {
     [Serializable]
+    [MetaGroup("Reward")]
     public struct RewardScalingCurve : IEcsComponent
     {
         public AnimationCurve Value;

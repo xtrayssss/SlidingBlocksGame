@@ -6,11 +6,11 @@ using _Project.Scripts.Gameplay.Features.DestructionFeature;
 using _Project.Scripts.Gameplay.Features.GameFieldFeature;
 using _Project.Scripts.Gameplay.Features.GameFlowFeature;
 using _Project.Scripts.Gameplay.Features.GameFlowFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameProgressFeature;
 using _Project.Scripts.Gameplay.Features.MovementFeature;
 using _Project.Scripts.Gameplay.Features.PlayerFeature.Components;
 using _Project.Scripts.Gameplay.Features.PurchaseFeature;
 using _Project.Scripts.Gameplay.Features.RewardFeature;
-using _Project.Scripts.Gameplay.Features.ScoreFeature;
 using _Project.Scripts.Gameplay.Features.VisualFeature;
 using DCFApixels.DragonECS;
 using Sirenix.OdinInspector;
@@ -25,7 +25,7 @@ namespace _Project.Scripts.Gameplay
 
         private EcsPipeline _pipeline;
         private EcsDefaultWorld _world;
-
+ 
         [Button]
         private void ResetProgress()
         {
@@ -48,7 +48,7 @@ namespace _Project.Scripts.Gameplay
                 .AddModule(new MovementFeature())
                 .AddModule(new DestructionFeature())
                 .AddModule(new PurchaseFeature())
-                .AddModule(new ScoreFeature())
+                .AddModule(new GameProgressFeature())
                 .AddModule(new RewardFeature())
                 .AddModule(new VisualFeature())
                 .AddModule(new CooldownFeature())

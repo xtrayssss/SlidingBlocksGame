@@ -1,10 +1,9 @@
 ﻿using _Project.Scripts.Gameplay.Features.AnimalFeature.Components;
-using _Project.Scripts.Gameplay.Features.CollectionFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameProgressFeature.Components;
 using _Project.Scripts.Gameplay.Features.PurchaseFeature.Components;
 using _Project.Scripts.Gameplay.Features.RewardFeature.Components;
-using _Project.Scripts.Gameplay.Features.ScoreFeature.Components;
-using _Project.Scripts.Gameplay.Features.UIFeature.Systems;
+using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Systems;
 using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Utils

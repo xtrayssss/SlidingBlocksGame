@@ -1,11 +1,11 @@
-using _Project.Scripts.Gameplay.Features.CollectionFeature.Components;
-using _Project.Scripts.Gameplay.Features.CollectionFeature.Systems;
 using _Project.Scripts.Gameplay.Features.GameFlowFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems;
+using _Project.Scripts.Gameplay.Features.GameProgressFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameProgressFeature.Systems;
 using _Project.Scripts.Gameplay.Features.RewardFeature.Components;
 using _Project.Scripts.Gameplay.Features.RewardFeature.Systems;
-using _Project.Scripts.Gameplay.Features.UIFeature.Components;
-using _Project.Scripts.Gameplay.Features.UIFeature.Systems;
+using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components;
+using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Systems;
 using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.GameFlowFeature
