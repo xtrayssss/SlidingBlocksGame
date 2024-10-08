@@ -62,27 +62,27 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.Systems
                     if (!movingAnimalAspect.ActiveGameFields.Read(animal).Value.TryGetID(out int gameFieldID))
                         continue;
 
-                    float3 transformPosition = movingAnimalAspect.GameObjectConnects.Read(animal).Connect.transform
-                        .position;
+                    ref readonly GameObjectConnect goConnect = ref movingAnimalAspect.GameObjectConnects.Read(animal);
+
+                    float3 transformPosition = goConnect.Connect.transform.position;
 
                     ref readonly BoundExtents boundExtents = ref movingAnimalAspect.BoundExtents.Read(animal);
 
                     ref readonly GameField gameField = ref _world.GetPool<GameField>().Read(gameFieldID);
 
-                    ref readonly var movementDirection = ref movingAnimalAspect.MovementDirections.Read(animal);
-                    
+                    ref readonly MovementDirection movementDirection =
+                        ref movingAnimalAspect.MovementDirections.Read(animal);
+
                     int2 position = GridUtils.GetCellPosition(
                         worldPosition: transformPosition +
                                        movementDirection.Value.xyy *
                                        boundExtents.Value,
                         gameField: in gameField);
 
-                    if (math.all(coinAspect.CellPositions.Read(coin).Value >= position))
+                    if (math.all(coinAspect.CellPositions.Read(coin).Value == position))
                     {
-                        EcsDebug.Break();
-                        
                         coinAspect.CollectedMarker.Add(coin);
-                        
+
                         ref GameObjectConnect gameObjectConnect = ref coinAspect.GameObjectConnects.Get(coin);
 
                         Animate(coin, coinAspect, ref gameObjectConnect);
@@ -90,7 +90,6 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.Systems
                         foreach (int player in _world.Where(out PlayerAspect _))
                         {
                             ProgressUtils.UpdateCoins(player, coinAspect.Coins.Read(coin).Value);
-                            
                             coinAspect.CollectedEvent.Add(coin);
                         }
                     }

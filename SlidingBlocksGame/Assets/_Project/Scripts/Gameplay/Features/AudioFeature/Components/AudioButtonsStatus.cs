@@ -1,8 +1,8 @@
-using System;
+﻿using System;
 using DCFApixels.DragonECS;
 using UnityEngine.Scripting.APIUpdating;
 
-namespace _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components
+namespace _Project.Scripts.Gameplay.Features.AudioFeature.Components
 {
     [Serializable]
     public struct AudioButtonsStatus : IEcsComponent

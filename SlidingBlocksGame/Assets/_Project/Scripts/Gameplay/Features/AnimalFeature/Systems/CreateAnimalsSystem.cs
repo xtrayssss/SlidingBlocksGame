@@ -9,6 +9,7 @@ using _Project.Scripts.Gameplay.Features.PlayerFeature.Components;
 using _Project.Scripts.Gameplay.Utils;
 using DCFApixels.DragonECS;
 using Unity.Mathematics;
+using UnityEngine;
 using Object = UnityEngine.Object;
 
 namespace _Project.Scripts.Gameplay.Features.AnimalFeature.Systems
@@ -92,6 +93,8 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature.Systems
 
                         animalAspect.ActiveGameField.Add(animal.ID).Value = level.ToEntityLong(_world);
 
+                        Debug.Log(animalAspect.MeshRenderers.Read(animal.ID).Value.bounds.extents);
+                        
                         animalAspect.BoundsExtents.Add(animal.ID).Value =
                             animalAspect.MeshRenderers.Read(animal.ID).Value.bounds.extents;
 
