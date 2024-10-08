@@ -1,5 +1,6 @@
 using _Project.Scripts.Gameplay.Features.GameFlowFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems;
+using _Project.Scripts.Gameplay.Features.GameOverTimerFeature.IntegrationFeatures.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameProgressFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameProgressFeature.Systems;
 using _Project.Scripts.Gameplay.Features.RewardFeature.Components;
@@ -37,9 +38,9 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature
                 .AddUnique(new GameScreenSystem())
                 .AutoDelTag<CreateGameScreenRequest>()
                 //
-                .AutoDelTag<GameLossTimerOpenedEvent>()
-                .AddUnique(new GameLossTimerSystem())
-                .AutoDelTag<CreateGameLossTimerRequest>()
+                .AutoDelTag<GameOverTimerOpenedEvent>()
+                .AddUnique(new CreateGameOverTimerSystem())
+                .AutoDelTag<CreateGameOverTimerRequest>()
                 //
                 //.AddUnique(new AnimalCreationChainStrategySystem())
                 //.AutoDelTag<CreateAnimalsRequest>()

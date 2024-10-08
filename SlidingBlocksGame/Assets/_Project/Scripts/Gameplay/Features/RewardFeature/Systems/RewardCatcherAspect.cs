@@ -1,6 +1,7 @@
 using _Project.Scripts.Gameplay.Features.CommonFeature;
 using _Project.Scripts.Gameplay.Features.MovementFeature;
 using _Project.Scripts.Gameplay.Features.RewardFeature.Components;
+using _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components;
 using DCFApixels.DragonECS;
 // ReSharper disable UnassignedReadonlyField

@@ -1,6 +1,7 @@
 using _Project.Scripts.Gameplay.Features.AudioBaseFeature;
 using _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+using _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components;
 using DCFApixels.DragonECS;
 

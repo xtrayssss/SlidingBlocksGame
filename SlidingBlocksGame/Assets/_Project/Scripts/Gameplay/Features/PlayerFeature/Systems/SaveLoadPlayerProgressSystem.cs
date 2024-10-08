@@ -1,9 +1,11 @@
 ﻿using System.Linq;
 using _Project.Scripts.Gameplay.Features.AnimalFeature.Components;
+using _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components;
 using _Project.Scripts.Gameplay.Features.AudioFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameProgressFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameProgressFeature.IntegrationFeatures.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.PlayerFeature.Components;
 using _Project.Scripts.Gameplay.Features.PurchaseFeature.Components;
 using _Project.Scripts.Gameplay.Features.RewardFeature.Components;

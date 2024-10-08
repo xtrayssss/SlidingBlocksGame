@@ -2,6 +2,7 @@
 using DCFApixels.DragonECS;
 using UnityEngine;
 using UnityEngine.Scripting.APIUpdating;
+using UnityEngine.Serialization;
 
 namespace _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components
 {
@@ -13,7 +14,7 @@ namespace _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components
         public EcsEntityConnect AnimalsShopWindowConnect;
         public EcsEntityConnect RewardWidgetConnect;
         public EcsEntityConnect GameTileWidgetConnect;
-        public EcsEntityConnect GameLossTimerWidgetConnect;
+        [FormerlySerializedAs("GameLossTimerWidgetConnect")] public EcsEntityConnect GameOverTimerWidgetConnect;
         public EcsEntityConnect PlayWidgetConnect;
         public EcsEntityConnect ScoreWidgetConnect;
         public EcsEntityConnect CoinsWidgetConnect;

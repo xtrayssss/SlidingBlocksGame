@@ -1,4 +1,10 @@
 using _Project.Scripts.Gameplay.Features.AnimalFeature.Components;
+using _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.AudioFeature.Components;
+using _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.CreationFeature.Components;
+using _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.CreationFeature.Systems;
+using _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.DestructionFeature.Components;
+using _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.DestructionFeature.Systems;
+using _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.MovementFeature.Systems;
 using _Project.Scripts.Gameplay.Features.AnimalFeature.Systems;
 using _Project.Scripts.Gameplay.Features.AudioBaseFeature;
 using DCFApixels.DragonECS;

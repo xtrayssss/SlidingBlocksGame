@@ -1,10 +1,17 @@
-﻿using _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components;
+﻿using _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.UIFeature.Systems;
+using _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components;
 using _Project.Scripts.Gameplay.Features.AudioFeature;
+using _Project.Scripts.Gameplay.Features.GameOverTimerFeature.IntegrationFeatures.UIFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameOverTimerFeature.IntegrationFeatures.UIFeature.Systems;
+using _Project.Scripts.Gameplay.Features.GameProgressFeature.IntegrationFeatures.UIFeature.Systems;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Systems;
+using _Project.Scripts.Gameplay.Features.PurchaseFeature.IntegrationFeatures.UIFeature.Systems;
 using _Project.Scripts.Gameplay.Features.PurchaseFeature.Systems;
 using _Project.Scripts.Gameplay.Features.RateUsFeature.Systems;
 using _Project.Scripts.Gameplay.Features.RewardFeature.Components;
+using _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.UIFeature.Components;
+using _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.UIFeature.Systems;
 using _Project.Scripts.Gameplay.Features.RewardFeature.Systems;
 using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Systems;
@@ -17,7 +24,7 @@ namespace _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature
         public void Import(EcsPipeline.Builder builder)
         {
             builder
-                .AddUnique(new DisplayProgressTimerSystem())
+                .AddUnique(new DisplayTimerProgressSystem())
                 //
                 .AddUnique(new SettingsPopupSystem())
                 .AutoDelTag<GameAudioUpdatedEvent>()
@@ -33,9 +40,9 @@ namespace _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature
                 .AutoDelTag<ClosedEvent>()
                 .AddUnique(new CloseAnimalPurchaseWindowSystem())
                 //
-                .AutoDelTag<GameLossTimerClosedEvent>()
-                .AddUnique(new CloseGameLossTimerSystem())
-                .AutoDelTag<CloseGameLossTimerRequest>()
+                .AutoDelTag<GameOverTimerClosedEvent>()
+                .AddUnique(new CloseGameOverTimerSystem())
+                .AutoDelTag<CloseGameOverTimerRequest>()
                 //
                 .AddUnique(new DisplayCoinsSystem())
                 .AddUnique(new DisplayScoresSystem())

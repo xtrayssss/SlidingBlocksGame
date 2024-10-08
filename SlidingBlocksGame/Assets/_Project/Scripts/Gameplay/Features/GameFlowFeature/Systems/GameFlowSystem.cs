@@ -1,9 +1,13 @@
 using _Project.Scripts.Gameplay.Features.AnimalFeature.Components;
+using _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.CreationFeature.Components;
 using _Project.Scripts.Gameplay.Features.AudioBaseFeature;
 using _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFieldFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFlowFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameFlowFeature.IntegrationFeatures.AudioFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameOverTimerFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameOverTimerFeature.IntegrationFeatures.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameProgressFeature.Components;
 using _Project.Scripts.Gameplay.Features.PlayerFeature.Components;
 using _Project.Scripts.Gameplay.Features.PlayerFeature.InputFeature.Components;
@@ -68,7 +72,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
         {
             [IncImplicit(typeof(GameScreenTag))]
             [Opt] public readonly EcsTagPool<HideMetaGameUIRequest> HideMetaGameUI;
-            [Opt] public readonly EcsTagPool<CreateGameLossTimerRequest> CreateGameLossTimerRequest;
+            [Opt] public readonly EcsTagPool<CreateGameOverTimerRequest> CreateGameOverTimer;
         }
 
         private class PlayerAspect : EcsAspectAuto
@@ -93,8 +97,8 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
 
         private class GameLossTimerOpenedAspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(GameLossTimerTag))]
-            [Inc] public readonly EcsTagPool<GameLossTimerOpenedEvent> GameLossTimerOpenedEvent;
+            [IncImplicit(typeof(GameOverTimerTag))]
+            [Inc] public readonly EcsTagPool<GameOverTimerOpenedEvent> GameLossTimerOpenedEvent;
         }
 
         public void Run()
@@ -144,7 +148,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
             foreach (int _ in _world.Where(out CoinSpawnedStateAspect _))
             {
                 foreach (int gameScreen in _world.Where(out GameScreenAspect gameScreenAspect)) 
-                    gameScreenAspect.CreateGameLossTimerRequest.Add(gameScreen);
+                    gameScreenAspect.CreateGameOverTimer.Add(gameScreen);
 
                 foreach (int player in _world.Where(out PlayerAspect playerAspect))
                     playerAspect.LockGameInputMarker.Del(player);

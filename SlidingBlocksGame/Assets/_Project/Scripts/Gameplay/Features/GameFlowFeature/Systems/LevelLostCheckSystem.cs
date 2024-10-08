@@ -2,6 +2,7 @@ using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFieldFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFlowFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameOverTimerFeature.Components;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
 using DCFApixels.DragonECS;
 
@@ -23,7 +24,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
         private class GameLossTimerExpiredAspect : EcsAspectAuto
         {
             [Inc] public readonly EcsTagPool<CooldownExpiredMarker> CooldownExpiredMarker;
-            [Inc] public readonly EcsTagPool<GameLossTimerTag> GameLossTimerTag;
+            [Inc] public readonly EcsTagPool<GameOverTimerTag> GameLossTimerTag;
         }
 
         private class AnimalAspect : EcsAspectAuto
