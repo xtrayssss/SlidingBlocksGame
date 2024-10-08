@@ -1,10 +1,10 @@
 using System;
-using _Project.Scripts.Gameplay.Features.DestructionFeature.Components;
 using _Project.Scripts.Gameplay.Features.PlayerFeature.Components;
 using _Project.Scripts.Gameplay.Features.PlayerFeature.InputFeature.Components;
 using DCFApixels.DragonECS;
 using Unity.Mathematics;
 using UnityEngine;
+using YG;
 
 namespace _Project.Scripts.Gameplay.Features.PlayerFeature.InputFeature.Systems
 {
@@ -28,9 +28,9 @@ namespace _Project.Scripts.Gameplay.Features.PlayerFeature.InputFeature.Systems
         {
             [Opt] public readonly EcsTagPool<ClickDownEvent> ClickDown;
             [Opt] public readonly EcsTagPool<ClickUpEvent> ClickUp;
-            [Opt] public readonly EcsTagPool<DeleteEntityRequest> DeleteEntity;
             [Opt] public readonly EcsTagPool<PrimaryClickMarker> PrimaryClick;
             [Opt] public readonly EcsPool<ScreenPosition> ScreenPosition;
+            [Opt] public readonly EcsTagPool<EmitInputTag> EmitInputTag;
         }
 
         private class PlayerAspect : EcsAspectAuto
@@ -47,7 +47,7 @@ namespace _Project.Scripts.Gameplay.Features.PlayerFeature.InputFeature.Systems
         {
             foreach (int entity in _world.Where(out PlayerAspect playerAspect))
             {
-                if (Application.platform == RuntimePlatform.Android)
+                if (YandexGame.EnvironmentData.isMobile || YandexGame.EnvironmentData.isTablet)
                     playerAspect.MobileDevice.Add(entity);
                 else
                     playerAspect.StandaloneDevice.Add(entity);
@@ -58,7 +58,7 @@ namespace _Project.Scripts.Gameplay.Features.PlayerFeature.InputFeature.Systems
 
         public void Run()
         {
-            foreach (int entity in _world.Where(out MobileAspect _))
+            foreach (int _ in _world.Where(out MobileAspect _))
             {
                 if (Input.touches.Length > 0)
                 {
@@ -74,7 +74,7 @@ namespace _Project.Scripts.Gameplay.Features.PlayerFeature.InputFeature.Systems
                     if (primaryTouch.phase == TouchPhase.Ended)
                         CreateClickUp();
 
-                    int touchCount = Mathf.Min(Input.touchCount, 4);
+                    int touchCount = math.min(Input.touchCount, 4);
 
                     int startSlice = touchCount > 1 ? 1 : 0;
 
@@ -89,7 +89,7 @@ namespace _Project.Scripts.Gameplay.Features.PlayerFeature.InputFeature.Systems
                 }
             }
 
-            foreach (int entity in _world.Where(out StandaloneAspect _))
+            foreach (int _ in _world.Where(out StandaloneAspect _))
             {
                 if (Input.GetMouseButtonDown(0))
                     CreateClickDown(Input.mousePosition);
@@ -103,15 +103,15 @@ namespace _Project.Scripts.Gameplay.Features.PlayerFeature.InputFeature.Systems
         {
             int click = _world.NewEntity();
             _inputAspect.ClickUp.Add(click);
-            _inputAspect.DeleteEntity.Add(click);
+            _inputAspect.EmitInputTag.Add(click);
         }
 
         private int CreateClickDown(float2 position)
         {
             int click = _world.NewEntity();
             _inputAspect.ClickDown.Add(click);
-            _inputAspect.DeleteEntity.Add(click);
             _inputAspect.ScreenPosition.Add(click).Value = position;
+            _inputAspect.EmitInputTag.Add(click);
 
             return click;
         }
@@ -120,8 +120,8 @@ namespace _Project.Scripts.Gameplay.Features.PlayerFeature.InputFeature.Systems
         {
             int click = _world.NewEntity();
             _inputAspect.ClickDown.Add(click);
-            _inputAspect.DeleteEntity.Add(click);
             _inputAspect.ScreenPosition.Add(click).Value = position.xy;
+            _inputAspect.EmitInputTag.Add(click);
 
             return click;
         }
