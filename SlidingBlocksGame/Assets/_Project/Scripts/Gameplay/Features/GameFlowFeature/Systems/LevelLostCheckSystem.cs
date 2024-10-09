@@ -1,4 +1,3 @@
-using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFieldFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFlowFeature.Components;
@@ -35,7 +34,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
 
         private class MovingAnimals : EcsAspectAuto
         {
-            [Inc] public readonly EcsTagPool<MovingMarker> MovingMarkers;
+            [Inc] public readonly EcsTagPool<MovingMarker> MovingMarker;
         }
 
         public void Run()

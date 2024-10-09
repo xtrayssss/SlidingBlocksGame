@@ -3,6 +3,7 @@ using _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems;
 using _Project.Scripts.Gameplay.Features.GameOverTimerFeature.IntegrationFeatures.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameProgressFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameProgressFeature.Systems;
+using _Project.Scripts.Gameplay.Features.GameProgrssFeature.Components;
 using _Project.Scripts.Gameplay.Features.RewardFeature.Components;
 using _Project.Scripts.Gameplay.Features.RewardFeature.Systems;
 using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components;

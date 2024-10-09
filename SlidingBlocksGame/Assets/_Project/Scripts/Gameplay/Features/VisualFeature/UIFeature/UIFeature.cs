@@ -13,6 +13,7 @@ using _Project.Scripts.Gameplay.Features.RewardFeature.Components;
 using _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.UIFeature.Systems;
 using _Project.Scripts.Gameplay.Features.RewardFeature.Systems;
+using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.ButtonFeature.Components;
 using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Systems;
 using DCFApixels.DragonECS;

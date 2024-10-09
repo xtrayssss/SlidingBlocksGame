@@ -1,10 +1,9 @@
 using _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components;
-using _Project.Scripts.Gameplay.Features.AudioBaseFeature.Systems;
 using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
 using DCFApixels.DragonECS;
 using UnityEngine;
 
-namespace _Project.Scripts.Gameplay.Features.AudioBaseFeature
+namespace _Project.Scripts.Gameplay.Features.AudioBaseFeature.Systems
 {
     public static class AudioExtensions
     {

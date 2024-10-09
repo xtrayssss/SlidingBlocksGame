@@ -1,6 +1,4 @@
-using _Project.Scripts.Gameplay.Features.AnimalFeature.Components;
 using _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.CreationFeature.Components;
-using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFieldFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFlowFeature.Components;

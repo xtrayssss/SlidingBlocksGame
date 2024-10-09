@@ -6,7 +6,9 @@ using _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.Destr
 using _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.DestructionFeature.Systems;
 using _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.MovementFeature.Systems;
 using _Project.Scripts.Gameplay.Features.AnimalFeature.Systems;
-using _Project.Scripts.Gameplay.Features.AudioBaseFeature;
+using _Project.Scripts.Gameplay.Features.AudioBaseFeature.Systems;
+using _Project.Scripts.Gameplay.Features.DestructionFeature.Components;
+using _Project.Scripts.Infrastructure;
 using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.AnimalFeature
@@ -36,7 +38,8 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature
                 .AutoDelEntityComponent<UpdateSelectedAnimalRequest>()
                 
                 // audio feature
-                .AddAudioSystem<AnimalSpawnedEvent, AnimalSpawnedAudioConfig>();
+                .AddAudioSystem<AnimalSpawnedEvent, AnimalSpawnedAudioConfig>()
+                .AddAudioSystem<DeathEvent, AnimalDeathAudioConfig>();
         }
     }
 }

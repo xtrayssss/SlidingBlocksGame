@@ -1,18 +1,14 @@
-using _Project.Scripts.Gameplay.Features.AnimalFeature.Components;
 using _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.CreationFeature.Components;
-using _Project.Scripts.Gameplay.Features.AudioBaseFeature;
 using _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components;
-using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+using _Project.Scripts.Gameplay.Features.AudioBaseFeature.Systems;
 using _Project.Scripts.Gameplay.Features.GameFieldFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFlowFeature.Components;
-using _Project.Scripts.Gameplay.Features.GameFlowFeature.IntegrationFeatures.AudioFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameOverTimerFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameOverTimerFeature.IntegrationFeatures.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameProgressFeature.Components;
 using _Project.Scripts.Gameplay.Features.PlayerFeature.Components;
 using _Project.Scripts.Gameplay.Features.PlayerFeature.InputFeature.Components;
-using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components;
-using _Project.Scripts.Gameplay.Utils;
+using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.ButtonFeature.Components;
 using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems

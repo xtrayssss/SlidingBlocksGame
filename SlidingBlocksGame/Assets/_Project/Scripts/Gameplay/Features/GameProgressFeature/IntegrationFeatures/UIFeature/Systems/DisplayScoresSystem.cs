@@ -1,7 +1,6 @@
 ﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameProgressFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameProgressFeature.IntegrationFeatures.UIFeature.Components;
-using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components;
 using DCFApixels.DragonECS;
 using PrimeTween;
 using UnityEngine;
@@ -26,13 +25,11 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.IntegrationFeat
 
         private class ScoreWidgetAspect : EcsAspectAuto
         {
-            [Inc] public readonly EcsPool<RectTransformRef> RectTransforms;
             [Inc] public readonly EcsPool<ScoreWidget> ScoreWidgets;
         }  
         
         private class BestScoreWidgetAspect : EcsAspectAuto
         {
-            [Inc] public readonly EcsPool<RectTransformRef> RectTransforms;
             [Inc] public readonly EcsPool<BestScoreWidget> BestScoreWidgets;
         }
 
@@ -58,7 +55,7 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.IntegrationFeat
                     scoreWidget.AmountText.text = displayableAspect.Scores.Get(displayableID).Value.ToString();
 
                     Tween.PunchScale(
-                        target: widgetAspect.RectTransforms.Read(widget).Value,
+                        target: scoreWidget.RectTransform,
                         strength: new Vector3(0.5f, 0.5f),
                         duration: 0.2f);
                 }
@@ -80,7 +77,7 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.IntegrationFeat
                     if (bestScoreUpdatedEventAspect.BestScoreUpdatedEvent.Read(@event).Delta != 0)
                     {
                         Tween.PunchScale(
-                            target: widgetAspect.RectTransforms.Read(widget).Value,
+                            target: bestScoreWidget.RectTransform,
                             strength: new Vector3(0.5f, 0.5f),
                             duration: 0.2f);
                     }

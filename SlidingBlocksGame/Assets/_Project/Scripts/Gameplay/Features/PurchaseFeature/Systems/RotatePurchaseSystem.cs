@@ -2,7 +2,6 @@ using System;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.PurchaseFeature.Components;
 using _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Components;
-using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components;
 using DCFApixels.DragonECS;
 using PrimeTween;
 using UnityEngine;
@@ -54,9 +53,9 @@ namespace _Project.Scripts.Gameplay.Features.PurchaseFeature.Systems
 
                 ref PhysicView physicView = ref aspect.PhysicViews.Get(entity);
 
-                rotationTween.Tween.Stop();
+                rotationTween.Value.Stop();
 
-                rotationTween.Tween = Tween.LocalEulerAngles(
+                rotationTween.Value = Tween.LocalEulerAngles(
                     target: physicView.Value.transform,
                     startValue: physicView.Value.transform.eulerAngles,
                     endValue: physicView.Value.transform.eulerAngles + new Vector3(0, 360, 0),
@@ -65,8 +64,10 @@ namespace _Project.Scripts.Gameplay.Features.PurchaseFeature.Systems
                     cycles: -1,
                     cycleMode: CycleMode.Incremental);
 
-                rotationTween.Delay = Tween.Delay(4f).OnComplete(() => Debug.Log("DONE"));
-                
+                rotationTween.Value = Tween
+                    .Delay(4f)
+                    .OnComplete(() => Debug.Log("DONE"));
+
                 _world.GetPool<ViewUpdatedMarker>().TryAdd(entity);
             }
 
@@ -76,11 +77,11 @@ namespace _Project.Scripts.Gameplay.Features.PurchaseFeature.Systems
 
                 ref PhysicView physicView = ref aspect.PhysicViews.Get(entity);
 
-                rotationTween.Tween.Stop();
+                rotationTween.Value.Stop();
 
-                rotationTween.Delay.Stop();
+                rotationTween.Value.Stop();
 
-                rotationTween.Tween = Tween.LocalEulerAngles(
+                rotationTween.Value = Tween.LocalEulerAngles(
                         target: physicView.Value.transform,
                         startValue: physicView.Value.transform.eulerAngles,
                         endValue: new Vector3(0, 0, 0),
@@ -99,7 +100,7 @@ namespace _Project.Scripts.Gameplay.Features.PurchaseFeature.Systems
                 ref RotationTween rotationTween = ref _world.GetPool<RotationTween>().Get(selectedID);
                 ref PhysicView physicView = ref _world.GetPool<PhysicView>().Get(selectedID);
 
-                rotationTween.Tween.Stop();
+                rotationTween.Value.Stop();
 
                 physicView.Value.transform.eulerAngles = new Vector3(0, 0, 0);
                 //

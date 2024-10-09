@@ -1,6 +1,5 @@
 using _Project.Scripts.Gameplay.Features.GameOverTimerFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameOverTimerFeature.IntegrationFeatures.UIFeature.Components;
-using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components;
 using DCFApixels.DragonECS;
 using PrimeTween;
 using UnityEngine;
@@ -18,7 +17,7 @@ namespace _Project.Scripts.Gameplay.Features.GameOverTimerFeature.IntegrationFea
             [Inc] public readonly EcsPool<GameObjectConnect> GameObjectConnects;
             
             [Opt] public readonly EcsTagPool<GameOverTimerClosedEvent> ClosedEvent;
-            [Opt] public readonly EcsTagPool<ClosedMarker> ClosedMarker;
+            [Opt] public readonly EcsTagPool<GameOverTimerClosedMarker> GameOverTimerClosedMarker;
         }
         public void Run()
         {
@@ -40,7 +39,7 @@ namespace _Project.Scripts.Gameplay.Features.GameOverTimerFeature.IntegrationFea
                                 return;
 
                             aspect.ClosedEvent.Add(id);
-                            aspect.ClosedMarker.Add(id);
+                            aspect.GameOverTimerClosedMarker.Add(id);
                             connect.gameObject.SetActive(false);
                         });
             }

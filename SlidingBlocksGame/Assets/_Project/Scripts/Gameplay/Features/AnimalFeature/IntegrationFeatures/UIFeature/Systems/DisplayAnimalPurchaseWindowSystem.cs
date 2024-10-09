@@ -1,7 +1,7 @@
 using _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.PurchaseFeature.Components;
 using _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Components;
-using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components;
+using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.ButtonFeature.Components;
 using DCFApixels.DragonECS;
 using PrimeTween;
 using UnityEngine;
@@ -21,7 +21,7 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.U
         private class AnimalsShopWindowAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(AnimalsShopWindowTag))]
-            [IncImplicit(typeof(ClosedMarker))]
+            [IncImplicit(typeof(AnimalPurchaseWindowClosedMarker))]
             [Inc] public readonly EcsPool<GameObjectConnect> GameObjectConnects;
 
             [Inc] public readonly EcsPool<AnimalsShopWindow> AnimalsShopWindows;
@@ -43,7 +43,7 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.U
                     ref AnimalsShopWindow animalsShopWindow =
                         ref animalsShopWindowAspect.AnimalsShopWindows.Get(window);
 
-                    _world.GetPool<ClosedMarker>().Del(window);
+                    _world.GetPool<AnimalPurchaseWindowClosedMarker>().Del(window);
 
                     ref ScrollSnap scrollSnap = ref animalsShopWindowAspect.ScrollSnap.Get(window);
 

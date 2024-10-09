@@ -8,7 +8,9 @@ using _Project.Scripts.Gameplay.Features.GameProgressFeature.Components;
 using _Project.Scripts.Gameplay.Features.PurchaseFeature.Components;
 using _Project.Scripts.Gameplay.Features.RewardFeature.Components;
 using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components;
+using _Project.Scripts.Infrastructure;
 using DCFApixels.DragonECS;
+using UnityEngine.UI;
 
 namespace _Project.Scripts.Gameplay.Features.AudioBaseFeature
 {
@@ -17,16 +19,6 @@ namespace _Project.Scripts.Gameplay.Features.AudioBaseFeature
         public void Import(EcsPipeline.Builder builder)
         {
             builder
-                .AddAudioSystem<ButtonClickedEvent, ClickedAudioConfig>()
-                .AddAudioSystem<DeathEvent, DeathAudioConfig>()
-                .AddAudioSystem<CooldownTickEvent, TickAudioConfig>()
-                .AddUnique(new GameFieldAudioSystem())
-                .AddAudioSystem<CoinCollectedEvent, CollectedAudioConfig>()
-                .AddAudioSystem<ConfettiExplodedEvent, ConfettiExplodedAudioConfig>()
-                .AddAudioSystem<RewardCoinDisplayCompletedEvent, RewardCoinDisplayCompletedAudioConfig>()
-                .AddUnique(new RewardCoinCountDisplayedAudioSystem())
-                .AddAudioSystem<PurchasedEvent, PurchasedAudioConfig>()
-                //
                 .AddUnique(new AddAudioSourceSystem())
                 .AddUnique(new PlaybackAudioSystem())
                 .AddUnique(new AudioSystem())

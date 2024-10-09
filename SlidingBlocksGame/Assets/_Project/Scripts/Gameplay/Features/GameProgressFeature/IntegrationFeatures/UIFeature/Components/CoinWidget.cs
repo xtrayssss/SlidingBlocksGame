@@ -1,6 +1,7 @@
 ﻿using System;
 using DCFApixels.DragonECS;
 using TMPro;
+using UnityEngine;
 using UnityEngine.Scripting.APIUpdating;
 
 namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.IntegrationFeatures.UIFeature.Components
@@ -10,6 +11,7 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.IntegrationFeat
     public struct CoinWidget : IEcsComponent
     {
         public TextMeshProUGUI AmountText;
+        public RectTransform RectTransform;
 
         [MovedFrom(autoUpdateAPI: false,
             sourceNamespace: "_Project.Scripts.Gameplay.Features.UIFeature.Components",

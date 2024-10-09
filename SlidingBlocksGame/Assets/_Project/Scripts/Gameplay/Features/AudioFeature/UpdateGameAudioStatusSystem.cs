@@ -1,6 +1,7 @@
 ﻿using _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components;
 using _Project.Scripts.Gameplay.Features.AudioFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.ButtonFeature.Components;
 using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Systems;
 using DCFApixels.DragonECS;
@@ -71,7 +72,7 @@ namespace _Project.Scripts.Gameplay.Features.AudioFeature
 
                 ref AudioButtonsStatus audioButtonsStatus = ref settingsPopupAspect.AudioButtonsStatus.Get(targetID);
 
-                ref readonly var updateGameAudioRequest =
+                ref readonly UpdateGameAudioRequest updateGameAudioRequest =
                     ref updateGameAudioRequestAspect.UpdateGameAudioRequest.Read(request);
 
                 audioButtonsStatus.MusicIsOn = updateGameAudioRequest.IsMusicOn;

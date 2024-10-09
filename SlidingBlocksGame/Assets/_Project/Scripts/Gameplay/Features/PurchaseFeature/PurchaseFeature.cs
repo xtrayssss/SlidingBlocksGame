@@ -1,5 +1,8 @@
-﻿using _Project.Scripts.Gameplay.Features.PurchaseFeature.Components;
+﻿using _Project.Scripts.Gameplay.Features.AudioBaseFeature.Systems;
+using _Project.Scripts.Gameplay.Features.PurchaseFeature.Components;
+using _Project.Scripts.Gameplay.Features.PurchaseFeature.IntegrationFeatures.AudioFeature.Components;
 using _Project.Scripts.Gameplay.Features.PurchaseFeature.Systems;
+using _Project.Scripts.Infrastructure;
 using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.PurchaseFeature
@@ -14,7 +17,10 @@ namespace _Project.Scripts.Gameplay.Features.PurchaseFeature
                 .AutoDelEntityTag<PurchasesClearedEvent>()
                 .AddUnique(new UpdatePurchaseSystem())
                 .AutoDelEntityTag<ClearPurchasesRequest>()
-                .AddUnique(new RotatePurchaseSystem());
+                .AddUnique(new RotatePurchaseSystem())
+                
+                // audio feature
+                .AddAudioSystem<PurchasedEvent, PurchasedAudioConfig>();
         }
     }
 }

@@ -4,8 +4,7 @@ using _Project.Scripts.Gameplay.Features.PlayerFeature.Components;
 using _Project.Scripts.Gameplay.Features.PurchaseFeature.Components;
 using _Project.Scripts.Gameplay.Features.PurchaseFeature.IntegrationFeatures.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Components;
-using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components;
-using _Project.Scripts.Gameplay.Utils;
+using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.ButtonFeature.Components;
 using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.PurchaseFeature.Systems
@@ -17,7 +16,7 @@ namespace _Project.Scripts.Gameplay.Features.PurchaseFeature.Systems
         private class PurchaseButtonClickedAspect : EcsAspectAuto
         {
             [Inc] public readonly EcsTagPool<PurchaseButtonTag> PurchaseButtonTag;
-            [Inc] public readonly EcsTagPool<ButtonClickedEvent> Clicked;
+            [Inc] public readonly EcsTagPool<ButtonClickedEvent> ButtonClickedEvent;
         }
         
         private class PurchasesAspect : EcsAspectAuto

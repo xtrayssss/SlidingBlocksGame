@@ -1,8 +1,7 @@
 using _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.PurchaseFeature.Components;
-using _Project.Scripts.Gameplay.Features.PurchaseFeature.Systems;
 using _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Components;
-using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components;
+using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.ButtonFeature.Components;
 using DCFApixels.DragonECS;
 using PrimeTween;
 using UnityEngine;
@@ -23,7 +22,7 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.U
         private class AnimalsShopWindowAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(AnimalsShopWindowTag))]
-            [ExcImplicit(typeof(ClosedMarker))]
+            [ExcImplicit(typeof(AnimalPurchaseWindowClosedMarker))]
             [Inc] public readonly EcsPool<GameObjectConnect> GameObjectConnects;
 
             [Inc] public readonly EcsPool<ScrollSnap> ScrollSnap;
@@ -31,7 +30,7 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.U
             [Inc] public readonly EcsPool<Purchases> PurchaseAnimals;
             [Inc] public readonly EcsPool<AnimalsShopWindow> AnimalsShopWindows;
             [Opt] public readonly EcsTagPool<LockScrollSnapRequest> LockScrollSnap;
-            [Opt] public readonly EcsTagPool<ClosedEvent> ClosedEvent;
+            [Opt] public readonly EcsTagPool<AnimalPurchaseWindowClosedEvent> AnimalPurchaseWindowClosedEvent;
         }
 
         public void Run()
@@ -45,7 +44,7 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.U
                     ref AnimalsShopWindow animalsShopWindow = ref windowAspect.AnimalsShopWindows.Get(window);
                     ref ScrollSnap scrollSnap = ref windowAspect.ScrollSnap.Get(window);
 
-                    _world.GetPool<ClosedMarker>().Add(window);
+                    _world.GetPool<AnimalPurchaseWindowClosedMarker>().Add(window);
 
                     scrollSnap.OpenCloseTween.Stop();
 
@@ -96,7 +95,7 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.U
                                 AnimalsShopWindowAspect windowAspect =
                                     world.GetAspect<AnimalsShopWindowAspect>();
 
-                                windowAspect.ClosedEvent.Add(id);
+                                windowAspect.AnimalPurchaseWindowClosedEvent.Add(id);
 
                                 ref AnimalsShopWindow animalsShopWindow =
                                     ref windowAspect.AnimalsShopWindows.Get(id);

@@ -1,4 +1,3 @@
-using _Project.Scripts.Gameplay.Features.AnimalFeature.Components;
 using _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.DestructionFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
@@ -9,7 +8,6 @@ using _Project.Scripts.Gameplay.Features.GameOverTimerFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameOverTimerFeature.IntegrationFeatures.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.PlayerFeature.Components;
 using _Project.Scripts.Gameplay.Features.PlayerFeature.InputFeature.Components;
-using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components;
 using DCFApixels.DragonECS;
 using UnityEngine;
 

@@ -1,4 +1,8 @@
-﻿using _Project.Scripts.Gameplay.Features.RewardFeature.Components;
+﻿using _Project.Scripts.Gameplay.Features.AudioBaseFeature.Systems;
+using _Project.Scripts.Gameplay.Features.RewardFeature.Components;
+using _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.AudioFeature.Components;
+using _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.AudioFeature.Systems;
+using _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.RewardFeature.Systems;
 using _Project.Scripts.Infrastructure;
 using DCFApixels.DragonECS;
@@ -12,7 +16,12 @@ namespace _Project.Scripts.Gameplay.Features.RewardFeature
             builder
                 .AutoDelTag<RewardEligibilityEvent>()
                 .AddUnique(new RewardEligibilitySystem())
-                .AddUnique(new RewardClaimSystem());
+                .AddUnique(new RewardClaimSystem())
+                
+                // audio feature
+                .AddAudioSystem<ConfettiExplodedEvent, ConfettiExplodedAudioConfig>()
+                .AddAudioSystem<RewardCoinDisplayCompletedEvent, RewardCoinDisplayCompletedAudioConfig>()
+                .AddUnique(new RewardCoinCountDisplayedAudioSystem());
         }
     }
 }

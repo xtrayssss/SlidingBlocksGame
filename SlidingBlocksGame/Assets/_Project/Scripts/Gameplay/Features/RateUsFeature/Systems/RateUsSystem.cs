@@ -1,5 +1,5 @@
 using _Project.Scripts.Gameplay.Features.RateUsFeature.IntegrationFeatures.UIFeature.Components;
-using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components;
+using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.ButtonFeature.Components;
 using DCFApixels.DragonECS;
 using YG;
 

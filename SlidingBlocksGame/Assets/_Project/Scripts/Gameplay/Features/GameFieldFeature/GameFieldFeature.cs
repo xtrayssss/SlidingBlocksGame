@@ -1,4 +1,5 @@
 using _Project.Scripts.Gameplay.Features.GameFieldFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameFieldFeature.IntegrationFeatures.AudioFeature.Systems;
 using _Project.Scripts.Gameplay.Features.GameFieldFeature.Systems;
 using _Project.Scripts.Infrastructure;
 using DCFApixels.DragonECS;
@@ -19,7 +20,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldFeature
                 //
                 .AddUnique(new CalculateCellScaleYSystem())
                 //
-                .AutoDelEntityTag<Tileeven>()
+                .AutoDelEntityTag<TileGeneratedEvent>()
                 .AddUnique(new GameFieldPlaneAlgorithmSystem())
                 .AddUnique(new GameFieldWaveAlgorithmSystem(_coroutineRunner))
                 .AddUnique(new GameFieldGrowthWaveAlgorithmSystem(_coroutineRunner))
@@ -28,7 +29,12 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldFeature
                 .AddUnique(new CatchGameFieldEventsSystem())
                 //
                 .AutoDelTag<GameFieldGenerateRequest>()
-                .AutoDelTag<GameFieldDestructRequest>();
+                .AutoDelTag<GameFieldDestructRequest>()
+                //
+                .AddUnique(new GameFieldSideClickSystem())
+                .AddUnique(new WithinCenterSystem())
+                // audio feature
+                .AddUnique(new GameFieldAudioSystem());
         }
     }
 }

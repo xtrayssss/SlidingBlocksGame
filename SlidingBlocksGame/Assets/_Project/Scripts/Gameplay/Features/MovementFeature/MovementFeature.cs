@@ -10,7 +10,6 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature
         public void Import(EcsPipeline.Builder builder)
         {
             builder
-                .AddUnique(new GameFieldSideClickSystem())
                 .AutoDelEntityTag<ApplyMovementStrategyRequest>()
                 .AddUnique(new DestinationCellSystem())
                 //
@@ -18,12 +17,11 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature
                 .AutoDelTag<CalculateMovementSpeedRequest>()
                 //
                 .AddUnique(new MovementChainStrategySystem())
-                
+
                 .AutoDelEntityTag<MovementTweenCompletedEvent>()
                 .AddUnique(new CatchMovementTweenSystem())
                 //
-                .AddUnique(new UpdatePositionsSystem())
-                .AddUnique(new WithinCenterSystem());
+                .AddUnique(new UpdatePositionsSystem());
         }
     }
 }
