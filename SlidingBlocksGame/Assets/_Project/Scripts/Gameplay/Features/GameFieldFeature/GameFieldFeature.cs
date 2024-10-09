@@ -1,5 +1,6 @@
 using _Project.Scripts.Gameplay.Features.GameFieldFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFieldFeature.Systems;
+using _Project.Scripts.Infrastructure;
 using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.GameFieldFeature
@@ -18,6 +19,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldFeature
                 //
                 .AddUnique(new CalculateCellScaleYSystem())
                 //
+                .AutoDelEntityTag<Tileeven>()
                 .AddUnique(new GameFieldPlaneAlgorithmSystem())
                 .AddUnique(new GameFieldWaveAlgorithmSystem(_coroutineRunner))
                 .AddUnique(new GameFieldGrowthWaveAlgorithmSystem(_coroutineRunner))

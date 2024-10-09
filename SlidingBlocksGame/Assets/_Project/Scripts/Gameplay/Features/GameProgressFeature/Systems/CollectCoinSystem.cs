@@ -1,7 +1,9 @@
 using _Project.Scripts.Gameplay.Features.AnimalFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.DestructionFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameFieldFeature;
 using _Project.Scripts.Gameplay.Features.GameFieldFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameFieldFeature.Systems;
 using _Project.Scripts.Gameplay.Features.GameProgressFeature.Components;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
 using _Project.Scripts.Gameplay.Features.PlayerFeature.Components;

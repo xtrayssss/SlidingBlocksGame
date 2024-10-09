@@ -1,4 +1,3 @@
-using _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components;
 using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
 using DCFApixels.DragonECS;
 using Unity.Mathematics;
@@ -13,8 +12,9 @@ namespace _Project.Scripts.Gameplay.Features.CooldownFeature.Systems
         {
             [ExcImplicit(typeof(CooldownLockMarker))]
             [Inc] public readonly EcsPool<Cooldown> Cooldowns;
+
             [Inc] public readonly EcsPool<CooldownInterval> CooldownInterval;
-            [Opt] public readonly EcsTagPool<TickEvent> Tick;
+            [Opt] public readonly EcsTagPool<CooldownTickEvent> Tick;
         }
 
         public void Run()
@@ -24,12 +24,12 @@ namespace _Project.Scripts.Gameplay.Features.CooldownFeature.Systems
                 ref CooldownInterval cooldownInterval = ref aspect.CooldownInterval.Get(entity);
 
                 float last = cooldownInterval.Elapsed;
-                
+
                 cooldownInterval.Elapsed =
                     math.ceil(aspect.Cooldowns.Get(entity).Elapsed / cooldownInterval.Interval) *
                     cooldownInterval.Interval;
 
-                if (last != cooldownInterval.Elapsed) 
+                if (last != cooldownInterval.Elapsed)
                     aspect.Tick.Add(entity);
             }
         }

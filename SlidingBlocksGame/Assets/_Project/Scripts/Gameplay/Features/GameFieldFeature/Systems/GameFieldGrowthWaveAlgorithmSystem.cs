@@ -116,7 +116,6 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.Systems
                                         _world.GetPool<TileGeneratedEvent>().Add(tile);
                                         _world.GetPool<TargetEntity>().Add(tile).Value =
                                             _world.GetEntityLong(gameFieldID);
-                                        _world.GetPool<DeleteEntityRequest>().Add(tile);
                                     },
                                     continuationOptions: TaskContinuationOptions.ExecuteSynchronously);
 

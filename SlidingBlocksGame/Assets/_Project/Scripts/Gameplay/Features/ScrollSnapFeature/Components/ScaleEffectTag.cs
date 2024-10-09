@@ -5,6 +5,7 @@ using UnityEngine.Scripting.APIUpdating;
 namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Components
 {
     [Serializable]
+    [MetaGroup("ScrollSnap")]
     public struct ScaleEffectTag : IEcsTagComponent
     {
         [MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.UIFeature.Components",

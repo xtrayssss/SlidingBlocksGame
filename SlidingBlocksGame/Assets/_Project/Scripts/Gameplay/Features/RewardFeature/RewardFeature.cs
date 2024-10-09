@@ -1,6 +1,6 @@
-﻿using _Project.Scripts.Gameplay.Features.GameProgressFeature.Systems;
-using _Project.Scripts.Gameplay.Features.RewardFeature.Components;
+﻿using _Project.Scripts.Gameplay.Features.RewardFeature.Components;
 using _Project.Scripts.Gameplay.Features.RewardFeature.Systems;
+using _Project.Scripts.Infrastructure;
 using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.RewardFeature

@@ -6,6 +6,7 @@ using UnityEngine.Scripting.APIUpdating;
 namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Components
 {
     [Serializable]
+    [MetaGroup("ScrollSnap")]
     public struct SelectionStateEffectFactor : IEcsComponent
     {
         public float3 Selected;

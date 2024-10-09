@@ -1,6 +1,6 @@
-using _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components;
 using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
 using _Project.Scripts.Gameplay.Features.CooldownFeature.Systems;
+using _Project.Scripts.Infrastructure;
 using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.CooldownFeature
@@ -11,11 +11,11 @@ namespace _Project.Scripts.Gameplay.Features.CooldownFeature
         {
             builder
                 .AddUnique(new RefreshCooldownSystem())
-                .AddUnique(new DeleteEntityCommandOnExpiredSystem())
+                .AddUnique(new DeleteEntityOnExpiredSystem())
                 .AutoDelTag<CooldownExpiredEvent>()
                 .AddUnique(new CountdownSystem())
                 .AddUnique(new CooldownSystem())
-                .AutoDelTag<TickEvent>()
+                .AutoDelTag<CooldownTickEvent>()
                 .AddUnique(new CooldownIntervalSystem())
                 .AutoDelTag<RefreshCooldownRequest>();
         }

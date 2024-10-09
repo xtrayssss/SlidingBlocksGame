@@ -8,6 +8,7 @@ using UnityEngine.UI;
 namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Components
 {
     [Serializable]
+    [MetaGroup("ScrollSnap")]
     public struct ScrollSnap : IEcsComponent
     {
         public int TargetIndex;

@@ -1,6 +1,7 @@
 using _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components;
 using _Project.Scripts.Gameplay.Features.AudioBaseFeature.Systems;
 using _Project.Scripts.Gameplay.Features.AudioFeature.Systems;
+using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
 using _Project.Scripts.Gameplay.Features.DestructionFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFieldFeature.IntegrationFeatures.AudioFeature.Systems;
 using _Project.Scripts.Gameplay.Features.GameProgressFeature.Components;
@@ -18,7 +19,7 @@ namespace _Project.Scripts.Gameplay.Features.AudioBaseFeature
             builder
                 .AddAudioSystem<ButtonClickedEvent, ClickedAudioConfig>()
                 .AddAudioSystem<DeathEvent, DeathAudioConfig>()
-                .AddAudioSystem<TickEvent, TickAudioConfig>()
+                .AddAudioSystem<CooldownTickEvent, TickAudioConfig>()
                 .AddUnique(new GameFieldAudioSystem())
                 .AddAudioSystem<CoinCollectedEvent, CollectedAudioConfig>()
                 .AddAudioSystem<ConfettiExplodedEvent, ConfettiExplodedAudioConfig>()

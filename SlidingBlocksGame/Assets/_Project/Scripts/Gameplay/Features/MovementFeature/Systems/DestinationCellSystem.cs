@@ -1,10 +1,7 @@
 using System.Linq;
-using _Project.Scripts.Gameplay.Features.AnimalFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFieldFeature.Components;
-using _Project.Scripts.Gameplay.Features.GameFlowFeature.Components;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
-using _Project.Scripts.Gameplay.Utils;
 using DCFApixels.DragonECS;
 using Unity.Mathematics;
 using UnityEngine;
@@ -17,7 +14,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 
         private class AnimalAspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(AnimalTag))]
+            [IncImplicit(typeof(MovableMarker))]
             [Inc] public readonly EcsPool<MovementDirection> Directions;
 
             [Inc] public readonly EcsPool<ActiveGameField> ActiveGameFields;

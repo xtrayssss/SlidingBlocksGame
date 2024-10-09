@@ -1,4 +1,5 @@
 using _Project.Scripts.Gameplay.Features.CommonFeature;
+using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameProgressFeature.Components;
 using DCFApixels.DragonECS;
 

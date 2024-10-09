@@ -1,14 +1,10 @@
 using System;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
-using _Project.Scripts.Gameplay.Features.DestructionFeature.Components;
 using _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Components;
-using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components;
-using _Project.Scripts.Gameplay.Utils;
 using DCFApixels.DragonECS;
 using PrimeTween;
 using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Systems
 {
@@ -18,7 +14,6 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Systems
 
         private class ScrollSnapAspect : EcsAspectAuto
         {
-            [ExcImplicit(typeof(ClosedMarker))]
             [ExcImplicit(typeof(ScrollSetupRequest))]
             [Inc] public readonly EcsPool<ScrollSnap> ScrollSnaps;
 
@@ -102,7 +97,7 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Systems
             [Inc] public readonly EcsPool<ScrollSnapEffect> ScrollSnapEffects;
 
             [Inc] public readonly EcsPool<SelectionStateEffectFactor> SelectionStateEffectFactors;
-            [Inc] public readonly EcsPool<TargetEntity> Targets;
+            [Inc] public readonly EcsPool<TargetEntity> Elements;
         }
 
         private class FadeEffectAspect : EcsAspectAuto
@@ -111,7 +106,7 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Systems
             [IncImplicit(typeof(ApplyEffectRequest))]
             [Inc] public readonly EcsPool<ScrollSnapEffect> ScrollSnapEffects;
 
-            [Inc] public readonly EcsPool<TargetEntity> Targets;
+            [Inc] public readonly EcsPool<TargetEntity> Elements;
             [Inc] public readonly EcsPool<FadeAlphaEffectFactor> FadeAlphaEffectFactors;
         }
 
@@ -131,6 +126,11 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Systems
             [Inc] public readonly EcsTagPool<ApplyEffectsMarker> ApplyEffectsMarker;
         }
 
+        private class ElementAspect : EcsAspectAuto
+        {
+            [Inc] public readonly EcsPool<ScrollElement> ScrollElements;
+        }
+
         private void UpdateNearest(ref ScrollSnap scrollSnap)
         {
             int nearest = GetNearestIndex(in scrollSnap);
@@ -138,8 +138,14 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Systems
             if (nearest != -1)
                 scrollSnap.NearestIndex = nearest;
 
-            if (scrollSnap.SafeItems[scrollSnap.NearestIndex].TryGetID(out int itemID))
-                scrollSnap.NearestPosition = _world.GetPool<ScrollPosition>().Read(itemID).Value;
+            ElementAspect elementAspect = _world.GetAspect<ElementAspect>();
+
+            if (scrollSnap.SafeItems[scrollSnap.NearestIndex].TryGetID(out int elementID))
+            {
+                ref readonly ScrollElement scrollElement = ref elementAspect.ScrollElements.Read(elementID);
+
+                scrollSnap.NearestPosition = scrollElement.Position;
+            }
         }
 
         private int GetNearestIndex(in ScrollSnap scrollSnap)
@@ -147,14 +153,16 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Systems
             if (scrollSnap.Items.Count <= 1)
                 return 0;
 
+            ElementAspect elementAspect = _world.GetAspect<ElementAspect>();
+
             for (int i = 0; i < scrollSnap.SafeItems.Count; i++)
             {
-                if (!scrollSnap.SafeItems[i].TryGetID(out int itemID))
+                if (!scrollSnap.SafeItems[i].TryGetID(out int elementID))
                     continue;
 
-                float position = _world.GetPool<ScrollPosition>().Read(itemID).Value;
+                ref readonly ScrollElement scrollElement = ref elementAspect.ScrollElements.Read(elementID);
 
-                if (Math.Abs(scrollSnap.Position - position) <= scrollSnap.Distance / 2)
+                if (math.abs(scrollSnap.Position - scrollElement.Position) <= scrollSnap.Distance / 2)
                     return i;
             }
 
@@ -163,29 +171,35 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Systems
 
         public void Run()
         {
-            foreach (int entity in _world.Where(out UnlockAspect unlockAspect))
+            foreach (int scroll in _world.Where(out UnlockAspect unlockAspect))
             {
-                ref ScrollSnap scrollSnap = ref unlockAspect.ScrollSnaps.Get(entity);
+                ref ScrollSnap scrollSnap = ref unlockAspect.ScrollSnaps.Get(scroll);
 
                 scrollSnap.ScrollRect.enabled = true;
 
-                unlockAspect.ApplyEffectsMarker.Add(entity);
+                unlockAspect.ApplyEffectsMarker.Add(scroll);
 
                 Debug.Log(scrollSnap.TargetIndex);
                 Debug.Log(scrollSnap.NearestIndex);
 
+                ElementAspect elementAspect = _world.GetAspect<ElementAspect>();
+
                 if (scrollSnap.TargetIndex != scrollSnap.NearestIndex)
                 {
-                    if (scrollSnap.SafeItems[scrollSnap.TargetIndex].TryGetID(out int targetID))
-                        scrollSnap.TargetPosition = _world.GetPool<ScrollPosition>().Read(targetID).Value;
+                    if (scrollSnap.SafeItems[scrollSnap.TargetIndex].TryGetID(out int elementID))
+                    {
+                        ref ScrollElement scrollElement = ref elementAspect.ScrollElements.Get(elementID);
 
-                    _world.GetPool<ScrollToTargetEvent>().Add(entity);
-                    _world.GetPool<ScrollToTargetMarker>().Add(entity);
+                        scrollSnap.TargetPosition = scrollElement.Position;
+                    }
+
+                    _world.GetPool<ScrollToTargetEvent>().Add(scroll);
+                    _world.GetPool<ScrollToTargetMarker>().Add(scroll);
                 }
                 else
                 {
-                    _world.GetPool<ScrollSnappedEvent>().Add(entity);
-                    _world.GetPool<ScrollSnappedMarker>().Add(entity);
+                    _world.GetPool<ScrollSnappedEvent>().Add(scroll);
+                    _world.GetPool<ScrollSnappedMarker>().Add(scroll);
                 }
 
                 Debug.Log("SCROLL_UNLOCKED");
@@ -213,30 +227,36 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Systems
                 Debug.Log("SCROLL_LOCKED");
             }
 
-            foreach (int entity in _world.Where(out SetupStateAspect aspect))
+            foreach (int scroll in _world.Where(out SetupStateAspect aspect))
             {
-                ref ScrollSnap scrollSnap = ref aspect.ScrollSnaps.Get(entity);
+                ref ScrollSnap scrollSnap = ref aspect.ScrollSnaps.Get(scroll);
 
-                ref readonly ScrollSetupRequest scrollSetupRequest = ref aspect.ScrollSetupRequest.Read(entity);
+                ref readonly ScrollSetupRequest scrollSetupRequest = ref aspect.ScrollSetupRequest.Read(scroll);
 
                 int count = scrollSnap.SafeItems.Count;
+
+                ElementAspect elementAspect = _world.GetAspect<ElementAspect>();
+
 
                 scrollSnap.Distance = count > 1 ? 1f / (count - 1f) : 1;
 
                 for (int i = 0; i < count; i++)
                 {
-                    if (scrollSnap.SafeItems[i].TryGetID(out int itemID))
-                        _world.GetPool<ScrollPosition>().Add(itemID).Value = scrollSnap.Distance * i;
+                    if (scrollSnap.SafeItems[i].TryGetID(out int elementID))
+                    {
+                        ref ScrollElement scrollElement = ref elementAspect.ScrollElements.Get(elementID);
+                        scrollElement.Position = scrollSnap.Distance * i;
+                    }
                 }
 
                 scrollSnap.Effects = EcsGroup.New(_world);
 
                 for (int index = 0; index < scrollSnap.SafeItems.Count; index++)
                 {
-                    if (!scrollSnap.SafeItems[index].TryGetID(out int itemID))
+                    if (!scrollSnap.SafeItems[index].TryGetID(out int elementID))
                         continue;
 
-                    float itemPosition = _world.GetPool<ScrollPosition>().Read(itemID).Value;
+                    ref ScrollElement scrollElement = ref elementAspect.ScrollElements.Get(elementID);
 
                     foreach (ScriptableEntityTemplate effectCfg in scrollSnap.EffectsConfigs)
                     {
@@ -244,7 +264,7 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Systems
 
                         scrollSnap.Effects.Add(effect);
 
-                        float signedDist = (itemPosition - scrollSnap.Position) / (scrollSnap.Distance * 1);
+                        float signedDist = (scrollElement.Position - scrollSnap.Position) / (scrollSnap.Distance * 1);
 
                         float displacement = Mathf.Clamp(signedDist, -1, 1);
 
@@ -278,12 +298,14 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Systems
                 {
                     for (int index = 0; index < scrollSnap.SafeItems.Count; index++)
                     {
-                        if (!scrollSnap.SafeItems[index].TryGetID(out int itemID))
+                        if (!scrollSnap.SafeItems[index].TryGetID(out int elementID))
                             continue;
 
-                        float itemPosition = _world.GetPool<ScrollPosition>().Read(itemID).Value;
+                        ElementAspect elementAspect = _world.GetAspect<ElementAspect>();
 
-                        float signedDist = (itemPosition - scrollSnap.Position) / (scrollSnap.Distance * 1);
+                        ref ScrollElement scrollElement = ref elementAspect.ScrollElements.Get(elementID);
+
+                        float signedDist = (scrollElement.Position - scrollSnap.Position) / (scrollSnap.Distance * 1);
 
                         float displacement = Mathf.Clamp(signedDist, -1, 1);
 
@@ -369,8 +391,6 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Systems
 
                 Debug.Log("SnapTween");
 
-                AspectRatioFitter aspectRatioFitter;
-
                 scrollSnap.SnapTween = Tween
                     .UIHorizontalNormalizedPosition(
                         target: scrollSnap.ScrollRect,
@@ -411,47 +431,59 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Systems
                 }
             }
 
-            foreach (int entity in _world.Where(out ScaleEffectAspect aspect))
+            foreach (int effectID in _world.Where(out ScaleEffectAspect effectAspect))
             {
-                ref readonly ScrollSnapEffect effect = ref aspect.ScrollSnapEffects.Read(entity);
+                ref readonly ScrollSnapEffect effect = ref effectAspect.ScrollSnapEffects.Read(effectID);
 
                 ref readonly SelectionStateEffectFactor selectionFactor =
-                    ref aspect.SelectionStateEffectFactors.Read(entity);
+                    ref effectAspect.SelectionStateEffectFactors.Read(effectID);
 
-                if (!aspect.Targets.Read(entity).Value.TryGetID(out int itemID))
+                if (!effectAspect.Elements.Read(effectID).Value.TryGetID(out int elementID))
                     continue;
 
-                RectTransformRef transform = _world.GetPool<RectTransformRef>().Get(itemID);
+                ElementAspect elementAspect = _world.GetAspect<ElementAspect>();
+
+                ref ScrollElement scrollElement = ref elementAspect.ScrollElements.Get(elementID);
 
                 float ratio = 1 - math.abs(effect.Displacement);
 
                 float3 targetScale = selectionFactor.Deselected +
                                      (selectionFactor.Selected - selectionFactor.Deselected) * ratio;
 
-                transform.Value.localScale =
-                    math.lerp(transform.Value.localScale, targetScale, 0.04f);
+                scrollElement.RectTransform.localScale = math.lerp(
+                    start: scrollElement.RectTransform.localScale,
+                    end: targetScale,
+                    t: 0.04f);
 
-                _world.GetPool<DeleteEntityRequest>().Add(entity);
+                _world.DelEntity(effectID);
             }
 
-            foreach (int entity in _world.Where(out FadeEffectAspect aspect))
+            foreach (int effectID in _world.Where(out FadeEffectAspect aspect))
             {
-                ref readonly ScrollSnapEffect effect = ref aspect.ScrollSnapEffects.Read(entity);
+                ref readonly ScrollSnapEffect effect = ref aspect.ScrollSnapEffects.Read(effectID);
 
-                ref readonly FadeAlphaEffectFactor fadeFactor = ref aspect.FadeAlphaEffectFactors.Read(entity);
+                ref readonly FadeAlphaEffectFactor fadeFactor = ref aspect.FadeAlphaEffectFactors.Read(effectID);
 
-                if (!aspect.Targets.Read(entity).Value.TryGetID(out int targetID))
+                if (!aspect.Elements.Read(effectID).Value.TryGetID(out int elementID))
                     continue;
 
                 float ratio = 1 - math.abs(effect.Displacement);
 
-                var targetAlpha = fadeFactor.Value + (1 - fadeFactor.Value) * ratio;
+                float targetAlpha = fadeFactor.Value + (1 - fadeFactor.Value) * ratio;
 
-                ref GraphicRef graphic = ref _world.GetPool<GraphicRef>().Get(targetID);
-                graphic.Value.color = new Color(graphic.Value.color.r, graphic.Value.color.g, graphic.Value.color.b,
-                    targetAlpha);
+                ElementAspect elementAspect = _world.GetAspect<ElementAspect>();
 
-                _world.GetPool<DeleteEntityRequest>().Add(entity);
+                ref ScrollElement scrollElement = ref elementAspect.ScrollElements.Get(elementID);
+
+                scrollElement.Graphic.color = new Color
+                {
+                    r = scrollElement.Graphic.color.r,
+                    g = scrollElement.Graphic.color.g,
+                    b = scrollElement.Graphic.color.g,
+                    a = targetAlpha
+                };
+
+                _world.DelEntity(effectID);
             }
         }
     }
