@@ -18,7 +18,7 @@ namespace _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components
         public GameObject MusicOn;
 
         [MovedFrom(autoUpdateAPI: false,
-            sourceNamespace: "_Project.Scripts.Gameplay.Features.UIFeature.Components",
+            sourceNamespace: "_Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components",
             sourceClassName: "SettingsPopup/Template", sourceAssembly: "Assembly-CSharp")]
         private sealed class Template : ComponentTemplate<SettingsPopup>
         {

@@ -12,7 +12,7 @@ namespace _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.U
         public TextMeshProUGUI AmountText;
 
         [MovedFrom(autoUpdateAPI: false,
-            sourceNamespace: "_Project.Scripts.Gameplay.Features.UIFeature.Components",
+            sourceNamespace: "_Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components",
             sourceClassName: "RewardCoinsWidget/Template", sourceAssembly: "Assembly-CSharp")]
         private sealed class Template : ComponentTemplate<RewardCoinsWidget>
         {

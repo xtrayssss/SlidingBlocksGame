@@ -23,7 +23,7 @@ namespace _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components
         public Canvas Canvas;
 
         [MovedFrom(autoUpdateAPI: false,
-            sourceNamespace: "_Project.Scripts.Gameplay.Features.UIFeature.Components",
+            sourceNamespace: "_Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components",
             sourceClassName: "GameScreen/Template", sourceAssembly: "Assembly-CSharp")]
 
         private sealed class Template : ComponentTemplate<GameScreen>

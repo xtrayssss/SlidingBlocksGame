@@ -1,4 +1,3 @@
-using System;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.PurchaseFeature.Components;
 using _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Components;
@@ -40,7 +39,6 @@ namespace _Project.Scripts.Gameplay.Features.PurchaseFeature.Systems
         {
             public class OnEnter : EcsAspectAuto
             {
-                [IncImplicit(typeof(ClosedEvent))]
                 [Inc] public readonly EcsPool<ScrollSnap> ScrollSnaps;
             }
         }
@@ -113,41 +111,5 @@ namespace _Project.Scripts.Gameplay.Features.PurchaseFeature.Systems
                 //     .OnComplete(() => _world.GetPool<ViewUpdatedMarker>().TryDel(entity));
             }
         }
-    }
-
-    public struct ClosedEvent : IEcsTagComponent
-    {
-    }
-
-    public class CameraRenderSystem : IEcsRun
-    {
-        [EcsInject] private readonly EcsDefaultWorld _world;
-
-        private class Aspect : EcsAspectAuto
-        {
-            [IncImplicit(typeof(ViewUpdatedMarker))]
-            [Inc] public readonly EcsPool<RenderCamera> RenderCameras;
-        }
-
-        public void Run()
-        {
-            foreach (int entity in _world.Where(out Aspect aspect))
-            {
-                ref readonly RenderCamera renderCamera = ref aspect.RenderCameras.Read(entity);
-
-                renderCamera.Value.Render();
-            }
-        }
-    }
-
-    [Serializable]
-    public struct ViewUpdatedMarker : IEcsTagComponent
-    {
-    }
-
-    [Serializable]
-    public struct RenderCamera : IEcsComponent
-    {
-        public Camera Value;
     }
 }

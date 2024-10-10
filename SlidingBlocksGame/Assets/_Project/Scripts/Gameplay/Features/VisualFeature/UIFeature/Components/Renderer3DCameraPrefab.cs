@@ -12,7 +12,7 @@ namespace _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components
         public Camera Value;
 
         [MovedFrom(autoUpdateAPI: false,
-            sourceNamespace: "_Project.Scripts.Gameplay.Features.UIFeature.Components",
+            sourceNamespace: "_Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components",
             sourceClassName: "Renderer3DCameraPrefab/Template", sourceAssembly: "Assembly-CSharp")]
         private sealed class Template : ComponentTemplate<Renderer3DCameraPrefab>
         {

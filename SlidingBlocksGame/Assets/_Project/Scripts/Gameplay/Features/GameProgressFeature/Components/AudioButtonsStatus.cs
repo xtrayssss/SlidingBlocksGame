@@ -11,7 +11,8 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.Components
         public bool MusicIsOn;
         public bool SoundIsOn;
 
-        [MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.UIFeature.Components",
+        [MovedFrom(autoUpdateAPI: false,
+            sourceNamespace: "_Project.Scripts.Gameplay.Features.AudioFeature.Components",
             sourceClassName: "AudioButtonsStatus/Template", sourceAssembly: "Assembly-CSharp")]
         private sealed class Template : ComponentTemplate<AudioButtonsStatus>
         {

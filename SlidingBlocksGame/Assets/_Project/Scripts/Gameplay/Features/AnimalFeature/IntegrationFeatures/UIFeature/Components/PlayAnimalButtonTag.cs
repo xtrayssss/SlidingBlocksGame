@@ -7,7 +7,7 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.U
     [Serializable]
     public struct PlayAnimalButtonTag : IEcsTagComponent
     {
-        [MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.UIFeature.Components",
+        [MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components",
             sourceClassName: "PlayAnimalButtonTag/Template", sourceAssembly: "Assembly-CSharp")]
         private sealed class Template : TagComponentTemplate<PlayAnimalButtonTag>
         {

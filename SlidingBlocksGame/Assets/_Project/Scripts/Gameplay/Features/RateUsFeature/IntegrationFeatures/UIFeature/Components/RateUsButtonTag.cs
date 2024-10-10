@@ -7,7 +7,7 @@ namespace _Project.Scripts.Gameplay.Features.RateUsFeature.IntegrationFeatures.U
     [Serializable]
     public struct RateUsButtonTag : IEcsTagComponent
     {
-        [MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.UIFeature.Components",
+        [MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components",
             sourceClassName: "RateUsButtonTag/Template", sourceAssembly: "Assembly-CSharp")]
         private sealed class Template : TagComponentTemplate<RateUsButtonTag>
         {

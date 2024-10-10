@@ -10,10 +10,11 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.IntegrationFeatures
     {
         public ScriptableEntityTemplate Value;
 
-		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.AudioFeature.Components", sourceClassName: "MenuAudio/Template", sourceAssembly: "Assembly-CSharp")]
-
-
-		private sealed class Template : ComponentTemplate<MenuAudio>
+        [MovedFrom(autoUpdateAPI: false,
+            sourceNamespace:
+            "_Project.Scripts.Gameplay.Features.GameFlowFeature.IntegrationFeatures.AudioFeature.Components",
+            sourceClassName: "MenuAudio/Template", sourceAssembly: "Assembly-CSharp")]
+        private sealed class Template : ComponentTemplate<MenuAudio>
         {
         }
     }

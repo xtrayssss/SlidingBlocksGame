@@ -20,8 +20,12 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature
 
                 .AutoDelEntityTag<MovementTweenCompletedEvent>()
                 .AddUnique(new CatchMovementTweenSystem())
+                // 
+                .AddUnique(new WobbleSystem())
+                .AutoDelTag<WobbleRequest>()
                 //
                 .AddUnique(new UpdatePositionsSystem());
+
         }
     }
 }

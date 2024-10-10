@@ -7,7 +7,8 @@ namespace _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.U
     [Serializable]
     public struct CloseRewardWindowButtonTag : IEcsTagComponent
     {
-        [MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.UIFeature.Components",
+        [MovedFrom(autoUpdateAPI: false,
+            sourceNamespace: "_Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components",
             sourceClassName: "CloseRewardWindowButtonTag/Template", sourceAssembly: "Assembly-CSharp")]
         private sealed class Template : TagComponentTemplate<CloseRewardWindowButtonTag>
         {

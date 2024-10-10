@@ -13,9 +13,8 @@ namespace _Project.Scripts.Gameplay.Features.TweenFeature.Components
         public AnimationCurve Curve;
         public Ease Ease;
 
-		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.TweenFeature.Components", sourceClassName: "TweenEase/Template", sourceAssembly: "Assembly-CSharp")]
-
-
+		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.TweenFeature.Components",
+            sourceClassName: "TweenEase/Template", sourceAssembly: "TweenFeature.Components")]
 		private sealed class Template : ComponentTemplate<TweenEase>
         {
         }

@@ -11,8 +11,8 @@ namespace _Project.Scripts.Gameplay.Features.RewardFeature.Components
     {
         public AnimationCurve Value;
 
-        [MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.UIFeature.Components",
-            sourceClassName: "CoinsProgressionCurve/Template", sourceAssembly: "Assembly-CSharp")]
+        [MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.RewardFeature.Components",
+            sourceClassName: "RewardScalingCurve/Template", sourceAssembly: "Assembly-CSharp")]
         private sealed class Template : ComponentTemplate<RewardScalingCurve>
         {
         }

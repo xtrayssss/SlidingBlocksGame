@@ -15,7 +15,7 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature.Components
 
         public Dictionary<uint, AnimalEntityConnect> Animals;
 
-        [MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.CommonFeature.Components",
+        [MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.AnimalFeature.Components",
             sourceClassName: "AnimalPrefabs/Template", sourceAssembly: "Assembly-CSharp")]
         private sealed class Template : ComponentTemplate<AnimalPrefabs>
         {

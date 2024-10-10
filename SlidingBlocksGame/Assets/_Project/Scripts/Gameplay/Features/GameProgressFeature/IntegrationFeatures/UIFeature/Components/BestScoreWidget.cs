@@ -14,7 +14,7 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.IntegrationFeat
         public RectTransform RectTransform;
 
         [MovedFrom(autoUpdateAPI: false,
-            sourceNamespace: "_Project.Scripts.Gameplay.Features.UIFeature.Components",
+            sourceNamespace: "_Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components",
             sourceClassName: "BestScoreWidget/Template", sourceAssembly: "Assembly-CSharp")]
         private sealed class Template : ComponentTemplate<BestScoreWidget>
         {

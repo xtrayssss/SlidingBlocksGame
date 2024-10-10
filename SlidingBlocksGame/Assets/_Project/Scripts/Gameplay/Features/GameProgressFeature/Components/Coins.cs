@@ -11,7 +11,7 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.Components
         public int Value;
 
         [MovedFrom(autoUpdateAPI: false,
-            sourceNamespace: "_Project.Scripts.Gameplay.Features.CollectionFeature.Components",
+            sourceNamespace: "_Project.Scripts.Gameplay.Features.GameProgressFeature.Components",
             sourceClassName: "Coins/Template", sourceAssembly: "Assembly-CSharp")]
         private sealed class Template : ComponentTemplate<Coins>
         {

@@ -7,8 +7,8 @@ namespace _Project.Scripts.Gameplay.Features.PlayerFeature.Components
     [Serializable]
     public struct PlayerTag : IEcsTagComponent
     {
-        [MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.CommonFeature.Components", sourceClassName: "PlayerTag/Template", sourceAssembly: "Assembly-CSharp")]
-
+        [MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.PlayerFeature.Components",
+            sourceClassName: "PlayerTag/Template", sourceAssembly: "Assembly-CSharp")]
         private sealed class Template : TagComponentTemplate<PlayerTag>
         {
         }

@@ -7,7 +7,7 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.U
     [Serializable]
     public struct CloseAnimalsShopWindowButtonTag : IEcsTagComponent
     {
-        [MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.UIFeature.Components",
+        [MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components",
             sourceClassName: "CloseAnimalsShopWindowButtonTag/Template", sourceAssembly: "Assembly-CSharp")]
         private sealed class Template : TagComponentTemplate<CloseAnimalsShopWindowButtonTag>
         {

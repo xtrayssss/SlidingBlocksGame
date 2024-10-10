@@ -12,8 +12,8 @@ namespace _Project.Scripts.Gameplay.Features.RewardFeature.Components
         public long Interval;
         public int ClaimedCount;
 
-        [MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.CommonFeature.Components",
-            sourceClassName: "RewardCollectedAt/Template", sourceAssembly: "Assembly-CSharp")]
+        [MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.RewardFeature.Components",
+            sourceClassName: "Reward/Template", sourceAssembly: "Assembly-CSharp")]
         private sealed class Template : ComponentTemplate<Reward>
         {
         }

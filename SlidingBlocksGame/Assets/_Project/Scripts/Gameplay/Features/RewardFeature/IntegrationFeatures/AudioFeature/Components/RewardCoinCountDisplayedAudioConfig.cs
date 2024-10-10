@@ -11,7 +11,7 @@ namespace _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.A
         public ScriptableEntityTemplate Value;
 
         [MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.AudioBaseFeature.Components",
-            sourceClassName: "CoinAddedToTextAudioConfig/Template", sourceAssembly: "Assembly-CSharp")]
+            sourceClassName: "RewardCoinCountDisplayedAudioConfig/Template", sourceAssembly: "Assembly-CSharp")]
         private sealed class Template : ComponentTemplate<RewardCoinCountDisplayedAudioConfig>
         {
         }

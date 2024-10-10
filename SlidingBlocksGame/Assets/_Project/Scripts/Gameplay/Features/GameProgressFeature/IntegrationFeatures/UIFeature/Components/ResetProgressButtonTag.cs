@@ -7,7 +7,7 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.IntegrationFeat
     [Serializable]
     public struct ResetProgressButtonTag : IEcsTagComponent
     {
-        [MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.UIFeature.Components",
+        [MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components",
             sourceClassName: "ResetProgressButtonTag/Template", sourceAssembly: "Assembly-CSharp")]
         public class Template : TagComponentTemplate<ResetProgressButtonTag>
         {

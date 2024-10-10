@@ -25,48 +25,47 @@ MonoBehaviour:
     RefIds:
     - rid: 3543309452483756035
       type: {class: Scores/Template, ns: _Project.Scripts.Gameplay.Features.GameProgressFeature.Components,
-        asm: Assembly-CSharp}
+        asm: GameProgressFeature.Components}
       data:
         component:
           Value: 0
     - rid: 6454805113458655408
       type: {class: Coins/Template, ns: _Project.Scripts.Gameplay.Features.GameProgressFeature.Components,
-        asm: Assembly-CSharp}
+        asm: GameProgressFeature.Components}
       data:
         component:
           Value: 500
     - rid: 6454805267925958657
       type: {class: SelectedAnimal/Template, ns: _Project.Scripts.Gameplay.Features.AnimalFeature.Components,
-        asm: Assembly-CSharp}
+        asm: AnimalFeature.Components}
       data:
         component:
-          Prefab: {fileID: 2013783015110300518, guid: bcb8c70410414a246922c356f4b52f69,
-            type: 3}
+          Prefab: {fileID: 0}
           ID: 0
     - rid: 6454805267925958660
       type: {class: AnimalPrefabs/Template, ns: _Project.Scripts.Gameplay.Features.AnimalFeature.Components,
-        asm: Assembly-CSharp}
+        asm: AnimalFeature.Components}
       data:
         component:
           _animals:
-          - {fileID: 2013783015110300518, guid: bcb8c70410414a246922c356f4b52f69, type: 3}
-          - {fileID: 1491240329894344860, guid: ed9ce83c2744d864b983134d287ec369, type: 3}
-          - {fileID: 5302321889394267346, guid: 6837cb7328d775949ba228083fd08696, type: 3}
-          - {fileID: 8687766115236254335, guid: 3ffaf1ae16354074db9ac5a979cdb35f, type: 3}
-          - {fileID: 7558186800719259502, guid: bd6f74b8d916ffa4eb9ab1a34e4b5a3d, type: 3}
-          - {fileID: 1737809211169751524, guid: 60f569c8fef7bcb4aa6510ecdf2cc0b5, type: 3}
-          - {fileID: 2837514245448880509, guid: fdf867e4f78396d4893b9e39fbd9a5b3, type: 3}
+          - {fileID: 4725698268934976922, guid: bcb8c70410414a246922c356f4b52f69, type: 3}
+          - {fileID: 5680897716675665504, guid: ed9ce83c2744d864b983134d287ec369, type: 3}
+          - {fileID: 1437432062797607470, guid: 6837cb7328d775949ba228083fd08696, type: 3}
+          - {fileID: 2519284822338466947, guid: 3ffaf1ae16354074db9ac5a979cdb35f, type: 3}
+          - {fileID: 3639888900752376210, guid: bd6f74b8d916ffa4eb9ab1a34e4b5a3d, type: 3}
+          - {fileID: 4790309615482808088, guid: 60f569c8fef7bcb4aa6510ecdf2cc0b5, type: 3}
+          - {fileID: 9009320616813541249, guid: fdf867e4f78396d4893b9e39fbd9a5b3, type: 3}
     - rid: 6454805569733133212
       type: {class: LockGameInputMarker/Template, ns: _Project.Scripts.Gameplay.Features.PlayerFeature.InputFeature.Components,
-        asm: Assembly-CSharp}
+        asm: InputFeature.Components}
       data: {}
     - rid: 6454805633061093376
       type: {class: BestScore/Template, ns: _Project.Scripts.Gameplay.Features.GameProgressFeature.Components,
-        asm: Assembly-CSharp}
+        asm: GameProgressFeature.Components}
       data:
         component:
           Value: 0
     - rid: 8499802700812648450
       type: {class: PlayerTag/Template, ns: _Project.Scripts.Gameplay.Features.PlayerFeature.Components,
-        asm: Assembly-CSharp}
+        asm: PlayerFeature.Components}
       data: {}

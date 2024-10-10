@@ -8,11 +8,10 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Components
     public struct GameTag : IEcsTagComponent
     {
         [Serializable]
-
-		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.GameFlowFeature.Components", sourceClassName: "GameTag/Template", sourceAssembly: "Assembly-CSharp")]
-
-
-		public sealed class Template : TagComponentTemplate<GameTag>
+        [MovedFrom(autoUpdateAPI: false,
+            sourceNamespace: "_Project.Scripts.Gameplay.Features.GameFlowFeature.Components",
+            sourceClassName: "GameTag/Template", sourceAssembly: "GameFlowFeature.Components")]
+        public sealed class Template : TagComponentTemplate<GameTag>
         {
         }
     }

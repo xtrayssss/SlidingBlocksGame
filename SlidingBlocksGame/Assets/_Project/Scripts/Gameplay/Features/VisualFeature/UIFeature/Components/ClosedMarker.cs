@@ -8,7 +8,7 @@ namespace _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components
     public struct ClosedMarker : IEcsTagComponent
     {
         [MovedFrom(autoUpdateAPI: false,
-            sourceNamespace: "_Project.Scripts.Gameplay.Features.CollectionFeature.Components",
+            sourceNamespace: "_Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components",
             sourceClassName: "ClosedMarker/Template", sourceAssembly: "Assembly-CSharp")]
         private sealed class Template : TagComponentTemplate<ClosedMarker>
         {

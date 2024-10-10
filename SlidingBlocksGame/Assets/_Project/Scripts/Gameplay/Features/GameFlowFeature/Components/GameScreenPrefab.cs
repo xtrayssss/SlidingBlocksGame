@@ -11,7 +11,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Components
 
         [MovedFrom(autoUpdateAPI: false,
             sourceNamespace: "_Project.Scripts.Gameplay.Features.GameFlowFeature.Components",
-            sourceClassName: "GameScreenPrefab/Template", sourceAssembly: "Assembly-CSharp")]
+            sourceClassName: "GameScreenPrefab/Template", sourceAssembly: "GameFlowFeature.Components")]
         private sealed class Template : ComponentTemplate<GameScreenPrefab>
         {
         }

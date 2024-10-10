@@ -10,7 +10,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.IntegrationFeature
     {
         public ScriptableEntityTemplate Value;
 
-        [MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.AudioFeature.Components",
+        [MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.AudioBaseFeature.Components",
             sourceClassName: "GameFieldGeneratedAudioConfig/Template", sourceAssembly: "Assembly-CSharp")]
         private sealed class Template : ComponentTemplate<GameFieldGeneratedAudioConfig>
         {

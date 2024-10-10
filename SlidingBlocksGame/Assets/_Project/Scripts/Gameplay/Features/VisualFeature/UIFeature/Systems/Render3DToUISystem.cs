@@ -1,5 +1,5 @@
-﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
-using _Project.Scripts.Gameplay.Features.PurchaseFeature.Systems;
+﻿using _Project.Scripts.Gameplay.Features.CameraFeature.Components;
+using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components;
 using DCFApixels.DragonECS;
 using UnityEngine;

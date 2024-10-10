@@ -1,4 +1,12 @@
-﻿using DCFApixels.DragonECS;
+﻿using _Project.Scripts.Gameplay.Features.AudioFeature.Systems;
+using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameOverTimerFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameOverTimerFeature.IntegrationFeatures.AudioFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameOverTimerFeature.IntegrationFeatures.UIFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameOverTimerFeature.IntegrationFeatures.UIFeature.Systems;
+using _Project.Scripts.Gameplay.Features.GameOverTimerFeature.Systems;
+using _Project.Scripts.Infrastructure;
+using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.GameOverTimerFeature
 {
@@ -6,8 +14,20 @@ namespace _Project.Scripts.Gameplay.Features.GameOverTimerFeature
     {
         public void Import(EcsPipeline.Builder builder)
         {
-           builder 
-               .AddAudioSystem<CooldownTickEvent, TickAudioConfig>()
+            builder
+                .AutoDelTag<GameOverTimerCreatedEvent>()
+                .AddUnique(new CreateGameOverTimerSystem())
+                .AutoDelTag<CreateGameOverTimerRequest>()
+                // ui feature
+                .AutoDelTag<GameOverTimerClosedEvent>()
+                .AddUnique(new CloseGameOverTimerSystem())
+                .AutoDelTag<CloseGameOverTimerRequest>()
+                //
+                .AutoDelTag<GameOverTimerOpenedEvent>()
+                .AddUnique(new DispalyGameOverUITimerSystem())
+                .AddUnique(new DisplayTimerProgressSystem())
+                // audio feature
+                .AddAudioSystem<CooldownTickEvent, GameOverTimerTickAudioConfig>();
         }
     }
 }

@@ -5,8 +5,9 @@ using _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.Creat
 using _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.DestructionFeature.Components;
 using _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.DestructionFeature.Systems;
 using _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.MovementFeature.Systems;
+using _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.UIFeature.Systems;
 using _Project.Scripts.Gameplay.Features.AnimalFeature.Systems;
-using _Project.Scripts.Gameplay.Features.AudioBaseFeature.Systems;
+using _Project.Scripts.Gameplay.Features.AudioFeature.Systems;
 using _Project.Scripts.Gameplay.Features.DestructionFeature.Components;
 using _Project.Scripts.Infrastructure;
 using DCFApixels.DragonECS;
@@ -36,6 +37,10 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature
                 .AutoDelEntityTag<SelectedAnimalUpdatedEvent>()
                 .AddUnique(new UpdateSelectedAnimalSystem())
                 .AutoDelEntityComponent<UpdateSelectedAnimalRequest>()
+                
+                // ui feature
+                .AddUnique(new DisplayAnimalPurchaseWindowSystem())
+                .AddUnique(new CloseAnimalPurchaseWindowSystem())
                 
                 // audio feature
                 .AddAudioSystem<AnimalSpawnedEvent, AnimalSpawnedAudioConfig>()

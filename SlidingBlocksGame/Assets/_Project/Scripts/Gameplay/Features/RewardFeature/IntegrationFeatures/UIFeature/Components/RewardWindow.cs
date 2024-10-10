@@ -16,7 +16,8 @@ namespace _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.U
         public EcsEntityConnect TapToExitWidgetConnect;
         public Sequence OpenCloseTween;
 
-        [MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.UIFeature.Components",
+        [MovedFrom(autoUpdateAPI: false,
+            sourceNamespace: "_Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components",
             sourceClassName: "RewardWindow/Template", sourceAssembly: "Assembly-CSharp")]
         private sealed class Template : ComponentTemplate<RewardWindow>
         {

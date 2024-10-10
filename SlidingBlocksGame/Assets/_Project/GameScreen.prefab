@@ -151,7 +151,7 @@ MonoBehaviour:
     RefIds:
     - rid: 3543309368061067687
       type: {class: Purchases/Template, ns: _Project.Scripts.Gameplay.Features.PurchaseFeature.Components,
-        asm: Assembly-CSharp}
+        asm: PurchaseFeature.Components}
       data:
         component:
           Prefabs:
@@ -163,12 +163,12 @@ MonoBehaviour:
           - {fileID: 660239028200211701, guid: c6d63eb23f457a446901c2e8517910a9, type: 3}
           - {fileID: 4871628510474233944, guid: 380666c9d4efb134b869939de5dfaca4, type: 3}
     - rid: 3543309368061067688
-      type: {class: AnimalsShopWindowTag/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components,
-        asm: Assembly-CSharp}
+      type: {class: AnimalsShopWindowTag/Template, ns: _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.UIFeature.Components,
+        asm: AnimalFeature.UIFeature.Components}
       data: {}
     - rid: 3543309368061067690
-      type: {class: AnimalsShopWindow/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components,
-        asm: Assembly-CSharp}
+      type: {class: AnimalsShopWindow/Template, ns: _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.UIFeature.Components,
+        asm: AnimalFeature.UIFeature.Components}
       data:
         component:
           PurchaseStatusWidget:
@@ -180,11 +180,11 @@ MonoBehaviour:
             Current: {fileID: 8128212170323240168}
     - rid: 3543309452483756033
       type: {class: ClosedMarker/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components,
-        asm: Assembly-CSharp}
+        asm: UIFeature.Components}
       data: {}
     - rid: 8499802790374932481
       type: {class: ScrollSnap/Template, ns: _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Components,
-        asm: Assembly-CSharp}
+        asm: ScrollSnapFeature.Components}
       data:
         component:
           TargetIndex: 0
@@ -356,14 +356,14 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 3543309367565090819
-      type: {class: TapToExitWidget/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components,
-        asm: Assembly-CSharp}
+      type: {class: TapToExitWidget/Template, ns: _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.UIFeature.Components,
+        asm: RewardFeature.UIFeature.Components}
       data:
         component:
           ExitButton: {fileID: 0}
     - rid: 6454805201906302980
       type: {class: RectTransformRef/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components,
-        asm: Assembly-CSharp}
+        asm: UIFeature.Components}
       data:
         component:
           Value: {fileID: 2259613617759245331}
@@ -585,14 +585,14 @@ MonoBehaviour:
     RefIds:
     - rid: 3543309363944357889
       type: {class: GameScreen/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components,
-        asm: Assembly-CSharp}
+        asm: UIFeature.Components}
       data:
         component:
           SettingsPopupConnect: {fileID: 4230186693107390616}
           AnimalsShopWindowConnect: {fileID: 6429701158572272287}
           RewardWidgetConnect: {fileID: 5550420860957629806}
           GameTileWidgetConnect: {fileID: 5219951114190502930}
-          GameLossTimerWidgetConnect: {fileID: 3210902252709764094}
+          GameOverTimerWidgetConnect: {fileID: 3210902252709764094}
           PlayWidgetConnect: {fileID: 83234461361877512}
           ScoreWidgetConnect: {fileID: 2459616179414762375}
           CoinsWidgetConnect: {fileID: 5218585447727694956}
@@ -601,7 +601,7 @@ MonoBehaviour:
           Canvas: {fileID: 6717997911519986422}
     - rid: 8499802702287471247
       type: {class: MetaGameUI/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components,
-        asm: Assembly-CSharp}
+        asm: UIFeature.Components}
       data:
         component:
           Value:
@@ -6975,14 +6975,15 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 3543309367449223169
-      type: {class: CoinWidget/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components,
-        asm: Assembly-CSharp}
+      type: {class: CoinWidget/Template, ns: _Project.Scripts.Gameplay.Features.GameProgressFeature.IntegrationFeatures.UIFeature.Components,
+        asm: GameProgressFeature.UIFeature.Components}
       data:
         component:
           AmountText: {fileID: 5473160543204482095}
+          RectTransform: {fileID: 2010793351970864005}
     - rid: 8499802814705828379
       type: {class: RectTransformRef/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components,
-        asm: Assembly-CSharp}
+        asm: UIFeature.Components}
       data:
         component:
           Value: {fileID: 2010793351970864005}
@@ -7161,7 +7162,7 @@ MonoBehaviour:
     RefIds:
     - rid: 6454805201906302977
       type: {class: RectTransformRef/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components,
-        asm: Assembly-CSharp}
+        asm: UIFeature.Components}
       data:
         component:
           Value: {fileID: 0}
@@ -7735,31 +7736,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _components:
   - rid: 3543309369267716917
-  - rid: 3543309369267716918
   - rid: 3543309456785801217
+  - rid: 3543309499067531265
   references:
     version: 2
     RefIds:
     - rid: 3543309369267716917
       type: {class: SettingsPopup/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components,
-        asm: Assembly-CSharp}
+        asm: UIFeature.Components}
       data:
         component:
           SoundOff: {fileID: 7143583011573396919}
           SoundOn: {fileID: 3482443365889142225}
           MusicOff: {fileID: 6351561682212032265}
           MusicOn: {fileID: 815787730614032239}
-    - rid: 3543309369267716918
-      type: {class: SettingsPopupTag/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data: {}
     - rid: 3543309456785801217
-      type: {class: AudioButtonsStatus/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
-        asm: Assembly-CSharp}
+      type: {class: AudioButtonsStatus/Template, ns: _Project.Scripts.Gameplay.Features.GameProgressFeature.Components,
+        asm: GameProgressFeature.Components}
       data:
         component:
           MusicIsOn: 1
           SoundIsOn: 1
+    - rid: 3543309499067531265
+      type: {class: SettingsPopupTag/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components,
+        asm: UIFeature.Components}
+      data: {}
 --- !u!1 &4357101349447033869
 GameObject:
   m_ObjectHideFlags: 0
@@ -7833,8 +7834,8 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 3543309367565090818
-      type: {class: RewardWindow/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components,
-        asm: Assembly-CSharp}
+      type: {class: RewardWindow/Template, ns: _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.UIFeature.Components,
+        asm: RewardFeature.UIFeature.Components}
       data:
         component:
           RewardCoinsWidgetConnect: {fileID: 4753121012192656865}
@@ -7843,8 +7844,8 @@ MonoBehaviour:
           SunshineWidgetConnect: {fileID: 492879322037196630}
           TapToExitWidgetConnect: {fileID: 2099636979442837474}
     - rid: 3543309449364243214
-      type: {class: RewardCoinDisplayCompletedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
-        asm: Assembly-CSharp}
+      type: {class: RewardCoinDisplayCompletedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.AudioFeature.Components,
+        asm: RewardFeature.AudioFeature.Components}
       data:
         component:
           <Value>k__BackingField: {fileID: 11400000, guid: 192e72617be132845881e7a0d7b442b6,
@@ -8088,22 +8089,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EntityCfg:
     _components:
-    - rid: 6454805201906302984
+    - rid: -2
     - rid: 6454805201906302983
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 6454805201906302983
-      type: {class: ClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
-        asm: Assembly-CSharp}
+      type: {class: ButtonClickedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.ButtonFeature.IntegrationFeatures.AudioFeature.Components,
+        asm: ButtonFeature.AudioFeature.Components}
       data:
         component:
           <Value>k__BackingField: {fileID: 11400000, guid: c7ba15024db7d8340a8665925333d92e,
             type: 2}
-    - rid: 6454805201906302984
-      type: {class: CloseRewardWindowButtonTag/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data: {}
 --- !u!1 &5363297474128932385
 GameObject:
   m_ObjectHideFlags: 0
@@ -8437,15 +8436,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _components:
   - rid: 3543309367565090817
-  - rid: 3543309367565090821
   - rid: 3543309367565090824
   - rid: 3543309449364243212
+  - rid: 3543309498256195584
   references:
     version: 2
     RefIds:
     - rid: 3543309367565090817
-      type: {class: RewardWidget/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components,
-        asm: Assembly-CSharp}
+      type: {class: RewardWidget/Template, ns: _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.UIFeature.Components,
+        asm: RewardFeature.UIFeature.Components}
       data:
         component:
           RewardWindowConnect: {fileID: 4734395090753003938}
@@ -8454,13 +8453,9 @@ MonoBehaviour:
             RewardTimeText: {fileID: 8647049430591312500}
           Locked: {fileID: 6494164103980537636}
           Unlocked: {fileID: 4308967271872474930}
-    - rid: 3543309367565090821
-      type: {class: RewardTag/Template, ns: _Project.Scripts.Gameplay.Features.RewardFeature.Components,
-        asm: Assembly-CSharp}
-      data: {}
     - rid: 3543309367565090824
       type: {class: RewardScalingCurve/Template, ns: _Project.Scripts.Gameplay.Features.RewardFeature.Components,
-        asm: Assembly-CSharp}
+        asm: RewardFeature.Components}
       data:
         component:
           Value:
@@ -8525,12 +8520,16 @@ MonoBehaviour:
             m_RotationOrder: 4
     - rid: 3543309449364243212
       type: {class: Reward/Template, ns: _Project.Scripts.Gameplay.Features.RewardFeature.Components,
-        asm: Assembly-CSharp}
+        asm: RewardFeature.Components}
       data:
         component:
           CollectionTime: 0
           Interval: 5000
           ClaimedCount: 0
+    - rid: 3543309498256195584
+      type: {class: RewardTag/Template, ns: _Project.Scripts.Gameplay.Features.RewardFeature.Components,
+        asm: RewardFeature.Components}
+      data: {}
 --- !u!1 &5509671444867596447
 GameObject:
   m_ObjectHideFlags: 0
@@ -9617,26 +9616,26 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 3543309367565090820
-      type: {class: RewardCoinsWidget/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components,
-        asm: Assembly-CSharp}
+      type: {class: RewardCoinsWidget/Template, ns: _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.UIFeature.Components,
+        asm: RewardFeature.UIFeature.Components}
       data:
         component:
           AmountText: {fileID: 0}
     - rid: 3543309449364243213
-      type: {class: RewardCoinCountDisplayedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
-        asm: Assembly-CSharp}
+      type: {class: RewardCoinCountDisplayedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.AudioFeature.Components,
+        asm: RewardFeature.AudioFeature.Components}
       data:
         component:
           Value: {fileID: 11400000, guid: b444f90dbf464b746b824afb8fa5f002, type: 2}
     - rid: 6454805187556802585
       type: {class: RectTransformRef/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components,
-        asm: Assembly-CSharp}
+        asm: UIFeature.Components}
       data:
         component:
           Value: {fileID: 163558598945034109}
     - rid: 6454805541227593728
       type: {class: Coins/Template, ns: _Project.Scripts.Gameplay.Features.GameProgressFeature.Components,
-        asm: Assembly-CSharp}
+        asm: GameProgressFeature.Components}
       data:
         component:
           Value: 0
@@ -9905,14 +9904,15 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 3543309367449223168
-      type: {class: BestScoreWidget/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components,
-        asm: Assembly-CSharp}
+      type: {class: BestScoreWidget/Template, ns: _Project.Scripts.Gameplay.Features.GameProgressFeature.IntegrationFeatures.UIFeature.Components,
+        asm: GameProgressFeature.UIFeature.Components}
       data:
         component:
           AmountText: {fileID: 6896612143512867910}
+          RectTransform: {fileID: 573557214950152586}
     - rid: 8499802814705828379
       type: {class: RectTransformRef/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components,
-        asm: Assembly-CSharp}
+        asm: UIFeature.Components}
       data:
         component:
           Value: {fileID: 573557214950152586}
@@ -9990,7 +9990,7 @@ MonoBehaviour:
     RefIds:
     - rid: 3543309367449223171
       type: {class: PlayWidget/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components,
-        asm: Assembly-CSharp}
+        asm: UIFeature.Components}
       data:
         component:
           PlayButton: {fileID: 4284820810062785476}
@@ -10252,13 +10252,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _components:
-  - rid: 3543309452483756034
+  - rid: 3543309498553466880
   references:
     version: 2
     RefIds:
-    - rid: 3543309452483756034
+    - rid: 3543309498553466880
       type: {class: TutorialWindowTag/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components,
-        asm: Assembly-CSharp}
+        asm: UIFeature.Components}
       data: {}
 --- !u!1 &8971274280870935796
 GameObject:
@@ -10343,7 +10343,7 @@ MonoBehaviour:
     RefIds:
     - rid: 6454805176898027937
       type: {class: RectTransformRef/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components,
-        asm: Assembly-CSharp}
+        asm: UIFeature.Components}
       data:
         component:
           Value: {fileID: 4740099195960992524}
@@ -20268,8 +20268,8 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 6454805221806178309
-      type: {class: ConfettiExplodedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
-        asm: Assembly-CSharp}
+      type: {class: ConfettiExplodedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.AudioFeature.Components,
+        asm: RewardFeature.AudioFeature.Components}
       data:
         component:
           <Value>k__BackingField: {fileID: 11400000, guid: 85770ea557f1b6846b60a6a2df9d90ea,
@@ -25399,13 +25399,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3517825441609125697, guid: a90fda7ca2beea74ea48a4a3917b79c6,
         type: 3}
+      propertyPath: managedReferences[-2]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3517825441609125697, guid: a90fda7ca2beea74ea48a4a3917b79c6,
+        type: 3}
       propertyPath: EntityCfg._components.Array.data[0]
       value: 6454805584215540639
       objectReference: {fileID: 0}
     - target: {fileID: 3517825441609125697, guid: a90fda7ca2beea74ea48a4a3917b79c6,
         type: 3}
       propertyPath: managedReferences[6454805584215540639]
-      value: Assembly-CSharp _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components.RateUsButtonTag/Template
+      value: RateUsFeature.UIFeature.Components _Project.Scripts.Gameplay.Features.RateUsFeature.IntegrationFeatures.UIFeature.Components.RateUsButtonTag/Template
       objectReference: {fileID: 0}
     - target: {fileID: 4464622807039356274, guid: a90fda7ca2beea74ea48a4a3917b79c6,
         type: 3}
@@ -25649,12 +25654,12 @@ PrefabInstance:
     - target: {fileID: 7332563614399721989, guid: 9c8902b6b78006149a75e0be6ae89dd3,
         type: 3}
       propertyPath: _components.Array.data[0]
-      value: 8499802814705828379
+      value: 3543309499067531273
       objectReference: {fileID: 0}
     - target: {fileID: 7332563614399721989, guid: 9c8902b6b78006149a75e0be6ae89dd3,
         type: 3}
       propertyPath: _components.Array.data[1]
-      value: 3543309452483756037
+      value: 3543309499067531274
       objectReference: {fileID: 0}
     - target: {fileID: 7332563614399721989, guid: 9c8902b6b78006149a75e0be6ae89dd3,
         type: 3}
@@ -25673,7 +25678,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7332563614399721989, guid: 9c8902b6b78006149a75e0be6ae89dd3,
         type: 3}
+      propertyPath: managedReferences[3543309499067531273]
+      value: GameProgressFeature.UIFeature.Components _Project.Scripts.Gameplay.Features.GameProgressFeature.IntegrationFeatures.UIFeature.Components.ScoreWidget/Template
+      objectReference: {fileID: 0}
+    - target: {fileID: 7332563614399721989, guid: 9c8902b6b78006149a75e0be6ae89dd3,
+        type: 3}
+      propertyPath: managedReferences[3543309499067531274]
+      value: GameProgressFeature.Components _Project.Scripts.Gameplay.Features.GameProgressFeature.Components.Scores/Template
+      objectReference: {fileID: 0}
+    - target: {fileID: 7332563614399721989, guid: 9c8902b6b78006149a75e0be6ae89dd3,
+        type: 3}
       propertyPath: managedReferences[3543309452483756036].component.Value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7332563614399721989, guid: 9c8902b6b78006149a75e0be6ae89dd3,
+        type: 3}
+      propertyPath: managedReferences[3543309499067531274].component.Value
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7332563614399721989, guid: 9c8902b6b78006149a75e0be6ae89dd3,
@@ -25686,6 +25706,16 @@ PrefabInstance:
       propertyPath: managedReferences[3543309452483756037].component.AmountText
       value: 
       objectReference: {fileID: 3112543849947586017}
+    - target: {fileID: 7332563614399721989, guid: 9c8902b6b78006149a75e0be6ae89dd3,
+        type: 3}
+      propertyPath: managedReferences[3543309499067531273].component.AmountText
+      value: 
+      objectReference: {fileID: 3112543849947586017}
+    - target: {fileID: 7332563614399721989, guid: 9c8902b6b78006149a75e0be6ae89dd3,
+        type: 3}
+      propertyPath: managedReferences[3543309499067531273].component.RectTransform
+      value: 
+      objectReference: {fileID: 6960882420236226989}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -25733,6 +25763,12 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 716783032039167614}
   m_PrefabAsset: {fileID: 0}
+--- !u!224 &6960882420236226989 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7595465842549704659, guid: 9c8902b6b78006149a75e0be6ae89dd3,
+    type: 3}
+  m_PrefabInstance: {fileID: 716783032039167614}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &850189680662353028
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25743,13 +25779,18 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
+      propertyPath: managedReferences[-2]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
+        type: 3}
       propertyPath: EntityCfg._components.Array.data[0]
       value: 6454805221806179154
       objectReference: {fileID: 0}
     - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
       propertyPath: managedReferences[6454805221806179154]
-      value: Assembly-CSharp _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components.AnimalPurchaseWindowButtonTag/Template
+      value: AnimalFeature.UIFeature.Components _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.UIFeature.Components.AnimalPurchaseWindowButtonTag/Template
       objectReference: {fileID: 0}
     - target: {fileID: 2188390974939379177, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
@@ -25919,6 +25960,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
+      propertyPath: managedReferences[-2]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
+        type: 3}
       propertyPath: EntityCfg._components.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -25935,7 +25981,7 @@ PrefabInstance:
     - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
       propertyPath: managedReferences[8499802837155577868]
-      value: Assembly-CSharp _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components.CloseTutorialButtonTag/Template
+      value: UIFeature.Components _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components.CloseTutorialButtonTag/Template
       objectReference: {fileID: 0}
     - target: {fileID: 2188390974939379177, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
@@ -26270,13 +26316,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3517825441609125697, guid: a90fda7ca2beea74ea48a4a3917b79c6,
         type: 3}
+      propertyPath: managedReferences[-2]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3517825441609125697, guid: a90fda7ca2beea74ea48a4a3917b79c6,
+        type: 3}
       propertyPath: EntityCfg._components.Array.data[0]
       value: 6454805584215540641
       objectReference: {fileID: 0}
     - target: {fileID: 3517825441609125697, guid: a90fda7ca2beea74ea48a4a3917b79c6,
         type: 3}
       propertyPath: managedReferences[6454805584215540641]
-      value: Assembly-CSharp _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components.ResetProgressButtonTag/Template
+      value: GameProgressFeature.UIFeature.Components _Project.Scripts.Gameplay.Features.GameProgressFeature.IntegrationFeatures.UIFeature.Components.ResetProgressButtonTag/Template
       objectReference: {fileID: 0}
     - target: {fileID: 5714348720894187816, guid: a90fda7ca2beea74ea48a4a3917b79c6,
         type: 3}
@@ -26582,7 +26633,7 @@ PrefabInstance:
     - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
       propertyPath: managedReferences[6454805702832816128]
-      value: Assembly-CSharp _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components.CloseAnimalsShopWindowButtonTag/Template
+      value: AnimalFeature.UIFeature.Components _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.UIFeature.Components.CloseAnimalsShopWindowButtonTag/Template
       objectReference: {fileID: 0}
     - target: {fileID: 5293964723850601425, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
@@ -26763,7 +26814,7 @@ PrefabInstance:
     - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
       propertyPath: managedReferences[6454805386191437880]
-      value: Assembly-CSharp _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components.PurchaseAnimalButtonTag/Template
+      value: PurchaseFeature.UIFeature.Components _Project.Scripts.Gameplay.Features.PurchaseFeature.IntegrationFeatures.UIFeature.Components.PurchaseButtonTag/Template
       objectReference: {fileID: 0}
     - target: {fileID: 2188390974939379177, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
@@ -27380,13 +27431,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3517825441609125697, guid: a90fda7ca2beea74ea48a4a3917b79c6,
         type: 3}
+      propertyPath: managedReferences[-2]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3517825441609125697, guid: a90fda7ca2beea74ea48a4a3917b79c6,
+        type: 3}
       propertyPath: EntityCfg._components.Array.data[0]
       value: 6454805584215540640
       objectReference: {fileID: 0}
     - target: {fileID: 3517825441609125697, guid: a90fda7ca2beea74ea48a4a3917b79c6,
         type: 3}
       propertyPath: managedReferences[6454805584215540640]
-      value: Assembly-CSharp _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components.TutorialButtonTag/Template
+      value: UIFeature.Components _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components.TutorialButtonTag/Template
       objectReference: {fileID: 0}
     - target: {fileID: 5714348720894187816, guid: a90fda7ca2beea74ea48a4a3917b79c6,
         type: 3}
@@ -27464,13 +27520,18 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
+      propertyPath: managedReferences[-2]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
+        type: 3}
       propertyPath: EntityCfg._components.Array.data[0]
       value: 6454805221806179153
       objectReference: {fileID: 0}
     - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
       propertyPath: managedReferences[6454805221806179153]
-      value: Assembly-CSharp _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components.PlayButtonTag/Template
+      value: UIFeature.Components _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components.PlayButtonTag/Template
       objectReference: {fileID: 0}
     - target: {fileID: 5293964723850601425, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
@@ -27790,13 +27851,18 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
+      propertyPath: managedReferences[-2]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
+        type: 3}
       propertyPath: EntityCfg._components.Array.data[0]
       value: 6454805221806179153
       objectReference: {fileID: 0}
     - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
       propertyPath: managedReferences[6454805221806179153]
-      value: Assembly-CSharp _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components.PlayButtonTag/Template
+      value: UIFeature.Components _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components.PlayButtonTag/Template
       objectReference: {fileID: 0}
     - target: {fileID: 5293964723850601425, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
@@ -27981,13 +28047,18 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
+      propertyPath: managedReferences[-2]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
+        type: 3}
       propertyPath: EntityCfg._components.Array.data[0]
       value: 6454805608600698880
       objectReference: {fileID: 0}
     - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
       propertyPath: managedReferences[6454805608600698880]
-      value: Assembly-CSharp _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components.RewardButtonTag/Template
+      value: RewardFeature.UIFeature.Components _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.UIFeature.Components.RewardButtonTag/Template
       objectReference: {fileID: 0}
     - target: {fileID: 5293964723850601425, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
@@ -28458,13 +28529,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3517825441609125697, guid: a90fda7ca2beea74ea48a4a3917b79c6,
         type: 3}
+      propertyPath: managedReferences[-2]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3517825441609125697, guid: a90fda7ca2beea74ea48a4a3917b79c6,
+        type: 3}
       propertyPath: EntityCfg._components.Array.data[0]
       value: 6454805584215540638
       objectReference: {fileID: 0}
     - target: {fileID: 3517825441609125697, guid: a90fda7ca2beea74ea48a4a3917b79c6,
         type: 3}
       propertyPath: managedReferences[6454805584215540638]
-      value: Assembly-CSharp _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components.MusicButtonTag/Template
+      value: UIFeature.Components _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components.MusicButtonTag/Template
       objectReference: {fileID: 0}
     - target: {fileID: 4041859636771330579, guid: a90fda7ca2beea74ea48a4a3917b79c6,
         type: 3}
@@ -28538,13 +28614,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7180662729279379239, guid: a90fda7ca2beea74ea48a4a3917b79c6,
         type: 3}
+      propertyPath: managedReferences[-2]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7180662729279379239, guid: a90fda7ca2beea74ea48a4a3917b79c6,
+        type: 3}
       propertyPath: EntityCfg._components.Array.data[0]
       value: 6454805584215540637
       objectReference: {fileID: 0}
     - target: {fileID: 7180662729279379239, guid: a90fda7ca2beea74ea48a4a3917b79c6,
         type: 3}
       propertyPath: managedReferences[6454805584215540637]
-      value: Assembly-CSharp _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components.MusicButtonTag/Template
+      value: UIFeature.Components _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components.MusicButtonTag/Template
       objectReference: {fileID: 0}
     - target: {fileID: 7737347712241795701, guid: a90fda7ca2beea74ea48a4a3917b79c6,
         type: 3}
@@ -28626,12 +28707,12 @@ PrefabInstance:
     - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
       propertyPath: managedReferences[6454805267925958658]
-      value: Assembly-CSharp _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components.PlayAnimalButtonTag/Template
+      value: AnimalFeature.UIFeature.Components _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.UIFeature.Components.PlayAnimalButtonTag/Template
       objectReference: {fileID: 0}
     - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
       propertyPath: managedReferences[6454805318907200179]
-      value: Assembly-CSharp _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components.CloseAnimalsShopWindowButtonTag/Template
+      value: AnimalFeature.UIFeature.Components _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.UIFeature.Components.CloseAnimalsShopWindowButtonTag/Template
       objectReference: {fileID: 0}
     - target: {fileID: 2188390974939379177, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
@@ -29138,13 +29219,18 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
+      propertyPath: managedReferences[-2]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
+        type: 3}
       propertyPath: EntityCfg._components.Array.data[0]
       value: 8499802837155577860
       objectReference: {fileID: 0}
     - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
       propertyPath: managedReferences[8499802837155577860]
-      value: Assembly-CSharp _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components.CloseSettingsButtonTag/Template
+      value: UIFeature.Components _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components.CloseSettingsButtonTag/Template
       objectReference: {fileID: 0}
     - target: {fileID: 2188390974939379177, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}

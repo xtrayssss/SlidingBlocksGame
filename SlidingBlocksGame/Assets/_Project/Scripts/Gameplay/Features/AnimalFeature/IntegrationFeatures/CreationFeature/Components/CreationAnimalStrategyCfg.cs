@@ -11,7 +11,7 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.C
         public ScriptableEntityTemplate Value;
 
         [MovedFrom(autoUpdateAPI: false,
-            sourceNamespace: "_Project.Scripts.Gameplay.Features.GameFlowFeature.Components",
+            sourceNamespace: "_Project.Scripts.Gameplay.Features.AnimalFeature.Components",
             sourceClassName: "CreationAnimalStrategyCfg/Template", sourceAssembly: "Assembly-CSharp")]
         private sealed class Template : ComponentTemplate<CreationAnimalStrategyCfg>
         {

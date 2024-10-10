@@ -1,14 +1,15 @@
 using _Project.Scripts.Gameplay.Features.GameFlowFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems;
+using _Project.Scripts.Gameplay.Features.GameOverTimerFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameOverTimerFeature.IntegrationFeatures.UIFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameOverTimerFeature.Systems;
 using _Project.Scripts.Gameplay.Features.GameProgressFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameProgressFeature.Systems;
-using _Project.Scripts.Gameplay.Features.GameProgrssFeature.Components;
 using _Project.Scripts.Gameplay.Features.RewardFeature.Components;
 using _Project.Scripts.Gameplay.Features.RewardFeature.Systems;
-using _Project.Scripts.Gameplay.Features.UIFeature.Systems;
 using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Systems;
+using _Project.Scripts.Infrastructure;
 using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.GameFlowFeature
@@ -39,10 +40,6 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature
                 .AutoDelTag<GameScreenCreatedEvent>()
                 .AddUnique(new GameScreenSystem())
                 .AutoDelTag<CreateGameScreenRequest>()
-                //
-                .AutoDelTag<GameOverTimerOpenedEvent>()
-                .AddUnique(new CreateGameOverTimerSystem())
-                .AutoDelTag<CreateGameOverTimerRequest>()
                 //
                 //.AddUnique(new AnimalCreationChainStrategySystem())
                 //.AutoDelTag<CreateAnimalsRequest>()

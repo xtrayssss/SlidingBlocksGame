@@ -1,11 +1,11 @@
 using _Project.Scripts.Gameplay.Features.AnimalFeature.Components;
 using _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.UIFeature.Components;
+using _Project.Scripts.Gameplay.Features.CameraFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFlowFeature.Components;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
 using _Project.Scripts.Gameplay.Features.PurchaseFeature.Components;
 using _Project.Scripts.Gameplay.Features.PurchaseFeature.IntegrationFeatures.UIFeature.Components;
-using _Project.Scripts.Gameplay.Features.PurchaseFeature.Systems;
 using _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Components;
 using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components;

@@ -7,7 +7,7 @@ namespace _Project.Scripts.Gameplay.Features.PurchaseFeature.IntegrationFeatures
     [Serializable]
     public struct PurchaseButtonTag : IEcsTagComponent
     {
-        [MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.UIFeature.Components",
+        [MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components",
             sourceClassName: "PurchaseAnimalButtonTag/Template", sourceAssembly: "Assembly-CSharp")]
         private sealed class Template : TagComponentTemplate<PurchaseButtonTag>
         {

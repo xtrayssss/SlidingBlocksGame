@@ -11,7 +11,7 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.Components
         public EcsEntityConnect Prefab;
 
         [MovedFrom(autoUpdateAPI: false,
-            sourceNamespace: "_Project.Scripts.Gameplay.Features.CollectionFeature.Components",
+            sourceNamespace: "_Project.Scripts.Gameplay.Features.GameProgressFeature.Components",
             sourceClassName: "CoinPrefab/Template", sourceAssembly: "Assembly-CSharp")]
         private sealed class Template : ComponentTemplate<CoinPrefab>
         {

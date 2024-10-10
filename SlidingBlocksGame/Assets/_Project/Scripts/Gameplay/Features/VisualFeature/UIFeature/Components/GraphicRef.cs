@@ -10,7 +10,7 @@ namespace _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components
     {
         public Graphic Value;
 
-        [MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.UIFeature.Components",
+        [MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components",
             sourceClassName: "GraphicRef/Template", sourceAssembly: "Assembly-CSharp")]
         private sealed class Template : ComponentTemplate<GraphicRef>
         {

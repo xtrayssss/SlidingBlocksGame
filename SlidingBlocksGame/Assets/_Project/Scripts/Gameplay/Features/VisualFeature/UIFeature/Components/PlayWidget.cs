@@ -13,7 +13,7 @@ namespace _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components
         public GameObject ReplayButton;
         
         [MovedFrom(autoUpdateAPI: false,
-            sourceNamespace: "_Project.Scripts.Gameplay.Features.UIFeature.Components",
+            sourceNamespace: "_Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components",
             sourceClassName: "PlayWidget/Template", sourceAssembly: "Assembly-CSharp")]
         private sealed class Template : ComponentTemplate<PlayWidget>
         {

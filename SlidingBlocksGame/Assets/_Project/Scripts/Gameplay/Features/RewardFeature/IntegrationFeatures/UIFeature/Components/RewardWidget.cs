@@ -18,7 +18,7 @@ namespace _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.U
         public GameObject Unlocked;
 
         [MovedFrom(autoUpdateAPI: false,
-            sourceNamespace: "_Project.Scripts.Gameplay.Features.UIFeature.Components",
+            sourceNamespace: "_Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components",
             sourceClassName: "RewardWidget/Template", sourceAssembly: "Assembly-CSharp")]
         private sealed class Template : ComponentTemplate<RewardWidget>
         {

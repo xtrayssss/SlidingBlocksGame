@@ -11,7 +11,7 @@ namespace _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components
         public GameObject[] Value;
 
         [MovedFrom(autoUpdateAPI: false,
-            sourceNamespace: "_Project.Scripts.Gameplay.Features.UIFeature.Components",
+            sourceNamespace: "_Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components",
             sourceClassName: "MetaGameUI/Template", sourceAssembly: "Assembly-CSharp")]
         private sealed class Template : ComponentTemplate<MetaGameUI>
         {

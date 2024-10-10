@@ -10,7 +10,7 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.Components
     {
         public int Value;
 
-        [MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.ScoreFeature.Components",
+        [MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.GameProgressFeature.Components",
             sourceClassName: "BestScore/Template", sourceAssembly: "Assembly-CSharp")]
         private sealed class Template : ComponentTemplate<BestScore>
         {

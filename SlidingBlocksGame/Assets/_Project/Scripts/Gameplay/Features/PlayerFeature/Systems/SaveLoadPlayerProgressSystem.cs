@@ -1,11 +1,15 @@
-﻿using _Project.Scripts.Gameplay.Features.AnimalFeature.Components;
+﻿using System.Linq;
+using _Project.Scripts.Gameplay.Features.AnimalFeature.Components;
 using _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameProgressFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameProgressFeature.IntegrationFeatures.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.PlayerFeature.Components;
 using _Project.Scripts.Gameplay.Features.PurchaseFeature.Components;
 using _Project.Scripts.Gameplay.Features.RewardFeature.Components;
 using _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Components;
+using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.ButtonFeature.Components;
+using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components;
 using DCFApixels.DragonECS;
 using UnityEngine;
 using YG;
