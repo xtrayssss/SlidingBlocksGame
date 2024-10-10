@@ -1,17 +1,11 @@
 using _Project.Scripts.Gameplay.Features.AudioBaseFeature;
 using _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components;
-using _Project.Scripts.Gameplay.Features.AudioFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameProgressFeature.Components;
 using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components;
 using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Systems
 {
-    public struct UpdateGameAudioRequest : IEcsComponent
-    {
-        public bool IsMusicOn;
-        public bool IsSoundOn;
-    }
-
     public class DisplayAudioButtonsStatusSystem : IEcsRun
     {
         [EcsInject] private readonly EcsDefaultWorld _world;

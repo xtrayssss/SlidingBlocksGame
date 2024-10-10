@@ -6,6 +6,7 @@ using _Project.Scripts.Gameplay.Features.GameProgressFeature.Systems;
 using _Project.Scripts.Gameplay.Features.GameProgrssFeature.Components;
 using _Project.Scripts.Gameplay.Features.RewardFeature.Components;
 using _Project.Scripts.Gameplay.Features.RewardFeature.Systems;
+using _Project.Scripts.Gameplay.Features.UIFeature.Systems;
 using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Systems;
 using DCFApixels.DragonECS;

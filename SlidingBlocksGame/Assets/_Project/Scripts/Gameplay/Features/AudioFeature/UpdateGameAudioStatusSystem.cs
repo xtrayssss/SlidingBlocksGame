@@ -1,6 +1,6 @@
 ﻿using _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components;
-using _Project.Scripts.Gameplay.Features.AudioFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameProgressFeature.Components;
 using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.ButtonFeature.Components;
 using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Systems;

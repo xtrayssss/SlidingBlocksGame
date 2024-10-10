@@ -3,6 +3,7 @@ using _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components;
 using _Project.Scripts.Gameplay.Features.AudioFeature;
 using _Project.Scripts.Gameplay.Features.GameOverTimerFeature.IntegrationFeatures.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameOverTimerFeature.IntegrationFeatures.UIFeature.Systems;
+using _Project.Scripts.Gameplay.Features.GameProgressFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameProgressFeature.IntegrationFeatures.UIFeature.Systems;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Systems;

@@ -1,33 +1,24 @@
-using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
-using _Project.Scripts.Gameplay.Features.GameFlowFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameOverTimerFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameOverTimerFeature.IntegrationFeatures.UIFeature.Components;
-using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components;
 using DCFApixels.DragonECS;
 using PrimeTween;
 using UnityEngine;
 
-namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
+namespace _Project.Scripts.Gameplay.Features.GameOverTimerFeature.IntegrationFeatures.UIFeature.Systems
 {
-    public class CreateGameOverTimerSystem : IEcsRun
+    public class CreateGameOverUITimerSystem : IEcsRun
     {
         [EcsInject] private readonly EcsDefaultWorld _world;
 
         private class TimerAspect : EcsAspectAuto
         {
-            [Opt] public readonly EcsTagPool<RefreshCooldownRequest> Refresh;
-            [Opt] public readonly EcsTagPool<LevelLifeTimeMarker> LevelLifeTime;
+            [IncImplicit(typeof(GameOverTimerCreatedEvent))]
+            [Opt] public readonly EcsTagPool<GameOverTimerOpenedEvent> GameOverTimerOpenedEvent;
         }
-
+        
         private class GameScreenAspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(GameScreenTag))]
-            [IncImplicit(typeof(CreateGameOverTimerRequest))]
-            [Inc] public readonly EcsPool<GameScreen> GameScreens;
-        }
-
-        private class GameLossTimerAspect : EcsAspectAuto
-        {
-            [Opt] public readonly EcsTagPool<GameOverTimerOpenedEvent> GameOverTimerOpenedEvent;
+            [Inc] public readonly EcsTagPool<GameScreen> GameScreens;
         }
 
         public void Run()

@@ -15,7 +15,7 @@ D:/games/SlidingCubesGame/SlidingBlocksGame
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-50755
+51244
 Successfully changed project path to: D:/games/SlidingCubesGame/SlidingBlocksGame
 D:/games/SlidingCubesGame/SlidingBlocksGame
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
@@ -49,14 +49,14 @@ D:/games/SlidingCubesGame/SlidingBlocksGame
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [9120]  Target information:
+Player connection [13344]  Target information:
 
-Player connection [9120]  * "[IP] 192.168.0.100 [Port] 0 [Flags] 2 [Guid] 249221014 [EditorId] 249221014 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-J7U7MAN) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+Player connection [13344]  * "[IP] 192.168.0.100 [Port] 0 [Flags] 2 [Guid] 613674439 [EditorId] 613674439 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-J7U7MAN) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
 
-Player connection [9120] Host joined multi-casting on [225.0.0.222:54997]...
-Player connection [9120] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [13344] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [13344] Host joined alternative multi-casting on [225.0.0.222:34997]...
 [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
-Refreshing native plugins compatible for Editor in 69.89 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 18.03 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2022.3.42f1 (2dcb6a0abc42)
 [Subsystems] Discovering subsystems at path D:/games/Unity/Unity Files (Dont Touch)/2021.3.9f1/2022.3.42f1/Editor/Data/Resources/UnitySubsystems
@@ -72,359 +72,217 @@ Initialize mono
 Mono path[0] = 'D:/games/Unity/Unity Files (Dont Touch)/2021.3.9f1/2022.3.42f1/Editor/Data/Managed'
 Mono path[1] = 'D:/games/Unity/Unity Files (Dont Touch)/2021.3.9f1/2022.3.42f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'D:/games/Unity/Unity Files (Dont Touch)/2021.3.9f1/2022.3.42f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56600
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56404
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: D:/games/Unity/Unity Files (Dont Touch)/2021.3.9f1/2022.3.42f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
 Register platform support module: D:/games/Unity/Unity Files (Dont Touch)/2021.3.9f1/2022.3.42f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
 Register platform support module: D:/games/Unity/Unity Files (Dont Touch)/2021.3.9f1/2022.3.42f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.011140 seconds.
-- Loaded All Assemblies, in  0.504 seconds
+Registered in 0.008889 seconds.
+- Loaded All Assemblies, in  0.428 seconds
 Native extension for WindowsStandalone target not found
 Native extension for Android target not found
-Android Extension - Scanning For ADB Devices 336 ms
+Android Extension - Scanning For ADB Devices 252 ms
 Native extension for WebGL target not found
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.798 seconds
-Domain Reload Profiling: 1302ms
-	BeginReloadAssembly (177ms)
+- Finished resetting the current domain, in  0.615 seconds
+Domain Reload Profiling: 1043ms
+	BeginReloadAssembly (154ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (0ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
 		CreateAndSetChildDomain (1ms)
-	RebuildCommonClasses (42ms)
-	RebuildNativeTypeToScriptingClass (11ms)
-	initialDomainReloadingComplete (79ms)
-	LoadAllAssembliesAndSetupDomain (194ms)
-		LoadAssemblies (177ms)
+	RebuildCommonClasses (37ms)
+	RebuildNativeTypeToScriptingClass (10ms)
+	initialDomainReloadingComplete (64ms)
+	LoadAllAssembliesAndSetupDomain (163ms)
+		LoadAssemblies (153ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (189ms)
-			TypeCache.Refresh (187ms)
-				TypeCache.ScanAssembly (167ms)
-			ScanForSourceGeneratedMonoScriptInfo (1ms)
-			ResolveRequiredComponents (1ms)
-	FinalizeReload (798ms)
+		AnalyzeDomain (159ms)
+			TypeCache.Refresh (157ms)
+				TypeCache.ScanAssembly (142ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (0ms)
+	FinalizeReload (616ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (743ms)
+		SetupLoadedEditorAssemblies (570ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (512ms)
-			SetLoadedEditorAssemblies (6ms)
+			InitializePlatformSupportModulesInManaged (377ms)
+			SetLoadedEditorAssemblies (5ms)
 			RefreshPlugins (0ms)
 			BeforeProcessingInitializeOnLoad (4ms)
-			ProcessInitializeOnLoadAttributes (164ms)
-			ProcessInitializeOnLoadMethodAttributes (56ms)
+			ProcessInitializeOnLoadAttributes (137ms)
+			ProcessInitializeOnLoadMethodAttributes (46ms)
 			AfterProcessingInitializeOnLoad (0ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
 		AwakeInstancesAfterBackupRestoration (0ms)
+Assembly has duplicate references: CoodownFeature.Components (Assets/_Project/Scripts/Gameplay/Features/GameFlowFeature/Systems/GameFlowFeature.Systems.asmdef)
 ========================================================================
 Worker process is ready to serve import requests
 Caller must complete domain reload
+Assembly has duplicate references: CoodownFeature.Components (Assets/_Project/Scripts/Gameplay/Features/GameFlowFeature/Systems/GameFlowFeature.Systems.asmdef)
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory is not a mono symbol file
-- Loaded All Assemblies, in  1.484 seconds
+- Loaded All Assemblies, in  0.893 seconds
 Native extension for WindowsStandalone target not found
 Native extension for Android target not found
 Native extension for WebGL target not found
-Package Manager log level set to [2]
-[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.07 seconds
+Assembly has duplicate references: CoodownFeature.Components (Assets/_Project/Scripts/Gameplay/Features/GameFlowFeature/Systems/GameFlowFeature.Systems.asmdef)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.06 seconds
 Mono: successfully reloaded assembly
-[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-- Finished resetting the current domain, in  1.504 seconds
-Domain Reload Profiling: 3002ms
-	BeginReloadAssembly (236ms)
+- Finished resetting the current domain, in  1.006 seconds
+Domain Reload Profiling: 1905ms
+	BeginReloadAssembly (203ms)
 		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (6ms)
+		DisableScriptedObjects (5ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (36ms)
-	RebuildCommonClasses (42ms)
-	RebuildNativeTypeToScriptingClass (14ms)
-	initialDomainReloadingComplete (60ms)
-	LoadAllAssembliesAndSetupDomain (1145ms)
-		LoadAssemblies (856ms)
+		CreateAndSetChildDomain (29ms)
+	RebuildCommonClasses (35ms)
+	RebuildNativeTypeToScriptingClass (9ms)
+	initialDomainReloadingComplete (55ms)
+	LoadAllAssembliesAndSetupDomain (592ms)
+		LoadAssemblies (564ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (422ms)
-			TypeCache.Refresh (363ms)
-				TypeCache.ScanAssembly (316ms)
-			ScanForSourceGeneratedMonoScriptInfo (41ms)
-			ResolveRequiredComponents (15ms)
-	FinalizeReload (1505ms)
+		AnalyzeDomain (156ms)
+			TypeCache.Refresh (150ms)
+				TypeCache.ScanAssembly (120ms)
+			ScanForSourceGeneratedMonoScriptInfo (3ms)
+			ResolveRequiredComponents (1ms)
+	FinalizeReload (1010ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (1233ms)
+		SetupLoadedEditorAssemblies (840ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (59ms)
-			SetLoadedEditorAssemblies (5ms)
+			InitializePlatformSupportModulesInManaged (34ms)
+			SetLoadedEditorAssemblies (6ms)
 			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (125ms)
-			ProcessInitializeOnLoadAttributes (597ms)
-			ProcessInitializeOnLoadMethodAttributes (443ms)
-			AfterProcessingInitializeOnLoad (3ms)
+			BeforeProcessingInitializeOnLoad (128ms)
+			ProcessInitializeOnLoadAttributes (236ms)
+			ProcessInitializeOnLoadMethodAttributes (432ms)
+			AfterProcessingInitializeOnLoad (4ms)
 			EditorAssembliesLoaded (1ms)
 		ExecutionOrderSort2 (0ms)
 		AwakeInstancesAfterBackupRestoration (7ms)
-Refreshing native plugins compatible for Editor in 15.50 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 9.03 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 4528 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 37 unused Assets / (60.8 KB). Loaded Objects now: 5054.
-Memory consumption went from 170.3 MB to 170.3 MB.
-Total: 18.208000 ms (FindLiveObjects: 0.838700 ms CreateObjectMapping: 0.313100 ms MarkObjects: 16.539100 ms  DeleteObjects: 0.515800 ms)
+Unloading 4533 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 31 unused Assets / (61.2 KB). Loaded Objects now: 5052.
+Memory consumption went from 158.3 MB to 158.2 MB.
+Total: 36.731500 ms (FindLiveObjects: 0.826500 ms CreateObjectMapping: 0.417300 ms MarkObjects: 23.327300 ms  DeleteObjects: 12.158300 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:CustomObjectIndexerAttribute: 9a22284fe3817be447336de3de66b15e -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
   custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
-  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
   custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Import Request.
-  Time since last request: 3428.088826 seconds.
-  path: Assets/_Project/Scripts/Gameplay/Features/CooldownFeature/Components
-  artifactKey: Guid(3e5655691ecc48058beb4167c54fc276) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/_Project/Scripts/Gameplay/Features/CooldownFeature/Components using Guid(3e5655691ecc48058beb4167c54fc276) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
- -> (artifact id: 'd3bfe0fba4d70c229fca840f15ac6ec6') in 0.018371 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 23.205558 seconds.
-  path: Assets/_Project/Scripts/Gameplay/Features/CooldownFeature/Components/CoodownFeature.Components.asmdef
-  artifactKey: Guid(b5e607c91d91b4f46be807e8485587e8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/_Project/Scripts/Gameplay/Features/CooldownFeature/Components/CoodownFeature.Components.asmdef using Guid(b5e607c91d91b4f46be807e8485587e8) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
- -> (artifact id: '361dec23f5212ca72ef3a89109a16424') in 0.000795 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 5.161675 seconds.
-  path: Assets/_Project/Scripts/Gameplay/Features/CooldownFeature/Components/CooldownFeature.Components.asmdef
-  artifactKey: Guid(b5e607c91d91b4f46be807e8485587e8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/_Project/Scripts/Gameplay/Features/CooldownFeature/Components/CooldownFeature.Components.asmdef using Guid(b5e607c91d91b4f46be807e8485587e8) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
- -> (artifact id: '6299862190f9e114ad3f36dab6fc0e86') in 0.000654 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 35.514542 seconds.
-  path: Assets/_Project/Scripts/Gameplay/Features/CooldownFeature/Components/CooldownFeature.Components.asmdef
-  artifactKey: Guid(b5e607c91d91b4f46be807e8485587e8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/_Project/Scripts/Gameplay/Features/CooldownFeature/Components/CooldownFeature.Components.asmdef using Guid(b5e607c91d91b4f46be807e8485587e8) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
- -> (artifact id: 'c36b7b550734bc60c688b4c4c22d4f14') in 0.000488 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Prepare
-Caller must complete domain reload
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory is not a mono symbol file
-- Loaded All Assemblies, in  1.307 seconds
-Native extension for WindowsStandalone target not found
-Native extension for Android target not found
-Native extension for WebGL target not found
-[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-Mono: successfully reloaded assembly
-[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-- Finished resetting the current domain, in  1.705 seconds
-Domain Reload Profiling: 3010ms
-	BeginReloadAssembly (350ms)
-		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (12ms)
-		BackupInstance (0ms)
-		ReleaseScriptingObjects (1ms)
-		CreateAndSetChildDomain (193ms)
-	RebuildCommonClasses (31ms)
-	RebuildNativeTypeToScriptingClass (10ms)
-	initialDomainReloadingComplete (38ms)
-	LoadAllAssembliesAndSetupDomain (876ms)
-		LoadAssemblies (904ms)
-		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (62ms)
-			TypeCache.Refresh (37ms)
-				TypeCache.ScanAssembly (9ms)
-			ScanForSourceGeneratedMonoScriptInfo (15ms)
-			ResolveRequiredComponents (8ms)
-	FinalizeReload (1706ms)
-		ReleaseScriptCaches (0ms)
-		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (802ms)
-			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (40ms)
-			SetLoadedEditorAssemblies (3ms)
-			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (88ms)
-			ProcessInitializeOnLoadAttributes (431ms)
-			ProcessInitializeOnLoadMethodAttributes (237ms)
-			AfterProcessingInitializeOnLoad (3ms)
-			EditorAssembliesLoaded (0ms)
-		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (5ms)
-Refreshing native plugins compatible for Editor in 14.27 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 4502 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 31 unused Assets / (34.7 KB). Loaded Objects now: 5057.
-Memory consumption went from 164.3 MB to 164.3 MB.
-Total: 16.788100 ms (FindLiveObjects: 0.708500 ms CreateObjectMapping: 0.125800 ms MarkObjects: 15.851400 ms  DeleteObjects: 0.101400 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:scripting/monoscript/fileName/CountdownMarker.cs: cde218fa00750b443a2ab7f99ff27cf6 -> 1b98225c43c82143fa0a6d3c4252034c
   custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:scripting/monoscript/fileName/CooldownInterval.cs: 5787ed2aaa750047edf37a0a6d3812e4 -> e32d91abd128edc3889bdfe16a2395ca
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:scripting/precompiled-assembly-types:CoodownFeature.Components: f376919895e70308d466d0d07cc5eda5 -> 
-  custom:CustomObjectIndexerAttribute: 9a22284fe3817be447336de3de66b15e -> 
-  custom:scripting/monoscript/fileName/CooldownExpiredEvent.cs: 0cd911e4c3a932658a7d7002df98d5c7 -> 01811c65001daeb57bc39e6bf9f234cf
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
   custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
-  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
-  custom:scripting/monoscript/fileName/Cooldown.cs: 5a431b46a0dae7c820e38f95ac0903fe -> 5bf19f543dd4826249a4af71ddc0c0b7
-  custom:scripting/monoscript/fileName/CooldownLockMarker.cs: b9c3e3dd801c976432d27439c872ae5c -> 10b3f9452be86d8c69c1afdfd9857751
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:scripting/monoscript/fileName/CooldownExpiredMarker.cs: f3a5b0ebc926191c7ec2ca2f18e297a8 -> cf0f16ef79dae6d1be3d7e827c99cc16
-  custom:scripting/monoscript/fileName/DeleteOnExpiredMarker.cs: 6f21a233e822136b3803051d32924b1f -> b7e1c8215fdaa21f088e5e079659e551
-  custom:scripting/monoscript/fileName/RefreshCooldownRequest.cs: c3a0e4e12f567688af0378c4d4089f17 -> c1e47a33df5fdb35dbe085818a9629a4
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:scripting/precompiled-assembly-types:Assembly-CSharp: b63aa863156bdca4393e67475cfc6285 -> b52551f3f2e57e43960f227041ad7e8a
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:CustomObjectIndexerAttribute: 9a22284fe3817be447336de3de66b15e -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
 ========================================================================
 Received Import Request.
-  Time since last request: 32.919337 seconds.
-  path: Assets/_Project/Scripts/Gameplay/Features/AnimalFeature/IntegrationFeatures/MovementFeature
-  artifactKey: Guid(eed7619352e742bb9168b595aa89337d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/_Project/Scripts/Gameplay/Features/AnimalFeature/IntegrationFeatures/MovementFeature using Guid(eed7619352e742bb9168b595aa89337d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
- -> (artifact id: '7df2a795120fe69123e914e961a740f1') in 0.003728 seconds
+  Time since last request: 936.557387 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/RewardFeature/IntegrationFeatures/AudioFeature
+  artifactKey: Guid(53ba1e5338a745e08bc51f16b620e6b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/Scripts/Gameplay/Features/RewardFeature/IntegrationFeatures/AudioFeature using Guid(53ba1e5338a745e08bc51f16b620e6b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'b9c4ee4e026e4cd44023a911dfdb2734') in 0.003041 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 0
 ========================================================================
 Received Import Request.
-  Time since last request: 0.899867 seconds.
-  path: Assets/_Project/Scripts/Gameplay/Features/MovementFeature
-  artifactKey: Guid(d02475f7f82342c89698398838d9cba3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/_Project/Scripts/Gameplay/Features/MovementFeature using Guid(d02475f7f82342c89698398838d9cba3) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
- -> (artifact id: 'a977e3a84a3fc8f37310c5c7eba85ca2') in 0.000777 seconds
+  Time since last request: 0.499743 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/PurchaseFeature/IntegrationFeatures/AudioFeature
+  artifactKey: Guid(35fea5346af74a5ea3fb59b2be8eaf22) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/Scripts/Gameplay/Features/PurchaseFeature/IntegrationFeatures/AudioFeature using Guid(35fea5346af74a5ea3fb59b2be8eaf22) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '1888b8eccef43fbd6cb657c523ed4468') in 0.000639 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 0
 ========================================================================
 Received Import Request.
-  Time since last request: 44.418936 seconds.
-  path: Assets/_Project/Scripts/Gameplay/Features/MovementFeature/Systems
-  artifactKey: Guid(15129cf3528748adaa124ef0f877f6f0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/_Project/Scripts/Gameplay/Features/MovementFeature/Systems using Guid(15129cf3528748adaa124ef0f877f6f0) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
- -> (artifact id: 'b2d4f54b9980d1484abee6265c023c51') in 0.000758 seconds
+  Time since last request: 0.026630 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/GameProgressFeature/IntegrationFeatures/AudioFeature
+  artifactKey: Guid(0ec64eac97e84cf594e5378c3b0a9663) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/Scripts/Gameplay/Features/GameProgressFeature/IntegrationFeatures/AudioFeature using Guid(0ec64eac97e84cf594e5378c3b0a9663) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '2ad94648a1a3c54074093b2309ef2fc8') in 0.000453 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 0
 ========================================================================
 Received Import Request.
-  Time since last request: 4.682717 seconds.
-  path: Assets/_Project/Scripts/Gameplay/Features/CooldownFeature/Components/Cooldown.cs
-  artifactKey: Guid(3d7711b2c8d2408bb267867cda6469bf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/_Project/Scripts/Gameplay/Features/CooldownFeature/Components/Cooldown.cs using Guid(3d7711b2c8d2408bb267867cda6469bf) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
- -> (artifact id: 'ddbece26ff8d3063a8d9b0d7077e6bd4') in 0.000531 seconds
+  Time since last request: 0.033607 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/VisualFeature/UIFeature/ButtonFeature/IntegrationFeatures/AudioFeature
+  artifactKey: Guid(99f99b5b5e2b4732bf623703d5448b4d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/Scripts/Gameplay/Features/VisualFeature/UIFeature/ButtonFeature/IntegrationFeatures/AudioFeature using Guid(99f99b5b5e2b4732bf623703d5448b4d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '7e02f54efccc5117da626427c627a7c2') in 0.000489 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 0
 ========================================================================
 Received Import Request.
-  Time since last request: 0.113535 seconds.
-  path: Assets/_Project/Scripts/Gameplay/Features/CooldownFeature/Components/CooldownExpiredEvent.cs
-  artifactKey: Guid(c10c56d095be4998a3100338ba4f02d5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/_Project/Scripts/Gameplay/Features/CooldownFeature/Components/CooldownExpiredEvent.cs using Guid(c10c56d095be4998a3100338ba4f02d5) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
- -> (artifact id: 'e39401a3132eca992121187d04241e49') in 0.000427 seconds
+  Time since last request: 0.948598 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/AudioBaseFeature/AudioFeature.cs
+  artifactKey: Guid(f879117c3bb14fd9845008beed1cb6a1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/Scripts/Gameplay/Features/AudioBaseFeature/AudioFeature.cs using Guid(f879117c3bb14fd9845008beed1cb6a1) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '61433b49d974b55d259097f55f4cf08b') in 0.000440 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 0
 ========================================================================
 Received Import Request.
-  Time since last request: 0.100698 seconds.
-  path: Assets/_Project/Scripts/Gameplay/Features/CooldownFeature/Components/CooldownExpiredMarker.cs
-  artifactKey: Guid(96c3553f648f4784bbafbeb07a2bc645) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/_Project/Scripts/Gameplay/Features/CooldownFeature/Components/CooldownExpiredMarker.cs using Guid(96c3553f648f4784bbafbeb07a2bc645) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
- -> (artifact id: '2eb2f3e68d0b3eb47261488897f4a212') in 0.000737 seconds
+  Time since last request: 115.965117 seconds.
+  path: Assets
+  artifactKey: Guid(00000000000000001000000000000000) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets using Guid(00000000000000001000000000000000) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'ae5280ad91af67e2a353905758f96678') in 0.000519 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 0
 ========================================================================
 Received Import Request.
-  Time since last request: 2.554701 seconds.
-  path: Assets/_Project/Scripts/Gameplay/Features/CooldownFeature/CooldownFeature.cs
-  artifactKey: Guid(f2b358ca8a974b25aab27245113b10a2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/_Project/Scripts/Gameplay/Features/CooldownFeature/CooldownFeature.cs using Guid(f2b358ca8a974b25aab27245113b10a2) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
- -> (artifact id: '743861399fe0a8948833f38b9d06b1b5') in 0.000506 seconds
+  Time since last request: 11.273684 seconds.
+  path: Assets/_Project
+  artifactKey: Guid(a3edab1e41b8b5345915f51aec75a959) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project using Guid(a3edab1e41b8b5345915f51aec75a959) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'a758902ac57d5fcef253cf2911cb185f') in 0.000469 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 0
 ========================================================================
 Received Import Request.
-  Time since last request: 3.979664 seconds.
-  path: Assets/_Project/Scripts/Gameplay/Features/CooldownFeature/Systems
-  artifactKey: Guid(9867d88e77474445a24f39a34d816267) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/_Project/Scripts/Gameplay/Features/CooldownFeature/Systems using Guid(9867d88e77474445a24f39a34d816267) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
- -> (artifact id: 'b8cba25d8a7c2e8771c8957522ff7f33') in 0.002840 seconds
+  Time since last request: 1.261237 seconds.
+  path: Assets/_Project/Scripts
+  artifactKey: Guid(5c84abdff07692f4196379bc5ab7db27) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/Scripts using Guid(5c84abdff07692f4196379bc5ab7db27) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '0af131ce6e8df84c2f155811986d4ba3') in 0.002277 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 0
 ========================================================================
 Received Import Request.
-  Time since last request: 0.954848 seconds.
-  path: Assets/_Project/Scripts/Gameplay/Features/CooldownFeature/Systems/CooldownFeature.Components.asmdef
-  artifactKey: Guid(f96e809caf65f6943b401ce49cca9934) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/_Project/Scripts/Gameplay/Features/CooldownFeature/Systems/CooldownFeature.Components.asmdef using Guid(f96e809caf65f6943b401ce49cca9934) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
- -> (artifact id: '596c8cf9ec119f13f460a63ee391cda0') in 0.000477 seconds
+  Time since last request: 0.916018 seconds.
+  path: Assets/_Project/Scripts/CodeGen
+  artifactKey: Guid(36757bf437624faeaf0b9e89fe35537b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/Scripts/CodeGen using Guid(36757bf437624faeaf0b9e89fe35537b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'd5d3f96902ea7da31026e19a88cbb458') in 0.002322 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 0
 ========================================================================
 Received Import Request.
-  Time since last request: 4.881926 seconds.
-  path: Assets/_Project/Scripts/Gameplay/Features/CooldownFeature/Systems/CooldownFeature.Systems.asmdef
-  artifactKey: Guid(f96e809caf65f6943b401ce49cca9934) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/_Project/Scripts/Gameplay/Features/CooldownFeature/Systems/CooldownFeature.Systems.asmdef using Guid(f96e809caf65f6943b401ce49cca9934) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
- -> (artifact id: '0fbb46ce2d17bf29e30e889069f3b6c2') in 0.000455 seconds
+  Time since last request: 1.189026 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features
+  artifactKey: Guid(4a9dd83de1a140748277a95e5f93bd8c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/Scripts/Gameplay/Features using Guid(4a9dd83de1a140748277a95e5f93bd8c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '675a29fe4df3bf4cc20edcf2017e2faa') in 0.000672 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 0
 ========================================================================
 Received Import Request.
-  Time since last request: 10.985394 seconds.
-  path: Assets/_Project/Scripts/Gameplay/Features/CooldownFeature/Systems/CooldownFeature.Systems.asmdef
-  artifactKey: Guid(f96e809caf65f6943b401ce49cca9934) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/_Project/Scripts/Gameplay/Features/CooldownFeature/Systems/CooldownFeature.Systems.asmdef using Guid(f96e809caf65f6943b401ce49cca9934) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
- -> (artifact id: 'e8dd22d3d88b14d906754a6cbb4bd07d') in 0.000385 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 15.342213 seconds.
-  path: Assets/_Project/Scripts/Gameplay/Features/CooldownFeature/Systems/CooldownFeature.Systems.asmdef
-  artifactKey: Guid(f96e809caf65f6943b401ce49cca9934) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/_Project/Scripts/Gameplay/Features/CooldownFeature/Systems/CooldownFeature.Systems.asmdef using Guid(f96e809caf65f6943b401ce49cca9934) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
- -> (artifact id: '6798ac83d6a5a50d12f70d37ddf2fec4') in 0.000791 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 63.358000 seconds.
-  path: Assets/_Project/Scripts/Gameplay/Features/CooldownFeature/Systems/CooldownFeature.Systems.asmdef
-  artifactKey: Guid(f96e809caf65f6943b401ce49cca9934) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/_Project/Scripts/Gameplay/Features/CooldownFeature/Systems/CooldownFeature.Systems.asmdef using Guid(f96e809caf65f6943b401ce49cca9934) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
- -> (artifact id: 'e24293b1fe3a60947f55df3569cd2212') in 0.002798 seconds
+  Time since last request: 2.549860 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/VisualFeature
+  artifactKey: Guid(1850c466ae7a40efa76a01d621660553) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/Scripts/Gameplay/Features/VisualFeature using Guid(1850c466ae7a40efa76a01d621660553) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'b6e941a6729c7d7340ce78be1936d8af') in 0.002220 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 0

@@ -28,9 +28,33 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.IntegrationFeature
         {
             [Inc] public readonly EcsPool<TileGeneratedAudioConfig> AudioConfigs;
         }
+        
+        private class AlgorithmsAspect : EcsAspectAuto
+        {
+            [Inc] public readonly EcsPool<GameFieldAlgorithmCfg> Algorithms;
+            [Opt] public readonly EcsPool<GameFieldGeneratedAudioConfig> GameFieldGeneratedAudioConfigs;
+            [Opt] public readonly EcsPool<TileGeneratedAudioConfig> TileGeneratedAudioConfigs;
+        }
 
         public void Run()
         {
+            foreach (int entity in _world.Where(out AlgorithmsAspect algorithmsAspect))
+            {
+                if (algorithmsAspect.GameFieldGeneratedAudioConfigs.Has(entity))
+                {
+                    algorithmsAspect.GameFieldGeneratedAudioConfigs.Add(entity).Value =
+                        algorithmsAspect.GameFieldGeneratedAudioConfigs.Read(entity).Value;
+                }
+
+                if (algorithmsAspect.TileGeneratedAudioConfigs.Has(entity))
+                {
+                    algorithmsAspect.TileGeneratedAudioConfigs.Add(entity).Value =
+                        algorithmsAspect.TileGeneratedAudioConfigs.Read(entity).Value;
+                }
+
+                _world.DelEntity(entity);
+            }
+
             foreach (int entity in _world.Where(out GameFieldGeneratedAspect aspect))
             {
                 Debug.Log("GameFieldAudio");

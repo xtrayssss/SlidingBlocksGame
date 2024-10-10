@@ -2,9 +2,10 @@
 using DCFApixels.DragonECS;
 using UnityEngine.Scripting.APIUpdating;
 
-namespace _Project.Scripts.Gameplay.Features.AudioFeature.Components
+namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.Components
 {
     [Serializable]
+    [MetaGroup("GameProgress")]
     public struct AudioButtonsStatus : IEcsComponent
     {
         public bool MusicIsOn;

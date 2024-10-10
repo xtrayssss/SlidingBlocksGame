@@ -2,7 +2,6 @@
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.PurchaseFeature.Components;
 using _Project.Scripts.Gameplay.Features.RewardFeature.Components;
-using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Systems;
 using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.Components

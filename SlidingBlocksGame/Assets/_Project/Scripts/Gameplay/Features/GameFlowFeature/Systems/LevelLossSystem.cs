@@ -1,4 +1,3 @@
-using _Project.Scripts.Gameplay.Features.AnimalFeature.Components;
 using _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.DestructionFeature.Components;
 using _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
@@ -6,17 +5,14 @@ using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
 using _Project.Scripts.Gameplay.Features.DestructionFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFieldFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFlowFeature.Components;
-using _Project.Scripts.Gameplay.Features.GameFlowFeature.IntegrationFeatures.AudioFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameOverTimerFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameOverTimerFeature.IntegrationFeatures.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameProgressFeature.Components;
 using _Project.Scripts.Gameplay.Features.PlayerFeature.Components;
 using _Project.Scripts.Gameplay.Features.PlayerFeature.InputFeature.Components;
-using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components;
 using DCFApixels.DragonECS;
 using PrimeTween;
 using UnityEngine;
-using ProgressUtils = _Project.Scripts.Gameplay.Utils.ProgressUtils;
 
 namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
 {
@@ -98,7 +94,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
             public class OnUpdate : EcsAspectAuto
             {
                 [Inc] public readonly EcsTagPool<GameOverTimerTag> GameLossTimerTag;
-                [Inc] public readonly EcsTagPool<ClosedMarker> ClosedMarker;
+                [Inc] public readonly EcsTagPool<GameOverTimerClosedMarker> GameOverTimerClosedMarker;
             }
         }
 

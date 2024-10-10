@@ -3,7 +3,6 @@ using _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.UIFea
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFlowFeature.Components;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
-using _Project.Scripts.Gameplay.Features.PurchaseFeature;
 using _Project.Scripts.Gameplay.Features.PurchaseFeature.Components;
 using _Project.Scripts.Gameplay.Features.PurchaseFeature.IntegrationFeatures.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.PurchaseFeature.Systems;
@@ -15,7 +14,7 @@ using UnityEngine;
 using Object = UnityEngine.Object;
 using ScrollSnap = _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Components.ScrollSnap;
 
-namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
+namespace _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Systems
 {
     public class GameScreenSystem : IEcsRun
     {

@@ -51,7 +51,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
             public class OnUpdate : EcsAspectAuto
             {
                 [Inc] public readonly EcsTagPool<GameOverTimerTag> GameLossTimerTag;
-                [Inc] public readonly EcsTagPool<ClosedMarker> ClosedMarker;
+                [Inc] public readonly EcsTagPool<GameOverTimerClosedMarker> GameOverTimerClosedMarker;
             }
         }
 
