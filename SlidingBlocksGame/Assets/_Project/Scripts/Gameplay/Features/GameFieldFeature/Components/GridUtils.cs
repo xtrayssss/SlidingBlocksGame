@@ -123,18 +123,10 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.Components
             {
                 int2 tempDimensions = dimensions + side * step;
 
-                Debug.Log(tempDimensions);
+                int bit = tempDimensions.x * gameField.EdgeSize + tempDimensions.y;
 
-                int bitPosition = tempDimensions.x * gameField.EdgeSize + tempDimensions.y;
-
-                Debug.Log(bitPosition);
-
-                if ((gameField.Center & (1 << bitPosition)) != 0)
-                {
-                    Debug.Log("HAS OBSTACLE " + bitPosition);
-
+                if ((gameField.Center & (1 << bit)) != 0)
                     return (tempDimensions.yx, true);
-                }
             } while (step++ != gameField.EdgeSize - 1);
 
             return default;

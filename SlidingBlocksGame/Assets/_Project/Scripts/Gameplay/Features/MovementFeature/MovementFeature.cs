@@ -11,7 +11,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature
         {
             builder
                 .AutoDelEntityTag<ApplyMovementStrategyRequest>()
-                .AddUnique(new DestinationCellSystem())
+                .AddUnique(new CalculateDestinationSystem())
                 //
                 .AddUnique(new CalculateMovementSpeedSystem())
                 .AutoDelTag<CalculateMovementSpeedRequest>()

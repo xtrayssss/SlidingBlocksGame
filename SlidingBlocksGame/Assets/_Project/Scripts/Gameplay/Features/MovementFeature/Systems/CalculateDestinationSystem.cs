@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFieldFeature.Components;
@@ -9,7 +10,7 @@ using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 {
-    public class DestinationCellSystem : IEcsRun
+    public class CalculateDestinationSystem : IEcsRun
     {
         [EcsInject] private EcsDefaultWorld _world;
 
@@ -45,15 +46,6 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
             [Inc] public readonly EcsPool<MovementStrategyCfg> MovementStrategyConfigs;
         }
 
-        private class SideAspect : EcsAspectAuto
-        {
-            [IncImplicit(typeof(SideTag))]
-            [Inc] public readonly EcsPool<SideAnimals> SideAnimals;
-
-            [Inc] public readonly EcsPool<MovementDirection> MovementDirections;
-            [Exc] public readonly EcsTagPool<SideProcessedMarker> SideProcessed;
-        }
-
         public void Run()
         {
             foreach (int click in _world.Where(out ClickAspect clickAspect))
@@ -66,7 +58,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 
                 ref readonly WorldPosition clickPosition = ref clickAspect.WorldPositions.Read(click);
 
-                ref readonly var gameField = ref gameFieldAspect.GameFields.Read(gameFieldID);
+                ref readonly GameField gameField = ref gameFieldAspect.GameFields.Read(gameFieldID);
 
                 float2 worldToGridPosition = GridUtils.GetCellPosition(clickPosition.Value, in gameField);
 
@@ -74,57 +66,37 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                     position: worldToGridPosition,
                     gameField: in gameField);
 
-                _world.Where(out AnimalAspect animalAspect);
-                
-                entlong side = default;
+                (int2 distance, bool success) minDistance = new ValueTuple<int2, bool>(int.MaxValue, false);
 
-                SideAspect sideAspect;
+                EcsGroup animals = EcsGroup.New(_world);
 
-                foreach (entlong t in _world.Where(out sideAspect).Longs)
+                AnimalAspect animalAspect;
+
+                foreach (int animal in _world.Where(out animalAspect))
                 {
-                    if (math.all(sideAspect.MovementDirections.Read(t.ID).Value == invertedSide))
-                    {
-                        side = t;
+                    ref readonly MovementDirection movementDirection = ref animalAspect.Directions.Read(animal);
 
-                        break;
-                    }
-                }
+                    if (!math.all(movementDirection.Value == invertedSide))
+                        continue;
 
-                if (!side.TryGetID(out int sideID) || sideAspect.SideAnimals.Get(sideID).Value.Count == 0)
-                    continue;
+                    Debug.Log("123123");
 
-                sideAspect.SideProcessed.Add(sideID);
-
-                ref SideAnimals sideAnimals = ref sideAspect.SideAnimals.Get(sideID);
-
-                bool hasNearest = false;
-                int2 minDistance = int.MaxValue;
-
-                foreach (int animal in sideAnimals.Value)
-                {
                     ref readonly CellPosition cellPosition = ref animalAspect.CellPositions.Read(animal);
 
-                    (int2 obstacle, bool success) nearest =
-                        GridUtils.GetNearestCentralObstacle(cellPosition.Value, invertedSide, in gameField);
+                    minDistance = FindMinDistance(
+                        invertedSide: invertedSide,
+                        gameField: in gameField,
+                        cellPosition: in cellPosition,
+                        minDistance: minDistance.distance);
 
-                    int2 convertedObstacle = nearest.obstacle + gameField.EdgeSize;
-
-                    int2 distance = convertedObstacle - cellPosition.Value;
-                    
-                    if (math.any(math.abs(minDistance) > math.abs(distance)) && nearest.success)
-                    {
-                        minDistance = distance;
-                        hasNearest = true;
-                    }
-
-                    Debug.Log(convertedObstacle);
+                    animals.Add(animal);
                 }
 
-                if (!hasNearest)
+                if (!minDistance.success)
                 {
-                    int2 max = sideAnimals.Value
+                    int2 max = animals
                         .Select(x => _world.GetPool<CellPosition>().Read(x).Value * invertedSide)
-                        .Aggregate((x, y) => math.max(x, y));
+                        .Aggregate(math.max);
 
                     int2 center;
 
@@ -135,7 +107,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 
                     int2 distance = center * math.abs(invertedSide) - math.abs(max);
 
-                    foreach (int animal in sideAnimals.Value)
+                    foreach (int animal in animals)
                     {
                         ref CellDestination cellDestination = ref animalAspect.CellDestination.Add(animal);
 
@@ -147,7 +119,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                             new float3(destination.x,
                                 _world.GetPool<GameObjectConnect>().Read(animal).Connect.transform.position.y,
                                 destination.z);
-                                                
+
                         GridUtils.SetCell(
                             position: cellDestination.Value,
                             gameField: ref gameFieldAspect.GameFields.Get(gameFieldID));
@@ -155,14 +127,18 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                 }
                 else
                 {
-                    minDistance -= invertedSide;
+                    Debug.Log("123");
 
-                    foreach (int animal in sideAnimals.Value)
+                    Debug.Log(minDistance.distance);
+
+                    minDistance.distance -= invertedSide;
+
+                    foreach (int animal in animals)
                     {
                         ref CellDestination cellDestination = ref animalAspect.CellDestination.Add(animal);
 
                         cellDestination.Value =
-                            animalAspect.CellPositions.Read(animal).Value + minDistance;
+                            animalAspect.CellPositions.Read(animal).Value + minDistance.distance;
 
                         float3 destination = GridUtils.GetWorldPosition(cellDestination.Value, in gameField);
 
@@ -171,7 +147,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                                 destination.x,
                                 _world.GetPool<GameObjectConnect>().Read(animal).Connect.transform.position.y,
                                 destination.z);
-                        
+
                         GridUtils.SetCell(
                             position: cellDestination.Value,
                             gameField: ref gameFieldAspect.GameFields.Get(gameFieldID));
@@ -180,13 +156,32 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 
                 foreach (int game in _world.Where(out GameAspect gameAspect))
                 {
-                    Debug.Log("GAMEEEEEEEEE");
-                    ref readonly MovementStrategyCfg movementStrategyCfg = ref gameAspect.MovementStrategyConfigs.Read(game);
+                    ref readonly MovementStrategyCfg movementStrategyCfg =
+                        ref gameAspect.MovementStrategyConfigs.Read(game);
                     int movementStrategy = _world.NewEntity(movementStrategyCfg.Value);
                     _world.GetPool<ApplyMovementStrategyRequest>().Add(movementStrategy);
-                    _world.GetPool<TargetEntities>().Add(movementStrategy).Value = sideAnimals.Value;
+                    _world.GetPool<TargetEntities>().Add(movementStrategy).Value = animals;
                 }
             }
+        }
+
+        private static (int2 distance, bool success) FindMinDistance(
+            int2 invertedSide,
+            in GameField gameField,
+            in CellPosition cellPosition,
+            int2 minDistance)
+        {
+            (int2 obstacle, bool success) nearest =
+                GridUtils.GetNearestCentralObstacle(cellPosition.Value, invertedSide, in gameField);
+
+            int2 convertedObstacle = nearest.obstacle + gameField.EdgeSize;
+
+            int2 distance = convertedObstacle - cellPosition.Value;
+
+            if (math.any(math.abs(minDistance) > math.abs(distance)) && nearest.success)
+                minDistance = distance;
+
+            return (minDistance, nearest.success);
         }
     }
 }

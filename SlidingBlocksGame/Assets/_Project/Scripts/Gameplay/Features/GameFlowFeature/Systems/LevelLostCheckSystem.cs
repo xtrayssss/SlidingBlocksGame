@@ -54,14 +54,8 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
 
             foreach (int entity in _world.Where(out LevelAspect aspect))
             {
-                EcsSpan ecsSpan = _world.Where(out AnimalAspect _);
-                
-                if (ecsSpan.Count != 0 && _world.Where(out MovingAnimals _).Count == 0)
+                if (_world.Where(out AnimalAspect _).Count != 0 && _world.Where(out MovingAnimals _).Count == 0)
                 {
-                    foreach (var VARIABLE in ecsSpan)
-                    {
-                        Debug.Log(VARIABLE);
-                    }
                     aspect.LevelLostEvent.Add(entity);
                     aspect.LevelLostMarker.Add(entity);
                 }

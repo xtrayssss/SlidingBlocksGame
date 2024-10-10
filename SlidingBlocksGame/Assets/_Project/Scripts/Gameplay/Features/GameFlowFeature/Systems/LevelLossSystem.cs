@@ -137,6 +137,8 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
         {
             foreach (int level in _world.Where(out LossStateAspect.OnEnter aspect))
             {
+                Debug.Log("LOSS");
+                
                 entlong strategy =
                     _world.NewEntityLong(aspect.DestructionAnimalStrategyConfigs.Read(level).Value);
 
@@ -149,8 +151,6 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
 
                 foreach (int timer in _world.Where(out GameLossTimerAspect gameLossTimerAspect))
                     gameLossTimerAspect.CooldownLockMarker.Add(timer);
-
-                Debug.Log("LOSS");
             }
 
             foreach (int level in _world.Where(out AnimalDestructedStateAspect.OnEnter _))
@@ -197,8 +197,6 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
                 
                 foreach (int level in _world.Where(out LevelAspect levelAspect))
                 {
-                    Debug.Log("CoinViewDestroyedStateAspect");
-
                     if (levelAspect.GameFieldGeneratedByAlgorithm.Read(level).Value.TryGetID(out int algorithmID))
                         levelAspect.GameFieldDestructRequest.Add(algorithmID);
                 }
@@ -208,8 +206,6 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
             {
                 foreach (int level in _world.Where(out LevelAspect levelAspect))
                 {
-                    Debug.Log("CoinViewDestroyedStateAspect");
-
                     if (levelAspect.GameFieldGeneratedByAlgorithm.Read(level).Value.TryGetID(out int algorithmID))
                         levelAspect.GameFieldDestructRequest.Add(algorithmID);
 
@@ -236,8 +232,6 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
 
             foreach (int level in _world.Where(out LevelClearedStateAspect.OnEnter _))
             {
-                Debug.Log("Cleared");
-
                 _world.DelEntity(level);
 
                 foreach (int screen in _world.Where(out GameScreenAspect gameScreenAspect))

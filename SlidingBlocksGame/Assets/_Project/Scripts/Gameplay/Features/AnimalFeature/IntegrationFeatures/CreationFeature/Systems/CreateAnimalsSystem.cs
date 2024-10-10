@@ -4,7 +4,6 @@ using _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.Creat
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.CreationFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFieldFeature.Components;
-using _Project.Scripts.Gameplay.Features.GameFieldFeature.Systems;
 using _Project.Scripts.Gameplay.Features.GameFlowFeature.Components;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
 using _Project.Scripts.Gameplay.Features.PlayerFeature.Components;
@@ -35,15 +34,7 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.C
             [Opt] public readonly EcsPool<BoundExtents> BoundsExtents;
             [Opt] public readonly EcsPool<MeshRendererRef> MeshRenderers;
         }
-
-        private class SideAspect : EcsAspectAuto
-        {
-            [Opt] public readonly EcsPool<MovementDirection> MovementDirection;
-            [Opt] public readonly EcsTagPool<SideTag> SideTag;
-            [Opt] public readonly EcsPool<SideAnimals> SideAnimals;
-            [Opt] public readonly EcsTagPool<LevelLifeTimeMarker> LevelLifeTime;
-        }
-
+        
         private class PlayerAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(PlayerTag))]
@@ -63,13 +54,6 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.C
                     AnimalAspect animalAspect = _world.GetAspect<AnimalAspect>();
 
                     CreateCreationStrategy(aspect, level);
-
-                    SideAspect sideAspect = _world.GetAspect<SideAspect>();
-
-                    (int2 direction, EcsGroup animals) left = CreateSide(sideAspect, GridUtils.LEFT);
-                    (int2 direction, EcsGroup animals) right = CreateSide(sideAspect, GridUtils.RIGHT);
-                    (int2 direction, EcsGroup animals) up = CreateSide(sideAspect, GridUtils.UP);
-                    (int2 direction, EcsGroup animals) down = CreateSide(sideAspect, GridUtils.DOWN);
 
                     foreach (ref GameField.AnimalsData animalData in animals)
                     {
@@ -94,21 +78,10 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.C
 
                         animalAspect.ActiveGameField.Add(animal.ID).Value = level.ToEntityLong(_world);
 
-                        Debug.Log(animalAspect.MeshRenderers.Read(animal.ID).Value.bounds.extents);
-                        
                         animalAspect.BoundsExtents.Add(animal.ID).Value =
                             animalAspect.MeshRenderers.Read(animal.ID).Value.bounds.extents;
 
                         _world.GetPool<CalculateMovementSpeedRequest>().Add(animal.ID);
-
-                        if (math.all(movementDirection.Value == right.direction))
-                            right.animals.Add(animal.ID);
-                        if (math.all(movementDirection.Value == left.direction))
-                            left.animals.Add(animal.ID);
-                        if (math.all(movementDirection.Value == up.direction))
-                            up.animals.Add(animal.ID);
-                        if (math.all(movementDirection.Value == down.direction))
-                            down.animals.Add(animal.ID);
                     }
                 }
             }
@@ -120,16 +93,6 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.C
             entlong strategy = _world.NewEntityLong(creationAnimalStrategyCfg.Value);
             
             _world.GetPool<ApplyCreationStrategyRequest>().Add(strategy.ID);
-        }
-
-        private (int2 direction, EcsGroup animals) CreateSide(SideAspect sideAspect, int2 direction)
-        {
-            int side = _world.NewEntity();
-            sideAspect.SideTag.Add(side);
-            sideAspect.LevelLifeTime.Add(side);
-
-            return (sideAspect.MovementDirection.Add(side).Value = direction,
-                sideAspect.SideAnimals.Add(side).Value = EcsGroup.New(_world));
         }
     }
 }

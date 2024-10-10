@@ -33,6 +33,7 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature
                 // destruction feature
                 .AutoDelTag<AnimalDestructedEvent>()
                 .AddUnique(new AnimalDestructionChainStrategySystem())
+                .AddUnique(new AnimalDeathSystem())
                 
                 // selection feature
                 .AutoDelEntityTag<SelectedAnimalUpdatedEvent>()
