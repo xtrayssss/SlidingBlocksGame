@@ -24,7 +24,7 @@ MonoBehaviour:
     RefIds:
     - rid: 499105128608694272
       type: {class: GameField/Template, ns: _Project.Scripts.Gameplay.Features.GameFieldFeature.Components,
-        asm: Assembly-CSharp}
+        asm: GameFieldFeature.Components}
       data:
         component:
           CellPrefab: {fileID: 5678163285392456267, guid: e5378788f6301a2428eb21e32a7e779b,
@@ -229,13 +229,13 @@ MonoBehaviour:
           BaseCellScaleY: 0.25
     - rid: 6454805113458655410
       type: {class: Scores/Template, ns: _Project.Scripts.Gameplay.Features.GameProgressFeature.Components,
-        asm: Assembly-CSharp}
+        asm: GameProgressFeature.Components}
       data:
         component:
           Value: 1
     - rid: 6454805247463260164
       type: {class: GameFieldAlgorithms/Template, ns: _Project.Scripts.Gameplay.Features.GameFieldFeature.Components,
-        asm: Assembly-CSharp}
+        asm: GameFieldFeature.Components}
       data:
         component:
           Value:
@@ -245,35 +245,35 @@ MonoBehaviour:
             - rid: 6454805386191437878
     - rid: 6454805247463260166
       type: {class: GameFieldAlgorithmCfg/Template, ns: _Project.Scripts.Gameplay.Features.GameFieldFeature.Components,
-        asm: Assembly-CSharp}
+        asm: GameFieldFeature.Components}
       data:
         component:
           Value: {fileID: 11400000, guid: fae2afb1b7a1b1b418cf43a39493aac0, type: 2}
     - rid: 6454805247463260175
-      type: {class: GameFieldGeneratedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
-        asm: Assembly-CSharp}
+      type: {class: GameFieldGeneratedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.GameFieldFeature.IntegrationFeatures.AudioFeature.Components,
+        asm: GameFieldFeature.AudioFeature.Components}
       data:
         component:
           Value: {fileID: 11400000, guid: f857536a371faf54fbd1e4c76e8602f4, type: 2}
     - rid: 6454805386191437878
-      type: {class: TileGeneratedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
-        asm: Assembly-CSharp}
+      type: {class: TileGeneratedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.GameFieldFeature.IntegrationFeatures.AudioFeature.Components,
+        asm: GameFieldFeature.AudioFeature.Components}
       data:
         component:
           Value: {fileID: 11400000, guid: 9e7d2bc0efe5f544392d1a9544a560f5, type: 2}
     - rid: 8499802296898551899
-      type: {class: DestructionAnimalStrategyCfg/Template, ns: _Project.Scripts.Gameplay.Features.AnimalFeature.Components,
-        asm: Assembly-CSharp}
+      type: {class: DestructionAnimalStrategyCfg/Template, ns: _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.DestructionFeature.Components,
+        asm: AnimalFeature.DestructionFeature.Components}
       data:
         component:
           Value: {fileID: 11400000, guid: 4f8fd26f9934ef849be79007e676bf1a, type: 2}
     - rid: 8499802340583015395
-      type: {class: CreationAnimalStrategyCfg/Template, ns: _Project.Scripts.Gameplay.Features.AnimalFeature.Components,
-        asm: Assembly-CSharp}
+      type: {class: CreationAnimalStrategyCfg/Template, ns: _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.CreationFeature.Components,
+        asm: AnimalFeature.CreationFeature.Components}
       data:
         component:
           Value: {fileID: 11400000, guid: ae77d2d66bba6934ea24d0fe74b8d979, type: 2}
     - rid: 8499802343622050639
       type: {class: LevelTag/Template, ns: _Project.Scripts.Gameplay.Features.GameFlowFeature.Components,
-        asm: Assembly-CSharp}
+        asm: GameFlowFeature.Components}
       data: {}

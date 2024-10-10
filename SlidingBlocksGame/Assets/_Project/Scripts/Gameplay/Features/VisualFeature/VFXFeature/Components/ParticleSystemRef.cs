@@ -10,8 +10,10 @@ namespace _Project.Scripts.Gameplay.Features.VisualFeature.VFXFeature.Components
     {
         public ParticleSystem Value;
 
-		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.CommonFeature.Components", sourceClassName: "ParticleSystemRef/Template", sourceAssembly: "Assembly-CSharp")]
-		private class Template : ComponentTemplate<ParticleSystemRef>
+        [MovedFrom(autoUpdateAPI: false,
+            sourceNamespace: "_Project.Scripts.Gameplay.Features.VisualFeature.VFXFeature.Components",
+            sourceClassName: "ParticleSystemRef/Template", sourceAssembly: "Assembly-CSharp")]
+        private class Template : ComponentTemplate<ParticleSystemRef>
         {
         }
     }

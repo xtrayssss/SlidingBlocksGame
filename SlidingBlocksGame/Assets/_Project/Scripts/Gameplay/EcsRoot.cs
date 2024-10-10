@@ -6,10 +6,12 @@ using _Project.Scripts.Gameplay.Features.DestructionFeature;
 using _Project.Scripts.Gameplay.Features.GameFieldFeature;
 using _Project.Scripts.Gameplay.Features.GameFlowFeature;
 using _Project.Scripts.Gameplay.Features.GameFlowFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameOverTimerFeature;
 using _Project.Scripts.Gameplay.Features.GameProgressFeature;
 using _Project.Scripts.Gameplay.Features.MovementFeature;
 using _Project.Scripts.Gameplay.Features.PlayerFeature;
 using _Project.Scripts.Gameplay.Features.PurchaseFeature;
+using _Project.Scripts.Gameplay.Features.RateUsFeature;
 using _Project.Scripts.Gameplay.Features.RewardFeature;
 using _Project.Scripts.Gameplay.Features.VisualFeature;
 using _Project.Scripts.Infrastructure;
@@ -17,7 +19,6 @@ using DCFApixels.DragonECS;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using YG;
-
 
 namespace _Project.Scripts.Gameplay
 {
@@ -45,13 +46,15 @@ namespace _Project.Scripts.Gameplay
                 .AddModule(new GameFlowFeature(_gameCfg))
                 .AddModule(new PlayerFeature())
                 .AddModule(new CreationFeature())
-                .AddModule(new GameFieldFeature(coroutineRunner: this))
                 .AddModule(new AnimalFeature())
                 .AddModule(new MovementFeature())
+                .AddModule(new GameFieldFeature(coroutineRunner: this))
                 .AddModule(new DestructionFeature())
                 .AddModule(new PurchaseFeature())
+                .AddModule(new RateUsFeature())
                 .AddModule(new GameProgressFeature())
                 .AddModule(new RewardFeature())
+                .AddModule(new GameOverTimerFeature())
                 .AddModule(new VisualFeature())
                 .AddModule(new CooldownFeature())
                 .AddModule(new AudioFeature())

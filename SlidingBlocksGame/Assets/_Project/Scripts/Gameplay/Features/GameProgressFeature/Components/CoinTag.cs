@@ -9,7 +9,7 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.Components
     public struct CoinTag : IEcsTagComponent
     {
         [MovedFrom(autoUpdateAPI: false,
-            sourceNamespace: "_Project.Scripts.Gameplay.Features.CollectFeature.Components",
+            sourceNamespace: "_Project.Scripts.Gameplay.Features.GameProgressFeature.Components",
             sourceClassName: "CoinTag/Template", sourceAssembly: "Assembly-CSharp")]
         private sealed class Template : TagComponentTemplate<CoinTag>
         {

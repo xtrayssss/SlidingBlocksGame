@@ -4,6 +4,7 @@ using _Project.Scripts.Gameplay.Features.GameFlowFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameOverTimerFeature.Components;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
 using DCFApixels.DragonECS;
+using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
 {
@@ -53,8 +54,14 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
 
             foreach (int entity in _world.Where(out LevelAspect aspect))
             {
-                if (_world.Where(out AnimalAspect _).Count != 0 && _world.Where(out MovingAnimals _).Count == 0)
+                EcsSpan ecsSpan = _world.Where(out AnimalAspect _);
+                
+                if (ecsSpan.Count != 0 && _world.Where(out MovingAnimals _).Count == 0)
                 {
+                    foreach (var VARIABLE in ecsSpan)
+                    {
+                        Debug.Log(VARIABLE);
+                    }
                     aspect.LevelLostEvent.Add(entity);
                     aspect.LevelLostMarker.Add(entity);
                 }

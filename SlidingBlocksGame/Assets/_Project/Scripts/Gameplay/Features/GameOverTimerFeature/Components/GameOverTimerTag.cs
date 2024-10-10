@@ -5,6 +5,7 @@ using UnityEngine.Scripting.APIUpdating;
 namespace _Project.Scripts.Gameplay.Features.GameOverTimerFeature.Components
 {
     [Serializable]
+    [MetaGroup("GameOverTimer")]
     public struct GameOverTimerTag : IEcsTagComponent
     {
         [MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.CommonFeature.Components",

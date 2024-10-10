@@ -5,6 +5,7 @@ using _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.Creat
 using _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.DestructionFeature.Components;
 using _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.DestructionFeature.Systems;
 using _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.MovementFeature.Systems;
+using _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.UIFeature.Systems;
 using _Project.Scripts.Gameplay.Features.AnimalFeature.Systems;
 using _Project.Scripts.Gameplay.Features.AudioFeature.Systems;
@@ -39,7 +40,8 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature
                 .AutoDelEntityComponent<UpdateSelectedAnimalRequest>()
                 
                 // ui feature
-                .AddUnique(new DisplayAnimalPurchaseWindowSystem())
+                .AddUnique(new DisplayAnimalsShopWindowSystem())
+                .AutoDelTag<AnimalPurchaseWindowClosedEvent>()
                 .AddUnique(new CloseAnimalPurchaseWindowSystem())
                 
                 // audio feature

@@ -52,7 +52,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.Components
         }
 
         [MovedFrom(autoUpdateAPI: false,
-            sourceNamespace: "_Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Components",
+            sourceNamespace: "_Project.Scripts.Gameplay.Features.GameFieldFeature.Components",
             sourceClassName: "GameField/Template", sourceAssembly: "Assembly-CSharp")]
         public class Template : ComponentTemplate<GameField>
         {

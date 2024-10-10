@@ -26,8 +26,6 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
     - rid: 3543309369267716916
       type: {class: Renderer3DCameraPrefab/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components,
         asm: UIFeature.Components}
@@ -35,6 +33,26 @@ MonoBehaviour:
         component:
           Value: {fileID: 4153145025860640308, guid: 7f72679fce06cf44b84b37caef3f1033,
             type: 3}
+    - rid: 3543309501591453703
+      type: {class: VolumeEffectTag/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+        asm: AudioFeature.Components}
+      data: {}
+    - rid: 3543309501591453704
+      type: {class: AudioTypeRef/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+        asm: AudioFeature.Components}
+      data:
+        component:
+          Value: 4
+    - rid: 3543309501591453705
+      type: {class: VolumeEffectTag/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+        asm: AudioFeature.Components}
+      data: {}
+    - rid: 3543309501591453706
+      type: {class: AudioTypeRef/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+        asm: AudioFeature.Components}
+      data:
+        component:
+          Value: 4
     - rid: 6454805110216720499
       type: {class: CoinPrefab/Template, ns: _Project.Scripts.Gameplay.Features.GameProgressFeature.Components,
         asm: GameProgressFeature.Components}
@@ -55,19 +73,13 @@ MonoBehaviour:
         component:
           Value:
             _components:
-            - rid: 6454805541227593742
-            - rid: 6454805541227593737
+            - rid: 3543309501591453703
+            - rid: 3543309501591453704
             - rid: 6454805567168053253
             - rid: 6454805567168053252
             - rid: 6454805567168053254
             - rid: 6454805567168053255
             - rid: 6454805567168053256
-    - rid: 6454805541227593737
-      type: {class: AudioTypeRef/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: 4
     - rid: 6454805541227593738
       type: {class: AudioEffectInOnLevelExit/Template, ns: _Project.Scripts.Gameplay.Features.GameFlowFeature.IntegrationFeatures.AudioFeature.Components,
         asm: GameFlowFeature.AudioFeature.Components}
@@ -75,25 +87,13 @@ MonoBehaviour:
         component:
           Value:
             _components:
-            - rid: 6454805541227593741
-            - rid: 6454805541227593740
+            - rid: 3543309501591453705
+            - rid: 3543309501591453706
             - rid: 6454805567168053249
             - rid: 6454805567168053248
             - rid: 6454805567168053251
             - rid: 6454805567168053250
             - rid: 6454805567168053257
-    - rid: 6454805541227593740
-      type: {class: AudioTypeRef/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: 4
-    - rid: 6454805541227593741
-      type: {class: VolumeEffectTag/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
-        asm: Assembly-CSharp}
-    - rid: 6454805541227593742
-      type: {class: VolumeEffectTag/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
-        asm: Assembly-CSharp}
     - rid: 6454805567168053248
       type: {class: TweenDuration/Template, ns: _Project.Scripts.Gameplay.Features.TweenFeature.Components,
         asm: TweenFeature.Components}

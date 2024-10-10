@@ -7,7 +7,7 @@ using UnityEngine.Scripting.APIUpdating;
 namespace _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.UIFeature.Components
 {
     [Serializable]
-    [MetaGroup("UI")]
+    [MetaGroup("AnimalFeature/UI")]
     public struct AnimalsShopWindow : IEcsComponent
     {
         public Sequence OpenCloseTween;

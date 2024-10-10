@@ -156,28 +156,28 @@ MonoBehaviour:
     RefIds:
     - rid: 3543309456785801218
       type: {class: LevelLifeTimeMarker/Template, ns: _Project.Scripts.Gameplay.Features.GameFlowFeature.Components,
-        asm: Assembly-CSharp}
+        asm: GameFlowFeature.Components}
       data: {}
     - rid: 3543309456785801219
-      type: {class: CollectedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioBaseFeature.Components,
-        asm: Assembly-CSharp}
+      type: {class: CoinCollectedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.GameProgressFeature.IntegrationFeatures.AudioFeature.Components,
+        asm: GameProgressFeature.AudioFeature.Components}
       data:
         component:
           <Value>k__BackingField: {fileID: 11400000, guid: edabb594db669ea4bbd99e8a85f27c3d,
             type: 2}
     - rid: 3543309456785801220
       type: {class: CoinTag/Template, ns: _Project.Scripts.Gameplay.Features.GameProgressFeature.Components,
-        asm: Assembly-CSharp}
+        asm: GameProgressFeature.Components}
       data: {}
     - rid: 3543309456785801221
       type: {class: Coins/Template, ns: _Project.Scripts.Gameplay.Features.GameProgressFeature.Components,
-        asm: Assembly-CSharp}
+        asm: GameProgressFeature.Components}
       data:
         component:
           Value: 15
     - rid: 6454805130946282389
       type: {class: MeshRendererRef/Template, ns: _Project.Scripts.Gameplay.Features.CommonFeature.Components,
-        asm: Assembly-CSharp}
+        asm: CommonFeature.Components}
       data:
         component:
           Value: {fileID: 23180863190121152}

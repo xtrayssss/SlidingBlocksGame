@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.GameOverTimerFeature.IntegrationFeatures.UIFeature.Systems
 {
-    public class DispalyGameOverUITimerSystem : IEcsRun
+    public class DisplayGameOverTimerSystem : IEcsRun
     {
         [EcsInject] private readonly EcsDefaultWorld _world;
 

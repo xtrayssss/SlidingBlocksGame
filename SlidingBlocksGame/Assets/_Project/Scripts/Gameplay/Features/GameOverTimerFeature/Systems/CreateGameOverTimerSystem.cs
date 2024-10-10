@@ -9,16 +9,16 @@ namespace _Project.Scripts.Gameplay.Features.GameOverTimerFeature.Systems
     {
         [EcsInject] private readonly EcsDefaultWorld _world;
 
+        private class CreateRequestAspect : EcsAspectAuto
+        {
+            [Inc] public readonly EcsTagPool<CreateGameOverTimerRequest> CreateGameOverTimerRequest;
+        }
+
         private class TimerAspect : EcsAspectAuto
         {
             [Opt] public readonly EcsTagPool<RefreshCooldownRequest> Refresh;
             [Opt] public readonly EcsTagPool<LevelLifeTimeMarker> LevelLifeTime;
             [Opt] public readonly EcsTagPool<GameOverTimerCreatedEvent> GameOverTimerCreatedEvent;
-        }
-
-        private class CreateRequestAspect : EcsAspectAuto
-        {
-            [Inc] public readonly EcsTagPool<CreateGameOverTimerRequest> CreateGameOverTimerRequest;
         }
 
         public void Run()
@@ -31,6 +31,7 @@ namespace _Project.Scripts.Gameplay.Features.GameOverTimerFeature.Systems
 
                 timerAspect.Refresh.Add(timer.ID);
                 timerAspect.LevelLifeTime.Add(timer.ID);
+                timerAspect.GameOverTimerCreatedEvent.Add(timer.ID);
             }
         }
     }

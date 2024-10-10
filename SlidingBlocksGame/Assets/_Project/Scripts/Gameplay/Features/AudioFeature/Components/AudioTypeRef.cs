@@ -21,7 +21,7 @@ namespace _Project.Scripts.Gameplay.Features.AudioFeature.Components
             SFX = SFX_NORMAL | SFX_SPECIAL
         }
 
-        [MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.AudioBaseFeature.Components",
+        [MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.AudioFeature.Components",
             sourceClassName: "AudioTypeRef/Template", sourceAssembly: "Assembly-CSharp")]
         private sealed class Template : ComponentTemplate<AudioTypeRef>
         {

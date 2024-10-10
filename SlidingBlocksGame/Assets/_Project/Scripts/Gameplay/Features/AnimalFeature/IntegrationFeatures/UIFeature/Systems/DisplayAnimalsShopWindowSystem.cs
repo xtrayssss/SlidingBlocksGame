@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.UIFeature.Systems
 {
-    public class DisplayAnimalPurchaseWindowSystem : IEcsRun
+    public class DisplayAnimalsShopWindowSystem : IEcsRun
     {
         [EcsInject] private readonly EcsDefaultWorld _world;
 
@@ -21,7 +21,7 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.U
         private class AnimalsShopWindowAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(AnimalsShopWindowTag))]
-            [IncImplicit(typeof(AnimalPurchaseWindowClosedMarker))]
+            [IncImplicit(typeof(AnimalsShopWindowClosedMarker))]
             [Inc] public readonly EcsPool<GameObjectConnect> GameObjectConnects;
 
             [Inc] public readonly EcsPool<AnimalsShopWindow> AnimalsShopWindows;
@@ -43,7 +43,7 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.U
                     ref AnimalsShopWindow animalsShopWindow =
                         ref animalsShopWindowAspect.AnimalsShopWindows.Get(window);
 
-                    _world.GetPool<AnimalPurchaseWindowClosedMarker>().Del(window);
+                    _world.GetPool<AnimalsShopWindowClosedMarker>().Del(window);
 
                     ref ScrollSnap scrollSnap = ref animalsShopWindowAspect.ScrollSnap.Get(window);
 

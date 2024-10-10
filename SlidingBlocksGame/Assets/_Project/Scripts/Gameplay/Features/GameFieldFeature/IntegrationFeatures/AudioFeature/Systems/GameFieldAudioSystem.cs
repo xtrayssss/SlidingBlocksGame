@@ -34,21 +34,29 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.IntegrationFeature
             [Opt] public readonly EcsPool<GameFieldGeneratedAudioConfig> GameFieldGeneratedAudioConfigs;
             [Opt] public readonly EcsPool<TileGeneratedAudioConfig> TileGeneratedAudioConfigs;
         }
+        
+        private class  GameFieldAspect : EcsAspectAuto
+        {
+            [Inc] public readonly EcsPool<GameField> GameFields;
+        }
 
         public void Run()
         {
             foreach (int entity in _world.Where(out AlgorithmsAspect algorithmsAspect))
             {
-                if (algorithmsAspect.GameFieldGeneratedAudioConfigs.Has(entity))
+                foreach (int gameField in _world.Where(out GameFieldAspect _))
                 {
-                    algorithmsAspect.GameFieldGeneratedAudioConfigs.Add(entity).Value =
-                        algorithmsAspect.GameFieldGeneratedAudioConfigs.Read(entity).Value;
-                }
+                    if (algorithmsAspect.GameFieldGeneratedAudioConfigs.Has(entity))
+                    {
+                        algorithmsAspect.GameFieldGeneratedAudioConfigs.Add(gameField).Value =
+                            algorithmsAspect.GameFieldGeneratedAudioConfigs.Read(entity).Value;
+                    }
 
-                if (algorithmsAspect.TileGeneratedAudioConfigs.Has(entity))
-                {
-                    algorithmsAspect.TileGeneratedAudioConfigs.Add(entity).Value =
-                        algorithmsAspect.TileGeneratedAudioConfigs.Read(entity).Value;
+                    if (algorithmsAspect.TileGeneratedAudioConfigs.Has(entity))
+                    {
+                        algorithmsAspect.TileGeneratedAudioConfigs.Add(gameField).Value =
+                            algorithmsAspect.TileGeneratedAudioConfigs.Read(entity).Value;
+                    }
                 }
 
                 _world.DelEntity(entity);

@@ -30,7 +30,7 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature
                 .AddUnique(new DisplayCoinsSystem())
                 .AddUnique(new DisplayScoresSystem())
                 // audio feature
-                .AddAudioSystem<CoinCollectedEvent, CollectedAudioConfig>();
+                .AddAudioSystem<CoinCollectedEvent, CoinCollectedAudioConfig>();
         }
     }
 }

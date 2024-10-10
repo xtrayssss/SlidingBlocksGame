@@ -8,13 +8,13 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.IntegrationFeat
 {
     [Serializable]
     [MetaGroup("GameProgress/Audio")]
-    public struct CollectedAudioConfig : IEcsAudioConfig
+    public struct CoinCollectedAudioConfig : IEcsAudioConfig
     {
         [field: SerializeField] public ScriptableEntityTemplate Value { get; set; }
 
-        [MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.AudioFeature.Components",
+        [MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.AudioBaseFeature.Components",
             sourceClassName: "CollectedAudioConfig/Template", sourceAssembly: "Assembly-CSharp")]
-        private sealed class Template : ComponentTemplate<CollectedAudioConfig>
+        private sealed class Template : ComponentTemplate<CoinCollectedAudioConfig>
         {
         }
     }

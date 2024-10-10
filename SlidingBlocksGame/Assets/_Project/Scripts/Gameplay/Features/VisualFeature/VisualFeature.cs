@@ -8,6 +8,7 @@ namespace _Project.Scripts.Gameplay.Features.VisualFeature
         public void Import(EcsPipeline.Builder builder)
         {
             builder
+                .AddModule(new CameraFeature.CameraFeature())
                 .AddModule(new VfxFeature())
                 .AddModule(new UIFeature.UIFeature());
         }

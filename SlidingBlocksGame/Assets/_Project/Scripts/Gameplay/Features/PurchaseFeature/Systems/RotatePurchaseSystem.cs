@@ -35,14 +35,6 @@ namespace _Project.Scripts.Gameplay.Features.PurchaseFeature.Systems
             }
         }
 
-        private class ScrollClosedState : EcsAspectAuto
-        {
-            public class OnEnter : EcsAspectAuto
-            {
-                [Inc] public readonly EcsPool<ScrollSnap> ScrollSnaps;
-            }
-        }
-
         public void Run()
         {
             foreach (int entity in _world.Where(out PurchaseSnappedStateAspect.OnEnter aspect))
@@ -62,10 +54,6 @@ namespace _Project.Scripts.Gameplay.Features.PurchaseFeature.Systems
                     cycles: -1,
                     cycleMode: CycleMode.Incremental);
 
-                rotationTween.Value = Tween
-                    .Delay(4f)
-                    .OnComplete(() => Debug.Log("DONE"));
-
                 _world.GetPool<ViewUpdatedMarker>().TryAdd(entity);
             }
 
@@ -74,9 +62,7 @@ namespace _Project.Scripts.Gameplay.Features.PurchaseFeature.Systems
                 ref RotationTween rotationTween = ref aspect.Factors.Get(entity);
 
                 ref PhysicView physicView = ref aspect.PhysicViews.Get(entity);
-
-                rotationTween.Value.Stop();
-
+                
                 rotationTween.Value.Stop();
 
                 rotationTween.Value = Tween.LocalEulerAngles(
@@ -86,29 +72,6 @@ namespace _Project.Scripts.Gameplay.Features.PurchaseFeature.Systems
                         duration: 1f,
                         ease: Ease.Linear)
                     .OnComplete(() => _world.GetPool<ViewUpdatedMarker>().TryDel(entity));
-            }
-
-            foreach (int entity in _world.Where(out ScrollClosedState.OnEnter aspect))
-            {
-                ref ScrollSnap scrollSnap = ref aspect.ScrollSnaps.Get(entity);
-
-                if (!scrollSnap.Selected.TryGetID(out int selectedID))
-                    continue;
-
-                ref RotationTween rotationTween = ref _world.GetPool<RotationTween>().Get(selectedID);
-                ref PhysicView physicView = ref _world.GetPool<PhysicView>().Get(selectedID);
-
-                rotationTween.Value.Stop();
-
-                physicView.Value.transform.eulerAngles = new Vector3(0, 0, 0);
-                //
-                // rotationTween.Tween = Tween.LocalEulerAngles(
-                //         target: physicView.Value.transform,
-                //         startValue: physicView.Value.transform.eulerAngles,
-                //         endValue: new Vector3(0, 0, 0),
-                //         duration: 1f,
-                //         ease: Ease.Linear)
-                //     .OnComplete(() => _world.GetPool<ViewUpdatedMarker>().TryDel(entity));
             }
         }
     }

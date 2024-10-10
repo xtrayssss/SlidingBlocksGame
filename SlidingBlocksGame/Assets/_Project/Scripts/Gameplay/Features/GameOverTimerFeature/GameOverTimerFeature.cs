@@ -15,17 +15,19 @@ namespace _Project.Scripts.Gameplay.Features.GameOverTimerFeature
         public void Import(EcsPipeline.Builder builder)
         {
             builder
+                // logic
                 .AutoDelTag<GameOverTimerCreatedEvent>()
                 .AddUnique(new CreateGameOverTimerSystem())
                 .AutoDelTag<CreateGameOverTimerRequest>()
+
                 // ui feature
+                .AutoDelTag<GameOverTimerOpenedEvent>()
+                .AddUnique(new DisplayGameOverTimerSystem())
+                .AddUnique(new DisplayTimerProgressSystem())
+                //
                 .AutoDelTag<GameOverTimerClosedEvent>()
                 .AddUnique(new CloseGameOverTimerSystem())
                 .AutoDelTag<CloseGameOverTimerRequest>()
-                //
-                .AutoDelTag<GameOverTimerOpenedEvent>()
-                .AddUnique(new DispalyGameOverUITimerSystem())
-                .AddUnique(new DisplayTimerProgressSystem())
                 // audio feature
                 .AddAudioSystem<CooldownTickEvent, GameOverTimerTickAudioConfig>();
         }

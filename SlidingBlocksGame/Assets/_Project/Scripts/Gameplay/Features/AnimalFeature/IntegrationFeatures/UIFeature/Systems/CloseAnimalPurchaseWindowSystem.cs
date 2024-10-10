@@ -22,7 +22,7 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.U
         private class AnimalsShopWindowAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(AnimalsShopWindowTag))]
-            [ExcImplicit(typeof(AnimalPurchaseWindowClosedMarker))]
+            [ExcImplicit(typeof(AnimalsShopWindowClosedMarker))]
             [Inc] public readonly EcsPool<GameObjectConnect> GameObjectConnects;
 
             [Inc] public readonly EcsPool<ScrollSnap> ScrollSnap;
@@ -44,7 +44,7 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.U
                     ref AnimalsShopWindow animalsShopWindow = ref windowAspect.AnimalsShopWindows.Get(window);
                     ref ScrollSnap scrollSnap = ref windowAspect.ScrollSnap.Get(window);
 
-                    _world.GetPool<AnimalPurchaseWindowClosedMarker>().Add(window);
+                    _world.GetPool<AnimalsShopWindowClosedMarker>().Add(window);
 
                     scrollSnap.OpenCloseTween.Stop();
 

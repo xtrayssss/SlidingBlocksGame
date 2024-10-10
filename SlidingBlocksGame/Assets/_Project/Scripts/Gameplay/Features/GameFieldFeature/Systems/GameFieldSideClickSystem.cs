@@ -43,9 +43,10 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.Systems
                         !GridUtils.IsWithinCenter(gridPosition, in gameField) &&
                         GridUtils.IsInCross(in gameField, gridPosition))
                     {
-                        _world.GetPool<WorldPosition>().Add(click).Value = clickPosition;
-                        _world.GetPool<ActiveGameField>().Add(click).Value = entity.ToEntityLong(_world);
-                        _world.GetPool<SideClickedMarker>().Add(click);
+                        int sideClick = _world. NewEntity();
+                        _world.GetPool<SideClickedEvent>().Add(sideClick);
+                        _world.GetPool<WorldPosition>().Add(sideClick).Value = clickPosition;
+                        _world.GetPool<ActiveGameField>().Add(sideClick).Value = entity.ToEntityLong(_world);
                     }
                 }
             }
