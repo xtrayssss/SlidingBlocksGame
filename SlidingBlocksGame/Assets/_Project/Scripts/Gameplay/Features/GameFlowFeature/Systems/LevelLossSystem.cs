@@ -138,7 +138,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
             foreach (int level in _world.Where(out LossStateAspect.OnEnter aspect))
             {
                 Debug.Log("LOSS");
-                
+
                 entlong strategy =
                     _world.NewEntityLong(aspect.DestructionAnimalStrategyConfigs.Read(level).Value);
 
@@ -194,7 +194,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
             {
                 foreach (int timer in _world.Where(out GameLossTimerAspect timerAspect))
                     timerAspect.Close.Add(timer);
-                
+
                 foreach (int level in _world.Where(out LevelAspect levelAspect))
                 {
                     if (levelAspect.GameFieldGeneratedByAlgorithm.Read(level).Value.TryGetID(out int algorithmID))
@@ -210,10 +210,10 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
                         levelAspect.GameFieldDestructRequest.Add(algorithmID);
 
                     _world.GetPool<CoinDestroyedMarker>().Del(level);
-
-                    foreach (int timer in _world.Where(out GameLossTimerAspect timerAspect))
-                        timerAspect.Close.Add(timer);
                 }
+
+                foreach (int timer in _world.Where(out GameLossTimerAspect timerAspect))
+                    timerAspect.Close.Add(timer);
             }
 
             foreach (int level in _world.Where(out DestructedGameFieldStateAspect.OnUpdate _))

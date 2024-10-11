@@ -12,7 +12,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.Components
         public static readonly int2 LEFT = new int2(-1, 0);
         public static readonly int2 RIGHT = new int2(1, 0);
 
-        public static bool IsWithinCenter(float2 position, in GameField gameField)
+        public static bool IsWithinCenter(int2 position, in GameField gameField)
         {
             return position.x >= gameField.EdgeSize &&
                    position.x < gameField.EdgeSize + gameField.CenterSize &&
@@ -140,13 +140,13 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.Components
             world.GetPool<TargetEntity>().Add(@event).Value = target.ToEntityLong(world);
         }
 
-        public static bool IsWithinGrid(float2 position, in GameField gameField)
+        public static bool IsWithinGrid(int2 position, in GameField gameField)
         {
             return position.x >= 0 && position.x < gameField.Size &&
                    position.y >= 0 && position.y < gameField.Size;
         }
 
-        public static bool IsInCross(in GameField gameField, float2 position)
+        public static bool IsInCross(int2 position, in GameField gameField)
         {
             return (position.x >= gameField.EdgeSize && position.x < gameField.EdgeSize + gameField.CenterSize) ||
                    (position.y >= gameField.EdgeSize && position.y < gameField.EdgeSize + gameField.CenterSize);

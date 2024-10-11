@@ -17,6 +17,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
         private class AnimalAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(MovableMarker))]
+            [ExcImplicit(typeof(MovingMarker))]
             [Inc] public readonly EcsPool<MovementDirection> Directions;
 
             [Inc] public readonly EcsPool<ActiveGameField> ActiveGameFields;
@@ -79,18 +80,22 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                     if (!math.all(movementDirection.Value == invertedSide))
                         continue;
 
-                    Debug.Log("123123");
-
                     ref readonly CellPosition cellPosition = ref animalAspect.CellPositions.Read(animal);
 
-                    minDistance = FindMinDistance(
+                    (int2 distance, bool success) result = FindMinDistance(
                         invertedSide: invertedSide,
                         gameField: in gameField,
                         cellPosition: in cellPosition,
                         minDistance: minDistance.distance);
 
+                    if (result.success) 
+                        minDistance = result;
+
                     animals.Add(animal);
                 }
+
+                if (animals.Count == 0)
+                    continue;
 
                 if (!minDistance.success)
                 {
@@ -127,10 +132,6 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                 }
                 else
                 {
-                    Debug.Log("123");
-
-                    Debug.Log(minDistance.distance);
-
                     minDistance.distance -= invertedSide;
 
                     foreach (int animal in animals)
@@ -147,6 +148,8 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                                 destination.x,
                                 _world.GetPool<GameObjectConnect>().Read(animal).Connect.transform.position.y,
                                 destination.z);
+
+                        Debug.Log(cellDestination.Value);
 
                         GridUtils.SetCell(
                             position: cellDestination.Value,

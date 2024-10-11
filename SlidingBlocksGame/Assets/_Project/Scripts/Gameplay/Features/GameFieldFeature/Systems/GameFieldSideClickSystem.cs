@@ -37,11 +37,12 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.Systems
                 foreach (int entity in _world.Where(out GameFieldAspect gameFieldAspect))
                 {
                     ref GameField gameField = ref gameFieldAspect.GameFields.Get(entity);
-                    float2 gridPosition = GridUtils.GetCellPosition(clickPosition, gameField);
+                    int2 gridPosition = GridUtils.GetCellPosition(clickPosition, gameField);
 
+                    Debug.Log(clickPosition);
                     if (GridUtils.IsWithinGrid(gridPosition, in gameField) &&
                         !GridUtils.IsWithinCenter(gridPosition, in gameField) &&
-                        GridUtils.IsInCross(in gameField, gridPosition))
+                        GridUtils.IsInCross(gridPosition, in gameField))
                     {
                         int sideClick = _world. NewEntity();
                         _world.GetPool<SideClickedEvent>().Add(sideClick);
