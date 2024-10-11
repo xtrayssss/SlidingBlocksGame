@@ -8,23 +8,23 @@ using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
 {
-    public class LevelLostCheckSystem : IEcsRun
+    public class LevelDefeatCheckSystem : IEcsRun
     {
         [EcsInject] private readonly EcsDefaultWorld _world;
 
         private class LevelAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(LevelTag))]
-            [ExcImplicit(typeof(LevelWonMarker))]
-            [Exc] public readonly EcsTagPool<LevelLostEvent> LevelLostEvent;
+            [ExcImplicit(typeof(LevelVictoryMarker))]
+            [Exc] public readonly EcsTagPool<LevelDefeatEvent> LevelDefeatEvent;
 
-            [Exc] public readonly EcsTagPool<LevelLostMarker> LevelLostMarker;
+            [Exc] public readonly EcsTagPool<LevelDefeatMarker> LevelDefeatMarker;
         }
 
-        private class GameLossTimerExpiredAspect : EcsAspectAuto
+        private class GameOverTimerExpiredAspect : EcsAspectAuto
         {
             [Inc] public readonly EcsTagPool<CooldownExpiredMarker> CooldownExpiredMarker;
-            [Inc] public readonly EcsTagPool<GameOverTimerTag> GameLossTimerTag;
+            [Inc] public readonly EcsTagPool<GameOverTimerTag> GameOverTimerTag;
         }
 
         private class AnimalAspect : EcsAspectAuto
@@ -40,15 +40,15 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
 
         public void Run()
         {
-            foreach (int _ in _world.Where(out GameLossTimerExpiredAspect _))
+            foreach (int _ in _world.Where(out GameOverTimerExpiredAspect _))
             {
                 if (_world.Where(out MovingAnimals _).Count != 0)
                     continue;
 
                 foreach (int entity in _world.Where(out LevelAspect aspect))
                 {
-                    aspect.LevelLostEvent.Add(entity);
-                    aspect.LevelLostMarker.Add(entity);
+                    aspect.LevelDefeatEvent.Add(entity);
+                    aspect.LevelDefeatMarker.Add(entity);
                 }
             }
 
@@ -56,8 +56,8 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
             {
                 if (_world.Where(out AnimalAspect _).Count != 0 && _world.Where(out MovingAnimals _).Count == 0)
                 {
-                    aspect.LevelLostEvent.Add(entity);
-                    aspect.LevelLostMarker.Add(entity);
+                    aspect.LevelDefeatEvent.Add(entity);
+                    aspect.LevelDefeatMarker.Add(entity);
                 }
             }
         }

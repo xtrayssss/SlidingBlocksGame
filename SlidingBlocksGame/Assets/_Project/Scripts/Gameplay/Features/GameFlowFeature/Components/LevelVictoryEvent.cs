@@ -2,7 +2,7 @@ using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Components
 {
-    public struct LevelWonEvent : IEcsTagComponent
+    public struct LevelVictoryEvent : IEcsTagComponent
     {
     }
 }

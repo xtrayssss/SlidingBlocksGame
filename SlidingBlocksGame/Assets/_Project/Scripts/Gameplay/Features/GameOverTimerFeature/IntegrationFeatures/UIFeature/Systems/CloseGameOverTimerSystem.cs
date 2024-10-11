@@ -10,18 +10,18 @@ namespace _Project.Scripts.Gameplay.Features.GameOverTimerFeature.IntegrationFea
     {
         [EcsInject] private EcsDefaultWorld _world;
 
-        private class Aspect : EcsAspectAuto
+        private class TimerAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(GameOverTimerTag))]
             [IncImplicit(typeof(CloseGameOverTimerRequest))]
             [Inc] public readonly EcsPool<GameObjectConnect> GameObjectConnects;
-            
-            [Opt] public readonly EcsTagPool<GameOverTimerClosedEvent> ClosedEvent;
+
             [Opt] public readonly EcsTagPool<GameOverTimerClosedMarker> GameOverTimerClosedMarker;
         }
+
         public void Run()
         {
-            foreach (int entity in _world.Where(out Aspect aspect))
+            foreach (int entity in _world.Where(out TimerAspect aspect))
             {
                 GameObjectConnect goConnect = aspect.GameObjectConnects.Read(entity);
 
@@ -33,13 +33,22 @@ namespace _Project.Scripts.Gameplay.Features.GameOverTimerFeature.IntegrationFea
                         ease: Ease.InBack)
                     .OnComplete(
                         target: goConnect.Connect,
-                        onComplete: connect =>
+                        onComplete: static connect =>
                         {
                             if (!connect.Entity.TryGetID(out int id))
                                 return;
 
-                            aspect.ClosedEvent.Add(id);
-                            aspect.GameOverTimerClosedMarker.Add(id);
+                            EcsWorld world = connect.World;
+
+                            int catcher = world.NewEntity();
+                            GameOverTimerCatcherAspect gameOverTimerCatcherAspect =
+                                world.GetAspect<GameOverTimerCatcherAspect>();
+                            gameOverTimerCatcherAspect.CommonCatcherAspect.TargetEntities.Add(catcher).Value =
+                                connect.Entity;
+                            gameOverTimerCatcherAspect.CatchGameOverClosed.Add(catcher);
+
+                            TimerAspect timerAspect = world.GetAspect<TimerAspect>();
+                            timerAspect.GameOverTimerClosedMarker.Add(id);
                             connect.gameObject.SetActive(false);
                         });
             }

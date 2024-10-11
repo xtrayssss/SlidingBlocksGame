@@ -21,12 +21,13 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.Systems
             [IncImplicit(typeof(CoinTag))]
             [Inc] public readonly EcsPool<CellPosition> CellPositions;
 
+            [Exc] public readonly EcsTagPool<CollectedMarker> CollectedMarker;
+
             [Inc] public readonly EcsPool<MeshRendererRef> MeshRenderers;
             [Inc] public readonly EcsPool<GameObjectConnect> GameObjectConnects;
 
             [Inc] public readonly EcsPool<Coins> Coins;
             [Opt] public readonly EcsTagPool<CoinCollectedEvent> CollectedEvent;
-            [Exc] public readonly EcsTagPool<CollectedMarker> CollectedMarker;
 
             [Opt] public readonly EcsPool<TargetEntity> Target;
 
@@ -121,7 +122,6 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.Systems
                         if (!target.Entity.TryGetID(out int id))
                             return;
 
-                        coinAspect.DeleteEntity.Add(id);
                         coinAspect.DestroyView.Add(id);
                     });
         }

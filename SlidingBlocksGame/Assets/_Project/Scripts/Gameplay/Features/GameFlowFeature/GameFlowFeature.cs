@@ -25,8 +25,8 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature
         {
             builder
                 //events api
-                .AutoDelTag<LevelWonEvent>()
-                .AutoDelTag<LevelLostEvent>()
+                .AutoDelTag<LevelVictoryEvent>()
+                .AutoDelTag<LevelDefeatEvent>()
 
                 // core
                 .AddUnique(new CreateGameSystem(_gameCfg))
@@ -49,10 +49,10 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature
                 .AutoDelTag<ShowMetaGameUIRequest>()
                 .AutoDelTag<HideMetaGameUIRequest>()
                 //
-                .AddUnique(new LevelWinCheckSystem())
-                .AddUnique(new LevelLostCheckSystem())
-                .AddUnique(new LevelWinSystem())
-                .AddUnique(new LevelLossSystem())
+                .AddUnique(new LevelVictoryCheckSystem())
+                .AddUnique(new LevelDefeatCheckSystem())
+                .AddUnique(new LevelVictorySystem())
+                .AddUnique(new LevelDefeatSystem())
                 //
                 .AutoDelTag<CoinSpawnedEvent>()
                 .AddUnique(new CatchCoinSystem())

@@ -7,7 +7,7 @@ using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
 {
-    public class LevelWinCheckSystem : IEcsRun
+    public class LevelVictoryCheckSystem : IEcsRun
     {
         [EcsInject] private readonly EcsDefaultWorld _world;
 
@@ -15,25 +15,24 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
         {
             [IncImplicit(typeof(LevelTag))]
             [IncImplicit(typeof(AnimalPositionedMarker))]
-            [ExcImplicit(typeof(LevelLostMarker))]
+            [ExcImplicit(typeof(LevelDefeatMarker))]
             [Inc] public readonly EcsPool<GameField> GameFields;
 
-            [Exc] public readonly EcsTagPool<LevelWonEvent> LevelWonEvent;
-            [Exc] public readonly EcsTagPool<LevelWonMarker> LevelWonMarker;
+            [Exc] public readonly EcsTagPool<LevelVictoryEvent> LevelVictoryEvent;
+            [Exc] public readonly EcsTagPool<LevelVictoryMarker> LevelVictoryMarker;
         }
 
         private class AnimalAspect : EcsAspectAuto
         {
-            [Inc] private readonly EcsTagPool<CellOccupancyMarker> _cellOccupancyMarkers;
-            [Inc] private readonly EcsTagPool<WithinCenterMarker> _withinCenterMarkers;
+            [Inc] public readonly EcsTagPool<CellOccupancyMarker> CellOccupancyMarker;
+            [Inc] public readonly EcsTagPool<WithinCenterMarker> WithinCenterMarker;
         }
 
-        private class GameLossTimerExpiredAspect : EcsAspectAuto
+        private class GameOverTimerExpiredAspect : EcsAspectAuto
         {
             [Inc] public readonly EcsTagPool<CooldownExpiredMarker> CooldownExpiredMarker;
-            [Inc] public readonly EcsTagPool<GameOverTimerTag> GameLossTimerTag;
+            [Inc] public readonly EcsTagPool<GameOverTimerTag> GameOverTimerTag;
         }
-
 
         public void Run()
         {
@@ -42,10 +41,10 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
                 ref readonly GameField gameField = ref aspect.GameFields.Read(entity);
 
                 if (_world.Where(out AnimalAspect _).Count == gameField.EdgeSize * gameField.EdgeSize &&
-                    _world.Where(out GameLossTimerExpiredAspect _).Count == 0)
+                    _world.Where(out GameOverTimerExpiredAspect _).Count == 0)
                 {
-                    aspect.LevelWonEvent.Add(entity);
-                    aspect.LevelWonMarker.Add(entity);
+                    aspect.LevelVictoryEvent.Add(entity);
+                    aspect.LevelVictoryMarker.Add(entity);
                 }
             }
         }

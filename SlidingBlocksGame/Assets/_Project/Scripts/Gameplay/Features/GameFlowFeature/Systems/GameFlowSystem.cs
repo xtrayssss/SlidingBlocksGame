@@ -93,10 +93,10 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
             [Inc] public readonly EcsTagPool<CoinTag> CoinTag;
         }
 
-        private class GameLossTimerOpenedAspect : EcsAspectAuto
+        private class GameOverTimerOpenedAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(GameOverTimerTag))]
-            [Inc] public readonly EcsTagPool<GameOverTimerOpenedEvent> GameLossTimerOpenedEvent;
+            [Inc] public readonly EcsTagPool<GameOverTimerOpenedEvent> GameOverTimerOpenedEvent;
         }
 
         public void Run()
@@ -152,7 +152,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
                     playerAspect.LockGameInputMarker.Del(player);
             }
 
-            foreach (int _ in _world.Where(out GameLossTimerOpenedAspect _))
+            foreach (int _ in _world.Where(out GameOverTimerOpenedAspect _))
             {
                 foreach (int player in _world.Where(out PlayerAspect _))
                     ProgressUtils.UpdateScores(player, 1);

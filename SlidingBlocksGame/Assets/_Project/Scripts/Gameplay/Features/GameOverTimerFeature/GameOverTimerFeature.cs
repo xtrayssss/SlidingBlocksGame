@@ -26,6 +26,7 @@ namespace _Project.Scripts.Gameplay.Features.GameOverTimerFeature
                 .AddUnique(new DisplayTimerProgressSystem())
                 //
                 .AutoDelTag<GameOverTimerClosedEvent>()
+                .AddUnique(new CatchGameOverTimerSystem())
                 .AddUnique(new CloseGameOverTimerSystem())
                 .AutoDelTag<CloseGameOverTimerRequest>()
                 // audio feature
