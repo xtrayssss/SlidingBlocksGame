@@ -38,7 +38,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature
                 .AddUnique(new GameFlowSystem())
                 //
                 .AutoDelTag<GameScreenCreatedEvent>()
-                .AddUnique(new GameScreenSystem())
+                .AddUnique(new CreateGameScreenSystem())
                 .AutoDelTag<CreateGameScreenRequest>()
                 //
                 //.AddUnique(new AnimalCreationChainStrategySystem())

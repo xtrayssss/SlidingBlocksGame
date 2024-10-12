@@ -16,7 +16,7 @@ using ScrollSnap = _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Componen
 
 namespace _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Systems
 {
-    public class GameScreenSystem : IEcsRun
+    public class CreateGameScreenSystem : IEcsRun
     {
         [EcsInject] private readonly EcsDefaultWorld _world;
 
@@ -42,7 +42,7 @@ namespace _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Systems
             [Inc] public readonly EcsPool<AnimalsShopWindow> AnimalsShopWindows;
             [Inc] public readonly EcsPool<Purchases> Purchases;
             [Inc] public readonly EcsPool<ScrollSnap> ScrollSnaps;
-            [Opt] public readonly EcsPool<ScrollSetupRequest> ScrollSetupRequest;
+            [Opt] public readonly EcsPool<SetupScrollRequest> SetupScrollRequest;
         }
 
         private class RewardWidgetAspect : EcsAspectAuto
@@ -218,9 +218,6 @@ namespace _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Systems
 
             ref ScrollSnap scrollSnap = ref windowAspect.ScrollSnaps.Get(window);
 
-            scrollSnap.Items = purchases.Entities;
-
-            windowAspect.ScrollSetupRequest.Add(window);
 
             foreach (int player in _world.Where(out PlayerAspect playerAspect))
             {
@@ -264,6 +261,10 @@ namespace _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Systems
                     };
                 }
             }
+
+            ref SetupScrollRequest scrollSetupRequest = ref windowAspect.SetupScrollRequest.Add(window); 
+            scrollSetupRequest.ScrollToIndex = 0;
+            scrollSetupRequest.Items = purchases.Entities;
         }
     }
 }

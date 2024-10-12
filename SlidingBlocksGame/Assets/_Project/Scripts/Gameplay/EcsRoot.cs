@@ -55,7 +55,7 @@ namespace _Project.Scripts.Gameplay
                 .AddModule(new GameProgressFeature())
                 .AddModule(new RewardFeature())
                 .AddModule(new GameOverTimerFeature())
-                .AddModule(new VisualFeature())
+                .AddModule(new VisualFeature(coroutineRunner: this))
                 .AddModule(new CooldownFeature())
                 .AddModule(new AudioFeature())
                 // 

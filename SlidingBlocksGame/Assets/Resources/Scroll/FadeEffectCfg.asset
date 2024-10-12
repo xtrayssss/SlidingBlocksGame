@@ -13,18 +13,20 @@ MonoBehaviour:
   m_Name: FadeEffectCfg
   m_EditorClassIdentifier: 
   _components:
-  - rid: 8499802795803410434
-  - rid: 8499802795803410435
+  - rid: 3543309541243093780
+  - rid: 3543309541243093782
   references:
     version: 2
     RefIds:
-    - rid: 8499802795803410434
-      type: {class: FadeEffectTag/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data: {}
-    - rid: 8499802795803410435
-      type: {class: FadeAlphaEffectFactor/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
+    - rid: 3543309541243093780
+      type: {class: FadeEffect/Template, ns: _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Components,
+        asm: ScrollSnapFeature.Components}
       data:
         component:
-          Value: 0.45
+          FadeAlpha: 0.45
+    - rid: 3543309541243093782
+      type: {class: EffectDisplacement/Template, ns: _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Components,
+        asm: ScrollSnapFeature.Components}
+      data:
+        component:
+          EffectedDistanceBasedOnItemSize: 1
