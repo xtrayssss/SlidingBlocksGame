@@ -20,9 +20,9 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Components
             public ScriptableEntityTemplate[] Levels;
         }
 
-        [MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.GameFlowFeature.Components", sourceClassName: "Levels/LevelsPack/Template", sourceAssembly: "Assembly-CSharp")]
-
-
+        [MovedFrom(autoUpdateAPI: false,
+            sourceNamespace: "_Project.Scripts.Gameplay.Features.GameFlowFeature.Components",
+            sourceClassName: "Levels/Template", sourceAssembly: "GameFlowFeature.Components")]
         private sealed class Template : ComponentTemplate<Levels>
         {
         }

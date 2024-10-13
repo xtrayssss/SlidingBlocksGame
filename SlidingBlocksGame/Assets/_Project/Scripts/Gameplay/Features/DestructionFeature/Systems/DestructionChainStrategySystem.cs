@@ -2,6 +2,7 @@ using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
 using _Project.Scripts.Gameplay.Features.DestructionFeature.Components;
 using DCFApixels.DragonECS;
+using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.DestructionFeature.Systems
 {
@@ -32,7 +33,7 @@ namespace _Project.Scripts.Gameplay.Features.DestructionFeature.Systems
                 if (cooldownExpiredAspect.Targets.Read(entity).Value.TryGetID(out int destructibleID) &&
                     destructibleAspect.IsMatches(destructibleID))
                 {
-                    if (destructibleAspect.GoConnects.Has(destructibleID))
+                    if (destructibleAspect.GoConnects.Has(destructibleID)) 
                         destructibleAspect.DestroyViewRequest.TryAdd(destructibleID);
 
                     destructibleAspect.DeathEvent.Add(destructibleID);

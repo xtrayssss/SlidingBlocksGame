@@ -8,11 +8,10 @@ namespace _Project.Scripts.Gameplay.Features.PlayerFeature.InputFeature.Componen
     [MetaGroup("Input")]
     public struct LockGameInputMarker : IEcsTagComponent
     {
-
-		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.InputFeature.Components", sourceClassName: "LockGameInputMarker/Template", sourceAssembly: "Assembly-CSharp")]
-
-
-		private sealed class Template : TagComponentTemplate<LockGameInputMarker>
+        [MovedFrom(autoUpdateAPI: false,
+            sourceNamespace: "_Project.Scripts.Gameplay.Features.PlayerFeature.InputFeature.Components",
+            sourceClassName: "LockGameInputMarker/Template", sourceAssembly: "Assembly-CSharp")]
+        private sealed class Template : TagComponentTemplate<LockGameInputMarker>
         {
         }
     }

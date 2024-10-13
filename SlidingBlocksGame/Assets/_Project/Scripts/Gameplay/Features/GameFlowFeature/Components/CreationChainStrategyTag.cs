@@ -7,9 +7,10 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Components
     [Serializable]
     public struct CreationChainStrategyTag : IEcsTagComponent
     {
-		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.GameFlowFeature.Components", sourceClassName: "CreationChainStrategyTag/Template", sourceAssembly: "Assembly-CSharp")]
-
-		private sealed class Template : TagComponentTemplate<CreationChainStrategyTag>
+        [MovedFrom(autoUpdateAPI: false,
+            sourceNamespace: "_Project.Scripts.Gameplay.Features.GameFlowFeature.Components",
+            sourceClassName: "CreationChainStrategyTag/Template", sourceAssembly: "Assembly-CSharp")]
+        private sealed class Template : TagComponentTemplate<CreationChainStrategyTag>
         {
         }
     }

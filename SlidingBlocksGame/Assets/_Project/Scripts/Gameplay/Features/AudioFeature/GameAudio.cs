@@ -3,7 +3,11 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.Serialization;
 
+<<<<<<<< HEAD:SlidingBlocksGame/Assets/_Project/Scripts/Gameplay/Features/AudioFeature/GameAudio.cs
 namespace _Project.Scripts.Gameplay.Features.AudioFeature
+========
+namespace _Project.Scripts.Gameplay.Features.AudioFeature.Systems
+>>>>>>>> recovery-branch:SlidingBlocksGame/Assets/_Project/Scripts/Gameplay/Features/AudioFeature/Systems/GameAudio.cs
 {
     public class GameAudio : MonoBehaviour
     {

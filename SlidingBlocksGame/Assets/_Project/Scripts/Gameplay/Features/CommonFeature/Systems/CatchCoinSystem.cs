@@ -1,8 +1,12 @@
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
-using _Project.Scripts.Gameplay.Features.MovementFeature;
+using _Project.Scripts.Gameplay.Features.GameProgressFeature.Components;
 using DCFApixels.DragonECS;
 
+<<<<<<<< HEAD:SlidingBlocksGame/Assets/_Project/Scripts/Gameplay/Features/CommonFeature/Systems/CatchCoinSystem.cs
 namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
+========
+namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.Systems
+>>>>>>>> recovery-branch:SlidingBlocksGame/Assets/_Project/Scripts/Gameplay/Features/GameProgressFeature/Systems/CatchCoinSystem.cs
 {
     public class CatchCoinSystem : IEcsRun
     {

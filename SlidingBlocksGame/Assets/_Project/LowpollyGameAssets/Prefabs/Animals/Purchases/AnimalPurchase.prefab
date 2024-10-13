@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6133406430698375171}
   - component: {fileID: 6839187176666118470}
   - component: {fileID: 3049009980293482999}
-  - component: {fileID: 8199718817898193838}
   m_Layer: 5
   m_Name: AnimalPurchase
   m_TagString: Untagged
@@ -78,59 +77,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _components:
-  - rid: 8499802549516500992
-  - rid: 8499802549516500993
-  - rid: 8499802795803410432
-  - rid: 8499802795803410433
-  - rid: 6454805386191437881
+  - rid: 3543309499067531267
+  - rid: 3543309499067531268
+  - rid: 3543309499067531269
   references:
     version: 2
     RefIds:
-    - rid: 6454805386191437881
-      type: {class: PurchasedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
-        asm: Assembly-CSharp}
+    - rid: 3543309499067531267
+      type: {class: PurchasedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.PurchaseFeature.IntegrationFeatures.AudioFeature.Components,
+        asm: PurchaseFeature.AudioFeature.Components}
       data:
         component:
           <Value>k__BackingField: {fileID: 11400000, guid: 000f31cb477a0ac41904e897574c7252,
             type: 2}
-    - rid: 8499802549516500992
-      type: {class: Purchase/Template, ns: _Project.Scripts.Gameplay.Features.CommonFeature.Components,
-        asm: Assembly-CSharp}
+    - rid: 3543309499067531268
+      type: {class: PurchaseWidget/Template, ns: _Project.Scripts.Gameplay.Features.PurchaseFeature.IntegrationFeatures.UIFeature.Components,
+        asm: PurchaseFeature.UIFeature.Components}
       data:
         component:
-          Price: 150
-          ProductIndex: 0
-    - rid: 8499802549516500993
-      type: {class: TextMeshProUGUIRef/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
+          PurchaseStatusWidget:
+            PriceText: {fileID: 0}
+            Lock: {fileID: 0}
+            Unlock: {fileID: 0}
+            Play: {fileID: 0}
+            Price: {fileID: 0}
+            Current: {fileID: 0}
+          Icon: {fileID: 3661291220808562233}
+    - rid: 3543309499067531269
+      type: {class: Purchase/Template, ns: _Project.Scripts.Gameplay.Features.PurchaseFeature.Components,
+        asm: PurchaseFeature.Components}
       data:
         component:
-          Value: {fileID: 0}
-    - rid: 8499802795803410432
-      type: {class: GraphicRef/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: {fileID: 3661291220808562233}
-    - rid: 8499802795803410433
-      type: {class: RectTransformRef/Template, ns: _Project.Scripts.Gameplay.Features.UIFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: {fileID: 4541698119196968763}
---- !u!114 &8199718817898193838
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3827629519308819275}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2463fd93748420fbbb1f4a971bc7037, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rawImage: {fileID: 3661291220808562233}
+          Price: 0
+          Index: 0
 --- !u!1 &4052493653394928941
 GameObject:
   m_ObjectHideFlags: 0

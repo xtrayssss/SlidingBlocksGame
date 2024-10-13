@@ -1,8 +1,15 @@
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+<<<<<<<< HEAD:SlidingBlocksGame/Assets/_Project/Scripts/Gameplay/Features/CommonFeature/Systems/BestScoreSystem.cs
 using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
+========
+using _Project.Scripts.Gameplay.Features.GameProgressFeature.Components;
+using DCFApixels.DragonECS;
+
+namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.Systems
+>>>>>>>> recovery-branch:SlidingBlocksGame/Assets/_Project/Scripts/Gameplay/Features/GameProgressFeature/Systems/BestScoreSystem.cs
 {
     public class BestScoreSystem : IEcsRun
     {

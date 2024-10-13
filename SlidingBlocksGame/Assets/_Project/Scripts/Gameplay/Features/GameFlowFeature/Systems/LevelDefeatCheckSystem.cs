@@ -1,0 +1,64 @@
+using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameFlowFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameOverTimerFeature.Components;
+using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
+using DCFApixels.DragonECS;
+using UnityEngine;
+
+namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
+{
+    public class LevelDefeatCheckSystem : IEcsRun
+    {
+        [EcsInject] private readonly EcsDefaultWorld _world;
+
+        private class LevelAspect : EcsAspectAuto
+        {
+            [IncImplicit(typeof(LevelTag))]
+            [ExcImplicit(typeof(LevelVictoryMarker))]
+            [Exc] public readonly EcsTagPool<LevelDefeatEvent> LevelDefeatEvent;
+
+            [Exc] public readonly EcsTagPool<LevelDefeatMarker> LevelDefeatMarker;
+        }
+
+        private class GameOverTimerExpiredAspect : EcsAspectAuto
+        {
+            [Inc] public readonly EcsTagPool<CooldownExpiredMarker> CooldownExpiredMarker;
+            [Inc] public readonly EcsTagPool<GameOverTimerTag> GameOverTimerTag;
+        }
+
+        private class AnimalAspect : EcsAspectAuto
+        {
+            [Inc] public readonly EcsTagPool<CellOccupancyMarker> CellOccupancyMarker;
+            [Exc] public readonly EcsTagPool<WithinCenterMarker> WithinCenterMarker;
+        }
+
+        private class MovingAnimals : EcsAspectAuto
+        {
+            [Inc] public readonly EcsTagPool<MovingMarker> MovingMarker;
+        }
+
+        public void Run()
+        {
+            foreach (int _ in _world.Where(out GameOverTimerExpiredAspect _))
+            {
+                if (_world.Where(out MovingAnimals _).Count != 0)
+                    continue;
+
+                foreach (int entity in _world.Where(out LevelAspect aspect))
+                {
+                    aspect.LevelDefeatEvent.Add(entity);
+                    aspect.LevelDefeatMarker.Add(entity);
+                }
+            }
+
+            foreach (int entity in _world.Where(out LevelAspect aspect))
+            {
+                if (_world.Where(out AnimalAspect _).Count != 0 && _world.Where(out MovingAnimals _).Count == 0)
+                {
+                    aspect.LevelDefeatEvent.Add(entity);
+                    aspect.LevelDefeatMarker.Add(entity);
+                }
+            }
+        }
+    }
+}

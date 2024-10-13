@@ -1,9 +1,17 @@
+<<<<<<<< HEAD:SlidingBlocksGame/Assets/_Project/Scripts/Gameplay/Features/GameFlowFeature/Systems/MetaGameUISystem.cs
 using _Project.Scripts.Gameplay.Features.GameFlowFeature.Components;
+========
+﻿using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components;
+>>>>>>>> recovery-branch:SlidingBlocksGame/Assets/_Project/Scripts/Gameplay/Features/VisualFeature/UIFeature/Systems/MetaGameUISystem.cs
 using DCFApixels.DragonECS;
 using PrimeTween;
 using UnityEngine;
 
+<<<<<<<< HEAD:SlidingBlocksGame/Assets/_Project/Scripts/Gameplay/Features/GameFlowFeature/Systems/MetaGameUISystem.cs
 namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
+========
+namespace _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Systems
+>>>>>>>> recovery-branch:SlidingBlocksGame/Assets/_Project/Scripts/Gameplay/Features/VisualFeature/UIFeature/Systems/MetaGameUISystem.cs
 {
     public class MetaGameUISystem : IEcsRun
     {

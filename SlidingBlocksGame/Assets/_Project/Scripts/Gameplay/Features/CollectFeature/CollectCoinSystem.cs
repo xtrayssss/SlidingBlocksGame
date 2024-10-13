@@ -1,17 +1,24 @@
 using _Project.Scripts.Gameplay.Features.AnimalFeature.Components;
+<<<<<<<< HEAD:SlidingBlocksGame/Assets/_Project/Scripts/Gameplay/Features/CollectFeature/CollectCoinSystem.cs
 using _Project.Scripts.Gameplay.Features.CollectFeature.Components;
+========
+>>>>>>>> recovery-branch:SlidingBlocksGame/Assets/_Project/Scripts/Gameplay/Features/GameProgressFeature/Systems/CollectCoinSystem.cs
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.DestructionFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFieldFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameProgressFeature.Components;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
 using _Project.Scripts.Gameplay.Features.PlayerFeature.Components;
-using _Project.Scripts.Gameplay.Utils;
 using DCFApixels.DragonECS;
 using PrimeTween;
 using Unity.Mathematics;
 using UnityEngine;
 
+<<<<<<<< HEAD:SlidingBlocksGame/Assets/_Project/Scripts/Gameplay/Features/CollectFeature/CollectCoinSystem.cs
 namespace _Project.Scripts.Gameplay.Features.CollectFeature
+========
+namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.Systems
+>>>>>>>> recovery-branch:SlidingBlocksGame/Assets/_Project/Scripts/Gameplay/Features/GameProgressFeature/Systems/CollectCoinSystem.cs
 {
     public class CollectCoinSystem : IEcsRun
     {
@@ -23,6 +30,10 @@ namespace _Project.Scripts.Gameplay.Features.CollectFeature
             [Inc] public readonly EcsPool<CellPosition> CellPositions;
 
             [Exc] public readonly EcsTagPool<CollectedMarker> CollectedMarker;
+<<<<<<<< HEAD:SlidingBlocksGame/Assets/_Project/Scripts/Gameplay/Features/CollectFeature/CollectCoinSystem.cs
+========
+
+>>>>>>>> recovery-branch:SlidingBlocksGame/Assets/_Project/Scripts/Gameplay/Features/GameProgressFeature/Systems/CollectCoinSystem.cs
             [Inc] public readonly EcsPool<MeshRendererRef> MeshRenderers;
             [Inc] public readonly EcsPool<GameObjectConnect> GameObjectConnects;
 
@@ -62,11 +73,20 @@ namespace _Project.Scripts.Gameplay.Features.CollectFeature
                     if (!movingAnimalAspect.ActiveGameFields.Read(animal).Value.TryGetID(out int gameFieldID))
                         continue;
 
-                    float3 transformPosition = movingAnimalAspect.GameObjectConnects.Read(animal).Connect.transform
-                        .position;
+                    ref readonly GameObjectConnect goConnect = ref movingAnimalAspect.GameObjectConnects.Read(animal);
+
+                    float3 transformPosition = goConnect.Connect.transform.position;
 
                     ref readonly BoundExtents boundExtents = ref movingAnimalAspect.BoundExtents.Read(animal);
 
+<<<<<<<< HEAD:SlidingBlocksGame/Assets/_Project/Scripts/Gameplay/Features/CollectFeature/CollectCoinSystem.cs
+========
+                    ref readonly GameField gameField = ref _world.GetPool<GameField>().Read(gameFieldID);
+
+                    ref readonly MovementDirection movementDirection =
+                        ref movingAnimalAspect.MovementDirections.Read(animal);
+
+>>>>>>>> recovery-branch:SlidingBlocksGame/Assets/_Project/Scripts/Gameplay/Features/GameProgressFeature/Systems/CollectCoinSystem.cs
                     int2 position = GridUtils.GetCellPosition(
                         worldPosition: transformPosition +
                                        movingAnimalAspect.MovementDirections.Read(animal).Value.xyy *
@@ -84,7 +104,6 @@ namespace _Project.Scripts.Gameplay.Features.CollectFeature
                         foreach (int player in _world.Where(out PlayerAspect _))
                         {
                             ProgressUtils.UpdateCoins(player, coinAspect.Coins.Read(coin).Value);
-                            
                             coinAspect.CollectedEvent.Add(coin);
                         }
                     }
@@ -117,7 +136,6 @@ namespace _Project.Scripts.Gameplay.Features.CollectFeature
                         if (!target.Entity.TryGetID(out int id))
                             return;
 
-                        coinAspect.DeleteEntity.Add(id);
                         coinAspect.DestroyView.Add(id);
                     });
         }

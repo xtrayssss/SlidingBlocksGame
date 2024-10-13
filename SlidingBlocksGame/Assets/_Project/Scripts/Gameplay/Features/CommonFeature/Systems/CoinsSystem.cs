@@ -1,9 +1,17 @@
+<<<<<<<< HEAD:SlidingBlocksGame/Assets/_Project/Scripts/Gameplay/Features/CommonFeature/Systems/CoinsSystem.cs
 using _Project.Scripts.Gameplay.Features.CollectFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Utils;
 using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
+========
+using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameProgressFeature.Components;
+using DCFApixels.DragonECS;
+
+namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.Systems
+>>>>>>>> recovery-branch:SlidingBlocksGame/Assets/_Project/Scripts/Gameplay/Features/GameProgressFeature/Systems/CoinsSystem.cs
 {
     public class CoinsSystem : IEcsRun
     {

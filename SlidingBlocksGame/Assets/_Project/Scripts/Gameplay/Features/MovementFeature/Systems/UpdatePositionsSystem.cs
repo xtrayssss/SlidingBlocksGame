@@ -33,7 +33,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                     ref CellPosition cellPosition = ref aspect.CellPositions.Get(entity);
                     
                     cellPosition.Value =
-                        Utils.GridUtils.GetCellPosition(
+                        GridUtils.GetCellPosition(
                             worldPosition: aspect.GameObjectConnects.Read(entity).Connect.transform.position,
                             gameField: in gameFieldAspect.GameFields.Read(gameFieldID));
                 }

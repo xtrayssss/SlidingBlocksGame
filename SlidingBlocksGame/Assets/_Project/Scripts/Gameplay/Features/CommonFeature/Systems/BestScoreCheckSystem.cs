@@ -1,13 +1,21 @@
 using _Project.Scripts.Gameplay.Features.CollectFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+<<<<<<<< HEAD:SlidingBlocksGame/Assets/_Project/Scripts/Gameplay/Features/CommonFeature/Systems/BestScoreCheckSystem.cs
 using _Project.Scripts.Gameplay.Features.UIFeature.Components;
 using _Project.Scripts.Gameplay.Utils;
+========
+using _Project.Scripts.Gameplay.Features.GameProgressFeature.Components;
+>>>>>>>> recovery-branch:SlidingBlocksGame/Assets/_Project/Scripts/Gameplay/Features/GameProgressFeature/Systems/ScoreRecordCheckSystem.cs
 using DCFApixels.DragonECS;
 using Unity.Mathematics;
 
+<<<<<<<< HEAD:SlidingBlocksGame/Assets/_Project/Scripts/Gameplay/Features/CommonFeature/Systems/BestScoreCheckSystem.cs
 namespace _Project.Scripts.Gameplay.Features.CommonFeature.Systems
+========
+namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.Systems
+>>>>>>>> recovery-branch:SlidingBlocksGame/Assets/_Project/Scripts/Gameplay/Features/GameProgressFeature/Systems/ScoreRecordCheckSystem.cs
 {
-    public class BestScoreCheckSystem : IEcsRun
+    public class ScoreRecordCheckSystem : IEcsRun
     {
         [EcsInject] private EcsDefaultWorld _world;
 

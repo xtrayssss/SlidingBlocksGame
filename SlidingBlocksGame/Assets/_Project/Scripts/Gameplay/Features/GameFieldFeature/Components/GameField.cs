@@ -1,5 +1,4 @@
 using System;
-using _Project.Scripts.Gameplay.Utils;
 using DCFApixels.DragonECS;
 using Unity.Mathematics;
 using UnityEngine;
@@ -53,7 +52,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.Components
         }
 
         [MovedFrom(autoUpdateAPI: false,
-            sourceNamespace: "_Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Components",
+            sourceNamespace: "_Project.Scripts.Gameplay.Features.GameFieldFeature.Components",
             sourceClassName: "GameField/Template", sourceAssembly: "Assembly-CSharp")]
         public class Template : ComponentTemplate<GameField>
         {

@@ -1,11 +1,18 @@
 using _Project.Scripts.Gameplay.Features.AudioFeature.Components;
+<<<<<<<< HEAD:SlidingBlocksGame/Assets/_Project/Scripts/Gameplay/Features/AudioFeature/AudioExtensions.cs
 using _Project.Scripts.Gameplay.Features.AudioFeature.Systems;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+========
+>>>>>>>> recovery-branch:SlidingBlocksGame/Assets/_Project/Scripts/Gameplay/Features/AudioFeature/Systems/AudioExtensions.cs
 using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
 using DCFApixels.DragonECS;
 using UnityEngine;
 
+<<<<<<<< HEAD:SlidingBlocksGame/Assets/_Project/Scripts/Gameplay/Features/AudioFeature/AudioExtensions.cs
 namespace _Project.Scripts.Gameplay.Features.AudioFeature
+========
+namespace _Project.Scripts.Gameplay.Features.AudioFeature.Systems
+>>>>>>>> recovery-branch:SlidingBlocksGame/Assets/_Project/Scripts/Gameplay/Features/AudioFeature/Systems/AudioExtensions.cs
 {
     public static class AudioExtensions
     {

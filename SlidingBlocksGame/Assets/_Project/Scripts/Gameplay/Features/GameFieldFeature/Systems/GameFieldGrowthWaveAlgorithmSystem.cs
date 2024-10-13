@@ -2,10 +2,8 @@ using System;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
-using _Project.Scripts.Gameplay.Features.DestructionFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFieldFeature.Components;
-using _Project.Scripts.Gameplay.Features.GameFlowFeature.Components;
-using _Project.Scripts.Gameplay.Utils;
+using _Project.Scripts.Infrastructure;
 using DCFApixels.DragonECS;
 using Unity.Mathematics;
 using UnityEngine;
@@ -116,7 +114,6 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.Systems
                                         _world.GetPool<TileGeneratedEvent>().Add(tile);
                                         _world.GetPool<TargetEntity>().Add(tile).Value =
                                             _world.GetEntityLong(gameFieldID);
-                                        _world.GetPool<DeleteEntityRequest>().Add(tile);
                                     },
                                     continuationOptions: TaskContinuationOptions.ExecuteSynchronously);
 

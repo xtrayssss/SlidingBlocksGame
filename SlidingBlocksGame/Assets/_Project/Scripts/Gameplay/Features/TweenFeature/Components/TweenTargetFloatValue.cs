@@ -10,10 +10,9 @@ namespace _Project.Scripts.Gameplay.Features.TweenFeature.Components
     {
         public float Value;
 
-		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.TweenFeature.Components", sourceClassName: "TweenTargetFloatValue/Template", sourceAssembly: "Assembly-CSharp")]
-
-
-		private sealed class Template : ComponentTemplate<TweenTargetFloatValue>
+        [MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.TweenFeature.Components",
+            sourceClassName: "TweenTargetFloatValue/Template", sourceAssembly: "TweenFeature.Components")]
+        private sealed class Template : ComponentTemplate<TweenTargetFloatValue>
         {
         }
     }

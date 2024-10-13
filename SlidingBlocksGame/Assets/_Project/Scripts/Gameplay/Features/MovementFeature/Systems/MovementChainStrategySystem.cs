@@ -22,6 +22,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
             [Inc] public readonly EcsPool<GameObjectConnect> GoConnects;
             [Inc] public readonly EcsPool<WorldDestination> WorldDestinations;
             [Inc] public readonly EcsPool<MovementSpeedFactor> MovementSpeedFactors;
+            [Inc] public readonly EcsTagPool<MovableMarker> MovableMarker;
 
             [Opt] public readonly EcsTagPool<MovingMarker> MovingMarker;
             [Opt] public readonly EcsTagPool<CellOccupancyMarker> CellOccupancyMarker;
@@ -80,6 +81,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 
                 movableAspect.MovingMarker.Del(targetID);
                 movableAspect.CellOccupancyMarker.Add(targetID);
+                movableAspect.MovableMarker.Del(targetID);
             }
         }
     }

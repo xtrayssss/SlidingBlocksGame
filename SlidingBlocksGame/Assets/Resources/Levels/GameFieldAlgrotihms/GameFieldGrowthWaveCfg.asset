@@ -21,21 +21,21 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 6454805247463260172
-      type: {class: GrowthWave/Wrapper, ns: _Project.Scripts.Gameplay.Features.GameWorldCreationFeature.Components,
-        asm: Assembly-CSharp}
+      type: {class: GrowthWave/Wrapper, ns: _Project.Scripts.Gameplay.Features.GameFieldFeature.Components,
+        asm: GameFieldFeature.Components}
       data:
         component:
           BaseSpeedFactor: 0.3
           SpeedFactor: 0
     - rid: 6454805247463260173
-      type: {class: GameFieldGrowthWaveAlgorithmTag/Template, ns: _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Components,
-        asm: Assembly-CSharp}
+      type: {class: GameFieldGrowthWaveAlgorithmTag/Template, ns: _Project.Scripts.Gameplay.Features.GameFieldFeature.Components,
+        asm: GameFieldFeature.Components}
       data: {}
     - rid: 6454805609293545978
-      type: {class: LevelLifeTimeMarker/Template, ns: _Project.Scripts.Gameplay.Features.DestroyFeature.Components,
-        asm: Assembly-CSharp}
+      type: {class: LevelLifeTimeMarker/Template, ns: _Project.Scripts.Gameplay.Features.GameFlowFeature.Components,
+        asm: GameFlowFeature.Components}
       data: {}
     - rid: 8499802755217490839
-      type: {class: GameFieldAlgorithmTag/Template, ns: _Project.Scripts.Gameplay.Features.GameFieldAlgorithmsFeature.Components,
-        asm: Assembly-CSharp}
+      type: {class: GameFieldAlgorithmTag/Template, ns: _Project.Scripts.Gameplay.Features.GameFieldFeature.Components,
+        asm: GameFieldFeature.Components}
       data: {}

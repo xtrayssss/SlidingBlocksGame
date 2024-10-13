@@ -92,7 +92,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4313864258705815891}
-  - component: {fileID: 6885083199704041411}
+  - component: {fileID: 426667423157969215}
   - component: {fileID: 299863596686586096}
   m_Layer: 0
   m_Name: Animal
@@ -118,7 +118,7 @@ Transform:
   - {fileID: 5085033323972112699}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6885083199704041411
+--- !u!114 &426667423157969215
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -127,10 +127,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8752353630464874805}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba79d9b35144449789bc2273062bb694, type: 3}
+  m_Script: {fileID: 11500000, guid: a7c2519b40834ceca068463030394967, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _deleteEntiityWithDestroy: 1
+  _deleteEntiityWithDestroy: 0
   _scriptableTemplates: []
   _monoTemplates:
   - {fileID: 299863596686586096}
@@ -149,23 +149,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _components:
   - rid: 8499802272422691542
-  - rid: 8499802611131088910
   - rid: 6454805130946282388
   - rid: 3543309302603710465
   - rid: 3543309302603710466
   - rid: 3543309302603710467
   - rid: 3543309302603710468
   - rid: 3543309302603710469
+  - rid: 3543309499067531272
+  - rid: 3543309503767773280
   references:
     version: 2
     RefIds:
     - rid: 3543309302603710465
       type: {class: AnimalTag/Wrapper, ns: _Project.Scripts.Gameplay.Features.AnimalFeature.Components,
-        asm: Assembly-CSharp}
+        asm: AnimalFeature.Components}
       data: {}
     - rid: 3543309302603710466
       type: {class: WorldPosition/Wrapper, ns: _Project.Scripts.Gameplay.Features.CommonFeature.Components,
-        asm: Assembly-CSharp}
+        asm: CommonFeature.Components}
       data:
         component:
           Value:
@@ -173,44 +174,48 @@ MonoBehaviour:
             y: 0
             z: 0
     - rid: 3543309302603710467
-      type: {class: AnimalSpawnedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AnimalFeature.Components,
-        asm: Assembly-CSharp}
+      type: {class: AnimalSpawnedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.AudioFeature.Components,
+        asm: AnimalFeature.AudioFeature.Components}
       data:
         component:
           <Value>k__BackingField: {fileID: 11400000, guid: 7f8a393c9d3181b4d8fca37f7c0f1925,
             type: 2}
     - rid: 3543309302603710468
       type: {class: MovementSpeedFactor/Template, ns: _Project.Scripts.Gameplay.Features.MovementFeature.Components,
-        asm: Assembly-CSharp}
+        asm: MovementFeature.Components}
       data:
         component:
           Base: 2
           Value: 0
     - rid: 3543309302603710469
-      type: {class: DeathAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
-        asm: Assembly-CSharp}
+      type: {class: AnimalDeathAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.AudioFeature.Components,
+        asm: AnimalFeature.AudioFeature.Components}
       data:
         component:
           <Value>k__BackingField: {fileID: 11400000, guid: b67d4df315aecf34080e7c03cd4c2e18,
             type: 2}
+    - rid: 3543309499067531272
+      type: {class: DestructionVfxPrefab/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.VFXFeature.Components,
+        asm: VFXFeature.Components}
+      data:
+        component:
+          Value: {fileID: 0}
+    - rid: 3543309503767773280
+      type: {class: MovableMarker/Template, ns: _Project.Scripts.Gameplay.Features.MovementFeature.Components,
+        asm: MovementFeature.Components}
+      data: {}
     - rid: 6454805130946282388
       type: {class: MeshRendererRef/Template, ns: _Project.Scripts.Gameplay.Features.CommonFeature.Components,
-        asm: Assembly-CSharp}
+        asm: CommonFeature.Components}
       data:
         component:
           Value: {fileID: 2936143895052326442}
     - rid: 8499802272422691542
       type: {class: RendererRef/Template, ns: _Project.Scripts.Gameplay.Features.CommonFeature.Components,
-        asm: Assembly-CSharp}
+        asm: CommonFeature.Components}
       data:
         component:
           Value: {fileID: 8479443584960617139}
-    - rid: 8499802611131088910
-      type: {class: DestructionVfxPrefab/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.VFXFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: {fileID: 0}
 --- !u!1001 &461539885442632257
 PrefabInstance:
   m_ObjectHideFlags: 0

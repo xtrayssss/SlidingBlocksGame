@@ -13,25 +13,25 @@ MonoBehaviour:
   m_Name: MenuAudioCfg
   m_EditorClassIdentifier: 
   _components:
-  - rid: 8499802814705828382
-  - rid: 6454805541227593730
-  - rid: 6454805541227593731
+  - rid: 3543309501795139587
+  - rid: 3543309501818994688
+  - rid: 3543309501827907584
   references:
     version: 2
     RefIds:
-    - rid: 6454805541227593730
+    - rid: 3543309501795139587
       type: {class: AudioLoopMarker/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
-        asm: Assembly-CSharp}
+        asm: AudioFeature.Components}
       data: {}
-    - rid: 6454805541227593731
-      type: {class: AudioTypeRef/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
-        asm: Assembly-CSharp}
-      data:
-        component:
-          Value: 4
-    - rid: 8499802814705828382
+    - rid: 3543309501818994688
       type: {class: Audio/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
-        asm: Assembly-CSharp}
+        asm: AudioFeature.Components}
       data:
         component:
           Value: {fileID: 8300000, guid: b2fc66e8297220546bba57ac039ae902, type: 3}
+    - rid: 3543309501827907584
+      type: {class: AudioTypeRef/Template, ns: _Project.Scripts.Gameplay.Features.AudioFeature.Components,
+        asm: AudioFeature.Components}
+      data:
+        component:
+          Value: 4
