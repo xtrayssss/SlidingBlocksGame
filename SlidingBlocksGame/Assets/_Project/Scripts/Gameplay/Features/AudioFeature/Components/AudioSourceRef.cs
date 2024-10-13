@@ -11,10 +11,10 @@ namespace _Project.Scripts.Gameplay.Features.AudioFeature.Components
     {
         public AudioSource Value;
 
-		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.AudioFeature.Components", sourceClassName: "AudioSourceRef/Template", sourceAssembly: "Assembly-CSharp")]
-
-
-		private sealed class Template : ComponentTemplate<AudioSourceRef>
+        [MovedFrom(autoUpdateAPI: false,
+            sourceNamespace: "_Project.Scripts.Gameplay.Features.AudioBaseFeature.Components",
+            sourceClassName: "AudioSourceRef/Template", sourceAssembly: "Assembly-CSharp")]
+        private sealed class Template : ComponentTemplate<AudioSourceRef>
         {
         }
     }

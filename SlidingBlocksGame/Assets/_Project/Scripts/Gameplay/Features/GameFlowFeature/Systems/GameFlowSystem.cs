@@ -1,13 +1,16 @@
-using _Project.Scripts.Gameplay.Features.AudioFeature;
+using _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.CreationFeature.Components;
 using _Project.Scripts.Gameplay.Features.AudioFeature.Components;
-using _Project.Scripts.Gameplay.Features.CollectFeature.Components;
-using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+using _Project.Scripts.Gameplay.Features.AudioFeature.Systems;
 using _Project.Scripts.Gameplay.Features.GameFieldFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFlowFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameFlowFeature.IntegrationFeatures.AudioFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameOverTimerFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameOverTimerFeature.IntegrationFeatures.UIFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameProgressFeature.Components;
 using _Project.Scripts.Gameplay.Features.PlayerFeature.Components;
 using _Project.Scripts.Gameplay.Features.PlayerFeature.InputFeature.Components;
-using _Project.Scripts.Gameplay.Features.UIFeature.Components;
-using _Project.Scripts.Gameplay.Utils;
+using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.ButtonFeature.Components;
+using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components;
 using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
@@ -34,8 +37,6 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
         private class GameCreatedAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(GameCreatedEvent))]
-            [Opt] public readonly EcsTagPool<CreateHUDRequest> CreateHud;
-
             [Opt] public readonly EcsTagPool<CreateGameScreenRequest> CreateGameScreen;
         }
 
@@ -57,20 +58,19 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
         {
             [IncImplicit(typeof(LevelTag))]
             [IncImplicit(typeof(AnimalPositionedEvent))]
-
             [Opt] public readonly EcsTagPool<CreateCoinRequest> CreateCoin;
         }
 
         private class MetaGameUIHiddenStateAspect : EcsAspectAuto
         {
             [Inc] private readonly EcsTagPool<MetaGameUIHiddenEvent> _metaGameUIHiddenEvents;
-            [Inc] public readonly EcsPool<PlayButtonConnect> PlayButtonConnects;
         }
 
         private class GameScreenAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(GameScreenTag))]
             [Opt] public readonly EcsTagPool<HideMetaGameUIRequest> HideMetaGameUI;
+            [Opt] public readonly EcsTagPool<CreateGameOverTimerRequest> CreateGameOverTimer;
         }
 
         private class PlayerAspect : EcsAspectAuto
@@ -93,25 +93,16 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
             [Inc] public readonly EcsTagPool<CoinTag> CoinTag;
         }
 
-        private class HUDAspect : EcsAspectAuto
+        private class GameOverTimerOpenedAspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(HUDTag))]
-            [Opt] public readonly EcsTagPool<CreateGameLossTimerRequest> CreateGameLossTimerRequest;
-        }
-        
-        private class GameLossTimerOpenedAspect : EcsAspectAuto
-        {
-            [IncImplicit(typeof(GameLossTimerTag))]
-            [Inc] public readonly EcsTagPool<GameLossTimerOpenedEvent> GameLossTimerOpenedEvent;
+            [IncImplicit(typeof(GameOverTimerTag))]
+            [Inc] public readonly EcsTagPool<GameOverTimerOpenedEvent> GameOverTimerOpenedEvent;
         }
 
         public void Run()
         {
             foreach (int game in _world.Where(out GameCreatedAspect aspect))
-            {
-                aspect.CreateHud.Add(game);
                 aspect.CreateGameScreen.Add(game);
-            }
 
             foreach (int _ in _world.Where(out GameScreenCreatedAspect _))
             {
@@ -128,14 +119,10 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
                     gameScreenAspect.HideMetaGameUI.Add(gameScreen);
             }
 
-            foreach (int gameScreen in _world.Where(out MetaGameUIHiddenStateAspect gameScreenAspect))
+            foreach (int _ in _world.Where(out MetaGameUIHiddenStateAspect _))
             {
                 foreach (int game in _world.Where(out GameAspect gameAspect))
                     gameAspect.NextLevel.Add(game);
-
-                ref PlayButtonConnect playButtonConnect = ref gameScreenAspect.PlayButtonConnects.Get(gameScreen);
-                playButtonConnect.Play.gameObject.SetActive(false);
-                playButtonConnect.Replay.gameObject.SetActive(true);
             }
 
             foreach (int level in _world.Where(out LevelCreationStateAspect levelAspect))
@@ -158,14 +145,14 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
 
             foreach (int _ in _world.Where(out CoinSpawnedStateAspect _))
             {
-                foreach (int level in _world.Where(out HUDAspect hudAspect))
-                    hudAspect.CreateGameLossTimerRequest.Add(level);
+                foreach (int gameScreen in _world.Where(out GameScreenAspect gameScreenAspect)) 
+                    gameScreenAspect.CreateGameOverTimer.Add(gameScreen);
 
                 foreach (int player in _world.Where(out PlayerAspect playerAspect))
                     playerAspect.LockGameInputMarker.Del(player);
             }
 
-            foreach (int _ in _world.Where(out GameLossTimerOpenedAspect _))
+            foreach (int _ in _world.Where(out GameOverTimerOpenedAspect _))
             {
                 foreach (int player in _world.Where(out PlayerAspect _))
                     ProgressUtils.UpdateScores(player, 1);

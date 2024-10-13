@@ -1,13 +1,14 @@
+using _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.UIFeature.Components;
+using _Project.Scripts.Gameplay.Features.PurchaseFeature.Components;
 using _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Components;
-using _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Systems;
-using _Project.Scripts.Gameplay.Features.UIFeature.Components;
+using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.ButtonFeature.Components;
 using DCFApixels.DragonECS;
 using PrimeTween;
 using UnityEngine;
 
-namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
+namespace _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.UIFeature.Systems
 {
-    public class DisplayAnimalPurchaseWindowSystem : IEcsRun
+    public class DisplayAnimalsShopWindowSystem : IEcsRun
     {
         [EcsInject] private readonly EcsDefaultWorld _world;
 
@@ -20,12 +21,14 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
         private class AnimalsShopWindowAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(AnimalsShopWindowTag))]
-            [IncImplicit(typeof(ClosedMarker))]
+            [IncImplicit(typeof(AnimalsShopWindowClosedMarker))]
             [Inc] public readonly EcsPool<GameObjectConnect> GameObjectConnects;
 
-            [Inc] public readonly EcsPool<AnimalPurchases> PurchaseAnimals;
+            [Inc] public readonly EcsPool<AnimalsShopWindow> AnimalsShopWindows;
+            [Inc] public readonly EcsPool<Purchases> PurchaseAnimals;
             [Inc] public readonly EcsPool<ScrollSnap> ScrollSnap;
-            [Inc] public readonly EcsPool<PurchaseButtonStatus> PurchaseButtonStatus;
+
+            [Opt] public readonly EcsTagPool<UnlockScrollSnapRequest> UnlockScrollSnap;
         }
 
         public void Run()
@@ -34,34 +37,35 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
             {
                 foreach (int window in _world.Where(out AnimalsShopWindowAspect animalsShopWindowAspect))
                 {
-                    ref GameObjectConnect gameObjectConnect =
+                    ref GameObjectConnect goConnect =
                         ref animalsShopWindowAspect.GameObjectConnects.Get(window);
 
-                    _world.GetPool<ClosedMarker>().Del(window);
+                    ref AnimalsShopWindow animalsShopWindow =
+                        ref animalsShopWindowAspect.AnimalsShopWindows.Get(window);
+
+                    _world.GetPool<AnimalsShopWindowClosedMarker>().Del(window);
 
                     ref ScrollSnap scrollSnap = ref animalsShopWindowAspect.ScrollSnap.Get(window);
 
                     scrollSnap.OpenCloseTween.Stop();
 
-                    gameObjectConnect.Connect.transform.localScale = Vector3.zero;
-
-                    //EcsDebug.Break();
+                    goConnect.Connect.transform.localScale = Vector3.zero;
 
                     scrollSnap.OpenCloseTween = Sequence.Create()
                         .Group(
                             Tween.Scale(
-                                target: gameObjectConnect.Connect.transform,
+                                target: goConnect.Connect.transform,
                                 endValue: Vector3.one,
                                 duration: 0.2f,
                                 ease: Ease.OutBack))
                         .Chain(
                             AnimatePurchases(
                                 animals: animalsShopWindowAspect.PurchaseAnimals.Read(window).Entities,
-                                purchaseButton: animalsShopWindowAspect.PurchaseButtonStatus.Get(window).Current,
-                                price: animalsShopWindowAspect.PurchaseButtonStatus.Get(window).Price,
+                                purchaseButton: animalsShopWindow.PurchaseStatusWidget.Current,
+                                price: animalsShopWindow.PurchaseStatusWidget.Price,
                                 in scrollSnap))
                         .ChainCallback(
-                            target: gameObjectConnect.Connect,
+                            target: goConnect.Connect,
                             static connect =>
                             {
                                 if (!connect.Entity.TryGetID(out int id))
@@ -69,10 +73,12 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
 
                                 EcsWorld world = connect.Entity.World;
 
-                                world.GetPool<OpenedEvent>().Add(id);
+                                AnimalsShopWindowAspect windowAspect = world.GetAspect<AnimalsShopWindowAspect>();
+
+                                windowAspect.UnlockScrollSnap.Add(id);
                             });
 
-                    gameObjectConnect.Connect.transform.gameObject.SetActive(true);
+                    goConnect.Connect.transform.gameObject.SetActive(true);
                 }
             }
         }
@@ -85,7 +91,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
             EcsSpan visible = default;
 
             Debug.Log("AnimatePurchases");
-            
+
             int i = scrollSnap.TargetIndex;
 
             if (i > 0 && i < animals.Count - 1)

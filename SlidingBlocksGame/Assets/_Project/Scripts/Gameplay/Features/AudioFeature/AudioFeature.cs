@@ -1,11 +1,6 @@
-using _Project.Scripts.Gameplay.Features.AnimalFeature.Components;
 using _Project.Scripts.Gameplay.Features.AudioFeature.Components;
 using _Project.Scripts.Gameplay.Features.AudioFeature.Systems;
-using _Project.Scripts.Gameplay.Features.CollectFeature.Components;
-using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
-using _Project.Scripts.Gameplay.Features.DestructionFeature.Components;
-using _Project.Scripts.Gameplay.Features.GameFlowFeature.Components;
-using _Project.Scripts.Gameplay.Features.UIFeature.Components;
+using _Project.Scripts.Infrastructure;
 using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.AudioFeature
@@ -15,16 +10,6 @@ namespace _Project.Scripts.Gameplay.Features.AudioFeature
         public void Import(EcsPipeline.Builder builder)
         {
             builder
-                .AddAudioSystem<ButtonClickedEvent, ClickedAudioConfig>()
-                .AddAudioSystem<DeathEvent, DeathAudioConfig>()
-                .AddAudioSystem<TickEvent, TickAudioConfig>()
-                .AddUnique(new GameFieldAudioSystem())
-                .AddAudioSystem<CoinCollectedEvent, CollectedAudioConfig>()
-                .AddAudioSystem<ConfettiExplodedEvent, ConfettiExplodedAudioConfig>()
-                .AddAudioSystem<RewardCollectedEvent, RewardCollectedAudioConfig>()
-                .AddUnique(new CoinAddedToTextAudioSystem())
-                .AddAudioSystem<PurchasedEvent, PurchasedAudioConfig>()
-                //
                 .AddUnique(new AddAudioSourceSystem())
                 .AddUnique(new PlaybackAudioSystem())
                 .AddUnique(new AudioSystem())

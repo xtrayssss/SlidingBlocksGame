@@ -1,16 +1,17 @@
 using System;
+using _Project.Scripts.Gameplay.Features.AnimalFeature.Components;
+using _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.CreationFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.CreationFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFieldFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFlowFeature.Components;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
 using _Project.Scripts.Gameplay.Features.PlayerFeature.Components;
-using _Project.Scripts.Gameplay.Utils;
 using DCFApixels.DragonECS;
 using Unity.Mathematics;
 using Object = UnityEngine.Object;
 
-namespace _Project.Scripts.Gameplay.Features.AnimalFeature.Systems
+namespace _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.CreationFeature.Systems
 {
     public class CreateAnimalsSystem : IEcsRun
     {
@@ -32,15 +33,7 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature.Systems
             [Opt] public readonly EcsPool<BoundExtents> BoundsExtents;
             [Opt] public readonly EcsPool<MeshRendererRef> MeshRenderers;
         }
-
-        private class SideAspect : EcsAspectAuto
-        {
-            [Opt] public readonly EcsPool<MovementDirection> MovementDirection;
-            [Opt] public readonly EcsTagPool<SideTag> SideTag;
-            [Opt] public readonly EcsPool<SideAnimals> SideAnimals;
-            [Opt] public readonly EcsTagPool<LevelLifeTimeMarker> LevelLifeTime;
-        }
-
+        
         private class PlayerAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(PlayerTag))]
@@ -60,13 +53,6 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature.Systems
                     AnimalAspect animalAspect = _world.GetAspect<AnimalAspect>();
 
                     CreateCreationStrategy(aspect, level);
-
-                    SideAspect sideAspect = _world.GetAspect<SideAspect>();
-
-                    (int2 direction, EcsGroup animals) left = CreateSide(sideAspect, GridUtils.Left);
-                    (int2 direction, EcsGroup animals) right = CreateSide(sideAspect, GridUtils.Right);
-                    (int2 direction, EcsGroup animals) up = CreateSide(sideAspect, GridUtils.Up);
-                    (int2 direction, EcsGroup animals) down = CreateSide(sideAspect, GridUtils.Down);
 
                     foreach (ref GameField.AnimalsData animalData in animals)
                     {
@@ -95,15 +81,6 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature.Systems
                             animalAspect.MeshRenderers.Read(animal.ID).Value.bounds.extents;
 
                         _world.GetPool<CalculateMovementSpeedRequest>().Add(animal.ID);
-
-                        if (math.all(movementDirection.Value == right.direction))
-                            right.animals.Add(animal.ID);
-                        if (math.all(movementDirection.Value == left.direction))
-                            left.animals.Add(animal.ID);
-                        if (math.all(movementDirection.Value == up.direction))
-                            up.animals.Add(animal.ID);
-                        if (math.all(movementDirection.Value == down.direction))
-                            down.animals.Add(animal.ID);
                     }
                 }
             }
@@ -115,16 +92,6 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature.Systems
             entlong strategy = _world.NewEntityLong(creationAnimalStrategyCfg.Value);
             
             _world.GetPool<ApplyCreationStrategyRequest>().Add(strategy.ID);
-        }
-
-        private (int2 direction, EcsGroup animals) CreateSide(SideAspect sideAspect, int2 direction)
-        {
-            int side = _world.NewEntity();
-            sideAspect.SideTag.Add(side);
-            sideAspect.LevelLifeTime.Add(side);
-
-            return (sideAspect.MovementDirection.Add(side).Value = direction,
-                sideAspect.SideAnimals.Add(side).Value = EcsGroup.New(_world));
         }
     }
 }

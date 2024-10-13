@@ -1,10 +1,15 @@
-using _Project.Scripts.Gameplay.Features.CollectFeature;
-using _Project.Scripts.Gameplay.Features.CollectFeature.Components;
-using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
-using _Project.Scripts.Gameplay.Features.CommonFeature.Systems;
 using _Project.Scripts.Gameplay.Features.GameFlowFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems;
-using _Project.Scripts.Gameplay.Features.UIFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameOverTimerFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameOverTimerFeature.IntegrationFeatures.UIFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameOverTimerFeature.Systems;
+using _Project.Scripts.Gameplay.Features.GameProgressFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameProgressFeature.Systems;
+using _Project.Scripts.Gameplay.Features.RewardFeature.Components;
+using _Project.Scripts.Gameplay.Features.RewardFeature.Systems;
+using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components;
+using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Systems;
+using _Project.Scripts.Infrastructure;
 using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.GameFlowFeature
@@ -20,8 +25,8 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature
         {
             builder
                 //events api
-                .AutoDelTag<LevelWonEvent>()
-                .AutoDelTag<LevelLostEvent>()
+                .AutoDelTag<LevelVictoryEvent>()
+                .AutoDelTag<LevelDefeatEvent>()
 
                 // core
                 .AddUnique(new CreateGameSystem(_gameCfg))
@@ -33,17 +38,8 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature
                 .AddUnique(new GameFlowSystem())
                 //
                 .AutoDelTag<GameScreenCreatedEvent>()
-                .AddUnique(new GameScreenSystem())
+                .AddUnique(new CreateGameScreenSystem())
                 .AutoDelTag<CreateGameScreenRequest>()
-                //
-                .AutoDelTag<ScoreUICreatedEvent>()
-                .AddUnique(new CreateHUDSystem())
-                .AutoDelTag<CreateHUDRequest>()
-                .AutoDelTag<CreateControlsRequest>()
-                //
-                .AutoDelTag<GameLossTimerOpenedEvent>()
-                .AddUnique(new GameLossTimerSystem())
-                .AutoDelTag<CreateGameLossTimerRequest>()
                 //
                 //.AddUnique(new AnimalCreationChainStrategySystem())
                 //.AutoDelTag<CreateAnimalsRequest>()
@@ -53,10 +49,10 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature
                 .AutoDelTag<ShowMetaGameUIRequest>()
                 .AutoDelTag<HideMetaGameUIRequest>()
                 //
-                .AddUnique(new LevelWinCheckSystem())
-                .AddUnique(new LevelLostCheckSystem())
-                .AddUnique(new LevelWinSystem())
-                .AddUnique(new LevelLossSystem())
+                .AddUnique(new LevelVictoryCheckSystem())
+                .AddUnique(new LevelDefeatCheckSystem())
+                .AddUnique(new LevelVictorySystem())
+                .AddUnique(new LevelDefeatSystem())
                 //
                 .AutoDelTag<CoinSpawnedEvent>()
                 .AddUnique(new CatchCoinSystem())
@@ -70,33 +66,13 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature
                 .AutoDelTag<CoinCollectedEvent>()
                 .AddUnique(new CollectCoinSystem())
                 //
-                .AddUnique(new RewardCollectSystem())
-                //
-                .AutoDelTag<PurchasedEvent>()
-                .AddUnique(new PurchaseAnimalSystem())
-                //
-                .AutoDelEntityComponent<ScoreUpdatedEvent>()
-                .AddUnique(new ScoresSystem())
-                .AutoDelEntityComponent<UpdateScoresRequest>()
-                //
                 .AutoDelEntityComponent<CoinsUpdatedEvent>()
                 .AddUnique(new CoinsSystem())
                 .AutoDelEntityComponent<UpdateCoinsRequest>()
                 //
-                .AutoDelEntityTag<SelectedAnimalUpdatedEvent>()
-                .AutoDelEntityTag<PurchasesClearedEvent>()
-                .AddUnique(new PurchaseSystem())
-                .AutoDelEntityComponent<UpdateSelectedAnimalRequest>()
-                .AutoDelEntityTag<ClearPurchasesRequest>()
-                //
                 .AutoDelEntityTag<RewardUpdatedEvent>()
                 .AddUnique(new RewardSystem())
-                .AutoDelEntityComponent<UpdateRewardRequest>()
-                //
-                .AddUnique(new BestScoreCheckSystem())
-                .AutoDelEntityComponent<BestScoreUpdatedEvent>()
-                .AddUnique(new BestScoreSystem())
-                .AutoDelEntityComponent<UpdateBestScoreRequest>();
+                .AutoDelEntityComponent<UpdateRewardRequest>();
         }
     }
 }

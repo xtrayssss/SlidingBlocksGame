@@ -8,11 +8,10 @@ namespace _Project.Scripts.Gameplay.Features.AudioFeature.Components
     [MetaGroup("Audio")]
     public struct AudioLoopMarker : IEcsTagComponent
     {
-
-		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.AudioFeature.Components", sourceClassName: "AudioLoopMarker/Template", sourceAssembly: "Assembly-CSharp")]
-
-
-		private sealed class Template : TagComponentTemplate<AudioLoopMarker>
+        [MovedFrom(autoUpdateAPI: false,
+            sourceNamespace: "_Project.Scripts.Gameplay.Features.AudioBaseFeature.Components",
+            sourceClassName: "AudioLoopMarker/Template", sourceAssembly: "Assembly-CSharp")]
+        private sealed class Template : TagComponentTemplate<AudioLoopMarker>
         {
         }
     }

@@ -1,12 +1,13 @@
+using _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.UIFeature.Components;
+using _Project.Scripts.Gameplay.Features.PurchaseFeature.Components;
 using _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Components;
-using _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Systems;
-using _Project.Scripts.Gameplay.Features.UIFeature.Components;
+using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.ButtonFeature.Components;
 using DCFApixels.DragonECS;
 using PrimeTween;
 using UnityEngine;
 using ScrollSnap = _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Components.ScrollSnap;
 
-namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
+namespace _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.UIFeature.Systems
 {
     public class CloseAnimalPurchaseWindowSystem : IEcsRun
     {
@@ -21,38 +22,40 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
         private class AnimalsShopWindowAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(AnimalsShopWindowTag))]
-            [ExcImplicit(typeof(ClosedMarker))]
+            [ExcImplicit(typeof(AnimalsShopWindowClosedMarker))]
             [Inc] public readonly EcsPool<GameObjectConnect> GameObjectConnects;
 
             [Inc] public readonly EcsPool<ScrollSnap> ScrollSnap;
 
-            [Inc] public readonly EcsPool<AnimalPurchases> PurchaseAnimals;
-            [Inc] public readonly EcsPool<PurchaseButtonStatus> PurchaseButtonStatus;
-            [Opt] public readonly EcsTagPool<ClosedStartEvent> ClosedStartEvent;
+            [Inc] public readonly EcsPool<Purchases> PurchaseAnimals;
+            [Inc] public readonly EcsPool<AnimalsShopWindow> AnimalsShopWindows;
+            [Opt] public readonly EcsTagPool<LockScrollSnapRequest> LockScrollSnap;
+            [Opt] public readonly EcsTagPool<AnimalPurchaseWindowClosedEvent> AnimalPurchaseWindowClosedEvent;
         }
 
         public void Run()
         {
             foreach (int _ in _world.Where(out ButtonClickedAspect _))
             {
-                foreach (int window in _world.Where(out AnimalsShopWindowAspect animalsShopWindowAspect))
+                foreach (int window in _world.Where(out AnimalsShopWindowAspect windowAspect))
                 {
-                    ref GameObjectConnect goConnect = ref animalsShopWindowAspect.GameObjectConnects.Get(window);
+                    ref GameObjectConnect goConnect = ref windowAspect.GameObjectConnects.Get(window);
 
-                    ref ScrollSnap scrollSnap = ref animalsShopWindowAspect.ScrollSnap.Get(window);
+                    ref AnimalsShopWindow animalsShopWindow = ref windowAspect.AnimalsShopWindows.Get(window);
+                    ref ScrollSnap scrollSnap = ref windowAspect.ScrollSnap.Get(window);
 
-                    _world.GetPool<ClosedMarker>().Add(window);
+                    _world.GetPool<AnimalsShopWindowClosedMarker>().Add(window);
 
                     scrollSnap.OpenCloseTween.Stop();
 
                     float factor = 0.7f;
-                    
-                    animalsShopWindowAspect.ClosedStartEvent.Add(window);
-                    
+
+                    windowAspect.LockScrollSnap.Add(window);
+
                     scrollSnap.OpenCloseTween = Sequence.Create()
                         .Chain(
                             sequence: AnimatePurchases(
-                                animals: animalsShopWindowAspect.PurchaseAnimals.Read(window).Entities,
+                                animals: windowAspect.PurchaseAnimals.Read(window).Entities,
                                 out float delay))
                         // close window
                         .Insert(
@@ -66,7 +69,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                         .Insert(
                             atTime: delay * factor,
                             tween: Tween.Scale(
-                                target: animalsShopWindowAspect.PurchaseButtonStatus.Get(window).Current.transform,
+                                target: animalsShopWindow.PurchaseStatusWidget.Current.transform,
                                 endValue: Vector3.zero,
                                 duration: 0.15f,
                                 ease: Ease.InBack))
@@ -74,7 +77,7 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                         .Insert(
                             atTime: delay * factor,
                             tween: Tween.Scale(
-                                target: animalsShopWindowAspect.PurchaseButtonStatus.Get(window).Price.transform,
+                                target: animalsShopWindow.PurchaseStatusWidget.Price.transform,
                                 endValue: Vector3.zero,
                                 duration: 0.15f,
                                 ease: Ease.InBack))
@@ -88,15 +91,18 @@ namespace _Project.Scripts.Gameplay.Features.UIFeature.Systems
                                     return;
 
                                 EcsWorld world = connect.World;
-                                
-                                world.GetPool<ClosedEvent>().Add(id);
 
-                                ref PurchaseButtonStatus purchaseButtonStatus =
-                                    ref world.GetPool<PurchaseButtonStatus>().Get(id);
+                                AnimalsShopWindowAspect windowAspect =
+                                    world.GetAspect<AnimalsShopWindowAspect>();
 
-                                purchaseButtonStatus.Lock.transform.localScale = Vector3.one;
-                                purchaseButtonStatus.Play.transform.localScale = Vector3.one;
-                                purchaseButtonStatus.Unlock.transform.localScale = Vector3.one;
+                                windowAspect.AnimalPurchaseWindowClosedEvent.Add(id);
+
+                                ref AnimalsShopWindow animalsShopWindow =
+                                    ref windowAspect.AnimalsShopWindows.Get(id);
+
+                                animalsShopWindow.PurchaseStatusWidget.Lock.transform.localScale = Vector3.one;
+                                animalsShopWindow.PurchaseStatusWidget.Play.transform.localScale = Vector3.one;
+                                animalsShopWindow.PurchaseStatusWidget.Unlock.transform.localScale = Vector3.one;
                             });
                 }
             }

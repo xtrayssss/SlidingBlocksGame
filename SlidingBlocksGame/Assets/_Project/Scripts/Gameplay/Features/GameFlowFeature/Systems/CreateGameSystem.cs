@@ -1,5 +1,5 @@
 using _Project.Scripts.Gameplay.Features.GameFlowFeature.Components;
-using _Project.Scripts.Gameplay.Utils;
+using _Project.Scripts.Gameplay.Features.PlayerFeature.Components;
 using DCFApixels.DragonECS;
 using UnityEngine;
 

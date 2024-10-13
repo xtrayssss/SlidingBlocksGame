@@ -1,19 +1,18 @@
 ﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
-using _Project.Scripts.Gameplay.Features.GameFieldFeature.Components;
 using DCFApixels.DragonECS;
 using Unity.Mathematics;
 using UnityEngine;
 
-namespace _Project.Scripts.Gameplay.Utils
+namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.Components
 {
     public static class GridUtils
     {
-        public static readonly int2 Up = new int2(0, 1);
-        public static readonly int2 Down = new int2(0, -1);
-        public static readonly int2 Left = new int2(-1, 0);
-        public static readonly int2 Right = new int2(1, 0);
+        public static readonly int2 UP = new int2(0, 1);
+        public static readonly int2 DOWN = new int2(0, -1);
+        public static readonly int2 LEFT = new int2(-1, 0);
+        public static readonly int2 RIGHT = new int2(1, 0);
 
-        public static bool IsWithinCenter(float2 position, in GameField gameField)
+        public static bool IsWithinCenter(int2 position, in GameField gameField)
         {
             return position.x >= gameField.EdgeSize &&
                    position.x < gameField.EdgeSize + gameField.CenterSize &&
@@ -27,13 +26,13 @@ namespace _Project.Scripts.Gameplay.Utils
         public static int2 GetInvertedSide(float2 position, in GameField gameField)
         {
             if (position.x < gameField.EdgeSize)
-                return Right;
+                return RIGHT;
             if (position.x >= gameField.EdgeSize + gameField.CenterSize)
-                return Left;
+                return LEFT;
             if (position.y < gameField.EdgeSize)
-                return Up;
+                return UP;
             if (position.y >= gameField.EdgeSize + gameField.CenterSize)
-                return Down;
+                return DOWN;
 
             return default;
         }
@@ -124,18 +123,10 @@ namespace _Project.Scripts.Gameplay.Utils
             {
                 int2 tempDimensions = dimensions + side * step;
 
-                Debug.Log(tempDimensions);
+                int bit = tempDimensions.x * gameField.EdgeSize + tempDimensions.y;
 
-                int bitPosition = tempDimensions.x * gameField.EdgeSize + tempDimensions.y;
-
-                Debug.Log(bitPosition);
-
-                if ((gameField.Center & (1 << bitPosition)) != 0)
-                {
-                    Debug.Log("HAS OBSTACLE " + bitPosition);
-
+                if ((gameField.Center & (1 << bit)) != 0)
                     return (tempDimensions.yx, true);
-                }
             } while (step++ != gameField.EdgeSize - 1);
 
             return default;
@@ -147,6 +138,18 @@ namespace _Project.Scripts.Gameplay.Utils
 
             world.GetPool<TRequest>().Add(@event);
             world.GetPool<TargetEntity>().Add(@event).Value = target.ToEntityLong(world);
+        }
+
+        public static bool IsWithinGrid(int2 position, in GameField gameField)
+        {
+            return position.x >= 0 && position.x < gameField.Size &&
+                   position.y >= 0 && position.y < gameField.Size;
+        }
+
+        public static bool IsInCross(int2 position, in GameField gameField)
+        {
+            return (position.x >= gameField.EdgeSize && position.x < gameField.EdgeSize + gameField.CenterSize) ||
+                   (position.y >= gameField.EdgeSize && position.y < gameField.EdgeSize + gameField.CenterSize);
         }
     }
 }

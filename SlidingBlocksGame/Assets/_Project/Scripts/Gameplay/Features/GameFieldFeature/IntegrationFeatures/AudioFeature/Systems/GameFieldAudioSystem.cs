@@ -1,11 +1,11 @@
-using _Project.Scripts.Gameplay.Features.AudioFeature.Components;
+using _Project.Scripts.Gameplay.Features.AudioFeature.Systems;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFieldFeature.Components;
-using _Project.Scripts.Gameplay.Utils;
+using _Project.Scripts.Gameplay.Features.GameFieldFeature.IntegrationFeatures.AudioFeature.Components;
 using DCFApixels.DragonECS;
 using UnityEngine;
 
-namespace _Project.Scripts.Gameplay.Features.AudioFeature.Systems
+namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.IntegrationFeatures.AudioFeature.Systems
 {
     public class GameFieldAudioSystem : IEcsRun
     {
@@ -27,9 +27,41 @@ namespace _Project.Scripts.Gameplay.Features.AudioFeature.Systems
         {
             [Inc] public readonly EcsPool<TileGeneratedAudioConfig> AudioConfigs;
         }
+        
+        private class AlgorithmsAspect : EcsAspectAuto
+        {
+            [Inc] public readonly EcsPool<GameFieldAlgorithmCfg> Algorithms;
+            [Opt] public readonly EcsPool<GameFieldGeneratedAudioConfig> GameFieldGeneratedAudioConfigs;
+            [Opt] public readonly EcsPool<TileGeneratedAudioConfig> TileGeneratedAudioConfigs;
+        }
+        
+        private class  GameFieldAspect : EcsAspectAuto
+        {
+            [Inc] public readonly EcsPool<GameField> GameFields;
+        }
 
         public void Run()
         {
+            foreach (int entity in _world.Where(out AlgorithmsAspect algorithmsAspect))
+            {
+                foreach (int gameField in _world.Where(out GameFieldAspect _))
+                {
+                    if (algorithmsAspect.GameFieldGeneratedAudioConfigs.Has(entity))
+                    {
+                        algorithmsAspect.GameFieldGeneratedAudioConfigs.Add(gameField).Value =
+                            algorithmsAspect.GameFieldGeneratedAudioConfigs.Read(entity).Value;
+                    }
+
+                    if (algorithmsAspect.TileGeneratedAudioConfigs.Has(entity))
+                    {
+                        algorithmsAspect.TileGeneratedAudioConfigs.Add(gameField).Value =
+                            algorithmsAspect.TileGeneratedAudioConfigs.Read(entity).Value;
+                    }
+                }
+
+                _world.DelEntity(entity);
+            }
+
             foreach (int entity in _world.Where(out GameFieldGeneratedAspect aspect))
             {
                 Debug.Log("GameFieldAudio");

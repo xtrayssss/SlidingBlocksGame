@@ -1,7 +1,5 @@
-using _Project.Scripts.Gameplay.Features.AudioFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFieldFeature.Components;
-using _Project.Scripts.Gameplay.Utils;
 using DCFApixels.DragonECS;
 using UnityEngine;
 
@@ -16,8 +14,6 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.Systems
             [IncImplicit(typeof(GameFieldGenerateRequest))]
             [Inc] public readonly EcsPool<GameFieldAlgorithms> Algorithms;
 
-            [Opt] public readonly EcsPool<GameFieldGeneratedAudioConfig> GameFieldGeneratedAudioConfig;
-            [Opt] public readonly EcsPool<TileGeneratedAudioConfig> TileGeneratedAudioConfig;
             [Opt] public readonly EcsPool<GameFieldAlgorithmIndex> GameFieldAlgorithmIndex;
         }
 
@@ -30,8 +26,6 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.Systems
         {
             [Opt] public readonly EcsTagPool<GameFieldGenerateRequest> GameFieldGenerateRequest;
             [Opt] public readonly EcsPool<TargetEntity> Target;
-            [Opt] public readonly EcsPool<GameFieldGeneratedAudioConfig> GameFieldGeneratedAudioConfigs;
-            [Opt] public readonly EcsPool<TileGeneratedAudioConfig> TileGeneratedAudioConfigs;
         }
 
         public void Run()
@@ -46,27 +40,14 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.Systems
 
                 AlgorithmsAspect algorithmsAspect = _world.GetAspect<AlgorithmsAspect>();
 
-                int algorithm = _world.NewEntity(algorithmsAspect.Algorithms.Read(pack).Value);
+                ref readonly GameFieldAlgorithmCfg algorithmCfg = ref algorithmsAspect.Algorithms.Read(pack);
+                int algorithm = _world.NewEntity(algorithmCfg.Value);
 
                 AlgorithmAspect algorithmAspect = _world.GetAspect<AlgorithmAspect>();
                 algorithmAspect.GameFieldGenerateRequest.Add(algorithm);
                 algorithmAspect.Target.Add(algorithm).Value = _world.GetEntityLong(entity);
 
-                if (algorithmAspect.GameFieldGeneratedAudioConfigs.Has(pack))
-                {
-                    aspect.GameFieldGeneratedAudioConfig.Add(entity).Value =
-                        algorithmAspect.GameFieldGeneratedAudioConfigs.Read(pack).Value;
-                }
-
-                if (algorithmAspect.TileGeneratedAudioConfigs.Has(pack))
-                {
-                    aspect.TileGeneratedAudioConfig.Add(entity).Value =
-                        algorithmAspect.TileGeneratedAudioConfigs.Read(pack).Value;
-                }
-
                 aspect.GameFieldAlgorithmIndex.Add(entity).Value = randomIndex;
-
-                _world.DelEntity(pack);
             }
         }
     }

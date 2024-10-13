@@ -1,8 +1,6 @@
-using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFlowFeature.Components;
 using DCFApixels.DragonECS;
 using UnityEngine;
-using Random = Unity.Mathematics.Random;
 
 namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
 {
@@ -14,8 +12,6 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
         {
             [IncImplicit(typeof(NextLeveRequest))]
             [Inc] public readonly EcsPool<Levels> Levels;
-
-            [Inc] public readonly EcsPool<GameScreen> GameScreens;
         }
 
         public void Run()
@@ -35,8 +31,6 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
                 entlong nextLevel = _world.NewEntityLong(randomLevelCfg);
 
                 _world.GetTagPool<LevelChangedEvent>().Add(nextLevel.ID);
-
-                aspect.GameScreens.Add(nextLevel.ID).Value = aspect.GameScreens.Read(entity).Value;
 
                 levels.LevelsCount++;
             }

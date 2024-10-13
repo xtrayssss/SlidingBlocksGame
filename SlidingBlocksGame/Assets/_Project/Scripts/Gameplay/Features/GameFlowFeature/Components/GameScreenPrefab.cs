@@ -9,10 +9,10 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Components
     {
         public EcsEntityConnect Value;
 
-		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.GameFlowFeature.Components", sourceClassName: "GameScreenPrefab/Template", sourceAssembly: "Assembly-CSharp")]
-
-
-		private sealed class Template : ComponentTemplate<GameScreenPrefab>
+        [MovedFrom(autoUpdateAPI: false,
+            sourceNamespace: "_Project.Scripts.Gameplay.Features.GameFlowFeature.Components",
+            sourceClassName: "GameScreenPrefab/Template", sourceAssembly: "GameFlowFeature.Components")]
+        private sealed class Template : ComponentTemplate<GameScreenPrefab>
         {
         }
     }

@@ -1,8 +1,10 @@
-﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
-using _Project.Scripts.Gameplay.Features.UIFeature.Systems;
+﻿using _Project.Scripts.Gameplay.Features.AnimalFeature.Components;
+using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+using _Project.Scripts.Gameplay.Features.PurchaseFeature.Components;
+using _Project.Scripts.Gameplay.Features.RewardFeature.Components;
 using DCFApixels.DragonECS;
 
-namespace _Project.Scripts.Gameplay.Utils
+namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.Components
 {
     public static class ProgressUtils
     {

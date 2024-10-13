@@ -1,9 +1,0 @@
-using DCFApixels.DragonECS;
-
-namespace _Project.Scripts.Gameplay.Features.CommonFeature.Components
-{
-    public struct UpdateSelectedAnimalRequest : IEcsComponent
-    {
-        public ushort SelectedID;
-    }
-}

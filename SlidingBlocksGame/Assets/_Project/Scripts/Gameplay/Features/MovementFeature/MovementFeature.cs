@@ -1,8 +1,6 @@
-using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
-using _Project.Scripts.Gameplay.Features.CommonFeature.Systems;
-using _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Systems;
+using _Project.Scripts.Infrastructure;
 using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.MovementFeature
@@ -12,20 +10,22 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature
         public void Import(EcsPipeline.Builder builder)
         {
             builder
-                .AddUnique(new GameFieldClickSystem())
                 .AutoDelEntityTag<ApplyMovementStrategyRequest>()
-                .AddUnique(new DestinationCellSystem())
+                .AddUnique(new CalculateDestinationSystem())
                 //
                 .AddUnique(new CalculateMovementSpeedSystem())
                 .AutoDelTag<CalculateMovementSpeedRequest>()
                 //
                 .AddUnique(new MovementChainStrategySystem())
-                
+
                 .AutoDelEntityTag<MovementTweenCompletedEvent>()
                 .AddUnique(new CatchMovementTweenSystem())
+                // 
+                .AddUnique(new WobbleSystem())
+                .AutoDelTag<WobbleRequest>()
                 //
-                .AddUnique(new UpdatePositionsSystem())
-                .AddUnique(new WithinCenterSystem());
+                .AddUnique(new UpdatePositionsSystem());
+
         }
     }
 }
