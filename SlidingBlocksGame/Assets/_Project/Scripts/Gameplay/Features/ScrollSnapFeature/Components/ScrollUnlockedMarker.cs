@@ -1,8 +1,8 @@
-using DCFApixels.DragonECS;
+﻿using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Components
 {
-    public struct ScrollSnappedEvent : IEcsTagComponent
+    public struct ScrollUnlockedMarker : IEcsTagComponent
     {
     }
 }

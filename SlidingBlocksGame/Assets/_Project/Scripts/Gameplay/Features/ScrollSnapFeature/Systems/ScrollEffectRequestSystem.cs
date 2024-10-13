@@ -13,6 +13,7 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Systems
 
         private class ScrollAspect : EcsAspectAuto
         {
+            [IncImplicit(typeof(ScrollUnlockedMarker))]
             [Inc] public readonly EcsPool<ScrollSnap> ScrollSnaps;
         }
 

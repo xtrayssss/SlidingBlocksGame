@@ -11,10 +11,17 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Systems
 
         private class ScrollAspect : EcsAspectAuto
         {
+            [IncImplicit(typeof(ScrollUnlockedMarker))]
             [Inc] public readonly EcsPool<ScrollSnap> ScrollSnaps;
-            [Inc] public readonly EcsTagPool<DraggingState> DraggingStates;
-
+            [Inc] public readonly EcsTagPool<DraggingState> DraggingState;
             [Opt] public readonly EcsPool<ScrollToTargetState> ScrollToTargetState;
+            [Opt] public readonly EcsTagPool<ScrollNearestRequest> ScrollNearest;
+        }
+
+        private class ItemAspect : EcsAspectAuto
+        {
+            [Opt] public readonly EcsTagPool<LeaveEvent> LeaveEvent;
+            [Opt] public readonly EcsTagPool<LeaveMarker> LeaveMarker;
         }
 
         public void Run()
@@ -23,12 +30,20 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Systems
             {
                 ref ScrollSnap scrollSnap = ref scrollAspect.ScrollSnaps.Get(scroll);
 
+                scrollAspect.ScrollNearest.TryAdd(scroll);
                 CheckIfLeavingItem(ref scrollSnap);
-                
+
                 if (!Input.GetMouseButton(0) && !IsSnapped(scrollSnap))
                 {
-                    scrollAspect.DraggingStates.Del(scroll);
+                    ItemAspect itemAspect = _world.GetAspect<ItemAspect>();
 
+                    foreach (entlong item in scrollSnap.Items.Longs)
+                    {
+                        if (item.TryGetID(out int itemID))
+                            itemAspect.LeaveMarker.TryDel(itemID);
+                    }
+
+                    scrollAspect.DraggingState.Del(scroll);
                     scrollAspect.ScrollToTargetState.Add(scroll);
                 }
             }
@@ -46,8 +61,10 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Systems
 
                 if (math.abs(scrollSnap.ScrollPosition - itemPos) > scrollSnap.SnapDistanceThreshold)
                 {
-                    int @event = _world.NewEntity();
-                    _world.GetPool<LeaveItemEvent>().Add(@event).ItemIndex = scrollSnap.LastSnappedIndex;
+                    ItemAspect itemAspect = _world.GetAspect<ItemAspect>();
+                    int leaveItem = scrollSnap.Items[scrollSnap.LastSnappedIndex];
+                    itemAspect.LeaveEvent.Add(leaveItem);
+                    itemAspect.LeaveMarker.Add(leaveItem);
                     scrollSnap.LastSnappedIndex = -1;
                 }
             }

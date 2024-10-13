@@ -11,33 +11,27 @@ namespace _Project.Scripts.Gameplay.Features.PurchaseFeature.Systems
     {
         [EcsInject] private readonly EcsDefaultWorld _world;
 
-        private class PurchaseSnappedStateAspect : EcsAspectAuto
+        private class PurchaseSnappedAspect : EcsAspectAuto
         {
-            public class OnEnter : EcsAspectAuto
-            {
-                [IncImplicit(typeof(ScrollSnappedEvent))]
-                [IncImplicit(typeof(PurchaseTag))]
-                [Inc] public readonly EcsPool<PhysicView> PhysicViews;
+            [IncImplicit(typeof(PurchaseTag))]
+            [IncImplicit(typeof(SnappedEvent))]
+            [Inc] public readonly EcsPool<PhysicView> PhysicViews;
 
-                [Inc] public readonly EcsPool<RotationTween> RotationTween;
-            }
+            [Inc] public readonly EcsPool<RotationTween> RotationTween;
         }
 
-        private class PurchaseDraggedStateAspect : EcsAspectAuto
+        private class PurchaseLeaveAspect : EcsAspectAuto
         {
-            public class OnEnter : EcsAspectAuto
-            {
-                [IncImplicit(typeof(PurchaseTag))]
-                [IncImplicit(typeof(ScrollDraggedEvent))]
-                [Inc] public readonly EcsPool<PhysicView> PhysicViews;
+            [IncImplicit(typeof(PurchaseTag))]
+            [IncImplicit(typeof(LeaveEvent))]
+            [Inc] public readonly EcsPool<PhysicView> PhysicViews;
 
-                [Inc] public readonly EcsPool<RotationTween> Factors;
-            }
+            [Inc] public readonly EcsPool<RotationTween> Factors;
         }
 
         public void Run()
         {
-            foreach (int entity in _world.Where(out PurchaseSnappedStateAspect.OnEnter aspect))
+            foreach (int entity in _world.Where(out PurchaseSnappedAspect aspect))
             {
                 ref RotationTween rotationTween = ref aspect.RotationTween.Get(entity);
 
@@ -57,12 +51,12 @@ namespace _Project.Scripts.Gameplay.Features.PurchaseFeature.Systems
                 _world.GetPool<ViewUpdatedMarker>().TryAdd(entity);
             }
 
-            foreach (int entity in _world.Where(out PurchaseDraggedStateAspect.OnEnter aspect))
+            foreach (int entity in _world.Where(out PurchaseLeaveAspect aspect))
             {
                 ref RotationTween rotationTween = ref aspect.Factors.Get(entity);
 
                 ref PhysicView physicView = ref aspect.PhysicViews.Get(entity);
-                
+
                 rotationTween.Value.Stop();
 
                 rotationTween.Value = Tween.LocalEulerAngles(

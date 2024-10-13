@@ -6,5 +6,6 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Components
     {
         public EcsGroup Items;
         public int ScrollToIndex;
+        public bool IsAutoScroll;
     }
 }

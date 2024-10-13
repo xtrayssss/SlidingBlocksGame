@@ -39,7 +39,11 @@ namespace _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Systems
                 foreach (GameObject ui in aspect.UI.Get(entity).Value)
                 {
                     sequence.Group(Tween
-                        .Scale(ui.transform.transform, Vector3.one, 0.2f, Ease.OutBack));
+                        .Scale(
+                            target: ui.transform.transform,
+                            endValue: Vector3.one,
+                            duration: 0.2f,
+                            ease: Ease.OutBack));
 
                     ui.SetActive(true);
                 }
@@ -51,14 +55,19 @@ namespace _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Systems
 
                 foreach (GameObject ui in aspect.UI.Get(entity).Value)
                 {
-                    sequence.Group(Tween.Scale(ui.transform.transform, Vector3.zero, 0.2f, Ease.InBack))
+                    sequence.Group(
+                            Tween.Scale(
+                                target: ui.transform.transform,
+                                endValue: Vector3.zero,
+                                duration: 0.2f,
+                                ease: Ease.InBack))
                         .ChainCallback(
                             target: ui,
                             callback: go => go.SetActive(false));
                 }
 
                 ref GameObjectConnect goConnect = ref aspect.GameObjectConnects.Get(entity);
-                
+
                 sequence.ChainCallback(
                     target: goConnect.Connect,
                     callback: connect =>

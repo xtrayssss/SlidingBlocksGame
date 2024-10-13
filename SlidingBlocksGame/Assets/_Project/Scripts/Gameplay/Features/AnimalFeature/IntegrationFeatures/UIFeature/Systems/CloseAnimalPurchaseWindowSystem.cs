@@ -116,7 +116,7 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.U
             {
                 EcsSpan visible = default;
 
-                if (!_world.GetPool<ScrollSnappedMarker>().Has(animals[i]))
+                if (!_world.GetPool<SnappedMarker>().Has(animals[i]))
                     continue;
 
                 if (i > 0 && i < animals.Count - 1)

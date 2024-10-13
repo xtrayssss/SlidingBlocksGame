@@ -14,17 +14,26 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Systems
 
         private class ScrollAspect : EcsAspectAuto
         {
+            [IncImplicit(typeof(ScrollUnlockedMarker))]
             [Inc] public readonly EcsPool<ScrollSnap> ScrollSnaps;
             [Inc] public readonly EcsPool<ScrollToTargetState> ScrollToTargetStates;
             [Inc] public readonly EcsPool<GameObjectConnect> GoConnects;
 
             [Opt] public readonly EcsTagPool<DraggingState> DraggingStates;
+            [Opt] public readonly EcsTagPool<IdleState> IdleState;
+            [Opt] public readonly EcsTagPool<ScrollNearestRequest> ScrollNearest;
         }
 
         private class DelayAspect : EcsAspectAuto
         {
             [Inc] public readonly EcsTagPool<CooldownExpiredEvent> CooldownExpiredEvent;
             [Inc] public readonly EcsTagPool<ScrollDelayTag> ScrollDelayTag;
+        }
+
+        private class ItemAspect : EcsAspectAuto
+        {
+            [Inc] public readonly EcsTagPool<SnappedEvent> SnappedEvent;
+            [Inc] public readonly EcsTagPool<SnappedMarker> SnappedMarker;
         }
 
         public void Run()
@@ -35,6 +44,11 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Systems
                 ref ScrollToTargetState scrollToTargetState = ref scrollAspect.ScrollToTargetStates.Get(scroll);
                 ref GameObjectConnect goConnect = ref scrollAspect.GoConnects.Get(scroll);
 
+                if (!scrollToTargetState.IsAutoScroll) 
+                    scrollAspect.ScrollNearest.Add(scroll);
+                else
+                    scrollSnap.TargetPosition = scrollSnap.Positions[scrollSnap.TargetIndex];
+
                 if (!scrollToTargetState.CurrentTween.isAlive && !scrollToTargetState.Delay.IsAlive)
                     StartScrollToTarget(
                         ref scrollSnap,
@@ -43,7 +57,7 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Systems
                 if (Input.GetMouseButtonDown(0))
                 {
                     scrollToTargetState.CurrentTween.Stop();
-
+                    
                     if (scrollToTargetState.Delay.IsAlive)
                         _world.DelEntity(scrollToTargetState.Delay);
 
@@ -53,8 +67,6 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Systems
 
                 foreach (int _ in _world.Where(out DelayAspect _))
                 {
-                    //scrollSnap.ScrollRect.StopMovement();
-                    
                     scrollToTargetState.CurrentTween =
                         Sequence.Create()
                             .Chain(
@@ -76,13 +88,17 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Systems
                                         scrollSnap.ScrollPosition = scrollSnap.TargetPosition;
                                         scrollSnap.LastSnappedIndex = scrollSnap.TargetIndex;
 
-                                        int @event = world.NewEntity();
+                                        int targetItem = scrollSnap.Items[scrollSnap.TargetIndex];
 
-                                        world.GetPool<SnapToItemEvent>().Add(@event).ItemIndex =
-                                            scrollSnap.TargetIndex;
+                                        if (!targetItem.ToEntityLong(world).TryGetID(out int targetItemID))
+                                            return;
 
-                                        world.GetPool<ScrollToTargetState>().Del(id);
-                                        world.GetPool<IdleState>().Add(id);
+                                        ItemAspect itemAspect = world.GetAspect<ItemAspect>();
+                                        itemAspect.SnappedEvent.Add(targetItemID);
+                                        itemAspect.SnappedMarker.Add(targetItemID);
+
+                                        scrollAspect.ScrollToTargetStates.Del(id);
+                                        scrollAspect.IdleState.Add(id);
                                     }));
                 }
             }

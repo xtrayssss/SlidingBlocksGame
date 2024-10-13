@@ -9,26 +9,21 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature
 {
     public class ScrollSnapFeature : IEcsModule
     {
-        private readonly ICoroutineRunner _coroutineRunner;
-
-        public ScrollSnapFeature(ICoroutineRunner coroutineRunner) => 
-            _coroutineRunner = coroutineRunner;
-
         public void Import(EcsPipeline.Builder buidler)
         {
             buidler
                 .AddUnique(new SetupScrollSystem())
                 .AutoDel<SetupScrollRequest>()
                 //
-                .AddUnique(new ScrollSnapSystem())
-                .AutoDelTag<ScrollUpdateRequest>()
+                .AddUnique(new ScrollNearestSystem())
+                .AutoDelTag<ScrollNearestRequest>()
                 //
                 .AddUnique(new ScrollEffectRequestSystem())
                 //
-                .AutoDelEntityComponent<SnapToItemEvent>()
-                .AutoDelEntityComponent<LeaveItemEvent>()
                 .AddUnique(new ScrollIdleSystem())
+                .AutoDelTag<SnappedEvent>()
                 .AddUnique(new ScrollToTargetSystem())
+                .AutoDelTag<LeaveEvent>()
                 .AddUnique(new ScrollDraggingSystem())
                 //
                 .AddUnique(new ScrollEffectsSystem())

@@ -22,7 +22,7 @@ namespace _Project.Scripts.Gameplay.Features.PurchaseFeature.Systems
         private class PurchasesAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(PurchaseTag))]
-            [IncImplicit(typeof(ScrollSnappedMarker))]
+            [IncImplicit(typeof(SnappedMarker))]
             [Exc] public readonly EcsTagPool<PurchasedMarker> PurchasedMarker;
 
             [Inc] public readonly EcsPool<PhysicView> PhysicViews;

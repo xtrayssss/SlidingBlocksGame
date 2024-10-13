@@ -2,8 +2,7 @@
 
 namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Components
 {
-    public struct SnapToItemEvent : IEcsComponent
+    public struct LeaveMarker : IEcsTagComponent
     {
-        public int ItemIndex;
     }
 }

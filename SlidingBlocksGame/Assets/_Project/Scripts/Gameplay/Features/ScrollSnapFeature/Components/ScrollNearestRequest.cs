@@ -2,8 +2,7 @@
 
 namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Components
 {
-    public struct LeaveItemEvent : IEcsComponent
+    public struct ScrollNearestRequest : IEcsTagComponent
     {
-        public int ItemIndex;
     }
 }

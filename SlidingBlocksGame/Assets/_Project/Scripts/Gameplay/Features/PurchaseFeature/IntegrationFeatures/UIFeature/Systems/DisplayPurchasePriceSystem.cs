@@ -12,7 +12,7 @@ namespace _Project.Scripts.Gameplay.Features.PurchaseFeature.IntegrationFeatures
         private class Aspect : EcsAspectAuto
         {
             [IncImplicit(typeof(PurchaseTag))]
-            [IncImplicit(typeof(ScrollSnappedEvent))]
+            [IncImplicit(typeof(SnappedEvent))]
             [Inc] public readonly EcsPool<PurchaseWidget> PurchaseWidgets;
 
             [Inc] public readonly EcsPool<Purchase> Purchases;

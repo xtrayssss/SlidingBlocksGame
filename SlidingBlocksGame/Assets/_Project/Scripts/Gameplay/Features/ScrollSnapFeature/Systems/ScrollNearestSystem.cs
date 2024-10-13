@@ -4,12 +4,14 @@ using Unity.Mathematics;
 
 namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Systems
 {
-    public class ScrollSnapSystem : IEcsRun
+    public class ScrollNearestSystem : IEcsRun
     {
         [EcsInject] private EcsDefaultWorld _world;
 
         private class ScrollAspect : EcsAspectAuto
         {
+            [IncImplicit(typeof(ScrollUnlockedMarker))]
+            [IncImplicit(typeof(ScrollNearestRequest))]
             [Inc] public readonly EcsPool<ScrollSnap> ScrollSnaps;
         }
 
@@ -20,7 +22,7 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Systems
                 ref ScrollSnap scrollSnap = ref scrollAspect.ScrollSnaps.Get(scroll);
 
                 scrollSnap.ScrollPosition = scrollSnap.ScrollRect.horizontalScrollbar.value;
-                
+
                 UpdateNearest(ref scrollSnap);
 
                 scrollSnap.TargetIndex = scrollSnap.NearestIndex;
@@ -33,8 +35,8 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Systems
             for (int index = 0; index < scrollSnap.ItemCount; index++)
             {
                 float distance = math.abs(scrollSnap.ScrollPosition - scrollSnap.Positions[index]);
-                
-                if (distance <= scrollSnap.Distance / 2) 
+
+                if (distance <= scrollSnap.Distance / 2)
                     scrollSnap.NearestIndex = index;
             }
         }

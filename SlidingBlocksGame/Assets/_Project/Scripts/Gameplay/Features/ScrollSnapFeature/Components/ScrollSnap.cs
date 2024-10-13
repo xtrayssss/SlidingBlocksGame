@@ -41,11 +41,17 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Components
         public float Distance;
         public int LastSnappedIndex;
 
-        public void Enable(ref ScrollSnap component) =>
+        public void Enable(ref ScrollSnap component)
+        {
             component.LastSnappedIndex = -1;
+            component.TargetIndex = -1;
+        }
 
-        public void Disable(ref ScrollSnap component) =>
+        public void Disable(ref ScrollSnap component)
+        {
             component.LastSnappedIndex = -1;
+            component.TargetIndex = -1;
+        }
 
         private sealed class Template : ComponentTemplate<ScrollSnap>
         {

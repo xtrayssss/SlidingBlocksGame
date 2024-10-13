@@ -263,8 +263,9 @@ namespace _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Systems
             }
 
             ref SetupScrollRequest scrollSetupRequest = ref windowAspect.SetupScrollRequest.Add(window); 
-            scrollSetupRequest.ScrollToIndex = 0;
+            scrollSetupRequest.ScrollToIndex = 5;
             scrollSetupRequest.Items = purchases.Entities;
+            scrollSetupRequest.IsAutoScroll = true;
         }
     }
 }

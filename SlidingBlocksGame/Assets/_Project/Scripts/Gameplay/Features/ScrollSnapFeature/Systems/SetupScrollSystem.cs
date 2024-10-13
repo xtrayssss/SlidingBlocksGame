@@ -15,6 +15,7 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Systems
             [Inc] public readonly EcsPool<SetupScrollRequest> SetupScrollRequest;
 
             [Opt] public readonly EcsPool<ScrollToTargetState> ScrollToTargetState;
+            [Opt] public readonly EcsTagPool<ScrollLockedMarker> ScrollLockedMarker;
         }
 
         private class ScrollItemAspect : EcsAspectAuto
@@ -50,7 +51,9 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Systems
                 }
 
                 scrollSnap.TargetIndex = setupScrollRequest.ScrollToIndex;
-                scrollAspect.ScrollToTargetState.Add(scroll);
+                scrollAspect.ScrollToTargetState.Add(scroll).IsAutoScroll = setupScrollRequest.IsAutoScroll;
+                
+                scrollAspect.ScrollLockedMarker.Add(scroll);
             }
         }
 
