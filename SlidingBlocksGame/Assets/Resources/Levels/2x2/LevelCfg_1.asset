@@ -227,6 +227,24 @@ MonoBehaviour:
           UnitCellTopOffset: 0.02
           Center: 0
           BaseCellScaleY: 0.25
+    - rid: 3543309568534905097
+      type: {class: GameFieldAlgorithmCfg/Template, ns: _Project.Scripts.Gameplay.Features.GameFieldFeature.Components,
+        asm: GameFieldFeature.Components}
+      data:
+        component:
+          Value: {fileID: 11400000, guid: b0f9f5dd4cdaf2149bb8206508b48f5a, type: 2}
+    - rid: 3543309568534905099
+      type: {class: TileGeneratedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.GameFieldFeature.IntegrationFeatures.AudioFeature.Components,
+        asm: GameFieldFeature.AudioFeature.Components}
+      data:
+        component:
+          Value: {fileID: 11400000, guid: 9e7d2bc0efe5f544392d1a9544a560f5, type: 2}
+    - rid: 3543309568534905100
+      type: {class: GameFieldGeneratedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.GameFieldFeature.IntegrationFeatures.AudioFeature.Components,
+        asm: GameFieldFeature.AudioFeature.Components}
+      data:
+        component:
+          Value: {fileID: 11400000, guid: f857536a371faf54fbd1e4c76e8602f4, type: 2}
     - rid: 6454805113458655410
       type: {class: Scores/Template, ns: _Project.Scripts.Gameplay.Features.GameProgressFeature.Components,
         asm: GameProgressFeature.Components}
@@ -242,7 +260,10 @@ MonoBehaviour:
           - _components:
             - rid: 6454805247463260166
             - rid: 6454805247463260175
-            - rid: 6454805386191437878
+          - _components:
+            - rid: 3543309568534905097
+            - rid: 3543309568534905099
+            - rid: 3543309568534905100
     - rid: 6454805247463260166
       type: {class: GameFieldAlgorithmCfg/Template, ns: _Project.Scripts.Gameplay.Features.GameFieldFeature.Components,
         asm: GameFieldFeature.Components}
@@ -255,12 +276,6 @@ MonoBehaviour:
       data:
         component:
           Value: {fileID: 11400000, guid: f857536a371faf54fbd1e4c76e8602f4, type: 2}
-    - rid: 6454805386191437878
-      type: {class: TileGeneratedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.GameFieldFeature.IntegrationFeatures.AudioFeature.Components,
-        asm: GameFieldFeature.AudioFeature.Components}
-      data:
-        component:
-          Value: {fileID: 11400000, guid: 9e7d2bc0efe5f544392d1a9544a560f5, type: 2}
     - rid: 8499802296898551899
       type: {class: DestructionAnimalStrategyCfg/Template, ns: _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.DestructionFeature.Components,
         asm: AnimalFeature.DestructionFeature.Components}

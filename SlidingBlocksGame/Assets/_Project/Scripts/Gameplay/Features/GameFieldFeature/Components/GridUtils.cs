@@ -131,15 +131,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.Components
 
             return default;
         }
-
-        public static void Catch<TRequest>(EcsWorld world, int target) where TRequest : struct, IEcsTagComponent
-        {
-            int @event = world.NewEntity();
-
-            world.GetPool<TRequest>().Add(@event);
-            world.GetPool<TargetEntity>().Add(@event).Value = target.ToEntityLong(world);
-        }
-
+        
         public static bool IsWithinGrid(int2 position, in GameField gameField)
         {
             return position.x >= 0 && position.x < gameField.Size &&

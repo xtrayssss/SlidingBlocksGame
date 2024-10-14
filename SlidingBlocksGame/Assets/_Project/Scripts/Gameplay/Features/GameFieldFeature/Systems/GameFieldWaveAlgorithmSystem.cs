@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Runtime.CompilerServices;
+using _Project.Scripts.DragonAPI;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFieldFeature.Components;
-using _Project.Scripts.Infrastructure;
 using DCFApixels.DragonECS;
 using Unity.Mathematics;
 using UnityEngine;
@@ -10,13 +10,10 @@ using Object = UnityEngine.Object;
 
 namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.Systems
 {
-    public class GameFieldWaveAlgorithmSystem : IEcsRun
+    public class GameFieldWaveAlgorithmSystem : IEcsInit, IEcsRun
     {
-        private readonly ICoroutineRunner _coroutineRunner;
         [EcsInject] private EcsWorld _world;
-
-        public GameFieldWaveAlgorithmSystem(ICoroutineRunner coroutineRunner) =>
-            _coroutineRunner = coroutineRunner;
+        private DragonCoroutineRunner _dragonCoroutineRunner;
 
         private class GenerationAspect : EcsAspectAuto
         {
@@ -47,25 +44,28 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.Systems
             [Opt] public readonly EcsPool<GameFieldGeneratedByAlgorithm> GameFieldGeneratedByAlgorithm;
         }
 
+        public void Init() =>
+            _dragonCoroutineRunner = DragonAPI.DragonAPI.CreateCoroutineRunner();
+
         public void Run()
         {
+            _dragonCoroutineRunner.Tick();
+
             foreach (int entity in _world.Where(out GenerationAspect aspect))
             {
-                _coroutineRunner
-                    .StartCoroutine(Generate(
-                        generationAspect: aspect,
-                        gameFieldAspect: _world.GetAspect<GameFieldAspect>(),
-                        algorithm: entity));
+                _dragonCoroutineRunner.StartCoroutine(Generate(
+                    generationAspect: aspect,
+                    gameFieldAspect: _world.GetAspect<GameFieldAspect>(),
+                    algorithm: entity));
             }
 
             foreach (int entity in _world.Where(out DestructionAspect aspect))
             {
-                _coroutineRunner
-                    .StartCoroutine(Destruct(
-                        destructionAspect: aspect,
-                        gameFieldAspect: _world.GetAspect<GameFieldAspect>(),
-                        algorithm: entity
-                    ));
+                _dragonCoroutineRunner.StartCoroutine(Destruct(
+                    destructionAspect: aspect,
+                    gameFieldAspect: _world.GetAspect<GameFieldAspect>(),
+                    algorithm: entity
+                ));
             }
         }
 
@@ -126,20 +126,20 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.Systems
                         _world.GetPool<TileGeneratedEvent>().Add(tile);
                         _world.GetPool<TargetEntity>().Add(tile).Value = _world.GetEntityLong(gameFieldID);
 
-                        yield return new WaitForSeconds(delay);
+                        yield return new DragonAPI.YieldInstructions.DragonAPI.WaitForSeconds(delay);
                     }
                 }
             }
-            
+
             gameFieldAspect.GameFieldGeneratedByAlgorithm.TryAddOrGet(gameFieldID).Value =
                 algorithm.ToEntityLong(_world);
 
-            GridUtils.Catch<CatchGameFieldGeneratedRequest>(_world, target: gameFieldID);
-
             gameFieldAspect.GameFieldGeneratedMarker.Add(gameFieldID);
+            gameFieldAspect.GameFieldGeneratedEvent.Add(gameFieldID);
         }
 
-        private IEnumerator Destruct(DestructionAspect destructionAspect, GameFieldAspect gameFieldAspect, int algorithm)
+        private static IEnumerator Destruct(DestructionAspect destructionAspect, GameFieldAspect gameFieldAspect,
+            int algorithm)
         {
             if (!destructionAspect.Targets.Read(algorithm).Value.TryGetID(out int gameFieldID) ||
                 !gameFieldAspect.IsMatches(gameFieldID))
@@ -156,16 +156,15 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.Systems
                 float delay = math.distance(cell.WorldPosition, destructionAspect.Waves.Read(algorithm).WaveOrigin) *
                               destructionAspect.Waves.Read(algorithm).SpeedFactor;
 
-                yield return new WaitForSeconds(delay);
+                yield return new DragonAPI.YieldInstructions.DragonAPI.WaitForSeconds(delay);
 
                 Object.Destroy(cell.View);
             }
 
-            GridUtils.Catch<GameFieldDestructedRequest>(_world, target: gameFieldID);
-
             gameFieldAspect.GameFieldDestructedMarker.Add(gameFieldID);
 
             gameFieldAspect.GameFieldGeneratedByAlgorithm.Del(gameFieldID);
+            gameFieldAspect.GameFieldDestructedEvent.Add(gameFieldID);
         }
     }
 }

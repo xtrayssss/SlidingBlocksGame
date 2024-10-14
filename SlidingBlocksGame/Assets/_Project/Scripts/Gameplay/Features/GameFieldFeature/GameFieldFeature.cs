@@ -20,13 +20,12 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldFeature
                 //
                 .AddUnique(new CalculateCellScaleYSystem())
                 //
-                .AutoDelEntityTag<TileGeneratedEvent>()
-                .AddUnique(new GameFieldPlaneAlgorithmSystem())
-                .AddUnique(new GameFieldWaveAlgorithmSystem(_coroutineRunner))
-                .AddUnique(new GameFieldGrowthWaveAlgorithmSystem(_coroutineRunner))
                 .AutoDelTag<GameFieldGeneratedEvent>()
+                .AutoDelEntityTag<TileGeneratedEvent>()
                 .AutoDelTag<GameFieldDestructedEvent>()
-                .AddUnique(new CatchGameFieldEventsSystem())
+                .AddUnique(new GameFieldPlaneAlgorithmSystem())
+                .AddUnique(new GameFieldWaveAlgorithmSystem())
+                .AddUnique(new GameFieldGrowthWaveAlgorithmSystem())
                 //
                 .AutoDelTag<GameFieldGenerateRequest>()
                 .AutoDelTag<GameFieldDestructRequest>()

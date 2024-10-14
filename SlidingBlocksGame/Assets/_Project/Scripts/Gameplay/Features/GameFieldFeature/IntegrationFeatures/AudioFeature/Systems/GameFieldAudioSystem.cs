@@ -27,15 +27,15 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.IntegrationFeature
         {
             [Inc] public readonly EcsPool<TileGeneratedAudioConfig> AudioConfigs;
         }
-        
+
         private class AlgorithmsAspect : EcsAspectAuto
         {
             [Inc] public readonly EcsPool<GameFieldAlgorithmCfg> Algorithms;
             [Opt] public readonly EcsPool<GameFieldGeneratedAudioConfig> GameFieldGeneratedAudioConfigs;
             [Opt] public readonly EcsPool<TileGeneratedAudioConfig> TileGeneratedAudioConfigs;
         }
-        
-        private class  GameFieldAspect : EcsAspectAuto
+
+        private class GameFieldAspect : EcsAspectAuto
         {
             [Inc] public readonly EcsPool<GameField> GameFields;
         }
@@ -76,8 +76,6 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.IntegrationFeature
                 if (!tileGeneratedAspect.Targets.Read(entity).Value.TryGetID(out int targetID) ||
                     !targetAspect.IsMatches(targetID))
                     return;
-
-                Debug.Log("TileAudio");
 
                 _world.NewAudioEntity(targetAspect.AudioConfigs.Read(targetID).Value);
             }

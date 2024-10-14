@@ -10,14 +10,15 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.D
 
         private class DyingAnimals : EcsAspectAuto
         {
-            [Inc] public readonly EcsTagPool<DeathEvent> DeathEvent;
-            [Inc] public readonly EcsTagPool<AnimalTag> AnimalTag;
+            [IncImplicit(typeof(DeathEvent))]
+            [IncImplicit(typeof(AnimalTag))]
+            [Opt] public readonly EcsTagPool<DeleteEntityRequest> DeleteEntity;
         }
 
         public void Run()
         {
-            foreach (int animal in _world.Where(out DyingAnimals _))
-                _world.DelEntity(animal);
+            foreach (int animal in _world.Where(out DyingAnimals animalAspect))
+                animalAspect.DeleteEntity.TryAdd(animal);
         }
     }
 }

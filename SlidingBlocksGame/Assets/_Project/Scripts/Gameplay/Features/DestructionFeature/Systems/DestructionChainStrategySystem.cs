@@ -36,6 +36,7 @@ namespace _Project.Scripts.Gameplay.Features.DestructionFeature.Systems
                     if (destructibleAspect.GoConnects.Has(destructibleID)) 
                         destructibleAspect.DestroyViewRequest.TryAdd(destructibleID);
 
+                    Debug.Log("Deat");
                     destructibleAspect.DeathEvent.Add(destructibleID);
                 }
             }

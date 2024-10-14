@@ -75,12 +75,13 @@ namespace _Project.Scripts.Gameplay.Features.PlayerFeature.Systems
             [Opt] public readonly EcsTagPool<PurchasedMarker> Purchased;
         }
 
-        private class AnimalsShopWindow : EcsAspectAuto
+        private class AnimalsShopWindowAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(AnimalsShopWindowTag))]
             [Inc] public readonly EcsPool<Purchases> AnimalPurchases;
 
             [Inc] public readonly EcsPool<ScrollSnap> ScrollSnaps;
+            [Opt] public readonly EcsPool<SetupScrollRequest> SetupScroll;
         }
 
         private class ResetProgressButtonClickedAspect : EcsAspectAuto
@@ -287,11 +288,11 @@ namespace _Project.Scripts.Gameplay.Features.PlayerFeature.Systems
                         selectedID: YandexGame.savesData.SelectedAnimalID);
                 }
 
-                foreach (int window in _world.Where(out AnimalsShopWindow aspect))
+                foreach (int window in _world.Where(out AnimalsShopWindowAspect windowAspect))
                 {
                     Debug.Log("Load Purchases");
 
-                    ref Purchases purchases = ref aspect.AnimalPurchases.Get(window);
+                    ref Purchases purchases = ref windowAspect.AnimalPurchases.Get(window);
 
                     foreach (int purchased in purchases.Entities.Where(x =>
                                  YandexGame.savesData.PurchasedAnimals.Contains(_world.GetPool<Purchase>().Read(x)
@@ -299,10 +300,11 @@ namespace _Project.Scripts.Gameplay.Features.PlayerFeature.Systems
                     {
                         _world.GetPool<PurchasedMarker>().Add(purchased);
                     }
-
-                    ref ScrollSnap scrollSnap = ref aspect.ScrollSnaps.Get(window);
-
-                    scrollSnap.TargetIndex = YandexGame.savesData.SelectedAnimalID;
+                    
+                    ref SetupScrollRequest scrollSetupRequest = ref windowAspect.SetupScroll.Add(window); 
+                    scrollSetupRequest.ScrollToIndex = YandexGame.savesData.SelectedAnimalID;
+                    scrollSetupRequest.Items = purchases.Entities;
+                    scrollSetupRequest.IsAutoScroll = true;
                 }
 
                 foreach (int reward in _world.Where(out RewardAspect _))

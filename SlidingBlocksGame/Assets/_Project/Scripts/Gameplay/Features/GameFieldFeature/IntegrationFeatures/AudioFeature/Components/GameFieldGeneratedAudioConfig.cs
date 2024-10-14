@@ -5,7 +5,7 @@ using UnityEngine.Scripting.APIUpdating;
 namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.IntegrationFeatures.AudioFeature.Components
 {
     [Serializable]
-    [MetaGroup("Audio")]
+    [MetaGroup("GameField/Audio")]
     public struct GameFieldGeneratedAudioConfig : IEcsComponent
     {
         public ScriptableEntityTemplate Value;

@@ -1,9 +1,8 @@
-using System;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
+using _Project.Scripts.DragonAPI;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFieldFeature.Components;
-using _Project.Scripts.Infrastructure;
 using DCFApixels.DragonECS;
 using Unity.Mathematics;
 using UnityEngine;
@@ -11,14 +10,10 @@ using Object = UnityEngine.Object;
 
 namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.Systems
 {
-    public class GameFieldGrowthWaveAlgorithmSystem : IEcsRun
+    public class GameFieldGrowthWaveAlgorithmSystem : IEcsInit, IEcsRun
     {
         [EcsInject] private EcsWorld _world;
-
-        private readonly ICoroutineRunner _coroutineRunner;
-
-        public GameFieldGrowthWaveAlgorithmSystem(ICoroutineRunner coroutineRunner) =>
-            _coroutineRunner = coroutineRunner;
+        private DragonCoroutineRunner _dragonCoroutineRunner;
 
         private class GenerationAspect : EcsAspectAuto
         {
@@ -42,47 +37,52 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.Systems
         {
             [Inc] public readonly EcsPool<GameField> GameFields;
 
-            [Opt] public readonly EcsTagPool<GameFieldGeneratedEvent> GameFieldGenerated;
-            [Opt] public readonly EcsTagPool<GameFieldDestructedEvent> GameFieldDestructed;
+            [Opt] public readonly EcsTagPool<GameFieldGeneratedEvent> GameFieldGeneratedEvent;
+            [Opt] public readonly EcsTagPool<GameFieldDestructedEvent> GameFieldDestructedEvent;
             [Opt] public readonly EcsTagPool<GameFieldGeneratedMarker> GameFieldGeneratedMarker;
             [Opt] public readonly EcsTagPool<GameFieldDestructedMarker> GameFieldDestructedMarker;
             [Opt] public readonly EcsPool<GameFieldGeneratedByAlgorithm> GameFieldGeneratedByAlgorithm;
         }
 
+        public void Init() =>
+            _dragonCoroutineRunner = DragonAPI.DragonAPI.CreateCoroutineRunner();
+
         public void Run()
         {
+            _dragonCoroutineRunner.Tick();
+
             foreach (int entity in _world.Where(out GenerationAspect aspect))
             {
-                Generate(
-                    generationAspect: aspect,
-                    gameFieldAspect: _world.GetAspect<GameFieldAspect>(),
-                    algorithm: entity);
+                _dragonCoroutineRunner.StartCoroutine(
+                    Generate(
+                        generationAspect: aspect,
+                        gameFieldAspect: _world.GetAspect<GameFieldAspect>(),
+                        algorithm: entity));
             }
 
             foreach (int entity in _world.Where(out DestructionAspect aspect))
             {
-                Destruct(
-                    destructionAspect: aspect,
-                    gameFieldAspect: _world.GetAspect<GameFieldAspect>(),
-                    algorithm: entity);
+                _dragonCoroutineRunner.StartCoroutine(
+                    Destruct(
+                        destructionAspect: aspect,
+                        gameFieldAspect: _world.GetAspect<GameFieldAspect>(),
+                        algorithm: entity));
             }
         }
 
-        private async void Generate(GenerationAspect generationAspect, GameFieldAspect gameFieldAspect, int algorithm)
+        private IEnumerator<CustomYieldInstruction> Generate(GenerationAspect generationAspect,
+            GameFieldAspect gameFieldAspect, int algorithm)
         {
             if (!generationAspect.Targets.Read(algorithm).Value.TryGetID(out int gameFieldID) ||
                 !gameFieldAspect.IsMatches(gameFieldID))
-                return;
+                yield break;
 
             int counter = 0;
 
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            ref GameField GameField() =>
-                ref gameFieldAspect.GameFields.Get(gameFieldID);
-
             gameFieldAspect.GameFieldDestructedMarker.TryDel(gameFieldID);
 
-            generationAspect.GrowthWaves.Get(algorithm).GrowthTasks ??= new Task[GameField().CellsCount];
+            generationAspect.GrowthWaves.Get(algorithm).GrowthCoroutines ??=
+                new DragonCoroutine[GameField().CellsCount];
 
             generationAspect.GrowthWaves.Get(algorithm).SpeedFactor =
                 generationAspect.GrowthWaves.Get(algorithm).BaseSpeedFactor *
@@ -104,18 +104,9 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.Systems
 
                         view.transform.localScale = float3.zero;
 
-                        generationAspect.GrowthWaves.Get(algorithm).GrowthTasks[counter] =
-                            GrowTile(view, generationAspect, algorithm, gameFieldID, gameFieldAspect)
-                                .ContinueWith(
-                                    _ =>
-                                    {
-                                        int tile = _world.NewEntity();
-
-                                        _world.GetPool<TileGeneratedEvent>().Add(tile);
-                                        _world.GetPool<TargetEntity>().Add(tile).Value =
-                                            _world.GetEntityLong(gameFieldID);
-                                    },
-                                    continuationOptions: TaskContinuationOptions.ExecuteSynchronously);
+                        _dragonCoroutineRunner.StartCoroutine(
+                            GrowTileCoroutine(generationAspect, gameFieldAspect,
+                                algorithm, counter, view, gameFieldID));
 
                         GameField().Cells[counter++] = new GameField.Cell
                         {
@@ -124,29 +115,57 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.Systems
                         };
                     }
 
-                    await Task.Delay(TimeSpan.FromSeconds(
+                    yield return new DragonAPI.YieldInstructions.DragonAPI.WaitForSeconds(
                         generationAspect.GrowthWaves.Get(algorithm).SpeedFactor /
-                        (GameField().Size * GameField().Size)));
+                        (GameField().Size * GameField().Size));
                 }
             }
 
-            await Task.WhenAll(generationAspect.GrowthWaves.Get(algorithm).GrowthTasks);
+            yield return new DragonAPI.YieldInstructions.DragonAPI.WhenAll(
+                generationAspect.GrowthWaves.Get(algorithm).GrowthCoroutines);
+
+            UnityEngine.Debug.Log(generationAspect.GrowthWaves.Get(algorithm).GrowthCoroutines[counter - 1]);
 
             gameFieldAspect.GameFieldGeneratedByAlgorithm.TryAddOrGet(gameFieldID).Value =
                 algorithm.ToEntityLong(_world);
 
-            GridUtils.Catch<CatchGameFieldGeneratedRequest>(_world, target: gameFieldID);
-
             gameFieldAspect.GameFieldGeneratedMarker.Add(gameFieldID);
-        }
+            gameFieldAspect.GameFieldGeneratedEvent.Add(gameFieldID);
 
-        private async Task GrowTile(GameObject tile, GenerationAspect generationAspect, int algorithm, int gameFieldID,
-            GameFieldAspect gameFieldAspect)
-        {
+            yield break;
+
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             ref GameField GameField() =>
                 ref gameFieldAspect.GameFields.Get(gameFieldID);
+        }
 
+        private IEnumerator<CustomYieldInstruction> GrowTileCoroutine(
+            GenerationAspect generationAspect,
+            GameFieldAspect gameFieldAspect,
+            int algorithm,
+            int counter,
+            GameObject view,
+            int gameFieldID)
+        {
+            yield return new DragonAPI.YieldInstructions.DragonAPI.WaitForCoroutine(
+                generationAspect.GrowthWaves.Get(algorithm).GrowthCoroutines[counter] =
+                    _dragonCoroutineRunner.StartCoroutine(
+                        GrowTile(view, generationAspect, algorithm, gameFieldID, gameFieldAspect)));
+
+            int tile = _world.NewEntity();
+
+            _world.GetPool<TileGeneratedEvent>().Add(tile);
+            _world.GetPool<TargetEntity>().Add(tile).Value =
+                _world.GetEntityLong(gameFieldID);
+        }
+
+        private static IEnumerator<CustomYieldInstruction> GrowTile(
+            GameObject tile,
+            GenerationAspect generationAspect,
+            int algorithm,
+            int gameFieldID,
+            GameFieldAspect gameFieldAspect)
+        {
             float3 initialScale = float3.zero;
 
             float3 targetScale = new float3(GameField().CellSize, GameField().CellScaleY, GameField().CellSize);
@@ -161,21 +180,29 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.Systems
                     math.lerp(initialScale, targetScale,
                         elapsedTime / generationAspect.GrowthWaves.Get(algorithm).SpeedFactor);
 
-                await Task.Yield();
+                yield return null;
             }
 
             tile.transform.localScale = targetScale;
+            
+            yield break;
+
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            ref GameField GameField() =>
+                ref gameFieldAspect.GameFields.Get(gameFieldID);
         }
 
-        private async void Destruct(DestructionAspect destructionAspect, GameFieldAspect gameFieldAspect, int algorithm)
+        private IEnumerator<CustomYieldInstruction> Destruct(DestructionAspect destructionAspect,
+            GameFieldAspect gameFieldAspect, int algorithm)
         {
             if (!destructionAspect.Targets.Read(algorithm).Value.TryGetID(out int gameFieldID) ||
                 !gameFieldAspect.IsMatches(gameFieldID))
-                return;
+                yield break;
 
             gameFieldAspect.GameFieldGeneratedMarker.Del(gameFieldID);
 
-            destructionAspect.GrowthWaves.Get(algorithm).ShrinkTasks ??= new Task[GameField().CellsCount];
+            destructionAspect.GrowthWaves.Get(algorithm).ShrinkCoroutines ??=
+                new DragonCoroutine[GameField().CellsCount];
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             ref GameField GameField() =>
@@ -185,24 +212,25 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.Systems
 
             for (int index = 0; index < cells.Length; index++)
             {
-                destructionAspect.GrowthWaves.Get(algorithm).ShrinkTasks[index] =
-                    ShrinkTile(cells[index].View, destructionAspect, algorithm);
+                destructionAspect.GrowthWaves.Get(algorithm).ShrinkCoroutines[index] =
+                    _dragonCoroutineRunner.StartCoroutine(ShrinkTile(cells[index].View, destructionAspect, algorithm));
 
-                await Task.Delay(TimeSpan.FromSeconds(
+                yield return new DragonAPI.YieldInstructions.DragonAPI.WaitForSeconds(
                     destructionAspect.GrowthWaves.Get(algorithm).SpeedFactor /
-                    (GameField().Size * GameField().Size)));
+                    (GameField().Size * GameField().Size));
             }
 
-            await Task.WhenAll(destructionAspect.GrowthWaves.Get(algorithm).ShrinkTasks);
-
-            GridUtils.Catch<GameFieldDestructedRequest>(_world, target: gameFieldID);
+            yield return new DragonAPI.YieldInstructions.DragonAPI.WhenAll(destructionAspect.GrowthWaves.Get(algorithm)
+                .ShrinkCoroutines);
 
             gameFieldAspect.GameFieldDestructedMarker.Add(gameFieldID);
+            gameFieldAspect.GameFieldDestructedEvent.Add(gameFieldID);
 
             gameFieldAspect.GameFieldGeneratedByAlgorithm.Del(gameFieldID);
         }
 
-        private async Task ShrinkTile(GameObject tile, DestructionAspect generationAspect, int algorithm)
+        private static IEnumerator<CustomYieldInstruction> ShrinkTile(GameObject tile,
+            DestructionAspect generationAspect, int algorithm)
         {
             float3 initialScale = tile.transform.localScale;
 
@@ -218,7 +246,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.Systems
                     math.lerp(initialScale, targetScale,
                         elapsedTime / generationAspect.GrowthWaves.Get(algorithm).SpeedFactor);
 
-                await Task.Yield();
+                yield return null;
             }
 
             Object.Destroy(tile);

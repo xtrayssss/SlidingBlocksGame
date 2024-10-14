@@ -6,6 +6,7 @@ using UnityEngine.Scripting.APIUpdating;
 namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.Components
 {
     [Serializable]
+    [MetaGroup("GameField")]
     public struct CellPosition : IEcsComponent
     {
         public int2 Value;

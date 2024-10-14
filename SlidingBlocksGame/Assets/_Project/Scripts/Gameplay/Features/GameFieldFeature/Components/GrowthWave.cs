@@ -1,5 +1,5 @@
 using System;
-using System.Threading.Tasks;
+using _Project.Scripts.DragonAPI;
 using DCFApixels.DragonECS;
 using UnityEngine.Scripting.APIUpdating;
 using UnityEngine.Serialization;
@@ -8,10 +8,11 @@ using UnityEngine.Serialization;
 namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.Components
 {
     [Serializable]
+    [MetaGroup("GameField/CellPosition")]
     public struct GrowthWave : IEcsComponent
     {
-        public Task[] GrowthTasks;
-        public Task[] ShrinkTasks;
+        public DragonCoroutine[] GrowthCoroutines;
+        public DragonCoroutine[] ShrinkCoroutines;
         
         [FormerlySerializedAs("Base")] public float BaseSpeedFactor;
         [FormerlySerializedAs("Speed")] public float SpeedFactor;
