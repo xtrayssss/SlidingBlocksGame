@@ -15,7 +15,6 @@ namespace _Project.Scripts.Gameplay.Features.GameOverTimerFeature
         public void Import(EcsPipeline.Builder builder)
         {
             builder
-                // logic
                 .AutoDelTag<GameOverTimerCreatedEvent>()
                 .AddUnique(new CreateGameOverTimerSystem())
                 .AutoDelTag<CreateGameOverTimerRequest>()
@@ -29,6 +28,7 @@ namespace _Project.Scripts.Gameplay.Features.GameOverTimerFeature
                 .AddUnique(new CatchGameOverTimerSystem())
                 .AddUnique(new CloseGameOverTimerSystem())
                 .AutoDelTag<CloseGameOverTimerRequest>()
+                
                 // audio feature
                 .AddAudioSystem<CooldownTickEvent, GameOverTimerTickAudioConfig>();
         }

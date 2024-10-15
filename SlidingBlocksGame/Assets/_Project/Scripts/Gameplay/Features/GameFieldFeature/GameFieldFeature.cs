@@ -8,11 +8,6 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldFeature
 {
     public class GameFieldFeature : IEcsModule
     {
-        private readonly ICoroutineRunner _coroutineRunner;
-
-        public GameFieldFeature(ICoroutineRunner coroutineRunner) =>
-            _coroutineRunner = coroutineRunner;
-
         public void Import(EcsPipeline.Builder builder)
         {
             builder

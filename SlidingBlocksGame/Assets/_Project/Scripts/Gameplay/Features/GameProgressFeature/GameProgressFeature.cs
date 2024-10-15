@@ -1,6 +1,7 @@
 ﻿using _Project.Scripts.Gameplay.Features.AudioFeature.Systems;
 using _Project.Scripts.Gameplay.Features.GameProgressFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameProgressFeature.IntegrationFeatures.AudioFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameProgressFeature.IntegrationFeatures.DestructionFeature.Systems;
 using _Project.Scripts.Gameplay.Features.GameProgressFeature.IntegrationFeatures.UIFeature.Systems;
 using _Project.Scripts.Gameplay.Features.GameProgressFeature.Systems;
 using _Project.Scripts.Infrastructure;
@@ -13,6 +14,7 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature
         public void Import(EcsPipeline.Builder builder)
         {
             builder
+                // score
                 .AutoDelEntityComponent<ScoreUpdatedEvent>()
                 .AddUnique(new ScoresSystem())
                 .AutoDelEntityComponent<UpdateScoresRequest>()
@@ -21,16 +23,36 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature
                 .AutoDelEntityComponent<BestScoreUpdatedEvent>()
                 .AddUnique(new BestScoreSystem())
                 .AutoDelEntityComponent<UpdateBestScoreRequest>()
+
+                // coins
+                .AutoDelTag<CoinSpawnedEvent>()
+                .AutoDelTag<CoinCollectAnimationCompletedEvent>()
+                .AutoDelTag<CoinDestroyAnimationCompletedEvent>()
+                .AddUnique(new CatchCoinSystem())
+                .AddUnique(new CreateCoinSystem())
+                .AutoDelTag<CreateCoinRequest>()
+                // 
+                .AutoDelTag<CoinCollectedEvent>()
+                .AddUnique(new CollectCoinSystem())
                 //
-                .AutoDelTag<GameAudioUpdatedEvent>()
-                .AddUnique(new UpdateGameAudioStatusSystem())
-                .AutoDelEntityComponent<UpdateGameAudioRequest>()
+                .AutoDelEntityComponent<CoinsUpdatedEvent>()
+                .AddUnique(new CoinsSystem())
+                .AutoDelEntityComponent<UpdateCoinsRequest>()
+                // coin destruction
+                .AddUnique(new CoinDestroySystem())
+                .AddUnique(new CoinDestructionSystem())
+                // coin audio
+                .AddAudioSystem<CoinCollectedEvent, CoinCollectedAudioConfig>()
+
                 // ui feature
                 .AddUnique(new DisplayAudioButtonsStatusSystem())
                 .AddUnique(new DisplayCoinsSystem())
                 .AddUnique(new DisplayScoresSystem())
-                // audio feature
-                .AddAudioSystem<CoinCollectedEvent, CoinCollectedAudioConfig>();
+
+                // audio 
+                .AutoDelTag<GameAudioUpdatedEvent>()
+                .AddUnique(new UpdateGameAudioStatusSystem())
+                .AutoDelEntityComponent<UpdateGameAudioRequest>();
         }
     }
 }

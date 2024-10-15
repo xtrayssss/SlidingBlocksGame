@@ -16,7 +16,7 @@ namespace _Project.Scripts.Gameplay.Features.VisualFeature
             builder
                 .AddModule(new CameraFeature.CameraFeature())
                 .AddModule(new VfxFeature())
-                .AddModule(new UIFeature.UIFeature(_coroutineRunner));
+                .AddModule(new UIFeature.UIFeature());
         }
     }
 }

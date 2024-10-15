@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using _Project.Scripts.DragonAPI;
 using _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.DestructionFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
@@ -13,70 +15,28 @@ using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
 {
-    public class LevelVictorySystem : IEcsRun
+    public class LevelVictorySystem : IEcsInit, IEcsRun
     {
         [EcsInject] private readonly EcsDefaultWorld _world;
 
-        private struct LevelVictoryStateAspect
+        private DragonCoroutineRunner _coroutineRunner;
+
+        private class LevelVictoryAspect : EcsAspectAuto
         {
-            public class OnEnter : EcsAspectAuto
-            {
-                [IncImplicit(typeof(LevelVictoryEvent))]
-                [Inc] public readonly EcsPool<GameFieldAlgorithms> GameFieldAlgorithmConfigs;
+            [IncImplicit(typeof(LevelVictoryEvent))]
+            [Inc] public readonly EcsPool<GameFieldAlgorithms> GameFieldAlgorithmConfigs;
 
-                [Opt] public readonly EcsPool<DestructionAnimalStrategyCfg> DestructionAnimalStrategyConfigs;
-            }
-
-            public class OnUpdate : EcsAspectAuto
-            {
-                [IncImplicit(typeof(LevelVictoryMarker))]
-                [Inc] public readonly EcsPool<GameFieldAlgorithms> GameFieldAlgorithmConfigs;
-
-                [Opt] public readonly EcsPool<GameFieldGeneratedByAlgorithm> GameFieldGeneratedByAlgorithm;
-
-                [Opt] public readonly EcsPool<DestructionAnimalStrategyCfg> DestructionAnimalStrategyConfigs;
-                [Opt] public readonly EcsTagPool<GameFieldDestructRequest> GameFieldDestruct;
-                [Opt] public readonly EcsTagPool<GameOverTimerClosedMarker> GameOverTimerClosedMarker;
-                [Opt] public readonly EcsTagPool<CleanupLevelRequest> CleanupLevel;
-            }
-
-            public class GameFieldDestructedAndGameOverTimerClosedAspect : EcsAspectAuto
-            {
-                [IncImplicit(typeof(LevelTag))]
-                [Inc] public readonly EcsTagPool<GameOverTimerClosedMarker> GameOverTimerClosedMarker;
-
-                [Inc] public readonly EcsTagPool<GameFieldDestructedMarker> GameFieldDestructedMarker;
-            }
+            [Opt] public readonly EcsPool<DestructionAnimalStrategyCfg> DestructionAnimalStrategyConfigs;
+            [Opt] public readonly EcsTagPool<GameFieldDestructRequest> GameFieldDestructRequest;
+            [Opt] public readonly EcsPool<GameFieldGeneratedByAlgorithm> GameFieldGeneratedByAlgorithm;
+            [Opt] public readonly EcsTagPool<GameOverTimerClosedMarker> GameOverTimerClosedMarker;
+            [Opt] public readonly EcsTagPool<GameFieldDestructedMarker> GameFieldDestructedMarker;
+            [Opt] public readonly EcsTagPool<CleanupLevelRequest> CleanupLevel;
+            [Opt] public readonly EcsTagPool<AnimalDestructedEvent> AnimalDestructedEvent;
+            [Opt] public readonly EcsTagPool<LevelClearedEvent> LevelClearedEvent;
         }
 
-        private struct AnimalDestructedStateAspect
-        {
-            public class OnEnter : EcsAspectAuto
-            {
-                [Inc] public readonly EcsTagPool<AnimalDestructedEvent> AnimalDestructedEvent;
-            }
-        }
-
-        private struct GameOverTimerClosedStateAspect
-        {
-            public class OnEnter : EcsAspectAuto
-            {
-                [Inc] public readonly EcsTagPool<GameOverTimerTag> GameOverTimerTag;
-                [Inc] public readonly EcsTagPool<GameOverTimerClosedEvent> GameOverTimerClosedEvent;
-            }
-        }
-
-        private struct LevelClearedStateAspect
-        {
-            public class OnEnter : EcsAspectAuto
-            {
-                [IncImplicit(typeof(LevelTag))]
-                [IncImplicit(typeof(LevelClearedEvent))]
-                [Opt] public readonly EcsTagPool<NextLeveRequest> NextLevel;
-            }
-        }
-        
-        private class GameOvertTimerAspect : EcsAspectAuto
+        private class GameOverTimerAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(GameOverTimerTag))]
             [Opt] public readonly EcsTagPool<CloseGameOverTimerRequest> Close;
@@ -87,7 +47,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
         private class GameAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(GameTag))]
-            [Opt] public readonly EcsTagPool<NextLeveRequest> NextLeveRequest;
+            [Opt] public readonly EcsTagPool<NextLeveRequest> NextLevel;
         }
 
         private class PlayerAspect : EcsAspectAuto
@@ -96,55 +56,121 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
             [Exc] public readonly EcsTagPool<LockGameInputMarker> LockGameInputMarker;
         }
 
+        public void Init() =>
+            _coroutineRunner = DragonAPI.DragonAPI.CreateCoroutineRunner();
+
+        private IEnumerator<CustomYieldInstruction> HandleLevelDefeatState(
+            LevelVictoryAspect levelAspect, int levelID)
+        {
+            entlong level = levelID.ToEntityLong(_world);
+
+            AnimalDestruct();
+
+            yield return WaitForAnimalDestruction();
+
+            DestructGameFieldAndCloseTimer();
+
+            yield return WaitForTimerCloseAndFieldDestruction();
+
+            Cleanup();
+
+            yield return WaitForLevelCleared();
+
+            FinalizeState();
+
+            yield break;
+
+            void AnimalDestruct()
+            {
+                ref readonly DestructionAnimalStrategyCfg strategyCfg =
+                    ref levelAspect.DestructionAnimalStrategyConfigs.Read(levelID);
+
+                entlong strategy = _world.NewEntityLong(strategyCfg.Value);
+
+                _world.GetPool<TargetEntity>().Add(strategy.ID).Value = _world.GetEntityLong(levelID);
+                _world.GetPool<ApplyDestructionStrategyRequest>().Add(strategy.ID);
+
+                foreach (int player in _world.Where(out PlayerAspect playerAspect))
+                    playerAspect.LockGameInputMarker.Add(player);
+
+                foreach (int timer in _world.Where(out GameOverTimerAspect gameOverTimerAspect))
+                    gameOverTimerAspect.CooldownLockMarker.Add(timer);
+            }
+
+            CustomYieldInstruction WaitForAnimalDestruction()
+            {
+                return new DragonAPI.YieldInstructions.DragonAPI.WaitUntil<entlong>(
+                    target: level,
+                    static level =>
+                    {
+                        EcsWorld world = level.World;
+
+                        LevelVictoryAspect levelAspect = world.GetAspect<LevelVictoryAspect>();
+
+                        return levelAspect.AnimalDestructedEvent.Has(level.ID);
+                    });
+            }
+
+            void DestructGameFieldAndCloseTimer()
+            {
+                foreach (int timer in _world.Where(out GameOverTimerAspect gameOverTimerAspect))
+                    gameOverTimerAspect.Close.Add(timer);
+
+                ref readonly GameFieldGeneratedByAlgorithm algorithm =
+                    ref levelAspect.GameFieldGeneratedByAlgorithm.Read(levelID);
+
+                if (algorithm.Value.TryGetID(out int algorithmId))
+                    levelAspect.GameFieldDestructRequest.Add(algorithmId);
+            }
+
+            CustomYieldInstruction WaitForTimerCloseAndFieldDestruction()
+            {
+                return new DragonAPI.YieldInstructions.DragonAPI.WaitUntil<entlong>(
+                    target: level,
+                    static level =>
+                    {
+                        EcsWorld world = level.World;
+
+                        LevelVictoryAspect levelAspect = world.GetAspect<LevelVictoryAspect>();
+
+                        return levelAspect.GameOverTimerClosedMarker.Has(level.ID) &&
+                               levelAspect.GameFieldDestructedMarker.Has(level.ID);
+                    });
+            }
+
+            void Cleanup() =>
+                levelAspect.CleanupLevel.Add(levelID);
+
+            CustomYieldInstruction WaitForLevelCleared()
+            {
+                return new DragonAPI.YieldInstructions.DragonAPI.WaitUntil<entlong>(
+                    target: level,
+                    static level =>
+                    {
+                        EcsWorld world = level.World;
+                        LevelVictoryAspect levelAspect = world.GetAspect<LevelVictoryAspect>();
+                        return levelAspect.LevelClearedEvent.Has(level.ID);
+                    });
+            }
+
+            void FinalizeState()
+            {
+                foreach (int game in _world.Where(out GameAspect gameAspect))
+                    gameAspect.NextLevel.Add(game);
+
+                _world.DelEntity(levelID);
+            }
+        }
+
         public void Run()
         {
-            foreach (int level in _world.Where(out LevelVictoryStateAspect.OnUpdate levelAspect))
+            _coroutineRunner.Tick();
+            
+            foreach (int level in _world.Where(out LevelVictoryAspect levelAspect))
             {
-                foreach (int _ in _world.Where(out LevelVictoryStateAspect.OnEnter aspect))
-                {
-                    Debug.Log("LEVEL_VICTORY");
+                Debug.Log("LEVEL_VICTORY");
 
-                    entlong strategy =
-                        _world.NewEntityLong(aspect.DestructionAnimalStrategyConfigs.Read(level).Value);
-
-                    _world.GetPool<TargetEntity>().Add(strategy.ID).Value = _world.GetEntityLong(level);
-                    _world.GetPool<ApplyDestructionStrategyRequest>().Add(strategy.ID);
-
-                    foreach (int player in _world.Where(out PlayerAspect playerAspect))
-                        playerAspect.LockGameInputMarker.Add(player);
-
-                    foreach (int timer in _world.Where(out GameOvertTimerAspect gameOvertTimerAspect))
-                        gameOvertTimerAspect.CooldownLockMarker.Add(timer);
-                }
-
-                foreach (int _ in _world.Where(out AnimalDestructedStateAspect.OnEnter _))
-                {
-                    if (levelAspect.GameFieldGeneratedByAlgorithm.Read(level).Value.TryGetID(out int algorithmID))
-                        levelAspect.GameFieldDestruct.Add(algorithmID);
-
-                    foreach (int timer in _world.Where(out GameOvertTimerAspect gameOvertTimerAspect))
-                        gameOvertTimerAspect.Close.Add(timer);
-                }
-
-                if (_world.Where(
-                        out LevelVictoryStateAspect.GameFieldDestructedAndGameOverTimerClosedAspect gameFieldDestructedAndGameOverTimerClosedAspect).Count > 0)
-                {
-                    gameFieldDestructedAndGameOverTimerClosedAspect.GameOverTimerClosedMarker.Del(level);
-                    gameFieldDestructedAndGameOverTimerClosedAspect.GameFieldDestructedMarker.Del(level);
-
-                    levelAspect.CleanupLevel.Add(level);
-                }
-
-                foreach (int _ in _world.Where(out LevelClearedStateAspect.OnEnter aspect))
-                {
-                    foreach (int game in _world.Where(out GameAspect _))
-                        aspect.NextLevel.Add(game);
-
-                    _world.DelEntity(level);
-                }
-
-                foreach (int _ in _world.Where(out GameOverTimerClosedStateAspect.OnEnter _)) 
-                    levelAspect.GameOverTimerClosedMarker.Add(level);
+                _coroutineRunner.StartCoroutine(HandleLevelDefeatState(levelAspect, level));
             }
         }
     }

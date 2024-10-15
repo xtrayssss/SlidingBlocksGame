@@ -17,8 +17,36 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.Systems
                 ref readonly TargetEntity targetEntity =
                     ref commonCatcherAspect.TargetEntities.Read(entity);
 
-                if (targetEntity.Value.TryGetID(out int targetID)) 
+                if (targetEntity.Value.TryGetID(out int targetID))
                     catcherAspect.CoinSpawnedEvent.Add(targetID);
+
+                _world.DelEntity(entity);
+            }
+
+            foreach (int entity in _world.Where(
+                         out CoinCatcherAspect.CoinCollectAnimationCompletedCatcher catcherAspect))
+            {
+                CommonCatcherAspect commonCatcherAspect = catcherAspect.CommonCatcherAspect;
+
+                ref readonly TargetEntity targetEntity =
+                    ref commonCatcherAspect.TargetEntities.Read(entity);
+
+                if (targetEntity.Value.TryGetID(out int targetID))
+                    catcherAspect.CoinCollectAnimationCompletedEvent.Add(targetID);
+
+                _world.DelEntity(entity);
+            }
+
+            foreach (int entity in _world.Where(
+                         out CoinCatcherAspect.CoinDestroyAnimationCompletedCatcher catcherAspect))
+            {
+                CommonCatcherAspect commonCatcherAspect = catcherAspect.CommonCatcherAspect;
+
+                ref readonly TargetEntity targetEntity =
+                    ref commonCatcherAspect.TargetEntities.Read(entity);
+
+                if (targetEntity.Value.TryGetID(out int targetID))
+                    catcherAspect.CoinDestroyAnimationCompletedEvent.Add(targetID);
 
                 _world.DelEntity(entity);
             }

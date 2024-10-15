@@ -33,6 +33,7 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.Systems
 
             [Opt] public readonly EcsTagPool<DeleteEntityRequest> DeleteEntity;
             [Opt] public readonly EcsTagPool<DestroyViewRequest> DestroyView;
+            [Opt] public readonly EcsTagPool<CoinCollectAnimationCompletedEvent> CoinCollectAnimationCompletedEvent;
         }
 
         private class MovingAnimalAspect : EcsAspectAuto
@@ -117,12 +118,20 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.Systems
                         ease: Ease.OutQuint))
                 .ChainCallback(
                     target: gameObjectConnect.Connect,
-                    callback: target =>
+                    static connect =>
                     {
-                        if (!target.Entity.TryGetID(out int id))
+                        if (!connect.Entity.TryGetID(out _))
                             return;
 
-                        coinAspect.DestroyView.Add(id);
+                        EcsWorld world = connect.Entity.World;
+
+                        int catcher = world.NewEntity();
+
+                        CoinCatcherAspect.CoinCollectAnimationCompletedCatcher catcherAspect =
+                            world.GetAspect<CoinCatcherAspect.CoinCollectAnimationCompletedCatcher>();
+
+                        catcherAspect.CommonCatcherAspect.TargetEntities.Add(catcher).Value = connect.Entity;
+                        catcherAspect.CatchCoinCollectAnimationCompletedRequest.Add(catcher);
                     });
         }
     }

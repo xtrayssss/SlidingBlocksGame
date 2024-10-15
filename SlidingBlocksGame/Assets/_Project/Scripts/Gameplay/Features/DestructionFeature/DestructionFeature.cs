@@ -10,7 +10,7 @@ namespace _Project.Scripts.Gameplay.Features.DestructionFeature
         public void Import(EcsPipeline.Builder builder)
         {
             builder
-                .AutoDelTag<DeathEvent>()
+                .AutoDelTag<DestructibleStrategyCompletedEvent>()
                 .AddUnique(new DestructionChainStrategySystem())
                 .AutoDelEntityTag<ApplyDestructionStrategyRequest>()
                 //

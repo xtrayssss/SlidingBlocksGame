@@ -18,12 +18,18 @@ namespace _Project.Scripts.Gameplay.Features.RewardFeature
                 .AutoDelTag<RewardEligibilityEvent>()
                 .AddUnique(new RewardEligibilitySystem())
                 .AddUnique(new RewardClaimSystem())
+                //
+                .AutoDelEntityTag<RewardUpdatedEvent>()
+                .AddUnique(new RewardSystem())
+                .AutoDelEntityComponent<UpdateRewardRequest>()
+                
                 // ui feature
                 .AutoDelTag<RewardCoinDisplayCompletedEvent>()
                 .AutoDelEntityTag<RewardCoinCountDisplayedEvent>()
                 .AutoDelTag<ConfettiExplodedEvent>()
                 .AddUnique(new RewardCatcherSystem())
                 .AddUnique(new DisplayRewardSystem())
+                
                 // audio feature
                 .AddAudioSystem<ConfettiExplodedEvent, ConfettiExplodedAudioConfig>()
                 .AddAudioSystem<RewardCoinDisplayCompletedEvent, RewardCoinDisplayCompletedAudioConfig>()

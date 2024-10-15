@@ -11,6 +11,14 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
     {
         [EcsInject] private EcsDefaultWorld _world;
 
+        private class StrategyAspect : EcsAspectAuto
+        {
+            [IncImplicit(typeof(ApplyMovementStrategyRequest))]
+            [Inc] public readonly EcsTagPool<ChainMovementStrategyTag> ChainMovementStrategyTag;
+
+            [Inc] public readonly EcsPool<TargetEntities> Movables;
+        }
+
         private class CooldownExpiredAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(CooldownExpiredEvent))]
@@ -37,9 +45,24 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 
         public void Run()
         {
-            foreach (int entity in _world.Where(out CooldownExpiredAspect strategyCompletedAspect))
+            foreach (int strategy in _world.Where(out StrategyAspect strategyAspect))
             {
-                if (!strategyCompletedAspect.Targets.Read(entity).Value.TryGetID(out int movableID))
+                ref readonly TargetEntities movables = ref strategyAspect.Movables.Read(strategy);
+
+                MovableAspect movableAspect = _world.GetAspect<MovableAspect>();
+
+                foreach (entlong movable in movables.Value.Longs)
+                {
+                    if (!movable.TryGetID(out int movableID))
+                        continue;
+
+                    movableAspect.MovingMarker.Add(movableID);
+                }
+            }
+
+            foreach (int entity in _world.Where(out CooldownExpiredAspect cooldownExpiredAspect))
+            {
+                if (!cooldownExpiredAspect.Targets.Read(entity).Value.TryGetID(out int movableID))
                     continue;
 
                 MovableAspect movableAspect = _world.GetAspect<MovableAspect>();
@@ -69,8 +92,6 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                             catcherAspect.CommonCatcherAspect.TargetEntities.Add(catcher).Value = connect.Entity;
                             catcherAspect.CatchMovementTweenRequest.Add(catcher);
                         });
-
-                movableAspect.MovingMarker.Add(movableID);
             }
 
             foreach (int entity in _world.Where(out MovementTweenCompletedAspect tweenCompletedAspect))

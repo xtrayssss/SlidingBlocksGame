@@ -5,6 +5,7 @@ using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
 using _Project.Scripts.Gameplay.Features.DestructionFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFlowFeature.Components;
 using DCFApixels.DragonECS;
+using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.DestructionFeature.Systems
 {
@@ -89,7 +90,7 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.D
 
                 LevelAspect levelAspect = _world.GetAspect<LevelAspect>();
 
-                if (levelAspect.IsMatches(levelID))
+                if (levelAspect.IsMatches(levelID)) 
                     levelAspect.AnimalDestructed.Add(levelID);
             }
         }

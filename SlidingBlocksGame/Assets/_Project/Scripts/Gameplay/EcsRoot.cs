@@ -48,7 +48,7 @@ namespace _Project.Scripts.Gameplay
                 .AddModule(new CreationFeature())
                 .AddModule(new AnimalFeature())
                 .AddModule(new MovementFeature())
-                .AddModule(new GameFieldFeature(coroutineRunner: this))
+                .AddModule(new GameFieldFeature())
                 .AddModule(new DestructionFeature())
                 .AddModule(new PurchaseFeature())
                 .AddModule(new RateUsFeature())

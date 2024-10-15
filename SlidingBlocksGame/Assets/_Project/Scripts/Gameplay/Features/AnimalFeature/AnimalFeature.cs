@@ -33,6 +33,7 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature
                 // destruction feature
                 .AutoDelTag<AnimalDestructedEvent>()
                 .AddUnique(new AnimalDestructionChainStrategySystem())
+                .AddUnique(new DestroyAnimalsSystem())
                 .AddUnique(new AnimalDeathSystem())
                 
                 // selection feature
@@ -47,7 +48,7 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature
                 
                 // audio feature
                 .AddAudioSystem<AnimalSpawnedEvent, AnimalSpawnedAudioConfig>()
-                .AddAudioSystem<DeathEvent, AnimalDeathAudioConfig>();
+                .AddAudioSystem<DiedEvent, AnimalDeathAudioConfig>();
         }
     }
 }

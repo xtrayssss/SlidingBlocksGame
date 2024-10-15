@@ -15,4 +15,8 @@ namespace _Project.Scripts.DragonAPI.YieldInstructions
             public override bool keepWaiting => _coroutines.Any(coroutine => coroutine.IsAlive);
         }
     }
+    
+    public static partial class DragonAPI
+    {
+    }
 }

@@ -70,6 +70,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
         {
             [IncImplicit(typeof(GameScreenTag))]
             [Opt] public readonly EcsTagPool<HideMetaGameUIRequest> HideMetaGameUI;
+
             [Opt] public readonly EcsTagPool<CreateGameOverTimerRequest> CreateGameOverTimer;
         }
 
@@ -145,7 +146,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
 
             foreach (int _ in _world.Where(out CoinSpawnedStateAspect _))
             {
-                foreach (int gameScreen in _world.Where(out GameScreenAspect gameScreenAspect)) 
+                foreach (int gameScreen in _world.Where(out GameScreenAspect gameScreenAspect))
                     gameScreenAspect.CreateGameOverTimer.Add(gameScreen);
 
                 foreach (int player in _world.Where(out PlayerAspect playerAspect))

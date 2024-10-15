@@ -19,9 +19,7 @@ namespace _Project.Scripts.Gameplay.Features.DestructionFeature.Systems
 
         private class DestructibleAspect : EcsAspectAuto
         {
-            [Inc] public readonly EcsPool<GameObjectConnect> GoConnects;
-            [Opt] public readonly EcsTagPool<DestroyViewRequest> DestroyViewRequest;
-            [Opt] public readonly EcsTagPool<DeathEvent> DeathEvent;
+            [Exc] public readonly EcsTagPool<DestructibleStrategyCompletedEvent> DestructibleStrategyCompletedEvent;
         }
 
         public void Run()
@@ -30,15 +28,8 @@ namespace _Project.Scripts.Gameplay.Features.DestructionFeature.Systems
             {
                 DestructibleAspect destructibleAspect = _world.GetAspect<DestructibleAspect>();
 
-                if (cooldownExpiredAspect.Targets.Read(entity).Value.TryGetID(out int destructibleID) &&
-                    destructibleAspect.IsMatches(destructibleID))
-                {
-                    if (destructibleAspect.GoConnects.Has(destructibleID)) 
-                        destructibleAspect.DestroyViewRequest.TryAdd(destructibleID);
-
-                    Debug.Log("Deat");
-                    destructibleAspect.DeathEvent.Add(destructibleID);
-                }
+                if (cooldownExpiredAspect.Targets.Read(entity).Value.TryGetID(out int destructibleID))
+                    destructibleAspect.DestructibleStrategyCompletedEvent.Add(destructibleID);
             }
         }
     }

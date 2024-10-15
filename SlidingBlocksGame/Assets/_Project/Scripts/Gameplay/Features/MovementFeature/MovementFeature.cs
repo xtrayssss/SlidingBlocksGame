@@ -17,7 +17,6 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature
                 .AutoDelTag<CalculateMovementSpeedRequest>()
                 //
                 .AddUnique(new MovementChainStrategySystem())
-
                 .AutoDelEntityTag<MovementTweenCompletedEvent>()
                 .AddUnique(new CatchMovementTweenSystem())
                 // 
@@ -25,7 +24,6 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature
                 .AutoDelTag<WobbleRequest>()
                 //
                 .AddUnique(new UpdatePositionsSystem());
-
         }
     }
 }
