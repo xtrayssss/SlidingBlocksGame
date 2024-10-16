@@ -44,7 +44,7 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature
                 // ui feature
                 .AddUnique(new DisplayAnimalsShopWindowSystem())
                 .AutoDelTag<AnimalPurchaseWindowClosedEvent>()
-                .AddUnique(new CloseAnimalPurchaseWindowSystem())
+                .AddUnique(new CloseAnimalsShopWindowSystem())
                 
                 // audio feature
                 .AddAudioSystem<AnimalSpawnedEvent, AnimalSpawnedAudioConfig>()

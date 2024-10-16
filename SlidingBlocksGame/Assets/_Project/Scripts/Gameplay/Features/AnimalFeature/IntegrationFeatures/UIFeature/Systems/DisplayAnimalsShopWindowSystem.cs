@@ -12,7 +12,7 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.U
     {
         [EcsInject] private readonly EcsDefaultWorld _world;
 
-        private class ButtonClickedAspect : EcsAspectAuto
+        private class OpenWindowButtonClickedAspect : EcsAspectAuto
         {
             [Inc] public readonly EcsTagPool<AnimalPurchaseWindowButtonTag> AnimalPurchaseWindowButtonTag;
             [Inc] public readonly EcsTagPool<ButtonClickedEvent> Clicked;
@@ -33,7 +33,7 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.U
 
         public void Run()
         {
-            foreach (int _ in _world.Where(out ButtonClickedAspect _))
+            foreach (int _ in _world.Where(out OpenWindowButtonClickedAspect _))
             {
                 foreach (int window in _world.Where(out AnimalsShopWindowAspect animalsShopWindowAspect))
                 {

@@ -9,11 +9,11 @@ using ScrollSnap = _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Componen
 
 namespace _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.UIFeature.Systems
 {
-    public class CloseAnimalPurchaseWindowSystem : IEcsRun
+    public class CloseAnimalsShopWindowSystem : IEcsRun
     {
         [EcsInject] private readonly EcsDefaultWorld _world;
 
-        private class ButtonClickedAspect : EcsAspectAuto
+        private class CloseWindowButtonClickedAspect : EcsAspectAuto
         {
             [Inc] public readonly EcsTagPool<CloseAnimalsShopWindowButtonTag> CloseAnimalsShopWindowButtonTag;
             [Inc] public readonly EcsTagPool<ButtonClickedEvent> Clicked;
@@ -35,7 +35,7 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.U
 
         public void Run()
         {
-            foreach (int _ in _world.Where(out ButtonClickedAspect _))
+            foreach (int _ in _world.Where(out CloseWindowButtonClickedAspect _))
             {
                 foreach (int window in _world.Where(out AnimalsShopWindowAspect windowAspect))
                 {
@@ -48,7 +48,7 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.U
 
                     scrollSnap.OpenCloseTween.Stop();
 
-                    float factor = 0.7f;
+                    const float factor = 0.7f;
 
                     windowAspect.LockScrollSnap.Add(window);
 
@@ -56,6 +56,7 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.U
                         .Chain(
                             sequence: AnimatePurchases(
                                 animals: windowAspect.PurchaseAnimals.Read(window).Entities,
+                                in scrollSnap,
                                 out float delay))
                         // close window
                         .Insert(
@@ -108,55 +109,50 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.U
             }
         }
 
-        private Sequence AnimatePurchases(EcsGroup animals, out float delay)
+        private Sequence AnimatePurchases(EcsGroup animals, in ScrollSnap scrollSnap, out float delay)
         {
             Sequence sequence = Sequence.Create();
 
-            for (int i = 0; i < animals.Count; i++)
+            EcsSpan visible = default;
+
+            int i = scrollSnap.TargetIndex;
+
+            if (i > 0 && i < animals.Count - 1)
+                visible = animals.Slice(i - 1, 3);
+            else if (i == 0)
+                visible = animals.Slice(i, 2);
+            else if (i == animals.Count - 1)
+                visible = animals.Slice(i - 1, 2);
+
+            float visibleDelay = 0.08f;
+
+            delay = 0.08f * visible.Count;
+
+            foreach (int animal in visible)
             {
-                EcsSpan visible = default;
+                ref GameObjectConnect goConnect = ref _world.GetPool<GameObjectConnect>().Get(animal);
 
-                if (!_world.GetPool<SnappedMarker>().Has(animals[i]))
-                    continue;
-
-                if (i > 0 && i < animals.Count - 1)
-                    visible = animals.Slice(i - 1, 3);
-                else if (i == 0)
-                    visible = animals.Slice(i, 2);
-                else if (i == animals.Count - 1)
-                    visible = animals.Slice(i - 1, 2);
-
-                float visibleDelay = 0.08f;
-
-                delay = 0.08f * visible.Count;
-
-                foreach (int animal in visible)
-                {
-                    ref GameObjectConnect goConnect = ref _world.GetPool<GameObjectConnect>().Get(animal);
-
-                    sequence.Chain(
-                        Tween.Scale(
-                            target: goConnect.Connect.transform,
-                            endValue: Vector3.zero,
-                            duration: visibleDelay,
-                            ease: Ease.Linear));
-                }
-
-                EcsGroup invisible = animals.Clone();
-
-                invisible.ExceptWith(visible);
-
-                //EcsGroup invisible = EcsGroup.Except(animals, visible);
-
-                foreach (int animal in invisible)
-                {
-                    ref GameObjectConnect gameObjectConnect = ref _world.GetPool<GameObjectConnect>().Get(animal);
-
-                    gameObjectConnect.Connect.transform.localScale = Vector3.zero;
-                }
-
-                break;
+                sequence.Chain(
+                    Tween.Scale(
+                        target: goConnect.Connect.transform,
+                        endValue: Vector3.zero,
+                        duration: visibleDelay,
+                        ease: Ease.Linear));
             }
+
+            EcsGroup invisible = animals.Clone();
+
+            invisible.ExceptWith(visible);
+
+            //EcsGroup invisible = EcsGroup.Except(animals, visible);
+
+            foreach (int animal in invisible)
+            {
+                ref GameObjectConnect gameObjectConnect = ref _world.GetPool<GameObjectConnect>().Get(animal);
+
+                gameObjectConnect.Connect.transform.localScale = Vector3.zero;
+            }
+
 
             delay = 0;
 
