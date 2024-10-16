@@ -1,5 +1,6 @@
 ﻿using System;
 using DCFApixels.DragonECS;
+using PrimeTween;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Scripting.APIUpdating;
@@ -19,13 +20,14 @@ namespace _Project.Scripts.Gameplay.Features.PurchaseFeature.IntegrationFeatures
 
         public GameObject Current;
     }
-
+    
     [Serializable]
     [MetaGroup("UI")]
     public struct PurchaseWidget : IEcsComponent
     {
         public PurchaseStatusWidget PurchaseStatusWidget;
         public RawImage Icon;
+        public Tween RotationTween;
 
         [MovedFrom(autoUpdateAPI: false,
             sourceNamespace: "_Project.Scripts.Gameplay.Features.UIFeature.Components",

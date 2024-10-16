@@ -1,6 +1,7 @@
 using _Project.Scripts.Gameplay.Features.GameOverTimerFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameOverTimerFeature.IntegrationFeatures.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components;
+using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Extensions;
 using DCFApixels.DragonECS;
 using PrimeTween;
 using UnityEngine;
@@ -24,16 +25,13 @@ namespace _Project.Scripts.Gameplay.Features.GameOverTimerFeature.IntegrationFea
 
         public void Run()
         {
-            foreach (int timer in _world.Where(out TimerAspect _))
+            foreach (int timerID in _world.Where(out TimerAspect _))
             {
                 foreach (int screen in _world.Where(out GameScreenAspect gameScreenAspect))
                 {
                     ref readonly GameScreen gameScreen = ref gameScreenAspect.GameScreens.Read(screen);
 
-                    gameScreen.GameOverTimerWidgetConnect.Connect(timer.ToEntityLong(_world), applyTemplates: true);
-
-                    foreach (MonoEntityTemplateBase template in gameScreen.GameOverTimerWidgetConnect.MonoTemplates)
-                        template.Apply(_world.id, timer);
+                    gameScreen.GameOverTimerWidgetConnect.ConnectUI(timerID.ToEntityLong(_world));
 
                     gameScreen.GameOverTimerWidgetConnect.transform.localScale = Vector3.zero;
 

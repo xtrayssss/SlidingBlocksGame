@@ -32,6 +32,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
 
             [Opt] public readonly EcsPool<MenuAudio> MenuMusics;
             [Opt] public readonly EcsPool<AudioEffectInOnLevelEnter> Effects;
+            [Opt] public readonly EcsTagPool<CreateGameOverTimerRequest> CreateGameOverTimer;
         }
 
         private class GameCreatedAspect : EcsAspectAuto
@@ -69,9 +70,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
         private class GameScreenAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(GameScreenTag))]
-            [Opt] public readonly EcsTagPool<HideMetaGameUIRequest> HideMetaGameUI;
-
-            [Opt] public readonly EcsTagPool<CreateGameOverTimerRequest> CreateGameOverTimer;
+            [Opt] public readonly EcsTagPool<HideMetaGameUIRequest> HideMetaGameUI; 
         }
 
         private class PlayerAspect : EcsAspectAuto
@@ -146,8 +145,8 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
 
             foreach (int _ in _world.Where(out CoinSpawnedStateAspect _))
             {
-                foreach (int gameScreen in _world.Where(out GameScreenAspect gameScreenAspect))
-                    gameScreenAspect.CreateGameOverTimer.Add(gameScreen);
+                foreach (int game in _world.Where(out GameAspect gameAspect))
+                    gameAspect.CreateGameOverTimer.Add(game);
 
                 foreach (int player in _world.Where(out PlayerAspect playerAspect))
                     playerAspect.LockGameInputMarker.Del(player);

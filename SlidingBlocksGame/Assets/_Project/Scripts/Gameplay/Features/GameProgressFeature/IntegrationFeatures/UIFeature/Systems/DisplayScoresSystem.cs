@@ -1,6 +1,7 @@
 ﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameProgressFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameProgressFeature.IntegrationFeatures.UIFeature.Components;
+using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components;
 using DCFApixels.DragonECS;
 using PrimeTween;
 using UnityEngine;
@@ -26,11 +27,13 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.IntegrationFeat
         private class ScoreWidgetAspect : EcsAspectAuto
         {
             [Inc] public readonly EcsPool<ScoreWidget> ScoreWidgets;
-        }  
-        
+            [Inc] public readonly EcsPool<UIElement> UIElements;
+        }
+
         private class BestScoreWidgetAspect : EcsAspectAuto
         {
             [Inc] public readonly EcsPool<BestScoreWidget> BestScoreWidgets;
+            [Inc] public readonly EcsPool<UIElement> UIElements;
         }
 
         private class DisplayableAspect : EcsAspectAuto
@@ -54,8 +57,10 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.IntegrationFeat
 
                     scoreWidget.AmountText.text = displayableAspect.Scores.Get(displayableID).Value.ToString();
 
+                    ref UIElement uiElement = ref widgetAspect.UIElements.Get(widget);
+
                     Tween.PunchScale(
-                        target: scoreWidget.RectTransform,
+                        target: uiElement.RectTransform,
                         strength: new Vector3(0.5f, 0.5f),
                         duration: 0.2f);
                 }
@@ -76,8 +81,10 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.IntegrationFeat
 
                     if (bestScoreUpdatedEventAspect.BestScoreUpdatedEvent.Read(@event).Delta != 0)
                     {
+                        ref UIElement uiElement = ref widgetAspect.UIElements.Get(widget);
+
                         Tween.PunchScale(
-                            target: bestScoreWidget.RectTransform,
+                            target: uiElement.RectTransform,
                             strength: new Vector3(0.5f, 0.5f),
                             duration: 0.2f);
                     }

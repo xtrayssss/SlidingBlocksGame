@@ -3,6 +3,8 @@ using System.Runtime.CompilerServices;
 using _Project.Scripts.DragonAPI;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFieldFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameFieldFeature.Extensions;
+using _Project.Scripts.Gameplay.Features.GameFieldFeature.Utils;
 using DCFApixels.DragonECS;
 using Unity.Mathematics;
 using UnityEngine;
@@ -95,7 +97,9 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.Systems
                     if (x >= GameField().EdgeSize && x < GameField().EdgeSize + GameField().CenterSize ||
                         z >= GameField().EdgeSize && z < GameField().EdgeSize + GameField().CenterSize)
                     {
-                        float3 position = GridUtils.GetWorldPosition(new int2(x, z), in GameField());
+                        float3 position = GridUtils.GetWorldPosition(
+                            coordinates: new int2(x, z),
+                            grid: GameField().ToGrid());
 
                         GameObject view = Object.Instantiate(
                             original: GameField().CellPrefab,
@@ -184,7 +188,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.Systems
             }
 
             tile.transform.localScale = targetScale;
-            
+
             yield break;
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]

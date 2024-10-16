@@ -9,9 +9,10 @@ namespace _Project.Scripts.Gameplay.Features.GameOverTimerFeature.Systems
     {
         [EcsInject] private readonly EcsDefaultWorld _world;
 
-        private class CreateRequestAspect : EcsAspectAuto
+        private class GameAspect : EcsAspectAuto
         {
-            [Inc] public readonly EcsTagPool<CreateGameOverTimerRequest> CreateGameOverTimerRequest;
+            [IncImplicit(typeof(CreateGameOverTimerRequest))]
+            [Inc] public readonly EcsPool<GameOverTimerConfig> GameOverTimerConfig;
         }
 
         private class TimerAspect : EcsAspectAuto
@@ -23,11 +24,13 @@ namespace _Project.Scripts.Gameplay.Features.GameOverTimerFeature.Systems
 
         public void Run()
         {
-            foreach (int _ in _world.Where(out CreateRequestAspect _))
+            foreach (int game in _world.Where(out GameAspect gameAspect))
             {
-                entlong timer = _world.NewEntityLong();
-
                 TimerAspect timerAspect = _world.GetAspect<TimerAspect>();
+
+                ref readonly GameOverTimerConfig timerConfig = ref gameAspect.GameOverTimerConfig.Read(game);
+                
+                entlong timer = _world.NewEntityLong(timerConfig.Value);
 
                 timerAspect.Refresh.Add(timer.ID);
                 timerAspect.LevelLifeTime.Add(timer.ID);

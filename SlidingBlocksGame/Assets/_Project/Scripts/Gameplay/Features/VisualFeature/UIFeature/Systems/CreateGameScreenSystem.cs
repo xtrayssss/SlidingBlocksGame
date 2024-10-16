@@ -3,13 +3,15 @@ using _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.UIFea
 using _Project.Scripts.Gameplay.Features.CameraFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFlowFeature.Components;
-using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
 using _Project.Scripts.Gameplay.Features.PurchaseFeature.Components;
 using _Project.Scripts.Gameplay.Features.PurchaseFeature.IntegrationFeatures.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Components;
 using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components;
+using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Extensions;
+using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Utils;
 using DCFApixels.DragonECS;
+using PrimeTween;
 using UnityEngine;
 using Object = UnityEngine.Object;
 using ScrollSnap = _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Components.ScrollSnap;
@@ -55,17 +57,28 @@ namespace _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Systems
             [Inc] public readonly EcsPool<RewardWindow> RewardWindows;
         }
 
-        private class GameTitleWidgetAspect : EcsAspectAuto
-        {
-            [Opt] public readonly EcsTagPool<WobbleRequest> Wobble;
-        }
-
         private class PurchaseAspect : EcsAspectAuto
         {
             [Opt] public readonly EcsPool<PurchaseWidget> PurchaseWidgets;
             [Opt] public readonly EcsPool<PhysicView> PhysicView;
             [Opt] public readonly EcsPool<RenderCamera> RenderCamera;
             [Opt] public readonly EcsPool<Render3DToUIRequest> Render3DToUI;
+        }
+
+        private class TitleWidgetAspect : EcsAspectAuto
+        {
+            [Inc] public readonly EcsPool<GameTitleWidget> TitleWidgets;
+            [Inc] public readonly EcsPool<UIElement> UIElements;
+        }
+
+        private class RewardCoinsWidgetAspect : EcsAspectAuto
+        {
+            [Opt] public readonly EcsTagPool<CalculateOriginalPositionRequest> CalculateOriginalPosition;
+        }
+
+        private class TapToExitWidgetAspect : EcsAspectAuto
+        {
+            [Opt] public readonly EcsTagPool<CalculateOriginalPositionRequest> CalculateOriginalPosition;
         }
 
         public void Run()
@@ -106,8 +119,8 @@ namespace _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Systems
                     CreateCoinsWidget(in gameScreen);
 
                 if (gameScreen.BestScoreWidgetConnect != null)
-                    CreateBestScoreWidget(in gameScreen);                
-                
+                    CreateBestScoreWidget(in gameScreen);
+
                 if (gameScreen.TutorialWindowConnect != null)
                     CreateTutorialWindow(in gameScreen);
 
@@ -117,86 +130,96 @@ namespace _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Systems
 
         private void CreateTutorialWindow(in GameScreen gameScreen)
         {
-            entlong window = _world.NewEntityLong();
-
-            gameScreen.TutorialWindowConnect.Connect(window, applyTemplates: true);
+            _world.NewUIEntity(gameScreen.TutorialWindowConnect);
         }
 
         private void CreateBestScoreWidget(in GameScreen gameScreen)
         {
-            entlong widget = _world.NewEntityLong();
-
-            gameScreen.BestScoreWidgetConnect.Connect(widget, applyTemplates: true);
+            _world.NewUIEntity(gameScreen.BestScoreWidgetConnect);
         }
 
         private void CreateCoinsWidget(in GameScreen gameScreen)
         {
-            entlong widget = _world.NewEntityLong();
-
-            gameScreen.CoinsWidgetConnect.Connect(widget, applyTemplates: true);
+            _world.NewUIEntity(gameScreen.CoinsWidgetConnect);
         }
 
         private void CreateScoreWidget(in GameScreen gameScreen)
         {
-            entlong widget = _world.NewEntityLong();
-
-            gameScreen.ScoreWidgetConnect.Connect(widget, applyTemplates: true);
+            _world.NewUIEntity(gameScreen.ScoreWidgetConnect);
         }
 
         private void CreatePlayWidget(in GameScreen gameScreen)
         {
-            entlong widget = _world.NewEntityLong();
-
-            gameScreen.PlayWidgetConnect.Connect(widget, applyTemplates: true);
+            _world.NewUIEntity(gameScreen.PlayWidgetConnect);
         }
 
         private void CreateSettingsPopup(in GameScreen gameScreen)
         {
-            entlong popup = _world.NewEntityLong();
-
-            gameScreen.SettingsPopupConnect.Connect(popup, applyTemplates: true);
+            _world.NewUIEntity(gameScreen.SettingsPopupConnect);
         }
 
         private void CreateGameTitle(in GameScreen gameScreen)
         {
-            entlong title = _world.NewEntityLong();
+            entlong title = _world.NewUIEntity(gameScreen.GameTileWidgetConnect);
 
-            GameTitleWidgetAspect widgetAspect = _world.GetAspect<GameTitleWidgetAspect>();
+            TitleWidgetAspect widgetAspect = _world.GetAspect<TitleWidgetAspect>();
 
-            gameScreen.GameTileWidgetConnect.Connect(title, applyTemplates: true);
+            ref UIElement uiElement = ref widgetAspect.UIElements.Get(title.ID);
+            ref GameTitleWidget widget = ref widgetAspect.TitleWidgets.Get(title.ID);
 
-            widgetAspect.Wobble.Add(title.ID);
+            widget.WobbleTween = Tween.UIAnchoredPosition(
+                target: uiElement.RectTransform,
+                endValue: uiElement.RectTransform.anchoredPosition + UIUtils.WOBBLE_OFFSET,
+                settings: UIUtils.WobbleSettings.settings);
         }
 
         private void CreateReward(in GameScreen gameScreen)
         {
-            entlong reward = _world.NewEntityLong();
-
-            gameScreen.RewardWidgetConnect.Connect(reward, applyTemplates: true);
-
-            entlong rewardWindowLong = _world.NewEntityLong();
+            entlong reward = _world.NewUIEntity(gameScreen.RewardWidgetConnect);
 
             RewardWidgetAspect rewardWidgetAspect = _world.GetAspect<RewardWidgetAspect>();
 
             ref RewardWidget rewardWidget = ref rewardWidgetAspect.RewardWidgets.Get(reward.ID);
 
             // create reward window
-            rewardWidget.RewardWindowConnect.Connect(rewardWindowLong, applyTemplates: true);
+            entlong rewardWindowLong = _world.NewUIEntity(rewardWidget.RewardWindowConnect);
 
             RewardWindowAspect rewardWindowAspect = _world.GetAspect<RewardWindowAspect>();
 
-            // create coins reward
             ref readonly RewardWindow rewardWindow = ref rewardWindowAspect.RewardWindows.Read(rewardWindowLong.ID);
-            rewardWindow.RewardCoinsWidgetConnect.Connect(_world.NewEntityLong(), applyTemplates: true);
+
+            // create coins reward
+            CreateCoinsReward(in rewardWindow);
 
             // congratulation
-            rewardWindow.CongratulationWidgetConnect.Connect(_world.NewEntityLong(), applyTemplates: true);
+            _world.NewUIEntity(rewardWindow.CongratulationWidgetConnect);
 
             // tap to exit
-            rewardWindow.TapToExitWidgetConnect.Connect(_world.NewEntityLong(), applyTemplates: true);
+            CreateTapToExit(in rewardWindow);
 
             // confetti
-            rewardWindow.RewardConfettiEffectConnect.Connect(_world.NewEntityLong(), applyTemplates: true);
+            _world.NewUIEntity(rewardWindow.RewardConfettiEffectConnect);
+
+            // sunshine
+            _world.NewUIEntity(rewardWindow.SunshineWidgetConnect);
+
+            return;
+
+            void CreateCoinsReward(in RewardWindow rewardWindow)
+            {
+                entlong widget = _world.NewUIEntity(rewardWindow.RewardCoinsWidgetConnect);
+
+                RewardCoinsWidgetAspect rewardCoinsWidgetAspect = _world.GetAspect<RewardCoinsWidgetAspect>();
+                rewardCoinsWidgetAspect.CalculateOriginalPosition.Add(widget.ID);
+            }
+
+            void CreateTapToExit(in RewardWindow rewardWindow)
+            {
+                entlong widget = _world.NewUIEntity(rewardWindow.TapToExitWidgetConnect);
+
+                TapToExitWidgetAspect rewardCoinsWidgetAspect = _world.GetAspect<TapToExitWidgetAspect>();
+                rewardCoinsWidgetAspect.CalculateOriginalPosition.Add(widget.ID);
+            }
         }
 
         private void CreateAnimalsShopWindow(in GameScreen gameScreen)

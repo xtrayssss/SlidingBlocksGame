@@ -29,7 +29,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 344608180997007011}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -45}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -590,7 +590,6 @@ MonoBehaviour:
       data:
         component:
           AmountText: {fileID: 3112543849947586017}
-          RectTransform: {fileID: 6960882420236226989}
     - rid: 3543309499067531274
       type: {class: Scores/Template, ns: _Project.Scripts.Gameplay.Features.GameProgressFeature.Components,
         asm: GameProgressFeature.Components}
@@ -6885,11 +6884,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 7073395842434265777}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5175926, y: 0}
-  m_AnchorMax: {x: 0.5175926, y: 0}
-  m_AnchoredPosition: {x: 0, y: 120}
-  m_SizeDelta: {x: 850, y: 120}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.23151852, y: 0.025}
+  m_AnchorMax: {x: 0.7684445, y: 0.087000005}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -4.606201, y: 1}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &4689588512167450369
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6920,9 +6919,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: TAP TO EXIT
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 0}
-  m_sharedMaterial: {fileID: -1975015116027720056, guid: 1b6c1f3157894e947864ce33af929981,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
+  m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6946,7 +6944,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 90.95
+  m_fontSize: 98.3
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -7142,7 +7140,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3183573356753573012}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.000030517578}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 11}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7217,7 +7215,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3327871416893472890}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -45}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -7228,7 +7226,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -160}
+  m_AnchoredPosition: {x: 0, y: -180}
   m_SizeDelta: {x: 270, y: 270}
   m_Pivot: {x: 0.49999997, y: 0.5000001}
 --- !u!114 &3210902252709764094
@@ -7244,8 +7242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _deleteEntiityWithDestroy: 0
-  _scriptableTemplates:
-  - {fileID: 11400000, guid: d29ec3324f74793488058f6a180bcfa0, type: 2}
+  _scriptableTemplates: []
   _monoTemplates:
   - {fileID: 111923316408011779}
 --- !u!114 &111923316408011779
@@ -7261,15 +7258,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _components:
-  - rid: 3543309499067531277
   - rid: 3543309502039719936
   references:
     version: 2
     RefIds:
-    - rid: 3543309499067531277
-      type: {class: GameOverTimerTag/Template, ns: _Project.Scripts.Gameplay.Features.GameOverTimerFeature.Components,
-        asm: GameOverTimerFeature.Components}
-      data: {}
     - rid: 3543309502039719936
       type: {class: GameOverTimerWidget/Template, ns: _Project.Scripts.Gameplay.Features.GameOverTimerFeature.IntegrationFeatures.UIFeature.Components,
         asm: GameOverTimerFeature.UIFeature.Components}
@@ -7354,7 +7346,6 @@ MonoBehaviour:
       data:
         component:
           AmountText: {fileID: 5473160543204482095}
-          RectTransform: {fileID: 2010793351970864005}
 --- !u!1 &3731268767736848371
 GameObject:
   m_ObjectHideFlags: 0
@@ -7390,10 +7381,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 8233149588231225911}
   m_LocalEulerAnglesHint: {x: 0, y: -0, z: -0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -94}
-  m_SizeDelta: {x: 1080.0011, y: 95.6489}
+  m_AnchorMin: {x: 0.134, y: 0.90400004}
+  m_AnchorMax: {x: 0.8704815, y: 0.96770847}
+  m_AnchoredPosition: {x: -2.5, y: 6}
+  m_SizeDelta: {x: -0.9100342, y: 11.938995}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &4414456212618904981
 CanvasRenderer:
@@ -7427,9 +7418,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 0}
-  m_sharedMaterial: {fileID: -1975015116027720056, guid: 1b6c1f3157894e947864ce33af929981,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
+  m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -7453,7 +7443,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 95.6
+  m_fontSize: 59
   m_fontSizeBase: 150
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -9910,6 +9900,7 @@ MonoBehaviour:
       data:
         component:
           AmountText: {fileID: 6320279540643813887}
+          OriginalPosition: {x: 0, y: 0}
     - rid: 3543309449364243213
       type: {class: RewardCoinCountDisplayedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.AudioFeature.Components,
         asm: RewardFeature.AudioFeature.Components}
@@ -10191,7 +10182,6 @@ MonoBehaviour:
       data:
         component:
           AmountText: {fileID: 6896612143512867910}
-          RectTransform: {fileID: 573557214950152586}
 --- !u!1 &8377850253040136295
 GameObject:
   m_ObjectHideFlags: 0
@@ -10479,7 +10469,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8753363287543300509}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -45}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10612,10 +10602,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 351338ca92ace49499f450172d857af6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _components: []
+  _components:
+  - rid: 3543309636194009155
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 3543309636194009155
+      type: {class: GameTitleWidget/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components,
+        asm: UIFeature.Components}
+      data: {}
 --- !u!114 &7647358206888065530
 MonoBehaviour:
   m_ObjectHideFlags: 0

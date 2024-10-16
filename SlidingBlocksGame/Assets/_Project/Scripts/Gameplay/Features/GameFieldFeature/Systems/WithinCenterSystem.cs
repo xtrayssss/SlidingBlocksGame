@@ -1,5 +1,6 @@
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFieldFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameFieldFeature.Utils;
 using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.Systems
@@ -38,7 +39,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.Systems
                     {
                         ref readonly GameField gameField = ref gameFieldAspect.GameFields.Read(gameFieldID);
 
-                        if (GridUtils.IsWithinCenter(cellDestination.Value, in gameField)) 
+                        if (GridUtils.IsWithinCenter(cellDestination.Value, gameField.EdgeSize, gameField.CenterSize)) 
                             aspect.WithinCenterMarker.Add(entity);
                     }
                 }

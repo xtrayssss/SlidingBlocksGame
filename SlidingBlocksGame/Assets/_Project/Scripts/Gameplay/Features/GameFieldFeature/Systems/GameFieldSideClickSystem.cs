@@ -1,5 +1,7 @@
 ﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFieldFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameFieldFeature.Extensions;
+using _Project.Scripts.Gameplay.Features.GameFieldFeature.Utils;
 using _Project.Scripts.Gameplay.Features.PlayerFeature.InputFeature.Components;
 using DCFApixels.DragonECS;
 using Unity.Mathematics;
@@ -37,12 +39,12 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.Systems
                 foreach (int entity in _world.Where(out GameFieldAspect gameFieldAspect))
                 {
                     ref GameField gameField = ref gameFieldAspect.GameFields.Get(entity);
-                    int2 gridPosition = GridUtils.GetCellPosition(clickPosition, gameField);
+                    int2 gridPosition = GridUtils.GetCellPosition(clickPosition, gameField.ToGrid());
 
                     Debug.Log(clickPosition);
-                    if (GridUtils.IsWithinGrid(gridPosition, in gameField) &&
-                        !GridUtils.IsWithinCenter(gridPosition, in gameField) &&
-                        GridUtils.IsInCross(gridPosition, in gameField))
+                    if (GridUtils.IsWithinGrid(gridPosition, gameField.Size) &&
+                        !GridUtils.IsWithinCenter(gridPosition, gameField.EdgeSize, gameField.CenterSize) &&
+                        GridUtils.IsInCross(gridPosition, gameField.EdgeSize, gameField.CenterSize))
                     {
                         int sideClick = _world. NewEntity();
                         _world.GetPool<SideClickedEvent>().Add(sideClick);

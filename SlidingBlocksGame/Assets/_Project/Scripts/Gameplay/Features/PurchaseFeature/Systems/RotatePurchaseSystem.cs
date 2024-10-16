@@ -1,5 +1,6 @@
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.PurchaseFeature.Components;
+using _Project.Scripts.Gameplay.Features.PurchaseFeature.IntegrationFeatures.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Components;
 using DCFApixels.DragonECS;
 using PrimeTween;
@@ -17,7 +18,7 @@ namespace _Project.Scripts.Gameplay.Features.PurchaseFeature.Systems
             [IncImplicit(typeof(SnappedEvent))]
             [Inc] public readonly EcsPool<PhysicView> PhysicViews;
 
-            [Inc] public readonly EcsPool<RotationTween> RotationTween;
+            [Inc] public readonly EcsPool<PurchaseWidget> PurchaseWidgets;
         }
 
         private class PurchaseLeaveAspect : EcsAspectAuto
@@ -26,20 +27,19 @@ namespace _Project.Scripts.Gameplay.Features.PurchaseFeature.Systems
             [IncImplicit(typeof(LeaveEvent))]
             [Inc] public readonly EcsPool<PhysicView> PhysicViews;
 
-            [Inc] public readonly EcsPool<RotationTween> Factors;
+            [Inc] public readonly EcsPool<PurchaseWidget> PurchaseWidgets;
         }
 
         public void Run()
         {
             foreach (int entity in _world.Where(out PurchaseSnappedAspect aspect))
             {
-                ref RotationTween rotationTween = ref aspect.RotationTween.Get(entity);
-
                 ref PhysicView physicView = ref aspect.PhysicViews.Get(entity);
+                ref PurchaseWidget widget = ref aspect.PurchaseWidgets.Get(entity);
 
-                rotationTween.Value.Stop();
+                widget.RotationTween.Stop();
 
-                rotationTween.Value = Tween.LocalEulerAngles(
+                widget.RotationTween = Tween.LocalEulerAngles(
                     target: physicView.Value.transform,
                     startValue: physicView.Value.transform.eulerAngles,
                     endValue: physicView.Value.transform.eulerAngles + new Vector3(0, 360, 0),
@@ -53,13 +53,13 @@ namespace _Project.Scripts.Gameplay.Features.PurchaseFeature.Systems
 
             foreach (int entity in _world.Where(out PurchaseLeaveAspect aspect))
             {
-                ref RotationTween rotationTween = ref aspect.Factors.Get(entity);
-
                 ref PhysicView physicView = ref aspect.PhysicViews.Get(entity);
 
-                rotationTween.Value.Stop();
+                ref PurchaseWidget widget = ref aspect.PurchaseWidgets.Get(entity);
 
-                rotationTween.Value = Tween.LocalEulerAngles(
+                widget.RotationTween.Stop();
+
+                widget.RotationTween = Tween.LocalEulerAngles(
                         target: physicView.Value.transform,
                         startValue: physicView.Value.transform.eulerAngles,
                         endValue: new Vector3(0, 0, 0),

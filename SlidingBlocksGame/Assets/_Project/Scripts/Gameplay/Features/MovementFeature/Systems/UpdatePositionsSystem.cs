@@ -1,5 +1,6 @@
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFieldFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameFieldFeature.Utils;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
 using DCFApixels.DragonECS;
 
@@ -31,11 +32,18 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                     GameFieldAspect gameFieldAspect = _world.GetAspect<GameFieldAspect>();
 
                     ref CellPosition cellPosition = ref aspect.CellPositions.Get(entity);
+
+                    ref readonly GameField gameField = ref gameFieldAspect.GameFields.Read(gameFieldID);
                     
                     cellPosition.Value =
                         GridUtils.GetCellPosition(
                             worldPosition: aspect.GameObjectConnects.Read(entity).Connect.transform.position,
-                            gameField: in gameFieldAspect.GameFields.Read(gameFieldID));
+                            new GridUtils.Grid
+                            {
+                                CellSize = gameField.CellSize,
+                                OriginPosition =  gameField.OriginPosition,
+                                Offset = gameField.Offset
+                            });
                 }
             }
         }

@@ -1,4 +1,6 @@
 using _Project.Scripts.Gameplay.Features.GameFieldFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameFieldFeature.Extensions;
+using _Project.Scripts.Gameplay.Features.GameFieldFeature.Utils;
 using _Project.Scripts.Gameplay.Features.GameProgressFeature.Components;
 using DCFApixels.DragonECS;
 using PrimeTween;
@@ -40,7 +42,9 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.Systems
                 {
                     ref readonly GameField gameField = ref levelAspect.GameFields.Read(entity);
 
-                    int2 center = GridUtils.GetCenter(in gameField) + CENTER_RANGE_CORRECTION;
+                    int2 center = GridUtils.GetCenter(
+                        edgeSize: gameField.EdgeSize,
+                        centerSize: gameField.CenterSize) + CENTER_RANGE_CORRECTION;
 
                     int randomX = Random.Range(center.x, center.y);
                     int randomY = Random.Range(center.x, center.y);
@@ -52,7 +56,7 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.Systems
                         gameField.CellScaleY + gameField.UnitCellTopOffset,
                         0);
 
-                    float3 worldPosition = GridUtils.GetWorldPosition(cellPosition, in gameField) + cellUpperOffset;
+                    float3 worldPosition = GetWorldPosition(cellPosition, gameField, cellUpperOffset);
 
                     EcsEntityConnect connect =
                         Object.Instantiate(
@@ -104,6 +108,13 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.Systems
                         cycleMode: CycleMode.Incremental);
                 }
             }
+        }
+
+        private static float3 GetWorldPosition(int2 cellPosition, GameField gameField, float3 cellUpperOffset)
+        {
+            return GridUtils.GetWorldPosition(
+                coordinates: cellPosition, 
+                gameField.ToGrid()) + cellUpperOffset;
         }
     }
 }

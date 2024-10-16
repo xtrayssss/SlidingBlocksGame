@@ -1,6 +1,7 @@
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameProgressFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameProgressFeature.IntegrationFeatures.UIFeature.Components;
+using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components;
 using DCFApixels.DragonECS;
 using PrimeTween;
 using UnityEngine;
@@ -20,6 +21,7 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.IntegrationFeat
         private class CoinWidgetAspect : EcsAspectAuto
         {
             [Inc] public readonly EcsPool<CoinWidget> CoinWidgets;
+            [Inc] public readonly EcsPool<UIElement> UIElements;
         }
 
         private class DisplayableAspect : EcsAspectAuto
@@ -43,8 +45,9 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.IntegrationFeat
 
                     if (coinsUpdatedEventAspect.CoinsUpdatedEvent.Read(@event).Delta != 0)
                     {
+                        ref UIElement uiElement = ref widgetAspect.UIElements.Get(widget);
                         Tween.PunchScale(
-                            target: coinWidget.RectTransform,
+                            target: uiElement.RectTransform,
                             strength: new Vector3(0.5f, 0.5f),
                             duration: 0.2f);
                     }

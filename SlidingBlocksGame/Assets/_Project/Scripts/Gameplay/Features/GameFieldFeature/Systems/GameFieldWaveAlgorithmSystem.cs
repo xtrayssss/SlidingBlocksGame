@@ -3,6 +3,8 @@ using System.Runtime.CompilerServices;
 using _Project.Scripts.DragonAPI;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFieldFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameFieldFeature.Extensions;
+using _Project.Scripts.Gameplay.Features.GameFieldFeature.Utils;
 using DCFApixels.DragonECS;
 using Unity.Mathematics;
 using UnityEngine;
@@ -100,7 +102,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.Systems
                     {
                         float3 position = GridUtils.GetWorldPosition(
                             coordinates: new int2(x, z),
-                            gameField: in GameField());
+                            grid: GameField().ToGrid());
 
                         float delay = math.distance(position, waveOrigin) *
                                       generationAspect.Waves.Get(algorithm).SpeedFactor;

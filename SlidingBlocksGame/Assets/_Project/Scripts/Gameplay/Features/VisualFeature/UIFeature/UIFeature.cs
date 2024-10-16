@@ -29,6 +29,9 @@ namespace _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature
                 .AddUnique(new CreateGameScreenSystem())
                 .AutoDelTag<CreateGameScreenRequest>()
                 //
+                .AddUnique(new CalculateOriginalPositionSystem())
+                .AutoDelTag<CalculateOriginalPositionRequest>()
+                //
                 .AddModule(new ScrollSnapFeature.ScrollSnapFeature())
                 .AddModule(new ButtonFeature.ButtonFeature());
         }

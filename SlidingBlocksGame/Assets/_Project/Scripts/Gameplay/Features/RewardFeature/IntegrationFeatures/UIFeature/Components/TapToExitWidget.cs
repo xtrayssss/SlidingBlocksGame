@@ -1,6 +1,9 @@
 ﻿using System;
 using DCFApixels.DragonECS;
+using PrimeTween;
+using UnityEngine;
 using UnityEngine.Scripting.APIUpdating;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.UIFeature.Components
@@ -10,6 +13,7 @@ namespace _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.U
     public struct TapToExitWidget : IEcsComponent
     {
         public Button ExitButton;
+        public Tween WobbleTween;
 
         [MovedFrom(autoUpdateAPI: false,
             sourceNamespace: "_Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components",

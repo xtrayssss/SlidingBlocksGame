@@ -60,8 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _deleteEntiityWithDestroy: 0
-  _scriptableTemplates:
-  - {fileID: 11400000, guid: 6781bc80d30aac041ad083c3684da6a6, type: 2}
+  _scriptableTemplates: []
   _monoTemplates:
   - {fileID: 3049009980293482999}
 --- !u!114 &3049009980293482999
@@ -80,6 +79,7 @@ MonoBehaviour:
   - rid: 3543309499067531267
   - rid: 3543309499067531268
   - rid: 3543309499067531269
+  - rid: 3543309636194009156
   references:
     version: 2
     RefIds:
@@ -110,6 +110,10 @@ MonoBehaviour:
         component:
           Price: 0
           Index: 0
+    - rid: 3543309636194009156
+      type: {class: PurchaseTag/Template, ns: _Project.Scripts.Gameplay.Features.PurchaseFeature.Components,
+        asm: PurchaseFeature.Components}
+      data: {}
 --- !u!1 &4052493653394928941
 GameObject:
   m_ObjectHideFlags: 0

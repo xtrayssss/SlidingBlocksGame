@@ -2,6 +2,8 @@ using _Project.Scripts.Gameplay.Features.AnimalFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.DestructionFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFieldFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameFieldFeature.Extensions;
+using _Project.Scripts.Gameplay.Features.GameFieldFeature.Utils;
 using _Project.Scripts.Gameplay.Features.GameProgressFeature.Components;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
 using _Project.Scripts.Gameplay.Features.PlayerFeature.Components;
@@ -74,11 +76,8 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.Systems
                     ref readonly MovementDirection movementDirection =
                         ref movingAnimalAspect.MovementDirections.Read(animal);
 
-                    int2 position = GridUtils.GetCellPosition(
-                        worldPosition: transformPosition +
-                                       movementDirection.Value.xyy *
-                                       boundExtents.Value,
-                        gameField: in gameField);
+                    int2 position = GetCellPosition(transformPosition, movementDirection.Value, boundExtents.Value,
+                        gameField);
 
                     if (math.all(coinAspect.CellPositions.Read(coin).Value == position))
                     {
@@ -96,6 +95,16 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.Systems
                     }
                 }
             }
+        }
+
+        private static int2 GetCellPosition(float3 transformPosition, int2 movementDirection, float3 boundExtents,
+            in GameField gameField)
+        {
+            GridUtils.Grid grid = gameField.ToGrid();
+
+            return GridUtils.GetCellPosition(
+                worldPosition: transformPosition + movementDirection.xyy * boundExtents,
+                grid);
         }
 
         private void Animate(int coin, CoinAspect coinAspect, ref GameObjectConnect gameObjectConnect)

@@ -23,6 +23,7 @@ MonoBehaviour:
   - rid: 6454805541227593734
   - rid: 6454805541227593738
   - rid: 3543309369267716916
+  - rid: 3543309641592341219
   references:
     version: 2
     RefIds:
@@ -53,6 +54,12 @@ MonoBehaviour:
       data:
         component:
           Value: 4
+    - rid: 3543309641592341219
+      type: {class: GameOverTimerConfig/Template, ns: _Project.Scripts.Gameplay.Features.GameOverTimerFeature.Components,
+        asm: GameOverTimerFeature.Components}
+      data:
+        component:
+          Value: {fileID: 11400000, guid: d29ec3324f74793488058f6a180bcfa0, type: 2}
     - rid: 6454805110216720499
       type: {class: CoinPrefab/Template, ns: _Project.Scripts.Gameplay.Features.GameProgressFeature.Components,
         asm: GameProgressFeature.Components}

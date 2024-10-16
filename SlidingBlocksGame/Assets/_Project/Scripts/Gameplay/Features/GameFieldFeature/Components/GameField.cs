@@ -1,4 +1,5 @@
 using System;
+using _Project.Scripts.Gameplay.Features.GameFieldFeature.Utils;
 using DCFApixels.DragonECS;
 using Unity.Mathematics;
 using UnityEngine;
@@ -57,9 +58,9 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.Components
         public class Template : ComponentTemplate<GameField>
         {
 #if UNITY_EDITOR
-            private static readonly float3 Upward = new float3(0, 1, 0);
+            private static readonly float3 UPWARD = new float3(0, 1, 0);
 
-            public override void OnValidate(Object obj)
+            public override void OnValidate(Object _)
             {
                 component.EdgeSize = component.Size / 3;
                 component.CenterSize = component.Size - 2 * component.EdgeSize;
@@ -76,11 +77,14 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.Components
                 {
                     animal.Position = CellToWorld(animal.CellPosition, component);
 
-                    animal.InvertedSide = GridUtils.GetInvertedSide(animal.CellPosition, in component);
+                    animal.InvertedSide = GridUtils.GetInvertedSide(
+                        position: animal.CellPosition, 
+                        edgeSize: component.EdgeSize,
+                        centerSize: component.CenterSize);
 
                     animal.Rotation = quaternion.LookRotation(
                         forward: new float3(animal.InvertedSide.x, 0, animal.InvertedSide.y),
-                        up: Upward);
+                        up: UPWARD);
 
                     animal.Scale = component.CellSize - 0.1f;
                 }

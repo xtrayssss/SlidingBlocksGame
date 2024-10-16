@@ -11,7 +11,6 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.IntegrationFeat
     public struct CoinWidget : IEcsComponent
     {
         public TextMeshProUGUI AmountText;
-        public RectTransform RectTransform;
 
         [MovedFrom(autoUpdateAPI: false,
             sourceNamespace: "_Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components",

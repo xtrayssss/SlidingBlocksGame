@@ -2,6 +2,8 @@ using System;
 using System.Linq;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFieldFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameFieldFeature.Extensions;
+using _Project.Scripts.Gameplay.Features.GameFieldFeature.Utils;
 using _Project.Scripts.Gameplay.Features.GameFlowFeature.Components;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
 using DCFApixels.DragonECS;
@@ -59,13 +61,14 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 
                 ref readonly WorldPosition clickPosition = ref clickAspect.WorldPositions.Read(click);
 
-                ref readonly GameField gameField = ref gameFieldAspect.GameFields.Read(gameFieldID);
+                ref GameField gameField = ref gameFieldAspect.GameFields.Get(gameFieldID);
 
-                float2 worldToGridPosition = GridUtils.GetCellPosition(clickPosition.Value, in gameField);
+                float2 worldToGridPosition = GridUtils.GetCellPosition(clickPosition.Value, gameField.ToGrid());
 
                 int2 invertedSide = GridUtils.GetInvertedSide(
                     position: worldToGridPosition,
-                    gameField: in gameField);
+                    edgeSize: gameField.EdgeSize,
+                    centerSize: gameField.CenterSize);
 
                 (int2 distance, bool success) minDistance = new ValueTuple<int2, bool>(int.MaxValue, false);
 
@@ -88,7 +91,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                         cellPosition: in cellPosition,
                         minDistance: minDistance.distance);
 
-                    if (result.success) 
+                    if (result.success)
                         minDistance = result;
 
                     animals.Add(animal);
@@ -118,7 +121,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 
                         cellDestination.Value = animalAspect.CellPositions.Read(animal).Value + distance;
 
-                        float3 destination = GridUtils.GetWorldPosition(cellDestination.Value, in gameField);
+                        float3 destination = GridUtils.GetWorldPosition(cellDestination.Value, gameField.ToGrid());
 
                         animalAspect.WorldDestination.Add(animal).Value =
                             new float3(destination.x,
@@ -127,7 +130,8 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 
                         GridUtils.SetCell(
                             position: cellDestination.Value,
-                            gameField: ref gameFieldAspect.GameFields.Get(gameFieldID));
+                            edgeSize: gameField.EdgeSize,
+                            grid: ref gameField.Center);
                     }
                 }
                 else
@@ -141,7 +145,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                         cellDestination.Value =
                             animalAspect.CellPositions.Read(animal).Value + minDistance.distance;
 
-                        float3 destination = GridUtils.GetWorldPosition(cellDestination.Value, in gameField);
+                        float3 destination = GridUtils.GetWorldPosition(cellDestination.Value, gameField.ToGrid());
 
                         animalAspect.WorldDestination.Add(animal).Value =
                             new float3(
@@ -153,7 +157,8 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 
                         GridUtils.SetCell(
                             position: cellDestination.Value,
-                            gameField: ref gameFieldAspect.GameFields.Get(gameFieldID));
+                            edgeSize: gameField.EdgeSize,
+                            grid: ref gameField.Center);
                     }
                 }
 
@@ -175,7 +180,11 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
             int2 minDistance)
         {
             (int2 obstacle, bool success) nearest =
-                GridUtils.GetNearestCentralObstacle(cellPosition.Value, invertedSide, in gameField);
+                GridUtils.GetNearestCentralObstacle(
+                    cellPosition.Value,
+                    invertedSide,
+                    gameField.EdgeSize, 
+                    gameField.Center);
 
             int2 convertedObstacle = nearest.obstacle + gameField.EdgeSize;
 

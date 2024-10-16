@@ -109,7 +109,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
         {
             entlong level = levelID.ToEntityLong(_world);
 
-            AnimalDestruct();
+            InitiateDefeatSequence();
 
             yield return WaitForAnimalDestruction();
 
@@ -117,19 +117,19 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
 
             yield return WaitForCoinDestruction();
 
-            DestructGameFieldAndCloseTimer();
+            CleanupGameFieldAndTimer();
 
             yield return WaitForTimerCloseAndFieldDestruction();
 
-            Cleanup();
+            CleanupLevel();
 
             yield return WaitForLevelCleared();
 
-            FinalizeState();
+            FinalizeLevelDefeat();
 
             yield break;
 
-            void AnimalDestruct()
+            void InitiateDefeatSequence()
             {
                 ref readonly DestructionAnimalStrategyCfg strategyCfg =
                     ref levelAspect.DestructionAnimalStrategyConfigs.Read(levelID);
@@ -211,7 +211,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
                     });
             }
 
-            void DestructGameFieldAndCloseTimer()
+            void CleanupGameFieldAndTimer()
             {
                 levelAspect.CoinDestroyedMarker.Del(levelID);
 
@@ -239,7 +239,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
                     });
             }
 
-            void Cleanup()
+            void CleanupLevel()
             {
                 foreach (int game in _world.Where(out GameAspect gameAspect))
                 {
@@ -263,7 +263,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
                     });
             }
 
-            void FinalizeState()
+            void FinalizeLevelDefeat()
             {
                 _world.DelEntity(levelID);
 
