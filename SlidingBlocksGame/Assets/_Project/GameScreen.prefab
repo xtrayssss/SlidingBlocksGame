@@ -199,6 +199,7 @@ MonoBehaviour:
           IsDebug: 0
           Effects:
           - {fileID: 11400000, guid: deb1be64955b3ae43848c77bdc946d6a, type: 2}
+          - {fileID: 11400000, guid: db271f1ae69b3a840baf5f71816ba95f, type: 2}
           ScrollPosition: 0
           TargetPosition: 0
           TargetIndex: 0
@@ -207,6 +208,7 @@ MonoBehaviour:
           Positions: []
           Distance: 0
           LastSnappedIndex: 0
+          MaxVisible: 3
 --- !u!1 &441374457445912636
 GameObject:
   m_ObjectHideFlags: 0
@@ -359,7 +361,7 @@ MonoBehaviour:
         asm: RewardFeature.UIFeature.Components}
       data:
         component:
-          ExitButton: {fileID: 3301847207584748994}
+          ExitButton: {fileID: 7702080762525710279}
 --- !u!1 &991356297082350129
 GameObject:
   m_ObjectHideFlags: 0
@@ -431,7 +433,7 @@ MonoBehaviour:
   m_ChildAlignment: 3
   m_Spacing: -49.226852
   m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
+  m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
@@ -585,14 +587,14 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 3543309499067531273
-      type: {class: ScoreWidget/Template, ns: _Project.Scripts.Gameplay.Features.GameProgressFeature.IntegrationFeatures.UIFeature.Components,
-        asm: GameProgressFeature.UIFeature.Components}
+      type: {class: ScoreWidget/Template, ns: _Project.Scripts.Gameplay.Features.ScoreFeature.IntegrationFeatures.UIFeature.Components,
+        asm: ScoreFeature.UIFeature.Components}
       data:
         component:
           AmountText: {fileID: 3112543849947586017}
     - rid: 3543309499067531274
-      type: {class: Scores/Template, ns: _Project.Scripts.Gameplay.Features.GameProgressFeature.Components,
-        asm: GameProgressFeature.Components}
+      type: {class: Scores/Template, ns: _Project.Scripts.Gameplay.Features.ScoreFeature.Components,
+        asm: ScoreFeature.Components}
       data:
         component:
           Value: 0
@@ -736,8 +738,8 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 3543309363944357889
-      type: {class: GameScreen/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components,
-        asm: UIFeature.Components}
+      type: {class: GameScreen/Template, ns: _Project.Scripts.Gameplay.Features.GameScreenFeature.Components,
+        asm: GameScreenFeature.Components}
       data:
         component:
           SettingsPopupConnect: {fileID: 4230186693107390616}
@@ -1309,6 +1311,7 @@ GameObject:
   - component: {fileID: 7720023799900948859}
   - component: {fileID: 3999550131940195207}
   - component: {fileID: 492879322037196630}
+  - component: {fileID: 6610596855686467463}
   - component: {fileID: 8847492168068423220}
   m_Layer: 5
   m_Name: Sunshine
@@ -1388,7 +1391,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _deleteEntiityWithDestroy: 0
   _scriptableTemplates: []
-  _monoTemplates: []
+  _monoTemplates:
+  - {fileID: 6610596855686467463}
+--- !u!114 &6610596855686467463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1900194431064624727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 351338ca92ace49499f450172d857af6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _components:
+  - rid: 3543309653826863105
+  references:
+    version: 2
+    RefIds:
+    - rid: 3543309653826863105
+      type: {class: Sunshine/Template, ns: _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.UIFeature.Components,
+        asm: RewardFeature.UIFeature.Components}
+      data: {}
 --- !u!114 &8847492168068423220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6998,8 +7023,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f34f36451b093ee4c83ad4aa5459d2ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textMPComponent: {fileID: 283774027289520856}
-  uniqueFontTMP: {fileID: 0}
   textLComponent: {fileID: 0}
   infoYG: {fileID: 11400000, guid: 162644796a8b0d044bce3d6fda0641e3, type: 2}
   text: 
@@ -7341,8 +7364,8 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 3543309367449223169
-      type: {class: CoinWidget/Template, ns: _Project.Scripts.Gameplay.Features.GameProgressFeature.IntegrationFeatures.UIFeature.Components,
-        asm: GameProgressFeature.UIFeature.Components}
+      type: {class: CoinWidget/Template, ns: _Project.Scripts.Gameplay.Features.CoinFeature.IntegrationFeatures.UIFeature.Components,
+        asm: CoinFeature.UIFeature.Components}
       data:
         component:
           AmountText: {fileID: 5473160543204482095}
@@ -7529,8 +7552,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f34f36451b093ee4c83ad4aa5459d2ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textMPComponent: {fileID: 5518037976293578145}
-  uniqueFontTMP: {fileID: 0}
   textLComponent: {fileID: 0}
   infoYG: {fileID: 11400000, guid: 162644796a8b0d044bce3d6fda0641e3, type: 2}
   text: 
@@ -7795,8 +7816,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f34f36451b093ee4c83ad4aa5459d2ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textMPComponent: {fileID: 2545842123643263123}
-  uniqueFontTMP: {fileID: 0}
   textLComponent: {fileID: 0}
   infoYG: {fileID: 11400000, guid: 162644796a8b0d044bce3d6fda0641e3, type: 2}
   text: 
@@ -8087,30 +8106,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _components:
   - rid: 3543309369267716917
-  - rid: 3543309456785801217
   - rid: 3543309499067531265
   references:
     version: 2
     RefIds:
     - rid: 3543309369267716917
-      type: {class: SettingsPopup/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components,
-        asm: UIFeature.Components}
+      type: {class: SettingsPopup/Template, ns: _Project.Scripts.Gameplay.Features.SettingsFeature.IntegrationFeatures.UIFeature.Components,
+        asm: SettingsFeature.UIFeature.Components}
       data:
         component:
           SoundOff: {fileID: 7143583011573396919}
           SoundOn: {fileID: 3482443365889142225}
           MusicOff: {fileID: 6351561682212032265}
           MusicOn: {fileID: 815787730614032239}
-    - rid: 3543309456785801217
-      type: {class: AudioButtonsStatus/Template, ns: _Project.Scripts.Gameplay.Features.GameProgressFeature.Components,
-        asm: GameProgressFeature.Components}
-      data:
-        component:
-          MusicIsOn: 1
-          SoundIsOn: 1
     - rid: 3543309499067531265
-      type: {class: SettingsPopupTag/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components,
-        asm: UIFeature.Components}
+      type: {class: SettingsPopupTag/Template, ns: _Project.Scripts.Gameplay.Features.SettingsFeature.IntegrationFeatures.UIFeature.Components,
+        asm: SettingsFeature.UIFeature.Components}
       data: {}
 --- !u!1 &4326078313225536033
 GameObject:
@@ -8283,7 +8294,7 @@ MonoBehaviour:
           RewardCoinsWidgetConnect: {fileID: 4753121012192656865}
           RewardConfettiEffectConnect: {fileID: 7084997484689539668}
           CongratulationWidgetConnect: {fileID: 6374978188218588168}
-          SunshineWidgetConnect: {fileID: 492879322037196630}
+          SunshineConnect: {fileID: 492879322037196630}
           TapToExitWidgetConnect: {fileID: 2099636979442837474}
     - rid: 3543309449364243214
       type: {class: RewardCoinDisplayCompletedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.AudioFeature.Components,
@@ -8530,8 +8541,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f34f36451b093ee4c83ad4aa5459d2ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textMPComponent: {fileID: 327603688103072675}
-  uniqueFontTMP: {fileID: 0}
   textLComponent: {fileID: 0}
   infoYG: {fileID: 11400000, guid: 162644796a8b0d044bce3d6fda0641e3, type: 2}
   text: 
@@ -9443,8 +9452,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f34f36451b093ee4c83ad4aa5459d2ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textMPComponent: {fileID: 6522554843531631598}
-  uniqueFontTMP: {fileID: 0}
   textLComponent: {fileID: 0}
   infoYG: {fileID: 11400000, guid: 162644796a8b0d044bce3d6fda0641e3, type: 2}
   text: 
@@ -9900,7 +9907,6 @@ MonoBehaviour:
       data:
         component:
           AmountText: {fileID: 6320279540643813887}
-          OriginalPosition: {x: 0, y: 0}
     - rid: 3543309449364243213
       type: {class: RewardCoinCountDisplayedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.AudioFeature.Components,
         asm: RewardFeature.AudioFeature.Components}
@@ -9908,8 +9914,8 @@ MonoBehaviour:
         component:
           Value: {fileID: 11400000, guid: b444f90dbf464b746b824afb8fa5f002, type: 2}
     - rid: 6454805541227593728
-      type: {class: Coins/Template, ns: _Project.Scripts.Gameplay.Features.GameProgressFeature.Components,
-        asm: GameProgressFeature.Components}
+      type: {class: Coins/Template, ns: _Project.Scripts.Gameplay.Features.CoinFeature.Components,
+        asm: CoinFeature.Components}
       data:
         component:
           Value: 0
@@ -10177,8 +10183,8 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 3543309367449223168
-      type: {class: BestScoreWidget/Template, ns: _Project.Scripts.Gameplay.Features.GameProgressFeature.IntegrationFeatures.UIFeature.Components,
-        asm: GameProgressFeature.UIFeature.Components}
+      type: {class: BestScoreWidget/Template, ns: _Project.Scripts.Gameplay.Features.ScoreFeature.IntegrationFeatures.UIFeature.Components,
+        asm: ScoreFeature.UIFeature.Components}
       data:
         component:
           AmountText: {fileID: 6896612143512867910}
@@ -10255,8 +10261,8 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 3543309367449223171
-      type: {class: PlayWidget/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components,
-        asm: UIFeature.Components}
+      type: {class: PlayWidget/Template, ns: _Project.Scripts.Gameplay.Features.GameScreenFeature.Components,
+        asm: GameScreenFeature.Components}
       data:
         component:
           PlayButton: {fileID: 4284820810062785476}
@@ -10523,8 +10529,8 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 3543309498553466880
-      type: {class: TutorialWindowTag/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components,
-        asm: UIFeature.Components}
+      type: {class: TutorialWindowTag/Template, ns: _Project.Scripts.Gameplay.Features.TutorialFeature.IntegrationFeatures.UIFeature.Components,
+        asm: TutorialFeature.UIFeature.Components}
       data: {}
 --- !u!1 &8971274280870935796
 GameObject:
@@ -10608,8 +10614,8 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 3543309636194009155
-      type: {class: GameTitleWidget/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components,
-        asm: UIFeature.Components}
+      type: {class: GameTitleWidget/Template, ns: _Project.Scripts.Gameplay.Features.GameScreenFeature.Components,
+        asm: GameScreenFeature.Components}
       data: {}
 --- !u!114 &7647358206888065530
 MonoBehaviour:
@@ -10712,8 +10718,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f34f36451b093ee4c83ad4aa5459d2ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textMPComponent: {fileID: 7647358206888065530}
-  uniqueFontTMP: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   textLComponent: {fileID: 0}
   infoYG: {fileID: 11400000, guid: 162644796a8b0d044bce3d6fda0641e3, type: 2}
   text: 
@@ -25940,31 +25944,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1366550826577732206}
     m_Modifications:
-    - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
-        type: 3}
-      propertyPath: managedReferences[-2]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
-        type: 3}
-      propertyPath: EntityCfg._components.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
-        type: 3}
-      propertyPath: EntityCfg._components.Array.data[0]
-      value: 8499802837155577868
-      objectReference: {fileID: 0}
-    - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
-        type: 3}
-      propertyPath: EntityCfg._components.Array.data[1]
-      value: 8499802776494932275
-      objectReference: {fileID: 0}
-    - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
-        type: 3}
-      propertyPath: managedReferences[8499802837155577868]
-      value: UIFeature.Components _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components.CloseTutorialButtonTag/Template
-      objectReference: {fileID: 0}
     - target: {fileID: 2188390974939379177, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
       propertyPath: m_Pivot.x
@@ -26393,7 +26372,7 @@ PrefabInstance:
     - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
       propertyPath: EntityCfg._components.Array.data[0]
-      value: 8499802776494932275
+      value: 3543309661754622389
       objectReference: {fileID: 0}
     - target: {fileID: 2188390974939379177, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
@@ -26594,28 +26573,53 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
-      propertyPath: EntityCfg._components.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
-        type: 3}
       propertyPath: EntityCfg._components.Array.data[0]
-      value: 6454805702832816128
+      value: 3543309661754622395
       objectReference: {fileID: 0}
     - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
-      propertyPath: EntityCfg._components.Array.data[1]
-      value: 8499802776494932275
+      propertyPath: managedReferences[3543309661754622392]
+      value: GameProgressFeature.UIFeature.Components _Project.Scripts.Gameplay.Features.GameProgressFeature.IntegrationFeatures.UIFeature.Components.CoinWidget/Template
       objectReference: {fileID: 0}
     - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
-      propertyPath: managedReferences[6454805290330882054]
-      value: Assembly-CSharp _Project.Scripts.Gameplay.Features.UIFeature.Components.CloseAnimalsShopWindowButtonTag/Template
+      propertyPath: managedReferences[3543309661754622393]
+      value: GameProgressFeature.UIFeature.Components _Project.Scripts.Gameplay.Features.GameProgressFeature.IntegrationFeatures.UIFeature.Components.CoinWidget/Template
       objectReference: {fileID: 0}
     - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
-      propertyPath: managedReferences[6454805702832816128]
+      propertyPath: managedReferences[3543309661754622394]
+      value: CommonFeature.Components _Project.Scripts.Gameplay.Features.CommonFeature.Components.WorldPosition/Wrapper
+      objectReference: {fileID: 0}
+    - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
+        type: 3}
+      propertyPath: managedReferences[3543309661754622395]
       value: AnimalFeature.UIFeature.Components _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.UIFeature.Components.CloseAnimalsShopWindowButtonTag/Template
+      objectReference: {fileID: 0}
+    - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
+        type: 3}
+      propertyPath: managedReferences[3543309661754622394].component.Value.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
+        type: 3}
+      propertyPath: managedReferences[3543309661754622394].component.Value.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
+        type: 3}
+      propertyPath: managedReferences[3543309661754622394].component.Value.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
+        type: 3}
+      propertyPath: managedReferences[3543309661754622392].component.AmountText
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
+        type: 3}
+      propertyPath: managedReferences[3543309661754622393].component.AmountText
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5293964723850601425, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
@@ -26787,12 +26791,6 @@ PrefabInstance:
         type: 3}
       propertyPath: EntityCfg._components.Array.data[0]
       value: 6454805386191437880
-      objectReference: {fileID: 0}
-    - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
-        type: 3}
-      propertyPath: managedReferences[6454805155731210896]
-      value: Assembly-CSharp _Project.Scripts.Gameplay.Features.UIFeature.Components.UnlockButtonTag/Template
-      objectReference: {fileID: 0}
     - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
       propertyPath: managedReferences[6454805386191437880]
@@ -27133,7 +27131,7 @@ PrefabInstance:
     - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
       propertyPath: EntityCfg._components.Array.data[0]
-      value: 8499802776494932275
+      value: 3543309661754622389
       objectReference: {fileID: 0}
     - target: {fileID: 5293964723850601425, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
@@ -27265,11 +27263,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7504101692243652340, guid: 261de00eb0358724ea491f0c065012bb,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4420463348081289999}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 261de00eb0358724ea491f0c065012bb, type: 3}
 --- !u!1 &6494164103980537636 stripped
 GameObject:
@@ -27277,21 +27271,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3619780721910839760}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4420463348081289999
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6494164103980537636}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 495156623a7b1e94087f916ba42745e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _deleteEntiityWithDestroy: 0
-  _scriptableTemplates: []
-  _monoTemplates: []
 --- !u!224 &8884471481180690945 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5293964723850601425, guid: 261de00eb0358724ea491f0c065012bb,
@@ -27424,7 +27403,7 @@ PrefabInstance:
     - target: {fileID: 3517825441609125697, guid: a90fda7ca2beea74ea48a4a3917b79c6,
         type: 3}
       propertyPath: managedReferences[6454805584215540640]
-      value: UIFeature.Components _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components.TutorialButtonTag/Template
+      value: TutorialFeature.UIFeature.Components _Project.Scripts.Gameplay.Features.TutorialFeature.IntegrationFeatures.UIFeature.Components.TutorialButtonTag/Template
       objectReference: {fileID: 0}
     - target: {fileID: 5714348720894187816, guid: a90fda7ca2beea74ea48a4a3917b79c6,
         type: 3}
@@ -27513,7 +27492,7 @@ PrefabInstance:
     - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
       propertyPath: managedReferences[6454805221806179153]
-      value: UIFeature.Components _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components.PlayButtonTag/Template
+      value: GameScreenFeature.Components _Project.Scripts.Gameplay.Features.GameScreenFeature.Components.PlayButtonTag/Template
       objectReference: {fileID: 0}
     - target: {fileID: 5293964723850601425, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
@@ -27844,7 +27823,7 @@ PrefabInstance:
     - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
       propertyPath: managedReferences[6454805221806179153]
-      value: UIFeature.Components _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components.PlayButtonTag/Template
+      value: GameScreenFeature.Components _Project.Scripts.Gameplay.Features.GameScreenFeature.Components.PlayButtonTag/Template
       objectReference: {fileID: 0}
     - target: {fileID: 5293964723850601425, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
@@ -27986,11 +27965,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7504101692243652340, guid: 261de00eb0358724ea491f0c065012bb,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7359626172670169173}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 261de00eb0358724ea491f0c065012bb, type: 3}
 --- !u!224 &1883245397451286241 stripped
 RectTransform:
@@ -28004,21 +27979,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6004795185981637936}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7359626172670169173
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4284820810062785476}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 495156623a7b1e94087f916ba42745e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _deleteEntiityWithDestroy: 0
-  _scriptableTemplates: []
-  _monoTemplates: []
 --- !u!1001 &6048169769698918854
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28223,6 +28183,46 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8838934768766667939}
     m_Modifications:
+    - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
+        type: 3}
+      propertyPath: EntityCfg._components.Array.data[0]
+      value: 3543309727153258500
+      objectReference: {fileID: 0}
+    - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
+        type: 3}
+      propertyPath: managedReferences[3543309661754622390]
+      value: UIFeature.Components _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components.SettingsButtonTag/Template
+      objectReference: {fileID: 0}
+    - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
+        type: 3}
+      propertyPath: managedReferences[3543309727153258498]
+      value: AnimalFeature.Components _Project.Scripts.Gameplay.Features.AnimalFeature.Components.SelectedAnimal/Template
+      objectReference: {fileID: 0}
+    - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
+        type: 3}
+      propertyPath: managedReferences[3543309727153258499]
+      value: ScoreFeature.Components _Project.Scripts.Gameplay.Features.ScoreFeature.Components.Scores/Template
+      objectReference: {fileID: 0}
+    - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
+        type: 3}
+      propertyPath: managedReferences[3543309727153258500]
+      value: SettingsFeature.UIFeature.Components _Project.Scripts.Gameplay.Features.SettingsFeature.IntegrationFeatures.UIFeature.Components.SettingsButtonTag/Template
+      objectReference: {fileID: 0}
+    - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
+        type: 3}
+      propertyPath: managedReferences[3543309727153258498].component.ID
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
+        type: 3}
+      propertyPath: managedReferences[3543309727153258499].component.Value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
+        type: 3}
+      propertyPath: managedReferences[3543309727153258498].component.Prefab
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2188390974939379177, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
       propertyPath: m_Pivot.x
@@ -28517,7 +28517,12 @@ PrefabInstance:
     - target: {fileID: 3517825441609125697, guid: a90fda7ca2beea74ea48a4a3917b79c6,
         type: 3}
       propertyPath: EntityCfg._components.Array.data[0]
-      value: 6454805584215540638
+      value: 3543309661707436034
+      objectReference: {fileID: 0}
+    - target: {fileID: 3517825441609125697, guid: a90fda7ca2beea74ea48a4a3917b79c6,
+        type: 3}
+      propertyPath: managedReferences[3543309661707436034]
+      value: GameAudioFeature.UIFeature.Components _Project.Scripts.Gameplay.Features.GameAudioFeature.IntegrationFeatures.UIFeature.Components.MusicButtonTag/Template
       objectReference: {fileID: 0}
     - target: {fileID: 3517825441609125697, guid: a90fda7ca2beea74ea48a4a3917b79c6,
         type: 3}
@@ -28602,7 +28607,12 @@ PrefabInstance:
     - target: {fileID: 7180662729279379239, guid: a90fda7ca2beea74ea48a4a3917b79c6,
         type: 3}
       propertyPath: EntityCfg._components.Array.data[0]
-      value: 6454805584215540637
+      value: 3543309661707436035
+      objectReference: {fileID: 0}
+    - target: {fileID: 7180662729279379239, guid: a90fda7ca2beea74ea48a4a3917b79c6,
+        type: 3}
+      propertyPath: managedReferences[3543309661707436035]
+      value: GameAudioFeature.UIFeature.Components _Project.Scripts.Gameplay.Features.GameAudioFeature.IntegrationFeatures.UIFeature.Components.MusicButtonTag/Template
       objectReference: {fileID: 0}
     - target: {fileID: 7180662729279379239, guid: a90fda7ca2beea74ea48a4a3917b79c6,
         type: 3}
@@ -28679,7 +28689,17 @@ PrefabInstance:
     - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
       propertyPath: EntityCfg._components.Array.data[2]
-      value: 8499802776494932275
+      value: 3543309748214431745
+      objectReference: {fileID: 0}
+    - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
+        type: 3}
+      propertyPath: managedReferences[3543309748214431744]
+      value: ScoreFeature.Components _Project.Scripts.Gameplay.Features.ScoreFeature.Components.BestScore/Template
+      objectReference: {fileID: 0}
+    - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
+        type: 3}
+      propertyPath: managedReferences[3543309748214431745]
+      value: ButtonFeature.AudioFeature.Components _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.ButtonFeature.IntegrationFeatures.AudioFeature.Components.ButtonClickedAudioConfig/Template
       objectReference: {fileID: 0}
     - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
@@ -28696,6 +28716,17 @@ PrefabInstance:
       propertyPath: managedReferences[6454805318907200179]
       value: AnimalFeature.UIFeature.Components _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.UIFeature.Components.CloseAnimalsShopWindowButtonTag/Template
       objectReference: {fileID: 0}
+    - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
+        type: 3}
+      propertyPath: managedReferences[3543309748214431744].component.Value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
+        type: 3}
+      propertyPath: managedReferences[3543309748214431745].component.<Value>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: c7ba15024db7d8340a8665925333d92e,
+        type: 2}
     - target: {fileID: 2188390974939379177, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
       propertyPath: m_SizeDelta.x
@@ -28993,6 +29024,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -0
       objectReference: {fileID: 0}
+    - target: {fileID: 3517825441609125697, guid: a90fda7ca2beea74ea48a4a3917b79c6,
+        type: 3}
+      propertyPath: EntityCfg._components.Array.data[0]
+      value: 3543309661707436032
+      objectReference: {fileID: 0}
+    - target: {fileID: 3517825441609125697, guid: a90fda7ca2beea74ea48a4a3917b79c6,
+        type: 3}
+      propertyPath: managedReferences[3543309661707436032]
+      value: GameAudioFeature.UIFeature.Components _Project.Scripts.Gameplay.Features.GameAudioFeature.IntegrationFeatures.UIFeature.Components.SoundButtonTag/Template
+      objectReference: {fileID: 0}
     - target: {fileID: 5693226652625219812, guid: a90fda7ca2beea74ea48a4a3917b79c6,
         type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -29028,6 +29069,16 @@ PrefabInstance:
         type: 3}
       propertyPath: tr
       value: SES
+      objectReference: {fileID: 0}
+    - target: {fileID: 7180662729279379239, guid: a90fda7ca2beea74ea48a4a3917b79c6,
+        type: 3}
+      propertyPath: EntityCfg._components.Array.data[0]
+      value: 3543309661707436033
+      objectReference: {fileID: 0}
+    - target: {fileID: 7180662729279379239, guid: a90fda7ca2beea74ea48a4a3917b79c6,
+        type: 3}
+      propertyPath: managedReferences[3543309661707436033]
+      value: GameAudioFeature.UIFeature.Components _Project.Scripts.Gameplay.Features.GameAudioFeature.IntegrationFeatures.UIFeature.Components.SoundButtonTag/Template
       objectReference: {fileID: 0}
     - target: {fileID: 8115468200228441850, guid: a90fda7ca2beea74ea48a4a3917b79c6,
         type: 3}
@@ -29253,24 +29304,24 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 261de00eb0358724ea491f0c065012bb, type: 3}
---- !u!114 &3301847207584748994 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5356553680724282929, guid: 261de00eb0358724ea491f0c065012bb,
-    type: 3}
-  m_PrefabInstance: {fileID: 7459308690669411315}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &3383110853384861730 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5293964723850601425, guid: 261de00eb0358724ea491f0c065012bb,
     type: 3}
   m_PrefabInstance: {fileID: 7459308690669411315}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7702080762525710279 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
+    type: 3}
+  m_PrefabInstance: {fileID: 7459308690669411315}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0305e91b2274b5cb192747d4fec8439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7941208513848892243
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29416,7 +29467,12 @@ PrefabInstance:
     - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
       propertyPath: EntityCfg._components.Array.data[0]
-      value: 8499802837155577860
+      value: 3543309727153258501
+      objectReference: {fileID: 0}
+    - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
+        type: 3}
+      propertyPath: managedReferences[3543309727153258501]
+      value: SettingsFeature.UIFeature.Components _Project.Scripts.Gameplay.Features.SettingsFeature.IntegrationFeatures.UIFeature.Components.CloseSettingsButtonTag/Template
       objectReference: {fileID: 0}
     - target: {fileID: 965881514667764788, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}

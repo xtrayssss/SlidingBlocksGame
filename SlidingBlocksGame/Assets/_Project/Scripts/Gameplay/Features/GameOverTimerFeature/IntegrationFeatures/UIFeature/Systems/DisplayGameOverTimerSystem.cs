@@ -1,6 +1,6 @@
 using _Project.Scripts.Gameplay.Features.GameOverTimerFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameOverTimerFeature.IntegrationFeatures.UIFeature.Components;
-using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameScreenFeature.Components;
 using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Extensions;
 using DCFApixels.DragonECS;
 using PrimeTween;

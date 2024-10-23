@@ -5,6 +5,7 @@ using UnityEngine.Scripting.APIUpdating;
 namespace _Project.Scripts.Gameplay.Features.PurchaseFeature.IntegrationFeatures.UIFeature.Components
 {
     [Serializable]
+    [MetaGroup("Purchase/UI")]
     public struct PurchaseButtonTag : IEcsTagComponent
     {
         [MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components",

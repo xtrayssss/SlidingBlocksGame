@@ -9,20 +9,7 @@ using UnityEngine.UI;
 namespace _Project.Scripts.Gameplay.Features.PurchaseFeature.IntegrationFeatures.UIFeature.Components
 {
     [Serializable]
-    public struct PurchaseStatusWidget
-    {
-        public TextMeshProUGUI PriceText;
-
-        public GameObject Lock;
-        public GameObject Unlock;
-        public GameObject Play;
-        public GameObject Price;
-
-        public GameObject Current;
-    }
-    
-    [Serializable]
-    [MetaGroup("UI")]
+    [MetaGroup("Purchase/UI")]
     public struct PurchaseWidget : IEcsComponent
     {
         public PurchaseStatusWidget PurchaseStatusWidget;
@@ -35,5 +22,18 @@ namespace _Project.Scripts.Gameplay.Features.PurchaseFeature.IntegrationFeatures
         private sealed class Template : ComponentTemplate<PurchaseWidget>
         {
         }
+    }
+
+    [Serializable]
+    public struct PurchaseStatusWidget
+    {
+        public TextMeshProUGUI PriceText;
+
+        public GameObject Lock;
+        public GameObject Unlock;
+        public GameObject Play;
+        public GameObject Price;
+
+        public GameObject Current;
     }
 }

@@ -24,12 +24,13 @@ MonoBehaviour:
   - rid: 6454805541227593738
   - rid: 3543309369267716916
   - rid: 3543309641592341219
+  - rid: 3543309727153258496
   references:
     version: 2
     RefIds:
     - rid: 3543309369267716916
-      type: {class: Renderer3DCameraPrefab/Template, ns: _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components,
-        asm: UIFeature.Components}
+      type: {class: Renderer3DCameraPrefab/Template, ns: _Project.Scripts.Gameplay.Features.CameraFeature.Components,
+        asm: CameraFeature.Components}
       data:
         component:
           Value: {fileID: 4153145025860640308, guid: 7f72679fce06cf44b84b37caef3f1033,
@@ -60,9 +61,15 @@ MonoBehaviour:
       data:
         component:
           Value: {fileID: 11400000, guid: d29ec3324f74793488058f6a180bcfa0, type: 2}
+    - rid: 3543309727153258496
+      type: {class: SettingsConfig/Template, ns: _Project.Scripts.Gameplay.Features.SettingsFeature.Components,
+        asm: SettingsFeature.Components}
+      data:
+        component:
+          Value: {fileID: 11400000, guid: ede1f1979fb16e24699b0f092cd62817, type: 2}
     - rid: 6454805110216720499
-      type: {class: CoinPrefab/Template, ns: _Project.Scripts.Gameplay.Features.GameProgressFeature.Components,
-        asm: GameProgressFeature.Components}
+      type: {class: CoinPrefab/Template, ns: _Project.Scripts.Gameplay.Features.CoinFeature.Components,
+        asm: CoinFeature.Components}
       data:
         component:
           Prefab: {fileID: 5735182481968669607, guid: 187a65e427b09c648af34d93f2a9eb18,
@@ -199,8 +206,8 @@ MonoBehaviour:
         component:
           Value: {fileID: 11400000, guid: f74d12ddfe9dfd94db483e2805eafca2, type: 2}
     - rid: 8499802702287471245
-      type: {class: GameScreenPrefab/Template, ns: _Project.Scripts.Gameplay.Features.GameFlowFeature.Components,
-        asm: GameFlowFeature.Components}
+      type: {class: GameScreenPrefab/Template, ns: _Project.Scripts.Gameplay.Features.GameScreenFeature.Components,
+        asm: GameScreenFeature.Components}
       data:
         component:
           Value: {fileID: 3889562784997870761, guid: 414af5587425f08428ab122766844dad,

@@ -6,6 +6,7 @@ using UnityEngine.Serialization;
 namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Components
 {
     [Serializable]
+    [MetaGroup("GameFlow")]
     public struct Levels : IEcsComponent
     {
         [FormerlySerializedAs("LevelIndex")] public int LevelsCount;

@@ -5,7 +5,7 @@ using UnityEngine.Scripting.APIUpdating;
 namespace _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.DestructionFeature.Components
 {
     [Serializable]
-    [MetaGroup("Animal")]
+    [MetaGroup("Animal/Destruction")]
     public struct DestructionAnimalStrategyCfg : IEcsComponent
     {
         public ScriptableEntityTemplate Value;

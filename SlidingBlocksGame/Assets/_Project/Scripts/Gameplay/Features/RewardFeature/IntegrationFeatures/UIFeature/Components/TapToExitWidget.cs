@@ -1,15 +1,13 @@
 ﻿using System;
 using DCFApixels.DragonECS;
 using PrimeTween;
-using UnityEngine;
 using UnityEngine.Scripting.APIUpdating;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.UIFeature.Components
 {
     [Serializable]
-    [MetaGroup("UI")]
+    [MetaGroup("Reward/UI")]
     public struct TapToExitWidget : IEcsComponent
     {
         public Button ExitButton;

@@ -6,7 +6,7 @@ using UnityEngine.Scripting.APIUpdating;
 namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.IntegrationFeatures.AudioFeature.Components
 {
     [Serializable]
-    [MetaGroup("Audio")]
+    [MetaGroup("GameFlow/Audio")]
     public struct AudioEffectInOnLevelEnter : IEcsComponent
     {
         public EntityTemplate Value;

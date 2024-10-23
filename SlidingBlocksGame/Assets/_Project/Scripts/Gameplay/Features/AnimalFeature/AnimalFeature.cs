@@ -7,8 +7,7 @@ using _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.Destr
 using _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.MovementFeature.Systems;
 using _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.UIFeature.Systems;
-using _Project.Scripts.Gameplay.Features.AnimalFeature.Systems;
-using _Project.Scripts.Gameplay.Features.AudioFeature.Systems;
+using _Project.Scripts.Gameplay.Features.AudioFeature.Extensions;
 using _Project.Scripts.Gameplay.Features.DestructionFeature.Components;
 using _Project.Scripts.Infrastructure;
 using DCFApixels.DragonECS;
@@ -35,11 +34,6 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature
                 .AddUnique(new AnimalDestructionChainStrategySystem())
                 .AddUnique(new DestroyAnimalsSystem())
                 .AddUnique(new AnimalDeathSystem())
-                
-                // selection feature
-                .AutoDelEntityTag<SelectedAnimalUpdatedEvent>()
-                .AddUnique(new UpdateSelectedAnimalSystem())
-                .AutoDelEntityComponent<UpdateSelectedAnimalRequest>()
                 
                 // ui feature
                 .AddUnique(new DisplayAnimalsShopWindowSystem())

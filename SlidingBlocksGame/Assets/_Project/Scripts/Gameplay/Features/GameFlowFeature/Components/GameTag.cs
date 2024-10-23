@@ -5,6 +5,7 @@ using UnityEngine.Scripting.APIUpdating;
 namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Components
 {
     [Serializable]
+    [MetaGroup("GameFlow")]
     public struct GameTag : IEcsTagComponent
     {
         [Serializable]

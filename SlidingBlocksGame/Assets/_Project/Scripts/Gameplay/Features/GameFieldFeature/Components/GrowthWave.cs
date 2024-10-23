@@ -8,7 +8,7 @@ using UnityEngine.Serialization;
 namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.Components
 {
     [Serializable]
-    [MetaGroup("GameField/CellPosition")]
+    [MetaGroup("GameField")]
     public struct GrowthWave : IEcsComponent
     {
         public DragonCoroutine[] GrowthCoroutines;

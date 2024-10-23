@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using _Project.Scripts.DragonAPI;
 using _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.DestructionFeature.Components;
 using _Project.Scripts.Gameplay.Features.AudioFeature.Components;
+using _Project.Scripts.Gameplay.Features.CoinFeature.Components;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
 using _Project.Scripts.Gameplay.Features.DestructionFeature.Components;
@@ -10,9 +11,10 @@ using _Project.Scripts.Gameplay.Features.GameFlowFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFlowFeature.IntegrationFeatures.AudioFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameOverTimerFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameOverTimerFeature.IntegrationFeatures.UIFeature.Components;
-using _Project.Scripts.Gameplay.Features.GameProgressFeature.Components;
+using _Project.Scripts.Gameplay.Features.GameScreenFeature.Components;
 using _Project.Scripts.Gameplay.Features.PlayerFeature.Components;
 using _Project.Scripts.Gameplay.Features.PlayerFeature.InputFeature.Components;
+using _Project.Scripts.Gameplay.Features.ScoreFeature.Utils;
 using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components;
 using DCFApixels.DragonECS;
 using PrimeTween;
@@ -145,7 +147,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
                 foreach (int timer in _world.Where(out GameOverTimerAspect gameOverTimerAspect))
                     gameOverTimerAspect.CooldownLockMarker.Add(timer);
             }
-            
+
             CustomYieldInstruction WaitForAnimalDestruction()
             {
                 return new DragonAPI.YieldInstructions.DragonAPI.WaitUntil<entlong>(
@@ -290,8 +292,8 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
                 {
                     foreach (int player in _world.Where(out PlayerAspect _))
                     {
-                        ProgressUtils.UpdateScores(
-                            target: player,
+                        ScoreUtils.UpdateScore(
+                            scorable: player,
                             0,
                             overwrite: true);
                     }

@@ -5,6 +5,7 @@ using UnityEngine.Scripting.APIUpdating;
 namespace _Project.Scripts.Gameplay.Features.VisualFeature.VFXFeature.Components
 {
     [Serializable]
+    [MetaGroup("VFX")]
     public struct DestructionVfxPrefab : IEcsComponent
     {
         public EcsEntityConnect Value;

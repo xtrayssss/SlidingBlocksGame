@@ -10,7 +10,7 @@ namespace _Project.Scripts.Gameplay.Features.CameraFeature.Systems
 
         private class Aspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(ViewUpdatedMarker))]
+            [IncImplicit(typeof(RenderingMarker))]
             [Inc] public readonly EcsPool<RenderCamera> RenderCameras;
         }
 

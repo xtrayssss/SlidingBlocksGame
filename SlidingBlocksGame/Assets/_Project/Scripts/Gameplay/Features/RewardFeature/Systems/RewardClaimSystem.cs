@@ -1,7 +1,9 @@
-﻿using _Project.Scripts.Gameplay.Features.GameProgressFeature.Components;
+﻿using _Project.Scripts.Gameplay.Features.CoinFeature.Components;
+using _Project.Scripts.Gameplay.Features.CoinFeature.Utils;
 using _Project.Scripts.Gameplay.Features.PlayerFeature.Components;
 using _Project.Scripts.Gameplay.Features.RewardFeature.Components;
 using _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.UIFeature.Components;
+using _Project.Scripts.Gameplay.Features.RewardFeature.Utils;
 using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.ButtonFeature.Components;
 using DCFApixels.DragonECS;
 using YG;
@@ -42,14 +44,18 @@ namespace _Project.Scripts.Gameplay.Features.RewardFeature.Systems
                         int rewardCoins = (int)rewardAspect.RewardScalingCurve.Read(reward).Value
                             .Evaluate(YandexGame.savesData.RewardCount);
 
-                        ProgressUtils.UpdateCoins(
-                            target: player,
+                        CoinUtils.Update(
+                            coinable: player,
                             coins: rewardCoins);
+                        
+                        RewardUtils.Update(
+                            rewardable: reward,
+                            data: new UpdateRewardRequest
+                            {
+                                Count = rewardCoins,
+                                CollectionTime = YandexGame.savesData.RewardCollectionTime
+                            });
 
-                        ProgressUtils.UpdateReward(
-                            target: reward,
-                            time: YandexGame.ServerTime(),
-                            count: 1);
                     }
                 }
             }

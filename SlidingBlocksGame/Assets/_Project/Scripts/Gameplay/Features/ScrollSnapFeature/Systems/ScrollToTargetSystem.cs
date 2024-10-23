@@ -14,14 +14,15 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Systems
 
         private class ScrollAspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(ScrollUnlockedMarker))]
+            [IncImplicit(typeof(UnlockedMarker))]
             [Inc] public readonly EcsPool<ScrollSnap> ScrollSnaps;
+
             [Inc] public readonly EcsPool<ScrollToTargetState> ScrollToTargetStates;
             [Inc] public readonly EcsPool<GameObjectConnect> GoConnects;
 
             [Opt] public readonly EcsTagPool<DraggingState> DraggingStates;
-            [Opt] public readonly EcsTagPool<IdleState> IdleState;
             [Opt] public readonly EcsTagPool<ScrollNearestRequest> ScrollNearest;
+            [Opt] public readonly EcsTagPool<SnappedState> SnappedState;
         }
 
         private class DelayAspect : EcsAspectAuto
@@ -33,7 +34,7 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Systems
         private class ItemAspect : EcsAspectAuto
         {
             [Inc] public readonly EcsTagPool<SnappedEvent> SnappedEvent;
-            [Inc] public readonly EcsTagPool<SnappedMarker> SnappedMarker;
+            [Inc] public readonly EcsTagPool<SnappedState> SnappedMarker;
         }
 
         public void Run()
@@ -44,20 +45,20 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Systems
                 ref ScrollToTargetState scrollToTargetState = ref scrollAspect.ScrollToTargetStates.Get(scroll);
                 ref GameObjectConnect goConnect = ref scrollAspect.GoConnects.Get(scroll);
 
-                if (!scrollToTargetState.IsAutoScroll) 
+                if (!scrollToTargetState.IsAutoScroll)
                     scrollAspect.ScrollNearest.Add(scroll);
                 else
                     scrollSnap.TargetPosition = scrollSnap.Positions[scrollSnap.TargetIndex];
 
-                if (!scrollToTargetState.CurrentTween.isAlive && !scrollToTargetState.Delay.IsAlive)
+                if (!scrollToTargetState.ScrollTween.isAlive && !scrollToTargetState.Delay.IsAlive)
                     StartScrollToTarget(
                         ref scrollSnap,
                         ref scrollToTargetState);
 
                 if (Input.GetMouseButtonDown(0))
                 {
-                    scrollToTargetState.CurrentTween.Stop();
-                    
+                    scrollToTargetState.ScrollTween.Stop();
+
                     if (scrollToTargetState.Delay.IsAlive)
                         _world.DelEntity(scrollToTargetState.Delay);
 
@@ -67,39 +68,40 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Systems
 
                 foreach (int _ in _world.Where(out DelayAspect _))
                 {
-                    scrollToTargetState.CurrentTween =
+                    scrollToTargetState.ScrollTween =
                         Sequence.Create()
                             .Chain(
                                 Tween.UIHorizontalNormalizedPosition(
-                                    target: scrollSnap.ScrollRect,
-                                    endValue: scrollSnap.TargetPosition,
-                                    duration: scrollSnap.SmoothScrollDuration,
-                                    ease: scrollSnap.ScrollEase).OnComplete(
-                                    target: goConnect.Connect,
-                                    static connect =>
-                                    {
-                                        if (!connect.Entity.TryGetID(out int id))
-                                            return;
+                                        target: scrollSnap.ScrollRect,
+                                        endValue: scrollSnap.TargetPosition,
+                                        duration: scrollSnap.SmoothScrollDuration,
+                                        ease: scrollSnap.ScrollEase)
+                                    .OnComplete(
+                                        target: goConnect.Connect,
+                                        static connect =>
+                                        {
+                                            if (!connect.Entity.TryGetID(out int id))
+                                                return;
 
-                                        EcsWorld world = connect.World;
-                                        ScrollAspect scrollAspect = world.GetAspect<ScrollAspect>();
+                                            EcsWorld world = connect.World;
+                                            ScrollAspect scrollAspect = world.GetAspect<ScrollAspect>();
 
-                                        ref ScrollSnap scrollSnap = ref scrollAspect.ScrollSnaps.Get(id);
-                                        scrollSnap.ScrollPosition = scrollSnap.TargetPosition;
-                                        scrollSnap.LastSnappedIndex = scrollSnap.TargetIndex;
+                                            ref ScrollSnap scrollSnap = ref scrollAspect.ScrollSnaps.Get(id);
+                                            scrollSnap.ScrollPosition = scrollSnap.TargetPosition;
+                                            scrollSnap.LastSnappedIndex = scrollSnap.TargetIndex;
 
-                                        int targetItem = scrollSnap.Items[scrollSnap.TargetIndex];
+                                            int targetItem = scrollSnap.Items[scrollSnap.TargetIndex];
 
-                                        if (!targetItem.ToEntityLong(world).TryGetID(out int targetItemID))
-                                            return;
+                                            if (!targetItem.ToEntityLong(world).TryGetID(out int targetItemID))
+                                                return;
 
-                                        ItemAspect itemAspect = world.GetAspect<ItemAspect>();
-                                        itemAspect.SnappedEvent.Add(targetItemID);
-                                        itemAspect.SnappedMarker.Add(targetItemID);
+                                            ItemAspect itemAspect = world.GetAspect<ItemAspect>();
+                                            itemAspect.SnappedEvent.Add(targetItemID);
+                                            itemAspect.SnappedMarker.Add(targetItemID);
 
-                                        scrollAspect.ScrollToTargetStates.Del(id);
-                                        scrollAspect.IdleState.Add(id);
-                                    }));
+                                            scrollAspect.ScrollToTargetStates.Del(id);
+                                            scrollAspect.SnappedState.Add(id);
+                                        }));
                 }
             }
         }

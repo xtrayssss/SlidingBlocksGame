@@ -5,6 +5,7 @@ using UnityEngine.Scripting.APIUpdating;
 namespace _Project.Scripts.Gameplay.Features.CreationFeature.Components
 {
     [Serializable]
+    [MetaGroup("Creation")]
     public struct CreationChainStrategyTag : IEcsTagComponent
     {
         [MovedFrom(autoUpdateAPI: false,

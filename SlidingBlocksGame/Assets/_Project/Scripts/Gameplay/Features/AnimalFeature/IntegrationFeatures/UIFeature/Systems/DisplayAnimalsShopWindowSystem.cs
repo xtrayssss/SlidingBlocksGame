@@ -1,6 +1,7 @@
 using _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.PurchaseFeature.Components;
 using _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Components;
+using _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Utils;
 using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.ButtonFeature.Components;
 using DCFApixels.DragonECS;
 using PrimeTween;
@@ -60,7 +61,7 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.U
                                 ease: Ease.OutBack))
                         .Chain(
                             AnimatePurchases(
-                                animals: animalsShopWindowAspect.PurchaseAnimals.Read(window).Entities,
+                                purchases: animalsShopWindowAspect.PurchaseAnimals.Read(window).Entities,
                                 purchaseButton: animalsShopWindow.PurchaseStatusWidget.Current,
                                 price: animalsShopWindow.PurchaseStatusWidget.Price,
                                 in scrollSnap))
@@ -83,23 +84,14 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.U
             }
         }
 
-        private Sequence AnimatePurchases(EcsGroup animals, GameObject purchaseButton, GameObject price,
+        private Sequence AnimatePurchases(EcsGroup purchases, GameObject purchaseButton, GameObject price,
             in ScrollSnap scrollSnap)
         {
             Sequence sequence = Sequence.Create();
 
-            EcsSpan visible = default;
-
             Debug.Log("AnimatePurchases");
 
-            int i = scrollSnap.TargetIndex;
-
-            if (i > 0 && i < animals.Count - 1)
-                visible = animals.Slice(i - 1, 3);
-            else if (i == 0)
-                visible = animals.Slice(0, 2);
-            else if (i == animals.Count - 1)
-                visible = animals.Slice(i - 1, 2);
+            EcsSpan visible = ScrollSnapUtils.GetVisibles(in scrollSnap);
 
             foreach (int animal in visible)
             {
@@ -107,16 +99,20 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.U
 
                 gameObjectConnect.Connect.transform.localScale = Vector3.zero;
 
+                float ratio = GetEffectRatio(GetEffectDisplacementBasedOnPos(
+                    in scrollSnap,
+                    _world.GetPool<ScrollItem>().Get(animal).Position,
+                    1.0f));
+
+                Vector2 calculateScale = CalculateScale(_world.GetPool<ScrollItem>().Get(animal).RectTransform, ratio);
+                Debug.Log(calculateScale);
                 sequence.Chain(
                     Tween.Scale(
                         target: gameObjectConnect.Connect.transform,
-                        endValue: Vector3.one,
+                        endValue: calculateScale,
                         duration: 0.2f,
                         ease: Ease.Linear));
             }
-
-            Debug.Log(visible.Count);
-            sequence.ChainCallback(() => Debug.Log(123));
 
             price.transform.localScale = Vector3.zero;
             purchaseButton.transform.localScale = Vector3.zero;
@@ -135,18 +131,34 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.U
                         duration: 0.08f,
                         ease: Ease.OutBack));
 
-            EcsGroup buffer = animals.Clone();
+            EcsGroup unvisibles = purchases.Clone();
 
-            buffer.ExceptWith(visible);
+            unvisibles.ExceptWith(visible);
 
-            foreach (int animal in buffer)
+            foreach (int animal in unvisibles)
             {
                 ref GameObjectConnect gameObjectConnect = ref _world.GetPool<GameObjectConnect>().Get(animal);
 
-                gameObjectConnect.Connect.transform.localScale = Vector3.one;
+                gameObjectConnect.Connect.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
             }
 
             return sequence;
         }
+        
+        private Vector2 CalculateScale(RectTransform rectTransform, float ratio)
+        {
+            Vector2 diff = new Vector3(1.1f, 1.1f, 1.1f) - new Vector3(0.7f, 0.7f, 0.7f);
+            return new Vector2(0.7f, 0.7f) + diff * ratio;
+        }
+
+        private float GetEffectDisplacementBasedOnPos(in ScrollSnap scrollSnap, float pos, float effect)
+        {
+            var signedDist = (pos - scrollSnap.ScrollPosition) / (scrollSnap.Distance * effect);
+            return Mathf.Clamp(signedDist, -1, 1);
+        }
+
+
+        private float GetEffectRatio(float displacement) =>
+            1 - Mathf.Abs(displacement);
     }
 }

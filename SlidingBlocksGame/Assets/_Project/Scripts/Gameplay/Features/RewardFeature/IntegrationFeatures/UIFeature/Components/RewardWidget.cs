@@ -8,7 +8,7 @@ using UnityEngine.Scripting.APIUpdating;
 namespace _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.UIFeature.Components
 {
     [Serializable]
-    [MetaGroup("UI")]
+    [MetaGroup("Reward/UI")]
     public struct RewardWidget : IEcsComponent
     {
         public EcsEntityConnect RewardWindowConnect;

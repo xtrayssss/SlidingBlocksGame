@@ -6,6 +6,7 @@ using UnityEngine.Scripting.APIUpdating;
 namespace _Project.Scripts.Gameplay.Features.VisualFeature.VFXFeature.Components
 {
     [Serializable]
+    [MetaGroup("VFX")]
     public struct ParticleSystemRef : IEcsComponent
     {
         public ParticleSystem Value;

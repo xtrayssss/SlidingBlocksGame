@@ -5,6 +5,7 @@ using UnityEngine.Scripting.APIUpdating;
 namespace _Project.Scripts.Gameplay.Features.RateUsFeature.IntegrationFeatures.UIFeature.Components
 {
     [Serializable]
+    [MetaGroup("RateUs/UI")]
     public struct RateUsButtonTag : IEcsTagComponent
     {
         [MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components",

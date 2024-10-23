@@ -1,4 +1,4 @@
-﻿using _Project.Scripts.Gameplay.Features.AudioFeature.Systems;
+﻿using _Project.Scripts.Gameplay.Features.AudioFeature.Extensions;
 using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.ButtonFeature.Components;
 using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.ButtonFeature.IntegrationFeatures.AudioFeature.Components;
 using _Project.Scripts.Infrastructure;
@@ -11,9 +11,10 @@ namespace _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.ButtonFeatu
         public void Import(EcsPipeline.Builder builder)
         {
             builder
-                .AutoDelEntityTag<ButtonClickedEvent>()
                 // audio feature
-                .AddAudioSystem<ButtonClickedEvent, ButtonClickedAudioConfig>();
+                .AddAudioSystem<ButtonClickedEvent, ButtonClickedAudioConfig>()
+                //
+                .AutoDelEntityTag<ButtonClickedEvent>();
         }
     }
 }

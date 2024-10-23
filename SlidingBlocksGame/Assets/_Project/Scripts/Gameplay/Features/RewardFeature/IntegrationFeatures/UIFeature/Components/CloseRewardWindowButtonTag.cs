@@ -5,6 +5,7 @@ using UnityEngine.Scripting.APIUpdating;
 namespace _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.UIFeature.Components
 {
     [Serializable]
+    [MetaGroup("Reward/UI")]
     public struct CloseRewardWindowButtonTag : IEcsTagComponent
     {
         [MovedFrom(autoUpdateAPI: false,

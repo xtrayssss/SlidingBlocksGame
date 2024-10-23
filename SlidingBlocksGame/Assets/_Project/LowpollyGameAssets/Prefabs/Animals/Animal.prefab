@@ -127,7 +127,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8752353630464874805}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7c2519b40834ceca068463030394967, type: 3}
+  m_Script: {fileID: 11500000, guid: 983f2e1cc0e144ee856defdbffa697f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _deleteEntiityWithDestroy: 0
@@ -148,7 +148,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _components:
-  - rid: 8499802272422691542
   - rid: 6454805130946282388
   - rid: 3543309302603710465
   - rid: 3543309302603710466
@@ -210,12 +209,6 @@ MonoBehaviour:
       data:
         component:
           Value: {fileID: 2936143895052326442}
-    - rid: 8499802272422691542
-      type: {class: RendererRef/Template, ns: _Project.Scripts.Gameplay.Features.CommonFeature.Components,
-        asm: CommonFeature.Components}
-      data:
-        component:
-          Value: {fileID: 8479443584960617139}
 --- !u!1001 &461539885442632257
 PrefabInstance:
   m_ObjectHideFlags: 0

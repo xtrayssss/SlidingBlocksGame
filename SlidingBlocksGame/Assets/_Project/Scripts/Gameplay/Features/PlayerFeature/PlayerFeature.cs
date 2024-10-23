@@ -1,7 +1,4 @@
-﻿using _Project.Scripts.Gameplay.Features.PlayerFeature.Components;
-using _Project.Scripts.Gameplay.Features.PlayerFeature.Systems;
-using _Project.Scripts.Infrastructure;
-using DCFApixels.DragonECS;
+﻿using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.PlayerFeature
 {
@@ -10,9 +7,7 @@ namespace _Project.Scripts.Gameplay.Features.PlayerFeature
         public void Import(EcsPipeline.Builder builder)
         {
             builder
-                .AddModule(new InputFeature.InputFeature())
-                .AddUnique(new SaveLoadPlayerProgressSystem())
-                .AutoDelTag<LoadProgressRequest>();
+                .AddModule(new InputFeature.InputFeature());
         }
     }
 }

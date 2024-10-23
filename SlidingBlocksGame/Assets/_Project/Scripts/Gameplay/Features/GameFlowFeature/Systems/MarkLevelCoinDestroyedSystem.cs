@@ -1,6 +1,6 @@
-﻿using _Project.Scripts.Gameplay.Features.DestructionFeature.Components;
+﻿using _Project.Scripts.Gameplay.Features.CoinFeature.Components;
+using _Project.Scripts.Gameplay.Features.DestructionFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFlowFeature.Components;
-using _Project.Scripts.Gameplay.Features.GameProgressFeature.Components;
 using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems

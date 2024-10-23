@@ -16,7 +16,7 @@ namespace YG
         public int BestScores;
         public List<ushort> PurchasedAnimals = new List<ushort>();
 
-        public long RewardCollectedAt;
+        [FormerlySerializedAs("RewardCollectedAt")] public long RewardCollectionTime;
 
         public int RewardCount;
         public ushort SelectedAnimalID;

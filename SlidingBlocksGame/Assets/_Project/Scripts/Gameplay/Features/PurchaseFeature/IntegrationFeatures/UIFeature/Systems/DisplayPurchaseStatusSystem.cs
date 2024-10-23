@@ -1,4 +1,4 @@
-using _Project.Scripts.Gameplay.Features.GameProgressFeature.Components;
+using _Project.Scripts.Gameplay.Features.CoinFeature.Components;
 using _Project.Scripts.Gameplay.Features.PlayerFeature.Components;
 using _Project.Scripts.Gameplay.Features.PurchaseFeature.Components;
 using _Project.Scripts.Gameplay.Features.PurchaseFeature.IntegrationFeatures.UIFeature.Components;
@@ -14,7 +14,7 @@ namespace _Project.Scripts.Gameplay.Features.PurchaseFeature.IntegrationFeatures
         private class PurchasesAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(PurchaseTag))]
-            [IncImplicit(typeof(SnappedMarker))]
+            [IncImplicit(typeof(SnappedState))]
             [Inc] public readonly EcsPool<PurchaseWidget> PurchaseWidgets;
 
             [Inc] public readonly EcsPool<Purchase> Purchases;

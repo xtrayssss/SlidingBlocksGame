@@ -5,7 +5,7 @@ using UnityEngine.Scripting.APIUpdating;
 namespace _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.UIFeature.Components
 {
     [Serializable]
-    [MetaGroup("AnimalFeature/UI")]
+    [MetaGroup("Animal/UI")]
     public struct AnimalPurchaseWindowButtonTag : IEcsTagComponent
     {
         [MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components",

@@ -6,6 +6,7 @@ using UnityEngine.Scripting.APIUpdating;
 namespace _Project.Scripts.Gameplay.Features.CommonFeature.Components
 {
     [Serializable]
+    [MetaGroup("Common")]
     public struct MeshRendererRef : IEcsComponent
     {
         public MeshRenderer Value;

@@ -1,4 +1,4 @@
-﻿using _Project.Scripts.Gameplay.Features.AudioFeature.Systems;
+﻿using _Project.Scripts.Gameplay.Features.AudioFeature.Extensions;
 using _Project.Scripts.Gameplay.Features.PurchaseFeature.Components;
 using _Project.Scripts.Gameplay.Features.PurchaseFeature.IntegrationFeatures.AudioFeature.Components;
 using _Project.Scripts.Gameplay.Features.PurchaseFeature.IntegrationFeatures.UIFeature.Systems;
@@ -15,10 +15,9 @@ namespace _Project.Scripts.Gameplay.Features.PurchaseFeature
             builder
                 .AutoDelTag<PurchasedEvent>()
                 .AddUnique(new PurchaseSystem())
-                .AutoDelEntityTag<PurchasesClearedEvent>()
-                .AddUnique(new UpdatePurchaseSystem())
-                .AutoDelEntityTag<ClearPurchasesRequest>()
+                //
                 .AddUnique(new RotatePurchaseSystem())
+                
                 // ui feature
                 .AddUnique(new DisplayPurchasePriceSystem())
                 .AddUnique(new DisplayPurchaseStatusSystem())

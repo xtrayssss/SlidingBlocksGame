@@ -3,7 +3,9 @@ using UnityEditor;
 
 namespace _Project.Scripts.DragonAPI
 {
+#if UNITY_EDITOR
     [InitializeOnLoad]
+    #endif
     public static class DragonAPI
     {
         static DragonAPI() =>

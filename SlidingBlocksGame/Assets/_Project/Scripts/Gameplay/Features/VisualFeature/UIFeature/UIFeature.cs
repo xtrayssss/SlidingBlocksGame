@@ -11,24 +11,11 @@ namespace _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature
         public void Import(EcsPipeline.Builder builder)
         {
             builder
-                .AddUnique(new SettingsPopupSystem())
-                //
-                .AddUnique(new TutorialSystem())
-                //
-                .AddUnique(new PlayWidgetSystem())
-                //
-                .AddUnique(new Render3DToUISystem())
-                .AutoDel<Render3DToUIRequest>()
-                //
                 .AutoDelTag<MetaGameUIHiddenEvent>()
                 .AddUnique(new MetaGameUISystem())
                 .AutoDelTag<ShowMetaGameUIRequest>()
                 .AutoDelTag<HideMetaGameUIRequest>()
-                //
-                .AutoDelTag<GameScreenCreatedEvent>()
-                .AddUnique(new CreateGameScreenSystem())
-                .AutoDelTag<CreateGameScreenRequest>()
-                //
+                
                 .AddUnique(new CalculateOriginalPositionSystem())
                 .AutoDelTag<CalculateOriginalPositionRequest>()
                 //

@@ -11,7 +11,7 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Systems
 
         private class ScrollAspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(ScrollUnlockedMarker))]
+            [IncImplicit(typeof(UnlockedMarker))]
             [Inc] public readonly EcsPool<ScrollSnap> ScrollSnaps;
             [Inc] public readonly EcsTagPool<DraggingState> DraggingState;
             [Opt] public readonly EcsPool<ScrollToTargetState> ScrollToTargetState;
@@ -20,7 +20,7 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Systems
 
         private class ItemAspect : EcsAspectAuto
         {
-            [Opt] public readonly EcsTagPool<LeaveEvent> LeaveEvent;
+            [Opt] public readonly EcsTagPool<LeavedEvent> LeaveEvent;
             [Opt] public readonly EcsTagPool<LeaveMarker> LeaveMarker;
         }
 

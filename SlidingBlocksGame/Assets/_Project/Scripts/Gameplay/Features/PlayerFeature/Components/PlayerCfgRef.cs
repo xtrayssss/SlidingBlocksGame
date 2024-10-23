@@ -5,6 +5,7 @@ using UnityEngine.Scripting.APIUpdating;
 namespace _Project.Scripts.Gameplay.Features.PlayerFeature.Components
 {
     [Serializable]
+    [MetaGroup("Player")]
     public struct PlayerCfgRef : IEcsComponent
     {
         public ScriptableEntityTemplate Value;

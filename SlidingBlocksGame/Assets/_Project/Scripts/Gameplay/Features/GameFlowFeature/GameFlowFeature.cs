@@ -22,6 +22,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature
                 .AutoDelTag<NextLeveRequest>()
                 //
                 .AddUnique(new GameFlowSystem())
+                .AutoDelTag<GameCreatedEvent>()
                 //
                 .AddUnique(new MarkLevelCoinDestroyedSystem())
                 .AddUnique(new MarkLevelGameOverTimerClosedSystem())

@@ -1,5 +1,5 @@
 using System;
-using _Project.Scripts.Gameplay.Features.AudioFeature.Components;
+using _Project.Scripts.Gameplay.Features.AudioFeature.Extensions;
 using DCFApixels.DragonECS;
 using UnityEngine;
 using UnityEngine.Scripting.APIUpdating;

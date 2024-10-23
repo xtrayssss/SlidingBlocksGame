@@ -1,5 +1,5 @@
 using System;
-using _Project.Scripts.Gameplay.Features.GameProgressFeature.Components;
+using _Project.Scripts.Gameplay.Features.CoinFeature.Components;
 using _Project.Scripts.Gameplay.Features.RewardFeature.Components;
 using _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.ButtonFeature.Components;
@@ -73,6 +73,11 @@ namespace _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.U
             [Inc] public readonly EcsPool<TapToExitWidget> TapToExitWidgets;
             [Inc] public readonly EcsPool<OriginalAnchoredPosition> OriginalAnchoredPositions;
             [Inc] public readonly EcsPool<UIElement> UIElements;
+        }
+        
+        private class SunshineAspect : EcsAspectAuto
+        {
+            [Inc] public readonly EcsPool<Sunshine> Sunshine;
         }
 
         private class CloseRewardWindowButtonClickedAspect : EcsAspectAuto
@@ -285,6 +290,14 @@ namespace _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.U
 
                                         uiElement.RectTransform.anchoredPosition = originalAnchoredPosition.Value;
                                     }
+
+                                    if (rewardWindow.SunshineConnect.Entity.TryGetID(out int sunshineID))
+                                    {
+                                        SunshineAspect rewardCoinsAspect = world.GetAspect<SunshineAspect>();
+
+                                        ref Sunshine sunshine = ref rewardCoinsAspect.Sunshine.Get(sunshineID);
+                                        sunshine.RotationTween.Stop();
+                                    }
                                 });
                 }
             }
@@ -334,27 +347,38 @@ namespace _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.U
             rewardWindow.CongratulationWidgetConnect.gameObject.SetActive(true);
 
             // sunshine 
-            rewardWindow.SunshineWidgetConnect.gameObject.SetActive(true);
+            rewardWindow.SunshineConnect.gameObject.SetActive(true);
 
-            rewardWindow.SunshineWidgetConnect.transform.localScale = Vector3.zero;
+            rewardWindow.SunshineConnect.transform.localScale = Vector3.zero;
 
             sequence
                 .Group(Tween.Scale(
-                    target: rewardWindow.SunshineWidgetConnect.transform,
+                    target: rewardWindow.SunshineConnect.transform,
                     endValue: Vector3.one,
                     duration: 0.5f,
                     ease: Ease.OutBack));
 
             sequence.ChainCallback(
-                target: rewardWindow.SunshineWidgetConnect,
-                connect => Tween.LocalEulerAngles(
-                    target: connect.transform,
-                    startValue: connect.transform.localRotation.eulerAngles,
-                    endValue: connect.transform.localRotation.eulerAngles + new Vector3(0, 0, 360),
-                    duration: 3f,
-                    ease: Ease.Linear,
-                    cycles: -1,
-                    cycleMode: CycleMode.Incremental));
+                target: rewardWindow.SunshineConnect,
+                static connect =>
+                {
+                    if (!connect.Entity.TryGetID(out int id))
+                        return;
+
+                    EcsWorld world = connect.World;
+
+                    SunshineAspect rewardCoinsAspect = world.GetAspect<SunshineAspect>();
+                    ref Sunshine sunshine = ref rewardCoinsAspect.Sunshine.Get(id);
+
+                    sunshine.RotationTween = Tween.LocalEulerAngles(
+                        target: connect.transform,
+                        startValue: connect.transform.localRotation.eulerAngles,
+                        endValue: connect.transform.localRotation.eulerAngles + new Vector3(0, 0, 360),
+                        duration: 3f,
+                        ease: Ease.Linear,
+                        cycles: -1,
+                        cycleMode: CycleMode.Incremental);
+                });
 
             // tap to exit
             rewardWindow.TapToExitWidgetConnect.gameObject.SetActive(true);
@@ -370,7 +394,7 @@ namespace _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.U
                         ease: Ease.OutBack))
                 .ChainCallback(
                     target: rewardWindow.TapToExitWidgetConnect,
-                    connect =>
+                    static connect =>
                     {
                         if (!connect.Entity.TryGetID(out int id))
                             return;
@@ -435,12 +459,12 @@ namespace _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.U
             sequence
                 .Group(
                     Tween.Scale(
-                        target: rewardWindow.SunshineWidgetConnect.transform,
+                        target: rewardWindow.SunshineConnect.transform,
                         endValue: Vector3.zero,
                         duration: 0.15f,
                         ease: Ease.InBack))
                 .ChainCallback(
-                    target: rewardWindow.SunshineWidgetConnect,
+                    target: rewardWindow.SunshineConnect,
                     static connect => connect.gameObject.SetActive(false));
 
             // tap to exit

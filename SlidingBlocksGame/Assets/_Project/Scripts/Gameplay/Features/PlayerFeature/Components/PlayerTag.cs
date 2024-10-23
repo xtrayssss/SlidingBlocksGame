@@ -5,6 +5,7 @@ using UnityEngine.Scripting.APIUpdating;
 namespace _Project.Scripts.Gameplay.Features.PlayerFeature.Components
 {
     [Serializable]
+    [MetaGroup("Player")]
     public struct PlayerTag : IEcsTagComponent
     {
         [MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.PlayerFeature.Components",

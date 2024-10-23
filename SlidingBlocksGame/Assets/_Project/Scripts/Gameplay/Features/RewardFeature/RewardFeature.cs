@@ -1,4 +1,4 @@
-﻿using _Project.Scripts.Gameplay.Features.AudioFeature.Systems;
+﻿using _Project.Scripts.Gameplay.Features.AudioFeature.Extensions;
 using _Project.Scripts.Gameplay.Features.RewardFeature.Components;
 using _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.AudioFeature.Components;
 using _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.AudioFeature.Systems;
@@ -20,7 +20,7 @@ namespace _Project.Scripts.Gameplay.Features.RewardFeature
                 .AddUnique(new RewardClaimSystem())
                 //
                 .AutoDelEntityTag<RewardUpdatedEvent>()
-                .AddUnique(new RewardSystem())
+                .AddUnique(new UpdateRewardSystem())
                 .AutoDelEntityComponent<UpdateRewardRequest>()
                 
                 // ui feature

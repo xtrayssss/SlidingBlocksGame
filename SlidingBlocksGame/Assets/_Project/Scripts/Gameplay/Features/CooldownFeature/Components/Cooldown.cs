@@ -5,6 +5,7 @@ using UnityEngine.Scripting.APIUpdating;
 namespace _Project.Scripts.Gameplay.Features.CooldownFeature.Components
 {
     [Serializable]
+    [MetaGroup("Cooldown")]
     public struct Cooldown : IEcsComponent
     {
         public float Elapsed;

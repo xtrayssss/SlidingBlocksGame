@@ -1,5 +1,6 @@
+using _Project.Scripts.Gameplay.Features.CoinFeature.Components;
+using _Project.Scripts.Gameplay.Features.CoinFeature.Utils;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
-using _Project.Scripts.Gameplay.Features.GameProgressFeature.Components;
 using _Project.Scripts.Gameplay.Features.PlayerFeature.Components;
 using _Project.Scripts.Gameplay.Features.PurchaseFeature.Components;
 using _Project.Scripts.Gameplay.Features.PurchaseFeature.IntegrationFeatures.UIFeature.Components;
@@ -22,7 +23,7 @@ namespace _Project.Scripts.Gameplay.Features.PurchaseFeature.Systems
         private class PurchasesAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(PurchaseTag))]
-            [IncImplicit(typeof(SnappedMarker))]
+            [IncImplicit(typeof(SnappedState))]
             [Exc] public readonly EcsTagPool<PurchasedMarker> PurchasedMarker;
 
             [Inc] public readonly EcsPool<PhysicView> PhysicViews;
@@ -42,14 +43,18 @@ namespace _Project.Scripts.Gameplay.Features.PurchaseFeature.Systems
         {
             foreach (int _ in _world.Where(out PurchaseButtonClickedAspect _))
             {
-                foreach (int purchase in _world.Where(out PurchasesAspect purchasesAspect))
+                foreach (int purchaseID in _world.Where(out PurchasesAspect purchasesAspect))
                 {
                     foreach (int player in _world.Where(out PlayerAspect _))
                     {
-                        ProgressUtils.UpdateCoins(player, -purchasesAspect.Purchases.Read(purchase).Price);
+                        ref readonly Purchase purchase = ref purchasesAspect.Purchases.Read(purchaseID);
                         
-                        purchasesAspect.PurchasedMarker.Add(purchase);
-                        purchasesAspect.PurchasedEvent.Add(purchase);
+                        CoinUtils.Update(
+                            coinable: player, 
+                            coins: -purchase.Price);
+                        
+                        purchasesAspect.PurchasedMarker.Add(purchaseID);
+                        purchasesAspect.PurchasedEvent.Add(purchaseID);
                     }
                 }
             }

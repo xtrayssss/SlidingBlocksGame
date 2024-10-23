@@ -13,7 +13,7 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Systems
 
         private class ScrollAspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(ScrollUnlockedMarker))]
+            [IncImplicit(typeof(UnlockedMarker))]
             [Inc] public readonly EcsPool<ScrollSnap> ScrollSnaps;
         }
 
@@ -54,7 +54,7 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Systems
 
         private float GetEffectDisplacementBasedOnPos(in ScrollSnap scrollSnap, float pos, float effect)
         {
-            var signedDist = (pos - scrollSnap.ScrollPosition) / (scrollSnap.Distance * effect);
+            var signedDist = (pos - scrollSnap.ScrollRect.horizontalScrollbar.value) / (scrollSnap.Distance * effect);
             return Mathf.Clamp(signedDist, -1, 1);
         }
 

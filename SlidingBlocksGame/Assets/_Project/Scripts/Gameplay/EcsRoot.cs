@@ -1,23 +1,29 @@
 ﻿using _Project.Scripts.Gameplay.Features.AnimalFeature;
 using _Project.Scripts.Gameplay.Features.AudioFeature;
+using _Project.Scripts.Gameplay.Features.CoinFeature;
 using _Project.Scripts.Gameplay.Features.CooldownFeature;
 using _Project.Scripts.Gameplay.Features.CreationFeature;
 using _Project.Scripts.Gameplay.Features.DestructionFeature;
+using _Project.Scripts.Gameplay.Features.GameAudioFeature;
 using _Project.Scripts.Gameplay.Features.GameFieldFeature;
 using _Project.Scripts.Gameplay.Features.GameFlowFeature;
-using _Project.Scripts.Gameplay.Features.GameFlowFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameOverTimerFeature;
 using _Project.Scripts.Gameplay.Features.GameProgressFeature;
+using _Project.Scripts.Gameplay.Features.GameScreenFeature;
 using _Project.Scripts.Gameplay.Features.MovementFeature;
 using _Project.Scripts.Gameplay.Features.PlayerFeature;
 using _Project.Scripts.Gameplay.Features.PurchaseFeature;
 using _Project.Scripts.Gameplay.Features.RateUsFeature;
 using _Project.Scripts.Gameplay.Features.RewardFeature;
+using _Project.Scripts.Gameplay.Features.ScoreFeature;
+using _Project.Scripts.Gameplay.Features.SettingsFeature;
+using _Project.Scripts.Gameplay.Features.TutorialFeature;
 using _Project.Scripts.Gameplay.Features.VisualFeature;
 using _Project.Scripts.Infrastructure;
 using DCFApixels.DragonECS;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.UI;
 using YG;
 
 namespace _Project.Scripts.Gameplay
@@ -28,14 +34,14 @@ namespace _Project.Scripts.Gameplay
 
         private EcsPipeline _pipeline;
         private EcsDefaultWorld _world;
- 
+
         [Button]
         private void ResetProgress()
         {
             YandexGame.ResetSaveProgress();
             YandexGame.SaveProgress();
         }
-        
+
         public void Start()
         {
             EcsDefaultWorldSingletonProvider provider = EcsDefaultWorldSingletonProvider.Instance;
@@ -52,14 +58,19 @@ namespace _Project.Scripts.Gameplay
                 .AddModule(new DestructionFeature())
                 .AddModule(new PurchaseFeature())
                 .AddModule(new RateUsFeature())
+                .AddModule(new CoinFeature())
+                .AddModule(new ScoreFeature())
                 .AddModule(new GameProgressFeature())
                 .AddModule(new RewardFeature())
                 .AddModule(new GameOverTimerFeature())
-                .AddModule(new VisualFeature(coroutineRunner: this))
+                .AddModule(new SettingsFeature())
+                .AddModule(new GameAudioFeature())
+                .AddModule(new TutorialFeature())
+                .AddModule(new GameScreenFeature())
+                .AddModule(new VisualFeature())
                 .AddModule(new CooldownFeature())
                 .AddModule(new AudioFeature())
-                // 
-                .AutoDelTag<GameCreatedEvent>()
+                //
                 .AddUnityDebug(_world)
                 .Inject(_world)
                 .AutoInject()
@@ -80,5 +91,25 @@ namespace _Project.Scripts.Gameplay
             _world.Destroy();
             _world = null;
         }
+        
+        [Button]
+        private int GetMaxVisibleElements(RectTransform viewPort, RectTransform elementTemplate, float visiblePartRatio, HorizontalLayoutGroup layoutGroup)
+        {
+            RectTransform viewport = viewPort;
+            float viewportWidth = viewport.rect.width;
+            float elementWidth = elementTemplate.rect.width;
+    
+            // Учитываем padding с обеих сторон
+            float totalPadding = layoutGroup.padding.left + layoutGroup.padding.right;
+            float availableWidth = viewportWidth - totalPadding;
+    
+            // Учитываем spacing между элементами
+            float spacing = layoutGroup.spacing;
+            float elementWithSpacing = elementWidth + spacing;
+    
+            // Вычисляем сколько целых элементов помещается в доступное пространство
+            float maxElements = availableWidth / elementWithSpacing;
+    
+            return Mathf.FloorToInt(maxElements);        }
     }
 }

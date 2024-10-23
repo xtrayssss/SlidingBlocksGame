@@ -2,7 +2,6 @@ using System;
 using DCFApixels.DragonECS;
 using PrimeTween;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Components
@@ -40,6 +39,7 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Components
         public EcsGroup Items;
         public float Distance;
         public int LastSnappedIndex;
+        public int MaxVisible;
 
         public void Enable(ref ScrollSnap component)
         {

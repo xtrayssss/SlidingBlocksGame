@@ -1,6 +1,7 @@
 using _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.PurchaseFeature.Components;
 using _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Components;
+using _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Utils;
 using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.ButtonFeature.Components;
 using DCFApixels.DragonECS;
 using PrimeTween;
@@ -82,9 +83,10 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.U
                                 endValue: Vector3.zero,
                                 duration: 0.15f,
                                 ease: Ease.InBack))
+                        // close window
                         .ChainCallback(
                             target: goConnect.Connect,
-                            callback: static connect =>
+                            static connect =>
                             {
                                 connect.gameObject.SetActive(false);
 
@@ -113,16 +115,7 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.U
         {
             Sequence sequence = Sequence.Create();
 
-            EcsSpan visible = default;
-
-            int i = scrollSnap.TargetIndex;
-
-            if (i > 0 && i < animals.Count - 1)
-                visible = animals.Slice(i - 1, 3);
-            else if (i == 0)
-                visible = animals.Slice(i, 2);
-            else if (i == animals.Count - 1)
-                visible = animals.Slice(i - 1, 2);
+            EcsSpan visible = ScrollSnapUtils.GetVisibles(in scrollSnap);
 
             float visibleDelay = 0.08f;
 

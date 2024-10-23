@@ -1,0 +1,107 @@
+﻿using _Project.Scripts.Gameplay.Features.AnimalFeature.Components;
+using _Project.Scripts.Gameplay.Features.CoinFeature.Components;
+using _Project.Scripts.Gameplay.Features.CoinFeature.Utils;
+using _Project.Scripts.Gameplay.Features.GameProgressFeature.IntegrationFeatures.UIFeature.Components;
+using _Project.Scripts.Gameplay.Features.PlayerFeature.Components;
+using _Project.Scripts.Gameplay.Features.PurchaseFeature.Components;
+using _Project.Scripts.Gameplay.Features.RewardFeature.Components;
+using _Project.Scripts.Gameplay.Features.RewardFeature.Utils;
+using _Project.Scripts.Gameplay.Features.ScoreFeature.Components;
+using _Project.Scripts.Gameplay.Features.ScoreFeature.Utils;
+using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.ButtonFeature.Components;
+using DCFApixels.DragonECS;
+using YG;
+
+namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.Systems
+{
+    public class ResetPlayerProgressSystem : IEcsRun
+    {
+        [EcsInject] private readonly EcsDefaultWorld _world;
+
+        private class ResetProgressButtonClickedAspect : EcsAspectAuto
+        {
+            [Inc] public readonly EcsTagPool<ButtonClickedEvent> ButtonClicked;
+            [Inc] public readonly EcsTagPool<ResetProgressButtonTag> ResetProgressButtonTag;
+        }
+
+        private class PlayerAspect : EcsAspectAuto
+        {
+            [IncImplicit(typeof(PlayerTag))]
+            [Inc] public readonly EcsPool<Coins> Coins;
+
+            [Inc] public readonly EcsPool<BestScore> BestScores;
+            [Inc] public readonly EcsPool<SelectedAnimal> SelectedAnimals;
+            [Inc] public readonly EcsPool<AnimalPrefabs> AnimalPrefabs;
+        }
+
+        private class RewardAspect : EcsAspectAuto
+        {
+            [Inc] public readonly EcsPool<Reward> Rewards;
+        }
+        
+        private class PurchasedAspect : EcsAspectAuto
+        {
+            [IncImplicit(typeof(PurchaseTag))]
+            [Inc] public readonly EcsTagPool<PurchasedMarker> PurchasedMarker;
+        }
+
+        public void Run()
+        {
+            foreach (int _ in _world.Where(out ResetProgressButtonClickedAspect _))
+            {
+                foreach (int player in _world.Where(out PlayerAspect _))
+                {
+                    CoinUtils.Update(
+                        coinable: player,
+                        coins: 0,
+                        overwrite: true);
+
+                    ScoreUtils.UpdateBestScore(
+                        scorable: player,
+                        score: 0,
+                        overwrite: true);
+
+                    UpdateSelectedAnimal(selectedID: 0);
+
+                    ClearPurchases();
+
+                    YandexGame.SaveProgress();
+                }
+
+                foreach (int reward in _world.Where(out RewardAspect _))
+                {
+                    RewardUtils.Update(
+                        rewardable: reward,
+                        new UpdateRewardRequest
+                        {
+                            CollectionTime = 0,
+                            Count = 0,
+                            Overwrite = true
+                        });
+                }
+            }
+        }
+
+        private void ClearPurchases()
+        {
+            foreach (int purchase in _world.Where(out PurchasedAspect purchasedAspect))
+                purchasedAspect.PurchasedMarker.Del(purchase);
+
+            YandexGame.savesData.PurchasedAnimals.Clear();
+            YandexGame.SaveProgress();
+        }
+        
+        private void UpdateSelectedAnimal(ushort selectedID)
+        {
+            foreach (int player in _world.Where(out PlayerAspect playerAspect))
+            {
+                ref SelectedAnimal selectedAnimal = ref playerAspect.SelectedAnimals.Get(player);
+                selectedAnimal.ID = selectedID;
+                selectedAnimal.Prefab = playerAspect.AnimalPrefabs.Read(player).Animals[selectedAnimal.ID];
+
+                YandexGame.savesData.SelectedAnimalID = selectedAnimal.ID;
+                YandexGame.SaveProgress();
+            }
+        }
+    }
+}

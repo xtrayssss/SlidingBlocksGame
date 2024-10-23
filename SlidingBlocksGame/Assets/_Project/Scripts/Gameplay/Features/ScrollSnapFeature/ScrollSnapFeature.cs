@@ -20,10 +20,10 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature
                 //
                 .AddUnique(new ScrollEffectRequestSystem())
                 //
-                .AddUnique(new ScrollIdleSystem())
+                .AddUnique(new ScrollSnappedSystem())
                 .AutoDelTag<SnappedEvent>()
                 .AddUnique(new ScrollToTargetSystem())
-                .AutoDelTag<LeaveEvent>()
+                .AutoDelTag<LeavedEvent>()
                 .AddUnique(new ScrollDraggingSystem())
                 //
                 .AddUnique(new ScrollEffectsSystem())

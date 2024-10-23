@@ -6,16 +6,15 @@ using UnityEngine.Scripting.APIUpdating;
 namespace _Project.Scripts.Gameplay.Features.CommonFeature.Components
 {
     [Serializable]
+    [MetaGroup("Common")]
     public struct WorldPosition : IEcsComponent
     {
         public float3 Value;
 
         [Serializable]
-
-		[MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.CommonFeature.Components", sourceClassName: "WorldPosition/Wrapper", sourceAssembly: "Assembly-CSharp")]
-
-
-		public sealed class Wrapper : ComponentTemplate<WorldPosition>
+        [MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.CommonFeature.Components",
+            sourceClassName: "WorldPosition/Wrapper", sourceAssembly: "Assembly-CSharp")]
+        public sealed class Wrapper : ComponentTemplate<WorldPosition>
         {
         }
     }
