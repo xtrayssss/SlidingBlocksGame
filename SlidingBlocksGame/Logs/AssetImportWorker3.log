@@ -1,0 +1,2162 @@
+Using pre-set license
+Built from '2022.3/staging' branch; Version is '2022.3.42f1 (2dcb6a0abc42) revision 3001194'; Using compiler version '192829333'; Build Type 'Release'
+OS: 'Windows 10  (10.0.19044) 64bit Professional' Language: 'ru' Physical Memory: 7561 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
+
+COMMAND LINE ARGUMENTS:
+D:\games\Unity\Unity Files (Dont Touch)\2021.3.9f1\2022.3.42f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker3
+-projectPath
+D:/games/SlidingCubesGame/SlidingBlocksGame
+-logFile
+Logs/AssetImportWorker3.log
+-srvPort
+59908
+Successfully changed project path to: D:/games/SlidingCubesGame/SlidingBlocksGame
+D:/games/SlidingCubesGame/SlidingBlocksGame
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Player connection [16452]  Target information:
+
+Player connection [16452]  * "[IP] 192.168.0.100 [Port] 0 [Flags] 2 [Guid] 2511564855 [EditorId] 2511564855 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-J7U7MAN) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [16452] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [16452] Host joined alternative multi-casting on [225.0.0.222:34997]...
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+Refreshing native plugins compatible for Editor in 61.23 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2022.3.42f1 (2dcb6a0abc42)
+[Subsystems] Discovering subsystems at path D:/games/Unity/Unity Files (Dont Touch)/2021.3.9f1/2022.3.42f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path D:/games/SlidingCubesGame/SlidingBlocksGame/Assets
+GfxDevice: creating device client; threaded=0; jobified=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: AMD Radeon (TM) Graphics (ID=0x15e7)
+    Vendor:   ATI
+    VRAM:     3780 MB
+    Driver:   31.0.12018.5
+Initialize mono
+Mono path[0] = 'D:/games/Unity/Unity Files (Dont Touch)/2021.3.9f1/2022.3.42f1/Editor/Data/Managed'
+Mono path[1] = 'D:/games/Unity/Unity Files (Dont Touch)/2021.3.9f1/2022.3.42f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'D:/games/Unity/Unity Files (Dont Touch)/2021.3.9f1/2022.3.42f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56036
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: D:/games/Unity/Unity Files (Dont Touch)/2021.3.9f1/2022.3.42f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: D:/games/Unity/Unity Files (Dont Touch)/2021.3.9f1/2022.3.42f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
+Register platform support module: D:/games/Unity/Unity Files (Dont Touch)/2021.3.9f1/2022.3.42f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.011661 seconds.
+- Loaded All Assemblies, in  0.523 seconds
+Native extension for WindowsStandalone target not found
+Native extension for Android target not found
+Android Extension - Scanning For ADB Devices 632 ms
+Native extension for WebGL target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.168 seconds
+Domain Reload Profiling: 1690ms
+	BeginReloadAssembly (186ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (0ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (3ms)
+	RebuildCommonClasses (43ms)
+	RebuildNativeTypeToScriptingClass (11ms)
+	initialDomainReloadingComplete (77ms)
+	LoadAllAssembliesAndSetupDomain (206ms)
+		LoadAssemblies (183ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (202ms)
+			TypeCache.Refresh (200ms)
+				TypeCache.ScanAssembly (175ms)
+			ScanForSourceGeneratedMonoScriptInfo (1ms)
+			ResolveRequiredComponents (1ms)
+	FinalizeReload (1168ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (1104ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (811ms)
+			SetLoadedEditorAssemblies (6ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (3ms)
+			ProcessInitializeOnLoadAttributes (208ms)
+			ProcessInitializeOnLoadMethodAttributes (76ms)
+			AfterProcessingInitializeOnLoad (0ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (0ms)
+========================================================================
+Worker process is ready to serve import requests
+Caller must complete domain reload
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  1.771 seconds
+Native extension for WindowsStandalone target not found
+Native extension for Android target not found
+Native extension for WebGL target not found
+Package Manager log level set to [2]
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.07 seconds
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.429 seconds
+Domain Reload Profiling: 3198ms
+	BeginReloadAssembly (234ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (6ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (36ms)
+	RebuildCommonClasses (36ms)
+	RebuildNativeTypeToScriptingClass (10ms)
+	initialDomainReloadingComplete (48ms)
+	LoadAllAssembliesAndSetupDomain (1441ms)
+		LoadAssemblies (779ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (810ms)
+			TypeCache.Refresh (724ms)
+				TypeCache.ScanAssembly (651ms)
+			ScanForSourceGeneratedMonoScriptInfo (72ms)
+			ResolveRequiredComponents (11ms)
+	FinalizeReload (1430ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (1232ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (30ms)
+			SetLoadedEditorAssemblies (5ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (88ms)
+			ProcessInitializeOnLoadAttributes (672ms)
+			ProcessInitializeOnLoadMethodAttributes (434ms)
+			AfterProcessingInitializeOnLoad (4ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (6ms)
+Refreshing native plugins compatible for Editor in 5.37 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 4342 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 37 unused Assets / (61.0 KB). Loaded Objects now: 4867.
+Memory consumption went from 172.4 MB to 172.3 MB.
+Total: 27.034300 ms (FindLiveObjects: 0.708800 ms CreateObjectMapping: 0.435700 ms MarkObjects: 25.417900 ms  DeleteObjects: 0.468300 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 9a22284fe3817be447336de3de66b15e -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 28292.741966 seconds.
+  path: Assets/YandexGame/ScriptsYG/Editor/PostProcessBuild/ModifyIndexFile/AdWhenLoadingGame.cs
+  artifactKey: Guid(5f42895cd7404fd4a938788acba51372) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/YandexGame/ScriptsYG/Editor/PostProcessBuild/ModifyIndexFile/AdWhenLoadingGame.cs using Guid(5f42895cd7404fd4a938788acba51372) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'f86b32c222ce3fe3ed80fa4526c7414d') in 0.118020 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.560472 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/CreationFeature/CreationFeature.cs
+  artifactKey: Guid(7f3d2376ad674134874305e05ad3acdf) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/CreationFeature/CreationFeature.cs using Guid(7f3d2376ad674134874305e05ad3acdf) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '9492890cba2b86dfeaa00c3572e156c3') in 0.012327 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/GameFieldFeature/GameFieldFeature.asmdef
+  artifactKey: Guid(59bc521da8b34ecca6196e19a9d98846) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/GameFieldFeature/GameFieldFeature.asmdef using Guid(59bc521da8b34ecca6196e19a9d98846) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'd9d6e0626b3bdbff359edc688e1170a2') in 0.013646 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/GameProgressFeature/GameProgressFeature.cs
+  artifactKey: Guid(825f346dde79456e9214e2a62c51f504) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/GameProgressFeature/GameProgressFeature.cs using Guid(825f346dde79456e9214e2a62c51f504) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'c233073bedcafd56950d1ab1bd6e2afd') in 0.008472 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/DestructionFeature/DestructionFeature.cs
+  artifactKey: Guid(df8937e0a62048b68cf2fab87cec6493) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/DestructionFeature/DestructionFeature.cs using Guid(df8937e0a62048b68cf2fab87cec6493) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'b7de670d40902d34238858956b074717') in 0.005241 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/ScrollSnapFeature/ScrollSnapFeature.asmdef
+  artifactKey: Guid(14a38b9f2bf7493c955014d9cbe30fcb) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/ScrollSnapFeature/ScrollSnapFeature.asmdef using Guid(14a38b9f2bf7493c955014d9cbe30fcb) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '6ead7ee02befebaea0cc7b202db242fc') in 0.004535 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/RewardFeature/RewardFeature.asmdef
+  artifactKey: Guid(43a73cd4293045d3a6aba651370822cf) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/RewardFeature/RewardFeature.asmdef using Guid(43a73cd4293045d3a6aba651370822cf) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '0b322308b19fcacbada7da4dd15bb3e0') in 0.003410 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/GameFieldFeature/GameFieldFeature.cs
+  artifactKey: Guid(b54a90e0d7024b99bb600c743ed1596e) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/GameFieldFeature/GameFieldFeature.cs using Guid(b54a90e0d7024b99bb600c743ed1596e) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '7c71a0565e10057471a2e797d7ce3acd') in 0.004182 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/PurchaseFeature/PurchaseFeature.asmdef
+  artifactKey: Guid(17e69bd4726446c58973b75ea5436490) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/PurchaseFeature/PurchaseFeature.asmdef using Guid(17e69bd4726446c58973b75ea5436490) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '09139a47f9c7f242e5a4e9a33fe0af6a') in 0.006296 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/GameScreenFeature/GameScreenFeature.asmdef
+  artifactKey: Guid(8d27d856c482481ea6fe5bd80ddd9f57) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/GameScreenFeature/GameScreenFeature.asmdef using Guid(8d27d856c482481ea6fe5bd80ddd9f57) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'ab30ab8e1e35d21be0c8b1172660ca52') in 0.003658 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.580679 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/TutorialFeature/TutorialFeature.cs
+  artifactKey: Guid(2d5ca5f2ad554ef194ae26222cccfe4f) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/TutorialFeature/TutorialFeature.cs using Guid(2d5ca5f2ad554ef194ae26222cccfe4f) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'e1119fe12e309fe0df3dde5467f83b9e') in 0.004629 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000038 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/VisualFeature/VisualFeature.cs
+  artifactKey: Guid(aa93933badb2407686ef336955da7331) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/VisualFeature/VisualFeature.cs using Guid(aa93933badb2407686ef336955da7331) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '323959debea93ff63e8e50e749c4d2ad') in 0.007211 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/VisualFeature/VisualFeature.asmdef
+  artifactKey: Guid(f84db9640b71424dbbfe4fad0dd9a1eb) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/VisualFeature/VisualFeature.asmdef using Guid(f84db9640b71424dbbfe4fad0dd9a1eb) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '2bd2686f8d3e24badc7a989f955281e1') in 0.004446 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/AnimalFeature/Systems/AnimalFeature.Systems.asmdef
+  artifactKey: Guid(4e01104dcff04f28bdc00151cc92f2df) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/AnimalFeature/Systems/AnimalFeature.Systems.asmdef using Guid(4e01104dcff04f28bdc00151cc92f2df) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'c58629f73998783911cbb1f5e724a55a') in 0.005190 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/AnimalFeature/Behaviours/AnimalEntityConnect.cs
+  artifactKey: Guid(983f2e1cc0e144ee856defdbffa697f3) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/AnimalFeature/Behaviours/AnimalEntityConnect.cs using Guid(983f2e1cc0e144ee856defdbffa697f3) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '077812cd3201188bca29a5a38c1177a2') in 0.005867 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/AudioFeature/Components/AudioFeature.Components.asmdef
+  artifactKey: Guid(23d2c12d94cd480ca74221598efc85cd) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/AudioFeature/Components/AudioFeature.Components.asmdef using Guid(23d2c12d94cd480ca74221598efc85cd) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '40426f555e93cd1e2cf35be3870615e1') in 0.003914 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000045 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/AudioFeature/Components/PlayOneShotAudioRequest.cs
+  artifactKey: Guid(e3f23e3bbd204f0592b8403767f55a40) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/AudioFeature/Components/PlayOneShotAudioRequest.cs using Guid(e3f23e3bbd204f0592b8403767f55a40) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'f637935b7817bcbe862129185116ebd6') in 0.004920 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/AudioFeature/Components/ApplyAudioEffectRequest.cs
+  artifactKey: Guid(d38276f7c79e49f7b93f98dda817981b) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/AudioFeature/Components/ApplyAudioEffectRequest.cs using Guid(d38276f7c79e49f7b93f98dda817981b) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '8d7281eaa307e1648df0d8aa2a7a6d4f') in 0.004000 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/AudioFeature/Components/AudioLoopMarker.cs
+  artifactKey: Guid(b1d1a56dd5ef4c8b8d985fdfd81bde7d) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/AudioFeature/Components/AudioLoopMarker.cs using Guid(b1d1a56dd5ef4c8b8d985fdfd81bde7d) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '5850206cd69c29f7edae283f8a2cb776') in 0.003452 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Plugins/Sirenix/Odin Inspector/Config/Resources/Sirenix/GlobalSerializationConfig.asset
+  artifactKey: Guid(10c64ce624eb4294ca38a1bc56361d33) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Plugins/Sirenix/Odin Inspector/Config/Resources/Sirenix/GlobalSerializationConfig.asset using Guid(10c64ce624eb4294ca38a1bc56361d33) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'e3adeff2676e7aac2b4ebd3acd1235a1') in 0.022700 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.536362 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/CameraFeature/Components/Render3DToUIRequest.cs
+  artifactKey: Guid(32aa50f0cc444f559ac7191be6a2630f) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/CameraFeature/Components/Render3DToUIRequest.cs using Guid(32aa50f0cc444f559ac7191be6a2630f) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'eb8bde8ce6364c35e0c4a736b7d48c08') in 0.004719 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000067 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/CoinFeature/Components/CatchCoinCollectAnimationCompletedRequest.cs
+  artifactKey: Guid(a452a7a927d04458ad8bec5c80effd53) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/CoinFeature/Components/CatchCoinCollectAnimationCompletedRequest.cs using Guid(a452a7a927d04458ad8bec5c80effd53) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '6a4ab31a0ee583862e77d0f606f68846') in 0.007660 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/CameraFeature/Components/Renderer3DCameraPrefab.cs
+  artifactKey: Guid(ad6aedd18ea142e89f8a26456576946a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/CameraFeature/Components/Renderer3DCameraPrefab.cs using Guid(ad6aedd18ea142e89f8a26456576946a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '0a6d8b90e59952c7cc72e1cf233521a5') in 0.006873 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/CoinFeature/Systems/CollectCoinSystem.cs
+  artifactKey: Guid(8a855831e82942e5a1ebd1d3e5e76b31) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/CoinFeature/Systems/CollectCoinSystem.cs using Guid(8a855831e82942e5a1ebd1d3e5e76b31) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '657755077ca9d4473d681278521e0694') in 0.004630 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/CoinFeature/Components/CreateCoinRequest.cs
+  artifactKey: Guid(55122be7c7c4476e8951ec541ccf1005) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/CoinFeature/Components/CreateCoinRequest.cs using Guid(55122be7c7c4476e8951ec541ccf1005) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '3508d75c8d59ed7c648fa3c50f426c31') in 0.004356 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/CoinFeature/Components/CoinCollectAnimationCompletedEvent.cs
+  artifactKey: Guid(9799c25f0655455c9d10c16b9e7f246c) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/CoinFeature/Components/CoinCollectAnimationCompletedEvent.cs using Guid(9799c25f0655455c9d10c16b9e7f246c) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '6d003657db86a6a0e047d0489642c9a8') in 0.004492 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/CoinFeature/Components/CoinSpawnedEvent.cs
+  artifactKey: Guid(80e82c637ef74e90a4f5b2b258225448) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/CoinFeature/Components/CoinSpawnedEvent.cs using Guid(80e82c637ef74e90a4f5b2b258225448) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'de60d7b43109b08c27844313b3ad83dc') in 0.005403 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/CoinFeature/Components/CoinsUpdatedEvent.cs
+  artifactKey: Guid(8b6c300147c944e8bcbed7ef03cab146) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/CoinFeature/Components/CoinsUpdatedEvent.cs using Guid(8b6c300147c944e8bcbed7ef03cab146) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '0d73fe850d228a29c6c15d1ad1efe67e') in 0.004301 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/CoinFeature/Components/UpdateCoinsRequest.cs
+  artifactKey: Guid(dc7c5d4562864ea4a4992e41c64ee37c) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/CoinFeature/Components/UpdateCoinsRequest.cs using Guid(dc7c5d4562864ea4a4992e41c64ee37c) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '2206f4777b0546c532ee4857ca32773e') in 0.003949 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/CoinFeature/Components/CoinDestroyedMarker.cs
+  artifactKey: Guid(40c734498d22474ba7e65813742da668) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/CoinFeature/Components/CoinDestroyedMarker.cs using Guid(40c734498d22474ba7e65813742da668) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '3edd66a55882510faebb184149f7314f') in 0.005299 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/CoinFeature/Components/CoinTag.cs
+  artifactKey: Guid(5435b0c4c7d24aeaaeafb9b418d5b64b) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/CoinFeature/Components/CoinTag.cs using Guid(5435b0c4c7d24aeaaeafb9b418d5b64b) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'd30b90cf65a633e8817353d5a77bad28') in 0.006628 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.514323 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/CommonFeature/Components/BoundExtents.cs
+  artifactKey: Guid(d6fbbd034ac94ff1acd03a22f14bbe73) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/CommonFeature/Components/BoundExtents.cs using Guid(d6fbbd034ac94ff1acd03a22f14bbe73) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'e1268a8f9f9f4591a087c8c3c9e44a0d') in 0.004994 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/CooldownFeature/Components/CooldownExpiredEvent.cs
+  artifactKey: Guid(c10c56d095be4998a3100338ba4f02d5) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/CooldownFeature/Components/CooldownExpiredEvent.cs using Guid(c10c56d095be4998a3100338ba4f02d5) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'e9e028be12463daceff37f159bdb5a55') in 0.005620 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/CooldownFeature/Components/CountdownMarker.cs
+  artifactKey: Guid(d113461c564a468faa3de2038318c98a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/CooldownFeature/Components/CountdownMarker.cs using Guid(d113461c564a468faa3de2038318c98a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'd4b52efcdd95b77b897b54308dda41a4') in 0.005664 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/CommonFeature/Components/TargetEntity.cs
+  artifactKey: Guid(ba7fbe7c8c844ef79f1d0364b0761800) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/CommonFeature/Components/TargetEntity.cs using Guid(ba7fbe7c8c844ef79f1d0364b0761800) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '7e050d5480f131a6de3ca9857f59df7f') in 0.004094 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/CooldownFeature/Components/DeleteOnExpiredMarker.cs
+  artifactKey: Guid(f0a8b8faf40245e2addc979f0296e390) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/CooldownFeature/Components/DeleteOnExpiredMarker.cs using Guid(f0a8b8faf40245e2addc979f0296e390) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '6db22d7b5c6b9bb7bb5e15ddb0a89df5') in 0.004617 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/CreationFeature/Systems/CreationChainStrategySystem.cs
+  artifactKey: Guid(562eb47597724d36b37756eed8903860) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/CreationFeature/Systems/CreationChainStrategySystem.cs using Guid(562eb47597724d36b37756eed8903860) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'ac91b7438a0b59ff7df25604691d62b4') in 0.004197 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/CooldownFeature/Systems/CooldownIntervalSystem.cs
+  artifactKey: Guid(abebe03643264cca99fac038c199846a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/CooldownFeature/Systems/CooldownIntervalSystem.cs using Guid(abebe03643264cca99fac038c199846a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '176987c00568f24288574a3e915bec0b') in 0.007045 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/CooldownFeature/Components/CooldownInterval.cs
+  artifactKey: Guid(7d9edd2a09cc40378c63c0a31fa75fa3) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/CooldownFeature/Components/CooldownInterval.cs using Guid(7d9edd2a09cc40378c63c0a31fa75fa3) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'b89cfcf56b939d62b008e95df4b63b4b') in 0.004249 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/CooldownFeature/Systems/CountdownSystem.cs
+  artifactKey: Guid(0eb8a548ebd648e7b95279e21920abf3) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/CooldownFeature/Systems/CountdownSystem.cs using Guid(0eb8a548ebd648e7b95279e21920abf3) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'cfa7c93c35938b58f52bcbac4abf27d4') in 0.005618 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/CooldownFeature/Systems/CooldownFeature.Systems.asmdef
+  artifactKey: Guid(f96e809caf65f6943b401ce49cca9934) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/CooldownFeature/Systems/CooldownFeature.Systems.asmdef using Guid(f96e809caf65f6943b401ce49cca9934) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'fcbc7910013eb705d9436a9ef4166bf5') in 0.004596 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/CreationFeature/Components/CreationChainStrategyTag.cs
+  artifactKey: Guid(883a4e75295c47fd8a50419ac6df647e) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/CreationFeature/Components/CreationChainStrategyTag.cs using Guid(883a4e75295c47fd8a50419ac6df647e) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '096ebe4d948ea58043db43a03e6226c6') in 0.004719 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.488279 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/DestructionFeature/Components/DestroyViewRequest.cs
+  artifactKey: Guid(f960578fe2204e00b9ce7fb1d62e47dc) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/DestructionFeature/Components/DestroyViewRequest.cs using Guid(f960578fe2204e00b9ce7fb1d62e47dc) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'f30816c528c44fc86838d5e521eebe21') in 0.004429 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000038 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/DestructionFeature/Systems/DestructionChainStrategySystem.cs
+  artifactKey: Guid(7bf2d8656b974e9fb733dc998f8a0d24) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/DestructionFeature/Systems/DestructionChainStrategySystem.cs using Guid(7bf2d8656b974e9fb733dc998f8a0d24) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'ebff184bedb718b9aedc8a16f8a02a5c') in 0.005753 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/DestructionFeature/Components/DiedEvent.cs
+  artifactKey: Guid(742b81a3867d4084a4ad97b78eae0b65) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/DestructionFeature/Components/DiedEvent.cs using Guid(742b81a3867d4084a4ad97b78eae0b65) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'c8017cdc7513c8d4c412d2775d5ca0cf') in 0.004425 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/GameFieldFeature/Components/GameField.cs
+  artifactKey: Guid(0c09ad774c1d40a18449dab3811e11a6) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/GameFieldFeature/Components/GameField.cs using Guid(0c09ad774c1d40a18449dab3811e11a6) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '5097ddf1d1abe0e779664e5e0bb1bd0f') in 0.005415 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/DestructionFeature/Systems/DestructionFeature.Systems.asmdef
+  artifactKey: Guid(ca5aeefe8994437fb4e6c19b6b664f6b) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/DestructionFeature/Systems/DestructionFeature.Systems.asmdef using Guid(ca5aeefe8994437fb4e6c19b6b664f6b) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'a1149fb32be02c93d00470e5f0dd789a') in 0.003494 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/GameAudioFeature/Components/AudioSettingsUpdatedEvent.cs
+  artifactKey: Guid(19814f70b422477e8a149dc5eeb3eaed) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/GameAudioFeature/Components/AudioSettingsUpdatedEvent.cs using Guid(19814f70b422477e8a149dc5eeb3eaed) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'db41261463148f577cfe7dad6ea254e9') in 0.007934 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/DestructionFeature/Components/DestructionFeature.Components.asmdef
+  artifactKey: Guid(cab565b24bc84120b3549a6275462192) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/DestructionFeature/Components/DestructionFeature.Components.asmdef using Guid(cab565b24bc84120b3549a6275462192) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '0de1149e758b849e994e624c66350da1') in 0.005263 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/GameAudioFeature/Systems/GameAudioFeature.Systems.asmdef
+  artifactKey: Guid(ba853848ee3b499e81121cad109a5da8) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/GameAudioFeature/Systems/GameAudioFeature.Systems.asmdef using Guid(ba853848ee3b499e81121cad109a5da8) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '60a982123866de6bab036a442648f8ed') in 0.005313 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/GameFieldFeature/Components/GameFieldDestructRequest.cs
+  artifactKey: Guid(b8a24a322e27455789f7102f5b3b4f74) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/GameFieldFeature/Components/GameFieldDestructRequest.cs using Guid(b8a24a322e27455789f7102f5b3b4f74) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '292cf835fe3462bb7764baa94e97e26f') in 0.004744 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/GameAudioFeature/Systems/SwitchAudioSystem.cs
+  artifactKey: Guid(71b0ad06317b4e32b1f53cdfcabc4d69) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/GameAudioFeature/Systems/SwitchAudioSystem.cs using Guid(71b0ad06317b4e32b1f53cdfcabc4d69) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '8690624f85c229729226e22376691840') in 0.004965 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/GameFieldFeature/Components/GameFieldAlgorithmCfg.cs
+  artifactKey: Guid(ac943f358b8e46039ec845214c97ef4a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/GameFieldFeature/Components/GameFieldAlgorithmCfg.cs using Guid(ac943f358b8e46039ec845214c97ef4a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '6599bd636979f4a132ea423f77980ed9') in 0.003974 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/GameAudioFeature/Components/GameAudioFeature.Components.asmdef
+  artifactKey: Guid(a2db8d594e924f79bd980a11ab78b0a8) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/GameAudioFeature/Components/GameAudioFeature.Components.asmdef using Guid(a2db8d594e924f79bd980a11ab78b0a8) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'c2bbffa7f2bd62b7d5976d9d7ac3d3ec') in 0.004294 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/GameAudioFeature/Systems/UpdateAudioSettingsSystem.cs
+  artifactKey: Guid(d4f88cea3f9a4d4b82a6c53cce58fb0f) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/GameAudioFeature/Systems/UpdateAudioSettingsSystem.cs using Guid(d4f88cea3f9a4d4b82a6c53cce58fb0f) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'f21770a6c4221b47bb5d46ca3cea14ce') in 0.005013 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.441213 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/GameFieldFeature/Components/GameFieldGeneratedMarker.cs
+  artifactKey: Guid(caa8c6b6f5bc46a8bf662e77b2303b38) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/GameFieldFeature/Components/GameFieldGeneratedMarker.cs using Guid(caa8c6b6f5bc46a8bf662e77b2303b38) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '2b358fddf661317989017fa352fa8981') in 0.004533 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/GameFlowFeature/Components/GameTag.cs
+  artifactKey: Guid(ee55b52b0d4748abbf29974ad3bda198) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/GameFlowFeature/Components/GameTag.cs using Guid(ee55b52b0d4748abbf29974ad3bda198) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '09f839796b985f12e9a87451b60b4dce') in 0.005417 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/GameFieldFeature/Systems/GameFieldSideClickSystem.cs
+  artifactKey: Guid(a5dc15bff1724b919defdff63b501543) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/GameFieldFeature/Systems/GameFieldSideClickSystem.cs using Guid(a5dc15bff1724b919defdff63b501543) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '49bf260ae38f24d0f0c9c8dc67747da5') in 0.006793 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/GameFlowFeature/Components/GameCreatedEvent.cs
+  artifactKey: Guid(58483f38842244ef831fe73fcb49ca00) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/GameFlowFeature/Components/GameCreatedEvent.cs using Guid(58483f38842244ef831fe73fcb49ca00) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'eada7f9bdf8a131ebe00bb19b0f635ae') in 0.004561 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/GameFieldFeature/Systems/GameFieldGrowthWaveAlgorithmSystem.cs
+  artifactKey: Guid(50597a84209847f19f59901b1680d7f6) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/GameFieldFeature/Systems/GameFieldGrowthWaveAlgorithmSystem.cs using Guid(50597a84209847f19f59901b1680d7f6) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '7945675f8e725ccd98f722ed6db7f22f') in 0.004457 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/GameFieldFeature/Components/TileGeneratedEvent.cs
+  artifactKey: Guid(9e65b3db87584b6ebaae9d620ac34304) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/GameFieldFeature/Components/TileGeneratedEvent.cs using Guid(9e65b3db87584b6ebaae9d620ac34304) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'd11bc3027e2e8c9f0c737116fde0c41d') in 0.003971 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000143 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/GameFieldFeature/Systems/GameFieldFeature.Systems.asmdef
+  artifactKey: Guid(0dbb3bc4a7084ed5b7d7e60b3061ab4b) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/GameFieldFeature/Systems/GameFieldFeature.Systems.asmdef using Guid(0dbb3bc4a7084ed5b7d7e60b3061ab4b) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'ad90e4c222fabeef5f24ba26a621defc') in 0.004434 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/GameFieldFeature/Components/GameFieldPlaneAlgorithmTag.cs
+  artifactKey: Guid(1b97b5f1e7ac46bca4158ec66aed6848) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/GameFieldFeature/Components/GameFieldPlaneAlgorithmTag.cs using Guid(1b97b5f1e7ac46bca4158ec66aed6848) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '54641075a419698528b6cda23fd7f67c') in 0.004336 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/GameFieldFeature/Components/GameFieldWaveAlgorithmTag.cs
+  artifactKey: Guid(2d93eb3d8e82413e99cdca9e63be977c) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/GameFieldFeature/Components/GameFieldWaveAlgorithmTag.cs using Guid(2d93eb3d8e82413e99cdca9e63be977c) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '1aa17d904488f3186ecb4fc81ee51c58') in 0.004340 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/GameFieldFeature/Extensions/Extensions.cs
+  artifactKey: Guid(18a7454c381d48799c0d269c9b1ad757) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/GameFieldFeature/Extensions/Extensions.cs using Guid(18a7454c381d48799c0d269c9b1ad757) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '2423103daae1488922527fff04f69412') in 0.004199 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/GameFieldFeature/Systems/RandomGameFieldAlgorithmSystem.cs
+  artifactKey: Guid(d0800d10b0fb47dbb3d1980c86d9b4e3) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/GameFieldFeature/Systems/RandomGameFieldAlgorithmSystem.cs using Guid(d0800d10b0fb47dbb3d1980c86d9b4e3) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '857c13e7cd985e05fb5b85211885fb70') in 0.004458 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.440521 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/GameFlowFeature/Components/Levels.cs
+  artifactKey: Guid(1641a7ffa436475caa30cfcfe4b2ddfb) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/GameFlowFeature/Components/Levels.cs using Guid(1641a7ffa436475caa30cfcfe4b2ddfb) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '580c3f728783613faf89962b3838f907') in 0.006874 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/GameFlowFeature/Systems/LevelVictoryCheckSystem.cs
+  artifactKey: Guid(0f63fd9d09d5409a9e56d8b91bc8c66b) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/GameFlowFeature/Systems/LevelVictoryCheckSystem.cs using Guid(0f63fd9d09d5409a9e56d8b91bc8c66b) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '6e659a337a759e332d36ec9a80a011d5') in 0.004596 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/GameFlowFeature/Systems/LevelVictorySystem.cs
+  artifactKey: Guid(dc51cc5f34dd4d459077b84856aaad93) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/GameFlowFeature/Systems/LevelVictorySystem.cs using Guid(dc51cc5f34dd4d459077b84856aaad93) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '8e8da3910c8ad5ca48f16ed1a41da4be') in 0.004187 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/GameOverTimerFeature/Components/GameOverTimerCreatedEvent.cs
+  artifactKey: Guid(5d50eb42c074488290d895f8ff2b64f5) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/GameOverTimerFeature/Components/GameOverTimerCreatedEvent.cs using Guid(5d50eb42c074488290d895f8ff2b64f5) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'bc9251264bc207e1b13a9b891cf8ba8f') in 0.004695 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/GameFlowFeature/Systems/LevelDefeatSystem.cs
+  artifactKey: Guid(5c52c32c832945f29625a3af5a879655) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/GameFlowFeature/Systems/LevelDefeatSystem.cs using Guid(5c52c32c832945f29625a3af5a879655) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'b964ccbab760f9a0127b5f7050af379f') in 0.004343 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/GameFlowFeature/Systems/TileGenerator7.cs
+  artifactKey: Guid(4a3a22125d1046589ee28f36d96b349e) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/GameFlowFeature/Systems/TileGenerator7.cs using Guid(4a3a22125d1046589ee28f36d96b349e) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '0665c57874d8e202fd17ed7728f0897d') in 0.004058 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/GameFlowFeature/Components/LevelTag.cs
+  artifactKey: Guid(eed86eeec189472fafb86987ce40294e) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/GameFlowFeature/Components/LevelTag.cs using Guid(eed86eeec189472fafb86987ce40294e) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'a63362f671410d7d309813ba4d046a49') in 0.005046 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/GameFlowFeature/Systems/TileGenerator6.cs
+  artifactKey: Guid(a0c0c942e042408d911acb7c991ba961) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/GameFlowFeature/Systems/TileGenerator6.cs using Guid(a0c0c942e042408d911acb7c991ba961) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '23c05412a8c920149483675774bdcc30') in 0.004098 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/GameFlowFeature/Components/LevelVictoryEvent.cs
+  artifactKey: Guid(a5bcab6b880e4ba4a8b77a3f5d479ed9) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/GameFlowFeature/Components/LevelVictoryEvent.cs using Guid(a5bcab6b880e4ba4a8b77a3f5d479ed9) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '47ba42c554dd697150404e87d1ab80b9') in 0.005413 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/GameFlowFeature/Systems/NextLevelSystem.cs
+  artifactKey: Guid(038888054ce045b49270c358990564f8) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/GameFlowFeature/Systems/NextLevelSystem.cs using Guid(038888054ce045b49270c358990564f8) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '1f67cb0dc9185b302c371c5545b56022') in 0.006063 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/GameFlowFeature/Components/NextLeveRequest.cs
+  artifactKey: Guid(4f1d289292494d1a90707223539e586c) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/GameFlowFeature/Components/NextLeveRequest.cs using Guid(4f1d289292494d1a90707223539e586c) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '72b26b08831465b5f4fc4b24af2e67aa') in 0.004559 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.683694 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/GameProgressFeature/Components/GameProgressFeature.Components.asmdef
+  artifactKey: Guid(7d2cd182f2e64db09162766d34de544c) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/GameProgressFeature/Components/GameProgressFeature.Components.asmdef using Guid(7d2cd182f2e64db09162766d34de544c) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '450819ccba923da8268fecf96c85169f') in 0.003198 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/GameProgressFeature/Systems/ResetPlayerProgressSystem.cs
+  artifactKey: Guid(af7ac43550ae4f519ace37e1afbc2e13) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/GameProgressFeature/Systems/ResetPlayerProgressSystem.cs using Guid(af7ac43550ae4f519ace37e1afbc2e13) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'd8a47e922a00e9bb61274f4913c46b9e') in 0.004491 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/GameScreenFeature/Components/PlayWidget.cs
+  artifactKey: Guid(d8970eebe62e499cba168a87addccbbc) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/GameScreenFeature/Components/PlayWidget.cs using Guid(d8970eebe62e499cba168a87addccbbc) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'aec85e68c8be627dec3c79e5acaa8b07') in 0.004284 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/GameProgressFeature/Systems/SaveLoadPlayerProgressSystem.cs
+  artifactKey: Guid(126cf966f5f4480a84098ded30e40939) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/GameProgressFeature/Systems/SaveLoadPlayerProgressSystem.cs using Guid(126cf966f5f4480a84098ded30e40939) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '832a4ea635f50deb179ff4c0f217f0a3') in 0.003881 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/GameScreenFeature/Components/PlayButtonTag.cs
+  artifactKey: Guid(efe22d436e664adeb0fe631811e912e3) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/GameScreenFeature/Components/PlayButtonTag.cs using Guid(efe22d436e664adeb0fe631811e912e3) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '59facb0be5148cc66f02fd3bc4c93dd6') in 0.003097 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/MovementFeature/Systems/CalculateMovementSpeedSystem.cs
+  artifactKey: Guid(3046839e47fd4f999bcd7f9ecf50a691) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/MovementFeature/Systems/CalculateMovementSpeedSystem.cs using Guid(3046839e47fd4f999bcd7f9ecf50a691) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'cf532ba1c20e733cdb3863f793ae580a') in 0.003501 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/MovementFeature/Components/MovableMarker.cs
+  artifactKey: Guid(c0d89a6f74654435ae9b0e51ab92934e) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/MovementFeature/Components/MovableMarker.cs using Guid(c0d89a6f74654435ae9b0e51ab92934e) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'abe8497e1f54d21687999558a36f2846') in 0.004576 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/MovementFeature/Components/MovementFeature.Components.asmdef
+  artifactKey: Guid(fa2b6cc505c3435e99050b5e8bea6c1c) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/MovementFeature/Components/MovementFeature.Components.asmdef using Guid(fa2b6cc505c3435e99050b5e8bea6c1c) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '597dd40095d599c2bce496d69cb368d5') in 0.007347 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/GameProgressFeature/Systems/GameProgressFeature.Systems.asmdef
+  artifactKey: Guid(695dbe704cd34277a758a08c66095287) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/GameProgressFeature/Systems/GameProgressFeature.Systems.asmdef using Guid(695dbe704cd34277a758a08c66095287) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '0399ff6d506eb450f213ec0f4dec0416') in 0.003770 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/GameScreenFeature/Components/GameScreen.cs
+  artifactKey: Guid(dae4b23ba68342b097daf1b09f674865) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/GameScreenFeature/Components/GameScreen.cs using Guid(dae4b23ba68342b097daf1b09f674865) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '00a7cb57468e624157371a0f77231dc8') in 0.003746 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/MovementFeature/Components/MovementDirection.cs
+  artifactKey: Guid(0ee943a6d4aa409fbeae0c7544c4037d) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/MovementFeature/Components/MovementDirection.cs using Guid(0ee943a6d4aa409fbeae0c7544c4037d) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '9c6c89399573e3c437294a1c6b5f9cac') in 0.003063 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.448161 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/MovementFeature/Systems/MovementFeature.Systems.asmdef
+  artifactKey: Guid(1f8a36ecd68345d0942ebdfb127c04d0) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/MovementFeature/Systems/MovementFeature.Systems.asmdef using Guid(1f8a36ecd68345d0942ebdfb127c04d0) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '435deeb7455167ea3989359ea7563aa3') in 0.004127 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/PlayerFeature/Components/PlayerFeature.Components.asmdef
+  artifactKey: Guid(e2cd5bdf6d814829a3b46eddbe5e5f1c) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/PlayerFeature/Components/PlayerFeature.Components.asmdef using Guid(e2cd5bdf6d814829a3b46eddbe5e5f1c) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '704ea770b856f06e280e983823901edc') in 0.003676 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/RateUsFeature/Systems/RateUsSystem.cs
+  artifactKey: Guid(52a8aa822f59454a9dfaf49758e15c51) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/RateUsFeature/Systems/RateUsSystem.cs using Guid(52a8aa822f59454a9dfaf49758e15c51) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'dccddc70752c0165cdb264ede71343df') in 0.004269 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/RewardFeature/Components/RewardEligibilityEvent.cs
+  artifactKey: Guid(013716a7bf00417fa3ea95bccbd76f97) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/RewardFeature/Components/RewardEligibilityEvent.cs using Guid(013716a7bf00417fa3ea95bccbd76f97) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '7429c347fc7faed22311f78404859aab') in 0.005077 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/PlayerFeature/Components/PlayerTag.cs
+  artifactKey: Guid(535046bd7a6d4641899e229dc1c6f671) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/PlayerFeature/Components/PlayerTag.cs using Guid(535046bd7a6d4641899e229dc1c6f671) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '8e4cb3af0a8de8c9828a6924c9b44dcc') in 0.003742 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/PurchaseFeature/Components/PurchaseTag.cs
+  artifactKey: Guid(14fcdf320811442aa0825bbdaf9aef60) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/PurchaseFeature/Components/PurchaseTag.cs using Guid(14fcdf320811442aa0825bbdaf9aef60) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '2e9805c2e09770740a02286e338fb74a') in 0.004002 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/PurchaseFeature/Components/Purchases.cs
+  artifactKey: Guid(2a265aaf36e041db8ac8e5d6b58a3737) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/PurchaseFeature/Components/Purchases.cs using Guid(2a265aaf36e041db8ac8e5d6b58a3737) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '02e1e9557b1ab4176b9437293012a258') in 0.003261 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/PurchaseFeature/Components/Purchase.cs
+  artifactKey: Guid(6db409e514fc4d66b9f32f37388c667a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/PurchaseFeature/Components/Purchase.cs using Guid(6db409e514fc4d66b9f32f37388c667a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '59f403d92faf7bfd5d130953d20fdeba') in 0.005312 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/RewardFeature/Components/Reward.cs
+  artifactKey: Guid(3823cfa664a74fabb1fa06a6eb9dd27c) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/RewardFeature/Components/Reward.cs using Guid(3823cfa664a74fabb1fa06a6eb9dd27c) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'd6467c9f029808bba048bc28bdd11159') in 0.003792 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/PurchaseFeature/Components/PurchaseFeature.Components.asmdef
+  artifactKey: Guid(9f2db5dfdbe940d39aab347d6f4dfee6) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/PurchaseFeature/Components/PurchaseFeature.Components.asmdef using Guid(9f2db5dfdbe940d39aab347d6f4dfee6) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '15a98d65c3d843d7eaa9f4fbbf7e97df') in 0.003298 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/RewardFeature/Components/RewardUpdatedEvent.cs
+  artifactKey: Guid(9763a8d749314458a4fe7832fa441a85) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/RewardFeature/Components/RewardUpdatedEvent.cs using Guid(9763a8d749314458a4fe7832fa441a85) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'af19bd94c9c0a316ca7a232083553d4f') in 0.006268 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.445844 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/RewardFeature/Systems/UpdateRewardSystem.cs
+  artifactKey: Guid(be5f0b966b7f4848b15851012a0ca0b6) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/RewardFeature/Systems/UpdateRewardSystem.cs using Guid(be5f0b966b7f4848b15851012a0ca0b6) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'b671e68c61423fa3fc3ae158344ac8a5') in 0.004324 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/ScrollSnapFeature/Components/EffectDisplacement.cs
+  artifactKey: Guid(f28b7098061f41d795a956c6243a77b0) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/ScrollSnapFeature/Components/EffectDisplacement.cs using Guid(f28b7098061f41d795a956c6243a77b0) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '84a9827fd096d4962ce4f03e95de51f8') in 0.003846 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/ScoreFeature/Systems/ScoresSystem.cs
+  artifactKey: Guid(bbcb1244a0494fdb9e24067e3daf3bfd) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/ScoreFeature/Systems/ScoresSystem.cs using Guid(bbcb1244a0494fdb9e24067e3daf3bfd) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '6eb1aca75d76a09e98928a0922e6a4b3') in 0.004335 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/ScrollSnapFeature/Components/ScrollItem.cs
+  artifactKey: Guid(ba25c7f965354e47adbe601b7dc5d95f) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/ScrollSnapFeature/Components/ScrollItem.cs using Guid(ba25c7f965354e47adbe601b7dc5d95f) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '739b5704275744f789883a1f242fb8f7') in 0.004676 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/ScoreFeature/Components/ScoreFeature.Components.asmdef
+  artifactKey: Guid(a465d30764c6466cbf1f80a07270fa2b) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/ScoreFeature/Components/ScoreFeature.Components.asmdef using Guid(a465d30764c6466cbf1f80a07270fa2b) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '7ebeefac95654a23deeeb13f415facbb') in 0.003318 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/RewardFeature/Utils/RewardFeature.Utils.asmdef
+  artifactKey: Guid(5d950991505c4fa7a5ff5ab875d9d6d6) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/RewardFeature/Utils/RewardFeature.Utils.asmdef using Guid(5d950991505c4fa7a5ff5ab875d9d6d6) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '73472be49a3fd844d60a35b6a258c0f1') in 0.003179 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/ScoreFeature/Systems/BestScoreSystem.cs
+  artifactKey: Guid(dc92c4421bdc486bb8d4e5229060f2fc) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/ScoreFeature/Systems/BestScoreSystem.cs using Guid(dc92c4421bdc486bb8d4e5229060f2fc) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '28a5942597ac303c971f7a56867a4a39') in 0.003106 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/ScoreFeature/Utils/ScoreFeature.Utils.asmdef
+  artifactKey: Guid(3e12766bdd304d99b0f30dfc89a96726) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/ScoreFeature/Utils/ScoreFeature.Utils.asmdef using Guid(3e12766bdd304d99b0f30dfc89a96726) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '921ec4011a089f1a51492ae461d6e2d9') in 0.004917 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/ScoreFeature/Components/Scores.cs
+  artifactKey: Guid(3e15144abe514264b6f441a550c1e2d7) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/ScoreFeature/Components/Scores.cs using Guid(3e15144abe514264b6f441a550c1e2d7) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '0766b729fa4aecafd2d33021567a6684') in 0.003892 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/ScrollSnapFeature/Components/LeavedEvent.cs
+  artifactKey: Guid(3b23f0e5c10b43a1990ea18e20c1fe8a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/ScrollSnapFeature/Components/LeavedEvent.cs using Guid(3b23f0e5c10b43a1990ea18e20c1fe8a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'a7c219e745410e6330adb03a25fd1411') in 0.003472 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/ScrollSnapFeature/Components/ScrollNearestRequest.cs
+  artifactKey: Guid(dfdc591be04c40a5bac1dc0e9e7d7a06) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/ScrollSnapFeature/Components/ScrollNearestRequest.cs using Guid(dfdc591be04c40a5bac1dc0e9e7d7a06) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'c48da993f0ad003cf0004c8c8ec07698') in 0.006416 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.447483 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/ScrollSnapFeature/Components/SetupScrollRequest.cs
+  artifactKey: Guid(3c0cf177d8c24f69942c4051e7340318) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/ScrollSnapFeature/Components/SetupScrollRequest.cs using Guid(3c0cf177d8c24f69942c4051e7340318) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'a5dd130a5939d79c6884e9feb32425f3') in 0.004669 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/ScrollSnapFeature/Components/SnappedState.cs
+  artifactKey: Guid(926f24fb159648bb9e37d4562cb7aaf1) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/ScrollSnapFeature/Components/SnappedState.cs using Guid(926f24fb159648bb9e37d4562cb7aaf1) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'f0e1c4f5eb7fd6491145d4bb544a3933') in 0.004562 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/ScrollSnapFeature/Systems/ScrollEffectsSystem.cs
+  artifactKey: Guid(4691859a999c463991ee9f221e69259c) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/ScrollSnapFeature/Systems/ScrollEffectsSystem.cs using Guid(4691859a999c463991ee9f221e69259c) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'be439db35a57566aa7c42808f0ded503') in 0.003836 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/ScrollSnapFeature/Utils/ScrollSnapFeature.Utils.asmdef
+  artifactKey: Guid(c47b84cf6a23421985d69c32c38e8b40) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/ScrollSnapFeature/Utils/ScrollSnapFeature.Utils.asmdef using Guid(c47b84cf6a23421985d69c32c38e8b40) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '03a65cc1cf24f5f5578eacb82b72c427') in 0.004249 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/ScrollSnapFeature/Components/UnlockScrollSnapRequest.cs
+  artifactKey: Guid(4b2530ff3b154fbd99229fe89801ec1d) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/ScrollSnapFeature/Components/UnlockScrollSnapRequest.cs using Guid(4b2530ff3b154fbd99229fe89801ec1d) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'f6134645e588f7581bc9fc3fdda100f8') in 0.005136 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/TweenFeature/Components/TweenStartDelay.cs
+  artifactKey: Guid(20dacece375d4f8882db5e11cf723907) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/TweenFeature/Components/TweenStartDelay.cs using Guid(20dacece375d4f8882db5e11cf723907) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '0bbc0247c03020a7721efe09c3ad97aa') in 0.003034 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/ScrollSnapFeature/Systems/DynamicLayoutSystem.cs
+  artifactKey: Guid(b2ca7eaecb604cac959b421cdcb9e3e2) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/ScrollSnapFeature/Systems/DynamicLayoutSystem.cs using Guid(b2ca7eaecb604cac959b421cdcb9e3e2) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '0f8a2adf63c73029aa272ae0cba9dfcd') in 0.004816 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/SettingsFeature/Components/SettingsConfig.cs
+  artifactKey: Guid(f026872482eb4d0385740f64f3aeee85) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/SettingsFeature/Components/SettingsConfig.cs using Guid(f026872482eb4d0385740f64f3aeee85) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'e7614e1c39393fe9895cc5e07a2915fb') in 0.003514 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/SettingsFeature/Components/CreateSettingsRequest.cs
+  artifactKey: Guid(1d461520587b419abd3ead9dbe3b0ad6) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/SettingsFeature/Components/CreateSettingsRequest.cs using Guid(1d461520587b419abd3ead9dbe3b0ad6) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '0fa6c2793686853c4a085eb0ad08e9aa') in 0.004651 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/ScrollSnapFeature/Components/UnlockedMarker.cs
+  artifactKey: Guid(3e46c5b3180944aa8035775a8882af18) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/ScrollSnapFeature/Components/UnlockedMarker.cs using Guid(3e46c5b3180944aa8035775a8882af18) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '569d830d0d53a3148927b96fd9f50473') in 0.003647 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/SettingsFeature/Systems/CreateSettingsSystem.cs
+  artifactKey: Guid(d2c99129497940d79178c0bd8f50f60e) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/SettingsFeature/Systems/CreateSettingsSystem.cs using Guid(d2c99129497940d79178c0bd8f50f60e) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'd70d317cdf8ab972af13f937340d69c1') in 0.006384 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.445216 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/VisualFeature/UIFeature/UIFeature.cs
+  artifactKey: Guid(5ca3074b7baa4b8f969278e6f0c2592a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/VisualFeature/UIFeature/UIFeature.cs using Guid(5ca3074b7baa4b8f969278e6f0c2592a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'c8c651bde07ca6c6dfffabad44582051') in 0.004237 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/VisualFeature/VFXFeature/VFXFeature.asmdef
+  artifactKey: Guid(d65f4e686b3d4306b513b381956adc77) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/VisualFeature/VFXFeature/VFXFeature.asmdef using Guid(d65f4e686b3d4306b513b381956adc77) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '6a5a72a5406d32732e18bc9138ed2ad5') in 0.003093 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/VisualFeature/UIFeature/Components/OriginalAnchoredPosition.cs
+  artifactKey: Guid(a0a525ebf32143fda9eaf195b06bb95b) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/VisualFeature/UIFeature/Components/OriginalAnchoredPosition.cs using Guid(a0a525ebf32143fda9eaf195b06bb95b) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '6df8ce6492ef97f6dc18db99d60ac80e') in 0.004441 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/VisualFeature/UIFeature/Components/MetaGameUIHiddenEvent.cs
+  artifactKey: Guid(f6b4bee119b74ec399ba97985b9eba5e) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/VisualFeature/UIFeature/Components/MetaGameUIHiddenEvent.cs using Guid(f6b4bee119b74ec399ba97985b9eba5e) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'c4c215099fef7232389249404f409c1f') in 0.005186 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/VisualFeature/UIFeature/Systems/CalculateOriginalPositionSystem.cs
+  artifactKey: Guid(9c0cf51a941e475d8be9d8a17decf0d2) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/VisualFeature/UIFeature/Systems/CalculateOriginalPositionSystem.cs using Guid(9c0cf51a941e475d8be9d8a17decf0d2) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '3f34beb35d618f0a058941573b7a40f7') in 0.007134 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/VisualFeature/UIFeature/Components/CalculateOriginalPositionRequest.cs
+  artifactKey: Guid(63cec8abd53c4ceba695fa43acff3919) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/VisualFeature/UIFeature/Components/CalculateOriginalPositionRequest.cs using Guid(63cec8abd53c4ceba695fa43acff3919) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '50637384eafe19339a5ddd56ef6bdaae') in 0.003584 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/PlayerFeature/InputFeature/Systems/InputSystem.cs
+  artifactKey: Guid(ab1d5a095cc949e5a2bccc30afa47d38) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/PlayerFeature/InputFeature/Systems/InputSystem.cs using Guid(ab1d5a095cc949e5a2bccc30afa47d38) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '5431823e7cfb58f4b2a1248753efbcaf') in 0.003132 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/VisualFeature/UIFeature/ButtonFeature/ButtonFeature.cs
+  artifactKey: Guid(760e38e091d94c3a9dbee41704aca904) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/VisualFeature/UIFeature/ButtonFeature/ButtonFeature.cs using Guid(760e38e091d94c3a9dbee41704aca904) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'ec720d6ed72b120ced6f0ec0b7e104a0') in 0.003531 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/PlayerFeature/InputFeature/Components/InputFeature.Components.asmdef
+  artifactKey: Guid(9c6b1f09bca1487f8e3cfbfa2f95d482) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/PlayerFeature/InputFeature/Components/InputFeature.Components.asmdef using Guid(9c6b1f09bca1487f8e3cfbfa2f95d482) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '170cd559b7d8fa80f1e4da9a88786b41') in 0.003423 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/PlayerFeature/InputFeature/Components/StandaloneDeviceMarker.cs
+  artifactKey: Guid(8c49c23fa9d642209fee0ad6a3ea99d0) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/PlayerFeature/InputFeature/Components/StandaloneDeviceMarker.cs using Guid(8c49c23fa9d642209fee0ad6a3ea99d0) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '3c0192f1982423f641571f3b12c52f21') in 0.003752 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/PlayerFeature/InputFeature/Components/MobileDeviceMarker.cs
+  artifactKey: Guid(2899860f98ef419994863f5522857c81) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/PlayerFeature/InputFeature/Components/MobileDeviceMarker.cs using Guid(2899860f98ef419994863f5522857c81) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '547738a3c73788695d9a51e592d31296') in 0.003698 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.447228 seconds.
+  path: Assets/_Project/LowpollyGameAssets/FX/PandaExplosionFx.prefab
+  artifactKey: Guid(28b12346b36830848a9dab963b4b61fe) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/FX/PandaExplosionFx.prefab using Guid(28b12346b36830848a9dab963b4b61fe) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '9f7c30ea0c9783e4b3455a83e82c6060') in 0.062723 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 21
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Sprites/Pictoicon_Unlock.Png
+  artifactKey: Guid(880268d1828b04a00a9592fb4bbaccdf) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Sprites/Pictoicon_Unlock.Png using Guid(880268d1828b04a00a9592fb4bbaccdf) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '1536f23bac7ca8be73381c8891716374') in 0.050879 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/VisualFeature/VFXFeature/Systems/PlayFxSystem.cs
+  artifactKey: Guid(043a70dbf93c4a9dbf10351a656682fd) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/VisualFeature/VFXFeature/Systems/PlayFxSystem.cs using Guid(043a70dbf93c4a9dbf10351a656682fd) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '758bc7bf7715f56e07aff887aee147aa') in 0.003876 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000110 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Sprites/Pictoicon_Volume_On.Png
+  artifactKey: Guid(2b6f3f1b29bd84366bdf5775a5aebcbb) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Sprites/Pictoicon_Volume_On.Png using Guid(2b6f3f1b29bd84366bdf5775a5aebcbb) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '1a30ee24819bcff97c40522acbe7bcce') in 0.012378 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/TextMesh Pro/Examples & Extras/Resources/Color Gradient Presets/Dark to Light Green - Vertical.asset
+  artifactKey: Guid(4c86a3366cd840348ebe8dc438570ee4) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/TextMesh Pro/Examples & Extras/Resources/Color Gradient Presets/Dark to Light Green - Vertical.asset using Guid(4c86a3366cd840348ebe8dc438570ee4) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '170d1c26357a35134cf4b2bc1346dca3') in 0.006319 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/AnimalFeature/IntegrationFeatures/DestructionFeature/Components/AnimalFeature.DestructionFeature.Components.asmdef
+  artifactKey: Guid(0cfd255cf3b04b5c80d301cd5f01c90c) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/AnimalFeature/IntegrationFeatures/DestructionFeature/Components/AnimalFeature.DestructionFeature.Components.asmdef using Guid(0cfd255cf3b04b5c80d301cd5f01c90c) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'c8138ec1d813cf9f64cf378c5f54a28e') in 0.004081 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Sprites/Pictoicon_Arrow_Bottom.Png
+  artifactKey: Guid(1220d8e2e70859544a7b0d5f2abeb69f) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Sprites/Pictoicon_Arrow_Bottom.Png using Guid(1220d8e2e70859544a7b0d5f2abeb69f) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '526681ddd7918bcb833d776f9fb49f43') in 0.015398 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/AnimalFeature/IntegrationFeatures/AudioFeature/Components/AnimalFeature.AudioFeature.Components.asmdef
+  artifactKey: Guid(1cc824aac0c54da299fdf785515b9275) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/AnimalFeature/IntegrationFeatures/AudioFeature/Components/AnimalFeature.AudioFeature.Components.asmdef using Guid(1cc824aac0c54da299fdf785515b9275) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'b7f8e70322bebeeefdacc6cefdcdae95') in 0.004012 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Plugins/PrimeTween/Demo/Scripts/Headlights.cs
+  artifactKey: Guid(7bc81275df8d244a1a7568f9443b5e93) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Plugins/PrimeTween/Demo/Scripts/Headlights.cs using Guid(7bc81275df8d244a1a7568f9443b5e93) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'cd13b605891c8fd88017eb573cd378d4') in 0.004098 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Textures/cubeworld_glow.tga
+  artifactKey: Guid(2e8c97a0a8e87b540a1b5ff8199131b3) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Textures/cubeworld_glow.tga using Guid(2e8c97a0a8e87b540a1b5ff8199131b3) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '276580d5bf2a91439898da52869d95e2') in 0.009577 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Materials/CubeStone.mat
+  artifactKey: Guid(ed771cb329404cc4d84d68d56303c8b7) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Materials/CubeStone.mat using Guid(ed771cb329404cc4d84d68d56303c8b7) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '6ab9146062b14752f27777d33b889d8b') in 0.035317 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/TextMesh Pro/Examples & Extras/Resources/Color Gradient Presets/Light to Dark Green - Vertical.asset
+  artifactKey: Guid(5cf8ae092ca54931b443bec5148f3c59) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/TextMesh Pro/Examples & Extras/Resources/Color Gradient Presets/Light to Dark Green - Vertical.asset using Guid(5cf8ae092ca54931b443bec5148f3c59) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'fcd881d1fbfd1f5b52643c65503fb8e9') in 0.004721 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Plugins/Sirenix/Assemblies/NoEditor/Sirenix.Serialization.dll
+  artifactKey: Guid(5651992cdad94894a3af7dc3f1da9170) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Plugins/Sirenix/Assemblies/NoEditor/Sirenix.Serialization.dll using Guid(5651992cdad94894a3af7dc3f1da9170) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '5eee6aed2defe8f406eda119fd86c95f') in 0.012131 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Plugins/PrimeTween/Demo/Scripts/SwipeTutorial.cs
+  artifactKey: Guid(d20b7aac1e6a4f1dbdbe52c7ca1ad4b4) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Plugins/PrimeTween/Demo/Scripts/SwipeTutorial.cs using Guid(d20b7aac1e6a4f1dbdbe52c7ca1ad4b4) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'de84afc0512d648b2180e270d739257a') in 0.003730 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Plugins/PrimeTween/Demo/Scripts/SqueezeAnimation.cs
+  artifactKey: Guid(613ad9fe5121a4b02b556b6b16cad710) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Plugins/PrimeTween/Demo/Scripts/SqueezeAnimation.cs using Guid(613ad9fe5121a4b02b556b6b16cad710) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'a61d6d5b83a0d1e393e71696636e8f1d') in 0.004010 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Sprites/Tut03.png
+  artifactKey: Guid(68934a6f5bad3e444bf6eedb91e7bc58) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Sprites/Tut03.png using Guid(68934a6f5bad3e444bf6eedb91e7bc58) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '7c122d757b345e34d652dc4655c19b3e') in 0.018189 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Sprites/Tut02.png
+  artifactKey: Guid(c10a1f40ebe2cc74caa85513ea7ae623) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Sprites/Tut02.png using Guid(c10a1f40ebe2cc74caa85513ea7ae623) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '4bbd8afedbd138978b0481bedf395729') in 0.022422 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Anton SDF.asset
+  artifactKey: Guid(8a89fa14b10d46a99122fd4f73fca9a2) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Anton SDF.asset using Guid(8a89fa14b10d46a99122fd4f73fca9a2) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '67e7501245b06f95ba20b2095c84a2f5') in 0.044711 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 5
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Sprites/Circles.png
+  artifactKey: Guid(b27bcf37600cca24196520251965a496) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Sprites/Circles.png using Guid(b27bcf37600cca24196520251965a496) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '629f0ffd87f2238bc47e42a3d1f27a09') in 0.019108 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 6
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/AnimalFeature/IntegrationFeatures/CreationFeature/Systems/AnimalFeature.CreationFeature.Systems.asmdef
+  artifactKey: Guid(a3363e1d977c4b91a53418c71e08cd9c) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/AnimalFeature/IntegrationFeatures/CreationFeature/Systems/AnimalFeature.CreationFeature.Systems.asmdef using Guid(a3363e1d977c4b91a53418c71e08cd9c) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '7133a1f06303b136ee347ff06c0f066a') in 0.004982 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Materials/Circles.mat
+  artifactKey: Guid(f7d420caf00b4e74c88b3682321312dd) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Materials/Circles.mat using Guid(f7d420caf00b4e74c88b3682321312dd) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'f8a3825bb5e32d66dd6ff209d6e7097b') in 0.005416 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Sprites/Pictoicon_Music_Off.Png
+  artifactKey: Guid(0a241bc25d8e7419dbec683444a2dde6) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/Sprites/Pictoicon_Music_Off.Png using Guid(0a241bc25d8e7419dbec683444a2dde6) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '472a185537407b33391b0cdf60b65182') in 0.016070 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Plugins/Sirenix/Assemblies/NoEmitAndNoEditor/Sirenix.Serialization.dll
+  artifactKey: Guid(d2a8f0021d6b47c5923d8972dfb81ef1) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Plugins/Sirenix/Assemblies/NoEmitAndNoEditor/Sirenix.Serialization.dll using Guid(d2a8f0021d6b47c5923d8972dfb81ef1) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '9f44062555d20a1f35234ff7b50b3326') in 0.008067 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/TextMesh Pro/Examples & Extras/Resources/Color Gradient Presets/Yellow to Orange - Vertical.asset
+  artifactKey: Guid(69a525efa7e6472eab268f6ea605f06e) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/TextMesh Pro/Examples & Extras/Resources/Color Gradient Presets/Yellow to Orange - Vertical.asset using Guid(69a525efa7e6472eab268f6ea605f06e) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'c124202db6d9b44dbe3248aa19e0919d') in 0.004497 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/AnimalFeature/IntegrationFeatures/CreationFeature/Components/AnimalPositionedEvent.cs
+  artifactKey: Guid(8256d0edc57343528b0de48cac52d410) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/AnimalFeature/IntegrationFeatures/CreationFeature/Components/AnimalPositionedEvent.cs using Guid(8256d0edc57343528b0de48cac52d410) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'aa1eb5b8e1fbe804cd975dc2bd87f050') in 0.004080 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.102553 seconds.
+  path: Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Oswald Bold SDF.asset
+  artifactKey: Guid(0161d805a3764c089bef00bfe00793f5) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Oswald Bold SDF.asset using Guid(0161d805a3764c089bef00bfe00793f5) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '0c8769d5ef4260a7a353e22078a743bb') in 0.017790 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 5
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/ScoreFeature/IntegrationFeatures/UIFeature/Components/ScoreFeature.UIFeature.Components.asmdef
+  artifactKey: Guid(ccac94c591384eec8745ae7acb5fb9e3) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/ScoreFeature/IntegrationFeatures/UIFeature/Components/ScoreFeature.UIFeature.Components.asmdef using Guid(ccac94c591384eec8745ae7acb5fb9e3) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'abc878842f996a95a830ab7191b21b7e') in 0.013723 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000040 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/CoinFeature/IntegrationFeatures/DestructionFeature/Systems/CoinFeature.DestructionFeature.Systems.asmdef
+  artifactKey: Guid(0fa65a60b6b84b3e800c27abf49d6bc6) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/CoinFeature/IntegrationFeatures/DestructionFeature/Systems/CoinFeature.DestructionFeature.Systems.asmdef using Guid(0fa65a60b6b84b3e800c27abf49d6bc6) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '134087a259419d6eaba78ec9a41454f2') in 0.012448 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/GameOverTimerFeature/IntegrationFeatures/UIFeature/Components/CatchGameOverClosedRequest.cs
+  artifactKey: Guid(9cbdd2347cf241499b340c1ddd469997) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/GameOverTimerFeature/IntegrationFeatures/UIFeature/Components/CatchGameOverClosedRequest.cs using Guid(9cbdd2347cf241499b340c1ddd469997) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '53aa16b44ebc25d070efa79f34c1e5d5') in 0.004953 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/RewardFeature/IntegrationFeatures/AudioFeature/Components/RewardFeature.AudioFeature.Components.asmdef
+  artifactKey: Guid(da04abe2da1b4bdebd82e37042dfc048) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/RewardFeature/IntegrationFeatures/AudioFeature/Components/RewardFeature.AudioFeature.Components.asmdef using Guid(da04abe2da1b4bdebd82e37042dfc048) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'dece11034616a25272906580164b605a') in 0.005773 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/RewardFeature/IntegrationFeatures/AudioFeature/Components/ConfettiExplodedAudioConfig.cs
+  artifactKey: Guid(737d22015be24518bacf13375740018b) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/RewardFeature/IntegrationFeatures/AudioFeature/Components/ConfettiExplodedAudioConfig.cs using Guid(737d22015be24518bacf13375740018b) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'ba00afc2bf42690eba03070cda0584f9') in 0.005053 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000048 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/RewardFeature/IntegrationFeatures/UIFeature/Components/CloseRewardWindowButtonTag.cs
+  artifactKey: Guid(8e49d951af5e4f45b2f14bcc748ea300) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/RewardFeature/IntegrationFeatures/UIFeature/Components/CloseRewardWindowButtonTag.cs using Guid(8e49d951af5e4f45b2f14bcc748ea300) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '41023759984c96a0329e9804ee2bd942') in 0.005261 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/AnimalFeature/IntegrationFeatures/UIFeature/Components/AnimalShopWindowButtonTag.cs
+  artifactKey: Guid(c417f8fd21b741e0932da7261a36c98b) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/AnimalFeature/IntegrationFeatures/UIFeature/Components/AnimalShopWindowButtonTag.cs using Guid(c417f8fd21b741e0932da7261a36c98b) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'a3599f6744509b7724d7caca8bf8974b') in 0.005913 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/GameOverTimerFeature/IntegrationFeatures/UIFeature/Systems/CloseGameOverTimerSystem.cs
+  artifactKey: Guid(620c3058466f49049535b80d998a973c) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/GameOverTimerFeature/IntegrationFeatures/UIFeature/Systems/CloseGameOverTimerSystem.cs using Guid(620c3058466f49049535b80d998a973c) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'fe248a5600b19389537d77842ef32a09') in 0.004277 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/RewardFeature/IntegrationFeatures/UIFeature/Components/CatchRewardCoinCountDisplayedRequest.cs
+  artifactKey: Guid(495462d2ad5146dfa27c714c9cabd7cc) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/RewardFeature/IntegrationFeatures/UIFeature/Components/CatchRewardCoinCountDisplayedRequest.cs using Guid(495462d2ad5146dfa27c714c9cabd7cc) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'ea7b5c7c0efb8a5d243b80048641ffe5') in 0.004623 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/CoinFeature/IntegrationFeatures/DestructionFeature/Systems/CoinDestructionSystem.cs
+  artifactKey: Guid(346004aa8e06480b8caff0b9a73a3a7d) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/CoinFeature/IntegrationFeatures/DestructionFeature/Systems/CoinDestructionSystem.cs using Guid(346004aa8e06480b8caff0b9a73a3a7d) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '44713cc536e0134e9f972caebbc42cf5') in 0.005392 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/AnimalFeature/IntegrationFeatures/UIFeature/Systems/CloseAnimalsShopWindowSystem.cs
+  artifactKey: Guid(a314a79f75e5cbe4c8774d6fa944841a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/AnimalFeature/IntegrationFeatures/UIFeature/Systems/CloseAnimalsShopWindowSystem.cs using Guid(a314a79f75e5cbe4c8774d6fa944841a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '10c521d25861dde6c6e66c8cbae9d046') in 0.007927 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/RewardFeature/IntegrationFeatures/UIFeature/Components/CatchConfettiExplodedRequest.cs
+  artifactKey: Guid(5c1dac91b9c744359c15e2c3b4717ae9) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/RewardFeature/IntegrationFeatures/UIFeature/Components/CatchConfettiExplodedRequest.cs using Guid(5c1dac91b9c744359c15e2c3b4717ae9) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '0541e917b0fe19adf66466eac9588434') in 0.005600 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/PurchaseFeature/IntegrationFeatures/UIFeature/Components/PurchaseFeature.UIFeature.Components.asmdef
+  artifactKey: Guid(b6ae91fa04c64101ad4d38d8a7f66e9a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/PurchaseFeature/IntegrationFeatures/UIFeature/Components/PurchaseFeature.UIFeature.Components.asmdef using Guid(b6ae91fa04c64101ad4d38d8a7f66e9a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '9656b1115b0e19407ea901de0077312a') in 0.005104 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/GameOverTimerFeature/IntegrationFeatures/AudioFeature/Components/GameOverTimerFeature.AudioFeature.Components.asmdef
+  artifactKey: Guid(98911a1607424ad7b66efb3b5050082d) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/GameOverTimerFeature/IntegrationFeatures/AudioFeature/Components/GameOverTimerFeature.AudioFeature.Components.asmdef using Guid(98911a1607424ad7b66efb3b5050082d) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '5822106d35058834b70c3e50e606c992') in 0.004445 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/RewardFeature/IntegrationFeatures/UIFeature/Components/RewardWindow.cs
+  artifactKey: Guid(d51cf2efa63645e6b5084b5788f81b32) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/RewardFeature/IntegrationFeatures/UIFeature/Components/RewardWindow.cs using Guid(d51cf2efa63645e6b5084b5788f81b32) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '5023c36ed6c6c3db8aec4521eaa3e3c4') in 0.005478 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/SettingsFeature/IntegrationFeatures/UIFeature/Components/SettingsPopupTag.cs
+  artifactKey: Guid(e3c9038b01404311887e3610e2a57f15) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/SettingsFeature/IntegrationFeatures/UIFeature/Components/SettingsPopupTag.cs using Guid(e3c9038b01404311887e3610e2a57f15) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'b841c2d87d139262fae08f68c62a4fe1') in 0.006149 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/YandexGame/ScriptsYG/Leaderboards/Editor/YandexGame.Leaderboards.Editor.asmref
+  artifactKey: Guid(9c5195e2aa62feb4190e0baa3d0ec2b5) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/YandexGame/ScriptsYG/Leaderboards/Editor/YandexGame.Leaderboards.Editor.asmref using Guid(9c5195e2aa62feb4190e0baa3d0ec2b5) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '115489a8cd4f41b74cbdf439a8c9b513') in 0.006377 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/RewardFeature/IntegrationFeatures/UIFeature/Components/Sunshine.cs
+  artifactKey: Guid(e3acdb49d43e4884a7fc47d4a32d208a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/RewardFeature/IntegrationFeatures/UIFeature/Components/Sunshine.cs using Guid(e3acdb49d43e4884a7fc47d4a32d208a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '1108fcde0b00100d9c6248e4baf481b0') in 0.006642 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/GameProgressFeature/IntegrationFeatures/UIFeature/Components/GameProgressFeature.UIFeature.Components.asmdef
+  artifactKey: Guid(03f665eb1f8a4b18b4631cdaf282d9b5) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/GameProgressFeature/IntegrationFeatures/UIFeature/Components/GameProgressFeature.UIFeature.Components.asmdef using Guid(03f665eb1f8a4b18b4631cdaf282d9b5) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '593cff5c3365b9297471f96ddc8f0df2') in 0.005842 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000038 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/GameFlowFeature/IntegrationFeatures/AudioFeature/Components/MenuAudio.cs
+  artifactKey: Guid(029f14039a544b66bc98394039f48c9f) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/GameFlowFeature/IntegrationFeatures/AudioFeature/Components/MenuAudio.cs using Guid(029f14039a544b66bc98394039f48c9f) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '07a1aaa9ccb08ebbd578583c52a0ad76') in 0.006465 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/AnimalFeature/IntegrationFeatures/UIFeature/Components/AnimalPurchaseWindowClosedEvent.cs
+  artifactKey: Guid(14144a56ba244ff99c55d000d6edd1da) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/AnimalFeature/IntegrationFeatures/UIFeature/Components/AnimalPurchaseWindowClosedEvent.cs using Guid(14144a56ba244ff99c55d000d6edd1da) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '96c12d19a0b466314752c80111cd85b3') in 0.008112 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/TutorialFeature/IntegrationFeatures/UIFeature/Systems/TutorialSystem.cs
+  artifactKey: Guid(6ebc14a9c2784e9bbc36df8677d6abf8) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/TutorialFeature/IntegrationFeatures/UIFeature/Systems/TutorialSystem.cs using Guid(6ebc14a9c2784e9bbc36df8677d6abf8) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '3e09187d41c0556e899b5e4b035f5207') in 0.006037 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/GameOverTimerFeature/IntegrationFeatures/UIFeature/Components/GameOverTimerOpenedEvent.cs
+  artifactKey: Guid(0dc7f80c23564a2fabe5d2bd814e6535) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/GameOverTimerFeature/IntegrationFeatures/UIFeature/Components/GameOverTimerOpenedEvent.cs using Guid(0dc7f80c23564a2fabe5d2bd814e6535) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'f03107c902ebdbf5dcdc9987e147ef1c') in 0.006174 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/YandexGame/ScriptsYG/InfoYG/Editor/InfoYGEditor.cs
+  artifactKey: Guid(7afd507869c31d941aef2149638e7a6a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/YandexGame/ScriptsYG/InfoYG/Editor/InfoYGEditor.cs using Guid(7afd507869c31d941aef2149638e7a6a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '8e5d2ba785d4358cb7614a61e7f7ae3f') in 0.005173 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/GameOverTimerFeature/IntegrationFeatures/AudioFeature/Components/GameOverTimerTickAudioConfig.cs
+  artifactKey: Guid(0ce449f3eef04a428f286b872cdbbc4c) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/GameOverTimerFeature/IntegrationFeatures/AudioFeature/Components/GameOverTimerTickAudioConfig.cs using Guid(0ce449f3eef04a428f286b872cdbbc4c) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'b13c8850578a983b942d108007ea5f66') in 0.004400 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/CoinFeature/IntegrationFeatures/UIFeature/Components/CoinFeature.UIFeature.Components.asmdef
+  artifactKey: Guid(3ad484b8a45b4ce48cf16a3d53e9d3ef) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/CoinFeature/IntegrationFeatures/UIFeature/Components/CoinFeature.UIFeature.Components.asmdef using Guid(3ad484b8a45b4ce48cf16a3d53e9d3ef) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '28723109c060dcf09e2331be213e5922') in 0.005112 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/AnimalFeature/IntegrationFeatures/UIFeature/Systems/CameraSizeCalculator.cs
+  artifactKey: Guid(570856425a8241a8a830d809bd0f48b4) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/AnimalFeature/IntegrationFeatures/UIFeature/Systems/CameraSizeCalculator.cs using Guid(570856425a8241a8a830d809bd0f48b4) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'bc574e8ab9488c51a5e59dbf543b862e') in 0.006303 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/RewardFeature/IntegrationFeatures/UIFeature/Systems/RewardFeature.UIFeature.Systems.asmdef
+  artifactKey: Guid(d263154ab4894651a6a3929013133f8c) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/RewardFeature/IntegrationFeatures/UIFeature/Systems/RewardFeature.UIFeature.Systems.asmdef using Guid(d263154ab4894651a6a3929013133f8c) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '9b739036addf12b5895119f44ca25866') in 0.005370 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/VisualFeature/UIFeature/ButtonFeature/Editor/DragonButtonEditor.cs
+  artifactKey: Guid(524358ad04cc401bbc6a09c2d6cdc02b) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/VisualFeature/UIFeature/ButtonFeature/Editor/DragonButtonEditor.cs using Guid(524358ad04cc401bbc6a09c2d6cdc02b) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '5f0a6662b141bc16e5beea3094821f45') in 0.006949 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/VisualFeature/UIFeature/ButtonFeature/Components/ButtonClickedEvent.cs
+  artifactKey: Guid(0f102c5c3caf477092d85b5bed050be8) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/VisualFeature/UIFeature/ButtonFeature/Components/ButtonClickedEvent.cs using Guid(0f102c5c3caf477092d85b5bed050be8) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '5b5bfdf5865cec64c374582b76d09b16') in 0.009761 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000036 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/SettingsFeature/IntegrationFeatures/UIFeature/Systems/SettingsFeature.UIFeature.Systems.asmdef
+  artifactKey: Guid(8db6af40ba3c40a792e4c86e67bb3579) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/SettingsFeature/IntegrationFeatures/UIFeature/Systems/SettingsFeature.UIFeature.Systems.asmdef using Guid(8db6af40ba3c40a792e4c86e67bb3579) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'ad1777d4c56ab1428c666813671aac95') in 0.005032 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/VisualFeature/UIFeature/ButtonFeature/Behaviours/DragonButton.cs
+  artifactKey: Guid(c0305e91b2274b5cb192747d4fec8439) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/VisualFeature/UIFeature/ButtonFeature/Behaviours/DragonButton.cs using Guid(c0305e91b2274b5cb192747d4fec8439) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '15f2f363f7279dc217d8d318ff1227bb') in 0.004037 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/YandexGame/ScriptsYG/Leaderboards/Editor/Leaderboards_js.js
+  artifactKey: Guid(8db9b444acdba894fa2f81308c3d79d5) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/YandexGame/ScriptsYG/Leaderboards/Editor/Leaderboards_js.js using Guid(8db9b444acdba894fa2f81308c3d79d5) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'd91db9ac1dca298f5f46e8609cd1021b') in 0.004273 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/YandexGame/ScriptsYG/Editor/Icons/Icon_YandexGame.png
+  artifactKey: Guid(75e2137d812e0484ca28df46b6bbc6f2) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/YandexGame/ScriptsYG/Editor/Icons/Icon_YandexGame.png using Guid(75e2137d812e0484ca28df46b6bbc6f2) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '56e369db2804ae4bbcecd08986cc65a3') in 0.015386 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000044 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/RewardFeature/IntegrationFeatures/AudioFeature/Systems/RewardFeature.AudioFeature.Systems.asmdef
+  artifactKey: Guid(6e10f71df3344a7d996ab583d0297ed2) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/RewardFeature/IntegrationFeatures/AudioFeature/Systems/RewardFeature.AudioFeature.Systems.asmdef using Guid(6e10f71df3344a7d996ab583d0297ed2) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '954bbb28170d698dc0e17214fb417866') in 0.004722 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/YandexGame/ScriptsYG/Editor/Utils/DefineSymbols.cs
+  artifactKey: Guid(81e00845a563cb142aba772859940c67) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/YandexGame/ScriptsYG/Editor/Utils/DefineSymbols.cs using Guid(81e00845a563cb142aba772859940c67) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'd6e9e332631e81a26bfdb399181f5a20') in 0.006248 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/GameFieldFeature/IntegrationFeatures/AudioFeature/Components/GameFieldGeneratedAudioConfig.cs
+  artifactKey: Guid(62059ee369844a3f99e31a5cb1bf9301) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/GameFieldFeature/IntegrationFeatures/AudioFeature/Components/GameFieldGeneratedAudioConfig.cs using Guid(62059ee369844a3f99e31a5cb1bf9301) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '57995d1653fe1ca315b21c98a3a69c1e') in 0.008263 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000044 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/AnimalFeature/IntegrationFeatures/UIFeature/Components/AnimalsShopWindowClosedMarker.cs
+  artifactKey: Guid(4c9bd7145f9746518301bf2b8118946e) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/AnimalFeature/IntegrationFeatures/UIFeature/Components/AnimalsShopWindowClosedMarker.cs using Guid(4c9bd7145f9746518301bf2b8118946e) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '0f5482724a8762fe6496693994a9723e') in 0.008860 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000058 seconds.
+  path: Assets/YandexGame/ScriptsYG/Editor/Icons/Icon_ViewingAdsYG.png
+  artifactKey: Guid(5d6bf6c13902ad54e9cdbe0a54788d33) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/YandexGame/ScriptsYG/Editor/Icons/Icon_ViewingAdsYG.png using Guid(5d6bf6c13902ad54e9cdbe0a54788d33) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '175a9fbed283bb5841a1b6fa43c7623a') in 0.014049 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/AnimalFeature/IntegrationFeatures/UIFeature/Components/AnimalsShopWindow.cs
+  artifactKey: Guid(5ce2591d036749f2939f87be3aa99392) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/AnimalFeature/IntegrationFeatures/UIFeature/Components/AnimalsShopWindow.cs using Guid(5ce2591d036749f2939f87be3aa99392) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '292bd8201eef141a342a694dc91f20b3') in 0.004723 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/YandexGame/ScriptsYG/Payments/Editor/Payments_build.cs
+  artifactKey: Guid(544803c8d26197347aa342bbb9950cde) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/YandexGame/ScriptsYG/Payments/Editor/Payments_build.cs using Guid(544803c8d26197347aa342bbb9950cde) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '964838598d9616120be3054a00c59c42') in 0.005190 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/YandexGame/ScriptsYG/Leaderboards/InternalScripts/UtilsLB.cs
+  artifactKey: Guid(b0c03e5aaed517748a16d944115fccc9) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/YandexGame/ScriptsYG/Leaderboards/InternalScripts/UtilsLB.cs using Guid(b0c03e5aaed517748a16d944115fccc9) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'd608a86cbb21d118c364f122914d1426') in 0.005797 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/GameAudioFeature/IntegrationFeatures/UIFeature/Components/SoundButtonTag.cs
+  artifactKey: Guid(d16ca910b7b24b54a35584195035fed3) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/GameAudioFeature/IntegrationFeatures/UIFeature/Components/SoundButtonTag.cs using Guid(d16ca910b7b24b54a35584195035fed3) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'cac29005a880c422310b9693d2dd8473') in 0.006494 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000048 seconds.
+  path: Assets/YandexGame/ScriptsYG/Editor/PostProcessBuild/PostProcessBuild.cs
+  artifactKey: Guid(c4ce61f13f3e1474682e29f60bb05390) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/YandexGame/ScriptsYG/Editor/PostProcessBuild/PostProcessBuild.cs using Guid(c4ce61f13f3e1474682e29f60bb05390) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '7a7b016dfd93bd470a96d49d954bbd7f') in 0.005856 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/GameOverTimerFeature/IntegrationFeatures/UIFeature/Components/GameOverTimerFeature.UIFeature.Components.asmdef
+  artifactKey: Guid(363895325a434eb4ab8a27214297d680) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/GameOverTimerFeature/IntegrationFeatures/UIFeature/Components/GameOverTimerFeature.UIFeature.Components.asmdef using Guid(363895325a434eb4ab8a27214297d680) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'fd85f600a5130ab9b9b1e38428e0cf54') in 0.003981 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/VisualFeature/UIFeature/ButtonFeature/Components/ButtonFeature.Components.asmdef
+  artifactKey: Guid(daad305ad4ae4fe0904be382efdbdd51) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/VisualFeature/UIFeature/ButtonFeature/Components/ButtonFeature.Components.asmdef using Guid(daad305ad4ae4fe0904be382efdbdd51) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '65d828d34e95cdd031b8c5d178cd0e73') in 0.006801 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/GameFieldFeature/IntegrationFeatures/AudioFeature/Systems/GameFieldAudioSystem.cs
+  artifactKey: Guid(27ae7f5daca9403a96b332b3a85dfa8f) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/GameFieldFeature/IntegrationFeatures/AudioFeature/Systems/GameFieldAudioSystem.cs using Guid(27ae7f5daca9403a96b332b3a85dfa8f) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '7476833da86a7d240eb1f824ca1e9ea9') in 0.005176 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/GameFieldFeature/IntegrationFeatures/AudioFeature/Systems/GameFieldFeature.AudioFeature.Systems.asmdef
+  artifactKey: Guid(0559a8dbc7d34720bbd7f870fe8c4332) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/GameFieldFeature/IntegrationFeatures/AudioFeature/Systems/GameFieldFeature.AudioFeature.Systems.asmdef using Guid(0559a8dbc7d34720bbd7f870fe8c4332) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'fd89d24046f7bc549afb162b4b8c780a') in 0.004625 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/PurchaseFeature/IntegrationFeatures/UIFeature/Components/PurchaseButtonTag.cs
+  artifactKey: Guid(08e10a94942941c8882e558239587eed) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/PurchaseFeature/IntegrationFeatures/UIFeature/Components/PurchaseButtonTag.cs using Guid(08e10a94942941c8882e558239587eed) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '46713069ac14f5b59b8517afdcd50d67') in 0.005870 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/_Project/Scripts/Gameplay/Features/CoinFeature/IntegrationFeatures/UIFeature/Systems/CoinFeature.UIFeature.Systems.asmdef
+  artifactKey: Guid(02e63016df1f43a49c9a6e879bd8c1e0) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scripts/Gameplay/Features/CoinFeature/IntegrationFeatures/UIFeature/Systems/CoinFeature.UIFeature.Systems.asmdef using Guid(02e63016df1f43a49c9a6e879bd8c1e0) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'a3e0a27e533622a8128db18fc8f77950') in 0.004503 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/YandexGame/ScriptsYG/EnvironmentData/Plugins/EnvirData.jslib
+  artifactKey: Guid(479042b7e7549ea4aba3897695c5f9d0) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/YandexGame/ScriptsYG/EnvironmentData/Plugins/EnvirData.jslib using Guid(479042b7e7549ea4aba3897695c5f9d0) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'e6faa9e231a1f8530e95cf9cffd365fe') in 0.007817 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/YandexGame/ScriptsYG/GameReadyAPI/Plugins/GameReadyAPI.jslib
+  artifactKey: Guid(357ae29480fcc144293d927269bda9e5) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/YandexGame/ScriptsYG/GameReadyAPI/Plugins/GameReadyAPI.jslib using Guid(357ae29480fcc144293d927269bda9e5) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'c5a6fa48c63b12596cdafa299a80a141') in 0.005166 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/YandexGame/ScriptsYG/Language/Editor/CSVManager.cs
+  artifactKey: Guid(f107992ca6094084a98d8a892e6c1207) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/YandexGame/ScriptsYG/Language/Editor/CSVManager.cs using Guid(f107992ca6094084a98d8a892e6c1207) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '2a0819b54c5a0b359da52ab3ed957612') in 0.005677 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Prepare
+Caller must complete domain reload
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  2.663 seconds
+Native extension for WindowsStandalone target not found
+Native extension for Android target not found
+Native extension for WebGL target not found
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  2.271 seconds
+Domain Reload Profiling: 4933ms
+	BeginReloadAssembly (880ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (56ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (1ms)
+		CreateAndSetChildDomain (421ms)
+	RebuildCommonClasses (40ms)
+	RebuildNativeTypeToScriptingClass (12ms)
+	initialDomainReloadingComplete (70ms)
+	LoadAllAssembliesAndSetupDomain (1659ms)
+		LoadAssemblies (1740ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (112ms)
+			TypeCache.Refresh (64ms)
+				TypeCache.ScanAssembly (1ms)
+			ScanForSourceGeneratedMonoScriptInfo (27ms)
+			ResolveRequiredComponents (20ms)
+	FinalizeReload (2272ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (1038ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (46ms)
+			SetLoadedEditorAssemblies (7ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (109ms)
+			ProcessInitializeOnLoadAttributes (632ms)
+			ProcessInitializeOnLoadMethodAttributes (241ms)
+			AfterProcessingInitializeOnLoad (4ms)
+			EditorAssembliesLoaded (1ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (6ms)
+Refreshing native plugins compatible for Editor in 17.61 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 4316 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 31 unused Assets / (34.7 KB). Loaded Objects now: 4870.
+Memory consumption went from 166.5 MB to 166.5 MB.
+Total: 35.348900 ms (FindLiveObjects: 0.589500 ms CreateObjectMapping: 0.305600 ms MarkObjects: 34.280900 ms  DeleteObjects: 0.171400 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 9a22284fe3817be447336de3de66b15e -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+TcpMessagingSession - receive error: operation aborted. errorcode: 995, details: ќпераци€ ввода/вывода была прервана из-за завершени€ потока команд или по запросу приложени€.
+AssetImportWorker is now disconnected from the server
+Process exiting
+Exiting without the bug reporter. Application will terminate with return code 0

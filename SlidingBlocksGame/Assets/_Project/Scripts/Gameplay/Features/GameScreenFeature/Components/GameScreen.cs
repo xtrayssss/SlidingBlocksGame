@@ -6,6 +6,18 @@ using UnityEngine.Serialization;
 
 namespace _Project.Scripts.Gameplay.Features.GameScreenFeature.Components
 {
+    [MovedFrom(autoUpdateAPI: false,
+        sourceNamespace: "_Project.Scripts.Gameplay.Features.UIFeature.Components",
+        sourceClassName: "UnlockButtonTag/Template", sourceAssembly: "Assembly-CSharp")]
+
+    [Serializable]
+    struct UnlockButtonTag : IEcsTagComponent
+    {
+        private sealed class Template : TagComponentTemplate<UnlockButtonTag>
+        {
+        }
+    }
+
     [Serializable]
     [MetaGroup("GameScreen")]
     public struct GameScreen : IEcsComponent
@@ -25,7 +37,6 @@ namespace _Project.Scripts.Gameplay.Features.GameScreenFeature.Components
         [MovedFrom(autoUpdateAPI: false,
             sourceNamespace: "_Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components",
             sourceClassName: "GameScreen/Template", sourceAssembly: "UIFeature.Components")]
-
         private sealed class Template : ComponentTemplate<GameScreen>
         {
         }

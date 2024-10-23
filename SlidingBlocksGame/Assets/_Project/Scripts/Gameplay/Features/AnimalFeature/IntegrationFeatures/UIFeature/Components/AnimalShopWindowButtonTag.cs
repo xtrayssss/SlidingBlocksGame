@@ -6,11 +6,11 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.U
 {
     [Serializable]
     [MetaGroup("Animal/UI")]
-    public struct AnimalPurchaseWindowButtonTag : IEcsTagComponent
+    public struct AnimalShopWindowButtonTag : IEcsTagComponent
     {
         [MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components",
             sourceClassName: "AnimalPurchaseWindowButtonTag/Template", sourceAssembly: "Assembly-CSharp")]
-        private sealed class Template : TagComponentTemplate<AnimalPurchaseWindowButtonTag>
+        private sealed class Template : TagComponentTemplate<AnimalShopWindowButtonTag>
         {
         }
     }

@@ -51,8 +51,24 @@ namespace _Project.Scripts.Gameplay.Features.PurchaseFeature.Systems
             [Inc] public readonly EcsTagPool<IsRotating> IsRotating;
         }
 
+        private class PurchaseAspect : EcsAspectAuto
+        {
+            [Inc] public readonly EcsTagPool<PurchaseTag> PurchaseTag;
+            [Inc] public readonly EcsPool<PurchaseWidget> LockedMarker;
+            [Inc] public readonly EcsTagPool<SnappedState> LockedMarker2;
+        }
+
         public void Run()
         {
+            foreach (int purchase in _world.Where(out PurchaseAspect purchaseAspect))
+            {
+                Debug.Log(purchaseAspect.LockedMarker.Get(purchase).Icon.rectTransform.localScale + " icon");;
+                Debug.Log(purchaseAspect.LockedMarker.Get(purchase).Icon.transform.parent.localScale + " parent");
+                Debug.Log(purchaseAspect.LockedMarker.Get(purchase).Icon.uvRect);
+                Debug.Log(purchaseAspect.LockedMarker.Get(purchase).Icon.transform.parent.GetComponent<RectTransform>().anchoredPosition);
+                Debug.Log(purchaseAspect.LockedMarker.Get(purchase).Icon.transform.parent.GetComponent<RectTransform>().sizeDelta);
+            }
+
             foreach (int purchase in _world.Where(out PurchaseLockedAspect purchaseLockedAspect))
             {
                 ref PurchaseWidget widget = ref _world.GetPool<PurchaseWidget>().Get(purchase);
@@ -70,7 +86,7 @@ namespace _Project.Scripts.Gameplay.Features.PurchaseFeature.Systems
             {
                 ref PhysicView physicView = ref aspect.PhysicViews.Get(entity);
                 ref PurchaseWidget widget = ref aspect.PurchaseWidgets.Get(entity);
-                
+
                 widget.RotationTween.Stop();
 
                 widget.RotationTween = Tween.LocalEulerAngles(

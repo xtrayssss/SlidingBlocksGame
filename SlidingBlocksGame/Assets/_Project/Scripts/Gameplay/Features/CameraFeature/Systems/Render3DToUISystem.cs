@@ -71,9 +71,9 @@ namespace _Project.Scripts.Gameplay.Features.CameraFeature.Systems
 
                     Bounds bounds = GetBounds(physicView.Value.gameObject);
 
-                    float orthographicSize = CalculateOrthographicSize(bounds, camera);
+                    //float orthographicSize = CalculateOrthographicSize(bounds, camera);
 
-                    camera.orthographicSize = orthographicSize;
+                    //camera.orthographicSize = orthographicSize;
 
                     float distance = bounds.center.z - bounds.extents.z + FORWARD_OFFSET;
                     camera.transform.position = new Vector3(bounds.center.x, bounds.center.y, distance);
@@ -101,19 +101,19 @@ namespace _Project.Scripts.Gameplay.Features.CameraFeature.Systems
             return bounds;
         }
 
-        private static float CalculateOrthographicSize(Bounds bounds, Camera camera)
-        {
-            float objectHeight = bounds.size.y;
-            float objectWidth = bounds.size.x;
-
-            float aspectRatio = camera.aspect;
-
-            float orthographicSize = objectHeight / 2f;
-
-            if (objectWidth / aspectRatio > objectHeight)
-                orthographicSize = objectWidth / aspectRatio / 2f;
-
-            return orthographicSize;
-        }
+        // private static float CalculateOrthographicSize(Bounds bounds, Camera camera)
+        // {
+        //     float objectHeight = bounds.size.y;
+        //     float objectWidth = bounds.size.x;
+        //
+        //     float aspectRatio = camera.aspect;
+        //
+        //     float orthographicSize = objectHeight / 2f;
+        //
+        //     if (objectWidth / aspectRatio > objectHeight)
+        //         orthographicSize = objectWidth / aspectRatio / 2f;
+        //
+        //     return orthographicSize;
+        // }
     }
 }

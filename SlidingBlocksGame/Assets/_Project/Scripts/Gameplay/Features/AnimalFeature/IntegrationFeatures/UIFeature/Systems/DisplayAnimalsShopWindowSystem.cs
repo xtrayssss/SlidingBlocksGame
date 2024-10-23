@@ -15,7 +15,7 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.U
 
         private class OpenWindowButtonClickedAspect : EcsAspectAuto
         {
-            [Inc] public readonly EcsTagPool<AnimalPurchaseWindowButtonTag> AnimalPurchaseWindowButtonTag;
+            [Inc] public readonly EcsTagPool<AnimalShopWindowButtonTag> AnimalPurchaseWindowButtonTag;
             [Inc] public readonly EcsTagPool<ButtonClickedEvent> Clicked;
         }
 
@@ -104,8 +104,8 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.U
                     _world.GetPool<ScrollItem>().Get(animal).Position,
                     1.0f));
 
-                Vector2 calculateScale = CalculateScale(_world.GetPool<ScrollItem>().Get(animal).RectTransform, ratio);
-                Debug.Log(calculateScale);
+                Vector2 calculateScale = CalculateScale(ratio);
+
                 sequence.Chain(
                     Tween.Scale(
                         target: gameObjectConnect.Connect.transform,
@@ -145,7 +145,7 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.U
             return sequence;
         }
         
-        private Vector2 CalculateScale(RectTransform rectTransform, float ratio)
+        private Vector2 CalculateScale(float ratio)
         {
             Vector2 diff = new Vector3(1.1f, 1.1f, 1.1f) - new Vector3(0.7f, 0.7f, 0.7f);
             return new Vector2(0.7f, 0.7f) + diff * ratio;

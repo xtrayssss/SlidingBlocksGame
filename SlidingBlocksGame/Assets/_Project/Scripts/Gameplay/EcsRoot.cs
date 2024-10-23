@@ -22,6 +22,7 @@ using _Project.Scripts.Gameplay.Features.VisualFeature;
 using _Project.Scripts.Infrastructure;
 using DCFApixels.DragonECS;
 using Sirenix.OdinInspector;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using YG;
@@ -91,25 +92,27 @@ namespace _Project.Scripts.Gameplay
             _world.Destroy();
             _world = null;
         }
-        
+
         [Button]
-        private int GetMaxVisibleElements(RectTransform viewPort, RectTransform elementTemplate, float visiblePartRatio, HorizontalLayoutGroup layoutGroup)
+        private int GetMaxVisibleElements(RectTransform viewPort, RectTransform elementTemplate, float visiblePartRatio,
+            HorizontalLayoutGroup layoutGroup)
         {
             RectTransform viewport = viewPort;
             float viewportWidth = viewport.rect.width;
             float elementWidth = elementTemplate.rect.width;
-    
+
             // Учитываем padding с обеих сторон
             float totalPadding = layoutGroup.padding.left + layoutGroup.padding.right;
             float availableWidth = viewportWidth - totalPadding;
-    
+
             // Учитываем spacing между элементами
             float spacing = layoutGroup.spacing;
             float elementWithSpacing = elementWidth + spacing;
-    
+
             // Вычисляем сколько целых элементов помещается в доступное пространство
             float maxElements = availableWidth / elementWithSpacing;
-    
-            return Mathf.FloorToInt(maxElements);        }
+
+            return Mathf.FloorToInt(maxElements);
+        }
     }
 }
