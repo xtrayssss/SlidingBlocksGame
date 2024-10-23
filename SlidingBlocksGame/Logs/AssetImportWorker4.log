@@ -1,0 +1,569 @@
+Using pre-set license
+Built from '2022.3/staging' branch; Version is '2022.3.42f1 (2dcb6a0abc42) revision 3001194'; Using compiler version '192829333'; Build Type 'Release'
+OS: 'Windows 10  (10.0.19044) 64bit Professional' Language: 'ru' Physical Memory: 7561 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
+
+COMMAND LINE ARGUMENTS:
+D:\games\Unity\Unity Files (Dont Touch)\2021.3.9f1\2022.3.42f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker4
+-projectPath
+D:/games/SlidingCubesGame/SlidingBlocksGame
+-logFile
+Logs/AssetImportWorker4.log
+-srvPort
+64711
+Successfully changed project path to: D:/games/SlidingCubesGame/SlidingBlocksGame
+D:/games/SlidingCubesGame/SlidingBlocksGame
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Player connection [6632]  Target information:
+
+Player connection [6632]  * "[IP] 192.168.0.100 [Port] 0 [Flags] 2 [Guid] 2017061869 [EditorId] 2017061869 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-J7U7MAN) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [6632] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [6632] Host joined alternative multi-casting on [225.0.0.222:34997]...
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+Refreshing native plugins compatible for Editor in 57.19 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2022.3.42f1 (2dcb6a0abc42)
+[Subsystems] Discovering subsystems at path D:/games/Unity/Unity Files (Dont Touch)/2021.3.9f1/2022.3.42f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path D:/games/SlidingCubesGame/SlidingBlocksGame/Assets
+GfxDevice: creating device client; threaded=0; jobified=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: AMD Radeon (TM) Graphics (ID=0x15e7)
+    Vendor:   ATI
+    VRAM:     3780 MB
+    Driver:   31.0.12018.5
+Initialize mono
+Mono path[0] = 'D:/games/Unity/Unity Files (Dont Touch)/2021.3.9f1/2022.3.42f1/Editor/Data/Managed'
+Mono path[1] = 'D:/games/Unity/Unity Files (Dont Touch)/2021.3.9f1/2022.3.42f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'D:/games/Unity/Unity Files (Dont Touch)/2021.3.9f1/2022.3.42f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56244
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: D:/games/Unity/Unity Files (Dont Touch)/2021.3.9f1/2022.3.42f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: D:/games/Unity/Unity Files (Dont Touch)/2021.3.9f1/2022.3.42f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
+Register platform support module: D:/games/Unity/Unity Files (Dont Touch)/2021.3.9f1/2022.3.42f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.011563 seconds.
+- Loaded All Assemblies, in  0.699 seconds
+Native extension for WindowsStandalone target not found
+Native extension for Android target not found
+Android Extension - Scanning For ADB Devices 324 ms
+Native extension for WebGL target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.638 seconds
+Domain Reload Profiling: 1337ms
+	BeginReloadAssembly (442ms)
+		ExecutionOrderSort (1ms)
+		DisableScriptedObjects (0ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (9ms)
+	RebuildCommonClasses (38ms)
+	RebuildNativeTypeToScriptingClass (8ms)
+	initialDomainReloadingComplete (64ms)
+	LoadAllAssembliesAndSetupDomain (146ms)
+		LoadAssemblies (425ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (143ms)
+			TypeCache.Refresh (141ms)
+				TypeCache.ScanAssembly (123ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (1ms)
+	FinalizeReload (639ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (594ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (438ms)
+			SetLoadedEditorAssemblies (4ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (3ms)
+			ProcessInitializeOnLoadAttributes (108ms)
+			ProcessInitializeOnLoadMethodAttributes (41ms)
+			AfterProcessingInitializeOnLoad (0ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (0ms)
+========================================================================
+Worker process is ready to serve import requests
+Caller must complete domain reload
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  1.065 seconds
+Native extension for WindowsStandalone target not found
+Native extension for Android target not found
+Native extension for WebGL target not found
+Package Manager log level set to [2]
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.05 seconds
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.077 seconds
+Domain Reload Profiling: 2119ms
+	BeginReloadAssembly (176ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (5ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (26ms)
+	RebuildCommonClasses (25ms)
+	RebuildNativeTypeToScriptingClass (8ms)
+	initialDomainReloadingComplete (37ms)
+	LoadAllAssembliesAndSetupDomain (795ms)
+		LoadAssemblies (666ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (244ms)
+			TypeCache.Refresh (199ms)
+				TypeCache.ScanAssembly (175ms)
+			ScanForSourceGeneratedMonoScriptInfo (38ms)
+			ResolveRequiredComponents (5ms)
+	FinalizeReload (1078ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (938ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (24ms)
+			SetLoadedEditorAssemblies (5ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (79ms)
+			ProcessInitializeOnLoadAttributes (573ms)
+			ProcessInitializeOnLoadMethodAttributes (254ms)
+			AfterProcessingInitializeOnLoad (3ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (6ms)
+Refreshing native plugins compatible for Editor in 5.63 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 4334 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 37 unused Assets / (61.3 KB). Loaded Objects now: 4859.
+Memory consumption went from 170.3 MB to 170.2 MB.
+Total: 15.396900 ms (FindLiveObjects: 0.365000 ms CreateObjectMapping: 0.326800 ms MarkObjects: 14.547800 ms  DeleteObjects: 0.156100 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 9a22284fe3817be447336de3de66b15e -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 39128.302034 seconds.
+  path: Assets/TextMesh Pro/Examples & Extras/Sprites
+  artifactKey: Guid(701e577af2ba48b689972d42efb95456) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/TextMesh Pro/Examples & Extras/Sprites using Guid(701e577af2ba48b689972d42efb95456) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '2e53e870339a6e0b85994bb4c1839c7d') in 0.005255 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 2.770267 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Sprites/LargeConfetti.png
+  artifactKey: Guid(a5fd1d31c7504cd4083d950f36ed7511) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/LowpollyGameAssets/Sprites/LargeConfetti.png using Guid(a5fd1d31c7504cd4083d950f36ed7511) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'c0044bb8287270fc4edcdf00102ffd4f') in 0.208889 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 81
+========================================================================
+Received Import Request.
+  Time since last request: 0.213244 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Sprites/Circle.png
+  artifactKey: Guid(738d0386f7ab1b242b3cca6cedcb2106) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/LowpollyGameAssets/Sprites/Circle.png using Guid(738d0386f7ab1b242b3cca6cedcb2106) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'ca1b12c5f437e3cea7418bf57005fcfb') in 0.030531 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 81
+========================================================================
+Received Import Request.
+  Time since last request: 9.198697 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Sprites/Pictoicon_Volume_On.Png
+  artifactKey: Guid(2b6f3f1b29bd84366bdf5775a5aebcbb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/LowpollyGameAssets/Sprites/Pictoicon_Volume_On.Png using Guid(2b6f3f1b29bd84366bdf5775a5aebcbb) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'dc7b1b47bb1c129a49f298bbc2a692f7') in 0.032268 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 81
+========================================================================
+Received Import Request.
+  Time since last request: 32.737126 seconds.
+  path: Assets/_Project/LowpollyGameAssets/SpriteAtlases/UI_MainAtlas.spriteatlas
+  artifactKey: Guid(0432e6881aaa6fc429f3d709a229ec2a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/LowpollyGameAssets/SpriteAtlases/UI_MainAtlas.spriteatlas using Guid(0432e6881aaa6fc429f3d709a229ec2a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'ab5edf19925e8e7a674a8a44b558f08c') in 0.001953 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.941692 seconds.
+  path: Assets/_Project/LowpollyGameAssets/SpriteAtlases/UI_MainAtlas.spriteatlas
+  artifactKey: Guid(0432e6881aaa6fc429f3d709a229ec2a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/SpriteAtlases/UI_MainAtlas.spriteatlas using Guid(0432e6881aaa6fc429f3d709a229ec2a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'de3b9667e65d8b2294bd47fb7419eabc') in 0.095355 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 7.067904 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Sprites/square_0.png
+  artifactKey: Guid(1532648721b441f439f5896d26d32ca5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/LowpollyGameAssets/Sprites/square_0.png using Guid(1532648721b441f439f5896d26d32ca5) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '257203739ce30d11aca949e2b82a9ebf') in 0.051423 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 81
+========================================================================
+Received Import Request.
+  Time since last request: 64.179492 seconds.
+  path: Assets/_Project/LowpollyGameAssets/SpriteAtlases/Tutorial_Atlas.spriteatlas
+  artifactKey: Guid(cc9c402c0587bd04a8c8bc1e6bb1e21d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/LowpollyGameAssets/SpriteAtlases/Tutorial_Atlas.spriteatlas using Guid(cc9c402c0587bd04a8c8bc1e6bb1e21d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'ccebeaea541d2bf3af56f936bc62e684') in 0.001176 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.953969 seconds.
+  path: Assets/_Project/LowpollyGameAssets/SpriteAtlases/Tutorial_Atlas.spriteatlas
+  artifactKey: Guid(cc9c402c0587bd04a8c8bc1e6bb1e21d) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/SpriteAtlases/Tutorial_Atlas.spriteatlas using Guid(cc9c402c0587bd04a8c8bc1e6bb1e21d) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'f79d80320569cffc7ec240f87acb07bd') in 0.005921 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 17.962035 seconds.
+  path: Assets/_Project/LowpollyGameAssets/SpriteAtlases/Tutorial_Atlas.spriteatlas
+  artifactKey: Guid(cc9c402c0587bd04a8c8bc1e6bb1e21d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/LowpollyGameAssets/SpriteAtlases/Tutorial_Atlas.spriteatlas using Guid(cc9c402c0587bd04a8c8bc1e6bb1e21d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'da153ec140ab2ff5502fb8b372909441') in 0.000991 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.971153 seconds.
+  path: Assets/_Project/LowpollyGameAssets/SpriteAtlases/Tutorial_Atlas.spriteatlas
+  artifactKey: Guid(cc9c402c0587bd04a8c8bc1e6bb1e21d) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/SpriteAtlases/Tutorial_Atlas.spriteatlas using Guid(cc9c402c0587bd04a8c8bc1e6bb1e21d) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'fc98741439bc92e84b08a8d6c8af6c39') in 0.005008 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 8.062466 seconds.
+  path: Assets/_Project/LowpollyGameAssets/SpriteAtlases/Tutorial_Atlas.spriteatlas
+  artifactKey: Guid(cc9c402c0587bd04a8c8bc1e6bb1e21d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/LowpollyGameAssets/SpriteAtlases/Tutorial_Atlas.spriteatlas using Guid(cc9c402c0587bd04a8c8bc1e6bb1e21d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '920eca2a3d6cd673ffed02f8abb4380f') in 0.001047 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.968098 seconds.
+  path: Assets/_Project/LowpollyGameAssets/SpriteAtlases/Tutorial_Atlas.spriteatlas
+  artifactKey: Guid(cc9c402c0587bd04a8c8bc1e6bb1e21d) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/SpriteAtlases/Tutorial_Atlas.spriteatlas using Guid(cc9c402c0587bd04a8c8bc1e6bb1e21d) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '76b264dd891361b2db5a3d08881e740b') in 0.004906 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 13.940666 seconds.
+  path: Assets/_Project/LowpollyGameAssets/SpriteAtlases/Tutorial_Atlas.spriteatlas
+  artifactKey: Guid(cc9c402c0587bd04a8c8bc1e6bb1e21d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/LowpollyGameAssets/SpriteAtlases/Tutorial_Atlas.spriteatlas using Guid(cc9c402c0587bd04a8c8bc1e6bb1e21d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'fc29b5e381073389b5bd2d97da014550') in 0.001201 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.969910 seconds.
+  path: Assets/_Project/LowpollyGameAssets/SpriteAtlases/Tutorial_Atlas.spriteatlas
+  artifactKey: Guid(cc9c402c0587bd04a8c8bc1e6bb1e21d) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/SpriteAtlases/Tutorial_Atlas.spriteatlas using Guid(cc9c402c0587bd04a8c8bc1e6bb1e21d) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '595fb0717f7227fbe9e5c2764b8ddd92') in 0.004721 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 46.517221 seconds.
+  path: Assets/_Project/LowpollyGameAssets/SpriteAtlases/UI_EffectsAtlas.spriteatlas
+  artifactKey: Guid(471aa53700976214eadef22cba2d5636) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/LowpollyGameAssets/SpriteAtlases/UI_EffectsAtlas.spriteatlas using Guid(471aa53700976214eadef22cba2d5636) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '2ba8b5576bcc9a5874cde1ce01961343') in 0.004651 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.945374 seconds.
+  path: Assets/_Project/LowpollyGameAssets/SpriteAtlases/UI_EffectsAtlas.spriteatlas
+  artifactKey: Guid(471aa53700976214eadef22cba2d5636) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/SpriteAtlases/UI_EffectsAtlas.spriteatlas using Guid(471aa53700976214eadef22cba2d5636) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '9f7211f38d06f13336fa28f42ea39fcc') in 0.006214 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 13.157347 seconds.
+  path: Assets/_Project/LowpollyGameAssets/SpriteAtlases/UI_MainAtlas.spriteatlas
+  artifactKey: Guid(0432e6881aaa6fc429f3d709a229ec2a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/LowpollyGameAssets/SpriteAtlases/UI_MainAtlas.spriteatlas using Guid(0432e6881aaa6fc429f3d709a229ec2a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'adab6c53cfda5e53afab6e235f4372cf') in 0.001501 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.963809 seconds.
+  path: Assets/_Project/LowpollyGameAssets/SpriteAtlases/UI_MainAtlas.spriteatlas
+  artifactKey: Guid(0432e6881aaa6fc429f3d709a229ec2a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/SpriteAtlases/UI_MainAtlas.spriteatlas using Guid(0432e6881aaa6fc429f3d709a229ec2a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'd92f3bd4d10deadb81e4ce4657d95cae') in 0.004198 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 15.806375 seconds.
+  path: Assets/_Project/LowpollyGameAssets/SpriteAtlases/Tutorial_Atlas.spriteatlas
+  artifactKey: Guid(cc9c402c0587bd04a8c8bc1e6bb1e21d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/LowpollyGameAssets/SpriteAtlases/Tutorial_Atlas.spriteatlas using Guid(cc9c402c0587bd04a8c8bc1e6bb1e21d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'b025ffb0ec75d3aef6264c89f54ec556') in 0.001754 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.969462 seconds.
+  path: Assets/_Project/LowpollyGameAssets/SpriteAtlases/Tutorial_Atlas.spriteatlas
+  artifactKey: Guid(cc9c402c0587bd04a8c8bc1e6bb1e21d) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/SpriteAtlases/Tutorial_Atlas.spriteatlas using Guid(cc9c402c0587bd04a8c8bc1e6bb1e21d) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '11e1c7233fd18d9a51592243ceffcc8b') in 0.004952 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 16.642184 seconds.
+  path: Assets/_Project/LowpollyGameAssets/SpriteAtlases/Tutorial_Atlas.spriteatlas
+  artifactKey: Guid(cc9c402c0587bd04a8c8bc1e6bb1e21d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/LowpollyGameAssets/SpriteAtlases/Tutorial_Atlas.spriteatlas using Guid(cc9c402c0587bd04a8c8bc1e6bb1e21d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'c82dcd3bd4e8cbc5bd9f4091303b2b40') in 0.001233 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.970391 seconds.
+  path: Assets/_Project/LowpollyGameAssets/SpriteAtlases/Tutorial_Atlas.spriteatlas
+  artifactKey: Guid(cc9c402c0587bd04a8c8bc1e6bb1e21d) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/SpriteAtlases/Tutorial_Atlas.spriteatlas using Guid(cc9c402c0587bd04a8c8bc1e6bb1e21d) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '8f3f5a0946a08a138c927f26a51621de') in 0.005055 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 2.943760 seconds.
+  path: Assets/_Project/LowpollyGameAssets/SpriteAtlases/Tutorial_Atlas.spriteatlas
+  artifactKey: Guid(cc9c402c0587bd04a8c8bc1e6bb1e21d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/LowpollyGameAssets/SpriteAtlases/Tutorial_Atlas.spriteatlas using Guid(cc9c402c0587bd04a8c8bc1e6bb1e21d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '7fba56113afddefe62a61dc519cf4904') in 0.001110 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.973335 seconds.
+  path: Assets/_Project/LowpollyGameAssets/SpriteAtlases/Tutorial_Atlas.spriteatlas
+  artifactKey: Guid(cc9c402c0587bd04a8c8bc1e6bb1e21d) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/SpriteAtlases/Tutorial_Atlas.spriteatlas using Guid(cc9c402c0587bd04a8c8bc1e6bb1e21d) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '45533f1e875bd323b4cca5e028e83401') in 0.005238 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 8.392508 seconds.
+  path: Assets/_Project/LowpollyGameAssets/SpriteAtlases/Tutorial_Atlas.spriteatlas
+  artifactKey: Guid(cc9c402c0587bd04a8c8bc1e6bb1e21d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/LowpollyGameAssets/SpriteAtlases/Tutorial_Atlas.spriteatlas using Guid(cc9c402c0587bd04a8c8bc1e6bb1e21d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '2eecd8c38e86e87cbf301e2b061549cb') in 0.000981 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.959231 seconds.
+  path: Assets/_Project/LowpollyGameAssets/SpriteAtlases/Tutorial_Atlas.spriteatlas
+  artifactKey: Guid(cc9c402c0587bd04a8c8bc1e6bb1e21d) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/SpriteAtlases/Tutorial_Atlas.spriteatlas using Guid(cc9c402c0587bd04a8c8bc1e6bb1e21d) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '171e3cd09633dd1060a402fbea492b53') in 0.004953 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 15.128806 seconds.
+  path: Assets/_Project/Scenes/SampleScene.unity
+  artifactKey: Guid(c850ee8c3b14cc8459e7e186857cf567) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/Scenes/SampleScene.unity using Guid(c850ee8c3b14cc8459e7e186857cf567) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'b4e498ec5b7f2d6b06607830e71b4153') in 0.013471 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 125.926732 seconds.
+  path: Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Roboto-Bold SDF.asset
+  artifactKey: Guid(5302535af1044152a457ed104f1f4b91) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Roboto-Bold SDF.asset using Guid(5302535af1044152a457ed104f1f4b91) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '7112fe3292645c149581a8e6bbe68e2d') in 0.346146 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 5
+========================================================================
+Received Import Request.
+  Time since last request: 1.211639 seconds.
+  path: Assets/_Project/LowpollyGameAssets/SpriteAtlases/GameSpriteAtlas.spriteatlas
+  artifactKey: Guid(d8d7180a9e930ee4bafe21c2d406a38a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/_Project/LowpollyGameAssets/SpriteAtlases/GameSpriteAtlas.spriteatlas using Guid(d8d7180a9e930ee4bafe21c2d406a38a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'd4d6599afdd4a61896d60cc0e3c96bd4') in 0.007825 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 4.143171 seconds.
+  path: Assets/_Project/LowpollyGameAssets/SpriteAtlases/GameSpriteAtlas.spriteatlas
+  artifactKey: Guid(d8d7180a9e930ee4bafe21c2d406a38a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/LowpollyGameAssets/SpriteAtlases/GameSpriteAtlas.spriteatlas using Guid(d8d7180a9e930ee4bafe21c2d406a38a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '7a11515e9e9897ea34296499748500c9') in 0.001088 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 4.683885 seconds.
+  path: Assets/YandexGame/WorkingData/Editor/SavesEditorYG.json
+  artifactKey: Guid(fae6fde9230bf154c8ed540663b72ccb) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/YandexGame/WorkingData/Editor/SavesEditorYG.json using Guid(fae6fde9230bf154c8ed540663b72ccb) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '0db109adb709b6d245886222bd39ea1a') in 0.007162 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 74.252034 seconds.
+  path: Assets/YandexGame/WorkingData/Editor/SavesEditorYG.json
+  artifactKey: Guid(fae6fde9230bf154c8ed540663b72ccb) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/YandexGame/WorkingData/Editor/SavesEditorYG.json using Guid(fae6fde9230bf154c8ed540663b72ccb) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'f167ba3e4f4641c8d692b37c3460c997') in 0.007147 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 161.956074 seconds.
+  path: Assets/YandexGame/WorkingData/Editor/SavesEditorYG.json
+  artifactKey: Guid(fae6fde9230bf154c8ed540663b72ccb) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/YandexGame/WorkingData/Editor/SavesEditorYG.json using Guid(fae6fde9230bf154c8ed540663b72ccb) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '84dc60c9690d03c92bc877ce4dafae27') in 0.008259 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 24.217009 seconds.
+  path: Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Roboto-Bold SDF.asset
+  artifactKey: Guid(5302535af1044152a457ed104f1f4b91) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Roboto-Bold SDF.asset using Guid(5302535af1044152a457ed104f1f4b91) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '3c7925c0bfe281c9d040f5695c9743e8') in 0.048754 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 5
+========================================================================
+Received Import Request.
+  Time since last request: 60.233714 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Textures/Floor.png
+  artifactKey: Guid(722b62f2b9fd0bc4fac579665e3a4a81) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/LowpollyGameAssets/Textures/Floor.png using Guid(722b62f2b9fd0bc4fac579665e3a4a81) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '7818fb86c271e8128a1e07e032d33311') in 0.049092 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 15.635611 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Textures/Grass.png
+  artifactKey: Guid(2802ec51f13ce0e44b666de1db1be8fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/LowpollyGameAssets/Textures/Grass.png using Guid(2802ec51f13ce0e44b666de1db1be8fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'e02e79399d3a73454fb2c312bc4eff4c') in 0.012073 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.416965 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Textures/palette-cubes.png
+  artifactKey: Guid(9ea5ba44e82fef7428a13c6b6c08bc05) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/LowpollyGameAssets/Textures/palette-cubes.png using Guid(9ea5ba44e82fef7428a13c6b6c08bc05) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '1a4b6a339ef2df906f258e9d7a18bbe1') in 0.012441 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 42.624451 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Textures/Cow.png
+  artifactKey: Guid(c5a3e84a971019b45980aefeb68fb23d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/LowpollyGameAssets/Textures/Cow.png using Guid(c5a3e84a971019b45980aefeb68fb23d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'c7279c754d9e308cb431398f50d83791') in 0.029036 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 4.755995 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Textures/Cow.png
+  artifactKey: Guid(c5a3e84a971019b45980aefeb68fb23d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/LowpollyGameAssets/Textures/Cow.png using Guid(c5a3e84a971019b45980aefeb68fb23d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'fad300083c187f5179dc7dc5333312ba') in 0.007831 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 37.872491 seconds.
+  path: Assets/_Project/LowpollyGameAssets/Textures/TreeYellow.png
+  artifactKey: Guid(878883cabf51cb248900b9040e81ba7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Project/LowpollyGameAssets/Textures/TreeYellow.png using Guid(878883cabf51cb248900b9040e81ba7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'd94ca3238a93d3ac4cd677210209cd7c') in 0.013205 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
