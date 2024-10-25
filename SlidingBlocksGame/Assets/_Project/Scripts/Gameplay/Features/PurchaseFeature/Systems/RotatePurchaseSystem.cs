@@ -21,7 +21,7 @@ namespace _Project.Scripts.Gameplay.Features.PurchaseFeature.Systems
             [IncImplicit(typeof(UnlockedMarker))]
             [Inc] public readonly EcsPool<PhysicView> PhysicViews;
 
-            [Exc] public readonly EcsTagPool<IsRotating> IsRotating;
+            [Exc] public readonly EcsTagPool<RotatingMarker> IsRotating;
 
             [Inc] public readonly EcsPool<PurchaseWidget> PurchaseWidgets;
         }
@@ -38,7 +38,7 @@ namespace _Project.Scripts.Gameplay.Features.PurchaseFeature.Systems
 
         private class IsRotatingAspect : EcsAspectAuto
         {
-            [Inc] public readonly EcsTagPool<IsRotating> IsRotating;
+            [Inc] public readonly EcsTagPool<RotatingMarker> IsRotating;
             [Opt] public readonly EcsTagPool<LockedMarker> LockedMarker;
             [Opt] public readonly EcsTagPool<LeavedEvent> LeavedEvent;
         }
@@ -48,28 +48,12 @@ namespace _Project.Scripts.Gameplay.Features.PurchaseFeature.Systems
             [Inc] public readonly EcsTagPool<PurchaseTag> PurchaseTag;
             [Inc] public readonly EcsTagPool<LockedMarker> LockedMarker;
             [Inc] public readonly EcsTagPool<SnappedState> SnappedState;
-            [Inc] public readonly EcsTagPool<IsRotating> IsRotating;
-        }
-
-        private class PurchaseAspect : EcsAspectAuto
-        {
-            [Inc] public readonly EcsTagPool<PurchaseTag> PurchaseTag;
-            [Inc] public readonly EcsPool<PurchaseWidget> LockedMarker;
-            [Inc] public readonly EcsTagPool<SnappedState> LockedMarker2;
+            [Inc] public readonly EcsTagPool<RotatingMarker> IsRotating;
         }
 
         public void Run()
         {
-            foreach (int purchase in _world.Where(out PurchaseAspect purchaseAspect))
-            {
-                Debug.Log(purchaseAspect.LockedMarker.Get(purchase).Icon.rectTransform.localScale + " icon");;
-                Debug.Log(purchaseAspect.LockedMarker.Get(purchase).Icon.transform.parent.localScale + " parent");
-                Debug.Log(purchaseAspect.LockedMarker.Get(purchase).Icon.uvRect);
-                Debug.Log(purchaseAspect.LockedMarker.Get(purchase).Icon.transform.parent.GetComponent<RectTransform>().anchoredPosition);
-                Debug.Log(purchaseAspect.LockedMarker.Get(purchase).Icon.transform.parent.GetComponent<RectTransform>().sizeDelta);
-            }
-
-            foreach (int purchase in _world.Where(out PurchaseLockedAspect purchaseLockedAspect))
+            foreach (int purchase in _world.Where(out PurchaseLockedAspect _))
             {
                 ref PurchaseWidget widget = ref _world.GetPool<PurchaseWidget>().Get(purchase);
 
@@ -98,7 +82,7 @@ namespace _Project.Scripts.Gameplay.Features.PurchaseFeature.Systems
                     cycles: -1,
                     cycleMode: CycleMode.Incremental);
 
-                _world.GetPool<IsRotating>().Add(entity);
+                _world.GetPool<RotatingMarker>().Add(entity);
                 _world.GetPool<RenderingMarker>().TryAdd(entity);
             }
 
@@ -119,9 +103,5 @@ namespace _Project.Scripts.Gameplay.Features.PurchaseFeature.Systems
                     .OnComplete(() => _world.GetPool<RenderingMarker>().TryDel(entity));
             }
         }
-    }
-
-    public struct IsRotating : IEcsTagComponent
-    {
     }
 }

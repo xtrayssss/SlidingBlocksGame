@@ -9,7 +9,7 @@ namespace _Project.Scripts.Gameplay.Features.RateUsFeature.Systems
     {
         [EcsInject] private readonly EcsDefaultWorld _world;
 
-        private class ButtonClickedAspect : EcsAspectAuto
+        private class RateUsClickedAspect : EcsAspectAuto
         {
             [Inc] public readonly EcsTagPool<RateUsButtonTag> RateUsButtonTag;
             [Inc] public readonly EcsTagPool<ButtonClickedEvent> ButtonClickedEvent;
@@ -17,7 +17,7 @@ namespace _Project.Scripts.Gameplay.Features.RateUsFeature.Systems
 
         public void Run()
         {
-            foreach (int _ in _world.Where(out ButtonClickedAspect _)) 
+            foreach (int _ in _world.Where(out RateUsClickedAspect _)) 
                 YandexGame.ReviewShow(authDialog: true);
         }
     }

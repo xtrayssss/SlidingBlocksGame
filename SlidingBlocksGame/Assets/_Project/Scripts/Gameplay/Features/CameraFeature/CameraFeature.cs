@@ -11,8 +11,8 @@ namespace _Project.Scripts.Gameplay.Features.CameraFeature
         {
             builder
                 .AddUnique(new CameraRenderSystem())
-                .AddUnique(new Render3DToUISystem())
-                .AutoDel<Render3DToUIRequest>();
+                .AddUnique(new Object3DPreviewSystem())
+                .AutoDelEntityComponent<ObjectPreviewRequest>();
         }
     }
 }

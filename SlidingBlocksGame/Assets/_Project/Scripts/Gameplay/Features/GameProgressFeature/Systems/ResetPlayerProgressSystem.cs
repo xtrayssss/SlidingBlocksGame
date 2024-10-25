@@ -18,7 +18,7 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.Systems
     {
         [EcsInject] private readonly EcsDefaultWorld _world;
 
-        private class ResetProgressButtonClickedAspect : EcsAspectAuto
+        private class ResetButtonAspect : EcsAspectAuto
         {
             [Inc] public readonly EcsTagPool<ButtonClickedEvent> ButtonClicked;
             [Inc] public readonly EcsTagPool<ResetProgressButtonTag> ResetProgressButtonTag;
@@ -28,7 +28,6 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.Systems
         {
             [IncImplicit(typeof(PlayerTag))]
             [Inc] public readonly EcsPool<Coins> Coins;
-
             [Inc] public readonly EcsPool<BestScore> BestScores;
             [Inc] public readonly EcsPool<SelectedAnimal> SelectedAnimals;
             [Inc] public readonly EcsPool<AnimalPrefabs> AnimalPrefabs;
@@ -38,7 +37,7 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.Systems
         {
             [Inc] public readonly EcsPool<Reward> Rewards;
         }
-        
+
         private class PurchasedAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(PurchaseTag))]
@@ -47,61 +46,95 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.Systems
 
         public void Run()
         {
-            foreach (int _ in _world.Where(out ResetProgressButtonClickedAspect _))
-            {
-                foreach (int player in _world.Where(out PlayerAspect _))
-                {
-                    CoinUtils.Update(
-                        coinable: player,
-                        coins: 0,
-                        overwrite: true);
+            if (!IsResetButtonClicked())
+                return;
 
-                    ScoreUtils.UpdateBestScore(
-                        scorable: player,
-                        score: 0,
-                        overwrite: true);
-
-                    UpdateSelectedAnimal(selectedID: 0);
-
-                    ClearPurchases();
-
-                    YandexGame.SaveProgress();
-                }
-
-                foreach (int reward in _world.Where(out RewardAspect _))
-                {
-                    RewardUtils.Update(
-                        rewardable: reward,
-                        new UpdateRewardRequest
-                        {
-                            CollectionTime = 0,
-                            Count = 0,
-                            Overwrite = true
-                        });
-                }
-            }
+            ResetAllProgress();
         }
 
-        private void ClearPurchases()
+        private bool IsResetButtonClicked()
         {
-            foreach (int purchase in _world.Where(out PurchasedAspect purchasedAspect))
-                purchasedAspect.PurchasedMarker.Del(purchase);
-
-            YandexGame.savesData.PurchasedAnimals.Clear();
-            YandexGame.SaveProgress();
+            foreach (int _ in _world.Where(out ResetButtonAspect _))
+                return true;
+            
+            return false;
         }
-        
-        private void UpdateSelectedAnimal(ushort selectedID)
+
+        private void ResetAllProgress()
+        {
+            ResetPlayerProgress();
+            ResetRewards();
+            SaveProgress();
+        }
+
+        private void ResetPlayerProgress()
         {
             foreach (int player in _world.Where(out PlayerAspect playerAspect))
             {
-                ref SelectedAnimal selectedAnimal = ref playerAspect.SelectedAnimals.Get(player);
-                selectedAnimal.ID = selectedID;
-                selectedAnimal.Prefab = playerAspect.AnimalPrefabs.Read(player).Animals[selectedAnimal.ID];
-
-                YandexGame.savesData.SelectedAnimalID = selectedAnimal.ID;
-                YandexGame.SaveProgress();
+                ResetPlayerCoins(player, playerAspect);
+                ResetPlayerScore(player, playerAspect);
+                ResetPlayerPurchases();
+                ResetSelectedAnimal(player, playerAspect);
             }
         }
+
+        private static void ResetPlayerCoins(int player, PlayerAspect playerAspect)
+        {
+            if (playerAspect.Coins.Get(player).Value != 0)
+            {
+                CoinUtils.Update(
+                    coinable: player,
+                    coins: 0,
+                    overwrite: true);
+            }
+        }
+
+        private static void ResetPlayerScore(int player, PlayerAspect playerAspect)
+        {
+            if (playerAspect.BestScores.Get(player).Value != 0)
+            {
+                ScoreUtils.UpdateBestScore(
+                    scorable: player,
+                    score: 0,
+                    overwrite: true);
+            }
+        }
+
+        private void ResetPlayerPurchases()
+        {
+            foreach (int purchase in _world.Where(out PurchasedAspect purchasedAspect)) 
+                purchasedAspect.PurchasedMarker.Del(purchase);
+
+            YandexGame.savesData.PurchasedAnimals.Clear();
+        }
+
+        private static void ResetSelectedAnimal(int player, PlayerAspect playerAspect)
+        {
+            const ushort DEFAULT_ANIMAL_ID = 0;
+            
+            ref SelectedAnimal selectedAnimal = ref playerAspect.SelectedAnimals.Get(player);
+            selectedAnimal.ID = DEFAULT_ANIMAL_ID;
+            selectedAnimal.Prefab = playerAspect.AnimalPrefabs.Read(player).Animals[DEFAULT_ANIMAL_ID];
+
+            YandexGame.savesData.SelectedAnimalID = DEFAULT_ANIMAL_ID;
+        }
+
+        private void ResetRewards()
+        {
+            foreach (int reward in _world.Where(out RewardAspect _))
+            {
+                RewardUtils.Update(
+                    rewardable: reward,
+                    new UpdateRewardRequest
+                    {
+                        CollectionTime = 0,
+                        Count = 0,
+                        Overwrite = true
+                    });
+            }
+        }
+
+        private static void SaveProgress() => 
+            YandexGame.SaveProgress();
     }
 }

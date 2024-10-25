@@ -18,7 +18,7 @@ namespace _Project.Scripts.Gameplay.Features.CoinFeature.Systems
         {
             [Inc] public readonly EcsPool<Coins> Coins;
         }
-        
+
         private class EventAspect : EcsAspectAuto
         {
             [Opt] public readonly EcsTagPool<CoinsUpdatedEvent> CoinsUpdatedEvent;
@@ -40,20 +40,23 @@ namespace _Project.Scripts.Gameplay.Features.CoinFeature.Systems
 
                 ref Coins coins = ref coinableAspect.Coins.Get(coinableID);
 
-                coins.Value += updateRequest.Value;
+                if (updateRequest.Overwrite)
+                    coins.Value = updateRequest.Value;
+                else
+                    coins.Value += updateRequest.Value;
 
-                GenerateEvent(coinable);
-                
+                GenerateEvent(coinable.Value);
+
                 _world.DelEntity(request);
             }
         }
 
-        private void GenerateEvent(TargetEntity targetEntity)
+        private void GenerateEvent(entlong coinable)
         {
             EventAspect eventAspect = _world.GetAspect<EventAspect>();
             int entity = _world.NewEntity();
             eventAspect.CoinsUpdatedEvent.Add(entity);
-            eventAspect.Coinable.Add(entity).Value = targetEntity.Value;
+            eventAspect.Coinable.Add(entity).Value = coinable;
         }
     }
 }

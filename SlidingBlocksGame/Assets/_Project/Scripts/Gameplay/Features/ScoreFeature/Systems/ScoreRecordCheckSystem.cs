@@ -5,7 +5,6 @@ using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.ScoreFeature.Systems
 {
-    
     public class ScoreRecordCheckSystem : IEcsRun
     {
         [EcsInject] private EcsDefaultWorld _world;

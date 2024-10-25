@@ -79,7 +79,7 @@ namespace _Project.Scripts.Gameplay.Features.CoinFeature.Systems
                                 if (!target.Entity.TryGetID(out int _))
                                     return;
 
-                                EcsWorld world = target.Entity.World;
+                                EcsWorld world = target.World;
 
                                 int catcher = world.NewEntity();
 

@@ -40,30 +40,30 @@ namespace _Project.Scripts.Gameplay.Features.PurchaseFeature.IntegrationFeatures
                     
                     if (aspect.Purchased.Has(entity))
                     {
-                        widget.PurchaseStatusWidget.Current = widget.PurchaseStatusWidget.Play;
+                        widget.StatusWidget.Current = widget.StatusWidget.Play;
 
-                        widget.PurchaseStatusWidget.Play.SetActive(true);
-                        widget.PurchaseStatusWidget.Unlock.SetActive(false);
-                        widget.PurchaseStatusWidget.Lock.SetActive(false);
+                        widget.StatusWidget.Play.SetActive(true);
+                        widget.StatusWidget.Unlock.SetActive(false);
+                        widget.StatusWidget.Lock.SetActive(false);
                     }
                     else
                     {
                         if (coins.Value >= aspect.Purchases.Get(entity).Price)
                         {
-                            widget.PurchaseStatusWidget.Current = widget.PurchaseStatusWidget.Unlock;
+                            widget.StatusWidget.Current = widget.StatusWidget.Unlock;
 
-                             widget.PurchaseStatusWidget.Unlock.SetActive(true);
+                             widget.StatusWidget.Unlock.SetActive(true);
 
-                             widget.PurchaseStatusWidget.Play.SetActive(false);
-                             widget.PurchaseStatusWidget.Lock.SetActive(false);
+                             widget.StatusWidget.Play.SetActive(false);
+                             widget.StatusWidget.Lock.SetActive(false);
                         }
                         else
                         {
-                            widget.PurchaseStatusWidget.Current = widget.PurchaseStatusWidget.Lock;
+                            widget.StatusWidget.Current = widget.StatusWidget.Lock;
 
-                             widget.PurchaseStatusWidget.Lock.SetActive(true);
-                             widget.PurchaseStatusWidget.Play.SetActive(false);
-                             widget.PurchaseStatusWidget.Unlock.SetActive(false);
+                             widget.StatusWidget.Lock.SetActive(true);
+                             widget.StatusWidget.Play.SetActive(false);
+                             widget.StatusWidget.Unlock.SetActive(false);
                         }
                     }
                 }

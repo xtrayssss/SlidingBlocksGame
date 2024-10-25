@@ -14,7 +14,7 @@ namespace _Project.Scripts.Gameplay.Features.RewardFeature.Systems
     {
         [EcsInject] private EcsDefaultWorld _world;
 
-        private class RewardButtonClickedAspect : EcsAspectAuto
+        private class RewardClickedAspect : EcsAspectAuto
         {
             [Inc] private readonly EcsTagPool<RewardButtonTag> _rewardButtonTag;
             [Inc] private readonly EcsTagPool<ButtonClickedEvent> _buttonClickedEvent;
@@ -35,7 +35,7 @@ namespace _Project.Scripts.Gameplay.Features.RewardFeature.Systems
 
         public void Run()
         {
-            foreach (int _ in _world.Where(out RewardButtonClickedAspect _))
+            foreach (int _ in _world.Where(out RewardClickedAspect _))
             {
                 foreach (int reward in _world.Where(out RewardAspect rewardAspect))
                 {

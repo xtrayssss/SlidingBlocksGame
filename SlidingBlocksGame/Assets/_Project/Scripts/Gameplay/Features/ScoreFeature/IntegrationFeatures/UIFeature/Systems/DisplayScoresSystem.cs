@@ -1,4 +1,5 @@
 ﻿using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+using _Project.Scripts.Gameplay.Features.PlayerFeature.Components;
 using _Project.Scripts.Gameplay.Features.ScoreFeature.Components;
 using _Project.Scripts.Gameplay.Features.ScoreFeature.IntegrationFeatures.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components;
@@ -20,7 +21,6 @@ namespace _Project.Scripts.Gameplay.Features.ScoreFeature.IntegrationFeatures.UI
 
         private class BestScoreUpdatedEventAspect : EcsAspectAuto
         {
-            [Inc] public readonly EcsPool<TargetEntity> Displayables;
             [Inc] public readonly EcsPool<BestScoreUpdatedEvent> BestScoreUpdatedEvent;
         }
 
@@ -39,6 +39,11 @@ namespace _Project.Scripts.Gameplay.Features.ScoreFeature.IntegrationFeatures.UI
         private class DisplayableAspect : EcsAspectAuto
         {
             [Opt] public readonly EcsPool<Scores> Scores;
+        }
+        
+        private class PlayerAspect : EcsAspectAuto
+        {
+            [IncImplicit(typeof(PlayerTag))]
             [Opt] public readonly EcsPool<BestScore> BestScores;
         }
 
@@ -66,21 +71,16 @@ namespace _Project.Scripts.Gameplay.Features.ScoreFeature.IntegrationFeatures.UI
                 }
             }
 
-            foreach (int @event in _world.Where(out BestScoreUpdatedEventAspect bestScoreUpdatedEventAspect))
+            foreach (int _ in _world.Where(out BestScoreUpdatedEventAspect _))
             {
                 foreach (int widget in _world.Where(out BestScoreWidgetAspect widgetAspect))
                 {
-                    if (!bestScoreUpdatedEventAspect.Displayables.Read(@event).Value.TryGetID(out int displayableID))
-                        continue;
-
-                    DisplayableAspect displayableAspect = _world.GetAspect<DisplayableAspect>();
-
-                    ref BestScoreWidget bestScoreWidget = ref widgetAspect.BestScoreWidgets.Get(widget);
-
-                    bestScoreWidget.AmountText.text = displayableAspect.BestScores.Get(displayableID).Value.ToString();
-
-                    if (bestScoreUpdatedEventAspect.BestScoreUpdatedEvent.Read(@event).Delta != 0)
+                    foreach (int player in _world.Where(out PlayerAspect playerAspect))
                     {
+                        ref BestScoreWidget bestScoreWidget = ref widgetAspect.BestScoreWidgets.Get(widget);
+
+                        bestScoreWidget.AmountText.text = playerAspect.BestScores.Get(player).Value.ToString();
+
                         ref UIElement uiElement = ref widgetAspect.UIElements.Get(widget);
 
                         Tween.PunchScale(

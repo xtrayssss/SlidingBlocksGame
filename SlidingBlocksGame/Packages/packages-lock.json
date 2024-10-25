@@ -16,15 +16,6 @@
       },
       "hash": "65bcbc4024a10caa414e03f9ad5b0cbaf7b70e3e"
     },
-    "com.dcfa_pixels.dragonecs-hybrid": {
-      "version": "https://github.com/DCFApixels/DragonECS-Hybrid.git",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {
-        "com.dcfa_pixels.dragonecs": "https://github.com/DCFApixels/DragonECS.git"
-      },
-      "hash": "8d4523002d7ba1e111f962c7d85a6da30f7ba0fe"
-    },
     "com.dcfa_pixels.dragonecs-unity": {
       "version": "https://github.com/DCFApixels/DragonECS-Unity.git",
       "depth": 0,
@@ -33,13 +24,6 @@
         "com.dcfa_pixels.dragonecs": "https://github.com/DCFApixels/DragonECS.git"
       },
       "hash": "4930c3d165ff8535d800904c0dfadcaebd34a3ef"
-    },
-    "com.emrecelik95.lightscrollsnap": {
-      "version": "https://github.com/emrecelik95/LightScrollSnap.git",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "5a65ed4d8064d12c02c19e0418604e87f6f6a138"
     },
     "com.kyrylokuzyk.primetween": {
       "version": "file:../Assets/Plugins/PrimeTween/internal/com.kyrylokuzyk.primetween.tgz",
@@ -53,33 +37,11 @@
       "source": "builtin",
       "dependencies": {}
     },
-    "com.unity.burst": {
-      "version": "1.8.17",
-      "depth": 1,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.mathematics": "1.2.1",
-        "com.unity.modules.jsonserialize": "1.0.0"
-      },
-      "url": "https://packages.unity.com"
-    },
     "com.unity.collab-proxy": {
       "version": "2.4.3",
       "depth": 0,
       "source": "registry",
       "dependencies": {},
-      "url": "https://packages.unity.com"
-    },
-    "com.unity.collections": {
-      "version": "2.4.3",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.burst": "1.8.13",
-        "com.unity.test-framework": "1.4.3",
-        "com.unity.nuget.mono-cecil": "1.11.4",
-        "com.unity.test-framework.performance": "3.0.3"
-      },
       "url": "https://packages.unity.com"
     },
     "com.unity.device-simulator.devices": {
@@ -90,7 +52,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.ext.nunit": {
-      "version": "2.0.3",
+      "version": "1.0.6",
       "depth": 1,
       "source": "registry",
       "dependencies": {},
@@ -112,41 +74,6 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
-    "com.unity.nuget.mono-cecil": {
-      "version": "1.11.4",
-      "depth": 1,
-      "source": "registry",
-      "dependencies": {},
-      "url": "https://packages.unity.com"
-    },
-    "com.unity.nuget.newtonsoft-json": {
-      "version": "3.2.1",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {},
-      "url": "https://packages.unity.com"
-    },
-    "com.unity.test-framework": {
-      "version": "1.4.4",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.ext.nunit": "2.0.3",
-        "com.unity.modules.imgui": "1.0.0",
-        "com.unity.modules.jsonserialize": "1.0.0"
-      },
-      "url": "https://packages.unity.com"
-    },
-    "com.unity.test-framework.performance": {
-      "version": "3.0.3",
-      "depth": 1,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.test-framework": "1.1.31",
-        "com.unity.modules.jsonserialize": "1.0.0"
-      },
-      "url": "https://packages.unity.com"
-    },
     "com.unity.textmeshpro": {
       "version": "3.0.9",
       "depth": 0,
@@ -156,36 +83,14 @@
       },
       "url": "https://packages.unity.com"
     },
-    "com.unity.timeline": {
-      "version": "1.8.7",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.modules.audio": "1.0.0",
-        "com.unity.modules.director": "1.0.0",
-        "com.unity.modules.animation": "1.0.0",
-        "com.unity.modules.particlesystem": "1.0.0"
-      },
-      "url": "https://packages.unity.com"
-    },
     "com.unity.ugui": {
-      "version": "2.0.0",
-      "depth": 0,
+      "version": "1.0.0",
+      "depth": 1,
       "source": "builtin",
       "dependencies": {
         "com.unity.modules.ui": "1.0.0",
         "com.unity.modules.imgui": "1.0.0"
       }
-    },
-    "com.unity.visualscripting": {
-      "version": "1.9.4",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.ugui": "1.0.0",
-        "com.unity.modules.jsonserialize": "1.0.0"
-      },
-      "url": "https://packages.unity.com"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",

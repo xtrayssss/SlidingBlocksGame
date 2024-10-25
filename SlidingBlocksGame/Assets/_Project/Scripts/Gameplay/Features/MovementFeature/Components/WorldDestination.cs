@@ -11,9 +11,9 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Components
     {
         public float3 Value;
 
-        [MovedFrom(autoUpdateAPI: false, sourceNamespace: "_Project.Scripts.Gameplay.Features.MovementFeature.Components", sourceClassName: "WorldDestination/Template", sourceAssembly: "Assembly-CSharp")]
-
-
+        [MovedFrom(autoUpdateAPI: false,
+            sourceNamespace: "_Project.Scripts.Gameplay.Features.MovementFeature.Components",
+            sourceClassName: "WorldDestination/Template", sourceAssembly: "Assembly-CSharp")]
         private sealed class Template : ComponentTemplate<WorldDestination>
         {
         }

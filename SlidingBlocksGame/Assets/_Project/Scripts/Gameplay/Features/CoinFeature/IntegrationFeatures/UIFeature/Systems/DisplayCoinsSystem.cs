@@ -31,11 +31,11 @@ namespace _Project.Scripts.Gameplay.Features.CoinFeature.IntegrationFeatures.UIF
 
         public void Run()
         {
-            foreach (int @event in _world.Where(out CoinsUpdatedEventAspect coinsUpdatedEventAspect))
+            foreach (int @event in _world.Where(out CoinsUpdatedEventAspect eventAspect))
             {
                 foreach (int widget in _world.Where(out CoinWidgetAspect widgetAspect))
                 {
-                    if (!coinsUpdatedEventAspect.Coinables.Read(@event).Value.TryGetID(out int coinableID))
+                    if (!eventAspect.Coinables.Read(@event).Value.TryGetID(out int coinableID))
                         continue;
 
                     CoinableAspect coinableAspect = _world.GetAspect<CoinableAspect>();

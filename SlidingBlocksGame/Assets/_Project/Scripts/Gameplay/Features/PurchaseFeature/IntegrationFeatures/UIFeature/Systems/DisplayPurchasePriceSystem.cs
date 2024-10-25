@@ -23,10 +23,9 @@ namespace _Project.Scripts.Gameplay.Features.PurchaseFeature.IntegrationFeatures
             foreach (int entity in _world.Where(out Aspect aspect))
             {
                 ref PurchaseWidget widget = ref aspect.PurchaseWidgets.Get(entity);
-                
-                widget.PurchaseStatusWidget.PriceText.text = aspect.Purchases.Get(entity).Price.ToString();
+
+                widget.StatusWidget.PriceText.text = aspect.Purchases.Get(entity).Price.ToString();
             }
         }
     }
-
 }

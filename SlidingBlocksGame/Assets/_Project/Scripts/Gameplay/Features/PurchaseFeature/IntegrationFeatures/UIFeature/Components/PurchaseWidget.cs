@@ -4,6 +4,7 @@ using PrimeTween;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Scripting.APIUpdating;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace _Project.Scripts.Gameplay.Features.PurchaseFeature.IntegrationFeatures.UIFeature.Components
@@ -12,7 +13,7 @@ namespace _Project.Scripts.Gameplay.Features.PurchaseFeature.IntegrationFeatures
     [MetaGroup("Purchase/UI")]
     public struct PurchaseWidget : IEcsComponent
     {
-        public PurchaseStatusWidget PurchaseStatusWidget;
+        [FormerlySerializedAs("PurchaseStatusWidget")] public PurchaseStatusWidget StatusWidget;
         public RawImage Icon;
         public Tween RotationTween;
 

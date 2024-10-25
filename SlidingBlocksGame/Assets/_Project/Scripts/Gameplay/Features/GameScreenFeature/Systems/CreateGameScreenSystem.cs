@@ -63,7 +63,7 @@ namespace _Project.Scripts.Gameplay.Features.GameScreenFeature.Systems
             [Opt] public readonly EcsPool<PurchaseWidget> PurchaseWidgets;
             [Opt] public readonly EcsPool<PhysicView> PhysicView;
             [Opt] public readonly EcsPool<RenderCamera> RenderCamera;
-            [Opt] public readonly EcsPool<Render3DToUIRequest> Render3DToUI;
+            [Opt] public readonly EcsPool<ObjectPreviewRequest> Render3DToUI;
         }
 
         private class TitleWidgetAspect : EcsAspectAuto
@@ -258,7 +258,7 @@ namespace _Project.Scripts.Gameplay.Features.GameScreenFeature.Systems
                     ref PurchaseWidget purchaseWidget = ref purchaseAspect.PurchaseWidgets.Get(purchaseLong.ID);
 
                     int renderer3D = _world.NewEntity();
-                    purchaseAspect.Render3DToUI.Add(renderer3D) = new Render3DToUIRequest
+                    purchaseAspect.Render3DToUI.Add(renderer3D) = new ObjectPreviewRequest
                     {
                         RawImage = purchaseWidget.Icon
                     };
@@ -266,7 +266,7 @@ namespace _Project.Scripts.Gameplay.Features.GameScreenFeature.Systems
                     _world.GetPool<TargetEntity>().Add(renderer3D).Value = purchaseLong;
 
                     ref AnimalsShopWindow animalsShopWindow = ref windowAspect.AnimalsShopWindows.Get(window);
-                    purchaseWidget.PurchaseStatusWidget = new PurchaseStatusWidget
+                    purchaseWidget.StatusWidget = new PurchaseStatusWidget
                     {
                         Current = animalsShopWindow.PurchaseStatusWidget.Current,
                         Lock = animalsShopWindow.PurchaseStatusWidget.Lock,

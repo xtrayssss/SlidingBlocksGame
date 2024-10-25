@@ -1,5 +1,4 @@
 ﻿using _Project.Scripts.Gameplay.Features.CameraFeature.Components;
-using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.CameraFeature.Systems

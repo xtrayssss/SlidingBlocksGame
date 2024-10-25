@@ -1,6 +1,8 @@
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
+using _Project.Scripts.Gameplay.Features.PlayerFeature.Components;
 using _Project.Scripts.Gameplay.Features.ScoreFeature.Components;
 using DCFApixels.DragonECS;
+using UnityEngine.PlayerLoop;
 
 namespace _Project.Scripts.Gameplay.Features.ScoreFeature.Systems
 {
@@ -14,41 +16,43 @@ namespace _Project.Scripts.Gameplay.Features.ScoreFeature.Systems
             [Inc] public readonly EcsPool<TargetEntity> TargetEntities;
         }
 
-        private class TargetEntityAspect : EcsAspectAuto
+        private class PlayerAspect : EcsAspectAuto
         {
+            [IncImplicit(typeof(PlayerTag))]
             [Inc] public readonly EcsPool<BestScore> BestScores;
-
-            [Opt] public readonly EcsPool<TargetEntity> TargetEntity;
+        }
+        
+        private class EventAspect : EcsAspectAuto
+        {
             [Opt] public readonly EcsPool<BestScoreUpdatedEvent> BestScoreUpdatedEvent;
         }
 
         public void Run()
         {
-            foreach (int entity in _world.Where(out RequestAspect requestAspect))
+            foreach (int request in _world.Where(out RequestAspect requestAspect))
             {
-                ref readonly TargetEntity targetEntity = ref requestAspect.TargetEntities.Read(entity);
+                ref readonly UpdateBestScoreRequest updateRequest =
+                    ref requestAspect.UpdateBestScoresRequest.Read(request);
 
-                if (!targetEntity.Value.TryGetID(out int targetID))
-                    continue;
+                foreach (int player in _world.Where(out PlayerAspect playerAspect))
+                {
+                    ref BestScore bestScore = ref playerAspect.BestScores.Get(player);
+                    
+                    if (updateRequest.Overwrite)
+                        bestScore.Value = updateRequest.Value;
+                    else
+                        bestScore.Value += updateRequest.Value;
 
-                ref readonly UpdateBestScoreRequest
-                    updateScoresRequest = ref requestAspect.UpdateBestScoresRequest.Read(entity);
-
-                TargetEntityAspect targetEntityAspect = _world.GetAspect<TargetEntityAspect>();
-
-                ref BestScore bestScore = ref targetEntityAspect.BestScores.Get(targetID);
-
-                int lastBestScore = bestScore.Value;
-
-                if (updateScoresRequest.Overwrite)
-                    bestScore.Value = updateScoresRequest.Value;
-                else
-                    bestScore.Value += updateScoresRequest.Value;
-
-                int @event = _world.NewEntity();
-                targetEntityAspect.TargetEntity.Add(@event).Value = targetEntity.Value;
-                targetEntityAspect.BestScoreUpdatedEvent.Add(@event).Delta = bestScore.Value - lastBestScore;
+                    GenerateEvent();
+                }
             }
+        }
+
+        private void GenerateEvent()
+        {
+            EventAspect eventAspect = _world.GetAspect<EventAspect>();
+            int @event = _world.NewEntity();
+            eventAspect.BestScoreUpdatedEvent.Add(@event);
         }
     }
 }

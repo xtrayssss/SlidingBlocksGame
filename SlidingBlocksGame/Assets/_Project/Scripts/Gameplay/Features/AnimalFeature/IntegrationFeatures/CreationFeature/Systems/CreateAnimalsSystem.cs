@@ -31,7 +31,7 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.C
             [Opt] public readonly EcsPool<MovementDirection> Direction;
             [Opt] public readonly EcsPool<ActiveGameField> ActiveGameField;
             [Opt] public readonly EcsPool<BoundExtents> BoundsExtents;
-            [Opt] public readonly EcsPool<MeshRendererRef> MeshRenderers;
+            [Opt] public readonly EcsPool<RendererRef> MeshRenderers;
         }
         
         private class PlayerAspect : EcsAspectAuto

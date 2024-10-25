@@ -26,7 +26,7 @@ namespace _Project.Scripts.Gameplay.Features.CoinFeature.Systems
 
             [Exc] public readonly EcsTagPool<CollectedMarker> CollectedMarker;
 
-            [Inc] public readonly EcsPool<MeshRendererRef> MeshRenderers;
+            [Inc] public readonly EcsPool<RendererRef> Renderers;
             [Inc] public readonly EcsPool<GameObjectConnect> GameObjectConnects;
 
             [Inc] public readonly EcsPool<Coins> Coins;
@@ -46,7 +46,7 @@ namespace _Project.Scripts.Gameplay.Features.CoinFeature.Systems
             [Inc] public readonly EcsPool<CellPosition> CellPositions;
 
             [Inc] public readonly EcsPool<ActiveGameField> ActiveGameFields;
-            [Inc] public readonly EcsPool<GameObjectConnect> GameObjectConnects;
+            [Inc] public readonly EcsPool<WorldPosition> WorldPositions;
             [Inc] public readonly EcsPool<MovementDirection> MovementDirections;
             [Inc] public readonly EcsPool<BoundExtents> BoundExtents;
         }
@@ -55,6 +55,11 @@ namespace _Project.Scripts.Gameplay.Features.CoinFeature.Systems
         {
             [IncImplicit(typeof(PlayerTag))]
             [Inc] public readonly EcsPool<Coins> Coins;
+        }
+
+        private class GameFieldAspect : EcsAspectAuto
+        {
+            [Inc] public readonly EcsPool<GameField> GameFields;
         }
 
         public void Run()
@@ -66,27 +71,32 @@ namespace _Project.Scripts.Gameplay.Features.CoinFeature.Systems
                     if (!movingAnimalAspect.ActiveGameFields.Read(animal).Value.TryGetID(out int gameFieldID))
                         continue;
 
-                    ref readonly GameObjectConnect goConnect = ref movingAnimalAspect.GameObjectConnects.Read(animal);
-
-                    float3 transformPosition = goConnect.Connect.transform.position;
+                    ref readonly WorldPosition worldPosition = ref movingAnimalAspect.WorldPositions.Read(animal);
 
                     ref readonly BoundExtents boundExtents = ref movingAnimalAspect.BoundExtents.Read(animal);
 
-                    ref readonly GameField gameField = ref _world.GetPool<GameField>().Read(gameFieldID);
+                    GameFieldAspect gameFieldAspect = _world.GetAspect<GameFieldAspect>();
+
+                    ref readonly GameField gameField = ref gameFieldAspect.GameFields.Read(gameFieldID);
 
                     ref readonly MovementDirection movementDirection =
                         ref movingAnimalAspect.MovementDirections.Read(animal);
 
-                    int2 position = GetCellPosition(transformPosition, movementDirection.Value, boundExtents.Value,
-                        gameField);
+                    int2 animalCellPosition = GetCellPosition(
+                        worldPosition.Value,
+                        movementDirection.Value,
+                        boundExtents.Value,
+                        in gameField);
 
-                    if (math.all(coinAspect.CellPositions.Read(coin).Value == position))
+                    ref readonly CellPosition coinCellPosition = ref coinAspect.CellPositions.Read(coin);
+
+                    if (math.all(coinCellPosition.Value == animalCellPosition))
                     {
                         coinAspect.CollectedMarker.Add(coin);
 
                         ref GameObjectConnect gameObjectConnect = ref coinAspect.GameObjectConnects.Get(coin);
 
-                        Animate(coin, coinAspect, ref gameObjectConnect);
+                        Animate(coin, ref gameObjectConnect, coinAspect);
 
                         foreach (int player in _world.Where(out PlayerAspect _))
                         {
@@ -101,42 +111,42 @@ namespace _Project.Scripts.Gameplay.Features.CoinFeature.Systems
             }
         }
 
-        private static int2 GetCellPosition(float3 transformPosition, int2 movementDirection, float3 boundExtents,
+        private static int2 GetCellPosition(float3 position, int2 direction, float3 boundExtents,
             in GameField gameField)
         {
             GridUtils.Grid grid = gameField.ToGrid();
 
             return GridUtils.GetCellPosition(
-                worldPosition: transformPosition + movementDirection.xyy * boundExtents,
+                worldPosition: position + direction.xyy * boundExtents,
                 grid);
         }
 
-        private void Animate(int coin, CoinAspect coinAspect, ref GameObjectConnect gameObjectConnect)
+        private void Animate(int coin, ref GameObjectConnect goConnect, CoinAspect coinAspect)
         {
             Sequence.Create()
                 .Group(
                     Tween.Position(
-                        target: gameObjectConnect.Connect.transform,
+                        target: goConnect.Connect.transform,
                         endValue: new Vector3(
-                            gameObjectConnect.Connect.transform.position.x,
+                            goConnect.Connect.transform.position.x,
                             9,
-                            gameObjectConnect.Connect.transform.position.y),
+                            goConnect.Connect.transform.position.y),
                         duration: 0.8f,
                         ease: Ease.OutQuint))
                 .Group(
                     Tween.MaterialColor(
-                        target: coinAspect.MeshRenderers.Read(coin).Value.material,
+                        target: coinAspect.Renderers.Read(coin).Value.material,
                         endValue: Color.clear,
                         duration: 0.8f,
                         ease: Ease.OutQuint))
                 .ChainCallback(
-                    target: gameObjectConnect.Connect,
+                    target: goConnect.Connect,
                     static connect =>
                     {
                         if (!connect.Entity.TryGetID(out _))
                             return;
 
-                        EcsWorld world = connect.Entity.World;
+                        EcsWorld world = connect.World;
 
                         int catcher = world.NewEntity();
 

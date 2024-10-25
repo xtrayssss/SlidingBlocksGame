@@ -46,8 +46,7 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.Systems
 
         private class BestScoreUpdatedEventAspect : EcsAspectAuto
         {
-            [IncImplicit(typeof(BestScoreUpdatedEvent))]
-            [Inc] public readonly EcsPool<TargetEntity> TargetEntity;
+            [Inc] public readonly EcsPool<BestScoreUpdatedEvent> BestScoreUpdatedEvent;
         }
 
         private class LoadProgressAspect : EcsAspectAuto
@@ -131,19 +130,16 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.Systems
                 YandexGame.SaveProgress();
             }
 
-            foreach (int @event in _world.Where(out BestScoreUpdatedEventAspect eventAspect))
+            foreach (int _ in _world.Where(out BestScoreUpdatedEventAspect _))
             {
-                PlayerAspect playerAspect = _world.GetAspect<PlayerAspect>();
+                foreach (int player in _world.Where(out PlayerAspect playerAspect))
+                {
+                    ref BestScore bestScore = ref playerAspect.BestScores.Get(player);
 
-                if (!eventAspect.TargetEntity.Read(@event).Value.TryGetID(out int playerID) ||
-                    !playerAspect.IsMatches(playerID))
-                    continue;
+                    YandexGame.savesData.BestScores = bestScore.Value;
 
-                ref BestScore bestScore = ref playerAspect.BestScores.Get(playerID);
-
-                YandexGame.savesData.BestScores = bestScore.Value;
-
-                YandexGame.SaveProgress();
+                    YandexGame.SaveProgress();
+                }
             }
 
             foreach (int purchaseID in _world.Where(out PurchasedEventAspect _))

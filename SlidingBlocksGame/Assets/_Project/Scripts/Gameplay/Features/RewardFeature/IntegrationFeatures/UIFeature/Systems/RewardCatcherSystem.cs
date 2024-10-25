@@ -10,23 +10,23 @@ namespace _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.U
 
         public void Run()
         {
-            foreach (int entity in _world.Where(out RewardCatcherAspect.ConfettiCatcher catcherAspect))
+            foreach (int catcher in _world.Where(out RewardCatcherAspect.ConfettiCatcher catcherAspect))
             {
-                ref readonly TargetEntity targetEntity =
-                    ref catcherAspect.CommonCatcherAspect.TargetEntities.Read(entity);
+                ref readonly TargetEntity confetti =
+                    ref catcherAspect.CommonCatcherAspect.TargetEntities.Read(catcher);
 
-                if (targetEntity.Value.TryGetID(out int targetID))
-                    catcherAspect.ConfettiExplodedEvent.Add(targetID);
+                if (confetti.Value.TryGetID(out int confettiID))
+                    catcherAspect.ConfettiExplodedEvent.Add(confettiID);
 
-                _world.DelEntity(entity);
+                _world.DelEntity(catcher);
             }
 
-            foreach (int entity in _world.Where(out RewardCatcherAspect.CoinCountDisplayedCatcher catcherAspect))
+            foreach (int catcher in _world.Where(out RewardCatcherAspect.CoinCountDisplayedCatcher catcherAspect))
             {
                 CommonCatcherAspect commonCatcherAspect = catcherAspect.CommonCatcherAspect;
 
                 ref readonly TargetEntity targetEntity =
-                    ref commonCatcherAspect.TargetEntities.Read(entity);
+                    ref commonCatcherAspect.TargetEntities.Read(catcher);
 
                 if (targetEntity.Value.TryGetID(out _))
                 {
@@ -35,7 +35,7 @@ namespace _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.U
                     commonCatcherAspect.TargetEntities.Add(@event).Value = targetEntity.Value;
                 }
 
-                _world.DelEntity(entity);
+                _world.DelEntity(catcher);
             }
 
             foreach (int entity in _world.Where(out RewardCatcherAspect.CoinDisplayCompletedCatcher catcherAspect))
@@ -45,7 +45,7 @@ namespace _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.U
                 ref readonly TargetEntity targetEntity =
                     ref commonCatcherAspect.TargetEntities.Read(entity);
 
-                if (targetEntity.Value.TryGetID(out int targetID)) 
+                if (targetEntity.Value.TryGetID(out int targetID))
                     catcherAspect.RewardCoinDisplayCompletedEvent.Add(targetID);
 
                 _world.DelEntity(entity);
