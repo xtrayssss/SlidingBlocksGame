@@ -45,7 +45,6 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Systems
             
             foreach (int effect in _world.Where(out FadeEffectAspect effectAspect))
             {
-                Debug.Log("FADE");
                 ref readonly ApplyEffectRequest effectRequest = ref effectAspect.ApplyEffectRequest.Read(effect);
 
                 ref FadeEffect fadeEffect = ref effectAspect.FadeEffects.Get(effect);

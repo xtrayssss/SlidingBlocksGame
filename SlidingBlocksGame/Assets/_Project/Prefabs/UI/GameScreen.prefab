@@ -7026,7 +7026,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f34f36451b093ee4c83ad4aa5459d2ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textMPComponent: {fileID: 0}
+  textMPComponent: {fileID: 283774027289520856}
   uniqueFontTMP: {fileID: 0}
   textLComponent: {fileID: 0}
   infoYG: {fileID: 11400000, guid: 162644796a8b0d044bce3d6fda0641e3, type: 2}
@@ -7557,7 +7557,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f34f36451b093ee4c83ad4aa5459d2ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textMPComponent: {fileID: 0}
+  textMPComponent: {fileID: 5518037976293578145}
   uniqueFontTMP: {fileID: 0}
   textLComponent: {fileID: 0}
   infoYG: {fileID: 11400000, guid: 162644796a8b0d044bce3d6fda0641e3, type: 2}
@@ -8824,7 +8824,7 @@ MonoBehaviour:
       data:
         component:
           CollectionTime: 0
-          Interval: 5000
+          Interval: 10000000
           ClaimedCount: 0
     - rid: 3543309498256195584
       type: {class: RewardTag/Template, ns: _Project.Scripts.Gameplay.Features.RewardFeature.Components,
@@ -29578,6 +29578,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7073395842434265777}
     m_Modifications:
+    - target: {fileID: -910297185890404444, guid: 261de00eb0358724ea491f0c065012bb,
+        type: 3}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -910297185890404444, guid: 261de00eb0358724ea491f0c065012bb,
         type: 3}
       propertyPath: managedReferences[-2]

@@ -17,8 +17,9 @@ namespace _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.U
 {
     public class RewardWindowSystem : IEcsRun
     {
-        private const float COIN_DELAY = 0.05f;
         [EcsInject] private readonly EcsDefaultWorld _world;
+
+        private const float COIN_DELAY = 0.05f;
 
         private class RewardUnlockStateAspect
         {
@@ -37,12 +38,6 @@ namespace _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.U
             [Inc] public readonly EcsPool<RewardWidget> RewardWidgets;
 
             [Inc] public readonly EcsPool<Reward> Rewards;
-        }
-
-        private class OpenRewardButtonClickedAspect : EcsAspectAuto
-        {
-            [Inc] private readonly EcsTagPool<RewardButtonTag> _rewardButtonTag;
-            [Inc] private readonly EcsTagPool<ButtonClickedEvent> _buttonClickedEvent;
         }
 
         private class RewardAspect : EcsAspectAuto
@@ -74,16 +69,21 @@ namespace _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.U
             [Inc] public readonly EcsPool<OriginalAnchoredPosition> OriginalAnchoredPositions;
             [Inc] public readonly EcsPool<UIElement> UIElements;
         }
-        
+
         private class SunshineAspect : EcsAspectAuto
         {
             [Inc] public readonly EcsPool<Sunshine> Sunshine;
         }
 
-        private class CloseRewardWindowButtonClickedAspect : EcsAspectAuto
+        private class OpenWindowAspect : EcsAspectAuto
         {
-            [Inc] private readonly EcsTagPool<CloseRewardWindowButtonTag> _closeRewardWindowButton;
-            [Inc] private readonly EcsTagPool<ButtonClickedEvent> _buttonClicked;
+            [Inc] public readonly EcsTagPool<RewardCollectedEvent> RewardCollectedEvent;
+        }
+
+        private class CloseWindowClickedAspect : EcsAspectAuto
+        {
+            [Inc] public readonly EcsTagPool<CloseRewardWindowButtonTag> CloseRewardWindowButton;
+            [Inc] public readonly EcsTagPool<ButtonClickedEvent> ButtonClicked;
         }
 
         public void Run()
@@ -136,7 +136,7 @@ namespace _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.U
                 rewardWidget.ClaimRewardWidget.RewardTimeText.gameObject.SetActive(true);
             }
 
-            foreach (int _ in _world.Where(out OpenRewardButtonClickedAspect _))
+            foreach (int _ in _world.Where(out OpenWindowAspect _))
             {
                 foreach (int reward in _world.Where(out RewardAspect rewardAspect))
                 {
@@ -157,9 +157,7 @@ namespace _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.U
 
                     rewardWindow.OpenCloseTween.Stop();
 
-                    Sequence sequence = Sequence.Create();
-
-                    rewardWindow.OpenCloseTween = sequence
+                    rewardWindow.OpenCloseTween = Sequence.Create()
                         .Chain(
                             Tween.Scale(
                                 target: rewardWindowConnect.transform,
@@ -168,34 +166,54 @@ namespace _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.U
                                 ease: Ease.OutBack))
                         .Chain(
                             AnimateCoins(
-                                    rewardWindowID,
-                                    reward)
-                                .ChainCallback(
-                                    target: rewardWindowConnect,
-                                    static connect =>
-                                    {
-                                        if (!connect.Entity.TryGetID(out int _))
-                                            return;
+                                rewardWindowID,
+                                reward))
+                        .ChainCallback(
+                            target: rewardWindowConnect,
+                            static connect =>
+                            {
+                                if (!connect.Entity.TryGetID(out int _))
+                                    return;
 
-                                        EcsWorld world = connect.Entity.World;
+                                EcsWorld world = connect.Entity.World;
 
-                                        int catcher = world.NewEntity();
+                                int catcher = world.NewEntity();
 
-                                        RewardCatcherAspect.CoinDisplayCompletedCatcher catcherAspect =
-                                            world.GetAspect<RewardCatcherAspect.CoinDisplayCompletedCatcher>();
+                                RewardCatcherAspect.CoinDisplayCompletedCatcher catcherAspect =
+                                    world.GetAspect<RewardCatcherAspect.CoinDisplayCompletedCatcher>();
 
-                                        catcherAspect.CommonCatcherAspect.TargetEntities.Add(catcher).Value =
-                                            connect.Entity;
-                                        catcherAspect.CatchRewardCoinDisplayCompletedRequest.Add(catcher);
-                                    })
-                                .ChainDelay(0.3f)
-                                .Chain(
-                                    Animate(
-                                        rewardWindowID)));
+                                catcherAspect.CommonCatcherAspect.TargetEntities.Add(catcher).Value =
+                                    connect.Entity;
+                                catcherAspect.CatchRewardCoinDisplayCompletedRequest.Add(catcher);
+                            })
+                        .ChainDelay(0.3f)
+                        .Chain(
+                            Animate(
+                                rewardWindowID))
+                        .ChainCallback(
+                            rewardWindowConnect,
+                            static connect =>
+                            {
+                                EcsWorld world = connect.World;
+
+                                if (!connect.Entity.TryGetID(out int rewardWindowID))
+                                    return;
+
+                                RewardWindowAspect rewardWindowAspect = world.GetAspect<RewardWindowAspect>();
+
+                                RewardWindow rewardWindow = rewardWindowAspect.RewardWindows.Get(rewardWindowID);
+
+                                if (!rewardWindow.TapToExitWidgetConnect.Entity.TryGetID(out int tapToExitID))
+                                    return;
+
+                                TapToExitAspect tapToExitAspect = world.GetAspect<TapToExitAspect>();
+                                ref TapToExitWidget widget = ref tapToExitAspect.TapToExitWidgets.Get(tapToExitID);
+                                widget.ExitButton.interactable = true;
+                            });
                 }
             }
 
-            foreach (int _ in _world.Where(out CloseRewardWindowButtonClickedAspect _))
+            foreach (int _ in _world.Where(out CloseWindowClickedAspect _))
             {
                 foreach (int window in _world.Where(out RewardWindowAspect rewardWindowAspect))
                 {
@@ -203,16 +221,16 @@ namespace _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.U
 
                     ref GameObjectConnect goConnect = ref rewardWindowAspect.GoConnects.Get(window);
 
-                    rewardWindow.OpenCloseTween.Stop();
-
-                    Sequence sequence = Sequence.Create();
-                    
                     if (rewardWindow.TapToExitWidgetConnect.Entity.TryGetID(out int tapToExitID))
                     {
                         TapToExitAspect tapToExitAspect = _world.GetAspect<TapToExitAspect>();
                         ref TapToExitWidget tapToExitWidget = ref tapToExitAspect.TapToExitWidgets.Get(tapToExitID);
                         tapToExitWidget.ExitButton.interactable = false;
                     }
+
+                    rewardWindow.OpenCloseTween.Stop();
+
+                    Sequence sequence = Sequence.Create();
 
                     rewardWindow.OpenCloseTween =
                         sequence
@@ -337,7 +355,7 @@ namespace _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.U
                         widget.WobbleTween = Tween.UIAnchoredPosition(
                             target: uiElement.RectTransform,
                             endValue: uiElement.RectTransform.anchoredPosition + UIUtils.WOBBLE_OFFSET,
-                            settings: UIUtils.WobbleSettings.settings);
+                            settings: UIUtils.WobbleLoopingSettings.settings);
                     });
 
             // congratulation
@@ -413,12 +431,10 @@ namespace _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.U
 
                         ref TapToExitWidget widget = ref tapToExitAspect.TapToExitWidgets.Get(id);
 
-                        widget.ExitButton.interactable = true;
-
                         widget.WobbleTween = Tween.UIAnchoredPosition(
                             target: uiElement.RectTransform,
                             endValue: uiElement.RectTransform.anchoredPosition + UIUtils.WOBBLE_OFFSET,
-                            settings: UIUtils.WobbleSettings.settings);
+                            settings: UIUtils.WobbleLoopingSettings.settings);
                     });
 
             return sequence;
@@ -490,8 +506,6 @@ namespace _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.U
                         ref TapToExitWidget widget = ref tapToExitAspect.TapToExitWidgets.Get(tapToExitID);
 
                         widget.WobbleTween.isPaused = true;
-
-                        widget.ExitButton.interactable = false;
                     })
                 .Group(
                     Tween.Scale(

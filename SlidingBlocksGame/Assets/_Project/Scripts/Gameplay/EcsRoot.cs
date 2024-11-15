@@ -1,4 +1,5 @@
-﻿using _Project.Scripts.Gameplay.Features.AnimalFeature;
+﻿using _Project.Scripts.Gameplay.Features.AdFeature;
+using _Project.Scripts.Gameplay.Features.AnimalFeature;
 using _Project.Scripts.Gameplay.Features.AudioFeature;
 using _Project.Scripts.Gameplay.Features.CoinFeature;
 using _Project.Scripts.Gameplay.Features.CooldownFeature;
@@ -11,6 +12,8 @@ using _Project.Scripts.Gameplay.Features.GameOverTimerFeature;
 using _Project.Scripts.Gameplay.Features.GameProgressFeature;
 using _Project.Scripts.Gameplay.Features.GameScreenFeature;
 using _Project.Scripts.Gameplay.Features.MovementFeature;
+using _Project.Scripts.Gameplay.Features.PauseFeature;
+using _Project.Scripts.Gameplay.Features.PauseFeature.Components;
 using _Project.Scripts.Gameplay.Features.PlayerFeature;
 using _Project.Scripts.Gameplay.Features.PurchaseFeature;
 using _Project.Scripts.Gameplay.Features.RateUsFeature;
@@ -21,14 +24,28 @@ using _Project.Scripts.Gameplay.Features.TutorialFeature;
 using _Project.Scripts.Gameplay.Features.VisualFeature;
 using _Project.Scripts.Infrastructure;
 using DCFApixels.DragonECS;
+using DCFApixels.DragonECS.RunnersCore;
 using Sirenix.OdinInspector;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using YG;
 
 namespace _Project.Scripts.Gameplay
 {
+    
+    interface IDoSomethingProcess : IEcsProcess
+    {
+        void Do();
+    }
+    // Реализация раннера. Пример реализации можно так же посмотреть в встроенных процессах 
+    sealed class DoSomethingProcessRunner : EcsRunner<IDoSomethingProcess>, IDoSomethingProcess
+    {
+        public void Do() 
+        {
+            foreach (var item in Process) item.Do();
+        }
+    }
+    
     public class EcsRoot : MonoBehaviour, ICoroutineRunner
     {
         [SerializeField] private ScriptableEntityTemplate _gameCfg;
@@ -45,6 +62,9 @@ namespace _Project.Scripts.Gameplay
 
         public void Start()
         {
+            YandexGame.ErrorFullAdEvent += () => Debug.Log("Cancelled");
+            YandexGame.CloseFullAdEvent += () => Debug.Log("Closed");
+
             EcsDefaultWorldSingletonProvider provider = EcsDefaultWorldSingletonProvider.Instance;
 
             provider.Set(_world = new EcsDefaultWorld());
@@ -69,13 +89,15 @@ namespace _Project.Scripts.Gameplay
                 .AddModule(new TutorialFeature())
                 .AddModule(new GameScreenFeature())
                 .AddModule(new VisualFeature())
+                .AddModule(new AdFeature())
+                .AddModule(new PauseFeature())
                 .AddModule(new CooldownFeature())
                 .AddModule(new AudioFeature())
                 //
                 .AddUnityDebug(_world)
                 .Inject(_world)
                 .AutoInject()
-                .BuildAndInit();
+                    .BuildAndInit();
         }
 
         public void Update() =>

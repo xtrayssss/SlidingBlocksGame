@@ -1,7 +1,7 @@
 ﻿using _Project.Scripts.Gameplay.Templates;
 using DCFApixels.DragonECS;
 using UnityEngine;
-using UnityEngine.EventSystems;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.ButtonFeature.Behaviours
@@ -9,18 +9,28 @@ namespace _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.ButtonFeatu
     public class DragonButton : Button
     {
         public EntityTemplate EntityCfg;
+        private UnityAction _click;
 
-        public override void OnPointerClick(PointerEventData eventData)
+        protected override void OnEnable()
         {
-            float eventDataClickCount = eventData.clickCount;
+            base.OnEnable();
 
-            Debug.Log(eventDataClickCount);
-            
-            base.OnPointerClick(eventData);
+            _click = () =>
+            {
+                Debug.Log("CLICK");
+                EcsDefaultWorld world = EcsDefaultWorldSingletonProvider.Instance.Get();
+                int @event = world.NewEntity(EntityCfg);
+                world.GetPool<ButtonFeature.Components.ButtonClickedEvent>().Add(@event);
+            };
 
-            EcsDefaultWorld world = EcsDefaultWorldSingletonProvider.Instance.Get();
-            int @event = world.NewEntity(EntityCfg);
-            world.GetPool<ButtonFeature.Components.ButtonClickedEvent>().Add(@event);
+            onClick.AddListener(_click);
+        }
+
+        protected override void OnDisable()
+        {
+            base.OnDisable();
+
+            onClick.RemoveListener(_click);
         }
     }
 }

@@ -163,7 +163,7 @@ namespace _Project.Scripts.Gameplay.Features.GameScreenFeature.Systems
             widget.WobbleTween = Tween.UIAnchoredPosition(
                 target: uiElement.RectTransform,
                 endValue: uiElement.RectTransform.anchoredPosition + UIUtils.WOBBLE_OFFSET,
-                settings: UIUtils.WobbleSettings.settings);
+                settings: UIUtils.WobbleLoopingSettings.settings);
         }
 
         private void CreateReward(in GameScreen gameScreen)

@@ -9,7 +9,6 @@ namespace YG.Insides
     {
         public IEnumerator CallingAd(float duration)
         {
-            yield return new WaitForSecondsRealtime(YandexGame.Instance.infoYG.loadAdWithDelaySimulation);
             YandexGame.Instance.OpenFullAd();
             DrawScreen(new Color(0, 1, 0, 0.5f));
             yield return new WaitForSecondsRealtime(duration);
