@@ -1,7 +1,6 @@
 ﻿using _Project.Scripts.Gameplay.Features.AdFeature.Components;
 using _Project.Scripts.Gameplay.Features.PauseFeature.Components;
 using DCFApixels.DragonECS;
-using UnityEngine;
 using YG;
 
 namespace _Project.Scripts.Gameplay.Features.AdFeature.Systems
@@ -15,10 +14,16 @@ namespace _Project.Scripts.Gameplay.Features.AdFeature.Systems
             [Inc] public readonly EcsTagPool<ShowAdRequest> ShowAdRequest;
         }
 
+        private class AdCompletedAspect : EcsAspectAuto
+        {
+            [Inc] public readonly EcsTagPool<AdTag> AdTag;
+            [Inc] public readonly EcsTagPool<AdCompletedEvent> AdCompletedEvent;
+            [Exc] public readonly EcsTagPool<AdUnavailableMarker> AdUnavailableMarker;
+        }
         private class AdAspect : EcsAspectAuto
         {
             [Inc] public readonly EcsTagPool<AdTag> AdTag;
-            [Opt] public readonly EcsTagPool<AdCompletedEvent> AdCompletedEvent;
+            [Inc] public readonly EcsTagPool<AdUnavailableMarker> AdUnavailableMarker;
         }
 
         private class PauseAspect : EcsAspectAuto
@@ -33,7 +38,7 @@ namespace _Project.Scripts.Gameplay.Features.AdFeature.Systems
             {
                 EcsDefaultWorld world = EcsDefaultWorldSingletonProvider.Instance.Get();
                 int @event = world.NewEntity();
-                world.GetPool<AdCompletedEvent>().Add(@event);
+                world.GetPool<CatchAdClosedEventRequest>().Add(@event);
             };
         }
 
@@ -45,9 +50,9 @@ namespace _Project.Scripts.Gameplay.Features.AdFeature.Systems
                     !(YandexGame.timerShowAd >= YandexGame.Instance.infoYG.fullscreenAdInterval))
                 {
                     EcsDefaultWorld world = EcsDefaultWorldSingletonProvider.Instance.Get();
-                    int @event = world.NewEntity();
-                    world.GetPool<AdCompletedEvent>().Add(@event);
-                    world.GetPool<AdCompletedProcessedMarker>().Add(@event);
+                    int ad = world.NewEntity();
+                    world.GetPool<AdCompletedEvent>().Add(ad);
+                    world.GetPool<AdUnavailableMarker>().Add(ad);
                 }
                 else
                 {
@@ -63,17 +68,11 @@ namespace _Project.Scripts.Gameplay.Features.AdFeature.Systems
                 }
             }
 
-            foreach (int ad in _world.Where(out AdAspect adAspect))
+            foreach (int _ in _world.Where(out AdCompletedAspect _))
             {
-                if (!YandexGame.nowFullAd)
-                {
-                    Debug.Log("Unlock");
-
-                    int request = _world.NewEntity();
-                    PauseAspect pauseAspect = _world.GetAspect<PauseAspect>();
-                    pauseAspect.Unpause.Add(request);
-                    adAspect.AdCompletedEvent.Add(ad);
-                }
+                int request = _world.NewEntity();
+                PauseAspect pauseAspect = _world.GetAspect<PauseAspect>();
+                pauseAspect.Unpause.Add(request);
             }
         }
     }

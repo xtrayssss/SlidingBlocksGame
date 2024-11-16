@@ -55,7 +55,6 @@ namespace _Project.Scripts.Gameplay.Features.RewardFeature.Systems
         private class AdCompletedAspect : EcsAspectAuto
         {
             [Inc] public readonly EcsTagPool<AdCompletedEvent> AdClosedEvent;
-            [Inc] public readonly EcsTagPool<AdCompletedProcessedMarker> AdCompletedProcessedMarker;
         }
 
         public void Run()

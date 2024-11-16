@@ -2,7 +2,7 @@
 
 namespace _Project.Scripts.Gameplay.Features.AdFeature.Components
 {
-    public struct AdCompletedProcessedMarker : IEcsTagComponent
+    public struct AdUnavailableMarker : IEcsTagComponent
     {
     }
 }

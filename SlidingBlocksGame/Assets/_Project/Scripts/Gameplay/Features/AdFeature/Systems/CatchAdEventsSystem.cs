@@ -9,14 +9,14 @@ namespace _Project.Scripts.Gameplay.Features.AdFeature.Systems
         
         private class EventAspect : EcsAspectAuto
         {
-            [Inc] public readonly EcsTagPool<AdCompletedEvent> AdCompletedEvent;
-            [Exc] public readonly EcsTagPool<AdCompletedProcessedMarker> AdCompletedProcessedMarker;
+            [Inc] public readonly EcsTagPool<CatchAdClosedEventRequest> CatchAdClosedEventRequest;
+            [Opt] public readonly EcsTagPool<AdCompletedEvent> AdCompletedEvent;
         }
 
         public void Run()
         {
             foreach (int entity in _world.Where(out EventAspect eventAspect)) 
-                eventAspect.AdCompletedProcessedMarker.Add(entity);
+                eventAspect.AdCompletedEvent.Add(entity);
         }
     }
 }
