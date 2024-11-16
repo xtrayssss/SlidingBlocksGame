@@ -30,7 +30,9 @@ namespace _Project.Scripts.Gameplay.Features.RewardFeature
                 .AutoDelEntityTag<RewardCoinCountDisplayedEvent>()
                 .AutoDelTag<ConfettiExplodedEvent>()
                 .AddUnique(new RewardCatcherSystem())
-                .AddUnique(new RewardWindowSystem())
+                .AddUnique(new DisplayRewardStateSystem())
+                .AddUnique(new OpenRewardWindowSystem())
+                .AddUnique(new CloseRewardWindowSystem())
                 
                 // audio feature
                 .AddAudioSystem<ConfettiExplodedEvent, ConfettiExplodedAudioConfig>()

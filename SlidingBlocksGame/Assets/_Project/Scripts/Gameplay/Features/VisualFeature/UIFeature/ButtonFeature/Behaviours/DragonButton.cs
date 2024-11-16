@@ -1,6 +1,6 @@
-﻿using _Project.Scripts.Gameplay.Templates;
+﻿using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.ButtonFeature.Components;
+using _Project.Scripts.Gameplay.Templates;
 using DCFApixels.DragonECS;
-using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
@@ -17,10 +17,9 @@ namespace _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.ButtonFeatu
 
             _click = () =>
             {
-                Debug.Log("CLICK");
                 EcsDefaultWorld world = EcsDefaultWorldSingletonProvider.Instance.Get();
                 int @event = world.NewEntity(EntityCfg);
-                world.GetPool<ButtonFeature.Components.ButtonClickedEvent>().Add(@event);
+                world.GetPool<CatchButtonEventRequest>().Add(@event);
             };
 
             onClick.AddListener(_click);

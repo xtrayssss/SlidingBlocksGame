@@ -13,7 +13,6 @@ using _Project.Scripts.Gameplay.Features.GameProgressFeature;
 using _Project.Scripts.Gameplay.Features.GameScreenFeature;
 using _Project.Scripts.Gameplay.Features.MovementFeature;
 using _Project.Scripts.Gameplay.Features.PauseFeature;
-using _Project.Scripts.Gameplay.Features.PauseFeature.Components;
 using _Project.Scripts.Gameplay.Features.PlayerFeature;
 using _Project.Scripts.Gameplay.Features.PurchaseFeature;
 using _Project.Scripts.Gameplay.Features.RateUsFeature;
@@ -62,9 +61,6 @@ namespace _Project.Scripts.Gameplay
 
         public void Start()
         {
-            YandexGame.ErrorFullAdEvent += () => Debug.Log("Cancelled");
-            YandexGame.CloseFullAdEvent += () => Debug.Log("Closed");
-
             EcsDefaultWorldSingletonProvider provider = EcsDefaultWorldSingletonProvider.Instance;
 
             provider.Set(_world = new EcsDefaultWorld());
