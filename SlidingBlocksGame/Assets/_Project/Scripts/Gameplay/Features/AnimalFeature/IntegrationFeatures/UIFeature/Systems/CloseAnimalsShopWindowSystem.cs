@@ -1,4 +1,5 @@
 using _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.UIFeature.Components;
+using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.PurchaseFeature.Components;
 using _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Components;
 using _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Utils;
@@ -33,6 +34,11 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.U
             [Opt] public readonly EcsTagPool<LockScrollSnapRequest> LockScrollSnap;
             [Opt] public readonly EcsTagPool<AnimalPurchaseWindowClosedEvent> AnimalPurchaseWindowClosedEvent;
         }
+        private class PurchaseAspect : EcsAspectAuto
+        {
+            [IncImplicit(typeof(PurchaseTag))]
+            [Inc] public readonly EcsPool<PhysicView> PhysicViews;
+        }
 
         public void Run()
         {
@@ -49,7 +55,7 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.U
 
                     scrollSnap.OpenCloseTween.Stop();
 
-                    const float factor = 0.7f;
+                    const float FACTOR = 0.7f;
 
                     windowAspect.LockScrollSnap.Add(window);
 
@@ -69,7 +75,7 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.U
                                 ease: Ease.InBack))
                         // close purchase button
                         .Insert(
-                            atTime: delay * factor,
+                            atTime: delay * FACTOR,
                             tween: Tween.Scale(
                                 target: animalsShopWindow.PurchaseStatusWidget.Current.transform,
                                 endValue: Vector3.zero,
@@ -77,7 +83,7 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.U
                                 ease: Ease.InBack))
                         // close price
                         .Insert(
-                            atTime: delay * factor,
+                            atTime: delay * FACTOR,
                             tween: Tween.Scale(
                                 target: animalsShopWindow.PurchaseStatusWidget.Price.transform,
                                 endValue: Vector3.zero,
@@ -106,6 +112,15 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.U
                                 animalsShopWindow.PurchaseStatusWidget.Lock.transform.localScale = Vector3.one;
                                 animalsShopWindow.PurchaseStatusWidget.Play.transform.localScale = Vector3.one;
                                 animalsShopWindow.PurchaseStatusWidget.Unlock.transform.localScale = Vector3.one;
+
+                                ScrollSnap scrollSnap = windowAspect.ScrollSnap.Get(id);
+
+                                if (scrollSnap.SnappedItem.TryGetID(out int snappedAnimal))
+                                {
+                                    PurchaseAspect purchaseAspect = world.GetAspect<PurchaseAspect>();
+                                    ref PhysicView physicView = ref purchaseAspect.PhysicViews.Get(snappedAnimal);
+                                    physicView.Value.transform.rotation = Quaternion.identity;
+                                }
                             });
                 }
             }

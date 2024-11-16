@@ -40,6 +40,7 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Components
         public float Distance;
         public int LastSnappedIndex;
         public int MaxVisible;
+        public entlong SnappedItem;
 
         public void Enable(ref ScrollSnap component)
         {

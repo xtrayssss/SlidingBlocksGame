@@ -12,7 +12,6 @@ namespace _Project.Scripts.Gameplay.Features.PurchaseFeature.Systems
     public class RotatePurchaseSystem : IEcsRun
     {
         [EcsInject] private readonly EcsDefaultWorld _world;
-        private Sequence sequence;
 
         private class PurchaseSnappedAspect : EcsAspectAuto
         {
@@ -75,7 +74,7 @@ namespace _Project.Scripts.Gameplay.Features.PurchaseFeature.Systems
 
                 widget.RotationTween = Tween.LocalEulerAngles(
                     target: physicView.Value.transform,
-                    startValue: Vector3.zero,
+                    startValue: physicView.Value.transform.eulerAngles,
                     endValue: new Vector3(0, 360, 0),
                     duration: 4f,
                     ease: Ease.Linear,

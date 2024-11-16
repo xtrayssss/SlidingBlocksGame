@@ -92,9 +92,11 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Systems
 
                                             int targetItem = scrollSnap.Items[scrollSnap.TargetIndex];
 
+                                            scrollSnap.SnappedItem = targetItem.ToEntityLong(world);
+
                                             if (!targetItem.ToEntityLong(world).TryGetID(out int targetItemID))
                                                 return;
-
+                                            
                                             ItemAspect itemAspect = world.GetAspect<ItemAspect>();
                                             itemAspect.SnappedEvent.Add(targetItemID);
                                             itemAspect.SnappedMarker.Add(targetItemID);
