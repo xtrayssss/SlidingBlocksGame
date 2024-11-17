@@ -85,14 +85,11 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 
                     ref readonly CellPosition cellPosition = ref animalAspect.CellPositions.Read(animal);
 
-                    (int2 distance, bool success) result = FindMinDistance(
+                    minDistance = FindMinDistance(
                         invertedSide: invertedSide,
                         gameField: in gameField,
                         cellPosition: in cellPosition,
-                        minDistance: minDistance.distance);
-
-                    if (result.success)
-                        minDistance = result;
+                        minDistance:  minDistance.distance);
 
                     animals.Add(animal);
                 }
@@ -100,6 +97,8 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                 if (animals.Count == 0)
                     continue;
 
+                Debug.Log(minDistance.distance);
+                
                 if (!minDistance.success)
                 {
                     int2 max = animals
@@ -154,6 +153,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                                 destination.z);
 
                         Debug.Log(cellDestination.Value);
+                        Debug.Log(minDistance.distance);
 
                         GridUtils.SetCell(
                             position: cellDestination.Value,
@@ -183,7 +183,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                 GridUtils.GetNearestCentralObstacle(
                     cellPosition.Value,
                     invertedSide,
-                    gameField.EdgeSize, 
+                    gameField.EdgeSize,
                     gameField.Center);
 
             int2 convertedObstacle = nearest.obstacle + gameField.EdgeSize;

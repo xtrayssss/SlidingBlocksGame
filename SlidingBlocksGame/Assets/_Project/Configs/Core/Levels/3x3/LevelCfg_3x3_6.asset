@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d2b62f9703592042befb46ac1fee09c, type: 3}
-  m_Name: LevelCfg_(3x3)_1
+  m_Name: LevelCfg_3x3_6
   m_EditorClassIdentifier: 
   _components:
   - rid: 499105128608694272
@@ -266,11 +266,71 @@ MonoBehaviour:
             View: {fileID: 0}
           Animals:
           - Position:
-              x: -0.8
+              x: -2.5
+              y: 0
+              z: 1.0333334
+            CellPosition:
+              x: 0
+              y: 5
+            Rotation:
+              value:
+                x: 0
+                y: 0.70710677
+                z: 0
+                w: 0.70710677
+            InvertedSide:
+              x: 1
+              y: 0
+            Scale:
+              x: 0.36666667
+              y: 0.36666667
+              z: 0.36666667
+          - Position:
+              x: -1.9333333
+              y: 0
+              z: 1.0333334
+            CellPosition:
+              x: 1
+              y: 5
+            Rotation:
+              value:
+                x: 0
+                y: 0.70710677
+                z: 0
+                w: 0.70710677
+            InvertedSide:
+              x: 1
+              y: 0
+            Scale:
+              x: 0.36666667
+              y: 0.36666667
+              z: 0.36666667
+          - Position:
+              x: -1.3666667
+              y: 0
+              z: 1.0333334
+            CellPosition:
+              x: 2
+              y: 5
+            Rotation:
+              value:
+                x: 0
+                y: 0.70710677
+                z: 0
+                w: 0.70710677
+            InvertedSide:
+              x: 1
+              y: 0
+            Scale:
+              x: 0.36666667
+              y: 0.36666667
+              z: 0.36666667
+          - Position:
+              x: -0.23333332
               y: 0
               z: -1.8
             CellPosition:
-              x: 3
+              x: 4
               y: 0
             Rotation:
               value:
@@ -286,81 +346,21 @@ MonoBehaviour:
               y: 0.36666667
               z: 0.36666667
           - Position:
-              x: -1.9333333
-              y: 0
-              z: 0.46666673
-            CellPosition:
-              x: 1
-              y: 4
-            Rotation:
-              value:
-                x: 0
-                y: 0.70710677
-                z: 0
-                w: 0.70710677
-            InvertedSide:
-              x: 1
-              y: 0
-            Scale:
-              x: 0.36666667
-              y: 0.36666667
-              z: 0.36666667
-          - Position:
-              x: -1.9333333
-              y: 0
-              z: -0.09999994
-            CellPosition:
-              x: 1
-              y: 3
-            Rotation:
-              value:
-                x: 0
-                y: 0.70710677
-                z: 0
-                w: 0.70710677
-            InvertedSide:
-              x: 1
-              y: 0
-            Scale:
-              x: 0.36666667
-              y: 0.36666667
-              z: 0.36666667
-          - Position:
-              x: -2.5
-              y: 0
-              z: 0.46666673
-            CellPosition:
-              x: 0
-              y: 4
-            Rotation:
-              value:
-                x: 0
-                y: 0.70710677
-                z: 0
-                w: 0.70710677
-            InvertedSide:
-              x: 1
-              y: 0
-            Scale:
-              x: 0.36666667
-              y: 0.36666667
-              z: 0.36666667
-          - Position:
               x: 0.33333334
               y: 0
-              z: 1.6
+              z: -1.8
             CellPosition:
               x: 5
-              y: 6
+              y: 0
             Rotation:
               value:
                 x: 0
-                y: 1
+                y: 0
                 z: 0
-                w: 0
+                w: 1
             InvertedSide:
               x: 0
-              y: -1
+              y: 1
             Scale:
               x: 0.36666667
               y: 0.36666667
@@ -388,10 +388,10 @@ MonoBehaviour:
           - Position:
               x: 0.90000004
               y: 0
-              z: 1.0333334
+              z: 0.46666673
             CellPosition:
               x: 6
-              y: 5
+              y: 4
             Rotation:
               value:
                 x: 0
@@ -408,10 +408,10 @@ MonoBehaviour:
           - Position:
               x: 1.4666667
               y: 0
-              z: 1.0333334
+              z: 0.46666673
             CellPosition:
               x: 7
-              y: 5
+              y: 4
             Rotation:
               value:
                 x: 0
@@ -426,20 +426,20 @@ MonoBehaviour:
               y: 0.36666667
               z: 0.36666667
           - Position:
-              x: 2.0333333
+              x: -2.5
               y: 0
-              z: 1.0333334
+              z: -0.09999994
             CellPosition:
-              x: 8
-              y: 5
+              x: 0
+              y: 3
             Rotation:
               value:
                 x: 0
-                y: -0.70710677
-                z: -0
+                y: 0.70710677
+                z: 0
                 w: 0.70710677
             InvertedSide:
-              x: -1
+              x: 1
               y: 0
             Scale:
               x: 0.36666667
@@ -452,21 +452,18 @@ MonoBehaviour:
           UnitCellTopOffset: 0.02
           Center: 0
           BaseCellScaleY: 0.25
-        _offset: 0
     - rid: 3543309302603710470
       type: {class: GameFieldAlgorithmCfg/Template, ns: _Project.Scripts.Gameplay.Features.GameFieldFeature.Components,
         asm: GameFieldFeature.Components}
       data:
         component:
           Value: {fileID: 11400000, guid: b0f9f5dd4cdaf2149bb8206508b48f5a, type: 2}
-        _offset: 0
     - rid: 6454805113458655410
       type: {class: Scores/Template, ns: _Project.Scripts.Gameplay.Features.ScoreFeature.Components,
         asm: ScoreFeature.Components}
       data:
         component:
           Value: 1
-        _offset: 0
     - rid: 6454805247463260164
       type: {class: GameFieldAlgorithms/Template, ns: _Project.Scripts.Gameplay.Features.GameFieldFeature.Components,
         asm: GameFieldFeature.Components}
@@ -479,44 +476,37 @@ MonoBehaviour:
           - _components:
             - rid: 3543309302603710470
             - rid: 6454805498714128385
-        _offset: 0
     - rid: 6454805247463260166
       type: {class: GameFieldAlgorithmCfg/Template, ns: _Project.Scripts.Gameplay.Features.GameFieldFeature.Components,
         asm: GameFieldFeature.Components}
       data:
         component:
           Value: {fileID: 11400000, guid: fae2afb1b7a1b1b418cf43a39493aac0, type: 2}
-        _offset: 0
     - rid: 6454805247463260175
       type: {class: GameFieldGeneratedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.GameFieldFeature.IntegrationFeatures.AudioFeature.Components,
         asm: GameFieldFeature.AudioFeature.Components}
       data:
         component:
           Value: {fileID: 11400000, guid: f857536a371faf54fbd1e4c76e8602f4, type: 2}
-        _offset: 0
     - rid: 6454805498714128385
       type: {class: TileGeneratedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.GameFieldFeature.IntegrationFeatures.AudioFeature.Components,
         asm: GameFieldFeature.AudioFeature.Components}
       data:
         component:
           Value: {fileID: 11400000, guid: 9e7d2bc0efe5f544392d1a9544a560f5, type: 2}
-        _offset: 0
     - rid: 8499802296898551899
       type: {class: DestructionAnimalStrategyCfg/Template, ns: _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.DestructionFeature.Components,
         asm: AnimalFeature.DestructionFeature.Components}
       data:
         component:
           Value: {fileID: 11400000, guid: 4f8fd26f9934ef849be79007e676bf1a, type: 2}
-        _offset: 0
     - rid: 8499802340583015395
       type: {class: CreationAnimalStrategyCfg/Template, ns: _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.CreationFeature.Components,
         asm: AnimalFeature.CreationFeature.Components}
       data:
         component:
           Value: {fileID: 11400000, guid: ae77d2d66bba6934ea24d0fe74b8d979, type: 2}
-        _offset: 0
     - rid: 8499802343622050639
       type: {class: LevelTag/Template, ns: _Project.Scripts.Gameplay.Features.GameFlowFeature.Components,
         asm: GameFlowFeature.Components}
-      data:
-        _offset: 0
+      data: {}
