@@ -5,9 +5,9 @@ using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.DestructionFeature
 {
-    public class DestructionFeature : IEcsModule
+    public class DestructionFeature<TMask> : EcsModule<TMask> where TMask : EcsAspect, new()
     {
-        public void Import(EcsPipeline.Builder builder)
+        protected override void Import(Builder builder)
         {
             builder
                 .AutoDelTag<DestructibleStrategyCompletedEvent>()

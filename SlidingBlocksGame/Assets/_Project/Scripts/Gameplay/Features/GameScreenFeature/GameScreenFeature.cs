@@ -6,9 +6,9 @@ using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.GameScreenFeature
 {
-    public class GameScreenFeature : IEcsModule
+    public class GameScreenFeature<TMask> : EcsModule<TMask> where TMask : EcsAspect, new()
     {
-        public void Import(EcsPipeline.Builder builder)
+        protected override void Import(Builder builder)
         {
             builder
                 //

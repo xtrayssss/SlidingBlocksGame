@@ -5,9 +5,9 @@ using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.PlayerFeature.InputFeature
 {
-    public class InputFeature : IEcsModule
+    public class InputFeature<TMask> : EcsModule<TMask> where TMask : EcsAspect, new()
     {
-        public void Import(EcsPipeline.Builder builder)
+        protected override void Import(Builder builder)
         {
             builder
                 .AutoDelEntityTag<EmitInputTag>()

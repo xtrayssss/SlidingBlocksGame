@@ -6,7 +6,12 @@ namespace _Project.Scripts.Infrastructure
     {
         // public static EcsModule Without<TComponent>(this EcsModule source) where TComponent : struct, IEcsTagComponent
         // {
-        //     source.Builder.Exc<TComponent>();
+        //     EcsModule.asp.Exc<TComponent>();
+        //     return source;
+        // }
+        // public static EcsModule Build(this EcsModule source)
+        // {
+        //     source.Mask = source.MaskBuilder.Build();
         //
         //     return source;
         // }

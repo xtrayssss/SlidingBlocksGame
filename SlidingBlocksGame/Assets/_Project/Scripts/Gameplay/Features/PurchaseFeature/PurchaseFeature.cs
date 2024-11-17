@@ -8,9 +8,9 @@ using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.PurchaseFeature
 {
-    public class PurchaseFeature : IEcsModule
+    public class PurchaseFeature<TMask> : EcsModule<TMask> where TMask : EcsAspect, new()
     {
-        public void Import(EcsPipeline.Builder builder)
+        protected override void Import(Builder builder)
         {
             builder
                 .AutoDelTag<PurchasedEvent>()

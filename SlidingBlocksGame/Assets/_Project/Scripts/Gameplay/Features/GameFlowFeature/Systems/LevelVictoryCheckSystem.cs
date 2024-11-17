@@ -4,6 +4,7 @@ using _Project.Scripts.Gameplay.Features.GameFieldFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFlowFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameOverTimerFeature.Components;
 using DCFApixels.DragonECS;
+using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
 {
@@ -36,6 +37,8 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
 
         public void Run()
         {
+            Debug.Log("UPDATED");
+            
             foreach (int entity in _world.Where(out LevelAspect aspect))
             {
                 ref readonly GameField gameField = ref aspect.GameFields.Read(entity);

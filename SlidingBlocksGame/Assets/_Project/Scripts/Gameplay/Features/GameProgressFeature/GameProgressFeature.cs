@@ -5,9 +5,9 @@ using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.GameProgressFeature
 {
-    public class GameProgressFeature : IEcsModule
+    public class GameProgressFeature<TMask> : EcsModule<TMask> where TMask : EcsAspect, new()
     {
-        public void Import(EcsPipeline.Builder builder)
+        protected override void Import(Builder builder)
         {
             builder
                 .AddUnique(new SaveLoadPlayerProgressSystem())

@@ -8,11 +8,13 @@ using _Project.Scripts.Gameplay.Features.DestructionFeature;
 using _Project.Scripts.Gameplay.Features.GameAudioFeature;
 using _Project.Scripts.Gameplay.Features.GameFieldFeature;
 using _Project.Scripts.Gameplay.Features.GameFlowFeature;
+using _Project.Scripts.Gameplay.Features.GameFlowFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameOverTimerFeature;
 using _Project.Scripts.Gameplay.Features.GameProgressFeature;
 using _Project.Scripts.Gameplay.Features.GameScreenFeature;
 using _Project.Scripts.Gameplay.Features.MovementFeature;
 using _Project.Scripts.Gameplay.Features.PauseFeature;
+using _Project.Scripts.Gameplay.Features.PauseFeature.Components;
 using _Project.Scripts.Gameplay.Features.PlayerFeature;
 using _Project.Scripts.Gameplay.Features.PurchaseFeature;
 using _Project.Scripts.Gameplay.Features.RateUsFeature;
@@ -23,7 +25,6 @@ using _Project.Scripts.Gameplay.Features.TutorialFeature;
 using _Project.Scripts.Gameplay.Features.VisualFeature;
 using _Project.Scripts.Infrastructure;
 using DCFApixels.DragonECS;
-using DCFApixels.DragonECS.RunnersCore;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
@@ -31,25 +32,53 @@ using YG;
 
 namespace _Project.Scripts.Gameplay
 {
-    
-    interface IDoSomethingProcess : IEcsProcess
+    public class GameFeature : EcsModule
     {
-        void Do();
-    }
-    // Реализация раннера. Пример реализации можно так же посмотреть в встроенных процессах 
-    sealed class DoSomethingProcessRunner : EcsRunner<IDoSomethingProcess>, IDoSomethingProcess
-    {
-        public void Do() 
+        private readonly ScriptableEntityTemplate _gameCfg;
+
+        public GameFeature(ScriptableEntityTemplate gameCfg) =>
+            _gameCfg = gameCfg;
+
+        private class PauseAspect : EcsAspectAuto
         {
-            foreach (var item in Process) item.Do();
+            [Inc] public readonly EcsTagPool<GameTag> GameTag;
+            [Exc] public readonly EcsTagPool<PausedMarker> PausedMarker;
+        }
+
+        protected override void Import(Builder builder)
+        {
+            builder
+                .AddSubmodule(new GameFlowFeature<PauseAspect>(_gameCfg))
+                .AddSubmodule(new PlayerFeature<PauseAspect>())
+                .AddSubmodule(new CreationFeature<PauseAspect>())
+                .AddSubmodule(new AnimalFeature<PauseAspect>())
+                .AddSubmodule(new MovementFeature<PauseAspect>())
+                .AddSubmodule(new GameFieldFeature<PauseAspect>())
+                .AddSubmodule(new DestructionFeature<PauseAspect>())
+                .AddSubmodule(new PurchaseFeature<PauseAspect>())
+                .AddSubmodule(new RateUsFeature<PauseAspect>())
+                .AddSubmodule(new CoinFeature<PauseAspect>())
+                .AddSubmodule(new ScoreFeature<PauseAspect>())
+                .AddSubmodule(new GameProgressFeature<PauseAspect>())
+                .AddSubmodule(new RewardFeature<PauseAspect>())
+                .AddSubmodule(new GameOverTimerFeature<PauseAspect>())
+                .AddSubmodule(new SettingsFeature<PauseAspect>())
+                .AddSubmodule(new GameAudioFeature<PauseAspect>())
+                .AddSubmodule(new TutorialFeature<PauseAspect>())
+                .AddSubmodule(new GameScreenFeature<PauseAspect>())
+                .AddSubmodule(new VisualFeature<PauseAspect>())
+                .AddSubmodule(new AdFeature())
+                .AddSubmodule(new PauseFeature())
+                .AddSubmodule(new CooldownFeature<PauseAspect>())
+                .AddSubmodule(new AudioFeature<PauseAspect>());
         }
     }
-    
+
     public class EcsRoot : MonoBehaviour, ICoroutineRunner
     {
         [SerializeField] private ScriptableEntityTemplate _gameCfg;
 
-        private EcsPipeline _pipeline;
+        private EcsPipelineWrapper _pipeline;
         private EcsDefaultWorld _world;
 
         [Button]
@@ -65,42 +94,16 @@ namespace _Project.Scripts.Gameplay
 
             provider.Set(_world = new EcsDefaultWorld());
 
-            _pipeline = EcsPipeline.New()
-                .AddModule(new GameFlowFeature(_gameCfg))
-                .AddModule(new PlayerFeature())
-                .AddModule(new CreationFeature())
-                .AddModule(new AnimalFeature())
-                .AddModule(new MovementFeature())
-                .AddModule(new GameFieldFeature())
-                .AddModule(new DestructionFeature())
-                .AddModule(new PurchaseFeature())
-                .AddModule(new RateUsFeature())
-                .AddModule(new CoinFeature())
-                .AddModule(new ScoreFeature())
-                .AddModule(new GameProgressFeature())
-                .AddModule(new RewardFeature())
-                .AddModule(new GameOverTimerFeature())
-                .AddModule(new SettingsFeature())
-                .AddModule(new GameAudioFeature())
-                .AddModule(new TutorialFeature())
-                .AddModule(new GameScreenFeature())
-                .AddModule(new VisualFeature())
-                .AddModule(new AdFeature())
-                .AddModule(new PauseFeature())
-                .AddModule(new CooldownFeature())
-                .AddModule(new AudioFeature())
-                //
+            _pipeline = EcsPipelineWrapper.New()
+                .AddRoot(new GameFeature(_gameCfg))
                 .AddUnityDebug(_world)
                 .Inject(_world)
                 .AutoInject()
-                    .BuildAndInit();
+                .Build();
         }
 
         public void Update() =>
-            _pipeline.Run();
-
-        public void FixedUpdate() =>
-            _pipeline.FixedRun();
+            _pipeline.UpdateRun(_world);
 
         public void OnDestroy()
         {

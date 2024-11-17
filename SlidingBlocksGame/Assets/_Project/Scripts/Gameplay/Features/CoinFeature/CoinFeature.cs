@@ -9,9 +9,9 @@ using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.CoinFeature
 {
-    public class CoinFeature : IEcsModule
+    public class CoinFeature<TMask> : EcsModule<TMask> where TMask : EcsAspect, new()
     {
-        public void Import(EcsPipeline.Builder builder)
+        protected override void Import(Builder builder)
         {
             builder.AutoDelTag<CoinSpawnedEvent>()
                 .AutoDelTag<CoinCollectAnimationCompletedEvent>()

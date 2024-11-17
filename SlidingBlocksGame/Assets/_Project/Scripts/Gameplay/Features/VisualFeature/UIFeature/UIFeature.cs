@@ -6,21 +6,20 @@ using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature
 {
-    public class UIFeature : IEcsModule
+    public class UIFeature<TMask> : EcsModule<TMask> where TMask : EcsAspect, new()
     {
-        public void Import(EcsPipeline.Builder builder)
+        protected override void Import(Builder builder)
         {
             builder
                 .AutoDelTag<MetaGameUIHiddenEvent>()
                 .AddUnique(new MetaGameUISystem())
                 .AutoDelTag<ShowMetaGameUIRequest>()
                 .AutoDelTag<HideMetaGameUIRequest>()
-                
                 .AddUnique(new CalculateOriginalPositionSystem())
                 .AutoDelTag<CalculateOriginalPositionRequest>()
                 //
-                .AddModule(new ScrollSnapFeature.ScrollSnapFeature())
-                .AddModule(new ButtonFeature.ButtonFeature());
+                .AddSubmodule<ScrollSnapFeature.ScrollSnapFeature<TMask>>()
+                .AddSubmodule<ButtonFeature.ButtonFeature<TMask>>();
         }
     }
 }

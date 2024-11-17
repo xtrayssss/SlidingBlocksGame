@@ -5,7 +5,7 @@ using UnityEngine;
 namespace _Project.Scripts.Gameplay.Templates
 {
     [Serializable]
-    public class EntityTemplate : ITemplate
+    public class EntityTemplate : ITemplateNode
     {
 // #if UNITY_EDITOR
 //         [SerializeField] private string _name;

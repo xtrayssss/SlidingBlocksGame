@@ -5,14 +5,14 @@ using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.GameFlowFeature
 {
-    public class GameFlowFeature : IEcsModule
+    public class GameFlowFeature<TMask> : EcsModule<TMask> where TMask : EcsAspect, new()
     {
         private readonly ScriptableEntityTemplate _gameCfg;
 
         public GameFlowFeature(ScriptableEntityTemplate gameCfg) =>
             _gameCfg = gameCfg;
 
-        public void Import(EcsPipeline.Builder builder)
+        protected override void Import(Builder builder)
         {
             builder
                 .AddUnique(new CreateGameSystem(_gameCfg))

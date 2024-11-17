@@ -1,6 +1,7 @@
 using _Project.Scripts.Gameplay.Features.AudioFeature.Behaviours;
 using _Project.Scripts.Gameplay.Features.AudioFeature.Components;
 using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
+using _Project.Scripts.Infrastructure;
 using DCFApixels.DragonECS;
 using UnityEngine;
 
@@ -8,9 +9,11 @@ namespace _Project.Scripts.Gameplay.Features.AudioFeature.Extensions
 {
     public static class AudioExtensions
     {
-        public static EcsPipeline.Builder AddAudioSystem<TEvent, TConfig>(this EcsPipeline.Builder source)
-            where TEvent : struct, IEcsTagComponent where TConfig : struct, IEcsAudioConfig =>
-            source.Add(new AudioSystem<TEvent, TConfig>());
+        public static EcsModule.Builder AddAudioSystem<TEvent, TConfig>(this EcsModule.Builder source)
+            where TEvent : struct, IEcsTagComponent where TConfig : struct, IEcsAudioConfig
+        {
+            return source.AddUnique(new AudioSystem<TEvent, TConfig>());
+        }
 
         private class AudioAspect : EcsAspectAuto
         {

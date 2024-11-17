@@ -5,9 +5,9 @@ using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.CooldownFeature
 {
-    public class CooldownFeature : IEcsModule
+    public class CooldownFeature<TMask> : EcsModule<TMask> where TMask : EcsAspect, new()
     {
-        public void Import(EcsPipeline.Builder builder)
+        protected override void Import(Builder builder)
         {
             builder
                 .AddUnique(new RefreshCooldownSystem())

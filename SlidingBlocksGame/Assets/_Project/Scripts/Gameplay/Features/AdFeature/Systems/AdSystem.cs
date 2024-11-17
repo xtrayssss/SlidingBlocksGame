@@ -1,6 +1,7 @@
 ﻿using _Project.Scripts.Gameplay.Features.AdFeature.Components;
 using _Project.Scripts.Gameplay.Features.PauseFeature.Components;
 using DCFApixels.DragonECS;
+using UnityEngine;
 using YG;
 
 namespace _Project.Scripts.Gameplay.Features.AdFeature.Systems
@@ -16,10 +17,9 @@ namespace _Project.Scripts.Gameplay.Features.AdFeature.Systems
 
         private class AdCompletedAspect : EcsAspectAuto
         {
-            [Inc] public readonly EcsTagPool<AdTag> AdTag;
             [Inc] public readonly EcsTagPool<AdCompletedEvent> AdCompletedEvent;
-            [Exc] public readonly EcsTagPool<AdUnavailableMarker> AdUnavailableMarker;
         }
+        
         private class AdAspect : EcsAspectAuto
         {
             [Inc] public readonly EcsTagPool<AdTag> AdTag;
@@ -65,11 +65,14 @@ namespace _Project.Scripts.Gameplay.Features.AdFeature.Systems
                     int request = _world.NewEntity();
                     PauseAspect pauseAspect = _world.GetAspect<PauseAspect>();
                     pauseAspect.Pause.Add(request);
+
+                    Debug.Log("Pause request");
                 }
             }
 
             foreach (int _ in _world.Where(out AdCompletedAspect _))
             {
+                Debug.Log("Upause request");
                 int request = _world.NewEntity();
                 PauseAspect pauseAspect = _world.GetAspect<PauseAspect>();
                 pauseAspect.Unpause.Add(request);

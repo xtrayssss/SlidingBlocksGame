@@ -6,9 +6,9 @@ using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.ScoreFeature
 {
-    public class ScoreFeature : IEcsModule
+    public class ScoreFeature<TMask> : EcsModule<TMask> where TMask : EcsAspect, new()
     {
-        public void Import(EcsPipeline.Builder builder)
+        protected override void Import(Builder builder)
         {
             builder
                 .AutoDelEntityComponent<ScoreUpdatedEvent>()

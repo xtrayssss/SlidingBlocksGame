@@ -1,18 +1,18 @@
 ﻿using _Project.Scripts.Gameplay.Features.PauseFeature.Components;
 using _Project.Scripts.Gameplay.Features.PauseFeature.Systems;
 using _Project.Scripts.Infrastructure;
-using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.PauseFeature
 {
-    public class PauseFeature : IEcsModule
+    public class PauseFeature : EcsModule
     {
-        public void Import(EcsPipeline.Builder builder)
+        protected override void Import(Builder builder)
         {
             builder
                 .AutoDelTag<PausedEvent>()
                 .AddUnique(new PauseSystem())
-                .AutoDelEntityTag<PauseRequest>();
+                .AutoDelEntityTag<PauseRequest>()
+                .AutoDelEntityTag<UnpauseRequest>();
         }
     }
 }

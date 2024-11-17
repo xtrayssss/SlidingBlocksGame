@@ -1,11 +1,12 @@
 ﻿using _Project.Scripts.Gameplay.Features.RateUsFeature.Systems;
+using _Project.Scripts.Infrastructure;
 using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.RateUsFeature
 {
-    public class RateUsFeature : IEcsModule
+    public class RateUsFeature<TMask> : EcsModule<TMask> where TMask : EcsAspect, new()
     {
-        public void Import(EcsPipeline.Builder builder) => 
+        protected override void Import(Builder builder) => 
             builder
                 .AddUnique(new RateUsSystem());
     }

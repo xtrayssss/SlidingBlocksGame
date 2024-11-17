@@ -1,12 +1,11 @@
 ﻿using _Project.Scripts.Gameplay.Features.GameFlowFeature.Components;
 using _Project.Scripts.Gameplay.Features.PauseFeature.Components;
-using _Project.Scripts.Infrastructure;
 using DCFApixels.DragonECS;
 using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.PauseFeature.Systems
 {
-    public class PauseSystem : IAlwaysRun
+    public class PauseSystem : IEcsRun
     {
         [EcsInject] private EcsDefaultWorld _world;
 
@@ -32,11 +31,11 @@ namespace _Project.Scripts.Gameplay.Features.PauseFeature.Systems
         {
             foreach (int _ in _world.Where(out PauseRequestAspect _))
             {
-                
                 foreach (int game in _world.Where(out GameAspect gameAspect))
                 {
                     if (!gameAspect.PausedMarker.Has(game))
                     {
+                        Debug.Log("Pause");
                         Time.timeScale = 0;
                         gameAspect.PausedEvent.Add(game);
                         gameAspect.PausedMarker.Add(game);
@@ -50,6 +49,7 @@ namespace _Project.Scripts.Gameplay.Features.PauseFeature.Systems
                 {
                     if (gameAspect.PausedMarker.Has(game))
                     {
+                        Debug.Log("UnPause");
                         Time.timeScale = 1;
                         gameAspect.PausedMarker.Del(game);
                     }

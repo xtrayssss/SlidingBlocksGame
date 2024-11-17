@@ -7,11 +7,11 @@ using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature
 {
-    public class ScrollSnapFeature : IEcsModule
+    public class ScrollSnapFeature<TMask> : EcsModule<TMask> where TMask : EcsAspect, new()
     {
-        public void Import(EcsPipeline.Builder buidler)
+        protected override void Import(Builder builder)
         {
-            buidler
+            builder
                 .AddUnique(new SetupScrollSystem())
                 .AutoDel<SetupScrollRequest>()
                 //

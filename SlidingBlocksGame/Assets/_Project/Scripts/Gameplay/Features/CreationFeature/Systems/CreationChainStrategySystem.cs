@@ -2,7 +2,6 @@ using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.CooldownFeature.Components;
 using _Project.Scripts.Gameplay.Features.CreationFeature.Components;
 using DCFApixels.DragonECS;
-using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.CreationFeature.Systems
 {
@@ -26,8 +25,6 @@ namespace _Project.Scripts.Gameplay.Features.CreationFeature.Systems
         {
             foreach (int entity in _world.Where(out CooldownExpiredAspect cooldownAspect))
             {
-                Debug.Log("CreationChainStrategySystem: " + entity);
-                
                 if (!cooldownAspect.Targets.Read(entity).Value.TryGetID(out int creatableID)) 
                     continue;
                 

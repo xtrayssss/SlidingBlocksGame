@@ -1,13 +1,14 @@
-﻿using DCFApixels.DragonECS;
+﻿using _Project.Scripts.Infrastructure;
+using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.PlayerFeature
 {
-    public class PlayerFeature : IEcsModule
+    public class PlayerFeature<TMask> : EcsModule<TMask> where TMask : EcsAspect, new()
     {
-        public void Import(EcsPipeline.Builder builder)
+        protected override void Import(Builder builder)
         {
             builder
-                .AddModule(new InputFeature.InputFeature());
+                .AddSubmodule(new InputFeature.InputFeature<TMask>());
         }
     }
 }

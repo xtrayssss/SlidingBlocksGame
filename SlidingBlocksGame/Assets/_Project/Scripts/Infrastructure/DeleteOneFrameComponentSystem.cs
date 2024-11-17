@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using DCFApixels.DragonECS;
+using DCFApixels.DragonECS.RunnersCore;
 using static _Project.Scripts.Infrastructure.EcsOneFrameComponentConsts;
 
 namespace _Project.Scripts.Infrastructure
@@ -137,6 +138,19 @@ namespace _Project.Scripts.Infrastructure
             b.AddUnique(new DeleteOneFrameComponentSystem<TComponent>(), layerName);
             return b;
         }
+        public static EcsPipeline.Builder AutoDel<TComponent>(this EcsPipeline.Builder b, out IEcsRun system, string layerName = null)
+            where TComponent : struct, IEcsComponent
+        {
+            if (AUTO_DEL_LAYER == layerName)
+            {
+                b.Layers.InsertAfter(EcsConsts.POST_END_LAYER, AUTO_DEL_LAYER);
+            }
+
+            var deleteOneFrameComponentSystem = new DeleteOneFrameComponentSystem<TComponent>();
+            system = deleteOneFrameComponentSystem;
+            b.AddUnique(deleteOneFrameComponentSystem, layerName);
+            return b;
+        }
 
         public static EcsPipeline.Builder AutoDelToEnd<TComponent>(this EcsPipeline.Builder b)
             where TComponent : struct, IEcsComponent
@@ -158,6 +172,19 @@ namespace _Project.Scripts.Infrastructure
             }
 
             b.AddUnique(new DeleteOneFrameEntityComponentSystem<TComponent>(), layerName);
+            return b;
+        }
+        public static EcsPipeline.Builder AutoDelEntityComponent<TComponent>(this EcsPipeline.Builder b, out IEcsRun system, string layerName = null)
+            where TComponent : struct, IEcsComponent
+        {
+            if (AUTO_DEL_LAYER == layerName)
+            {
+                b.Layers.InsertAfter(EcsConsts.POST_END_LAYER, AUTO_DEL_LAYER);
+            }
+
+            DeleteOneFrameEntityComponentSystem<TComponent> deleteOneFrameEntityComponentSystem = new DeleteOneFrameEntityComponentSystem<TComponent>();
+            system = deleteOneFrameEntityComponentSystem;
+            b.AddUnique(deleteOneFrameEntityComponentSystem, layerName);
             return b;
         }
 
@@ -183,6 +210,20 @@ namespace _Project.Scripts.Infrastructure
             return b;
         }
 
+        public static EcsPipeline.Builder AutoDelEntityTag<TComponent>(this EcsPipeline.Builder b, out IEcsRun system, string layerName = null)
+            where TComponent : struct, IEcsTagComponent
+        {
+            if (AUTO_DEL_LAYER == layerName)
+            {
+                b.Layers.InsertAfter(EcsConsts.POST_END_LAYER, AUTO_DEL_LAYER);
+            }
+
+            DeleteOneFrameEntityTagSystem<TComponent> deleteOneFrameEntityTagSystem = new DeleteOneFrameEntityTagSystem<TComponent>();
+            system = deleteOneFrameEntityTagSystem;
+            b.AddUnique(deleteOneFrameEntityTagSystem, layerName);
+            return b;
+        }
+
         public static EcsPipeline.Builder AutoDelEntityTagToEnd<TComponent>(this EcsPipeline.Builder b)
             where TComponent : struct, IEcsTagComponent
         {
@@ -203,6 +244,22 @@ namespace _Project.Scripts.Infrastructure
             }
 
             b.AddUnique(new DeleteOneFrameTagComponentSystem<TComponent>(), layerName);
+            return b;
+        }
+
+        public static EcsPipeline.Builder AutoDelTag<TComponent>(this EcsPipeline.Builder b, out IEcsRun system, string layerName = null)
+            where TComponent : struct, IEcsTagComponent
+        {
+            if (AUTO_DEL_LAYER == layerName)
+            {
+                b.Layers.InsertAfter(EcsConsts.POST_END_LAYER, AUTO_DEL_LAYER);
+            }
+
+            DeleteOneFrameTagComponentSystem<TComponent> deleteOneFrameTagComponentSystem = new DeleteOneFrameTagComponentSystem<TComponent>();
+            
+            b.AddUnique(deleteOneFrameTagComponentSystem, layerName);
+            system = deleteOneFrameTagComponentSystem;
+            
             return b;
         }
 

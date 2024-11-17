@@ -10,9 +10,9 @@ using DCFApixels.DragonECS;
 
 namespace _Project.Scripts.Gameplay.Features.GameOverTimerFeature
 {
-    public class GameOverTimerFeature : IEcsModule
+    public class GameOverTimerFeature<TMask> : EcsModule<TMask> where TMask : EcsAspect, new()
     {
-        public void Import(EcsPipeline.Builder builder)
+        protected override void Import(Builder builder)
         {
             builder
                 .AutoDelTag<GameOverTimerCreatedEvent>()
