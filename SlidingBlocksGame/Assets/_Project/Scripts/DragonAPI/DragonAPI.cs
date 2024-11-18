@@ -5,13 +5,13 @@ namespace _Project.Scripts.DragonAPI
 {
 #if UNITY_EDITOR
     [InitializeOnLoad]
-    #endif
+#endif
     public static class DragonAPI
     {
+        private static readonly List<DragonCoroutineRunner> COROUTINE_RUNNERS = new List<DragonCoroutineRunner>();
+
         static DragonAPI() =>
             COROUTINE_RUNNERS.Clear();
-
-        private static readonly List<DragonCoroutineRunner> COROUTINE_RUNNERS = new List<DragonCoroutineRunner>();
 
         public static DragonCoroutineRunner CreateCoroutineRunner()
         {

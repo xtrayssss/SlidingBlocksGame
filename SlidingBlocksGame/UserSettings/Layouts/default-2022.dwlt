@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1536
     height: 790.4
   m_ShowMode: 4
-  m_Title: Project
+  m_Title: Game
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -118,7 +118,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 100}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 1
-  controlID: 103
+  controlID: 46268
   draggingID: 0
 --- !u!114 &6
 MonoBehaviour:
@@ -146,7 +146,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 100}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 104
+  controlID: 46269
   draggingID: 0
 --- !u!114 &7
 MonoBehaviour:
@@ -167,12 +167,12 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 537.6
+    width: 459.2
     height: 740.4
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 55
+  controlID: 46132
   draggingID: 0
 --- !u!114 &8
 MonoBehaviour:
@@ -191,16 +191,16 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 537.6
-    height: 468
+    width: 459.2
+    height: 412
   m_MinSize: {x: 101, y: 121}
   m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 15}
+  m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 14}
+  - {fileID: 13}
   - {fileID: 15}
   - {fileID: 16}
-  - {fileID: 17}
   m_Selected: 1
   m_LastSelected: 0
 --- !u!114 &9
@@ -219,14 +219,14 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
-    y: 468
-    width: 537.6
-    height: 272.40002
+    y: 412
+    width: 459.2
+    height: 328.40002
   m_MinSize: {x: 101, y: 121}
   m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 13}
+  m_ActualView: {fileID: 17}
   m_Panes:
-  - {fileID: 13}
+  - {fileID: 17}
   - {fileID: 18}
   - {fileID: 19}
   m_Selected: 0
@@ -246,7 +246,7 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 537.6
+    x: 459.2
     y: 0
     width: 211.20001
     height: 740.4
@@ -272,9 +272,9 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 748.8
+    x: 670.4
     y: 0
-    width: 360.00006
+    width: 475.19995
     height: 740.4
   m_MinSize: {x: 232, y: 271}
   m_MaxSize: {x: 10002, y: 10021}
@@ -298,19 +298,20 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 1108.8
+    x: 1145.6
     y: 0
-    width: 427.19995
+    width: 390.40002
     height: 740.4
-  m_MinSize: {x: 276, y: 121}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 22}
   m_Panes:
   - {fileID: 22}
   - {fileID: 23}
   - {fileID: 24}
+  - {fileID: 25}
   m_Selected: 0
-  m_LastSelected: 2
+  m_LastSelected: 0
 --- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -320,22 +321,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 12015, guid: 0000000000000000e000000000000000, type: 0}
+  m_Script: {fileID: 12003, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: 
   m_EditorClassIdentifier: 
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 4000, y: 4000}
   m_TitleContent:
-    m_Text: Game
-    m_Image: {fileID: 4621777727084837110, guid: 0000000000000000d000000000000000,
+    m_Text: Console
+    m_Image: {fileID: -4950941429401207979, guid: 0000000000000000d000000000000000,
       type: 0}
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 541.60004
-    width: 536.6
-    height: 251.40002
+    y: 73.6
+    width: 458.2
+    height: 391
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -346,70 +347,6 @@ MonoBehaviour:
     m_LastAppliedPresetName: Default
     m_SaveData: []
     m_OverlaysVisible: 1
-  m_SerializedViewNames: []
-  m_SerializedViewValues: []
-  m_PlayModeViewName: GameView
-  m_ShowGizmos: 0
-  m_TargetDisplay: 0
-  m_ClearColor: {r: 0, g: 0, b: 0, a: 0}
-  m_TargetSize: {x: 1920, y: 1080}
-  m_TextureFilterMode: 0
-  m_TextureHideFlags: 61
-  m_RenderIMGUI: 1
-  m_EnterPlayModeBehavior: 0
-  m_UseMipMap: 0
-  m_VSyncEnabled: 0
-  m_Gizmos: 0
-  m_Stats: 0
-  m_SelectedSizes: 03000000000000000000000006000000000000000000000000000000000000000000000000000000
-  m_ZoomArea:
-    m_HRangeLocked: 0
-    m_VRangeLocked: 0
-    hZoomLockedByDefault: 0
-    vZoomLockedByDefault: 0
-    m_HBaseRangeMin: -768
-    m_HBaseRangeMax: 768
-    m_VBaseRangeMin: -432
-    m_VBaseRangeMax: 432
-    m_HAllowExceedBaseRangeMin: 1
-    m_HAllowExceedBaseRangeMax: 1
-    m_VAllowExceedBaseRangeMin: 1
-    m_VAllowExceedBaseRangeMax: 1
-    m_ScaleWithWindow: 0
-    m_HSlider: 0
-    m_VSlider: 0
-    m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 1
-    m_EnableSliderZoomHorizontal: 0
-    m_EnableSliderZoomVertical: 0
-    m_UniformScale: 1
-    m_UpDirection: 1
-    m_DrawArea:
-      serializedVersion: 2
-      x: 0
-      y: 21
-      width: 536.6
-      height: 230.40002
-    m_Scale: {x: 0.26666668, y: 0.26666668}
-    m_Translation: {x: 268.3, y: 115.20001}
-    m_MarginLeft: 0
-    m_MarginRight: 0
-    m_MarginTop: 0
-    m_MarginBottom: 0
-    m_LastShownAreaInsideMargins:
-      serializedVersion: 2
-      x: -1006.1249
-      y: -432.00003
-      width: 2012.2498
-      height: 864.00006
-    m_MinimalGUI: 1
-  m_defaultScale: 0.26666668
-  m_LastWindowPixelSize: {x: 670.75, y: 314.25003}
-  m_ClearInEditMode: 1
-  m_NoCameraWarning: 1
-  m_LowResolutionForAspectRatios: 00000000000000000000
-  m_XRRenderMode: 0
-  m_RenderTexture: {fileID: 0}
 --- !u!114 &14
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -433,8 +370,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 73.6
-    width: 536.6
-    height: 447
+    width: 458.2
+    height: 391
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -754,9 +691,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 6.819751, y: -47.457092, z: 26.335417}
+    m_Target: {x: 6.2968793, y: -48.48798, z: 25.191788}
     speed: 2
-    m_Value: {x: 6.819751, y: -47.457092, z: 26.335417}
+    m_Value: {x: 6.2968793, y: -48.48798, z: 25.191788}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -802,9 +739,9 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.5016522, y: 0.11786892, z: -0.06921705, w: 0.8542064}
+    m_Target: {x: 0.5140001, y: 0.102691, z: -0.06214085, w: 0.8493555}
     speed: 2
-    m_Value: {x: -0.5016521, y: -0.117868915, z: 0.06921704, w: -0.8542063}
+    m_Value: {x: 0.5139981, y: 0.1026906, z: -0.062140603, w: 0.8493522}
   m_Size:
     m_Target: 30
     speed: 2
@@ -834,41 +771,6 @@ MonoBehaviour:
   m_LastLockedObject: {fileID: 0}
   m_ViewIsLockedToObject: 0
 --- !u!114 &15
-MonoBehaviour:
-  m_ObjectHideFlags: 52
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 12003, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_TitleContent:
-    m_Text: Console
-    m_Image: {fileID: -4950941429401207979, guid: 0000000000000000d000000000000000,
-      type: 0}
-    m_Tooltip: 
-  m_Pos:
-    serializedVersion: 2
-    x: 0
-    y: 73.6
-    width: 536.6
-    height: 447
-  m_SerializedDataModeController:
-    m_DataMode: 0
-    m_PreferredDataMode: 0
-    m_SupportedDataModes: 
-    isAutomatic: 1
-  m_ViewDataDictionary: {fileID: 0}
-  m_OverlayCanvas:
-    m_LastAppliedPresetName: Default
-    m_SaveData: []
-    m_OverlaysVisible: 1
---- !u!114 &16
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -941,7 +843,7 @@ MonoBehaviour:
   m_CurrentEditor: 1
   m_LayerEditor:
     m_SelectedLayerIndex: 0
---- !u!114 &17
+--- !u!114 &16
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -998,6 +900,105 @@ MonoBehaviour:
       m_IsRenamingFilename: 0
       m_ClientGUIView: {fileID: 0}
     m_SearchString: 
+--- !u!114 &17
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 12015, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_TitleContent:
+    m_Text: Game
+    m_Image: {fileID: 4621777727084837110, guid: 0000000000000000d000000000000000,
+      type: 0}
+    m_Tooltip: 
+  m_Pos:
+    serializedVersion: 2
+    x: 0
+    y: 485.6
+    width: 458.2
+    height: 307.40002
+  m_SerializedDataModeController:
+    m_DataMode: 0
+    m_PreferredDataMode: 0
+    m_SupportedDataModes: 
+    isAutomatic: 1
+  m_ViewDataDictionary: {fileID: 0}
+  m_OverlayCanvas:
+    m_LastAppliedPresetName: Default
+    m_SaveData: []
+    m_OverlaysVisible: 1
+  m_SerializedViewNames: []
+  m_SerializedViewValues: []
+  m_PlayModeViewName: GameView
+  m_ShowGizmos: 0
+  m_TargetDisplay: 0
+  m_ClearColor: {r: 0, g: 0, b: 0, a: 0}
+  m_TargetSize: {x: 1920, y: 1080}
+  m_TextureFilterMode: 0
+  m_TextureHideFlags: 61
+  m_RenderIMGUI: 1
+  m_EnterPlayModeBehavior: 0
+  m_UseMipMap: 0
+  m_VSyncEnabled: 0
+  m_Gizmos: 0
+  m_Stats: 0
+  m_SelectedSizes: 03000000000000000000000006000000000000000000000000000000000000000000000000000000
+  m_ZoomArea:
+    m_HRangeLocked: 0
+    m_VRangeLocked: 0
+    hZoomLockedByDefault: 0
+    vZoomLockedByDefault: 0
+    m_HBaseRangeMin: -768
+    m_HBaseRangeMax: 768
+    m_VBaseRangeMin: -432
+    m_VBaseRangeMax: 432
+    m_HAllowExceedBaseRangeMin: 1
+    m_HAllowExceedBaseRangeMax: 1
+    m_VAllowExceedBaseRangeMin: 1
+    m_VAllowExceedBaseRangeMax: 1
+    m_ScaleWithWindow: 0
+    m_HSlider: 0
+    m_VSlider: 0
+    m_IgnoreScrollWheelUntilClicked: 0
+    m_EnableMouseInput: 1
+    m_EnableSliderZoomHorizontal: 0
+    m_EnableSliderZoomVertical: 0
+    m_UniformScale: 1
+    m_UpDirection: 1
+    m_DrawArea:
+      serializedVersion: 2
+      x: 0
+      y: 21
+      width: 458.2
+      height: 286.40002
+    m_Scale: {x: 0.2983073, y: 0.2983073}
+    m_Translation: {x: 229.1, y: 143.20001}
+    m_MarginLeft: 0
+    m_MarginRight: 0
+    m_MarginTop: 0
+    m_MarginBottom: 0
+    m_LastShownAreaInsideMargins:
+      serializedVersion: 2
+      x: -768
+      y: -480.04193
+      width: 1536
+      height: 960.08386
+    m_MinimalGUI: 1
+  m_defaultScale: 0.2983073
+  m_LastWindowPixelSize: {x: 572.75, y: 384.25003}
+  m_ClearInEditMode: 1
+  m_NoCameraWarning: 1
+  m_LowResolutionForAspectRatios: 00000000000000000000
+  m_XRRenderMode: 0
+  m_RenderTexture: {fileID: 0}
 --- !u!114 &18
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1035,7 +1036,7 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 20704
+  m_LastSelectedObjectID: -127750
 --- !u!114 &19
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1122,7 +1123,7 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 537.60004
+    x: 459.2
     y: 73.6
     width: 209.20001
     height: 719.4
@@ -1141,7 +1142,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 36fbffff7c500000
+      m_ExpandedIDs: 38bffdff70bffdff24c0fdff86c0fdffbec0fdff72c1fdffdec1fdff16c2fdffcec2fdffa2c7fdff42cbfdff1acdfdff7ccefdfffacffdff8cd1fdffe0d3fdff2ad6fdff20d9fdfffcdafdffecdcfdff14defdffbcdefdff2ce0fdff0ae1fdfff0e2fdff08e5fdff02e8fdff6eeafdffeaecfdff00effdff1af1fdff5ef3fdfffef3fdff0601feff6c02feffc206feffa807fefffa0cfeff340ffeffea16feff1417feff3018feffc218feffd419feff6a1afeff7c1bfeff121cfeffe828feffae58ffffa47e0000ce130100
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1186,9 +1187,9 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 748.8
+    x: 670.4
     y: 73.6
-    width: 358.00006
+    width: 473.19995
     height: 719.4
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -1211,7 +1212,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Packages
+    - Assets/_Project/Configs/Core/Levels/2x2
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -1219,16 +1220,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Packages
+  - Assets/_Project/Configs/Core/Levels/2x2
   m_LastFoldersGridSize: 16
   m_LastProjectPath: D:\games\SlidingCubesGame\SlidingBlocksGame
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: ffffff7f
-    m_LastClickedID: 2147483647
-    m_ExpandedIDs: 000000004653000000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 40.599976}
+    m_SelectedIDs: 1e470000
+    m_LastClickedID: 18206
+    m_ExpandedIDs: 000000003e41000082410000d242000012440000a645000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1256,7 +1257,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000046530000
+    m_ExpandedIDs: 000000003e41000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1311,7 +1312,7 @@ MonoBehaviour:
     m_ScrollPosition: {x: 0, y: 0}
     m_GridSize: 16
   m_SkipHiddenPackages: 0
-  m_DirectoriesAreaWidth: 184.79999
+  m_DirectoriesAreaWidth: 286.4
 --- !u!114 &22
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1333,9 +1334,9 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1108.8
+    x: 1145.6
     y: 73.6
-    width: 426.19995
+    width: 389.40002
     height: 719.4
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -1361,6 +1362,476 @@ MonoBehaviour:
     m_IsLocked: 0
   m_PreviewWindow: {fileID: 0}
 --- !u!114 &23
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 13401, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_TitleContent:
+    m_Text: Test Runner
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  m_Pos:
+    serializedVersion: 2
+    x: 1262.4
+    y: 73.6
+    width: 272.59998
+    height: 719.4
+  m_SerializedDataModeController:
+    m_DataMode: 0
+    m_PreferredDataMode: 0
+    m_SupportedDataModes: 
+    isAutomatic: 1
+  m_ViewDataDictionary: {fileID: 0}
+  m_OverlayCanvas:
+    m_LastAppliedPresetName: Default
+    m_SaveData: []
+    m_OverlaysVisible: 1
+  m_Spl:
+    ID: 7276
+    splitterInitialOffset: 284.8
+    currentActiveSplitter: -1
+    realSizes:
+    - 212.79996
+    - 436.00003
+    relativeSizes:
+    - 0.32799008
+    - 0.67200994
+    minSizes:
+    - 32
+    - 32
+    maxSizes:
+    - 0
+    - 0
+    lastTotalSize: 648.8
+    splitSize: 6
+    xOffset: 0
+    m_Version: 1
+    oldRealSizes: 
+    oldMinSizes: 
+    oldMaxSizes: 
+    oldSplitSize: 0
+  m_TestTypeToolbarIndex: 0
+  m_PlayModeTestListGUI:
+    m_Window: {fileID: 23}
+    m_NewResultList:
+    - id: 1065
+      uniqueId: '[Freenzy Animals][suite]'
+      name: Freenzy Animals
+      fullName: Freenzy Animals
+      resultStatus: 1
+      duration: 0.0174957
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 
+      parentUniqueId: 
+    - id: 1004
+      uniqueId: '[PlayModeTests][D:/games/SlidingCubesGame/SlidingBlocksGame/Library/ScriptAssemblies/PlayModeTests.dll][suite]'
+      name: PlayModeTests.dll
+      fullName: D:/games/SlidingCubesGame/SlidingBlocksGame/Library/ScriptAssemblies/PlayModeTests.dll
+      resultStatus: 1
+      duration: 0.013179
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1000
+      parentUniqueId: '[Freenzy Animals][suite]'
+    - id: 1001
+      uniqueId: PlayModeTests.dll/[PlayModeTests][NewTestScript][suite]
+      name: NewTestScript
+      fullName: NewTestScript
+      resultStatus: 1
+      duration: 0.0112556
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1004
+      parentUniqueId: '[PlayModeTests][D:/games/SlidingCubesGame/SlidingBlocksGame/Library/ScriptAssemblies/PlayModeTests.dll][suite]'
+    - id: 1002
+      uniqueId: PlayModeTests.dll/NewTestScript/[PlayModeTests][NewTestScript.NewTestScriptSimplePasses]
+      name: NewTestScriptSimplePasses
+      fullName: NewTestScript.NewTestScriptSimplePasses
+      resultStatus: 1
+      duration: 0.0001579
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: PlayModeTests.dll/[PlayModeTests][NewTestScript][suite]
+    - id: 1003
+      uniqueId: PlayModeTests.dll/NewTestScript/[PlayModeTests][NewTestScript.NewTestScriptWithEnumeratorPasses]
+      name: NewTestScriptWithEnumeratorPasses
+      fullName: NewTestScript.NewTestScriptWithEnumeratorPasses
+      resultStatus: 1
+      duration: 0.0087187
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: PlayModeTests.dll/[PlayModeTests][NewTestScript][suite]
+    m_ResultText: Freenzy Animals (0,017s)
+    m_ResultStacktrace: 
+    m_TestListState:
+      scrollPos: {x: 0, y: 0}
+      m_SelectedIDs: dae9d636
+      m_LastClickedID: 920054234
+      m_ExpandedIDs: 21bd1620dae9d63638f43053ffffff7f
+      m_RenameOverlay:
+        m_UserAcceptedRename: 0
+        m_Name: 
+        m_OriginalName: 
+        m_EditFieldRect:
+          serializedVersion: 2
+          x: 0
+          y: 0
+          width: 0
+          height: 0
+        m_UserData: 0
+        m_IsWaitingForDelay: 0
+        m_IsRenaming: 0
+        m_OriginalEventType: 11
+        m_IsRenamingFilename: 0
+        m_ClientGUIView: {fileID: 0}
+      m_SearchString: 
+    m_TestRunnerUIFilter:
+      PassedHidden: 0
+      FailedHidden: 0
+      NotRunHidden: 0
+      m_SearchString: 
+      selectedCategoryMask: 0
+      availableCategories:
+      - Uncategorized
+    m_SelectedOption: 0
+  m_EditModeTestListGUI:
+    m_Window: {fileID: 23}
+    m_NewResultList:
+    - id: 1000
+      uniqueId: '[Freenzy Animals][suite]'
+      name: Freenzy Animals
+      fullName: Freenzy Animals
+      resultStatus: 2
+      duration: 0.5019654
+      messages: One or more child tests had errors
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 
+      parentUniqueId: 
+    - id: 1007
+      uniqueId: '[Tests][D:/games/SlidingCubesGame/SlidingBlocksGame/Library/ScriptAssemblies/Tests.dll][suite]'
+      name: Tests.dll
+      fullName: D:/games/SlidingCubesGame/SlidingBlocksGame/Library/ScriptAssemblies/Tests.dll
+      resultStatus: 2
+      duration: 0.4612969
+      messages: One or more child tests had errors
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1000
+      parentUniqueId: '[Freenzy Animals][suite]'
+    - id: 1001
+      uniqueId: Tests.dll/[Tests][CalculateDestinationSystemTests][suite]
+      name: CalculateDestinationSystemTests
+      fullName: CalculateDestinationSystemTests
+      resultStatus: 2
+      duration: 0.4597835
+      messages: One or more child tests had errors
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1007
+      parentUniqueId: '[Tests][D:/games/SlidingCubesGame/SlidingBlocksGame/Library/ScriptAssemblies/Tests.dll][suite]'
+    - id: 1011
+      uniqueId: Tests.dll/CalculateDestinationSystemTests/[Tests][CalculateDestinationSystemTests.CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision][suite]
+      name: CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision
+      fullName: CalculateDestinationSystemTests.CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision
+      resultStatus: 2
+      duration: 0.456489
+      messages: One or more child tests had errors
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1001
+      parentUniqueId: Tests.dll/[Tests][CalculateDestinationSystemTests][suite]
+    - id: 1005
+      uniqueId: Tests.dll/CalculateDestinationSystemTests/CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision/[Tests][CalculateDestinationSystemTests.CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision(0,3)]
+      name: CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision(0,3)
+      fullName: CalculateDestinationSystemTests.CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision(0,3)
+      resultStatus: 2
+      duration: 0.2054329
+      messages: "  Animal from position (0, 3) should stop before occupied cell\r\n 
+        Expected: less than 4\r\n  But was:  5\r\n"
+      output: "GameField:\n0 0 1 \n0 1 0 \n0 0 0 \n\r\ntear\r\n"
+      stacktrace: 'at CalculateDestinationSystemTests.CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision
+        (System.Int32 startX, System.Int32 startY) [0x00095] in D:\games\SlidingCubesGame\SlidingBlocksGame\Assets\_Project\Scripts\Gameplay\Features\GameFieldFeature\Tests\CalculateDestinationSystemTests.cs:186
+
+'
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: Bottom edge position
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1011
+      parentUniqueId: Tests.dll/CalculateDestinationSystemTests/[Tests][CalculateDestinationSystemTests.CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision][suite]
+    - id: 1006
+      uniqueId: Tests.dll/CalculateDestinationSystemTests/CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision/[Tests][CalculateDestinationSystemTests.CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision(0,4)]
+      name: CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision(0,4)
+      fullName: CalculateDestinationSystemTests.CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision(0,4)
+      resultStatus: 1
+      duration: 0.0568541
+      messages: 
+      output: "GameField:\n0 0 0 \n1 1 0 \n0 0 0 \n\r\ntear\r\n"
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: Middle edge position
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1011
+      parentUniqueId: Tests.dll/CalculateDestinationSystemTests/[Tests][CalculateDestinationSystemTests.CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision][suite]
+    - id: 1007
+      uniqueId: Tests.dll/CalculateDestinationSystemTests/CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision/[Tests][CalculateDestinationSystemTests.CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision(0,5)]
+      name: CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision(0,5)
+      fullName: CalculateDestinationSystemTests.CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision(0,5)
+      resultStatus: 2
+      duration: 0.046198
+      messages: "  Animal from position (0, 5) should stop before occupied cell\r\n 
+        Expected: less than 4\r\n  But was:  5\r\n"
+      output: "GameField:\n0 0 0 \n0 1 0 \n0 0 1 \n\r\ntear\r\n"
+      stacktrace: 'at CalculateDestinationSystemTests.CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision
+        (System.Int32 startX, System.Int32 startY) [0x00095] in D:\games\SlidingCubesGame\SlidingBlocksGame\Assets\_Project\Scripts\Gameplay\Features\GameFieldFeature\Tests\CalculateDestinationSystemTests.cs:186
+
+'
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: Top edge position
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1011
+      parentUniqueId: Tests.dll/CalculateDestinationSystemTests/[Tests][CalculateDestinationSystemTests.CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision][suite]
+    - id: 1008
+      uniqueId: Tests.dll/CalculateDestinationSystemTests/CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision/[Tests][CalculateDestinationSystemTests.CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision(1,3)]
+      name: CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision(1,3)
+      fullName: CalculateDestinationSystemTests.CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision(1,3)
+      resultStatus: 2
+      duration: 0.0433029
+      messages: "  Animal from position (1, 3) should stop before occupied cell\r\n 
+        Expected: less than 4\r\n  But was:  5\r\n"
+      output: "GameField:\n0 0 1 \n0 1 0 \n0 0 0 \n\r\ntear\r\n"
+      stacktrace: 'at CalculateDestinationSystemTests.CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision
+        (System.Int32 startX, System.Int32 startY) [0x00095] in D:\games\SlidingCubesGame\SlidingBlocksGame\Assets\_Project\Scripts\Gameplay\Features\GameFieldFeature\Tests\CalculateDestinationSystemTests.cs:186
+
+'
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: One step from edge bottom
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1011
+      parentUniqueId: Tests.dll/CalculateDestinationSystemTests/[Tests][CalculateDestinationSystemTests.CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision][suite]
+    - id: 1009
+      uniqueId: Tests.dll/CalculateDestinationSystemTests/CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision/[Tests][CalculateDestinationSystemTests.CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision(1,4)]
+      name: CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision(1,4)
+      fullName: CalculateDestinationSystemTests.CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision(1,4)
+      resultStatus: 1
+      duration: 0.0452327
+      messages: 
+      output: "GameField:\n0 0 0 \n1 1 0 \n0 0 0 \n\r\ntear\r\n"
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: One step from edge middle
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1011
+      parentUniqueId: Tests.dll/CalculateDestinationSystemTests/[Tests][CalculateDestinationSystemTests.CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision][suite]
+    - id: 1010
+      uniqueId: Tests.dll/CalculateDestinationSystemTests/CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision/[Tests][CalculateDestinationSystemTests.CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision(1,5)]
+      name: CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision(1,5)
+      fullName: CalculateDestinationSystemTests.CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision(1,5)
+      resultStatus: 2
+      duration: 0.0434213
+      messages: "  Animal from position (1, 5) should stop before occupied cell\r\n 
+        Expected: less than 4\r\n  But was:  5\r\n"
+      output: "GameField:\n0 0 0 \n0 1 0 \n0 0 1 \n\r\ntear\r\n"
+      stacktrace: 'at CalculateDestinationSystemTests.CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision
+        (System.Int32 startX, System.Int32 startY) [0x00095] in D:\games\SlidingCubesGame\SlidingBlocksGame\Assets\_Project\Scripts\Gameplay\Features\GameFieldFeature\Tests\CalculateDestinationSystemTests.cs:186
+
+'
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: One step from edge top
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1011
+      parentUniqueId: Tests.dll/CalculateDestinationSystemTests/[Tests][CalculateDestinationSystemTests.CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision][suite]
+    - id: 1006
+      uniqueId: Tests.dll/CalculateDestinationSystemTests/[Tests][CalculateDestinationSystemTests.CalculateDestination_DifferentDirections_OnlyMovesMatchingDirection]
+      name: CalculateDestination_DifferentDirections_OnlyMovesMatchingDirection
+      fullName: CalculateDestinationSystemTests.CalculateDestination_DifferentDirections_OnlyMovesMatchingDirection
+      resultStatus: 1
+      duration: 0.0484503
+      messages: 
+      output: "GameField:\n0 0 1 \n0 0 0 \n0 0 0 \n\r\ntear\r\n"
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: Tests.dll/[Tests][CalculateDestinationSystemTests][suite]
+    - id: 1002
+      uniqueId: Tests.dll/CalculateDestinationSystemTests/[Tests][CalculateDestinationSystemTests.CalculateDestination_MoveTowardsCenterFromEdge_SetsCorrectDestination]
+      name: CalculateDestination_MoveTowardsCenterFromEdge_SetsCorrectDestination
+      fullName: CalculateDestinationSystemTests.CalculateDestination_MoveTowardsCenterFromEdge_SetsCorrectDestination
+      resultStatus: 1
+      duration: 0.0439433
+      messages: 
+      output: "GameField:\n0 0 1 \n0 0 0 \n0 0 0 \n\r\ntear\r\n"
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: Tests.dll/[Tests][CalculateDestinationSystemTests][suite]
+    - id: 1003
+      uniqueId: Tests.dll/CalculateDestinationSystemTests/[Tests][CalculateDestinationSystemTests.CalculateDestination_MultipleAnimalsMoving_HandlesGroupMovement]
+      name: CalculateDestination_MultipleAnimalsMoving_HandlesGroupMovement
+      fullName: CalculateDestinationSystemTests.CalculateDestination_MultipleAnimalsMoving_HandlesGroupMovement
+      resultStatus: 1
+      duration: 0.0488414
+      messages: 
+      output: "GameField:\n0 0 0 \n0 0 1 \n0 0 0 \n\r\nGameField:\n0 0 1 \n0 0 1
+        \n0 0 0 \n\r\ntear\r\n"
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: Tests.dll/[Tests][CalculateDestinationSystemTests][suite]
+    - id: 1005
+      uniqueId: Tests.dll/CalculateDestinationSystemTests/[Tests][CalculateDestinationSystemTests.CalculateDestination_NoValidMove_StaysInPlace]
+      name: CalculateDestination_NoValidMove_StaysInPlace
+      fullName: CalculateDestinationSystemTests.CalculateDestination_NoValidMove_StaysInPlace
+      resultStatus: 1
+      duration: 0.0474412
+      messages: 
+      output: "GameField:\n1 1 1 \n1 1 1 \n1 1 1 \n\r\nint2(2, 3)\r\ntear\r\n"
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: Tests.dll/[Tests][CalculateDestinationSystemTests][suite]
+    m_ResultText: "CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision(0,3)
+      (0,205s)\nBottom edge position\n---\nAnimal from position (0, 3) should stop
+      before occupied cell\r\n  Expected: less than 4\r\n  But was:  5\n---\nat CalculateDestinationSystemTests.CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision
+      (System.Int32 startX, System.Int32 startY) [0x00095] in D:\\games\\SlidingCubesGame\\SlidingBlocksGame\\Assets\\_Project\\Scripts\\Gameplay\\Features\\GameFieldFeature\\Tests\\CalculateDestinationSystemTests.cs:186\n---\nGameField:\n0
+      0 1 \n0 1 0 \n0 0 0 \n\r\ntear"
+    m_ResultStacktrace: 'at CalculateDestinationSystemTests.CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision
+      (System.Int32 startX, System.Int32 startY) [0x00095] in D:\games\SlidingCubesGame\SlidingBlocksGame\Assets\_Project\Scripts\Gameplay\Features\GameFieldFeature\Tests\CalculateDestinationSystemTests.cs:186
+
+'
+    m_TestListState:
+      scrollPos: {x: 0, y: 0}
+      m_SelectedIDs: b92f50b9
+      m_LastClickedID: -1185927239
+      m_ExpandedIDs: 42fe5a844794df90e5c9f2922d03ad94a14225a44fd77bbba1023dda32f830dca6ebf0f4e557abf7dae9d636a3cc6546e399d670ffffff7f
+      m_RenameOverlay:
+        m_UserAcceptedRename: 0
+        m_Name: 
+        m_OriginalName: 
+        m_EditFieldRect:
+          serializedVersion: 2
+          x: 0
+          y: 0
+          width: 0
+          height: 0
+        m_UserData: 0
+        m_IsWaitingForDelay: 0
+        m_IsRenaming: 0
+        m_OriginalEventType: 11
+        m_IsRenamingFilename: 0
+        m_ClientGUIView: {fileID: 0}
+      m_SearchString: 
+    m_TestRunnerUIFilter:
+      PassedHidden: 0
+      FailedHidden: 0
+      NotRunHidden: 0
+      m_SearchString: 
+      selectedCategoryMask: 0
+      availableCategories:
+      - Uncategorized
+--- !u!114 &24
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1395,7 +1866,7 @@ MonoBehaviour:
     m_LastAppliedPresetName: Default
     m_SaveData: []
     m_OverlaysVisible: 1
---- !u!114 &24
+--- !u!114 &25
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}

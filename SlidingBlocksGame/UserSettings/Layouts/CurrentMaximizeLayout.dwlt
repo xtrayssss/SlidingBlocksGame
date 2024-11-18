@@ -23,7 +23,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 100}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 1
-  controlID: 5506
+  controlID: 6972
   draggingID: 0
 --- !u!114 &2
 MonoBehaviour:
@@ -34,21 +34,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 13401, guid: 0000000000000000e000000000000000, type: 0}
+  m_Script: {fileID: 12003, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: 
   m_EditorClassIdentifier: 
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 4000, y: 4000}
   m_TitleContent:
-    m_Text: Test Runner
-    m_Image: {fileID: 0}
+    m_Text: Console
+    m_Image: {fileID: -4950941429401207979, guid: 0000000000000000d000000000000000,
+      type: 0}
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 896
+    x: 0
     y: 73.6
-    width: 639
-    height: 719.4
+    width: 458.2
+    height: 391
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -59,326 +60,6 @@ MonoBehaviour:
     m_LastAppliedPresetName: Default
     m_SaveData: []
     m_OverlaysVisible: 1
-  m_Spl:
-    ID: 5524
-    splitterInitialOffset: 0
-    currentActiveSplitter: -1
-    realSizes:
-    - 486.4
-    - 162.4
-    relativeSizes:
-    - 0.75
-    - 0.25
-    minSizes:
-    - 32
-    - 32
-    maxSizes:
-    - 0
-    - 0
-    lastTotalSize: 648.8
-    splitSize: 6
-    xOffset: 0
-    m_Version: 1
-    oldRealSizes: 
-    oldMinSizes: 
-    oldMaxSizes: 
-    oldSplitSize: 0
-  m_TestTypeToolbarIndex: 1
-  m_PlayModeTestListGUI:
-    m_Window: {fileID: 0}
-    m_NewResultList: []
-    m_ResultText: 
-    m_ResultStacktrace: 
-    m_TestListState:
-      scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: 
-      m_RenameOverlay:
-        m_UserAcceptedRename: 0
-        m_Name: 
-        m_OriginalName: 
-        m_EditFieldRect:
-          serializedVersion: 2
-          x: 0
-          y: 0
-          width: 0
-          height: 0
-        m_UserData: 0
-        m_IsWaitingForDelay: 0
-        m_IsRenaming: 0
-        m_OriginalEventType: 11
-        m_IsRenamingFilename: 0
-        m_ClientGUIView: {fileID: 0}
-      m_SearchString: 
-    m_TestRunnerUIFilter:
-      PassedHidden: 0
-      FailedHidden: 0
-      NotRunHidden: 0
-      m_SearchString: 
-      selectedCategoryMask: 0
-      availableCategories: []
-    m_SelectedOption: 0
-  m_EditModeTestListGUI:
-    m_Window: {fileID: 2}
-    m_NewResultList:
-    - id: 1000
-      uniqueId: '[Freenzy Animals][suite]'
-      name: Freenzy Animals
-      fullName: Freenzy Animals
-      resultStatus: 2
-      duration: 0.1743957
-      messages: One or more child tests had errors
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 
-      parentUniqueId: 
-    - id: 1004
-      uniqueId: '[Tests.dll][suite]'
-      name: Tests.dll
-      fullName: D:/games/SlidingCubesGame/SlidingBlocksGame/Library/ScriptAssemblies/Tests.dll
-      resultStatus: 2
-      duration: 0.1313164
-      messages: One or more child tests had errors
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1000
-      parentUniqueId: '[Freenzy Animals][suite]'
-    - id: 1005
-      uniqueId: Tests.dll/[_Project][suite]
-      name: _Project
-      fullName: _Project
-      resultStatus: 2
-      duration: 0.130968
-      messages: One or more child tests had errors
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1004
-      parentUniqueId: '[Tests.dll][suite]'
-    - id: 1006
-      uniqueId: Tests.dll/_Project/[Scripts][suite]
-      name: Scripts
-      fullName: _Project.Scripts
-      resultStatus: 2
-      duration: 0.1278502
-      messages: One or more child tests had errors
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1005
-      parentUniqueId: Tests.dll/[_Project][suite]
-    - id: 1007
-      uniqueId: Tests.dll/_Project/Scripts/[Gameplay][suite]
-      name: Gameplay
-      fullName: _Project.Scripts.Gameplay
-      resultStatus: 2
-      duration: 0.1246729
-      messages: One or more child tests had errors
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1006
-      parentUniqueId: Tests.dll/_Project/[Scripts][suite]
-    - id: 1008
-      uniqueId: Tests.dll/_Project/Scripts/Gameplay/[Features][suite]
-      name: Features
-      fullName: _Project.Scripts.Gameplay.Features
-      resultStatus: 2
-      duration: 0.1211027
-      messages: One or more child tests had errors
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1007
-      parentUniqueId: Tests.dll/_Project/Scripts/[Gameplay][suite]
-    - id: 1009
-      uniqueId: Tests.dll/_Project/Scripts/Gameplay/Features/[GameFieldFeature][suite]
-      name: GameFieldFeature
-      fullName: _Project.Scripts.Gameplay.Features.GameFieldFeature
-      resultStatus: 2
-      duration: 0.1175166
-      messages: One or more child tests had errors
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1008
-      parentUniqueId: Tests.dll/_Project/Scripts/Gameplay/[Features][suite]
-    - id: 1010
-      uniqueId: Tests.dll/_Project/Scripts/Gameplay/Features/GameFieldFeature/[Tests][suite]
-      name: Tests
-      fullName: _Project.Scripts.Gameplay.Features.GameFieldFeature.Tests
-      resultStatus: 2
-      duration: 0.1143394
-      messages: One or more child tests had errors
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1009
-      parentUniqueId: Tests.dll/_Project/Scripts/Gameplay/Features/[GameFieldFeature][suite]
-    - id: 1001
-      uniqueId: Tests.dll/_Project/Scripts/Gameplay/Features/GameFieldFeature/Tests/[Tests][_Project.Scripts.Gameplay.Features.GameFieldFeature.Tests.CalculateDestinationSystemTests][suite]
-      name: CalculateDestinationSystemTests
-      fullName: _Project.Scripts.Gameplay.Features.GameFieldFeature.Tests.CalculateDestinationSystemTests
-      resultStatus: 2
-      duration: 0.1125417
-      messages: One or more child tests had errors
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1009
-      parentUniqueId: Tests.dll/_Project/Scripts/Gameplay/Features/GameFieldFeature/[Tests][suite]
-    - id: 1002
-      uniqueId: Tests.dll/_Project/Scripts/Gameplay/Features/GameFieldFeature/Tests/CalculateDestinationSystemTests/[Tests][_Project.Scripts.Gameplay.Features.GameFieldFeature.Tests.CalculateDestinationSystemTests.CalculateDestination_WithClickEvent_SetsWorldDestination]
-      name: CalculateDestination_WithClickEvent_SetsWorldDestination
-      fullName: _Project.Scripts.Gameplay.Features.GameFieldFeature.Tests.CalculateDestinationSystemTests.CalculateDestination_WithClickEvent_SetsWorldDestination
-      resultStatus: 2
-      duration: 0.0582273
-      messages: 'DCFApixels.DragonECS.EcsFrameworkException : [DragonECS] Entity(3)
-        has no component GameObjectConnect.'
-      output: 
-      stacktrace: "  at DCFApixels.DragonECS.PoolsCore.EcsPoolThrowHalper.ThrowNotHaveComponent[T]
-        (System.Int32 entityID) [0x00001] in .\\Library\\PackageCache\\com.dcfa_pixels.dragonecs@c3a2ccd30d\\src\\Pools\\EcsPoolBase.cs:34
-        \r\n  at DCFApixels.DragonECS.EcsPool`1[T].Read (System.Int32 entityID) [0x00010]
-        in .\\Library\\PackageCache\\com.dcfa_pixels.dragonecs@c3a2ccd30d\\src\\Pools\\EcsPool.cs:120
-        \r\n  at _Project.Scripts.Gameplay.Features.MovementFeature.Systems.CalculateDestinationSystem.Run
-        () [0x001fe] in D:\\games\\SlidingCubesGame\\SlidingBlocksGame\\Assets\\_Project\\Scripts\\Gameplay\\Features\\MovementFeature\\Systems\\CalculateDestinationSystem.cs:107
-        \r\n  at _Project.Scripts.Infrastructure.EcsModule.Update (DCFApixels.DragonECS.EcsWorld
-        world) [0x00019] in D:\\games\\SlidingCubesGame\\SlidingBlocksGame\\Assets\\_Project\\Scripts\\Infrastructure\\EcsModule.cs:36
-        \r\n  at _Project.Scripts.Infrastructure.EcsPipelineWrapper.UpdateRun (DCFApixels.DragonECS.EcsWorld
-        world) [0x00000] in D:\\games\\SlidingCubesGame\\SlidingBlocksGame\\Assets\\_Project\\Scripts\\Infrastructure\\EcsPipelineWrapper.cs:21
-        \r\n  at _Project.Scripts.Gameplay.Features.GameFieldFeature.Tests.CalculateDestinationSystemTests.CalculateDestination_WithClickEvent_SetsWorldDestination
-        () [0x00199] in D:\\games\\SlidingCubesGame\\SlidingBlocksGame\\Assets\\_Project\\Scripts\\Gameplay\\Features\\GameFieldFeature\\Tests\\CalculateDestinationSystemTests.cs:80
-        \r\n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\r\n 
-        at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags
-        invokeAttr, System.Reflection.Binder binder, System.Object[] parameters,
-        System.Globalization.CultureInfo culture) [0x0006a] in <8ce0bd04a7a04b4b9395538239d3fdd8>:0 "
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1001
-      parentUniqueId: Tests.dll/_Project/Scripts/Gameplay/Features/GameFieldFeature/Tests/[Tests][_Project.Scripts.Gameplay.Features.GameFieldFeature.Tests.CalculateDestinationSystemTests][suite]
-    - id: 1003
-      uniqueId: Tests.dll/_Project/Scripts/Gameplay/Features/GameFieldFeature/Tests/CalculateDestinationSystemTests/[Tests][_Project.Scripts.Gameplay.Features.GameFieldFeature.Tests.CalculateDestinationSystemTests.CalculateDestination_WithoutClickEvent_DoesNotSetWorldDestination]
-      name: CalculateDestination_WithoutClickEvent_DoesNotSetWorldDestination
-      fullName: _Project.Scripts.Gameplay.Features.GameFieldFeature.Tests.CalculateDestinationSystemTests.CalculateDestination_WithoutClickEvent_DoesNotSetWorldDestination
-      resultStatus: 1
-      duration: 0.0503924
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1001
-      parentUniqueId: Tests.dll/_Project/Scripts/Gameplay/Features/GameFieldFeature/Tests/[Tests][_Project.Scripts.Gameplay.Features.GameFieldFeature.Tests.CalculateDestinationSystemTests][suite]
-    m_ResultText: "CalculateDestination_WithClickEvent_SetsWorldDestination (0,058s)\n---\nDCFApixels.DragonECS.EcsFrameworkException
-      : [DragonECS] Entity(3) has no component GameObjectConnect.\n---\nat DCFApixels.DragonECS.PoolsCore.EcsPoolThrowHalper.ThrowNotHaveComponent[T]
-      (System.Int32 entityID) [0x00001] in .\\Library\\PackageCache\\com.dcfa_pixels.dragonecs@c3a2ccd30d\\src\\Pools\\EcsPoolBase.cs:34
-      \r\n  at DCFApixels.DragonECS.EcsPool`1[T].Read (System.Int32 entityID) [0x00010]
-      in .\\Library\\PackageCache\\com.dcfa_pixels.dragonecs@c3a2ccd30d\\src\\Pools\\EcsPool.cs:120
-      \r\n  at _Project.Scripts.Gameplay.Features.MovementFeature.Systems.CalculateDestinationSystem.Run
-      () [0x001fe] in D:\\games\\SlidingCubesGame\\SlidingBlocksGame\\Assets\\_Project\\Scripts\\Gameplay\\Features\\MovementFeature\\Systems\\CalculateDestinationSystem.cs:107
-      \r\n  at _Project.Scripts.Infrastructure.EcsModule.Update (DCFApixels.DragonECS.EcsWorld
-      world) [0x00019] in D:\\games\\SlidingCubesGame\\SlidingBlocksGame\\Assets\\_Project\\Scripts\\Infrastructure\\EcsModule.cs:36
-      \r\n  at _Project.Scripts.Infrastructure.EcsPipelineWrapper.UpdateRun (DCFApixels.DragonECS.EcsWorld
-      world) [0x00000] in D:\\games\\SlidingCubesGame\\SlidingBlocksGame\\Assets\\_Project\\Scripts\\Infrastructure\\EcsPipelineWrapper.cs:21
-      \r\n  at _Project.Scripts.Gameplay.Features.GameFieldFeature.Tests.CalculateDestinationSystemTests.CalculateDestination_WithClickEvent_SetsWorldDestination
-      () [0x00199] in D:\\games\\SlidingCubesGame\\SlidingBlocksGame\\Assets\\_Project\\Scripts\\Gameplay\\Features\\GameFieldFeature\\Tests\\CalculateDestinationSystemTests.cs:80
-      \r\n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\r\n 
-      at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags
-      invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo
-      culture) [0x0006a] in <8ce0bd04a7a04b4b9395538239d3fdd8>:0"
-    m_ResultStacktrace: "  at DCFApixels.DragonECS.PoolsCore.EcsPoolThrowHalper.ThrowNotHaveComponent[T]
-      (System.Int32 entityID) [0x00001] in .\\Library\\PackageCache\\com.dcfa_pixels.dragonecs@c3a2ccd30d\\src\\Pools\\EcsPoolBase.cs:34
-      \r\n  at DCFApixels.DragonECS.EcsPool`1[T].Read (System.Int32 entityID) [0x00010]
-      in .\\Library\\PackageCache\\com.dcfa_pixels.dragonecs@c3a2ccd30d\\src\\Pools\\EcsPool.cs:120
-      \r\n  at _Project.Scripts.Gameplay.Features.MovementFeature.Systems.CalculateDestinationSystem.Run
-      () [0x001fe] in D:\\games\\SlidingCubesGame\\SlidingBlocksGame\\Assets\\_Project\\Scripts\\Gameplay\\Features\\MovementFeature\\Systems\\CalculateDestinationSystem.cs:107
-      \r\n  at _Project.Scripts.Infrastructure.EcsModule.Update (DCFApixels.DragonECS.EcsWorld
-      world) [0x00019] in D:\\games\\SlidingCubesGame\\SlidingBlocksGame\\Assets\\_Project\\Scripts\\Infrastructure\\EcsModule.cs:36
-      \r\n  at _Project.Scripts.Infrastructure.EcsPipelineWrapper.UpdateRun (DCFApixels.DragonECS.EcsWorld
-      world) [0x00000] in D:\\games\\SlidingCubesGame\\SlidingBlocksGame\\Assets\\_Project\\Scripts\\Infrastructure\\EcsPipelineWrapper.cs:21
-      \r\n  at _Project.Scripts.Gameplay.Features.GameFieldFeature.Tests.CalculateDestinationSystemTests.CalculateDestination_WithClickEvent_SetsWorldDestination
-      () [0x00199] in D:\\games\\SlidingCubesGame\\SlidingBlocksGame\\Assets\\_Project\\Scripts\\Gameplay\\Features\\GameFieldFeature\\Tests\\CalculateDestinationSystemTests.cs:80
-      \r\n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\r\n 
-      at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags
-      invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo
-      culture) [0x0006a] in <8ce0bd04a7a04b4b9395538239d3fdd8>:0 "
-    m_TestListState:
-      scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: bb192a56
-      m_LastClickedID: 1445599675
-      m_ExpandedIDs: 42fe5a844794df902d03ad94a14225a44fd77bbb32f830dca6ebf0f4e557abf7dae9d636a3cc6546ffffff7f
-      m_RenameOverlay:
-        m_UserAcceptedRename: 0
-        m_Name: 
-        m_OriginalName: 
-        m_EditFieldRect:
-          serializedVersion: 2
-          x: 0
-          y: 0
-          width: 0
-          height: 0
-        m_UserData: 0
-        m_IsWaitingForDelay: 0
-        m_IsRenaming: 0
-        m_OriginalEventType: 11
-        m_IsRenamingFilename: 0
-        m_ClientGUIView: {fileID: 0}
-      m_SearchString: 
-    m_TestRunnerUIFilter:
-      PassedHidden: 0
-      FailedHidden: 0
-      NotRunHidden: 0
-      m_SearchString: 
-      selectedCategoryMask: 0
-      availableCategories:
-      - Uncategorized
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -393,9 +74,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Children:
   - {fileID: 4}
-  - {fileID: 14}
-  - {fileID: 16}
-  - {fileID: 18}
+  - {fileID: 13}
+  - {fileID: 15}
+  - {fileID: 17}
   m_Position:
     serializedVersion: 2
     x: 0
@@ -405,7 +86,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 100}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 5507
+  controlID: 6973
   draggingID: 0
 --- !u!114 &4
 MonoBehaviour:
@@ -421,17 +102,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Children:
   - {fileID: 5}
-  - {fileID: 10}
+  - {fileID: 9}
   m_Position:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 536.8
+    width: 459.2
     height: 740.4
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 5383
+  controlID: 6974
   draggingID: 0
 --- !u!114 &5
 MonoBehaviour:
@@ -450,16 +131,16 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 536.8
+    width: 459.2
     height: 412
   m_MinSize: {x: 101, y: 121}
   m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 7}
+  m_ActualView: {fileID: 2}
   m_Panes:
   - {fileID: 6}
+  - {fileID: 2}
   - {fileID: 7}
   - {fileID: 8}
-  - {fileID: 9}
   m_Selected: 1
   m_LastSelected: 0
 --- !u!114 &6
@@ -485,7 +166,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 73.6
-    width: 535.8
+    width: 458.2
     height: 391
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -806,9 +487,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -0.087245226, y: -49.901127, z: 22.512985}
+    m_Target: {x: 6.2968793, y: -48.48798, z: 25.191788}
     speed: 2
-    m_Value: {x: -0.087245226, y: -49.901127, z: 22.512985}
+    m_Value: {x: 6.2968793, y: -48.48798, z: 25.191788}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -854,9 +535,9 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.54506874, y: 0.017369369, z: -0.011291692, w: 0.83813983}
+    m_Target: {x: 0.5140001, y: 0.102691, z: -0.06214085, w: 0.8493555}
     speed: 2
-    m_Value: {x: 0.5450667, y: 0.017369306, z: -0.01129165, w: 0.83813673}
+    m_Value: {x: 0.5139981, y: 0.1026906, z: -0.062140603, w: 0.8493522}
   m_Size:
     m_Target: 30
     speed: 2
@@ -886,41 +567,6 @@ MonoBehaviour:
   m_LastLockedObject: {fileID: 0}
   m_ViewIsLockedToObject: 0
 --- !u!114 &7
-MonoBehaviour:
-  m_ObjectHideFlags: 52
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 12003, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_TitleContent:
-    m_Text: Console
-    m_Image: {fileID: -4950941429401207979, guid: 0000000000000000d000000000000000,
-      type: 0}
-    m_Tooltip: 
-  m_Pos:
-    serializedVersion: 2
-    x: 0
-    y: 19
-    width: 535.8
-    height: 391
-  m_SerializedDataModeController:
-    m_DataMode: 0
-    m_PreferredDataMode: 0
-    m_SupportedDataModes: 
-    isAutomatic: 1
-  m_ViewDataDictionary: {fileID: 0}
-  m_OverlayCanvas:
-    m_LastAppliedPresetName: Default
-    m_SaveData: []
-    m_OverlaysVisible: 1
---- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -993,7 +639,7 @@ MonoBehaviour:
   m_CurrentEditor: 1
   m_LayerEditor:
     m_SelectedLayerIndex: 0
---- !u!114 &9
+--- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1050,7 +696,7 @@ MonoBehaviour:
       m_IsRenamingFilename: 0
       m_ClientGUIView: {fileID: 0}
     m_SearchString: 
---- !u!114 &10
+--- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1067,18 +713,18 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 412
-    width: 536.8
+    width: 459.2
     height: 328.40002
   m_MinSize: {x: 101, y: 121}
   m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 11}
+  m_ActualView: {fileID: 10}
   m_Panes:
+  - {fileID: 10}
   - {fileID: 11}
   - {fileID: 12}
-  - {fileID: 13}
   m_Selected: 0
   m_LastSelected: 2
---- !u!114 &11
+--- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1100,8 +746,8 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 431
-    width: 535.8
+    y: 485.6
+    width: 458.2
     height: 307.40002
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -1155,29 +801,29 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 21
-      width: 535.8
+      width: 458.2
       height: 286.40002
-    m_Scale: {x: 0.33148152, y: 0.33148152}
-    m_Translation: {x: 267.9, y: 143.20001}
+    m_Scale: {x: 0.2983073, y: 0.2983073}
+    m_Translation: {x: 229.1, y: 143.20001}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -808.1898
-      y: -432
-      width: 1616.3796
-      height: 864
+      x: -768
+      y: -480.04193
+      width: 1536
+      height: 960.08386
     m_MinimalGUI: 1
-  m_defaultScale: 0.33148152
-  m_LastWindowPixelSize: {x: 669.75, y: 384.25003}
+  m_defaultScale: 0.2983073
+  m_LastWindowPixelSize: {x: 572.75, y: 384.25003}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 00000000000000000000
   m_XRRenderMode: 0
   m_RenderTexture: {fileID: 0}
---- !u!114 &12
+--- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1215,7 +861,7 @@ MonoBehaviour:
   m_LockTracker:
     m_IsLocked: 0
   m_LastSelectedObjectID: -127750
---- !u!114 &13
+--- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1280,7 +926,7 @@ MonoBehaviour:
     screenIndex: 0
     networkReachability: 1
     systemLanguage: 10
---- !u!114 &14
+--- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1295,18 +941,18 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 536.8
+    x: 459.2
     y: 0
     width: 211.20001
     height: 740.4
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
-  m_ActualView: {fileID: 15}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_ActualView: {fileID: 14}
   m_Panes:
-  - {fileID: 15}
+  - {fileID: 14}
   m_Selected: 0
   m_LastSelected: 0
---- !u!114 &15
+--- !u!114 &14
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1327,7 +973,7 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 536.8
+    x: 459.2
     y: 73.6
     width: 209.20001
     height: 719.4
@@ -1344,9 +990,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: fa0cfeff
-      m_LastClickedID: -127750
-      m_ExpandedIDs: c206feffa807fefffa0cfeff340ffeffea16feff1417feff3018feffc218feffd419feff6a1afeff7c1bfeff121cfeffe828feffae58ffffa47e0000
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 38bffdff70bffdff24c0fdff86c0fdffbec0fdff72c1fdffdec1fdff16c2fdffcec2fdffa2c7fdff42cbfdff1acdfdff7ccefdfffacffdff8cd1fdffe0d3fdff2ad6fdff20d9fdfffcdafdffecdcfdff14defdffbcdefdff2ce0fdff0ae1fdfff0e2fdff08e5fdff02e8fdff6eeafdffeaecfdff00effdff1af1fdff5ef3fdfffef3fdff0601feff6c02feffc206feffa807fefffa0cfeff340ffeffea16feff1417feff3018feffc218feffd419feff6a1afeff7c1bfeff121cfeffe828feffae58ffffa47e0000ce130100
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1362,7 +1008,7 @@ MonoBehaviour:
         m_IsRenaming: 0
         m_OriginalEventType: 11
         m_IsRenamingFilename: 0
-        m_ClientGUIView: {fileID: 14}
+        m_ClientGUIView: {fileID: 13}
       m_SearchString: 
     m_ExpandedScenes: []
     m_CurrenRootInstanceID: 0
@@ -1370,7 +1016,7 @@ MonoBehaviour:
       m_IsLocked: 0
     m_CurrentSortingName: TransformSorting
   m_WindowGUID: 87ad2a2a859f1134f8a839d91d4f9317
---- !u!114 &16
+--- !u!114 &15
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1385,18 +1031,18 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 748
+    x: 670.4
     y: 0
-    width: 148
+    width: 475.19995
     height: 740.4
   m_MinSize: {x: 232, y: 271}
   m_MaxSize: {x: 10002, y: 10021}
-  m_ActualView: {fileID: 17}
+  m_ActualView: {fileID: 16}
   m_Panes:
-  - {fileID: 17}
+  - {fileID: 16}
   m_Selected: 0
   m_LastSelected: 0
---- !u!114 &17
+--- !u!114 &16
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1417,9 +1063,9 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 748
+    x: 670.4
     y: 73.6
-    width: 146
+    width: 473.19995
     height: 719.4
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -1442,7 +1088,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/_Project/Scripts/Gameplay/Features/GameFieldFeature/Tests
+    - Assets/_Project/Configs/Core/Levels/2x2
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -1450,16 +1096,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/_Project/Scripts/Gameplay/Features/GameFieldFeature/Tests
+  - Assets/_Project/Configs/Core/Levels/2x2
   m_LastFoldersGridSize: 16
   m_LastProjectPath: D:\games\SlidingCubesGame\SlidingBlocksGame
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 20.599976}
-    m_SelectedIDs: 0ec10000
-    m_LastClickedID: 49422
-    m_ExpandedIDs: 000000003e41000082410000c242000022430000ba450000d646000000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 79}
+    m_SelectedIDs: 1e470000
+    m_LastClickedID: 18206
+    m_ExpandedIDs: 000000003e4100008241000062420000c2420000d24200002243000012440000a6450000ba450000d646000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1475,7 +1121,7 @@ MonoBehaviour:
       m_IsRenaming: 0
       m_OriginalEventType: 11
       m_IsRenamingFilename: 1
-      m_ClientGUIView: {fileID: 16}
+      m_ClientGUIView: {fileID: 15}
     m_SearchString: 
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
@@ -1512,8 +1158,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: fa0cfeff
-    m_LastClickedInstanceID: -127750
+    m_SelectedInstanceIDs: 
+    m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: 000000003c66000044660000506a0200386d000016790000205300001850000016500000ee4f0000f44f00009a6a0000
     m_RenameOverlay:
@@ -1531,7 +1177,7 @@ MonoBehaviour:
       m_IsRenaming: 0
       m_OriginalEventType: 11
       m_IsRenamingFilename: 1
-      m_ClientGUIView: {fileID: 18}
+      m_ClientGUIView: {fileID: 15}
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
       m_InstanceID: 0
@@ -1542,8 +1188,8 @@ MonoBehaviour:
     m_ScrollPosition: {x: 0, y: 0}
     m_GridSize: 16
   m_SkipHiddenPackages: 0
-  m_DirectoriesAreaWidth: 96
---- !u!114 &18
+  m_DirectoriesAreaWidth: 286.4
+--- !u!114 &17
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1553,26 +1199,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: TestRunnerWindow
+  m_Name: InspectorWindow
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 896
+    x: 1145.6
     y: 0
-    width: 640
+    width: 390.40002
     height: 740.4
-  m_MinSize: {x: 101, y: 121}
-  m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 2}
+  m_MinSize: {x: 275, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_ActualView: {fileID: 18}
   m_Panes:
-  - {fileID: 2}
+  - {fileID: 18}
   - {fileID: 19}
   - {fileID: 20}
   - {fileID: 21}
   m_Selected: 0
-  m_LastSelected: 1
---- !u!114 &19
+  m_LastSelected: 0
+--- !u!114 &18
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1593,9 +1239,9 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1103.2001
+    x: 1145.6
     y: 73.6
-    width: 431.80005
+    width: 389.40002
     height: 719.4
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -1620,6 +1266,476 @@ MonoBehaviour:
   m_LockTracker:
     m_IsLocked: 0
   m_PreviewWindow: {fileID: 0}
+--- !u!114 &19
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 13401, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_TitleContent:
+    m_Text: Test Runner
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  m_Pos:
+    serializedVersion: 2
+    x: 1262.4
+    y: 73.6
+    width: 272.59998
+    height: 719.4
+  m_SerializedDataModeController:
+    m_DataMode: 0
+    m_PreferredDataMode: 0
+    m_SupportedDataModes: 
+    isAutomatic: 1
+  m_ViewDataDictionary: {fileID: 0}
+  m_OverlayCanvas:
+    m_LastAppliedPresetName: Default
+    m_SaveData: []
+    m_OverlaysVisible: 1
+  m_Spl:
+    ID: 7276
+    splitterInitialOffset: 284.8
+    currentActiveSplitter: -1
+    realSizes:
+    - 212.79996
+    - 436.00003
+    relativeSizes:
+    - 0.32799008
+    - 0.67200994
+    minSizes:
+    - 32
+    - 32
+    maxSizes:
+    - 0
+    - 0
+    lastTotalSize: 648.8
+    splitSize: 6
+    xOffset: 0
+    m_Version: 1
+    oldRealSizes: 
+    oldMinSizes: 
+    oldMaxSizes: 
+    oldSplitSize: 0
+  m_TestTypeToolbarIndex: 0
+  m_PlayModeTestListGUI:
+    m_Window: {fileID: 19}
+    m_NewResultList:
+    - id: 1065
+      uniqueId: '[Freenzy Animals][suite]'
+      name: Freenzy Animals
+      fullName: Freenzy Animals
+      resultStatus: 1
+      duration: 0.0174957
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 
+      parentUniqueId: 
+    - id: 1004
+      uniqueId: '[PlayModeTests][D:/games/SlidingCubesGame/SlidingBlocksGame/Library/ScriptAssemblies/PlayModeTests.dll][suite]'
+      name: PlayModeTests.dll
+      fullName: D:/games/SlidingCubesGame/SlidingBlocksGame/Library/ScriptAssemblies/PlayModeTests.dll
+      resultStatus: 1
+      duration: 0.013179
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1000
+      parentUniqueId: '[Freenzy Animals][suite]'
+    - id: 1001
+      uniqueId: PlayModeTests.dll/[PlayModeTests][NewTestScript][suite]
+      name: NewTestScript
+      fullName: NewTestScript
+      resultStatus: 1
+      duration: 0.0112556
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1004
+      parentUniqueId: '[PlayModeTests][D:/games/SlidingCubesGame/SlidingBlocksGame/Library/ScriptAssemblies/PlayModeTests.dll][suite]'
+    - id: 1002
+      uniqueId: PlayModeTests.dll/NewTestScript/[PlayModeTests][NewTestScript.NewTestScriptSimplePasses]
+      name: NewTestScriptSimplePasses
+      fullName: NewTestScript.NewTestScriptSimplePasses
+      resultStatus: 1
+      duration: 0.0001579
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: PlayModeTests.dll/[PlayModeTests][NewTestScript][suite]
+    - id: 1003
+      uniqueId: PlayModeTests.dll/NewTestScript/[PlayModeTests][NewTestScript.NewTestScriptWithEnumeratorPasses]
+      name: NewTestScriptWithEnumeratorPasses
+      fullName: NewTestScript.NewTestScriptWithEnumeratorPasses
+      resultStatus: 1
+      duration: 0.0087187
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: PlayModeTests.dll/[PlayModeTests][NewTestScript][suite]
+    m_ResultText: Freenzy Animals (0,017s)
+    m_ResultStacktrace: 
+    m_TestListState:
+      scrollPos: {x: 0, y: 0}
+      m_SelectedIDs: dae9d636
+      m_LastClickedID: 920054234
+      m_ExpandedIDs: 21bd1620dae9d63638f43053ffffff7f
+      m_RenameOverlay:
+        m_UserAcceptedRename: 0
+        m_Name: 
+        m_OriginalName: 
+        m_EditFieldRect:
+          serializedVersion: 2
+          x: 0
+          y: 0
+          width: 0
+          height: 0
+        m_UserData: 0
+        m_IsWaitingForDelay: 0
+        m_IsRenaming: 0
+        m_OriginalEventType: 11
+        m_IsRenamingFilename: 0
+        m_ClientGUIView: {fileID: 0}
+      m_SearchString: 
+    m_TestRunnerUIFilter:
+      PassedHidden: 0
+      FailedHidden: 0
+      NotRunHidden: 0
+      m_SearchString: 
+      selectedCategoryMask: 0
+      availableCategories:
+      - Uncategorized
+    m_SelectedOption: 0
+  m_EditModeTestListGUI:
+    m_Window: {fileID: 19}
+    m_NewResultList:
+    - id: 1000
+      uniqueId: '[Freenzy Animals][suite]'
+      name: Freenzy Animals
+      fullName: Freenzy Animals
+      resultStatus: 2
+      duration: 0.5019654
+      messages: One or more child tests had errors
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 
+      parentUniqueId: 
+    - id: 1007
+      uniqueId: '[Tests][D:/games/SlidingCubesGame/SlidingBlocksGame/Library/ScriptAssemblies/Tests.dll][suite]'
+      name: Tests.dll
+      fullName: D:/games/SlidingCubesGame/SlidingBlocksGame/Library/ScriptAssemblies/Tests.dll
+      resultStatus: 2
+      duration: 0.4612969
+      messages: One or more child tests had errors
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1000
+      parentUniqueId: '[Freenzy Animals][suite]'
+    - id: 1001
+      uniqueId: Tests.dll/[Tests][CalculateDestinationSystemTests][suite]
+      name: CalculateDestinationSystemTests
+      fullName: CalculateDestinationSystemTests
+      resultStatus: 2
+      duration: 0.4597835
+      messages: One or more child tests had errors
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1007
+      parentUniqueId: '[Tests][D:/games/SlidingCubesGame/SlidingBlocksGame/Library/ScriptAssemblies/Tests.dll][suite]'
+    - id: 1011
+      uniqueId: Tests.dll/CalculateDestinationSystemTests/[Tests][CalculateDestinationSystemTests.CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision][suite]
+      name: CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision
+      fullName: CalculateDestinationSystemTests.CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision
+      resultStatus: 2
+      duration: 0.456489
+      messages: One or more child tests had errors
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1001
+      parentUniqueId: Tests.dll/[Tests][CalculateDestinationSystemTests][suite]
+    - id: 1005
+      uniqueId: Tests.dll/CalculateDestinationSystemTests/CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision/[Tests][CalculateDestinationSystemTests.CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision(0,3)]
+      name: CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision(0,3)
+      fullName: CalculateDestinationSystemTests.CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision(0,3)
+      resultStatus: 2
+      duration: 0.2054329
+      messages: "  Animal from position (0, 3) should stop before occupied cell\r\n 
+        Expected: less than 4\r\n  But was:  5\r\n"
+      output: "GameField:\n0 0 1 \n0 1 0 \n0 0 0 \n\r\ntear\r\n"
+      stacktrace: 'at CalculateDestinationSystemTests.CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision
+        (System.Int32 startX, System.Int32 startY) [0x00095] in D:\games\SlidingCubesGame\SlidingBlocksGame\Assets\_Project\Scripts\Gameplay\Features\GameFieldFeature\Tests\CalculateDestinationSystemTests.cs:186
+
+'
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: Bottom edge position
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1011
+      parentUniqueId: Tests.dll/CalculateDestinationSystemTests/[Tests][CalculateDestinationSystemTests.CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision][suite]
+    - id: 1006
+      uniqueId: Tests.dll/CalculateDestinationSystemTests/CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision/[Tests][CalculateDestinationSystemTests.CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision(0,4)]
+      name: CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision(0,4)
+      fullName: CalculateDestinationSystemTests.CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision(0,4)
+      resultStatus: 1
+      duration: 0.0568541
+      messages: 
+      output: "GameField:\n0 0 0 \n1 1 0 \n0 0 0 \n\r\ntear\r\n"
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: Middle edge position
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1011
+      parentUniqueId: Tests.dll/CalculateDestinationSystemTests/[Tests][CalculateDestinationSystemTests.CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision][suite]
+    - id: 1007
+      uniqueId: Tests.dll/CalculateDestinationSystemTests/CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision/[Tests][CalculateDestinationSystemTests.CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision(0,5)]
+      name: CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision(0,5)
+      fullName: CalculateDestinationSystemTests.CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision(0,5)
+      resultStatus: 2
+      duration: 0.046198
+      messages: "  Animal from position (0, 5) should stop before occupied cell\r\n 
+        Expected: less than 4\r\n  But was:  5\r\n"
+      output: "GameField:\n0 0 0 \n0 1 0 \n0 0 1 \n\r\ntear\r\n"
+      stacktrace: 'at CalculateDestinationSystemTests.CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision
+        (System.Int32 startX, System.Int32 startY) [0x00095] in D:\games\SlidingCubesGame\SlidingBlocksGame\Assets\_Project\Scripts\Gameplay\Features\GameFieldFeature\Tests\CalculateDestinationSystemTests.cs:186
+
+'
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: Top edge position
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1011
+      parentUniqueId: Tests.dll/CalculateDestinationSystemTests/[Tests][CalculateDestinationSystemTests.CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision][suite]
+    - id: 1008
+      uniqueId: Tests.dll/CalculateDestinationSystemTests/CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision/[Tests][CalculateDestinationSystemTests.CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision(1,3)]
+      name: CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision(1,3)
+      fullName: CalculateDestinationSystemTests.CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision(1,3)
+      resultStatus: 2
+      duration: 0.0433029
+      messages: "  Animal from position (1, 3) should stop before occupied cell\r\n 
+        Expected: less than 4\r\n  But was:  5\r\n"
+      output: "GameField:\n0 0 1 \n0 1 0 \n0 0 0 \n\r\ntear\r\n"
+      stacktrace: 'at CalculateDestinationSystemTests.CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision
+        (System.Int32 startX, System.Int32 startY) [0x00095] in D:\games\SlidingCubesGame\SlidingBlocksGame\Assets\_Project\Scripts\Gameplay\Features\GameFieldFeature\Tests\CalculateDestinationSystemTests.cs:186
+
+'
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: One step from edge bottom
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1011
+      parentUniqueId: Tests.dll/CalculateDestinationSystemTests/[Tests][CalculateDestinationSystemTests.CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision][suite]
+    - id: 1009
+      uniqueId: Tests.dll/CalculateDestinationSystemTests/CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision/[Tests][CalculateDestinationSystemTests.CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision(1,4)]
+      name: CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision(1,4)
+      fullName: CalculateDestinationSystemTests.CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision(1,4)
+      resultStatus: 1
+      duration: 0.0452327
+      messages: 
+      output: "GameField:\n0 0 0 \n1 1 0 \n0 0 0 \n\r\ntear\r\n"
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: One step from edge middle
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1011
+      parentUniqueId: Tests.dll/CalculateDestinationSystemTests/[Tests][CalculateDestinationSystemTests.CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision][suite]
+    - id: 1010
+      uniqueId: Tests.dll/CalculateDestinationSystemTests/CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision/[Tests][CalculateDestinationSystemTests.CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision(1,5)]
+      name: CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision(1,5)
+      fullName: CalculateDestinationSystemTests.CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision(1,5)
+      resultStatus: 2
+      duration: 0.0434213
+      messages: "  Animal from position (1, 5) should stop before occupied cell\r\n 
+        Expected: less than 4\r\n  But was:  5\r\n"
+      output: "GameField:\n0 0 0 \n0 1 0 \n0 0 1 \n\r\ntear\r\n"
+      stacktrace: 'at CalculateDestinationSystemTests.CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision
+        (System.Int32 startX, System.Int32 startY) [0x00095] in D:\games\SlidingCubesGame\SlidingBlocksGame\Assets\_Project\Scripts\Gameplay\Features\GameFieldFeature\Tests\CalculateDestinationSystemTests.cs:186
+
+'
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: One step from edge top
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1011
+      parentUniqueId: Tests.dll/CalculateDestinationSystemTests/[Tests][CalculateDestinationSystemTests.CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision][suite]
+    - id: 1006
+      uniqueId: Tests.dll/CalculateDestinationSystemTests/[Tests][CalculateDestinationSystemTests.CalculateDestination_DifferentDirections_OnlyMovesMatchingDirection]
+      name: CalculateDestination_DifferentDirections_OnlyMovesMatchingDirection
+      fullName: CalculateDestinationSystemTests.CalculateDestination_DifferentDirections_OnlyMovesMatchingDirection
+      resultStatus: 1
+      duration: 0.0484503
+      messages: 
+      output: "GameField:\n0 0 1 \n0 0 0 \n0 0 0 \n\r\ntear\r\n"
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: Tests.dll/[Tests][CalculateDestinationSystemTests][suite]
+    - id: 1002
+      uniqueId: Tests.dll/CalculateDestinationSystemTests/[Tests][CalculateDestinationSystemTests.CalculateDestination_MoveTowardsCenterFromEdge_SetsCorrectDestination]
+      name: CalculateDestination_MoveTowardsCenterFromEdge_SetsCorrectDestination
+      fullName: CalculateDestinationSystemTests.CalculateDestination_MoveTowardsCenterFromEdge_SetsCorrectDestination
+      resultStatus: 1
+      duration: 0.0439433
+      messages: 
+      output: "GameField:\n0 0 1 \n0 0 0 \n0 0 0 \n\r\ntear\r\n"
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: Tests.dll/[Tests][CalculateDestinationSystemTests][suite]
+    - id: 1003
+      uniqueId: Tests.dll/CalculateDestinationSystemTests/[Tests][CalculateDestinationSystemTests.CalculateDestination_MultipleAnimalsMoving_HandlesGroupMovement]
+      name: CalculateDestination_MultipleAnimalsMoving_HandlesGroupMovement
+      fullName: CalculateDestinationSystemTests.CalculateDestination_MultipleAnimalsMoving_HandlesGroupMovement
+      resultStatus: 1
+      duration: 0.0488414
+      messages: 
+      output: "GameField:\n0 0 0 \n0 0 1 \n0 0 0 \n\r\nGameField:\n0 0 1 \n0 0 1
+        \n0 0 0 \n\r\ntear\r\n"
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: Tests.dll/[Tests][CalculateDestinationSystemTests][suite]
+    - id: 1005
+      uniqueId: Tests.dll/CalculateDestinationSystemTests/[Tests][CalculateDestinationSystemTests.CalculateDestination_NoValidMove_StaysInPlace]
+      name: CalculateDestination_NoValidMove_StaysInPlace
+      fullName: CalculateDestinationSystemTests.CalculateDestination_NoValidMove_StaysInPlace
+      resultStatus: 1
+      duration: 0.0474412
+      messages: 
+      output: "GameField:\n1 1 1 \n1 1 1 \n1 1 1 \n\r\nint2(2, 3)\r\ntear\r\n"
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: Tests.dll/[Tests][CalculateDestinationSystemTests][suite]
+    m_ResultText: "CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision(0,3)
+      (0,205s)\nBottom edge position\n---\nAnimal from position (0, 3) should stop
+      before occupied cell\r\n  Expected: less than 4\r\n  But was:  5\n---\nat CalculateDestinationSystemTests.CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision
+      (System.Int32 startX, System.Int32 startY) [0x00095] in D:\\games\\SlidingCubesGame\\SlidingBlocksGame\\Assets\\_Project\\Scripts\\Gameplay\\Features\\GameFieldFeature\\Tests\\CalculateDestinationSystemTests.cs:186\n---\nGameField:\n0
+      0 1 \n0 1 0 \n0 0 0 \n\r\ntear"
+    m_ResultStacktrace: 'at CalculateDestinationSystemTests.CalculateDestination_BlockedByOccupiedCell_StopsBeforeCollision
+      (System.Int32 startX, System.Int32 startY) [0x00095] in D:\games\SlidingCubesGame\SlidingBlocksGame\Assets\_Project\Scripts\Gameplay\Features\GameFieldFeature\Tests\CalculateDestinationSystemTests.cs:186
+
+'
+    m_TestListState:
+      scrollPos: {x: 0, y: 0}
+      m_SelectedIDs: b92f50b9
+      m_LastClickedID: -1185927239
+      m_ExpandedIDs: 42fe5a844794df90e5c9f2922d03ad94a14225a44fd77bbba1023dda32f830dca6ebf0f4e557abf7dae9d636a3cc6546e399d670ffffff7f
+      m_RenameOverlay:
+        m_UserAcceptedRename: 0
+        m_Name: 
+        m_OriginalName: 
+        m_EditFieldRect:
+          serializedVersion: 2
+          x: 0
+          y: 0
+          width: 0
+          height: 0
+        m_UserData: 0
+        m_IsWaitingForDelay: 0
+        m_IsRenaming: 0
+        m_OriginalEventType: 11
+        m_IsRenamingFilename: 0
+        m_ClientGUIView: {fileID: 0}
+      m_SearchString: 
+    m_TestRunnerUIFilter:
+      PassedHidden: 0
+      FailedHidden: 0
+      NotRunHidden: 0
+      m_SearchString: 
+      selectedCategoryMask: 0
+      availableCategories:
+      - Uncategorized
 --- !u!114 &20
 MonoBehaviour:
   m_ObjectHideFlags: 52
