@@ -8,6 +8,6 @@ namespace _Project.Scripts.Gameplay.Features.RateUsFeature
     {
         protected override void Import(Builder builder) => 
             builder
-                .AddUnique(new RateUsSystem());
+                .AddSystem(new RateUsSystem());
     }
 }

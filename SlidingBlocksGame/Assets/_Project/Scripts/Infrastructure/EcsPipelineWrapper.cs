@@ -34,9 +34,9 @@ namespace _Project.Scripts.Infrastructure
                 return this;
             }
 
-            public Builder AutoInject(bool isAgressiveInjection = false)
+            public Builder AutoInject(bool isAggressiveInjection = false)
             {
-                _builder.AutoInject(isAgressiveInjection);
+                _builder.AutoInject(isAggressiveInjection);
                 return this;
             }
 

@@ -12,9 +12,9 @@ namespace _Project.Scripts.Gameplay.Features.SettingsFeature
         {
             builder
                 .AutoDelTag<SettingsCreatedEvent>()
-                .AddUnique(new CreateSettingsSystem())
+                .AddSystem(new CreateSettingsSystem())
                 .AutoDelTag<CreateSettingsRequest>()
-                .AddUnique(new SettingsPopupSystem());
+                .AddSystem(new SettingsPopupSystem());
         }
     }
 }

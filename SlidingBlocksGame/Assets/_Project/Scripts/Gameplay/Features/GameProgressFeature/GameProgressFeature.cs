@@ -10,8 +10,8 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature
         protected override void Import(Builder builder)
         {
             builder
-                .AddUnique(new SaveLoadPlayerProgressSystem())
-                .AddUnique(new ResetPlayerProgressSystem())
+                .AddSystem(new SaveLoadPlayerProgressSystem())
+                .AddSystem(new ResetPlayerProgressSystem())
                 .AutoDelTag<LoadProgressRequest>();
         }
     }

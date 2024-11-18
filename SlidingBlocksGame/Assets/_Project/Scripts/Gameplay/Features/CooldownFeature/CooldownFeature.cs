@@ -10,13 +10,13 @@ namespace _Project.Scripts.Gameplay.Features.CooldownFeature
         protected override void Import(Builder builder)
         {
             builder
-                .AddUnique(new RefreshCooldownSystem())
-                .AddUnique(new DeleteEntityOnExpiredSystem())
+                .AddSystem(new RefreshCooldownSystem())
+                .AddSystem(new DeleteEntityOnExpiredSystem())
                 .AutoDelTag<CooldownExpiredEvent>()
-                .AddUnique(new CountdownSystem())
-                .AddUnique(new CooldownSystem())
+                .AddSystem(new CountdownSystem())
+                .AddSystem(new CooldownSystem())
                 .AutoDelTag<CooldownTickEvent>()
-                .AddUnique(new CooldownIntervalSystem())
+                .AddSystem(new CooldownIntervalSystem())
                 .AutoDelTag<RefreshCooldownRequest>();
         }
     }

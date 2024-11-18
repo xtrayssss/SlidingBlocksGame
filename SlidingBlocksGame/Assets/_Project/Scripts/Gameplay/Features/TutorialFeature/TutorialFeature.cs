@@ -9,7 +9,7 @@ namespace _Project.Scripts.Gameplay.Features.TutorialFeature
         protected override void Import(Builder builder)
         {
             builder
-                .AddUnique(new TutorialSystem());
+                .AddSystem(new TutorialSystem());
         }
     }
 }

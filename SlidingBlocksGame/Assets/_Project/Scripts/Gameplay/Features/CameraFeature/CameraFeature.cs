@@ -10,8 +10,8 @@ namespace _Project.Scripts.Gameplay.Features.CameraFeature
         protected override void Import(Builder builder)
         {
             builder
-                .AddUnique(new CameraRenderSystem())
-                .AddUnique(new Object3DPreviewSystem())
+                .AddSystem(new CameraRenderSystem())
+                .AddSystem(new Object3DPreviewSystem())
                 .AutoDelEntityComponent<ObjectPreviewRequest>();
         }
     }

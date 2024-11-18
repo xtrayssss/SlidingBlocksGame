@@ -27,54 +27,11 @@ using _Project.Scripts.Infrastructure;
 using DCFApixels.DragonECS;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.UI;
 using YG;
 
 namespace _Project.Scripts.Gameplay
 {
-    public class GameFeature : EcsModule
-    {
-        private readonly ScriptableEntityTemplate _gameCfg;
-
-        public GameFeature(ScriptableEntityTemplate gameCfg) =>
-            _gameCfg = gameCfg;
-
-        private class PauseAspect : EcsAspectAuto
-        {
-            [Inc] public readonly EcsTagPool<GameTag> GameTag;
-            [Exc] public readonly EcsTagPool<PausedMarker> PausedMarker;
-        }
-
-        protected override void Import(Builder builder)
-        {
-            builder
-                .AddSubmodule(new GameFlowFeature<PauseAspect>(_gameCfg))
-                .AddSubmodule(new PlayerFeature<PauseAspect>())
-                .AddSubmodule(new CreationFeature<PauseAspect>())
-                .AddSubmodule(new AnimalFeature<PauseAspect>())
-                .AddSubmodule(new MovementFeature<PauseAspect>())
-                .AddSubmodule(new GameFieldFeature<PauseAspect>())
-                .AddSubmodule(new DestructionFeature<PauseAspect>())
-                .AddSubmodule(new PurchaseFeature<PauseAspect>())
-                .AddSubmodule(new RateUsFeature<PauseAspect>())
-                .AddSubmodule(new CoinFeature<PauseAspect>())
-                .AddSubmodule(new ScoreFeature<PauseAspect>())
-                .AddSubmodule(new GameProgressFeature<PauseAspect>())
-                .AddSubmodule(new RewardFeature<PauseAspect>())
-                .AddSubmodule(new GameOverTimerFeature<PauseAspect>())
-                .AddSubmodule(new SettingsFeature<PauseAspect>())
-                .AddSubmodule(new GameAudioFeature<PauseAspect>())
-                .AddSubmodule(new TutorialFeature<PauseAspect>())
-                .AddSubmodule(new GameScreenFeature<PauseAspect>())
-                .AddSubmodule(new VisualFeature<PauseAspect>())
-                .AddSubmodule(new AdFeature())
-                .AddSubmodule(new PauseFeature())
-                .AddSubmodule(new CooldownFeature<PauseAspect>())
-                .AddSubmodule(new AudioFeature<PauseAspect>());
-        }
-    }
-
-    public class EcsRoot : MonoBehaviour, ICoroutineRunner
+    public class EcsRoot : MonoBehaviour
     {
         [SerializeField] private ScriptableEntityTemplate _gameCfg;
 
@@ -114,26 +71,46 @@ namespace _Project.Scripts.Gameplay
             _world = null;
         }
 
-        [Button]
-        private int GetMaxVisibleElements(RectTransform viewPort, RectTransform elementTemplate, float visiblePartRatio,
-            HorizontalLayoutGroup layoutGroup)
+        private class GameFeature : EcsModule
         {
-            RectTransform viewport = viewPort;
-            float viewportWidth = viewport.rect.width;
-            float elementWidth = elementTemplate.rect.width;
+            private readonly ScriptableEntityTemplate _gameCfg;
 
-            // Учитываем padding с обеих сторон
-            float totalPadding = layoutGroup.padding.left + layoutGroup.padding.right;
-            float availableWidth = viewportWidth - totalPadding;
+            public GameFeature(ScriptableEntityTemplate gameCfg) =>
+                _gameCfg = gameCfg;
 
-            // Учитываем spacing между элементами
-            float spacing = layoutGroup.spacing;
-            float elementWithSpacing = elementWidth + spacing;
+            private class PauseAspect : EcsAspectAuto
+            {
+                [Inc] public readonly EcsTagPool<GameTag> GameTag;
+                [Exc] public readonly EcsTagPool<PausedMarker> PausedMarker;
+            }
 
-            // Вычисляем сколько целых элементов помещается в доступное пространство
-            float maxElements = availableWidth / elementWithSpacing;
-
-            return Mathf.FloorToInt(maxElements);
+            protected override void Import(Builder builder)
+            {
+                builder
+                    .AddSubmodule(new GameFlowFeature<PauseAspect>(_gameCfg))
+                    .AddSubmodule(new PlayerFeature<PauseAspect>())
+                    .AddSubmodule(new CreationFeature<PauseAspect>())
+                    .AddSubmodule(new AnimalFeature<PauseAspect>())
+                    .AddSubmodule(new MovementFeature<PauseAspect>())
+                    .AddSubmodule(new GameFieldFeature<PauseAspect>())
+                    .AddSubmodule(new DestructionFeature<PauseAspect>())
+                    .AddSubmodule(new PurchaseFeature<PauseAspect>())
+                    .AddSubmodule(new RateUsFeature<PauseAspect>())
+                    .AddSubmodule(new CoinFeature<PauseAspect>())
+                    .AddSubmodule(new ScoreFeature<PauseAspect>())
+                    .AddSubmodule(new GameProgressFeature<PauseAspect>())
+                    .AddSubmodule(new RewardFeature<PauseAspect>())
+                    .AddSubmodule(new GameOverTimerFeature<PauseAspect>())
+                    .AddSubmodule(new SettingsFeature<PauseAspect>())
+                    .AddSubmodule(new GameAudioFeature<PauseAspect>())
+                    .AddSubmodule(new TutorialFeature<PauseAspect>())
+                    .AddSubmodule(new GameScreenFeature<PauseAspect>())
+                    .AddSubmodule(new VisualFeature<PauseAspect>())
+                    .AddSubmodule(new AdFeature())
+                    .AddSubmodule(new PauseFeature())
+                    .AddSubmodule(new CooldownFeature<PauseAspect>())
+                    .AddSubmodule(new AudioFeature<PauseAspect>());
+            }
         }
     }
 }

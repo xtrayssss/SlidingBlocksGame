@@ -13,10 +13,10 @@ namespace _Project.Scripts.Gameplay.Features.GameScreenFeature
             builder
                 //
                 .AutoDelTag<GameScreenCreatedEvent>()
-                .AddUnique(new CreateGameScreenSystem())
+                .AddSystem(new CreateGameScreenSystem())
                 .AutoDelTag<CreateGameScreenRequest>()
                 //
-                .AddUnique(new PlayWidgetSystem());
+                .AddSystem(new PlayWidgetSystem());
         }
     }
 }

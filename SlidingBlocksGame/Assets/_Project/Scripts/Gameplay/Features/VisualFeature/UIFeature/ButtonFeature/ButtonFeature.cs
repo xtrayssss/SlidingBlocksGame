@@ -14,7 +14,7 @@ namespace _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.ButtonFeatu
         {
             builder
                 .AutoDelEntityTag<ButtonClickedEvent>()
-                .AddUnique(new CatchButtonEventsSystem())
+                .AddSystem(new CatchButtonEventsSystem())
 
                 // audio feature
                 .AddAudioSystem<ButtonClickedEvent, ButtonClickedAudioConfig>();

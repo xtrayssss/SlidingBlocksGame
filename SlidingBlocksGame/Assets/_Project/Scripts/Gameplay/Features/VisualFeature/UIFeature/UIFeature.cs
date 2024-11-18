@@ -12,10 +12,10 @@ namespace _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature
         {
             builder
                 .AutoDelTag<MetaGameUIHiddenEvent>()
-                .AddUnique(new MetaGameUISystem())
+                .AddSystem(new MetaGameUISystem())
                 .AutoDelTag<ShowMetaGameUIRequest>()
                 .AutoDelTag<HideMetaGameUIRequest>()
-                .AddUnique(new CalculateOriginalPositionSystem())
+                .AddSystem(new CalculateOriginalPositionSystem())
                 .AutoDelTag<CalculateOriginalPositionRequest>()
                 //
                 .AddSubmodule<ScrollSnapFeature.ScrollSnapFeature<TMask>>()

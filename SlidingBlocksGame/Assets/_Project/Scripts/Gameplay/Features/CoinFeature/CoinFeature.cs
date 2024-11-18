@@ -16,23 +16,23 @@ namespace _Project.Scripts.Gameplay.Features.CoinFeature
             builder.AutoDelTag<CoinSpawnedEvent>()
                 .AutoDelTag<CoinCollectAnimationCompletedEvent>()
                 .AutoDelTag<CoinDestroyAnimationCompletedEvent>()
-                .AddUnique(new CatchCoinSystem())
-                .AddUnique(new CreateCoinSystem())
+                .AddSystem(new CatchCoinSystem())
+                .AddSystem(new CreateCoinSystem())
                 .AutoDelTag<CreateCoinRequest>()
                 // 
                 .AutoDelTag<CoinCollectedEvent>()
-                .AddUnique(new CollectCoinSystem())
+                .AddSystem(new CollectCoinSystem())
                 //
                 .AutoDelEntityTag<CoinsUpdatedEvent>()
-                .AddUnique(new UpdateCoinsSystem())
+                .AddSystem(new UpdateCoinsSystem())
                 // coin destruction
-                .AddUnique(new CoinDestroySystem())
-                .AddUnique(new CoinDestructionSystem())
+                .AddSystem(new CoinDestroySystem())
+                .AddSystem(new CoinDestructionSystem())
                 // coin audio
                 .AddAudioSystem<CoinCollectedEvent, CoinCollectedAudioConfig>()
 
                 // ui feature
-                .AddUnique(new DisplayCoinsSystem());
+                .AddSystem(new DisplayCoinsSystem());
         }
     }
 }

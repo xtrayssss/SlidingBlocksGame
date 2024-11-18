@@ -10,7 +10,7 @@ namespace _Project.Scripts.Gameplay.Features.PauseFeature
         {
             builder
                 .AutoDelTag<PausedEvent>()
-                .AddUnique(new PauseSystem())
+                .AddSystem(new PauseSystem())
                 .AutoDelEntityTag<PauseRequest>()
                 .AutoDelEntityTag<UnpauseRequest>();
         }

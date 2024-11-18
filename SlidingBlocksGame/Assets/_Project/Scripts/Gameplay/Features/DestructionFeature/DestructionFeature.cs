@@ -11,11 +11,11 @@ namespace _Project.Scripts.Gameplay.Features.DestructionFeature
         {
             builder
                 .AutoDelTag<DestructibleStrategyCompletedEvent>()
-                .AddUnique(new DestructionChainStrategySystem())
+                .AddSystem(new DestructionChainStrategySystem())
                 .AutoDelEntityTag<ApplyDestructionStrategyRequest>()
                 //
                 .AutoDelTag<ViewDestroyedEvent>()
-                .AddUnique(new DestroyViewSystem())
+                .AddSystem(new DestroyViewSystem())
                 .AutoDelEntityTag<DeleteEntityRequest>();
         }
     }

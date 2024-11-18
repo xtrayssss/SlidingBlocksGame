@@ -20,25 +20,25 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature
         {
             builder
                 // creation feature
-                .AddUnique(new CreateAnimalsSystem())
+                .AddSystem(new CreateAnimalsSystem())
                 .AutoDelTag<AnimalPositionedEvent>()
                 .AutoDelTag<AnimalSpawnedEvent>()
-                .AddUnique(new AnimalCreationChainStrategySystem())
+                .AddSystem(new AnimalCreationChainStrategySystem())
                 .AutoDelTag<CreateAnimalsRequest>()
 
                 // movement feature
-                .AddUnique(new MovementAnimalsChainStrategySystem())
+                .AddSystem(new MovementAnimalsChainStrategySystem())
 
                 // destruction feature
                 .AutoDelTag<AnimalDestructedEvent>()
-                .AddUnique(new AnimalDestructionChainStrategySystem())
-                .AddUnique(new DestroyAnimalsSystem())
-                .AddUnique(new AnimalDeathSystem())
+                .AddSystem(new AnimalDestructionChainStrategySystem())
+                .AddSystem(new DestroyAnimalsSystem())
+                .AddSystem(new AnimalDeathSystem())
                 
                 // ui feature
-                .AddUnique(new DisplayAnimalsShopWindowSystem())
+                .AddSystem(new DisplayAnimalsShopWindowSystem())
                 .AutoDelTag<AnimalPurchaseWindowClosedEvent>()
-                .AddUnique(new CloseAnimalsShopWindowSystem())
+                .AddSystem(new CloseAnimalsShopWindowSystem())
                 
                 // audio feature
                 .AddAudioSystem<AnimalSpawnedEvent, AnimalSpawnedAudioConfig>()

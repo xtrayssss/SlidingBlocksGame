@@ -11,8 +11,8 @@ namespace _Project.Scripts.Gameplay.Features.AdFeature
             builder
                 .AutoDelEntityTag<AdCompletedEvent>()
                 
-                .AddUnique(new CatchAdEventsSystem())
-                .AddUnique(new AdSystem())
+                .AddSystem(new CatchAdEventsSystem())
+                .AddSystem(new AdSystem())
                 .AutoDelEntityTag<ShowAdRequest>();
         }
     }

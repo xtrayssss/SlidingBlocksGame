@@ -16,17 +16,17 @@ namespace _Project.Scripts.Gameplay.Features.GameOverTimerFeature
         {
             builder
                 .AutoDelTag<GameOverTimerCreatedEvent>()
-                .AddUnique(new CreateGameOverTimerSystem())
+                .AddSystem(new CreateGameOverTimerSystem())
                 .AutoDelTag<CreateGameOverTimerRequest>()
 
                 // ui feature
                 .AutoDelTag<GameOverTimerOpenedEvent>()
-                .AddUnique(new DisplayGameOverTimerSystem())
-                .AddUnique(new DisplayTimerProgressSystem())
+                .AddSystem(new DisplayGameOverTimerSystem())
+                .AddSystem(new DisplayTimerProgressSystem())
                 //
                 .AutoDelTag<GameOverTimerClosedEvent>()
-                .AddUnique(new CatchGameOverTimerSystem())
-                .AddUnique(new CloseGameOverTimerSystem())
+                .AddSystem(new CatchGameOverTimerSystem())
+                .AddSystem(new CloseGameOverTimerSystem())
                 .AutoDelTag<CloseGameOverTimerRequest>()
                 
                 // audio feature

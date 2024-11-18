@@ -10,10 +10,10 @@ namespace _Project.Scripts.Gameplay.Features.VisualFeature.VFXFeature
         protected override void Import(Builder builder)
         {
             builder
-                .AddUnique(new PlayFxSystem())
+                .AddSystem(new PlayFxSystem())
                 .AutoDelTag<PlayFxRequest>()
-                .AddUnique(new DestroyVfxSystem())
-                .AddUnique(new DestructionFxSystem());
+                .AddSystem(new DestroyVfxSystem())
+                .AddSystem(new DestructionFxSystem());
         }
     }
 }

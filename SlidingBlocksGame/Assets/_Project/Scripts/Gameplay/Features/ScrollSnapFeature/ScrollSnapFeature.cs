@@ -12,28 +12,28 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature
         protected override void Import(Builder builder)
         {
             builder
-                .AddUnique(new SetupScrollSystem())
+                .AddSystem(new SetupScrollSystem())
                 .AutoDel<SetupScrollRequest>()
                 //
-                .AddUnique(new ScrollNearestSystem())
+                .AddSystem(new ScrollNearestSystem())
                 .AutoDelTag<ScrollNearestRequest>()
                 //
-                .AddUnique(new ScrollEffectRequestSystem())
+                .AddSystem(new ScrollEffectRequestSystem())
                 //
-                .AddUnique(new ScrollSnappedSystem())
+                .AddSystem(new ScrollSnappedSystem())
                 .AutoDelTag<SnappedEvent>()
-                .AddUnique(new ScrollToTargetSystem())
+                .AddSystem(new ScrollToTargetSystem())
                 .AutoDelTag<LeavedEvent>()
-                .AddUnique(new ScrollDraggingSystem())
+                .AddSystem(new ScrollDraggingSystem())
                 //
-                .AddUnique(new ScrollEffectsSystem())
+                .AddSystem(new ScrollEffectsSystem())
                 .AutoDelEntityComponent<ApplyEffectRequest>()
                 //
-                .AddUnique(new LockUnlockScrollSystem())
+                .AddSystem(new LockUnlockScrollSystem())
                 .AutoDelTag<LockScrollSnapRequest>()
                 .AutoDelTag<UnlockScrollSnapRequest>()
                 //
-                .AddUnique(new DynamicLayoutSystem());
+                .AddSystem(new DynamicLayoutSystem());
         }
     }
 }

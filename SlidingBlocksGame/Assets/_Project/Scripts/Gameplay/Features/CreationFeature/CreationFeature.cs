@@ -10,7 +10,7 @@ namespace _Project.Scripts.Gameplay.Features.CreationFeature
         protected override void Import(Builder builder)
         {
             builder
-                .AddUnique(new CreationChainStrategySystem())
+                .AddSystem(new CreationChainStrategySystem())
                 .AutoDelEntityTag<ApplyCreationStrategyRequest>();
         }
     }

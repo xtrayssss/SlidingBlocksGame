@@ -11,9 +11,9 @@ namespace _Project.Scripts.Gameplay.Features.AudioFeature
         protected override void Import(Builder builder)
         {
             builder
-                .AddUnique(new AddAudioSourceSystem())
-                .AddUnique(new PlaybackAudioSystem())
-                .AddUnique(new AudioSystem())
+                .AddSystem(new AddAudioSourceSystem())
+                .AddSystem(new PlaybackAudioSystem())
+                .AddSystem(new AudioSystem())
                 .AutoDelEntityTag<ApplyAudioEffectRequest>()
                 .AutoDelEntityTag<PlayAudioRequest>()
                 .AutoDelEntityTag<PlayOneShotAudioRequest>()

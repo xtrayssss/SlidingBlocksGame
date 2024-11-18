@@ -11,7 +11,7 @@ namespace _Project.Scripts.Gameplay.Features.PlayerFeature.InputFeature
         {
             builder
                 .AutoDelEntityTag<EmitInputTag>()
-                .AddUnique(new InputSystem());
+                .AddSystem(new InputSystem());
         }
     }
 }

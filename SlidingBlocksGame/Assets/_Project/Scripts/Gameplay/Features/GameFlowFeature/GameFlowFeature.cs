@@ -15,28 +15,28 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature
         protected override void Import(Builder builder)
         {
             builder
-                .AddUnique(new CreateGameSystem(_gameCfg))
+                .AddSystem(new CreateGameSystem(_gameCfg))
                 //
                 .AutoDelTag<LevelChangedEvent>()
-                .AddUnique(new NextLevelSystem())
+                .AddSystem(new NextLevelSystem())
                 .AutoDelTag<NextLeveRequest>()
                 //
-                .AddUnique(new GameFlowSystem())
+                .AddSystem(new GameFlowSystem())
                 .AutoDelTag<GameCreatedEvent>()
                 //
-                .AddUnique(new MarkLevelCoinDestroyedSystem())
-                .AddUnique(new MarkLevelGameOverTimerClosedSystem())
+                .AddSystem(new MarkLevelCoinDestroyedSystem())
+                .AddSystem(new MarkLevelGameOverTimerClosedSystem())
                 // 
                 .AutoDelTag<LevelVictoryEvent>()
-                .AddUnique(new LevelVictoryCheckSystem())
-                .AddUnique(new LevelVictorySystem())
+                .AddSystem(new LevelVictoryCheckSystem())
+                .AddSystem(new LevelVictorySystem())
                 //
                 .AutoDelTag<LevelDefeatEvent>()
-                .AddUnique(new LevelDefeatCheckSystem())
-                .AddUnique(new LevelDefeatSystem())
+                .AddSystem(new LevelDefeatCheckSystem())
+                .AddSystem(new LevelDefeatSystem())
                 //
                 .AutoDelTag<LevelClearedEvent>()
-                .AddUnique(new CleanupLevelSystem())
+                .AddSystem(new CleanupLevelSystem())
                 .AutoDelTag<CleanupLevelRequest>();
         }
     }

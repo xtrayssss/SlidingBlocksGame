@@ -11,13 +11,13 @@ namespace _Project.Scripts.Gameplay.Features.GameAudioFeature
         protected override void Import(Builder builder)
         {
             builder
-                .AddUnique(new SwitchAudioSystem())
+                .AddSystem(new SwitchAudioSystem())
                 //
                 .AutoDelTag<AudioSettingsUpdatedEvent>()
-                .AddUnique(new UpdateAudioSettingsSystem())
+                .AddSystem(new UpdateAudioSettingsSystem())
 
                 // ui feature
-                .AddUnique(new DisplayAudioButtonsStatusSystem());
+                .AddSystem(new DisplayAudioButtonsStatusSystem());
         }
     }
 }

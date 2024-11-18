@@ -14,13 +14,13 @@ namespace _Project.Scripts.Gameplay.Features.PurchaseFeature
         {
             builder
                 .AutoDelTag<PurchasedEvent>()
-                .AddUnique(new PurchaseSystem())
+                .AddSystem(new PurchaseSystem())
                 //
-                .AddUnique(new RotatePurchaseSystem())
+                .AddSystem(new RotatePurchaseSystem())
                 
                 // ui feature
-                .AddUnique(new DisplayPurchasePriceSystem())
-                .AddUnique(new DisplayPurchaseStatusSystem())
+                .AddSystem(new DisplayPurchasePriceSystem())
+                .AddSystem(new DisplayPurchaseStatusSystem())
                 // audio feature
                 .AddAudioSystem<PurchasedEvent, PurchasedAudioConfig>();
         }

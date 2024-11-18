@@ -12,16 +12,16 @@ namespace _Project.Scripts.Gameplay.Features.ScoreFeature
         {
             builder
                 .AutoDelEntityComponent<ScoreUpdatedEvent>()
-                .AddUnique(new ScoresSystem())
+                .AddSystem(new ScoresSystem())
                 .AutoDelEntityComponent<UpdateScoreRequest>()
                 //
-                .AddUnique(new ScoreRecordCheckSystem())
+                .AddSystem(new ScoreRecordCheckSystem())
                 .AutoDelEntityComponent<BestScoreUpdatedEvent>()
-                .AddUnique(new BestScoreSystem())
+                .AddSystem(new BestScoreSystem())
                 .AutoDelEntityComponent<UpdateBestScoreRequest>()
                 
                 // ui feature
-                .AddUnique(new DisplayScoresSystem());
+                .AddSystem(new DisplayScoresSystem());
         }
     }
 }

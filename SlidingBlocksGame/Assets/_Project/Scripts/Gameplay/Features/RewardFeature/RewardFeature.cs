@@ -16,28 +16,28 @@ namespace _Project.Scripts.Gameplay.Features.RewardFeature
         {
             builder
                 .AutoDelTag<RewardEligibilityEvent>()
-                .AddUnique(new RewardEligibilitySystem())
+                .AddSystem(new RewardEligibilitySystem())
                 .AutoDelTag<RewardCollectedEvent>()
-                .AddUnique(new RewardClaimSystem())
+                .AddSystem(new RewardClaimSystem())
                 .AutoDelTag<RewardClaimRequest>()
                 //
                 .AutoDelEntityTag<RewardUpdatedEvent>()
-                .AddUnique(new UpdateRewardSystem())
+                .AddSystem(new UpdateRewardSystem())
                 .AutoDelEntityComponent<UpdateRewardRequest>()
                 
                 // ui feature
                 .AutoDelTag<RewardCoinDisplayCompletedEvent>()
                 .AutoDelEntityTag<RewardCoinCountDisplayedEvent>()
                 .AutoDelTag<ConfettiExplodedEvent>()
-                .AddUnique(new RewardCatcherSystem())
-                .AddUnique(new DisplayRewardStateSystem())
-                .AddUnique(new OpenRewardWindowSystem())
-                .AddUnique(new CloseRewardWindowSystem())
+                .AddSystem(new RewardCatcherSystem())
+                .AddSystem(new DisplayRewardStateSystem())
+                .AddSystem(new OpenRewardWindowSystem())
+                .AddSystem(new CloseRewardWindowSystem())
                 
                 // audio feature
                 .AddAudioSystem<ConfettiExplodedEvent, ConfettiExplodedAudioConfig>()
                 .AddAudioSystem<RewardCoinDisplayCompletedEvent, RewardCoinDisplayCompletedAudioConfig>()
-                .AddUnique(new RewardCoinCountDisplayedAudioSystem());
+                .AddSystem(new RewardCoinCountDisplayedAudioSystem());
         }
     }
 }

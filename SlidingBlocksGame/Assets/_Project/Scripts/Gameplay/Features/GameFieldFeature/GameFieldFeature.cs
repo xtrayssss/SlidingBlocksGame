@@ -11,25 +11,25 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldFeature
         protected override void Import(Builder builder)
         {
             builder
-                .AddUnique(new RandomGameFieldAlgorithmSystem())
+                .AddSystem(new RandomGameFieldAlgorithmSystem())
                 //
-                .AddUnique(new CalculateCellScaleYSystem())
+                .AddSystem(new CalculateCellScaleYSystem())
                 //
                 .AutoDelTag<GameFieldGeneratedEvent>()
                 .AutoDelEntityTag<TileGeneratedEvent>()
                 .AutoDelTag<GameFieldDestructedEvent>()
-                .AddUnique(new GameFieldPlaneAlgorithmSystem())
-                .AddUnique(new GameFieldWaveAlgorithmSystem())
-                .AddUnique(new GameFieldGrowthWaveAlgorithmSystem())
+                .AddSystem(new GameFieldPlaneAlgorithmSystem())
+                .AddSystem(new GameFieldWaveAlgorithmSystem())
+                .AddSystem(new GameFieldGrowthWaveAlgorithmSystem())
                 //
                 .AutoDelTag<GameFieldGenerateRequest>()
                 .AutoDelTag<GameFieldDestructRequest>()
                 //
                 .AutoDelEntityTag<SideClickedEvent>()
-                .AddUnique(new GameFieldSideClickSystem())
-                .AddUnique(new WithinCenterSystem())
+                .AddSystem(new GameFieldSideClickSystem())
+                .AddSystem(new WithinCenterSystem())
                 // audio feature
-                .AddUnique(new GameFieldAudioSystem());
+                .AddSystem(new GameFieldAudioSystem());
         }
     }
 }

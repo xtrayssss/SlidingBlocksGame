@@ -11,16 +11,16 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature
         {
             builder
                 .AutoDelEntityTag<ApplyMovementStrategyRequest>()
-                .AddUnique(new CalculateDestinationSystem())
+                .AddSystem(new CalculateDestinationSystem())
                 //
-                .AddUnique(new CalculateMovementSpeedSystem())
+                .AddSystem(new CalculateMovementSpeedSystem())
                 .AutoDelTag<CalculateMovementSpeedRequest>()
                 //
-                .AddUnique(new MovementChainStrategySystem())
+                .AddSystem(new MovementChainStrategySystem())
                 .AutoDelEntityTag<MovementTweenCompletedEvent>()
-                .AddUnique(new CatchMovementTweenSystem())
+                .AddSystem(new CatchMovementTweenSystem())
                 // 
-                .AddUnique(new SyncPositionsSystem());
+                .AddSystem(new SyncPositionsSystem());
         }
     }
 }

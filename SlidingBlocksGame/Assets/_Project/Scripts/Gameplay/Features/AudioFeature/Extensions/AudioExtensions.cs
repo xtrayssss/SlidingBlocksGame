@@ -12,7 +12,7 @@ namespace _Project.Scripts.Gameplay.Features.AudioFeature.Extensions
         public static EcsModule.Builder AddAudioSystem<TEvent, TConfig>(this EcsModule.Builder source)
             where TEvent : struct, IEcsTagComponent where TConfig : struct, IEcsAudioConfig
         {
-            return source.AddUnique(new AudioSystem<TEvent, TConfig>());
+            return source.AddSystem(new AudioSystem<TEvent, TConfig>());
         }
 
         private class AudioAspect : EcsAspectAuto
