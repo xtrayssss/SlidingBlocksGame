@@ -20,15 +20,11 @@ namespace _Project.Scripts.Gameplay.Features.GameAudioFeature.Systems
             {
                 ref readonly AudioSettings audioSettings = ref aspect.AudioSettings.Read(entity);
 
-                if (audioSettings.SoundIsOn)
-                    GameAudio.Instance.Sfx.Mixer.audioMixer.SetFloat(AudioConstants.SFX_VOLUME, 0);
-                else
-                    GameAudio.Instance.Sfx.Mixer.audioMixer.SetFloat(AudioConstants.SFX_VOLUME, -80);
+                GameAudio.Instance.Sfx.Mixer.audioMixer.SetFloat(AudioConstants.SFX_VOLUME,
+                    audioSettings.SoundIsOn ? 0 : -80);
 
-                if (audioSettings.MusicIsOn)
-                    GameAudio.Instance.Music.Mixer.audioMixer.SetFloat(AudioConstants.MUSIC_VOLUME, 0);
-                else
-                    GameAudio.Instance.Music.Mixer.audioMixer.SetFloat(AudioConstants.MUSIC_VOLUME, -80);
+                GameAudio.Instance.Music.Mixer.audioMixer.SetFloat(AudioConstants.MUSIC_VOLUME,
+                    audioSettings.MusicIsOn ? 0 : -80);                
             }
         }
     }

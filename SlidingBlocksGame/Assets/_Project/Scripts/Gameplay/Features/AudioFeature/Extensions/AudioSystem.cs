@@ -94,7 +94,9 @@ namespace _Project.Scripts.Gameplay.Features.AudioFeature.Extensions
             {
                 int audio = _world.NewAudioEntity(aspect.AudioConfigs.Read(entity).Value);
 
+#if UNITY_EDITOR
                 Debug.Log("AUDIO: " + typeof(TEvent).Name + aspect.AudioTypes.Read(audio).Value);
+#endif
             }
         }
     } 

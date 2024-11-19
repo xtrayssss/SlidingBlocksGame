@@ -5,7 +5,7 @@ namespace _Project.Scripts.DragonAPI.YieldInstructions
 {
     public static partial class DragonAPI
     {
-        public class WaitUntil<TTarget> : CustomYieldInstruction
+        public sealed class WaitUntil<TTarget> : CustomYieldInstruction
         {
             private readonly Func<TTarget, bool> _condition;
             private readonly TTarget _target;
@@ -15,13 +15,15 @@ namespace _Project.Scripts.DragonAPI.YieldInstructions
                 _target = target;
                 _condition = condition;
             }
-            
+
             public override bool keepWaiting => !_condition(_target);
         }
-        public class WaitUntil : CustomYieldInstruction
+
+        public sealed class WaitUntil : CustomYieldInstruction
         {
             private readonly Func<bool> _condition;
-            public WaitUntil(Func<bool> condition) => 
+
+            public WaitUntil(Func<bool> condition) =>
                 _condition = condition;
 
             public override bool keepWaiting => !_condition();

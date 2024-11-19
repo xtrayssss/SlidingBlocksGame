@@ -128,8 +128,6 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.Systems
             yield return new DragonAPI.YieldInstructions.DragonAPI.WhenAll(
                 generationAspect.GrowthWaves.Get(algorithm).GrowthCoroutines);
 
-            UnityEngine.Debug.Log(generationAspect.GrowthWaves.Get(algorithm).GrowthCoroutines[counter - 1]);
-
             gameFieldAspect.GameFieldGeneratedByAlgorithm.TryAddOrGet(gameFieldID).Value =
                 algorithm.ToEntityLong(_world);
 

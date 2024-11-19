@@ -5,7 +5,7 @@ namespace _Project.Scripts.DragonAPI.YieldInstructions
 {
     public static partial class DragonAPI
     {
-        public class WhenAll : CustomYieldInstruction
+        public sealed class WhenAll : CustomYieldInstruction
         {
             private readonly DragonCoroutine[] _coroutines;
 
@@ -14,9 +14,5 @@ namespace _Project.Scripts.DragonAPI.YieldInstructions
 
             public override bool keepWaiting => _coroutines.Any(coroutine => coroutine.IsAlive);
         }
-    }
-    
-    public static partial class DragonAPI
-    {
     }
 }

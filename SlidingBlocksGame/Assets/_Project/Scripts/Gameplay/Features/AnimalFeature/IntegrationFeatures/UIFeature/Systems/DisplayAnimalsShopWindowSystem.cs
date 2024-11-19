@@ -89,8 +89,6 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.U
         {
             Sequence sequence = Sequence.Create();
 
-            Debug.Log("AnimatePurchases");
-
             EcsSpan visible = ScrollSnapUtils.GetVisibles(in scrollSnap);
 
             foreach (int animal in visible)

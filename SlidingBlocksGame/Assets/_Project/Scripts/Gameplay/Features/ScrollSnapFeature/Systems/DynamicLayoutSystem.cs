@@ -39,7 +39,6 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Systems
                 LayoutRebuilder.ForceRebuildLayoutImmediate(content);
 
 #if UNITY_EDITOR
-
                 if (scrollSnap.IsDebug)
                 {
                     Debug.Log(

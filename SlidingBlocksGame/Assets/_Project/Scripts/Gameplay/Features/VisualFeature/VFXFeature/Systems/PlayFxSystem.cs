@@ -18,7 +18,9 @@ namespace _Project.Scripts.Gameplay.Features.VisualFeature.VFXFeature.Systems
         {
             foreach (int entity in _world.Where(out Aspect aspect))
             {
-                Debug.Log("Play");
+#if UNITY_EDITOR
+                Debug.Log("VFX played " + entity);
+#endif
                 aspect.Particles.Read(entity).Value.Play();
             }
         }

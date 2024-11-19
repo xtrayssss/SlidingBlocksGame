@@ -53,7 +53,6 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.Systems
         private void Generate(GenerationAlgorithmAspect generationAspect, int algorithm,
             GameFieldAspect gameFieldAspect)
         {
-            Debug.Log($"Generate {algorithm}");
             if (!generationAspect.Targets.Read(algorithm).Value.TryGetID(out int gameFieldID) ||
                 !gameFieldAspect.IsMatches(gameFieldID))
                 return;
@@ -73,7 +72,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.Systems
                     if (x >= gameField.EdgeSize && x < gameField.EdgeSize + gameField.CenterSize ||
                         z >= gameField.EdgeSize && z < gameField.EdgeSize + gameField.CenterSize)
                     {
-                        float3 position = new Vector3(
+                        float3 position = new float3(
                             x * (gameField.CellSize + gameField.Offset) + gameField.OriginPosition.x, 0,
                             z * (gameField.CellSize + gameField.Offset) + gameField.OriginPosition.z);
 

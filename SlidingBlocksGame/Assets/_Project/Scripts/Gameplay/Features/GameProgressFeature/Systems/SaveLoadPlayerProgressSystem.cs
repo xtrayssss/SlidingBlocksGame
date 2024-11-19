@@ -205,7 +205,9 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.Systems
 
                 foreach (int window in _world.Where(out AnimalsShopWindowAspect windowAspect))
                 {
-                    Debug.Log("Load Purchases");
+#if UNITY_EDITOR
+                    Debug.Log("Purchases loaded: " + YandexGame.savesData.PurchasedAnimals.Count);
+#endif
 
                     ref Purchases purchases = ref windowAspect.AnimalPurchases.Get(window);
 

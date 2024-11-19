@@ -65,14 +65,11 @@ namespace _Project.Scripts.Gameplay.Features.AdFeature.Systems
                     int request = _world.NewEntity();
                     PauseAspect pauseAspect = _world.GetAspect<PauseAspect>();
                     pauseAspect.Pause.Add(request);
-
-                    Debug.Log("Pause request");
                 }
             }
 
             foreach (int _ in _world.Where(out AdCompletedAspect _))
             {
-                Debug.Log("Upause request");
                 int request = _world.NewEntity();
                 PauseAspect pauseAspect = _world.GetAspect<PauseAspect>();
                 pauseAspect.Unpause.Add(request);

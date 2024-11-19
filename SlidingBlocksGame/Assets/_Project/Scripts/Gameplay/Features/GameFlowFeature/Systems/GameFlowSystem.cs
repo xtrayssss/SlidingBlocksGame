@@ -17,7 +17,6 @@ using _Project.Scripts.Gameplay.Features.SettingsFeature.Components;
 using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.ButtonFeature.Components;
 using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components;
 using DCFApixels.DragonECS;
-using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
 {
@@ -155,18 +154,11 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
                 }
             }
 
-            foreach (int level in _world.Where(out GeneratedGameFieldStateAspect aspect))
-            {
-                Debug.Log("asdfasdf");
+            foreach (int level in _world.Where(out GeneratedGameFieldStateAspect aspect)) 
                 aspect.CreateAnimals.Add(level);
-            }
 
-            foreach (int level in _world.Where(out AnimalPositionedStateAspect aspect))
-            {
-                Debug.Log("asdfasdf");
-
+            foreach (int level in _world.Where(out AnimalPositionedStateAspect aspect)) 
                 aspect.CreateCoin.Add(level);
-            }
 
             foreach (int _ in _world.Where(out CoinSpawnedStateAspect _))
             {

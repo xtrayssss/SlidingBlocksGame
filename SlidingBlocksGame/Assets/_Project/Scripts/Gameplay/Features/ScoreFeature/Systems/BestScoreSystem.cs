@@ -2,7 +2,6 @@ using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.PlayerFeature.Components;
 using _Project.Scripts.Gameplay.Features.ScoreFeature.Components;
 using DCFApixels.DragonECS;
-using UnityEngine.PlayerLoop;
 
 namespace _Project.Scripts.Gameplay.Features.ScoreFeature.Systems
 {

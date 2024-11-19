@@ -4,7 +4,7 @@ namespace _Project.Scripts.DragonAPI.YieldInstructions
 {
     public static partial class DragonAPI
     {
-        public class WaitForSeconds : CustomYieldInstruction
+        public sealed class WaitForSeconds : CustomYieldInstruction
         {
             private float _delay;
 

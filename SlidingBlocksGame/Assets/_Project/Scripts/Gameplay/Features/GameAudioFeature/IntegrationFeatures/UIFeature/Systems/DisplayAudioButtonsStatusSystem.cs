@@ -25,27 +25,11 @@ namespace _Project.Scripts.Gameplay.Features.GameAudioFeature.IntegrationFeature
 
                 ref AudioSettings audioSettings = ref settingsPopupAspect.AudioButtonsStatus.Get(popup);
 
-                if (audioSettings.SoundIsOn)
-                {
-                    settingsPopup.SoundOff.gameObject.SetActive(false);
-                    settingsPopup.SoundOn.gameObject.SetActive(true);
-                }
-                else
-                {
-                    settingsPopup.SoundOn.gameObject.SetActive(false);
-                    settingsPopup.SoundOff.gameObject.SetActive(true);
-                }
+                settingsPopup.SoundOff.gameObject.SetActive(!audioSettings.SoundIsOn);
+                settingsPopup.SoundOn.gameObject.SetActive(audioSettings.SoundIsOn);
 
-                if (audioSettings.MusicIsOn)
-                {
-                    settingsPopup.MusicOff.gameObject.SetActive(false);
-                    settingsPopup.MusicOn.gameObject.SetActive(true);
-                }
-                else
-                {
-                    settingsPopup.MusicOn.gameObject.SetActive(false);
-                    settingsPopup.MusicOff.gameObject.SetActive(true);
-                }
+                settingsPopup.MusicOff.gameObject.SetActive(!audioSettings.MusicIsOn);
+                settingsPopup.MusicOn.gameObject.SetActive(audioSettings.MusicIsOn);
             }
         }
     }

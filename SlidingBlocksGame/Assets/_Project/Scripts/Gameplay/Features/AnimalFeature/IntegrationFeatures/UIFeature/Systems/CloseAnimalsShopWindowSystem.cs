@@ -152,15 +152,12 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.U
 
             invisible.ExceptWith(visible);
 
-            //EcsGroup invisible = EcsGroup.Except(animals, visible);
-
             foreach (int animal in invisible)
             {
                 ref GameObjectConnect gameObjectConnect = ref _world.GetPool<GameObjectConnect>().Get(animal);
 
                 gameObjectConnect.Connect.transform.localScale = Vector3.zero;
             }
-
 
             delay = 0;
 

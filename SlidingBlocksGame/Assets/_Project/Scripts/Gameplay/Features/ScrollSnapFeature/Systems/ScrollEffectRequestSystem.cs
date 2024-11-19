@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Components;
+﻿using _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Components;
 using DCFApixels.DragonECS;
 using UnityEngine;
 
@@ -8,8 +7,6 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Systems
     public class ScrollEffectRequestSystem : IEcsRun
     {
         [EcsInject] private EcsDefaultWorld _world;
-
-        private static readonly EcsDefaultWorld WORLD = EcsDefaultWorldSingletonProvider.Instance.Get();
 
         private class ScrollAspect : EcsAspectAuto
         {
@@ -33,7 +30,7 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Systems
                 {
                     for (var index = 0; index < scrollSnap.Items.Count; index++)
                     {
-                        var item = scrollSnap.Items[index];
+                        int item = scrollSnap.Items[index];
                         int effect = _world.NewEntity(effectCfg);
 
                         EffectAspect effectAspect = _world.GetAspect<EffectAspect>();
@@ -54,18 +51,8 @@ namespace _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Systems
 
         private float GetEffectDisplacementBasedOnPos(in ScrollSnap scrollSnap, float pos, float effect)
         {
-            var signedDist = (pos - scrollSnap.ScrollRect.horizontalScrollbar.value) / (scrollSnap.Distance * effect);
+            float signedDist = (pos - scrollSnap.ScrollRect.horizontalScrollbar.value) / (scrollSnap.Distance * effect);
             return Mathf.Clamp(signedDist, -1, 1);
-        }
-
-        private EcsGroup GetAliveItems(ScrollSnap scrollSnap)
-        {
-            EcsGroup aliveItems = EcsGroup.New(_world);
-
-            foreach (int item in scrollSnap.Items.Where(static item => item.ToEntityLong(WORLD).IsAlive))
-                aliveItems.Add(item);
-
-            return aliveItems;
         }
 
         private float GetEffectRatio(float displacement) =>

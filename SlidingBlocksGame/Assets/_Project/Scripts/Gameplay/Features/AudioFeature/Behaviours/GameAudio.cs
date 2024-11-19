@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 using UnityEngine.Audio;
-using UnityEngine.Serialization;
 
 namespace _Project.Scripts.Gameplay.Features.AudioFeature.Behaviours
 {
@@ -11,7 +10,6 @@ namespace _Project.Scripts.Gameplay.Features.AudioFeature.Behaviours
         public struct SfxAudio
         {
             public AudioMixerGroup Mixer;
-            [FormerlySerializedAs("Sfx")] public AudioSource Base;
             public AudioSource Normal;
             public AudioSource Special;
         }

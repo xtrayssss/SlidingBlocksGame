@@ -1,6 +1,5 @@
 using _Project.Scripts.Gameplay.Features.RewardFeature.Components;
 using DCFApixels.DragonECS;
-using UnityEngine;
 using YG;
 
 namespace _Project.Scripts.Gameplay.Features.RewardFeature.Systems

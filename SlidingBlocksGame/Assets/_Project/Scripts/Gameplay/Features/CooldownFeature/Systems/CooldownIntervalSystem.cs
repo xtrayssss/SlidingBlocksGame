@@ -13,24 +13,23 @@ namespace _Project.Scripts.Gameplay.Features.CooldownFeature.Systems
             [ExcImplicit(typeof(CooldownLockMarker))]
             [Inc] public readonly EcsPool<Cooldown> Cooldowns;
 
-            [Inc] public readonly EcsPool<CooldownInterval> CooldownInterval;
-            [Opt] public readonly EcsTagPool<CooldownTickEvent> Tick;
+            [Inc] public readonly EcsPool<CooldownInterval> CooldownIntervals;
+            [Opt] public readonly EcsTagPool<CooldownTickEvent> TickEvent;
         }
 
         public void Run()
         {
             foreach (int entity in _world.Where(out Aspect aspect))
             {
-                ref CooldownInterval cooldownInterval = ref aspect.CooldownInterval.Get(entity);
+                ref CooldownInterval interval = ref aspect.CooldownIntervals.Get(entity);
+                float currentElapsed = aspect.Cooldowns.Get(entity).Elapsed;
+                float newElapsed = math.ceil(currentElapsed / interval.Interval) * interval.Interval;
 
-                float last = cooldownInterval.Elapsed;
-
-                cooldownInterval.Elapsed =
-                    math.ceil(aspect.Cooldowns.Get(entity).Elapsed / cooldownInterval.Interval) *
-                    cooldownInterval.Interval;
-
-                if (last != cooldownInterval.Elapsed)
-                    aspect.Tick.Add(entity);
+                if (math.abs(interval.Elapsed - newElapsed) > math.EPSILON)
+                {
+                    interval.Elapsed = newElapsed;
+                    aspect.TickEvent.Add(entity);
+                }
             }
         }
     }

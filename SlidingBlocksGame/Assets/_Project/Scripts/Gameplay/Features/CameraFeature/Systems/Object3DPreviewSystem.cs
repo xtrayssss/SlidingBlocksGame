@@ -26,7 +26,7 @@ namespace _Project.Scripts.Gameplay.Features.CameraFeature.Systems
             [Inc] public readonly EcsPool<PreviewCameraPrefab> CameraPrefabs;
         }
 
-        private static int RENDER_POSITION_COUNTER;
+        private static int _renderPositionCounter;
         private const int POSITION_STEP = 250;
         private const float CAMERA_OFFSET = 25f;
         private const int TEXTURE_SIZE = 512;
@@ -52,8 +52,8 @@ namespace _Project.Scripts.Gameplay.Features.CameraFeature.Systems
         private static void PositionRenderable(int renderableID, RenderableAspect renderableAspect)
         {
             ref PhysicView physicView = ref renderableAspect.PhysicViews.Get(renderableID);
-            RENDER_POSITION_COUNTER++;
-            physicView.Value.transform.position = new Vector3(RENDER_POSITION_COUNTER * POSITION_STEP, 0, 0);
+            _renderPositionCounter++;
+            physicView.Value.transform.position = new Vector3(_renderPositionCounter * POSITION_STEP, 0, 0);
         }
 
         private static RenderTexture CreateRenderTexture()

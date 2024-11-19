@@ -41,7 +41,6 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.Systems
                     ref GameField gameField = ref gameFieldAspect.GameFields.Get(entity);
                     int2 gridPosition = GridUtils.GetCellPosition(clickPosition, gameField.ToGrid());
 
-                    Debug.Log(clickPosition);
                     if (GridUtils.IsWithinGrid(gridPosition, gameField.Size) &&
                         !GridUtils.IsWithinCenter(gridPosition, gameField.EdgeSize, gameField.CenterSize) &&
                         GridUtils.IsInCross(gridPosition, gameField.EdgeSize, gameField.CenterSize))

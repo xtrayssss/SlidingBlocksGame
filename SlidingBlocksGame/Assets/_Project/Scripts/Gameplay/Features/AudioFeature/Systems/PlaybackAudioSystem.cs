@@ -50,7 +50,9 @@ namespace _Project.Scripts.Gameplay.Features.AudioFeature.Systems
                 audioSource.Value.Stop();
                 audioSource.Value.Play();
 
+#if UNITY_EDITOR
                 Debug.Log("AUDIO RESTARTED");
+#endif
             }
 
             foreach (int entity in _world.Where(out PlayOneShotAspect aspect))
@@ -64,7 +66,9 @@ namespace _Project.Scripts.Gameplay.Features.AudioFeature.Systems
 
                 audioSource.Value.Play();
 
-                Debug.Log("AUDIO PLAY");
+#if UNITY_EDITOR
+                Debug.Log("AUDIO PLAYED");
+#endif
             }
         }
     }

@@ -35,7 +35,6 @@ namespace _Project.Scripts.Gameplay.Features.PauseFeature.Systems
                 {
                     if (!gameAspect.PausedMarker.Has(game))
                     {
-                        Debug.Log("Pause");
                         Time.timeScale = 0;
                         gameAspect.PausedEvent.Add(game);
                         gameAspect.PausedMarker.Add(game);
@@ -49,7 +48,6 @@ namespace _Project.Scripts.Gameplay.Features.PauseFeature.Systems
                 {
                     if (gameAspect.PausedMarker.Has(game))
                     {
-                        Debug.Log("UnPause");
                         Time.timeScale = 1;
                         gameAspect.PausedMarker.Del(game);
                     }

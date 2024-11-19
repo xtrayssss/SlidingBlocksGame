@@ -4,7 +4,7 @@ namespace _Project.Scripts.DragonAPI.YieldInstructions
 {
     public static partial class DragonAPI
     {
-        public class WaitForCoroutine : CustomYieldInstruction
+        public sealed class WaitForCoroutine : CustomYieldInstruction
         {
             private readonly DragonCoroutine _coroutine;
 

@@ -64,7 +64,9 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.IntegrationFeature
 
             foreach (int entity in _world.Where(out GameFieldGeneratedAspect aspect))
             {
+#if UNITY_EDITOR
                 Debug.Log("GameFieldAudio");
+#endif
 
                 _world.NewAudioEntity(aspect.AudioConfigs.Read(entity).Value);
             }

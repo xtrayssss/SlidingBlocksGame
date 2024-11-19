@@ -17,7 +17,7 @@ namespace _Project.Scripts.DragonAPI
             _removeWhere = static coroutine => !coroutine.MoveNext();
         }
 
-        public void Tick() => 
+        public void Tick() =>
             _activeCoroutines.RemoveWhere(_removeWhere);
 
         public DragonCoroutine StartCoroutine(IEnumerator coroutine)

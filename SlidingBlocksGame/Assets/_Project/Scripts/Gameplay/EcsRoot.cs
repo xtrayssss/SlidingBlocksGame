@@ -38,12 +38,14 @@ namespace _Project.Scripts.Gameplay
         private EcsPipelineWrapper _pipeline;
         private EcsDefaultWorld _world;
 
+#if UNITY_EDITOR
         [Button]
         private void ResetProgress()
         {
             YandexGame.ResetSaveProgress();
             YandexGame.SaveProgress();
         }
+#endif
 
         public void Start()
         {

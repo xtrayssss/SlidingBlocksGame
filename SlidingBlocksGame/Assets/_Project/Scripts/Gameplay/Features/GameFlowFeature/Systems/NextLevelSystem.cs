@@ -1,6 +1,5 @@
 using _Project.Scripts.Gameplay.Features.GameFlowFeature.Components;
 using DCFApixels.DragonECS;
-using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
 {
@@ -25,8 +24,6 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
                 int random = levels.Randoms[levels.PackIndex][levels.LevelsCount];
 
                 ScriptableEntityTemplate randomLevelCfg = levelsPack[random];
-
-                Debug.Log(random + " Random");
 
                 entlong nextLevel = _world.NewEntityLong(randomLevelCfg);
 
