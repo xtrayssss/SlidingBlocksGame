@@ -1,4 +1,5 @@
-﻿using _Project.Scripts.Gameplay.Features.TutorialFeature.IntegrationFeatures.UIFeature.Systems;
+﻿using _Project.Scripts.Gameplay.Features.TutorialFeature.IntegrationFeatures.UIFeature.Components;
+using _Project.Scripts.Gameplay.Features.TutorialFeature.IntegrationFeatures.UIFeature.Systems;
 using _Project.Scripts.Infrastructure;
 using DCFApixels.DragonECS;
 
@@ -9,7 +10,8 @@ namespace _Project.Scripts.Gameplay.Features.TutorialFeature
         protected override void Import(Builder builder)
         {
             builder
-                .AddSystem(new TutorialSystem());
+                .AddSystem(new TutorialSystem())
+                .AutoDelTag<OpenTutorialRequest>();
         }
     }
 }

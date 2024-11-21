@@ -168,8 +168,9 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
             
             foreach (int level in _world.Where(out LevelVictoryAspect levelAspect))
             {
+#if UNITY_EDITOR
                 Debug.Log("LEVEL_VICTORY");
-
+#endif
                 _coroutineRunner.StartCoroutine(HandleLevelDefeatState(levelAspect, level));
             }
         }

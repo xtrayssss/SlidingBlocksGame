@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using _Project.Scripts.DragonAPI;
+using _Project.Scripts.Gameplay.Features.AdFeature.Utils;
 using _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.DestructionFeature.Components;
 using _Project.Scripts.Gameplay.Features.AudioFeature.Components;
 using _Project.Scripts.Gameplay.Features.CoinFeature.Components;
@@ -100,8 +101,9 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
 
             foreach (int level in _world.Where(out LevelDefeatStateAspect levelAspect))
             {
+#if UNITY_EDITOR
                 Debug.Log("LEVEL_DEFEAT");
-
+#endif
                 _coroutineRunner.StartCoroutine(HandleLevelDefeatState(levelAspect, level));
             }
         }
@@ -129,6 +131,8 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
 
             FinalizeLevelDefeat();
 
+            AdUtils.ShowAdd();
+            
             yield break;
 
             void InitiateDefeatSequence()

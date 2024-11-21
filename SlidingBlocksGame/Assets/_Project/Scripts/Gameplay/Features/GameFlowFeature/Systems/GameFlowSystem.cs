@@ -1,3 +1,5 @@
+using _Project.Scripts.Gameplay.Features.AdFeature.Components;
+using _Project.Scripts.Gameplay.Features.AdFeature.Utils;
 using _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.CreationFeature.Components;
 using _Project.Scripts.Gameplay.Features.AudioFeature.Components;
 using _Project.Scripts.Gameplay.Features.AudioFeature.Extensions;
@@ -14,6 +16,7 @@ using _Project.Scripts.Gameplay.Features.PlayerFeature.InputFeature.Components;
 using _Project.Scripts.Gameplay.Features.ScoreFeature.Components;
 using _Project.Scripts.Gameplay.Features.ScoreFeature.Utils;
 using _Project.Scripts.Gameplay.Features.SettingsFeature.Components;
+using _Project.Scripts.Gameplay.Features.TutorialFeature.IntegrationFeatures.UIFeature.Components;
 using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.ButtonFeature.Components;
 using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components;
 using DCFApixels.DragonECS;
@@ -109,6 +112,12 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
         {
             [Inc] public readonly EcsTagPool<SettingsCreatedEvent> SettingsCreatedEvent;
         }
+        
+        private class TutorialWindowAspect : EcsAspectAuto
+        {
+            [Inc] public readonly EcsTagPool<TutorialWindowTag> TutorialWindowTag;
+            [Opt] public readonly EcsTagPool<OpenTutorialRequest> OpenTutorial;
+        }
 
         public void Run()
         {
@@ -117,6 +126,9 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
 
             foreach (int _ in _world.Where(out GameScreenCreatedAspect _))
             {
+                foreach (int tutorial in _world.Where(out TutorialWindowAspect tutorialAspect))
+                    tutorialAspect.OpenTutorial.Add(tutorial);
+
                 foreach (int game in _world.Where(out GameAspect gameAspect))
                     gameAspect.CreateSettings.Add(game);
 
@@ -140,6 +152,8 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
             {
                 foreach (int game in _world.Where(out GameAspect gameAspect))
                     gameAspect.NextLevel.Add(game);
+                
+                AdUtils.ShowAdd();
             }
 
             foreach (int level in _world.Where(out LevelCreationStateAspect levelAspect))
@@ -154,10 +168,10 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
                 }
             }
 
-            foreach (int level in _world.Where(out GeneratedGameFieldStateAspect aspect)) 
+            foreach (int level in _world.Where(out GeneratedGameFieldStateAspect aspect))
                 aspect.CreateAnimals.Add(level);
 
-            foreach (int level in _world.Where(out AnimalPositionedStateAspect aspect)) 
+            foreach (int level in _world.Where(out AnimalPositionedStateAspect aspect))
                 aspect.CreateCoin.Add(level);
 
             foreach (int _ in _world.Where(out CoinSpawnedStateAspect _))

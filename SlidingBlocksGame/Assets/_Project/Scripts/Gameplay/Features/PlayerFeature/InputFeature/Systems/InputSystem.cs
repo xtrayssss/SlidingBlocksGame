@@ -28,8 +28,6 @@ namespace _Project.Scripts.Gameplay.Features.PlayerFeature.InputFeature.Systems
         private class InputAspect : EcsAspectAuto
         {
             [Opt] public readonly EcsTagPool<ClickDownEvent> ClickDown;
-            [Opt] public readonly EcsTagPool<ClickUpEvent> ClickUp;
-            [Opt] public readonly EcsTagPool<PrimaryClickMarker> PrimaryClick;
             [Opt] public readonly EcsPool<ScreenPosition> ScreenPosition;
             [Opt] public readonly EcsTagPool<EmitInputTag> EmitInputTag;
         }
@@ -48,7 +46,8 @@ namespace _Project.Scripts.Gameplay.Features.PlayerFeature.InputFeature.Systems
         {
             foreach (int entity in _world.Where(out PlayerAspect playerAspect))
             {
-                if (YandexGame.EnvironmentData.isMobile || YandexGame.EnvironmentData.isTablet)
+                if (YandexGame.EnvironmentData.isMobile || YandexGame.EnvironmentData.isTablet ||
+                    UnityEngine.Device.SystemInfo.deviceType != DeviceType.Desktop)
                     playerAspect.MobileDevice.Add(entity);
                 else
                     playerAspect.StandaloneDevice.Add(entity);
@@ -61,31 +60,14 @@ namespace _Project.Scripts.Gameplay.Features.PlayerFeature.InputFeature.Systems
         {
             foreach (int _ in _world.Where(out MobileAspect _))
             {
-                if (Input.touches.Length > 0)
+                foreach (ref readonly Touch touch in Input.touches.AsSpan())
                 {
-                    ref Touch primaryTouch = ref Input.touches[0];
-
-                    if (primaryTouch.phase == TouchPhase.Began)
+                    if (touch.phase == TouchPhase.Began)
                     {
-                        int click = CreateClickDown(primaryTouch.position);
-
-                        _inputAspect.PrimaryClick.Add(click);
-                    }
-
-                    if (primaryTouch.phase == TouchPhase.Ended)
-                        CreateClickUp();
-
-                    int touchCount = math.min(Input.touchCount, 4);
-
-                    int startSlice = touchCount > 1 ? 1 : 0;
-
-                    foreach (ref readonly Touch touch in Input.touches.AsSpan()
-                                 .Slice(startSlice, touchCount - startSlice))
-                    {
-                        if (touch.phase == TouchPhase.Began)
-                            CreateClickDown(touch.position);
-                        else if (touch.phase == TouchPhase.Ended)
-                            CreateClickUp();
+                        CreateClickDown(touch.position);
+#if DEBUG
+                        Debug.Log("CreateClickDown");
+#endif
                     }
                 }
             }
@@ -94,17 +76,7 @@ namespace _Project.Scripts.Gameplay.Features.PlayerFeature.InputFeature.Systems
             {
                 if (Input.GetMouseButtonDown(0))
                     CreateClickDown(Input.mousePosition);
-
-                if (Input.GetMouseButtonUp(0))
-                    CreateClickUp();
             }
-        }
-
-        private void CreateClickUp()
-        {
-            int click = _world.NewEntity();
-            _inputAspect.ClickUp.Add(click);
-            _inputAspect.EmitInputTag.Add(click);
         }
 
         private int CreateClickDown(float2 position)

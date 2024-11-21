@@ -209,6 +209,8 @@ MonoBehaviour:
           Distance: 0
           LastSnappedIndex: 0
           MaxVisible: 3
+          SnappedItem:
+            _full: 0
 --- !u!1 &441374457445912636
 GameObject:
   m_ObjectHideFlags: 0
@@ -397,7 +399,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: -0.00012207031, y: 0}
-  m_SizeDelta: {x: 176, y: 1920}
+  m_SizeDelta: {x: 176, y: 0}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &5045728294421335285
 MonoBehaviour:
@@ -966,16 +968,16 @@ RectTransform:
   m_GameObject: {fileID: 1495872515505794302}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 11}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2010793351970864005}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0.37}
-  m_AnchoredPosition: {x: -0.00012207031, y: 0.4169922}
-  m_SizeDelta: {x: -0.0002, y: 0.8349991}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.34, y: 0}
+  m_AnchorMax: {x: 0.665, y: 0.37}
+  m_AnchoredPosition: {x: 0.14579773, y: 0}
+  m_SizeDelta: {x: 0.29170036, y: 0}
+  m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &3699723336808095116
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1004,9 +1006,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '0
-
-'
+  m_text: 10
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
@@ -1033,14 +1033,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 70
-  m_fontSizeBase: 70
+  m_fontSize: 60
+  m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 4
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -6527,6 +6527,7 @@ GameObject:
   - component: {fileID: 7877006762921290781}
   - component: {fileID: 1985117230199426599}
   - component: {fileID: 561828258378363443}
+  - component: {fileID: 1283427549619059273}
   m_Layer: 5
   m_Name: Tutorial_txt
   m_TagString: Untagged
@@ -6581,12 +6582,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Click on 1 of 4 directions to move all the tiles on it \ninto the middle
-    one."
+  m_text: "\u041D\u0430\u0436\u043C\u0438\u0442\u0435 \u043D\u0430 \u043B\u044E\u0431\u0443\u044E
+    \u0441\u0442\u043E\u0440\u043E\u043D\u0443 \u043F\u043E\u043B\u044F, \u0447\u0442\u043E\u0431\u044B
+    \u043F\u0435\u0440\u0435\u043C\u0435\u0441\u0442\u0438\u0442\u044C \u0436\u0438\u0432\u043E\u0442\u043D\u044B\u0445
+    \u0432 \u0446\u0435\u043D\u0442\u0440"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 0}
-  m_sharedMaterial: {fileID: -1975015116027720056, guid: 1b6c1f3157894e947864ce33af929981,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
+  m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6610,7 +6612,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36.05
+  m_fontSize: 37.4
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -6652,6 +6654,62 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &1283427549619059273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2567803460937079791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f34f36451b093ee4c83ad4aa5459d2ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textMPComponent: {fileID: 561828258378363443}
+  uniqueFontTMP: {fileID: 0}
+  textLComponent: {fileID: 0}
+  infoYG: {fileID: 11400000, guid: 162644796a8b0d044bce3d6fda0641e3, type: 2}
+  text: 
+  ru: "\u041D\u0430\u0436\u043C\u0438\u0442\u0435 \u043D\u0430 \u043B\u044E\u0431\u0443\u044E
+    \u0441\u0442\u043E\u0440\u043E\u043D\u0443 \u043F\u043E\u043B\u044F, \u0447\u0442\u043E\u0431\u044B
+    \u043F\u0435\u0440\u0435\u043C\u0435\u0441\u0442\u0438\u0442\u044C \u0436\u0438\u0432\u043E\u0442\u043D\u044B\u0445
+    \u0432 \u0446\u0435\u043D\u0442\u0440."
+  en: Tap any side of the field to move animals toward the center.
+  tr: "Hayvanlar\u0131 merkeze hareket ettirmek i\xE7in alan\u0131n herhangi bir
+    taraf\u0131na dokunun."
+  az: 
+  be: 
+  he: 
+  hy: 
+  ka: 
+  et: 
+  fr: 
+  kk: 
+  ky: 
+  lt: 
+  lv: 
+  ro: 
+  tg: 
+  tk: 
+  uk: 
+  uz: 
+  es: 
+  pt: 
+  ar: 
+  id: 
+  ja: 
+  it: 
+  de: 
+  hi: 
+  changeOnlyFont: 0
+  fontNumber: 0
+  uniqueFont: {fileID: 0}
+  additionalText: {fileID: 0}
+  textHeight: 20
+  processTranslateLabel: 
+  componentTextField: 0
+  countLang: 0
 --- !u!1 &2713349967808783207
 GameObject:
   m_ObjectHideFlags: 0
@@ -6718,7 +6776,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 859bd68889ec04a63903ddd5a9e10ade, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e91fb38e9832e4de4aa56ecf709fba4e, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -6837,7 +6895,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 65.45
   m_fontSizeBase: 70
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -7153,6 +7211,7 @@ GameObject:
   - component: {fileID: 6964525926833728140}
   - component: {fileID: 1694494975709576483}
   - component: {fileID: 797414559462723573}
+  - component: {fileID: 8203382130787588797}
   m_Layer: 5
   m_Name: Icon
   m_TagString: Untagged
@@ -7174,10 +7233,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2010793351970864005}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.37}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00024414062, y: 0.41799927}
-  m_SizeDelta: {x: 0, y: -0.83000183}
+  m_AnchorMin: {x: 0.14, y: 0.37}
+  m_AnchorMax: {x: 0.86500007, y: 1}
+  m_AnchoredPosition: {x: -9.685898, y: 0.00005340576}
+  m_SizeDelta: {x: -18.372, y: -13.366}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &1694494975709576483
 CanvasRenderer:
@@ -7207,7 +7266,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 859bd68889ec04a63903ddd5a9e10ade, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e91fb38e9832e4de4aa56ecf709fba4e, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -7217,6 +7276,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8203382130787588797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3183573356753573012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.7058824}
+  m_EffectDistance: {x: 7, y: -7}
+  m_UseGraphicAlpha: 1
 --- !u!1 &3327871416893472890
 GameObject:
   m_ObjectHideFlags: 0
@@ -7332,8 +7406,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -20, y: -20}
-  m_SizeDelta: {x: 200, y: 200}
+  m_AnchoredPosition: {x: 0, y: -20}
+  m_SizeDelta: {x: 140, y: 140}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &5218585447727694956
 MonoBehaviour:
@@ -7740,9 +7814,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'SELECT CUTE
-
-    ANIMAL'
+  m_text: SELECT CUTE ANIMAL
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
@@ -7828,11 +7900,10 @@ MonoBehaviour:
   textLComponent: {fileID: 0}
   infoYG: {fileID: 11400000, guid: 162644796a8b0d044bce3d6fda0641e3, type: 2}
   text: 
-  ru: "\u0412\u042B\u0411\u0415\u0420\u0418\u0422\u0415 \u041C\u0418\u041B\u041E\u0415\n\u0416\u0418\u0412\u041E\u0422\u041D\u041E\u0415"
-  en: 'SELECT CUTE
-
-    ANIMAL'
-  tr: "SEV\u0130ML\u0130 B\u0130R \nHAYVAN SE\xC7\u0130N"
+  ru: "\u0412\u042B\u0411\u0415\u0420\u0418\u0422\u0415 \u041C\u0418\u041B\u041E\u0415
+    \u0416\u0418\u0412\u041E\u0422\u041D\u041E\u0415"
+  en: SELECT CUTE ANIMAL
+  tr: "SEV\u0130ML\u0130 B\u0130R HAYVAN SE\xC7\u0130N"
   az: 
   be: 
   he: 
@@ -7876,6 +7947,7 @@ GameObject:
   - component: {fileID: 8525510806514670353}
   - component: {fileID: 4722374239415250498}
   - component: {fileID: 5762651224434131260}
+  - component: {fileID: 5672529450019664029}
   m_Layer: 5
   m_Name: Tutorial_txt
   m_TagString: Untagged
@@ -7930,18 +8002,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'You should watch
-
-    out for the red
-
-    circle. The game wll
-
-    be
-    over when  it.'
+  m_text: "\u0416\u0438\u0432\u043E\u0442\u043D\u044B\u0435 \u043F\u043E\u044F\u0432\u043B\u044F\u044E\u0442\u0441\u044F
+    \u0441 \u0447\u0435\u0442\u044B\u0440\u0451\u0445 \u0441\u0442\u043E\u0440\u043E\u043D
+    \u043A\u0440\u0435\u0441\u0442\u0430. \u0421\u043B\u0435\u0434\u0438\u0442\u0435
+    \u0437\u0430 \u0442\u0430\u0439\u043C\u0435\u0440\u043E\u043C!"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 0}
-  m_sharedMaterial: {fileID: -1975015116027720056, guid: 1b6c1f3157894e947864ce33af929981,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
+  m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -7965,7 +8032,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 39
+  m_fontSize: 37.15
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -8007,6 +8074,62 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &5672529450019664029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4066421528922810651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f34f36451b093ee4c83ad4aa5459d2ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textMPComponent: {fileID: 5762651224434131260}
+  uniqueFontTMP: {fileID: 0}
+  textLComponent: {fileID: 0}
+  infoYG: {fileID: 11400000, guid: 162644796a8b0d044bce3d6fda0641e3, type: 2}
+  text: 
+  ru: "\u0416\u0438\u0432\u043E\u0442\u043D\u044B\u0435 \u043F\u043E\u044F\u0432\u043B\u044F\u044E\u0442\u0441\u044F
+    \u0441 \u0447\u0435\u0442\u044B\u0440\u0451\u0445 \u0441\u0442\u043E\u0440\u043E\u043D
+    \u043A\u0440\u0435\u0441\u0442\u0430. \u0421\u043B\u0435\u0434\u0438\u0442\u0435
+    \u0437\u0430 \u0442\u0430\u0439\u043C\u0435\u0440\u043E\u043C!"
+  en: Animals appear from four sides of the cross. Watch the timer!
+  tr: "Hayvanlar ha\xE7\u0131n d\xF6rt taraf\u0131ndan belirir. Zamanlay\u0131c\u0131y\u0131
+    izleyin!"
+  az: 
+  be: 
+  he: 
+  hy: 
+  ka: 
+  et: 
+  fr: 
+  kk: 
+  ky: 
+  lt: 
+  lv: 
+  ro: 
+  tg: 
+  tk: 
+  uk: 
+  uz: 
+  es: 
+  pt: 
+  ar: 
+  id: 
+  ja: 
+  it: 
+  de: 
+  hi: 
+  changeOnlyFont: 0
+  fontNumber: 0
+  uniqueFont: {fileID: 0}
+  additionalText: {fileID: 0}
+  textHeight: 20
+  processTranslateLabel: 
+  componentTextField: 0
+  countLang: 0
 --- !u!1 &4280747601026930549
 GameObject:
   m_ObjectHideFlags: 0
@@ -8496,7 +8619,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 76.8
+  m_fontSize: 54
   m_fontSizeBase: 70
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -8751,6 +8874,7 @@ MonoBehaviour:
           ClaimRewardWidget:
             ClaimRewardText: {fileID: 6522554843531631598}
             RewardTimeText: {fileID: 8647049430591312500}
+            RewardTimeTextTemplate: 
           Locked: {fileID: 6494164103980537636}
           Unlocked: {fileID: 4308967271872474930}
     - rid: 3543309367565090824
@@ -9330,7 +9454,7 @@ GameObject:
   - component: {fileID: 6522554843531631598}
   - component: {fileID: 7053359325051711844}
   m_Layer: 5
-  m_Name: ClaimReward_txt
+  m_Name: RewardState_txt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9352,7 +9476,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.3072307}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -0.4800415, y: 0}
   m_SizeDelta: {x: 0.00000059604645, y: 0.0000014305115}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2416465989534443913
@@ -9383,7 +9507,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "CLAIM YOUR \nREWARD!"
+  m_text: CLAIM YOUR REWARD!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
@@ -9469,10 +9593,9 @@ MonoBehaviour:
   textLComponent: {fileID: 0}
   infoYG: {fileID: 11400000, guid: 162644796a8b0d044bce3d6fda0641e3, type: 2}
   text: 
-  ru: "\u041F\u041E\u041B\u0423\u0427\u0418\u0422\u0415 \u0412\u0410\u0428\u0423
-    \u041D\u0410\u0413\u0420\u0410\u0414\u0423!"
-  en: "CLAIM YOUR \nREWARD!"
-  tr: "\xD6D\xDCL\xDCN\xDCZ\xDC ALIN!"
+  ru: "\u0417\u0410\u0411\u0415\u0420\u0418 \u0421\u0412\u041E\u042E \u041D\u0410\u0413\u0420\u0410\u0414\u0423!"
+  en: CLAIM YOUR REWARD!
+  tr: "\xD6D\xDCL\xDCN\xDC TALEP ET!"
   az: 
   be: 
   he: 
@@ -10161,7 +10284,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 20, y: -20}
-  m_SizeDelta: {x: 200, y: 200}
+  m_SizeDelta: {x: 140, y: 140}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2048256791592957944
 MonoBehaviour:
@@ -10338,13 +10461,14 @@ GameObject:
   - component: {fileID: 3311596167697849050}
   - component: {fileID: 939034306465550697}
   - component: {fileID: 8647049430591312500}
+  - component: {fileID: 6851042616469921380}
   m_Layer: 5
   m_Name: RewardTime_txt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3311596167697849050
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10359,10 +10483,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2555965213760843451}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0.3072307}
-  m_AnchoredPosition: {x: -0.000030517578, y: -0.000061035156}
-  m_SizeDelta: {x: 0.00000059604645, y: 0.0000014305115}
+  m_AnchorMin: {x: 0, y: 0.120000005}
+  m_AnchorMax: {x: 1, y: 0.4272307}
+  m_AnchoredPosition: {x: -0.48007202, y: 0}
+  m_SizeDelta: {x: 0.00000047683716, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &939034306465550697
 CanvasRenderer:
@@ -10392,11 +10516,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'REWARD IN:'
+  m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 0}
-  m_sharedMaterial: {fileID: -1975015116027720056, guid: 1b6c1f3157894e947864ce33af929981,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
+  m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -10420,7 +10543,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 59.6
+  m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -10462,6 +10585,59 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &6851042616469921380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8428713009773911838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f34f36451b093ee4c83ad4aa5459d2ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textMPComponent: {fileID: 8647049430591312500}
+  uniqueFontTMP: {fileID: 0}
+  textLComponent: {fileID: 0}
+  infoYG: {fileID: 11400000, guid: 162644796a8b0d044bce3d6fda0641e3, type: 2}
+  text: 
+  ru: "\u041D\u0410\u0413\u0420\u0410\u0414\u0410 \u0411\u0423\u0414\u0415\u0422
+    \u0414\u041E\u0421\u0422\u0423\u041F\u041D\u0410 \u0427\u0415\u0420\u0415\u0417: "
+  en: 'REWARD AVAILABLE IN: '
+  tr: "\xD6D\xDCL M\xDCSAIT OLACAK: "
+  az: 
+  be: 
+  he: 
+  hy: 
+  ka: 
+  et: 
+  fr: 
+  kk: 
+  ky: 
+  lt: 
+  lv: 
+  ro: 
+  tg: 
+  tk: 
+  uk: 
+  uz: 
+  es: 
+  pt: 
+  ar: 
+  id: 
+  ja: 
+  it: 
+  de: 
+  hi: 
+  changeOnlyFont: 0
+  fontNumber: 0
+  uniqueFont: {fileID: 0}
+  additionalText: {fileID: 0}
+  textHeight: 20
+  processTranslateLabel: 
+  componentTextField: 0
+  countLang: 0
 --- !u!1 &8753363287543300509
 GameObject:
   m_ObjectHideFlags: 0
@@ -10660,8 +10836,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4280154098
+  m_fontColor: {r: 0.9490197, g: 0.9686275, b: 0.1137255, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

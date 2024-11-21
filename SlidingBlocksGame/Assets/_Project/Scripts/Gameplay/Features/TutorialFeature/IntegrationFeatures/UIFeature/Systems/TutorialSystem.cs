@@ -10,10 +10,16 @@ namespace _Project.Scripts.Gameplay.Features.TutorialFeature.IntegrationFeatures
     {
         [EcsInject] private readonly EcsDefaultWorld _world;
 
+        private class OpenRequestAspect : EcsAspectAuto
+        {
+            [Inc] public readonly EcsTagPool<TutorialWindowTag> TutorialWindowTag;
+            [Inc] public readonly EcsTagPool<OpenTutorialRequest> OpenTutorialRequest;
+        }
+
         private class OpenButtonClickedAspect : EcsAspectAuto
         {
             [Inc] public readonly EcsTagPool<TutorialButtonTag> TutorialButtonTag;
-            [Inc] public readonly EcsTagPool<ButtonClickedEvent> Clicked;
+            [Inc] public readonly EcsTagPool<ButtonClickedEvent> ButtonClickedEvent;
         }
 
         private class CloseButtonClickedAspect : EcsAspectAuto
@@ -26,11 +32,19 @@ namespace _Project.Scripts.Gameplay.Features.TutorialFeature.IntegrationFeatures
         {
             [IncImplicit(typeof(TutorialWindowTag))]
             [Inc] public readonly EcsPool<GameObjectConnect> GoConnects;
+
+            [Opt] public readonly EcsTagPool<OpenTutorialRequest> OpenTutorialRequest;
         }
 
         public void Run()
         {
             foreach (int _ in _world.Where(out OpenButtonClickedAspect _))
+            {
+                foreach (int tutorial in _world.Where(out TutorialWindowAspect tutorialAspect))
+                    tutorialAspect.OpenTutorialRequest.Add(tutorial);
+            }
+
+            foreach (int _ in _world.Where(out OpenRequestAspect _))
             {
                 foreach (int window in _world.Where(out TutorialWindowAspect tutorialWindowAspect))
                 {

@@ -26,7 +26,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.Systems
 
         private Plane _plane = new Plane(inNormal: Vector3.up, inPoint: Vector3.zero);
 
-        private static readonly Camera CAMERA = Camera.main;
+        private readonly Camera _camera = Camera.main;
 
         public void Run()
         {
@@ -56,7 +56,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.Systems
 
         private Vector3 GetMouseClickPosition(float2 position)
         {
-            Ray ray = CAMERA.ScreenPointToRay(position.xyy);
+            Ray ray = _camera.ScreenPointToRay(position.xyy);
 
             return _plane.Raycast(ray, out float enter)
                 ? ray.GetPoint(enter)

@@ -19,7 +19,6 @@ namespace _Project.Scripts.Gameplay.Features.RewardFeature
                 .AddSystem(new RewardEligibilitySystem())
                 .AutoDelTag<RewardCollectedEvent>()
                 .AddSystem(new RewardClaimSystem())
-                .AutoDelTag<RewardClaimRequest>()
                 //
                 .AutoDelEntityTag<RewardUpdatedEvent>()
                 .AddSystem(new UpdateRewardSystem())

@@ -1,4 +1,5 @@
-﻿using _Project.Scripts.Gameplay.Features.AdFeature;
+﻿using System;
+using _Project.Scripts.Gameplay.Features.AdFeature;
 using _Project.Scripts.Gameplay.Features.AnimalFeature;
 using _Project.Scripts.Gameplay.Features.AudioFeature;
 using _Project.Scripts.Gameplay.Features.CoinFeature;
@@ -45,6 +46,12 @@ namespace _Project.Scripts.Gameplay
             YandexGame.ResetSaveProgress();
             YandexGame.SaveProgress();
         }
+
+        [Button]
+        private void SetTimeScale(float value)
+        {
+            Time.timeScale = value;
+        }
 #endif
 
         public void Start()
@@ -90,28 +97,28 @@ namespace _Project.Scripts.Gameplay
             {
                 builder
                     .AddSubmodule(new GameFlowFeature<PauseAspect>(_gameCfg))
-                    .AddSubmodule(new PlayerFeature<PauseAspect>())
-                    .AddSubmodule(new CreationFeature<PauseAspect>())
-                    .AddSubmodule(new AnimalFeature<PauseAspect>())
-                    .AddSubmodule(new MovementFeature<PauseAspect>())
-                    .AddSubmodule(new GameFieldFeature<PauseAspect>())
-                    .AddSubmodule(new DestructionFeature<PauseAspect>())
-                    .AddSubmodule(new PurchaseFeature<PauseAspect>())
-                    .AddSubmodule(new RateUsFeature<PauseAspect>())
-                    .AddSubmodule(new CoinFeature<PauseAspect>())
-                    .AddSubmodule(new ScoreFeature<PauseAspect>())
-                    .AddSubmodule(new GameProgressFeature<PauseAspect>())
-                    .AddSubmodule(new RewardFeature<PauseAspect>())
-                    .AddSubmodule(new GameOverTimerFeature<PauseAspect>())
-                    .AddSubmodule(new SettingsFeature<PauseAspect>())
-                    .AddSubmodule(new GameAudioFeature<PauseAspect>())
-                    .AddSubmodule(new TutorialFeature<PauseAspect>())
-                    .AddSubmodule(new GameScreenFeature<PauseAspect>())
-                    .AddSubmodule(new VisualFeature<PauseAspect>())
-                    .AddSubmodule(new AdFeature())
-                    .AddSubmodule(new PauseFeature())
-                    .AddSubmodule(new CooldownFeature<PauseAspect>())
-                    .AddSubmodule(new AudioFeature<PauseAspect>());
+                    .AddSubmodule<PlayerFeature<PauseAspect>>()
+                    .AddSubmodule<CreationFeature<PauseAspect>>()
+                    .AddSubmodule<AnimalFeature<PauseAspect>>()
+                    .AddSubmodule<MovementFeature<PauseAspect>>()
+                    .AddSubmodule<GameFieldFeature<PauseAspect>>()
+                    .AddSubmodule<DestructionFeature<PauseAspect>>()
+                    .AddSubmodule<PurchaseFeature<PauseAspect>>()
+                    .AddSubmodule<RateUsFeature<PauseAspect>>()
+                    .AddSubmodule<CoinFeature<PauseAspect>>()
+                    .AddSubmodule<ScoreFeature<PauseAspect>>()
+                    .AddSubmodule<GameProgressFeature<PauseAspect>>()
+                    .AddSubmodule<RewardFeature<PauseAspect>>()
+                    .AddSubmodule<GameOverTimerFeature<PauseAspect>>()
+                    .AddSubmodule<SettingsFeature<PauseAspect>>()
+                    .AddSubmodule<GameAudioFeature<PauseAspect>>()
+                    .AddSubmodule<TutorialFeature<PauseAspect>>()
+                    .AddSubmodule<GameScreenFeature<PauseAspect>>()
+                    .AddSubmodule<VisualFeature<PauseAspect>>()
+                    .AddSubmodule<AdFeature>()
+                    .AddSubmodule<PauseFeature>()
+                    .AddSubmodule<CooldownFeature<PauseAspect>>()
+                    .AddSubmodule<AudioFeature<PauseAspect>>();
             }
         }
     }

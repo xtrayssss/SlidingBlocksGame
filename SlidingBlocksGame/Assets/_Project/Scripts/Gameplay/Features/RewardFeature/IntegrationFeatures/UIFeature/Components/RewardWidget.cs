@@ -4,6 +4,7 @@ using PrimeTween;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Scripting.APIUpdating;
+using UnityEngine.Serialization;
 
 namespace _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.UIFeature.Components
 {
@@ -32,5 +33,6 @@ namespace _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.U
 
         public TextMeshProUGUI ClaimRewardText;
         public TextMeshProUGUI RewardTimeText;
+        public string RewardTimeTextTemplate;
     }
 }

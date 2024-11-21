@@ -1,5 +1,4 @@
-using System;
-using System.Linq;
+using System.Collections.Generic;
 using _Project.Scripts.Gameplay.Features.CommonFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFieldFeature.Components;
 using _Project.Scripts.Gameplay.Features.GameFieldFeature.Extensions;
@@ -8,7 +7,6 @@ using _Project.Scripts.Gameplay.Features.GameFlowFeature.Components;
 using _Project.Scripts.Gameplay.Features.MovementFeature.Components;
 using DCFApixels.DragonECS;
 using Unity.Mathematics;
-using UnityEngine;
 
 namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
 {
@@ -41,6 +39,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
         private class GameFieldAspect : EcsAspectAuto
         {
             [Inc] public readonly EcsPool<GameField> GameFields;
+            [Opt] public readonly EcsPool<ProcessedSides> ProcessedSides;
         }
 
         private class GameAspect : EcsAspectAuto
@@ -68,12 +67,17 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                     edgeSize: gameField.EdgeSize,
                     centerSize: gameField.CenterSize);
 
-                if (math.all(moveDirection == 0))
+                ref ProcessedSides processedSides = ref gameFieldAspect.ProcessedSides.TryAddOrGet(gameFieldID);
+
+                processedSides.Value ??= new List<int2>(capacity: 4);
+
+                if (math.all(moveDirection == 0) || processedSides.Value.Contains(moveDirection))
                     continue;
 
-                // Собираем группу животных для перемещения
-                var animals = EcsGroup.New(_world);
-                var positions = new System.Collections.Generic.List<int2>();
+                processedSides.Value.Add(moveDirection);
+
+                EcsGroup animals = EcsGroup.New(_world);
+                List<int2> positions = new List<int2>();
 
                 foreach (int animal in _world.Where(out AnimalAspect animalAspect))
                 {
@@ -87,20 +91,17 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                 if (animals.Count == 0)
                     continue;
 
-                // Проверяем возможность движения для всей группы
                 int maxMovement = CalculateGroupMovement(
                     currentPositions: positions,
                     moveDirection: moveDirection,
                     gameField: gameField);
 
-                // Если движение невозможно (maxMovement == 0), пропускаем обработку
-                // Применяем движение ко всем животным
                 foreach (int animal in animals)
                 {
-                    var currentPos = _world.GetPool<CellPosition>().Read(animal).Value;
-                    var targetPos = currentPos + maxMovement * moveDirection;
+                    int2 currentPos = _world.GetPool<CellPosition>().Read(animal).Value;
+                    int2 targetPos = currentPos + maxMovement * moveDirection;
 
-                    ref var cellDest = ref _world.GetPool<CellDestination>().Add(animal);
+                    ref CellDestination cellDest = ref _world.GetPool<CellDestination>().Add(animal);
                     cellDest.Value = targetPos;
 
                     float3 worldDest = GridUtils.GetWorldPosition(targetPos, gameField.ToGrid());
@@ -127,7 +128,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
         }
 
         private int CalculateGroupMovement(
-            System.Collections.Generic.List<int2> currentPositions,
+            List<int2> currentPositions,
             int2 moveDirection,
             in GameField gameField)
         {
@@ -151,7 +152,7 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                 {
                     distance = math.abs(centerBoundary.y - pos.y);
                 }
- 
+
                 maxDistance = math.min(maxDistance, distance);
             }
 

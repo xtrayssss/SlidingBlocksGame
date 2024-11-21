@@ -3,6 +3,7 @@ using _Project.Scripts.Gameplay.Features.RewardFeature.Components;
 using _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.UIFeature.Components;
 using DCFApixels.DragonECS;
 using PrimeTween;
+using Unity.Mathematics;
 using UnityEngine;
 using YG;
 
@@ -66,13 +67,14 @@ namespace _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.U
 
                 long diff = YandexGame.ServerTime() - reward.CollectionTime;
 
-                diff = Math.Max(0, diff);
+                diff = math.max(0, diff);
 
                 string time = TimeSpan
                     .FromMilliseconds(reward.Interval - diff)
                     .ToString(@"hh\:mm\:ss");
-
-                rewardWidget.ClaimRewardWidget.RewardTimeText.text = "REWARD IN: " + time;
+                
+                rewardWidget.ClaimRewardWidget.RewardTimeText.text =
+                    rewardWidget.ClaimRewardWidget.RewardTimeTextTemplate + time;
 
                 rewardWidget.ClaimRewardWidget.ClaimRewardText.gameObject.SetActive(false);
                 rewardWidget.ClaimRewardWidget.RewardTimeText.gameObject.SetActive(true);

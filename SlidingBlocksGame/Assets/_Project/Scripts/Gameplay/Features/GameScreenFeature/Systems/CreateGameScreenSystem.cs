@@ -14,6 +14,7 @@ using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Utils;
 using DCFApixels.DragonECS;
 using PrimeTween;
 using UnityEngine;
+using YG;
 using Object = UnityEngine.Object;
 using ScrollSnap = _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Components.ScrollSnap;
 
@@ -174,6 +175,15 @@ namespace _Project.Scripts.Gameplay.Features.GameScreenFeature.Systems
 
             ref RewardWidget rewardWidget = ref rewardWidgetAspect.RewardWidgets.Get(reward.ID);
 
+            LanguageYG languageYg = rewardWidget.ClaimRewardWidget.RewardTimeText.GetComponent<LanguageYG>();
+
+            if (YandexGame.lang == "ru")
+                rewardWidget.ClaimRewardWidget.RewardTimeTextTemplate = languageYg.ru;
+            else if (YandexGame.lang == "en")
+                rewardWidget.ClaimRewardWidget.RewardTimeTextTemplate = languageYg.en;
+            else if (YandexGame.lang == "tr") 
+                rewardWidget.ClaimRewardWidget.RewardTimeTextTemplate = languageYg.tr;
+            
             // create reward window
             entlong rewardWindowLong = _world.NewUIEntity(rewardWidget.RewardWindowConnect);
 
