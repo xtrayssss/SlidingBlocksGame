@@ -40,104 +40,104 @@ MonoBehaviour:
           EdgeSize: 2
           Cells:
           - WorldPosition:
-              x: -2.5
+              x: 0
               y: 0
-              z: -0.19999997
+              z: 0
             View: {fileID: 0}
           - WorldPosition:
-              x: -2.5
+              x: 0
               y: 0
-              z: 0.6
+              z: 0
             View: {fileID: 0}
           - WorldPosition:
-              x: -1.7
+              x: 0
               y: 0
-              z: -0.19999997
+              z: 0
             View: {fileID: 0}
           - WorldPosition:
-              x: -1.7
+              x: 0
               y: 0
-              z: 0.6
+              z: 0
             View: {fileID: 0}
           - WorldPosition:
-              x: -0.90000004
+              x: 0
               y: 0
-              z: -1.8
+              z: 0
             View: {fileID: 0}
           - WorldPosition:
-              x: -0.90000004
+              x: 0
               y: 0
-              z: -0.99999994
+              z: 0
             View: {fileID: 0}
           - WorldPosition:
-              x: -0.90000004
+              x: 0
               y: 0
-              z: -0.19999997
+              z: 0
             View: {fileID: 0}
           - WorldPosition:
-              x: -0.90000004
+              x: 0
               y: 0
-              z: 0.6
+              z: 0
             View: {fileID: 0}
           - WorldPosition:
-              x: -0.90000004
+              x: 0
               y: 0
-              z: 1.4
+              z: 0
             View: {fileID: 0}
           - WorldPosition:
-              x: -0.90000004
+              x: 0
               y: 0
-              z: 2.2
+              z: 0
             View: {fileID: 0}
           - WorldPosition:
-              x: -0.10000003
+              x: 0
               y: 0
-              z: -1.8
+              z: 0
             View: {fileID: 0}
           - WorldPosition:
-              x: -0.10000003
+              x: 0
               y: 0
-              z: -0.99999994
+              z: 0
             View: {fileID: 0}
           - WorldPosition:
-              x: -0.10000003
+              x: 0
               y: 0
-              z: -0.19999997
+              z: 0
             View: {fileID: 0}
           - WorldPosition:
-              x: -0.10000003
+              x: 0
               y: 0
-              z: 0.6
+              z: 0
             View: {fileID: 0}
           - WorldPosition:
-              x: -0.10000003
+              x: 0
               y: 0
-              z: 1.4
+              z: 0
             View: {fileID: 0}
           - WorldPosition:
-              x: -0.10000003
+              x: 0
               y: 0
-              z: 2.2
+              z: 0
             View: {fileID: 0}
           - WorldPosition:
-              x: 0.6999999
+              x: 0
               y: 0
-              z: -0.19999997
+              z: 0
             View: {fileID: 0}
           - WorldPosition:
-              x: 0.6999999
+              x: 0
               y: 0
-              z: 0.6
+              z: 0
             View: {fileID: 0}
           - WorldPosition:
-              x: 1.5
+              x: 0
               y: 0
-              z: -0.19999997
+              z: 0
             View: {fileID: 0}
           - WorldPosition:
-              x: 1.5
+              x: 0
               y: 0
-              z: 0.6
+              z: 0
             View: {fileID: 0}
           Animals:
           - Position:
@@ -239,6 +239,18 @@ MonoBehaviour:
       data:
         component:
           Value: 1
+    - rid: 5110719680282886506
+      type: {class: TileGeneratedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.GameFieldFeature.IntegrationFeatures.AudioFeature.Components,
+        asm: GameFieldFeature.AudioFeature.Components}
+      data:
+        component:
+          Value: {fileID: 11400000, guid: 9e7d2bc0efe5f544392d1a9544a560f5, type: 2}
+    - rid: 5110719680282886507
+      type: {class: GameFieldGeneratedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.GameFieldFeature.IntegrationFeatures.AudioFeature.Components,
+        asm: GameFieldFeature.AudioFeature.Components}
+      data:
+        component:
+          Value: {fileID: 11400000, guid: f857536a371faf54fbd1e4c76e8602f4, type: 2}
     - rid: 6454805247463260164
       type: {class: GameFieldAlgorithms/Template, ns: _Project.Scripts.Gameplay.Features.GameFieldFeature.Components,
         asm: GameFieldFeature.Components}
@@ -247,8 +259,10 @@ MonoBehaviour:
           Value:
           - _components:
             - rid: 6454805247463260166
+            - rid: 5110719680282886507
           - _components:
             - rid: 6454805498714128384
+            - rid: 5110719680282886506
     - rid: 6454805247463260166
       type: {class: GameFieldAlgorithmCfg/Template, ns: _Project.Scripts.Gameplay.Features.GameFieldFeature.Components,
         asm: GameFieldFeature.Components}

@@ -2,7 +2,6 @@
 using DCFApixels.DragonECS;
 using UnityEngine;
 using UnityEngine.Scripting.APIUpdating;
-using UnityEngine.Serialization;
 
 namespace _Project.Scripts.Gameplay.Features.GameScreenFeature.Components
 {

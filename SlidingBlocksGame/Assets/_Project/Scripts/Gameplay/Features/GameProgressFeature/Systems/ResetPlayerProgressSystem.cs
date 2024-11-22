@@ -10,6 +10,7 @@ using _Project.Scripts.Gameplay.Features.ScoreFeature.Components;
 using _Project.Scripts.Gameplay.Features.ScoreFeature.Utils;
 using _Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.ButtonFeature.Components;
 using DCFApixels.DragonECS;
+using UnityEngine;
 using YG;
 
 namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.Systems
@@ -28,6 +29,7 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.Systems
         {
             [IncImplicit(typeof(PlayerTag))]
             [Inc] public readonly EcsPool<Coins> Coins;
+
             [Inc] public readonly EcsPool<BestScore> BestScores;
             [Inc] public readonly EcsPool<SelectedAnimal> SelectedAnimals;
             [Inc] public readonly EcsPool<AnimalPrefabs> AnimalPrefabs;
@@ -46,17 +48,29 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.Systems
 
         public void Run()
         {
-            if (!IsResetButtonClicked())
+            if (!IsResetButtonClicked() || AreSavingsReset())
                 return;
 
+#if DEBUG
+            Debug.Log("Reset savings");
+#endif
+
             ResetAllProgress();
+        }
+
+        private static bool AreSavingsReset()
+        {
+            ref SavesYG.Data savings = ref YandexGame.savesData.Savings;
+
+            return savings is { Coins: 0, BestScores: 0, RewardCollectionTime: 0 }
+                   && savings.PurchasedAnimals.Count == 0;
         }
 
         private bool IsResetButtonClicked()
         {
             foreach (int _ in _world.Where(out ResetButtonAspect _))
                 return true;
-            
+
             return false;
         }
 
@@ -102,21 +116,21 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.Systems
 
         private void ResetPlayerPurchases()
         {
-            foreach (int purchase in _world.Where(out PurchasedAspect purchasedAspect)) 
+            foreach (int purchase in _world.Where(out PurchasedAspect purchasedAspect))
                 purchasedAspect.PurchasedMarker.Del(purchase);
 
-            YandexGame.savesData.PurchasedAnimals.Clear();
+            YandexGame.savesData.Savings.PurchasedAnimals.Clear();
         }
 
         private static void ResetSelectedAnimal(int player, PlayerAspect playerAspect)
         {
             const ushort DEFAULT_ANIMAL_ID = 0;
-            
+
             ref SelectedAnimal selectedAnimal = ref playerAspect.SelectedAnimals.Get(player);
             selectedAnimal.ID = DEFAULT_ANIMAL_ID;
             selectedAnimal.Prefab = playerAspect.AnimalPrefabs.Read(player).Animals[DEFAULT_ANIMAL_ID];
 
-            YandexGame.savesData.SelectedAnimalID = DEFAULT_ANIMAL_ID;
+            YandexGame.savesData.Savings.SelectedAnimalID = DEFAULT_ANIMAL_ID;
         }
 
         private void ResetRewards()
@@ -134,7 +148,7 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.Systems
             }
         }
 
-        private static void SaveProgress() => 
+        private static void SaveProgress() =>
             YandexGame.SaveProgress();
     }
 }

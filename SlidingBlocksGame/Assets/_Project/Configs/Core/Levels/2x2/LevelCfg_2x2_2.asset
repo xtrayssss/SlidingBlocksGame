@@ -40,104 +40,104 @@ MonoBehaviour:
           EdgeSize: 2
           Cells:
           - WorldPosition:
-              x: 0
+              x: -2.5
               y: 0
-              z: 0
+              z: -0.19999997
             View: {fileID: 0}
           - WorldPosition:
-              x: 0
+              x: -2.5
               y: 0
-              z: 0
+              z: 0.6
             View: {fileID: 0}
           - WorldPosition:
-              x: 0
+              x: -1.7
               y: 0
-              z: 0
+              z: -0.19999997
             View: {fileID: 0}
           - WorldPosition:
-              x: 0
+              x: -1.7
               y: 0
-              z: 0
+              z: 0.6
             View: {fileID: 0}
           - WorldPosition:
-              x: 0
+              x: -0.90000004
               y: 0
-              z: 0
+              z: -1.8
             View: {fileID: 0}
           - WorldPosition:
-              x: 0
+              x: -0.90000004
               y: 0
-              z: 0
+              z: -0.99999994
             View: {fileID: 0}
           - WorldPosition:
-              x: 0
+              x: -0.90000004
               y: 0
-              z: 0
+              z: -0.19999997
             View: {fileID: 0}
           - WorldPosition:
-              x: 0
+              x: -0.90000004
               y: 0
-              z: 0
+              z: 0.6
             View: {fileID: 0}
           - WorldPosition:
-              x: 0
+              x: -0.90000004
               y: 0
-              z: 0
+              z: 1.4
             View: {fileID: 0}
           - WorldPosition:
-              x: 0
+              x: -0.90000004
               y: 0
-              z: 0
+              z: 2.2
             View: {fileID: 0}
           - WorldPosition:
-              x: 0
+              x: -0.10000003
               y: 0
-              z: 0
+              z: -1.8
             View: {fileID: 0}
           - WorldPosition:
-              x: 0
+              x: -0.10000003
               y: 0
-              z: 0
+              z: -0.99999994
             View: {fileID: 0}
           - WorldPosition:
-              x: 0
+              x: -0.10000003
               y: 0
-              z: 0
+              z: -0.19999997
             View: {fileID: 0}
           - WorldPosition:
-              x: 0
+              x: -0.10000003
               y: 0
-              z: 0
+              z: 0.6
             View: {fileID: 0}
           - WorldPosition:
-              x: 0
+              x: -0.10000003
               y: 0
-              z: 0
+              z: 1.4
             View: {fileID: 0}
           - WorldPosition:
-              x: 0
+              x: -0.10000003
               y: 0
-              z: 0
+              z: 2.2
             View: {fileID: 0}
           - WorldPosition:
-              x: 0
+              x: 0.6999999
               y: 0
-              z: 0
+              z: -0.19999997
             View: {fileID: 0}
           - WorldPosition:
-              x: 0
+              x: 0.6999999
               y: 0
-              z: 0
+              z: 0.6
             View: {fileID: 0}
           - WorldPosition:
-              x: 0
+              x: 1.5
               y: 0
-              z: 0
+              z: -0.19999997
             View: {fileID: 0}
           - WorldPosition:
-              x: 0
+              x: 1.5
               y: 0
-              z: 0
+              z: 0.6
             View: {fileID: 0}
           Animals:
           - Position:
@@ -243,6 +243,30 @@ MonoBehaviour:
       data:
         component:
           Value: {fileID: 11400000, guid: ae77d2d66bba6934ea24d0fe74b8d979, type: 2}
+    - rid: 5110719680282886500
+      type: {class: GameFieldAlgorithmCfg/Template, ns: _Project.Scripts.Gameplay.Features.GameFieldFeature.Components,
+        asm: GameFieldFeature.Components}
+      data:
+        component:
+          Value: {fileID: 11400000, guid: fae2afb1b7a1b1b418cf43a39493aac0, type: 2}
+    - rid: 5110719680282886501
+      type: {class: GameFieldGeneratedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.GameFieldFeature.IntegrationFeatures.AudioFeature.Components,
+        asm: GameFieldFeature.AudioFeature.Components}
+      data:
+        component:
+          Value: {fileID: 11400000, guid: f857536a371faf54fbd1e4c76e8602f4, type: 2}
+    - rid: 5110719680282886502
+      type: {class: GameFieldAlgorithmCfg/Template, ns: _Project.Scripts.Gameplay.Features.GameFieldFeature.Components,
+        asm: GameFieldFeature.Components}
+      data:
+        component:
+          Value: {fileID: 11400000, guid: b0f9f5dd4cdaf2149bb8206508b48f5a, type: 2}
+    - rid: 5110719680282886503
+      type: {class: TileGeneratedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.GameFieldFeature.IntegrationFeatures.AudioFeature.Components,
+        asm: GameFieldFeature.AudioFeature.Components}
+      data:
+        component:
+          Value: {fileID: 11400000, guid: 9e7d2bc0efe5f544392d1a9544a560f5, type: 2}
     - rid: 6454805247463260164
       type: {class: GameFieldAlgorithms/Template, ns: _Project.Scripts.Gameplay.Features.GameFieldFeature.Components,
         asm: GameFieldFeature.Components}
@@ -250,13 +274,11 @@ MonoBehaviour:
         component:
           Value:
           - _components:
-            - rid: 6454805247463260166
-    - rid: 6454805247463260166
-      type: {class: GameFieldAlgorithmCfg/Template, ns: _Project.Scripts.Gameplay.Features.GameFieldFeature.Components,
-        asm: GameFieldFeature.Components}
-      data:
-        component:
-          Value: {fileID: 11400000, guid: fae2afb1b7a1b1b418cf43a39493aac0, type: 2}
+            - rid: 5110719680282886500
+            - rid: 5110719680282886501
+          - _components:
+            - rid: 5110719680282886502
+            - rid: 5110719680282886503
     - rid: 8499802296898551899
       type: {class: DestructionAnimalStrategyCfg/Template, ns: _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.DestructionFeature.Components,
         asm: AnimalFeature.DestructionFeature.Components}

@@ -2,6 +2,7 @@
 using DCFApixels.DragonECS;
 using UnityEngine;
 using UnityEngine.Scripting.APIUpdating;
+using UnityEngine.UI;
 
 namespace _Project.Scripts.Gameplay.Features.GameScreenFeature.Components
 {
@@ -9,8 +10,8 @@ namespace _Project.Scripts.Gameplay.Features.GameScreenFeature.Components
     [MetaGroup("GameScreen")]
     public struct PlayWidget : IEcsComponent
     {
-        public GameObject PlayButton;
-        public GameObject ReplayButton;
+        public Button PlayButton;
+        public Button ReplayButton;
         
         [MovedFrom(autoUpdateAPI: false,
             sourceNamespace: "_Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components",

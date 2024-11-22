@@ -44,7 +44,7 @@ namespace _Project.Scripts.Gameplay.Features.RewardFeature.Systems
                     foreach (int player in _world.Where(out PlayerAspect _))
                     {
                         int rewardCoins = (int)rewardAspect.RewardScalingCurve.Read(reward).Value
-                            .Evaluate(YandexGame.savesData.RewardCount);
+                            .Evaluate(YandexGame.savesData.Savings.RewardCount);
 
                         CoinUtils.Update(
                             coinable: player,

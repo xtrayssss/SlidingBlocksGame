@@ -259,7 +259,7 @@ namespace _Project.Scripts.Gameplay.Features.RewardFeature.IntegrationFeatures.U
             RewardAspect rewardAspect = _world.GetAspect<RewardAspect>();
 
             int coins = (int)rewardAspect.RewardScalingCurve.Read(rewardID).Value
-                .Evaluate(YandexGame.savesData.RewardCount);
+                .Evaluate(YandexGame.savesData.Savings.RewardCount);
 
             animationDuration = COIN_DELAY * coins;
 

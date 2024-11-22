@@ -36,6 +36,8 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.Systems
 
                 float3 clickPosition = GetMouseClickPosition(screenPosition.Value);
 
+                Debug.Log(clickPosition);
+
                 foreach (int entity in _world.Where(out GameFieldAspect gameFieldAspect))
                 {
                     ref GameField gameField = ref gameFieldAspect.GameFields.Get(entity);

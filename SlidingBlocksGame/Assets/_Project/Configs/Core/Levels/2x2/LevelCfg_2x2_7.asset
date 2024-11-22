@@ -239,6 +239,18 @@ MonoBehaviour:
       data:
         component:
           Value: 1
+    - rid: 5110719680282886512
+      type: {class: GameFieldGeneratedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.GameFieldFeature.IntegrationFeatures.AudioFeature.Components,
+        asm: GameFieldFeature.AudioFeature.Components}
+      data:
+        component:
+          Value: {fileID: 11400000, guid: f857536a371faf54fbd1e4c76e8602f4, type: 2}
+    - rid: 5110719680282886513
+      type: {class: TileGeneratedAudioConfig/Template, ns: _Project.Scripts.Gameplay.Features.GameFieldFeature.IntegrationFeatures.AudioFeature.Components,
+        asm: GameFieldFeature.AudioFeature.Components}
+      data:
+        component:
+          Value: {fileID: 11400000, guid: 9e7d2bc0efe5f544392d1a9544a560f5, type: 2}
     - rid: 6454805247463260164
       type: {class: GameFieldAlgorithms/Template, ns: _Project.Scripts.Gameplay.Features.GameFieldFeature.Components,
         asm: GameFieldFeature.Components}
@@ -247,8 +259,10 @@ MonoBehaviour:
           Value:
           - _components:
             - rid: 6454805247463260166
+            - rid: 5110719680282886512
           - _components:
             - rid: 6454805498714128384
+            - rid: 5110719680282886513
     - rid: 6454805247463260166
       type: {class: GameFieldAlgorithmCfg/Template, ns: _Project.Scripts.Gameplay.Features.GameFieldFeature.Components,
         asm: GameFieldFeature.Components}

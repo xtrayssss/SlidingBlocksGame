@@ -26,7 +26,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldFeature
                 .AutoDelTag<GameFieldDestructRequest>()
                 //
                 .AutoDelEntityTag<SideClickedEvent>()
-                .AddSystem(new GameFieldSideClickSystem())
+                .AddSystem(new GameFieldSideClickWithPhysicsSystem())
                 .AddSystem(new WithinCenterSystem())
                 // audio feature
                 .AddSystem(new GameFieldAudioSystem());

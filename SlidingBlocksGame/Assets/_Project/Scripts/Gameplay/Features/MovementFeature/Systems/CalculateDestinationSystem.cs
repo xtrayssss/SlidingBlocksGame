@@ -127,51 +127,42 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
             }
         }
 
-        private int CalculateGroupMovement(
+        private static int CalculateGroupMovement(
             List<int2> currentPositions,
             int2 moveDirection,
             in GameField gameField)
         {
-            // Определяем границу центральной области
             int2 centerBoundary;
+
             if (math.any(moveDirection < 0))
                 centerBoundary = new int2(gameField.EdgeSize);
             else
                 centerBoundary = new int2(gameField.EdgeSize + gameField.CenterSize - 1);
 
-            // Находим максимально возможное расстояние до центра
             int maxDistance = int.MaxValue;
-            foreach (var pos in currentPositions)
+
+            foreach (int2 pos in currentPositions)
             {
-                int distance;
-                if (moveDirection.x != 0)
-                {
-                    distance = math.abs(centerBoundary.x - pos.x);
-                }
-                else
-                {
-                    distance = math.abs(centerBoundary.y - pos.y);
-                }
+                int distance = moveDirection.x != 0
+                    ? math.abs(centerBoundary.x - pos.x)
+                    : math.abs(centerBoundary.y - pos.y);
 
                 maxDistance = math.min(maxDistance, distance);
             }
 
-            // Проверяем каждый шаг движения для всей группы
             for (int step = 1; step <= maxDistance; step++)
             {
-                // Проверяем, не займет ли какое-либо животное уже занятую клетку
                 bool collision = false;
-                foreach (var currentPos in currentPositions)
+                
+                foreach (int2 currentPos in currentPositions)
                 {
                     int2 nextPos = currentPos + moveDirection * step;
 
-                    // Проверяем, находится ли позиция в центральной области
                     if (GridUtils.IsWithinCenter(nextPos, gameField.EdgeSize, gameField.CenterSize))
                     {
                         int2 dimensions = nextPos - new int2(gameField.EdgeSize);
                         int bitPosition = dimensions.y * gameField.CenterSize + dimensions.x;
 
-                        // Если клетка уже занята
                         if ((gameField.Center & (1 << bitPosition)) != 0)
                         {
                             collision = true;
@@ -180,11 +171,8 @@ namespace _Project.Scripts.Gameplay.Features.MovementFeature.Systems
                     }
                 }
 
-                // Если обнаружена коллизия, возвращаем предыдущий безопасный шаг
                 if (collision)
-                {
                     return step - 1;
-                }
             }
 
             return maxDistance;

@@ -125,7 +125,7 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.Systems
 
                 ref Coins coins = ref playerAspect.Coins.Get(playerID);
 
-                YandexGame.savesData.Coins = coins.Value;
+                YandexGame.savesData.Savings.Coins = coins.Value;
 
                 YandexGame.SaveProgress();
             }
@@ -136,7 +136,7 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.Systems
                 {
                     ref BestScore bestScore = ref playerAspect.BestScores.Get(player);
 
-                    YandexGame.savesData.BestScores = bestScore.Value;
+                    YandexGame.savesData.Savings.BestScores = bestScore.Value;
 
                     YandexGame.SaveProgress();
                 }
@@ -145,7 +145,7 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.Systems
             foreach (int purchaseID in _world.Where(out PurchasedEventAspect _))
             {
                 ref readonly Purchase purchase = ref _world.GetPool<Purchase>().Read(purchaseID);
-                YandexGame.savesData.PurchasedAnimals.Add(purchase.Index);
+                YandexGame.savesData.Savings.PurchasedAnimals.Add(purchase.Index);
                 YandexGame.SaveProgress();
             }
 
@@ -155,8 +155,8 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.Systems
                 {
                     ref AudioSettings audioSettings = ref settingsAspect.AudioSettings.Get(settings);
 
-                    YandexGame.savesData.Audio.MusicIsOn = audioSettings.MusicIsOn;
-                    YandexGame.savesData.Audio.SoundIsOn = audioSettings.SoundIsOn;
+                    YandexGame.savesData.Savings.Audio.MusicIsOn = audioSettings.MusicIsOn;
+                    YandexGame.savesData.Savings.Audio.SoundIsOn = audioSettings.SoundIsOn;
 
                     YandexGame.SaveProgress();
                 }
@@ -171,8 +171,8 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.Systems
 
                 ref readonly Reward reward = ref rewardAspect.Rewards.Read(rewardID);
 
-                YandexGame.savesData.RewardCount = reward.ClaimedCount;
-                YandexGame.savesData.RewardCollectionTime = reward.CollectionTime;
+                YandexGame.savesData.Savings.RewardCount = reward.ClaimedCount;
+                YandexGame.savesData.Savings.RewardCollectionTime = reward.CollectionTime;
 
                 YandexGame.SaveProgress();
             }
@@ -192,21 +192,21 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.Systems
                 {
                     CoinUtils.Update(
                         coinable: player,
-                        coins: YandexGame.savesData.Coins,
+                        coins: YandexGame.savesData.Savings.Coins,
                         overwrite: true);
 
                     ScoreUtils.UpdateBestScore(
                         scorable: player,
-                        score: YandexGame.savesData.BestScores,
+                        score: YandexGame.savesData.Savings.BestScores,
                         overwrite: true);
 
-                    UpdateSelectedAnimal(selectedID: YandexGame.savesData.SelectedAnimalID);
+                    UpdateSelectedAnimal(selectedID: YandexGame.savesData.Savings.SelectedAnimalID);
                 }
 
                 foreach (int window in _world.Where(out AnimalsShopWindowAspect windowAspect))
                 {
 #if UNITY_EDITOR
-                    Debug.Log("Purchases loaded: " + YandexGame.savesData.PurchasedAnimals.Count);
+                    Debug.Log("Purchases loaded: " + YandexGame.savesData.Savings.PurchasedAnimals.Count);
 #endif
 
                     ref Purchases purchases = ref windowAspect.AnimalPurchases.Get(window);
@@ -217,14 +217,14 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.Systems
 
                         ref readonly Purchase purchase = ref world.GetPool<Purchase>().Read(purchaseID);
 
-                        return YandexGame.savesData.PurchasedAnimals.Contains(purchase.Index);
+                        return YandexGame.savesData.Savings.PurchasedAnimals.Contains(purchase.Index);
                     });
 
                     foreach (int purchased in purchaseds)
                         _world.GetPool<PurchasedMarker>().Add(purchased);
 
                     ref SetupScrollRequest scrollSetupRequest = ref windowAspect.SetupScroll.Add(window);
-                    scrollSetupRequest.ScrollToIndex = YandexGame.savesData.SelectedAnimalID;
+                    scrollSetupRequest.ScrollToIndex = YandexGame.savesData.Savings.SelectedAnimalID;
                     scrollSetupRequest.Items = purchases.Entities;
                     scrollSetupRequest.IsAutoScroll = true;
                 }
@@ -235,8 +235,8 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.Systems
                         rewardable: reward,
                         new UpdateRewardRequest
                         {
-                            CollectionTime = YandexGame.savesData.RewardCollectionTime,
-                            Count = YandexGame.savesData.RewardCount
+                            CollectionTime = YandexGame.savesData.Savings.RewardCollectionTime,
+                            Count = YandexGame.savesData.Savings.RewardCount
                         });
                 }
 
@@ -253,8 +253,8 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.Systems
 
             requestAspect.UpdateAudioSettings.Add(request) = new UpdateAudioSettingsRequest
             {
-                IsMusicOn = YandexGame.savesData.Audio.MusicIsOn,
-                IsSoundOn = YandexGame.savesData.Audio.SoundIsOn
+                IsMusicOn = YandexGame.savesData.Savings.Audio.MusicIsOn,
+                IsSoundOn = YandexGame.savesData.Savings.Audio.SoundIsOn
             };
 
             settingsAspect.GameAudioUpdatedEvent.Add(settings);
@@ -268,7 +268,7 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.Systems
                 selectedAnimal.ID = selectedID;
                 selectedAnimal.Prefab = playerAspect.AnimalPrefabs.Read(player).Animals[selectedAnimal.ID];
 
-                YandexGame.savesData.SelectedAnimalID = selectedAnimal.ID;
+                YandexGame.savesData.Savings.SelectedAnimalID = selectedAnimal.ID;
                 YandexGame.SaveProgress();
             }
         }

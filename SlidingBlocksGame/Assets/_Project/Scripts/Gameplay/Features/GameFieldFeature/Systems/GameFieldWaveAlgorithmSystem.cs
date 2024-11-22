@@ -147,10 +147,6 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.Systems
                 !gameFieldAspect.IsMatches(gameFieldID))
                 yield break;
 
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            ref GameField GameField() =>
-                ref gameFieldAspect.GameFields.Get(gameFieldID);
-
             gameFieldAspect.GameFieldGeneratedMarker.Del(gameFieldID);
 
             foreach (GameField.Cell cell in GameField().Cells)
@@ -167,6 +163,12 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.Systems
 
             gameFieldAspect.GameFieldGeneratedByAlgorithm.Del(gameFieldID);
             gameFieldAspect.GameFieldDestructedEvent.Add(gameFieldID);
+            
+            yield break;
+
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            ref GameField GameField() =>
+                ref gameFieldAspect.GameFields.Get(gameFieldID);
         }
     }
 }

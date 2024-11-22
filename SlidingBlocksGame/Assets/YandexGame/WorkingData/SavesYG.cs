@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Serialization;
 
 namespace YG
 {
-    [System.Serializable]
+    [Serializable]
     public class SavesYG
     {
         public int IDSave;
@@ -12,26 +13,62 @@ namespace YG
         public string Language = "ru";
         public bool PromptDone;
 
-        public int Coins;
-        public int BestScores;
-        public List<ushort> PurchasedAnimals = new List<ushort>();
+        public bool CheckFirstSession() => 
+            IDSave == 0;
 
-        [FormerlySerializedAs("RewardCollectedAt")] public long RewardCollectionTime;
+        [SerializeField]
+        private Data _savings = new Data
+        {
+            Audio = new Data.SaveAudio(musicIsOn: true, soundIsOn: true),
+            PurchasedAnimals = new List<ushort>()
+        };
 
-        public int RewardCount;
-        public ushort SelectedAnimalID;
-        public SaveAudio Audio = new SaveAudio(musicIsOn: true, soundIsOn: true);
+        public ref Data Savings
+        {
+            get
+            {
+//                 if (IsFirstSession)
+//                 {
+// #if DEBUG
+//                     Debug.Log("IsFirstSession");
+// #endif
+//
+//                     _savings = new Data
+//                     {
+//                         Audio = new Data.SaveAudio(musicIsOn: true, soundIsOn: true),
+//                         PurchasedAnimals = new List<ushort>()
+//                     };
+//                 }
+
+                return ref _savings;
+            }
+        }
 
         [Serializable]
-        public struct SaveAudio
+        public struct Data
         {
-            public bool MusicIsOn;
-            public bool SoundIsOn;
+            public int Coins;
+            public int BestScores;
+            public List<ushort> PurchasedAnimals;
 
-            public SaveAudio(bool musicIsOn, bool soundIsOn)
+            [FormerlySerializedAs("RewardCollectedAt")]
+            public long RewardCollectionTime;
+
+            public int RewardCount;
+            public ushort SelectedAnimalID;
+            public SaveAudio Audio;
+
+            [Serializable]
+            public struct SaveAudio
             {
-                MusicIsOn = musicIsOn;
-                SoundIsOn = soundIsOn;
+                public bool MusicIsOn;
+                public bool SoundIsOn;
+
+                public SaveAudio(bool musicIsOn, bool soundIsOn)
+                {
+                    MusicIsOn = musicIsOn;
+                    SoundIsOn = soundIsOn;
+                }
             }
         }
     }
