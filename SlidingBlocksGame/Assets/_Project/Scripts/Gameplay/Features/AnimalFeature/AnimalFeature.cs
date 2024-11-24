@@ -34,12 +34,13 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature
                 .AddSystem(new AnimalDestructionChainStrategySystem())
                 .AddSystem(new DestroyAnimalsSystem())
                 .AddSystem(new AnimalDeathSystem())
-                
+
                 // ui feature
+                .AddSystem(new AnimalShopWindowSystem())
                 .AddSystem(new DisplayAnimalsShopWindowSystem())
                 .AutoDelTag<AnimalPurchaseWindowClosedEvent>()
                 .AddSystem(new CloseAnimalsShopWindowSystem())
-                
+
                 // audio feature
                 .AddAudioSystem<AnimalSpawnedEvent, AnimalSpawnedAudioConfig>()
                 .AddAudioSystem<DiedEvent, AnimalDeathAudioConfig>();

@@ -20,7 +20,11 @@ namespace YG
         private Data _savings = new Data
         {
             Audio = new Data.SaveAudio(musicIsOn: true, soundIsOn: true),
-            PurchasedAnimals = new List<ushort>()
+            PurchasedAnimals = new List<ushort>
+            {
+               //default animal
+               0
+            }
         };
 
         public ref Data Savings

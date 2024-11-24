@@ -43,8 +43,11 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.Systems
         private class PurchasedAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(PurchaseTag))]
+            [ExcImplicit(typeof(DefaultPurchaseTag))]
             [Inc] public readonly EcsTagPool<PurchasedMarker> PurchasedMarker;
         }
+
+        private const ushort DEFAULT_ANIMAL_ID = 0;
 
         public void Run()
         {
@@ -63,7 +66,7 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.Systems
             ref SavesYG.Data savings = ref YandexGame.savesData.Savings;
 
             return savings is { Coins: 0, BestScores: 0, RewardCollectionTime: 0 }
-                   && savings.PurchasedAnimals.Count == 0;
+                   && savings.PurchasedAnimals.Count == 1;
         }
 
         private bool IsResetButtonClicked()
@@ -116,16 +119,15 @@ namespace _Project.Scripts.Gameplay.Features.GameProgressFeature.Systems
 
         private void ResetPlayerPurchases()
         {
-            foreach (int purchase in _world.Where(out PurchasedAspect purchasedAspect))
+            foreach (int purchase in _world.Where(out PurchasedAspect purchasedAspect)) 
                 purchasedAspect.PurchasedMarker.Del(purchase);
 
             YandexGame.savesData.Savings.PurchasedAnimals.Clear();
+            YandexGame.savesData.Savings.PurchasedAnimals.Add(DEFAULT_ANIMAL_ID);
         }
 
         private static void ResetSelectedAnimal(int player, PlayerAspect playerAspect)
         {
-            const ushort DEFAULT_ANIMAL_ID = 0;
-
             ref SelectedAnimal selectedAnimal = ref playerAspect.SelectedAnimals.Get(player);
             selectedAnimal.ID = DEFAULT_ANIMAL_ID;
             selectedAnimal.Prefab = playerAspect.AnimalPrefabs.Read(player).Animals[DEFAULT_ANIMAL_ID];

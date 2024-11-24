@@ -142,7 +142,7 @@ namespace _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.U
 
             return sequence;
         }
-        
+
         private Vector2 CalculateScale(float ratio)
         {
             Vector2 diff = new Vector3(1.1f, 1.1f, 1.1f) - new Vector3(0.7f, 0.7f, 0.7f);

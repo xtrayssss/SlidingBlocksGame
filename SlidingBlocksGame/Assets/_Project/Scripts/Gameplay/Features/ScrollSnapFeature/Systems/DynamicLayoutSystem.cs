@@ -1,4 +1,5 @@
-﻿using _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Components;
+﻿
+using _Project.Scripts.Gameplay.Features.ScrollSnapFeature.Components;
 using DCFApixels.DragonECS;
 using Unity.Mathematics;
 using UnityEngine;

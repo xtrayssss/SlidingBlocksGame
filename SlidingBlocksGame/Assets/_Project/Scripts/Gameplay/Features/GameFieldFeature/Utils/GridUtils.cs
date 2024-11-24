@@ -84,7 +84,9 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.Utils
                     fieldRepresentation += "\n";
                 }
 
+#if DEBUG
                 Debug.Log(fieldRepresentation);
+#endif
             }
         }
 
@@ -92,48 +94,6 @@ namespace _Project.Scripts.Gameplay.Features.GameFieldFeature.Utils
         {
             int bitPosition = dimensions.x * edgeSize + dimensions.y;
             return (gameField & (1 << bitPosition)) != 0;
-        }
-
-        public static (int2 obstacle, bool success) GetNearestCentralObstacle(int2 position, int2 side, int edgeSize, short grid)
-        {
-            int2 dimensions = new int2();
-
-            if (side.x == 1)
-            {
-                dimensions.x = position.y - edgeSize;
-                dimensions.y = 0;
-            }
-            else if (side.x == -1)
-            {
-                dimensions.x = position.y - edgeSize;
-                dimensions.y = edgeSize - 1;
-            }
-            else if (side.y == 1)
-            {
-                dimensions.x = 0;
-                dimensions.y = position.x - edgeSize;
-            }
-            else if (side.y == -1)
-            {
-                dimensions.x = edgeSize - 1;
-                dimensions.y = position.x - edgeSize;
-            }
-
-            side = side.yx;
-
-            int step = 0;
-
-            do
-            {
-                int2 tempDimensions = dimensions + side * step;
-
-                int bit = tempDimensions.x * edgeSize + tempDimensions.y;
-
-                if ((grid & (1 << bit)) != 0)
-                    return (tempDimensions.yx, true);
-            } while (step++ != edgeSize - 1);
-
-            return default;
         }
 
         public static bool IsWithinGrid(int2 position, int size)

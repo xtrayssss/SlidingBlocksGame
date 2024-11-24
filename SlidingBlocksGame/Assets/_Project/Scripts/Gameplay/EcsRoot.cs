@@ -1,5 +1,4 @@
-﻿using System;
-using _Project.Scripts.Gameplay.Features.AdFeature;
+﻿using _Project.Scripts.Gameplay.Features.AdFeature;
 using _Project.Scripts.Gameplay.Features.AnimalFeature;
 using _Project.Scripts.Gameplay.Features.AudioFeature;
 using _Project.Scripts.Gameplay.Features.CoinFeature;
@@ -39,6 +38,11 @@ namespace _Project.Scripts.Gameplay
         private EcsPipelineWrapper _pipeline;
         private EcsDefaultWorld _world;
 
+#if DEBUG
+        [SerializeField] private AudioSource _source;
+        [SerializeField] private AudioClip _clip;
+#endif
+
 #if UNITY_EDITOR
         [Button]
         private void ResetProgress()
@@ -68,8 +72,15 @@ namespace _Project.Scripts.Gameplay
                 .Build();
         }
 
-        public void Update() =>
+        public void Update()
+        {
+#if DEBUG
+            if (Input.GetButtonDown("Horizontal")) 
+                _source.PlayOneShot(_clip);
+#endif
+
             _pipeline.UpdateRun(_world);
+        }
 
         public void OnDestroy()
         {

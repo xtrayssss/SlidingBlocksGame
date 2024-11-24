@@ -11,7 +11,7 @@ namespace _Project.Scripts.Gameplay.Features.PurchaseFeature.IntegrationFeatures
     {
         [EcsInject] private readonly EcsDefaultWorld _world;
 
-        private class PurchasesAspect : EcsAspectAuto
+        private class PurchaseAspect : EcsAspectAuto
         {
             [IncImplicit(typeof(PurchaseTag))]
             [IncImplicit(typeof(SnappedState))]
@@ -20,6 +20,7 @@ namespace _Project.Scripts.Gameplay.Features.PurchaseFeature.IntegrationFeatures
             [Inc] public readonly EcsPool<Purchase> Purchases;
 
             [Opt] public readonly EcsTagPool<PurchasedMarker> Purchased;
+            [Opt] public readonly EcsTagPool<PurchaseStatusUpdatedEvent> PurchaseStatusUpdatedEvent;
         }
 
         private class PlayerAspect : EcsAspectAuto
@@ -30,25 +31,27 @@ namespace _Project.Scripts.Gameplay.Features.PurchaseFeature.IntegrationFeatures
 
         public void Run()
         {
-            foreach (int entity in _world.Where(out PurchasesAspect aspect))
+            foreach (int purchase in _world.Where(out PurchaseAspect purchaseAspect))
             {
                 foreach (int player in _world.Where(out PlayerAspect playerAspect))
                 {
                     ref readonly Coins coins = ref playerAspect.Coins.Get(player);
 
-                    ref PurchaseWidget widget = ref aspect.PurchaseWidgets.Get(entity);
+                    ref PurchaseWidget widget = ref purchaseAspect.PurchaseWidgets.Get(purchase);
                     
-                    if (aspect.Purchased.Has(entity))
+                    if (purchaseAspect.Purchased.Has(purchase))
                     {
                         widget.StatusWidget.Current = widget.StatusWidget.Play;
 
                         widget.StatusWidget.Play.SetActive(true);
                         widget.StatusWidget.Unlock.SetActive(false);
                         widget.StatusWidget.Lock.SetActive(false);
+                        
+                        purchaseAspect.PurchaseStatusUpdatedEvent.Add(purchase);
                     }
                     else
                     {
-                        if (coins.Value >= aspect.Purchases.Get(entity).Price)
+                        if (coins.Value >= purchaseAspect.Purchases.Get(purchase).Price)
                         {
                             widget.StatusWidget.Current = widget.StatusWidget.Unlock;
 
@@ -56,6 +59,8 @@ namespace _Project.Scripts.Gameplay.Features.PurchaseFeature.IntegrationFeatures
 
                              widget.StatusWidget.Play.SetActive(false);
                              widget.StatusWidget.Lock.SetActive(false);
+
+                             purchaseAspect.PurchaseStatusUpdatedEvent.Add(purchase);
                         }
                         else
                         {
@@ -64,6 +69,8 @@ namespace _Project.Scripts.Gameplay.Features.PurchaseFeature.IntegrationFeatures
                              widget.StatusWidget.Lock.SetActive(true);
                              widget.StatusWidget.Play.SetActive(false);
                              widget.StatusWidget.Unlock.SetActive(false);
+
+                             purchaseAspect.PurchaseStatusUpdatedEvent.Add(purchase);
                         }
                     }
                 }

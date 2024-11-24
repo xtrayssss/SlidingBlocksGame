@@ -43,12 +43,19 @@
     </div>
     <div id="loading-cover" style="display:none;">
         <div id="unity-loading-bar">
-            <div id="unity-logo"><img src="logo.png"></div>
-            <div id="unity-progress-bar-empty" style="display: none;">
-                <div id="unity-progress-bar-full"></div>
-            </div>
-            <div class="spinner"></div>
+    <div id="unity-logo"><img src="logo.png"></div>
+
+    <!-- Unity Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
         </div>
+    </div>
+
+    <!-- Spinner for additional loading indication -->
+    <div class="spinner"></div>
+</div>
+
     </div>
 
     <!-- Additional body modules -->
@@ -100,9 +107,9 @@
             config.devicePixelRatio = 1;
         }
 
-        // Фоновое изображение при загрузке игры. При сборке билда код меняется взависимости от настроек проекта.
-        var backgroundUnity = "url('" + buildUrl + "/{{{ BACKGROUND_FILENAME.replace(/'/g, '%27') }}}') center / cover";
-        loadingCover.style.background = "url('background.png') center / cover";
+<!--        // Фоновое изображение при загрузке игры. При сборке билда код меняется взависимости от настроек проекта.-->
+<!--        var backgroundUnity = "url('" + buildUrl + "/{{{ BACKGROUND_FILENAME.replace(/'/g, '%27') }}}') center / cover";-->
+<!--        loadingCover.style.background = "url('background.png') center / cover";-->
 
         loadingCover.style.display = "";
 
@@ -164,8 +171,8 @@
             StartUnityInstance = function () {
                 createUnityInstance(canvas, config, (progress) => {
                     spinner.style.display = "none";
-                    progressBarEmpty.style.display = "";
-                    progressBarFull.style.width = `${100 * progress}%`;
+                    const progressBarFill = document.querySelector(".progress-fill");
+    		    progressBarFill.style.width = `${100 * progress}%`; // Set progress bar width
                 }).then((unityInstance) => {
                     myGameInstance = unityInstance;
                     loadingCover.style.display = "none";

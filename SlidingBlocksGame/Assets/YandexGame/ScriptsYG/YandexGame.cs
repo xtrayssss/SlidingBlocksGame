@@ -443,7 +443,7 @@ namespace YG
 
         public static long ServerTime()
         {
-#if UNITY_EDITOR
+#if UNITY_EDITOR || DEBUG
             return Instance.infoYG.playerInfoSimulation.serverTime;
 #else
             IntPtr serverTimePtr = ServerTime_js();

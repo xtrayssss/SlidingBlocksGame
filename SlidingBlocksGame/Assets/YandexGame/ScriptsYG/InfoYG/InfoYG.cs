@@ -38,7 +38,7 @@ namespace YG
         [Tooltip("Метод из SDK Яндекс при выполнении которого отражается момент, когда игра загрузила все ресурсы и готова к взаимодействию с пользователем.\n\nЕсли данный параметр 'Auto Game Ready API' включен, то плагин сам выполнит метод Game Ready API сразу после загрузки игры.\n\nЕсли в Вашей игре имеются свои реализации загрузки игры, например, загрузка первой сцены, то Вам необходимо снять галку 'Auto Game Ready API' и самостоятельно выполнять этот метод (по желанию), когда игра будет полностью загружена. Выполнение метода: `YandexGame.GameReadyAPI();`")]
         public bool autoGameReadyAPI = true;
 
-#if UNITY_EDITOR
+#if UNITY_EDITOR || DEBUG
         [Serializable]
         public class PlayerInfoSimulation
         {
@@ -135,7 +135,7 @@ namespace YG
         public bool saveScoreAnonymousPlayers = true;
 
         #region LeaderboardSimulation
-#if UNITY_EDITOR
+#if UNITY_EDITOR || DEBUG
         public const string avatarExample = "https://justplaygames.ru/public/icon_player.png";
         public const string hideAvatar = "https://games-sdk.yandex.ru/games/api/sdk/v1/player/avatar/0/islands-retina-small";
 
