@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using _Project.Scripts.DragonAPI;
-using _Project.Scripts.Gameplay.Features.AdFeature.Utils;
 using _Project.Scripts.Gameplay.Features.AnimalFeature.IntegrationFeatures.DestructionFeature.Components;
 using _Project.Scripts.Gameplay.Features.AudioFeature.Components;
 using _Project.Scripts.Gameplay.Features.CoinFeature.Components;
@@ -131,8 +130,6 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
 
             FinalizeLevelDefeat();
 
-            AdUtils.ShowAdd();
-            
             yield break;
 
             void InitiateDefeatSequence()

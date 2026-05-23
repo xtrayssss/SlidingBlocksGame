@@ -82,6 +82,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
         {
             [IncImplicit(typeof(GameScreenTag))]
             [Inc] public readonly EcsPool<GameScreen> GameScreens;
+
             [Opt] public readonly EcsTagPool<HideMetaGameUIRequest> HideMetaGameUI;
         }
 
@@ -121,7 +122,7 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
             [Inc] public readonly EcsTagPool<TutorialWindowTag> TutorialWindowTag;
             [Opt] public readonly EcsTagPool<OpenTutorialRequest> OpenTutorial;
         }
-        
+
         private class PlayWidgetAspect : EcsAspectAuto
         {
             [Inc] public readonly EcsPool<PlayWidget> PlayWidgets;
@@ -153,6 +154,8 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
 
             foreach (int _ in _world.Where(out PlayButtonClickedAspect _))
             {
+                AdUtils.ShowAdd();
+
                 foreach (int game in _world.Where(out GameAspect gameAspect))
                 {
                     ref Levels levels = ref gameAspect.Levels.Get(game);
@@ -180,11 +183,14 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
                     }
                 }
 
-                foreach (int gameScreen in _world.Where(out GameScreenAspect gameScreenAspect))
+                foreach (int screen in _world.Where(out GameScreenAspect gameScreenAspect))
                 {
-                    gameScreenAspect.HideMetaGameUI.Add(gameScreen);
+                    gameScreenAspect.HideMetaGameUI.Add(screen);
 
                     SetInteractablePlayWidget(false);
+
+                    ref GameScreen gameScreen = ref gameScreenAspect.GameScreens.Get(screen);
+                    gameScreen.GraphicRaycaster.enabled = false;
                 }
             }
 
@@ -192,10 +198,14 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
             {
                 foreach (int game in _world.Where(out GameAspect gameAspect))
                     gameAspect.NextLevel.Add(game);
-                
-                AdUtils.ShowAdd();
-                
+
                 SetInteractablePlayWidget(true);
+
+                foreach (int screen in _world.Where(out GameScreenAspect gameScreenAspect))
+                {
+                    ref GameScreen gameScreen = ref gameScreenAspect.GameScreens.Get(screen);
+                    gameScreen.GraphicRaycaster.enabled = true;
+                }
             }
 
             foreach (int level in _world.Where(out LevelCreationStateAspect levelAspect))
@@ -244,9 +254,9 @@ namespace _Project.Scripts.Gameplay.Features.GameFlowFeature.Systems
                     PlayWidgetAspect playWidgetAspect = _world.GetAspect<PlayWidgetAspect>();
 
                     ref PlayWidget playWidget = ref playWidgetAspect.PlayWidgets.Get(playWidgetID);
-                        
-                    playWidget.PlayButton.interactable =interactable ;
-                    playWidget.ReplayButton.interactable =interactable ;
+
+                    playWidget.PlayButton.interactable = interactable;
+                    playWidget.ReplayButton.interactable = interactable;
                 }
             }
         }

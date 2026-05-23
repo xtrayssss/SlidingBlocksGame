@@ -2,6 +2,8 @@
 using DCFApixels.DragonECS;
 using UnityEngine;
 using UnityEngine.Scripting.APIUpdating;
+using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 namespace _Project.Scripts.Gameplay.Features.GameScreenFeature.Components
 {
@@ -32,6 +34,7 @@ namespace _Project.Scripts.Gameplay.Features.GameScreenFeature.Components
         public EcsEntityConnect BestScoreWidgetConnect;
         public EcsEntityConnect TutorialWindowConnect;
         public Canvas Canvas;
+        public GraphicRaycaster GraphicRaycaster;
 
         [MovedFrom(autoUpdateAPI: false,
             sourceNamespace: "_Project.Scripts.Gameplay.Features.VisualFeature.UIFeature.Components",
