@@ -6,6 +6,21 @@ Built in 2024 with Unity using **DragonECS** — during its peak and growing pop
 
 Developed for the **Yandex Games** platform, but was removed from the general game catalog due to low ratings.
 
+🎮 **Play (draft build):** [Yandex Games](https://yandex.ru/games/app/493431?draft=true&lang=ru)
+
+## Gameplay
+
+<p align="center">
+  <img src="screenshots/gameplay.gif" width="256"/>
+</p>
+
+## Screenshots
+
+<p align="center">
+  <img src="screenshots/1.png" width="400"/>
+  <img src="screenshots/2.png" width="400"/>
+</p>
+
 ## Features
 - Simple one-tap controls
 - Multiple levels of increasing difficulty
